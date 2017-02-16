@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="SecureHttp_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsam:Addressing>
+          <wsp:Policy>
+            <wsam:AnonymousResponses />
+          </wsp:Policy>
+        </wsam:Addressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://spectreyggdra/TestMTOM/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://spectreyggdra/TestMTOM/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://spectreyggdra/TestMTOM/Service1.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://spectreyggdra/TestMTOM/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetLargeObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLargeObject" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetLargeObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLargeObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAvailableFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableFiles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAvailableFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTestRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestRoles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTestRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveFileInfo">
+    <wsdl:part name="parameters" element="tns:SaveFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="SaveFileInfo_Headers">
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="Length" element="tns:Length" />
+    <wsdl:part name="MimeType" element="tns:MimeType" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SaveLargeObject_OutputMessage" />
+  <wsdl:portType msc:usingSession="false" name="IService1">
+    <wsdl:operation name="GetLargeObject">
+      <wsdl:input wsam:Action="http://tempuri.org/IService1/GetLargeObject" message="tns:IService1_GetLargeObject_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IService1/GetLargeObjectResponse" message="tns:IService1_GetLargeObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFiles">
+      <wsdl:input wsam:Action="http://tempuri.org/IService1/GetAvailableFiles" message="tns:IService1_GetAvailableFiles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IService1/GetAvailableFilesResponse" message="tns:IService1_GetAvailableFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestRoles">
+      <wsdl:input wsam:Action="http://tempuri.org/IService1/GetTestRoles" message="tns:IService1_GetTestRoles_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IService1/GetTestRolesResponse" message="tns:IService1_GetTestRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveLargeObject">
+      <wsdl:input wsam:Action="http://tempuri.org/IService1/SaveLargeObject" name="SaveFileInfo" message="tns:SaveFileInfo" />
+      <wsdl:output wsam:Action="http://tempuri.org/IService1/SaveLargeObjectResponse" message="tns:IService1_SaveLargeObject_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecureHttp" type="tns:IService1">
+    <wsp:PolicyReference URI="#SecureHttp_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLargeObject">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetLargeObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableFiles">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetAvailableFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestRoles">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTestRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveLargeObject">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SaveLargeObject" style="document" />
+      <wsdl:input name="SaveFileInfo">
+        <soap12:header message="tns:SaveFileInfo_Headers" part="FileName" use="literal" />
+        <soap12:header message="tns:SaveFileInfo_Headers" part="Length" use="literal" />
+        <soap12:header message="tns:SaveFileInfo_Headers" part="MimeType" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="SecureHttp" binding="tns:SecureHttp">
+      <soap12:address location="http://spectreyggdra/TestMTOM/Service1.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://spectreyggdra/TestMTOM/Service1.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

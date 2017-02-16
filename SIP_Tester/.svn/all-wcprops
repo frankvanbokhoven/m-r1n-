@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/svn/!svn/ver/142/trunk/Gui
+END
+AboutBox.resx
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/136/trunk/Gui/AboutBox.resx
+END
+KeyboardForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/70/trunk/Gui/KeyboardForm.resx
+END
+SettingsForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/136/trunk/Gui/SettingsForm.resx
+END
+Gui_tls.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/140/trunk/Gui/Gui_tls.csproj
+END
+ChatForm.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/70/trunk/Gui/ChatForm.Designer.cs
+END
+ChatForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/85/trunk/Gui/ChatForm.cs
+END
+SipekFactory.cs
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/142/trunk/Gui/SipekFactory.cs
+END
+MainForm.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/142/trunk/Gui/MainForm.Designer.cs
+END
+BuddyForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/70/trunk/Gui/BuddyForm.resx
+END
+Program.cs
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/70/trunk/Gui/Program.cs
+END
+MainForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/142/trunk/Gui/MainForm.cs
+END
+ErrorDialog.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/70/trunk/Gui/ErrorDialog.Designer.cs
+END
+ErrorDialog.cs
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/70/trunk/Gui/ErrorDialog.cs
+END
+calllog.cs
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/70/trunk/Gui/calllog.cs
+END
+ChatForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/70/trunk/Gui/ChatForm.resx
+END
+Gui.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/136/trunk/Gui/Gui.csproj
+END
+app.config
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/142/trunk/Gui/app.config
+END
+AboutBox.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/136/trunk/Gui/AboutBox.Designer.cs
+END
+SettingsForm.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/142/trunk/Gui/SettingsForm.Designer.cs
+END
+AboutBox.cs
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/121/trunk/Gui/AboutBox.cs
+END
+KeyboardForm.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/70/trunk/Gui/KeyboardForm.Designer.cs
+END
+MainForm.resx
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/136/trunk/Gui/MainForm.resx
+END
+phonebook.cs
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/85/trunk/Gui/phonebook.cs
+END
+SettingsForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/142/trunk/Gui/SettingsForm.cs
+END
+KeyboardForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/70/trunk/Gui/KeyboardForm.cs
+END
+ErrorDialog.resx
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/70/trunk/Gui/ErrorDialog.resx
+END
+BuddyForm.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/139/trunk/Gui/BuddyForm.Designer.cs
+END
+BuddyForm.cs
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/70/trunk/Gui/BuddyForm.cs
+END
