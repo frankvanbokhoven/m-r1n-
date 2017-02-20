@@ -100,9 +100,6 @@ namespace Sipek
                 // Update Call Register
                 UpdateCallRegister();
 
-                // Update Buddy List
-                UpdateBuddyList();
-
                 // Update account list
                 UpdateAccountList();
             }
@@ -331,42 +328,12 @@ namespace Sipek
         /// Buddy List Methods
         #region Buddy List Methods
 
-        private void UpdateBuddyList()
+             private void toolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
-            if (!IsInitialized) return;
-
-            Dictionary<int, CBuddyRecord> results = CBuddyList.getInstance().getList();
-            listViewBuddies.Items.Clear();
-            foreach (KeyValuePair<int, CBuddyRecord> kvp in results)
-            {
-                string status = "?";
-
-                if (kvp.Value.PresenceEnabled)
-                {
-                    switch (kvp.Value.Status)
-                    {
-                        case 0: status = "unknown"; break;
-                        case 1: status = "online"; break;
-                        case 2: status = "offline"; break;
-                        default: status = kvp.Value.StatusText; break;
-                    }
-                }
-
-                ListViewItem item = new ListViewItem(new string[] { kvp.Value.FirstName + kvp.Value.LastName, status, kvp.Value.StatusText });
-                item.Tag = kvp.Value;
-                //item.BackColor = Color.Blue;
-                listViewBuddies.Items.Add(item);
-            }
-        }
-
-        private void toolStripMenuItemAdd_Click(object sender, EventArgs e)
-        {
-            (new BuddyForm()).ShowDialog();
-        }
+         }
 
         private void tabPageBuddies_Enter(object sender, EventArgs e)
         {
-            UpdateBuddyList();
         }
 
         private void BuddyStateChanged(int buddyId, int status, string text)
@@ -378,9 +345,7 @@ namespace Sipek
             record.Status = status;
             record.StatusText = text;
 
-            // update list...
-            UpdateBuddyList();
-        }
+           }
 
         private void MessageReceived(string from, string message)
         {
@@ -481,26 +446,12 @@ namespace Sipek
 
         private void toolStripMenuItemIM_Click(object sender, EventArgs e)
         {
-            if (listViewBuddies.SelectedItems.Count > 0)
-            {
-                ListViewItem lvi = listViewBuddies.SelectedItems[0];
-                ChatForm bf = new ChatForm(SipekResources);
-                bf.BuddyId = ((CBuddyRecord)lvi.Tag).Id;
-                bf.ShowDialog();
-            }
-
+   
         }
 
         private void toolStripMenuItemEdit_Click(object sender, EventArgs e)
         {
-            if (listViewBuddies.SelectedItems.Count > 0)
-            {
-                ListViewItem lvi = listViewBuddies.SelectedItems[0];
-
-                BuddyForm bf = new BuddyForm();
-                bf.BuddyId = ((CBuddyRecord)lvi.Tag).Id;
-                bf.ShowDialog();
-            }
+      
         }
         #endregion
 
@@ -677,16 +628,7 @@ namespace Sipek
 
         private void placeACallToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listViewBuddies.SelectedItems.Count > 0)
-            {
-                ListViewItem lvi = listViewBuddies.SelectedItems[0];
-
-                CBuddyRecord rec = (CBuddyRecord)lvi.Tag;
-                if (rec != null)
-                {
-                    SipekResources.CallManager.createOutboundCall(rec.Number);
-                }
-            }
+         
         }
 
         private void toolStripButtonHoldRetrieve_Click(object sender, EventArgs e)
@@ -899,7 +841,10 @@ namespace Sipek
             catch (Exception e)
             {
                 ///report error
-                (new ErrorDialog("Initialize Error ", "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException)).ShowDialog();
+                //   (new ErrorDialog("Initialize Error ", "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException)).ShowDialog();
+                statusStrip.Text ="Initialize Error: Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!";
+                log.Error("Initialize Error : Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException);
+
                 return;
             }
             // set callback
@@ -1097,9 +1042,6 @@ namespace Sipek
 
                 this.UpdateCallRegister();
 
-                // Buddy list
-                this.UpdateBuddyList();
-
                 this.UpdateAccountList();
 
                 // Set user status
@@ -1183,23 +1125,11 @@ namespace Sipek
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            if (IsInitialized)
-            {
-                //UpdateAccountList();
-                UpdateBuddyList();
-            }
-        }
+           }
 
         private void toolStripMenuItemRemove_Click(object sender, EventArgs e)
         {
-            if (listViewBuddies.SelectedItems.Count > 0)
-            {
-                CBuddyRecord item = (CBuddyRecord)listViewBuddies.SelectedItems[0].Tag;
-
-                CBuddyList.getInstance().deleteRecord(item.Id);
-                UpdateBuddyList();
-            }
-        }
+           }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {

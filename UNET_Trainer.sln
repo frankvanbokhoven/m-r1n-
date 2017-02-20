@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_TrainerClient", "UNET_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIP_CallOut", "SIP_CallOut\SIP_CallOut.csproj", "{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupSIPTester", "SetupSIPTester\SetupSIPTester.vdproj", "{6FA859E1-D353-4215-9EF2-BC178CA314B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,8 @@ Global
 		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA859E1-D353-4215-9EF2-BC178CA314B0}.Debug|Any CPU.ActiveCfg = Debug
+		{6FA859E1-D353-4215-9EF2-BC178CA314B0}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

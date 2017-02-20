@@ -16,7 +16,9 @@ namespace Sipek
 {
   public partial class SettingsForm : Form
   {
-    private Mixers mMixers;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private Mixers mMixers;
     private bool mAvoidEvents;
     private int _lastMicVolume = 0;
 
@@ -246,11 +248,16 @@ namespace Sipek
       catch (Exception ex)
 			{
 			  ///report error
-        (new ErrorDialog("Initialize Error " + ex.Message, "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!")).ShowDialog();
-      }		
+    //    (new ErrorDialog("Initialize Error " + ex.Message, "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!")).ShowDialog();
+                //   (new ErrorDialog("Initialize Error ", "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException)).ShowDialog();
+             //   statusStrip.Text = "Initialize Error: Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!";
+                log.Error("Initialize Error : Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + ex.Message + " Innerexception: " + ex.InnerException);
 
-      // load codecs from system 
-      if (SipekResources.StackProxy.IsInitialized)
+
+            }
+
+            // load codecs from system 
+            if (SipekResources.StackProxy.IsInitialized)
       {
         int noofcodecs = SipekResources.StackProxy.getNoOfCodecs();
         for (int i = 0; i < noofcodecs; i++)
