@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FgDotNetControls", "FgDotNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_TrainerClient", "UNET_TrainerClient\UNET_TrainerClient.csproj", "{9F0500DC-79C7-4237-88B3-D3AAB9A84234}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIP_CallOut", "SIP_CallOut\SIP_CallOut.csproj", "{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9F0500DC-79C7-4237-88B3-D3AAB9A84234}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F0500DC-79C7-4237-88B3-D3AAB9A84234}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F0500DC-79C7-4237-88B3-D3AAB9A84234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29031782-3CF5-4C31-9406-0AFAC3E8F8C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

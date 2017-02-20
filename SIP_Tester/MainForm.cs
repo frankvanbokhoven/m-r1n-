@@ -892,57 +892,59 @@ namespace Sipek
 
         private void LoadAudioValues()
         {
-            //try {
-            //   mMixers = new Mixers();
-            //} catch (Exception e)
-            //   {
-            //     ///report error
-            //     (new ErrorDialog("Initialize Error ", "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException)).ShowDialog();
-            //     return;
-            //   }
-            //   // set callback
-            //   mMixers.Playback.MixerLineChanged += new WaveLib.AudioMixer.Mixer.MixerLineChangeHandler(mMixer_MixerLineChanged);
-            //   mMixers.Recording.MixerLineChanged += new WaveLib.AudioMixer.Mixer.MixerLineChangeHandler(mMixer_MixerLineChanged);
+            try
+            {
+                mMixers = new Mixers();
+            }
+            catch (Exception e)
+            {
+                ///report error
+                (new ErrorDialog("Initialize Error ", "Audio Mixer cannot initialize! \r\nCheck audio configuration and start again!" + Environment.NewLine + e.Message + " Innerexception: " + e.InnerException)).ShowDialog();
+                return;
+            }
+            // set callback
+            mMixers.Playback.MixerLineChanged += new WaveLib.AudioMixer.Mixer.MixerLineChangeHandler(mMixer_MixerLineChanged);
+            mMixers.Recording.MixerLineChanged += new WaveLib.AudioMixer.Mixer.MixerLineChangeHandler(mMixer_MixerLineChanged);
 
-            //   MixerLine pbline = mMixers.Playback.UserLines.GetMixerFirstLineByComponentType(MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT);
+            MixerLine pbline = mMixers.Playback.UserLines.GetMixerFirstLineByComponentType(MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT);
 
-            //   toolStripTrackBar1.Tag = pbline;
-            //   toolStripMuteButton.Tag = pbline;
-            //   MixerLine recline = mMixers.Recording.UserLines.GetMixerFirstLineByComponentType(MIXERLINE_COMPONENTTYPE.SRC_MICROPHONE); ;
-            //   toolStripMicMuteButton.Tag = recline;
+            toolStripTrackBar1.Tag = pbline;
+            toolStripMuteButton.Tag = pbline;
+            MixerLine recline = mMixers.Recording.UserLines.GetMixerFirstLineByComponentType(MIXERLINE_COMPONENTTYPE.SRC_MICROPHONE); ;
+            toolStripMicMuteButton.Tag = recline;
 
-            //If it is 2 channels then ask both and set the volume to the bigger but keep relation between them (Balance)
-            //int volume = 0;
-            //float balance = 0;
-            //if (pbline.Channels != 2)
-            //  volume = pbline.Volume;
-            //else
-            //{
-            //  pbline.Channel = Channel.Left;
-            //  int left = pbline.Volume;
-            //  pbline.Channel = Channel.Right;
-            //  int right = pbline.Volume;
-            //  if (left > right)
-            //  {
-            //    volume = left;
-            //    balance = (volume > 0) ? -(1 - (right / (float)left)) : 0;
-            //  }
-            //  else
-            //  {
-            //    volume = right;
-            //    balance = (volume > 0) ? (1 - (left / (float)right)) : 0;
-            //  }
-            //}
+         //   If it is 2 channels then ask both and set the volume to the bigger but keep relation between them (Balance)
+            int volume = 0;
+            float balance = 0;
+            if (pbline.Channels != 2)
+                volume = pbline.Volume;
+            else
+            {
+                pbline.Channel = Channel.Left;
+                int left = pbline.Volume;
+                pbline.Channel = Channel.Right;
+                int right = pbline.Volume;
+                if (left > right)
+                {
+                    volume = left;
+                    balance = (volume > 0) ? -(1 - (right / (float)left)) : 0;
+                }
+                else
+                {
+                    volume = right;
+                    balance = (volume > 0) ? (1 - (left / (float)right)) : 0;
+                }
+            }
 
-            //if (volume >= 0)
-            //  this.toolStripTrackBar1.Value = volume;
-            //else
-            //  this.toolStripTrackBar1.Enabled = false;
+            if (volume >= 0)
+                this.toolStripTrackBar1.Value = volume;
+            else
+                this.toolStripTrackBar1.Enabled = false;
 
-            //// toolstrip checkboxes
-            //this.toolStripMuteButton.Checked = pbline.Mute;
-            //this.toolStripMicMuteButton.Checked = recline.Volume == 0 ? true : false;
-            //_lastMicVol = recline.Volume;
+            // toolstrip checkboxes
+            this.toolStripMuteButton.Checked = pbline.Mute;
+            this.toolStripMicMuteButton.Checked = recline.Volume == 0 ? true : false;
+            _lastMicVol = recline.Volume;
         }
 
         /// <summary>
