@@ -7,6 +7,7 @@ namespace UNET_Trainer
     {
 
         private Boolean Muted = false;
+        private Boolean MonitorTrainee = false;
         private static FrmUNETMain inst;
         public static FrmUNETMain GetForm
         {
@@ -140,6 +141,22 @@ namespace UNET_Trainer
                 Muted = false;
                 btnMute.BackColor = System.Drawing.Color.LightGreen;
                 btnMute.Text = "Mute radio";
+            }
+        }
+
+        private void btnMonitorTrainee_Click(object sender, EventArgs e)
+        {
+            if (!MonitorTrainee)
+            {
+                MonitorTrainee = true;
+                btnMonitorTrainee.BackColor = System.Drawing.Color.SaddleBrown;
+                btnMonitorTrainee.ForeColor = System.Drawing.Color.White;
+             }
+            else
+            {
+                MonitorTrainee = false;
+                btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
+                btnMonitorTrainee.ForeColor = System.Drawing.Color.Black;
             }
         }
     }

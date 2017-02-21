@@ -99,8 +99,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMute = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnMonitorRadio = new System.Windows.Forms.Button();
+            this.btnMonitorTrainee = new System.Windows.Forms.Button();
             this.btnClassBroadcast = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblExercises = new System.Windows.Forms.Label();
@@ -1147,8 +1147,8 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.btnMute);
-            this.panel3.Controls.Add(this.button12);
-            this.panel3.Controls.Add(this.button13);
+            this.panel3.Controls.Add(this.btnMonitorRadio);
+            this.panel3.Controls.Add(this.btnMonitorTrainee);
             this.panel3.Controls.Add(this.btnClassBroadcast);
             this.panel3.Location = new System.Drawing.Point(868, 383);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1179,29 +1179,30 @@
             this.btnMute.UseVisualStyleBackColor = false;
             this.btnMute.Click += new System.EventHandler(this.btnMute_Click);
             // 
-            // button12
+            // btnMonitorRadio
             // 
-            this.button12.BackColor = System.Drawing.Color.Aqua;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.Location = new System.Drawing.Point(3, 190);
-            this.button12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(91, 80);
-            this.button12.TabIndex = 3;
-            this.button12.Text = "Monitor radio";
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnMonitorRadio.BackColor = System.Drawing.Color.Aqua;
+            this.btnMonitorRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorRadio.Location = new System.Drawing.Point(3, 190);
+            this.btnMonitorRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMonitorRadio.Name = "btnMonitorRadio";
+            this.btnMonitorRadio.Size = new System.Drawing.Size(91, 80);
+            this.btnMonitorRadio.TabIndex = 3;
+            this.btnMonitorRadio.Text = "Monitor radio";
+            this.btnMonitorRadio.UseVisualStyleBackColor = false;
             // 
-            // button13
+            // btnMonitorTrainee
             // 
-            this.button13.BackColor = System.Drawing.Color.Aqua;
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.Location = new System.Drawing.Point(3, 106);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(91, 80);
-            this.button13.TabIndex = 2;
-            this.button13.Text = "Monitor trainee";
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
+            this.btnMonitorTrainee.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 106);
+            this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMonitorTrainee.Name = "btnMonitorTrainee";
+            this.btnMonitorTrainee.Size = new System.Drawing.Size(91, 80);
+            this.btnMonitorTrainee.TabIndex = 2;
+            this.btnMonitorTrainee.Text = "Monitor trainee";
+            this.btnMonitorTrainee.UseVisualStyleBackColor = false;
+            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
             // 
             // btnClassBroadcast
             // 
@@ -1524,8 +1525,8 @@
         private System.Windows.Forms.Button btnIL;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnMute;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnMonitorRadio;
+        private System.Windows.Forms.Button btnMonitorTrainee;
         private System.Windows.Forms.Button btnClassBroadcast;
         private System.Windows.Forms.Label lblExercises;
         private System.Windows.Forms.Label lblSetup;
