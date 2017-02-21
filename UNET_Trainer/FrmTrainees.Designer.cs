@@ -69,10 +69,10 @@
             this.panel4.Controls.Add(this.btnTraineeEE);
             this.panel4.Controls.Add(this.btnTraineeCC);
             this.panel4.Controls.Add(this.btnTraineeAA);
-            this.panel4.Location = new System.Drawing.Point(231, 76);
+            this.panel4.Location = new System.Drawing.Point(234, 97);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(412, 402);
+            this.panel4.Size = new System.Drawing.Size(534, 498);
             this.panel4.TabIndex = 10;
             // 
             // btnTraineeSS
@@ -80,13 +80,12 @@
             this.btnTraineeSS.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeSS.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeSS.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeSS.Location = new System.Drawing.Point(305, 233);
+            this.btnTraineeSS.Location = new System.Drawing.Point(393, 283);
             this.btnTraineeSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeSS.Name = "btnTraineeSS";
             this.btnTraineeSS.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeSS.TabIndex = 18;
             this.btnTraineeSS.Text = "Trainee SS";
-            this.btnTraineeSS.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeSS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeSS.UseVisualStyleBackColor = false;
             // 
@@ -96,13 +95,12 @@
             this.btnTraineePP.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineePP.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineePP.ImageIndex = 1;
-            this.btnTraineePP.Location = new System.Drawing.Point(305, 311);
+            this.btnTraineePP.Location = new System.Drawing.Point(393, 377);
             this.btnTraineePP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineePP.Name = "btnTraineePP";
             this.btnTraineePP.Size = new System.Drawing.Size(91, 74);
             this.btnTraineePP.TabIndex = 17;
             this.btnTraineePP.Text = "Trainee PP";
-            this.btnTraineePP.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineePP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineePP.UseVisualStyleBackColor = false;
             // 
@@ -111,13 +109,12 @@
             this.btnTraineeMM.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeMM.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeMM.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeMM.Location = new System.Drawing.Point(99, 311);
+            this.btnTraineeMM.Location = new System.Drawing.Point(152, 377);
             this.btnTraineeMM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeMM.Name = "btnTraineeMM";
             this.btnTraineeMM.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeMM.TabIndex = 16;
             this.btnTraineeMM.Text = "Trainee MM";
-            this.btnTraineeMM.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeMM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeMM.UseVisualStyleBackColor = false;
             // 
@@ -126,13 +123,12 @@
             this.btnTraineeKK.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeKK.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeKK.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeKK.Location = new System.Drawing.Point(99, 233);
+            this.btnTraineeKK.Location = new System.Drawing.Point(152, 283);
             this.btnTraineeKK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeKK.Name = "btnTraineeKK";
             this.btnTraineeKK.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeKK.TabIndex = 15;
             this.btnTraineeKK.Text = "Trainee KK";
-            this.btnTraineeKK.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeKK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeKK.UseVisualStyleBackColor = false;
             // 
@@ -142,13 +138,12 @@
             this.btnTraineeHH.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeHH.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeHH.ImageIndex = 1;
-            this.btnTraineeHH.Location = new System.Drawing.Point(305, 108);
+            this.btnTraineeHH.Location = new System.Drawing.Point(393, 178);
             this.btnTraineeHH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeHH.Name = "btnTraineeHH";
             this.btnTraineeHH.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeHH.TabIndex = 14;
             this.btnTraineeHH.Text = "Trainee HH";
-            this.btnTraineeHH.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeHH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeHH.UseVisualStyleBackColor = false;
             // 
@@ -157,13 +152,12 @@
             this.btnTraineeFF.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeFF.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeFF.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeFF.Location = new System.Drawing.Point(305, 30);
+            this.btnTraineeFF.Location = new System.Drawing.Point(393, 84);
             this.btnTraineeFF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeFF.Name = "btnTraineeFF";
             this.btnTraineeFF.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeFF.TabIndex = 13;
             this.btnTraineeFF.Text = "Trainee FF";
-            this.btnTraineeFF.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeFF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeFF.UseVisualStyleBackColor = false;
             // 
@@ -172,13 +166,12 @@
             this.btnTraineeDD.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeDD.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeDD.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeDD.Location = new System.Drawing.Point(99, 106);
+            this.btnTraineeDD.Location = new System.Drawing.Point(152, 178);
             this.btnTraineeDD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeDD.Name = "btnTraineeDD";
             this.btnTraineeDD.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeDD.TabIndex = 12;
             this.btnTraineeDD.Text = "Trainee DD";
-            this.btnTraineeDD.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeDD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeDD.UseVisualStyleBackColor = false;
             // 
@@ -187,13 +180,12 @@
             this.btnTraineeBB.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeBB.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeBB.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeBB.Location = new System.Drawing.Point(99, 30);
+            this.btnTraineeBB.Location = new System.Drawing.Point(152, 84);
             this.btnTraineeBB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeBB.Name = "btnTraineeBB";
             this.btnTraineeBB.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeBB.TabIndex = 11;
             this.btnTraineeBB.Text = "Trainee BB";
-            this.btnTraineeBB.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeBB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeBB.UseVisualStyleBackColor = false;
             // 
@@ -201,7 +193,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(165, 11);
+            this.label1.Location = new System.Drawing.Point(226, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 10;
@@ -212,13 +204,12 @@
             this.btnTraineeRR.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeRR.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeRR.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeRR.Location = new System.Drawing.Point(208, 233);
+            this.btnTraineeRR.Location = new System.Drawing.Point(278, 283);
             this.btnTraineeRR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeRR.Name = "btnTraineeRR";
             this.btnTraineeRR.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeRR.TabIndex = 8;
             this.btnTraineeRR.Text = "Trainee RR";
-            this.btnTraineeRR.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeRR.UseVisualStyleBackColor = false;
             // 
@@ -227,13 +218,12 @@
             this.btnTraineeNN.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeNN.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeNN.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeNN.Location = new System.Drawing.Point(208, 311);
+            this.btnTraineeNN.Location = new System.Drawing.Point(278, 377);
             this.btnTraineeNN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeNN.Name = "btnTraineeNN";
             this.btnTraineeNN.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeNN.TabIndex = 7;
             this.btnTraineeNN.Text = "Trainee NN";
-            this.btnTraineeNN.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeNN.UseVisualStyleBackColor = false;
             // 
@@ -242,13 +232,12 @@
             this.btnTraineeLL.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeLL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeLL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeLL.Location = new System.Drawing.Point(3, 311);
+            this.btnTraineeLL.Location = new System.Drawing.Point(43, 377);
             this.btnTraineeLL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeLL.Name = "btnTraineeLL";
             this.btnTraineeLL.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeLL.TabIndex = 6;
             this.btnTraineeLL.Text = "Trainee LL";
-            this.btnTraineeLL.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeLL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeLL.UseVisualStyleBackColor = false;
             // 
@@ -258,13 +247,12 @@
             this.btnTraineeJJ.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeJJ.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeJJ.ImageIndex = 2;
-            this.btnTraineeJJ.Location = new System.Drawing.Point(3, 233);
+            this.btnTraineeJJ.Location = new System.Drawing.Point(43, 283);
             this.btnTraineeJJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeJJ.Name = "btnTraineeJJ";
             this.btnTraineeJJ.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeJJ.TabIndex = 5;
             this.btnTraineeJJ.Text = "Trainee JJ";
-            this.btnTraineeJJ.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeJJ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeJJ.UseVisualStyleBackColor = false;
             // 
@@ -274,13 +262,12 @@
             this.btnTraineeGG.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeGG.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeGG.ImageIndex = 1;
-            this.btnTraineeGG.Location = new System.Drawing.Point(208, 108);
+            this.btnTraineeGG.Location = new System.Drawing.Point(278, 178);
             this.btnTraineeGG.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeGG.Name = "btnTraineeGG";
             this.btnTraineeGG.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeGG.TabIndex = 4;
             this.btnTraineeGG.Text = "Trainee GG";
-            this.btnTraineeGG.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeGG.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeGG.UseVisualStyleBackColor = false;
             // 
@@ -289,13 +276,12 @@
             this.btnTraineeEE.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeEE.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeEE.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeEE.Location = new System.Drawing.Point(208, 30);
+            this.btnTraineeEE.Location = new System.Drawing.Point(278, 84);
             this.btnTraineeEE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeEE.Name = "btnTraineeEE";
             this.btnTraineeEE.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeEE.TabIndex = 3;
             this.btnTraineeEE.Text = "Trainee EE";
-            this.btnTraineeEE.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeEE.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeEE.UseVisualStyleBackColor = false;
             // 
@@ -304,13 +290,12 @@
             this.btnTraineeCC.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeCC.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeCC.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeCC.Location = new System.Drawing.Point(3, 107);
+            this.btnTraineeCC.Location = new System.Drawing.Point(43, 178);
             this.btnTraineeCC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeCC.Name = "btnTraineeCC";
             this.btnTraineeCC.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeCC.TabIndex = 2;
             this.btnTraineeCC.Text = "Trainee CC";
-            this.btnTraineeCC.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeCC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeCC.UseVisualStyleBackColor = false;
             // 
@@ -319,13 +304,12 @@
             this.btnTraineeAA.BackColor = System.Drawing.Color.GreenYellow;
             this.btnTraineeAA.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeAA.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnTraineeAA.Location = new System.Drawing.Point(3, 30);
+            this.btnTraineeAA.Location = new System.Drawing.Point(43, 84);
             this.btnTraineeAA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTraineeAA.Name = "btnTraineeAA";
             this.btnTraineeAA.Size = new System.Drawing.Size(91, 74);
             this.btnTraineeAA.TabIndex = 1;
             this.btnTraineeAA.Text = "Trainee AA";
-            this.btnTraineeAA.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeAA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeAA.UseVisualStyleBackColor = false;
             // 
@@ -333,9 +317,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 576);
+            this.ClientSize = new System.Drawing.Size(940, 706);
             this.Controls.Add(this.panel4);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmTrainees";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

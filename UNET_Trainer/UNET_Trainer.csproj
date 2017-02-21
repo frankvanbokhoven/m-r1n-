@@ -69,6 +69,12 @@
     <Compile Include="FrmClassBroadcast.Designer.cs">
       <DependentUpon>FrmClassBroadcast.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRadioSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRadioSetup.Designer.cs">
+      <DependentUpon>FrmRadioSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmClassBroadcast.resx">
       <DependentUpon>FrmClassBroadcast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRadioSetup.resx">
+      <DependentUpon>FrmRadioSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRoles.resx">
       <DependentUpon>FrmRoles.cs</DependentUpon>

@@ -98,7 +98,7 @@
             this.btnTraineeAA = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnMute = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.btnClassBroadcast = new System.Windows.Forms.Button();
@@ -152,7 +152,7 @@
             this.panel5.Controls.Add(this.button47);
             this.panel5.Controls.Add(this.button48);
             this.panel5.Controls.Add(this.button49);
-            this.panel5.Location = new System.Drawing.Point(317, 2);
+            this.panel5.Location = new System.Drawing.Point(319, 2);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(543, 358);
@@ -1146,7 +1146,7 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.button11);
+            this.panel3.Controls.Add(this.btnMute);
             this.panel3.Controls.Add(this.button12);
             this.panel3.Controls.Add(this.button13);
             this.panel3.Controls.Add(this.btnClassBroadcast);
@@ -1166,17 +1166,18 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Functions";
             // 
-            // button11
+            // btnMute
             // 
-            this.button11.BackColor = System.Drawing.Color.Aqua;
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(3, 272);
-            this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(91, 80);
-            this.button11.TabIndex = 4;
-            this.button11.Text = "Mute   radio";
-            this.button11.UseVisualStyleBackColor = false;
+            this.btnMute.BackColor = System.Drawing.Color.Aqua;
+            this.btnMute.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMute.Location = new System.Drawing.Point(3, 272);
+            this.btnMute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMute.Name = "btnMute";
+            this.btnMute.Size = new System.Drawing.Size(91, 80);
+            this.btnMute.TabIndex = 4;
+            this.btnMute.Text = "Mute   radio";
+            this.btnMute.UseVisualStyleBackColor = false;
+            this.btnMute.Click += new System.EventHandler(this.btnMute_Click);
             // 
             // button12
             // 
@@ -1437,6 +1438,7 @@
             this.btnRadios.TabIndex = 3;
             this.btnRadios.Text = "Radios";
             this.btnRadios.UseVisualStyleBackColor = false;
+            this.btnRadios.Click += new System.EventHandler(this.btnRadios_Click);
             // 
             // btnTrainees
             // 
@@ -1521,7 +1523,7 @@
         private System.Windows.Forms.Button btnExersise01;
         private System.Windows.Forms.Button btnIL;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnMute;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button btnClassBroadcast;

@@ -6,6 +6,7 @@ namespace UNET_Trainer
     public partial class FrmUNETMain : FrmUNETbase
     {
 
+        private Boolean Muted = false;
         private static FrmUNETMain inst;
         public static FrmUNETMain GetForm
         {
@@ -118,6 +119,28 @@ namespace UNET_Trainer
         {
             FrmClassBroadcast frm = new FrmClassBroadcast();
             frm.Show();
+        }
+
+        private void btnRadios_Click(object sender, EventArgs e)
+        {
+            FrmRadioSetup frm = new FrmRadioSetup();
+            frm.Show();
+        }
+
+        private void btnMute_Click(object sender, EventArgs e)
+        {
+            if (!Muted)
+            {
+                Muted = true;
+                btnMute.BackColor = System.Drawing.Color.Red;
+                btnMute.Text = "Muted";
+            }
+            else
+            {
+                Muted = false;
+                btnMute.BackColor = System.Drawing.Color.LightGreen;
+                btnMute.Text = "Mute radio";
+            }
         }
     }
 }
