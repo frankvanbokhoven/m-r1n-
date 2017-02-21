@@ -21,7 +21,7 @@ namespace UNET_Trainer
         {
             // Set the text displayed in the caption.
             this.Text = "UNET";
-            this.BackColor = Color.Azure;
+            this.BackColor = Color.White;
             // Set the opacity to 75%.
             this.Opacity = 1;
             // Size the form to be 300 pixels in height and width.
