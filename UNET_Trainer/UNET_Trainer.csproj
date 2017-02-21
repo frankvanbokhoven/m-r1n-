@@ -152,12 +152,6 @@
     <None Include="Images\Grey.png" />
     <Content Include="Images\Marine.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FgDotNetControls\FgDotNetControls.csproj">
-      <Project>{478816D0-3A16-4B65-9826-8F90FBA2BF29}</Project>
-      <Name>FgDotNetControls</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

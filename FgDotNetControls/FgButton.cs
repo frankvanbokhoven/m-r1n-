@@ -19,7 +19,7 @@ namespace FgDotNetControls
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		private bool IsCompatibleOS;
+	//	private bool IsCompatibleOS;
 		private IntPtr hTheme = IntPtr.Zero;
 		private int buttonType = (int)ButtonType.PushButton;
 		private ButtonState buttonState;
@@ -39,7 +39,7 @@ namespace FgDotNetControls
 			Version version = Environment.OSVersion.Version;
 			Version targetVersion = new Version("5.1.2600.0");
 
-			IsCompatibleOS = ((version >= targetVersion) && (platformId == PlatformID.Win32NT));
+		//	IsCompatibleOS = ((version >= targetVersion) && (platformId == PlatformID.Win32NT));
 
 		}
 
@@ -73,15 +73,13 @@ namespace FgDotNetControls
 
 		protected override void OnPaint(PaintEventArgs pevent)
 		{
-			// TODO: aggiungere l'implementazione di FgButton.OnPaint
-
-			if (!IsCompatibleOS)
-			{
-				base.OnPaint (pevent);
-			}
-			else
-			{
-				if (IsCompatibleOS) 
+		////	if (!IsCompatibleOS)
+			//{
+			//	base.OnPaint (pevent);
+			//}
+			//else
+			//{
+			//	if (IsCompatibleOS) 
 					if ((NativeMethods.IsThemeActive() == 1)  && (this.hTheme == IntPtr.Zero)) 
 						this.hTheme = NativeMethods.OpenThemeData(this.Handle, "Button");
 
@@ -144,7 +142,7 @@ namespace FgDotNetControls
 						}
 					}
 				}
-			}
+		//	}
 		}
 
 
