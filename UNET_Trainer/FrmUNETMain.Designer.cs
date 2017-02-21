@@ -444,7 +444,7 @@
             this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(53, -6);
+            this.btnClose.Location = new System.Drawing.Point(473, 331);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(65, 34);
@@ -810,6 +810,7 @@
             this.btnRole1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole1.UseVisualStyleBackColor = false;
+            this.btnRole1.Click += new System.EventHandler(this.btnRole1_Click);
             // 
             // panel4
             // 
@@ -1140,6 +1141,7 @@
             this.btnTraineeAA.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeAA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeAA.UseVisualStyleBackColor = false;
+            this.btnTraineeAA.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // panel3
             // 

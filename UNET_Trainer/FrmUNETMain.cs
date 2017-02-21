@@ -8,6 +8,8 @@ namespace UNET_Trainer
 
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
+        
+        bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         private static FrmUNETMain inst;
         public static FrmUNETMain GetForm
         {
@@ -158,6 +160,66 @@ namespace UNET_Trainer
                 btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
                 btnMonitorTrainee.ForeColor = System.Drawing.Color.Black;
             }
+        }
+
+        private void btnRole1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTraineeAA_Click(object sender, EventArgs e)
+        {
+            SetTraineeStatus();
+
+            if (MonitorTrainee)
+            {
+                MonitorTraineeArray[0] = true;
+                btnTraineeAA.BackColor = System.Drawing.Color.SaddleBrown;
+            }
+         }
+
+        private void SetTraineeStatus()
+        { 
+
+            //loop thrue the Monitortraineearray to set the proper status
+            for (int i = 0; i <= 15; i++)
+            {
+                MonitorTraineeArray[i] = false;
+
+            //    foreach (Control c in this.Controls)
+            //        if (c.Name == Name)
+            //            return c;
+            //    //and also g
+            //    ((Button)GetControlByName(string.Format("btnTrainee{0}", i))).BackColor = System.Drawing.Color.Aqua;
+            }
+
+    // A little amateur.. but it just is the fastest manner
+            btnTraineeAA.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeBB.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeCC.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeDD.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeEE.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeFF.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeGG.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeHH.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeJJ.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeKK.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeLL.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeMM.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeNN.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeRR.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineeSS.BackColor = System.Drawing.Color.LightGreen;
+         
+
+        }
+
+        private  Control GetControlByName(string Name)
+        {
+            foreach (Control c in this.Controls)
+                if (c.Name == Name)
+                    return c;
+
+            return null;
         }
     }
 }
