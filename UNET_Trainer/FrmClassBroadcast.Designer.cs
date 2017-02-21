@@ -48,10 +48,10 @@
             this.btnTraineeAA = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.btnBroadcast = new System.Windows.Forms.Button();
+            this.btnSelectAllPositions = new System.Windows.Forms.Button();
+            this.btnSelectAllInstructors = new System.Windows.Forms.Button();
+            this.btnSelectAllTrainees = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -334,10 +334,10 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.button13);
-            this.panel2.Controls.Add(this.button14);
-            this.panel2.Controls.Add(this.button15);
-            this.panel2.Controls.Add(this.button16);
+            this.panel2.Controls.Add(this.btnBroadcast);
+            this.panel2.Controls.Add(this.btnSelectAllPositions);
+            this.panel2.Controls.Add(this.btnSelectAllInstructors);
+            this.panel2.Controls.Add(this.btnSelectAllTrainees);
             this.panel2.Location = new System.Drawing.Point(245, 130);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
@@ -354,62 +354,62 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Functions";
             // 
-            // button13
+            // btnBroadcast
             // 
-            this.button13.BackColor = System.Drawing.Color.GreenYellow;
-            this.button13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button13.ImageIndex = 1;
-            this.button13.Location = new System.Drawing.Point(3, 334);
-            this.button13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(146, 74);
-            this.button13.TabIndex = 4;
-            this.button13.Text = "Broadcast";
-            this.button13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button13.UseVisualStyleBackColor = false;
+            this.btnBroadcast.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBroadcast.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnBroadcast.ImageIndex = 1;
+            this.btnBroadcast.Location = new System.Drawing.Point(3, 334);
+            this.btnBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBroadcast.Name = "btnBroadcast";
+            this.btnBroadcast.Size = new System.Drawing.Size(146, 74);
+            this.btnBroadcast.TabIndex = 4;
+            this.btnBroadcast.Text = "Broadcast";
+            this.btnBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBroadcast.UseVisualStyleBackColor = false;
             // 
-            // button14
+            // btnSelectAllPositions
             // 
-            this.button14.BackColor = System.Drawing.Color.GreenYellow;
-            this.button14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button14.Location = new System.Drawing.Point(3, 234);
-            this.button14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(146, 74);
-            this.button14.TabIndex = 3;
-            this.button14.Text = "Select all positions";
-            this.button14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button14.UseVisualStyleBackColor = false;
+            this.btnSelectAllPositions.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnSelectAllPositions.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllPositions.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAllPositions.Location = new System.Drawing.Point(3, 234);
+            this.btnSelectAllPositions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSelectAllPositions.Name = "btnSelectAllPositions";
+            this.btnSelectAllPositions.Size = new System.Drawing.Size(146, 74);
+            this.btnSelectAllPositions.TabIndex = 3;
+            this.btnSelectAllPositions.Text = "Select all positions";
+            this.btnSelectAllPositions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSelectAllPositions.UseVisualStyleBackColor = false;
             // 
-            // button15
+            // btnSelectAllInstructors
             // 
-            this.button15.BackColor = System.Drawing.Color.GreenYellow;
-            this.button15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button15.Location = new System.Drawing.Point(3, 131);
-            this.button15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(146, 74);
-            this.button15.TabIndex = 2;
-            this.button15.Text = "Select all instructors";
-            this.button15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button15.UseVisualStyleBackColor = false;
+            this.btnSelectAllInstructors.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnSelectAllInstructors.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllInstructors.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAllInstructors.Location = new System.Drawing.Point(3, 131);
+            this.btnSelectAllInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSelectAllInstructors.Name = "btnSelectAllInstructors";
+            this.btnSelectAllInstructors.Size = new System.Drawing.Size(146, 74);
+            this.btnSelectAllInstructors.TabIndex = 2;
+            this.btnSelectAllInstructors.Text = "Select all instructors";
+            this.btnSelectAllInstructors.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSelectAllInstructors.UseVisualStyleBackColor = false;
             // 
-            // button16
+            // btnSelectAllTrainees
             // 
-            this.button16.BackColor = System.Drawing.Color.GreenYellow;
-            this.button16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button16.Location = new System.Drawing.Point(3, 39);
-            this.button16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(146, 74);
-            this.button16.TabIndex = 1;
-            this.button16.Text = "Select all trainees";
-            this.button16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button16.UseVisualStyleBackColor = false;
+            this.btnSelectAllTrainees.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnSelectAllTrainees.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllTrainees.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnSelectAllTrainees.Location = new System.Drawing.Point(3, 39);
+            this.btnSelectAllTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSelectAllTrainees.Name = "btnSelectAllTrainees";
+            this.btnSelectAllTrainees.Size = new System.Drawing.Size(146, 74);
+            this.btnSelectAllTrainees.TabIndex = 1;
+            this.btnSelectAllTrainees.Text = "Select all trainees";
+            this.btnSelectAllTrainees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSelectAllTrainees.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
@@ -541,10 +541,10 @@
         private System.Windows.Forms.Button btnTraineeAA;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button btnBroadcast;
+        private System.Windows.Forms.Button btnSelectAllPositions;
+        private System.Windows.Forms.Button btnSelectAllInstructors;
+        private System.Windows.Forms.Button btnSelectAllTrainees;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;

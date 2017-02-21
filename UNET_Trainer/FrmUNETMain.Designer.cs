@@ -433,7 +433,7 @@
             this.panel6.Controls.Add(this.btnRole11);
             this.panel6.Controls.Add(this.btnRole6);
             this.panel6.Controls.Add(this.btnRole1);
-            this.panel6.Location = new System.Drawing.Point(317, 367);
+            this.panel6.Location = new System.Drawing.Point(319, 367);
             this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(543, 369);

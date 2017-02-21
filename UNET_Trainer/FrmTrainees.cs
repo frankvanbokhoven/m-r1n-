@@ -19,7 +19,7 @@ namespace UNET_Trainer
 
         private void FrmTrainees_Load(object sender, EventArgs e)
         {
-            FormTitle = "Trainees";
+            FormTitle = "Trainee Assignment";
         }
     }
 }

@@ -19,7 +19,7 @@ namespace UNET_Trainer
 
         private void FrmRoles_Load(object sender, EventArgs e)
         {
-          FormTitle  = "Roles";
+          FormTitle  = "Role Assignment";
         }
     }
 }
