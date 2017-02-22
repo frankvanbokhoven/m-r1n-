@@ -986,6 +986,7 @@
             this.btnTraineeBB.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeBB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeBB.UseVisualStyleBackColor = false;
+            this.btnTraineeBB.Click += new System.EventHandler(this.btnTraineeBB_Click);
             // 
             // label1
             // 

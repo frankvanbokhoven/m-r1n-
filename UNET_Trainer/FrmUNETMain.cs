@@ -148,6 +148,7 @@ namespace UNET_Trainer
 
         private void btnMonitorTrainee_Click(object sender, EventArgs e)
         {
+            SetTraineeStatus();
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
@@ -178,6 +179,10 @@ namespace UNET_Trainer
             }
          }
 
+
+        /// <summary>
+        /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
+        /// </summary>
         private void SetTraineeStatus()
         { 
 
@@ -213,6 +218,11 @@ namespace UNET_Trainer
 
         }
 
+        /// <summary>
+        /// geeft het control object terug met een gegeven naam
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns></returns>
         private  Control GetControlByName(string Name)
         {
             foreach (Control c in this.Controls)
@@ -220,6 +230,17 @@ namespace UNET_Trainer
                     return c;
 
             return null;
+        }
+
+        private void btnTraineeBB_Click(object sender, EventArgs e)
+        {
+            SetTraineeStatus();
+
+            if (MonitorTrainee)
+            {
+                MonitorTraineeArray[1] = true;
+                btnTraineeBB.BackColor = System.Drawing.Color.SaddleBrown;
+            }
         }
     }
 }
