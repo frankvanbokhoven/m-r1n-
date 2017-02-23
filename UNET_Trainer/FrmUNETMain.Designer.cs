@@ -31,27 +31,27 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button32 = new System.Windows.Forms.Button();
-            this.button41 = new System.Windows.Forms.Button();
-            this.button50 = new System.Windows.Forms.Button();
-            this.button51 = new System.Windows.Forms.Button();
-            this.button33 = new System.Windows.Forms.Button();
-            this.button34 = new System.Windows.Forms.Button();
-            this.button35 = new System.Windows.Forms.Button();
-            this.button36 = new System.Windows.Forms.Button();
-            this.button37 = new System.Windows.Forms.Button();
-            this.button38 = new System.Windows.Forms.Button();
-            this.button39 = new System.Windows.Forms.Button();
-            this.button40 = new System.Windows.Forms.Button();
+            this.btnRadio20 = new System.Windows.Forms.Button();
+            this.btnRadio15 = new System.Windows.Forms.Button();
+            this.btnRadio10 = new System.Windows.Forms.Button();
+            this.btnRadio05 = new System.Windows.Forms.Button();
+            this.btnRadio19 = new System.Windows.Forms.Button();
+            this.btnRadio14 = new System.Windows.Forms.Button();
+            this.btnRadio09 = new System.Windows.Forms.Button();
+            this.btnRadio04 = new System.Windows.Forms.Button();
+            this.btnRadio17 = new System.Windows.Forms.Button();
+            this.btnRadio12 = new System.Windows.Forms.Button();
+            this.btnRadio07 = new System.Windows.Forms.Button();
+            this.btnRadio02 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button42 = new System.Windows.Forms.Button();
-            this.button43 = new System.Windows.Forms.Button();
-            this.button44 = new System.Windows.Forms.Button();
-            this.button45 = new System.Windows.Forms.Button();
-            this.button46 = new System.Windows.Forms.Button();
-            this.button47 = new System.Windows.Forms.Button();
-            this.button48 = new System.Windows.Forms.Button();
-            this.button49 = new System.Windows.Forms.Button();
+            this.btnRadio18 = new System.Windows.Forms.Button();
+            this.btnRadio13 = new System.Windows.Forms.Button();
+            this.btnRadio08 = new System.Windows.Forms.Button();
+            this.btnRadio03 = new System.Windows.Forms.Button();
+            this.btnRadio16 = new System.Windows.Forms.Button();
+            this.btnRadio11 = new System.Windows.Forms.Button();
+            this.btnRadio06 = new System.Windows.Forms.Button();
+            this.btnRadio01 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnRole20 = new System.Windows.Forms.Button();
@@ -131,176 +131,188 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button32);
-            this.panel5.Controls.Add(this.button41);
-            this.panel5.Controls.Add(this.button50);
-            this.panel5.Controls.Add(this.button51);
-            this.panel5.Controls.Add(this.button33);
-            this.panel5.Controls.Add(this.button34);
-            this.panel5.Controls.Add(this.button35);
-            this.panel5.Controls.Add(this.button36);
-            this.panel5.Controls.Add(this.button37);
-            this.panel5.Controls.Add(this.button38);
-            this.panel5.Controls.Add(this.button39);
-            this.panel5.Controls.Add(this.button40);
+            this.panel5.Controls.Add(this.btnRadio20);
+            this.panel5.Controls.Add(this.btnRadio15);
+            this.panel5.Controls.Add(this.btnRadio10);
+            this.panel5.Controls.Add(this.btnRadio05);
+            this.panel5.Controls.Add(this.btnRadio19);
+            this.panel5.Controls.Add(this.btnRadio14);
+            this.panel5.Controls.Add(this.btnRadio09);
+            this.panel5.Controls.Add(this.btnRadio04);
+            this.panel5.Controls.Add(this.btnRadio17);
+            this.panel5.Controls.Add(this.btnRadio12);
+            this.panel5.Controls.Add(this.btnRadio07);
+            this.panel5.Controls.Add(this.btnRadio02);
             this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.button42);
-            this.panel5.Controls.Add(this.button43);
-            this.panel5.Controls.Add(this.button44);
-            this.panel5.Controls.Add(this.button45);
-            this.panel5.Controls.Add(this.button46);
-            this.panel5.Controls.Add(this.button47);
-            this.panel5.Controls.Add(this.button48);
-            this.panel5.Controls.Add(this.button49);
+            this.panel5.Controls.Add(this.btnRadio18);
+            this.panel5.Controls.Add(this.btnRadio13);
+            this.panel5.Controls.Add(this.btnRadio08);
+            this.panel5.Controls.Add(this.btnRadio03);
+            this.panel5.Controls.Add(this.btnRadio16);
+            this.panel5.Controls.Add(this.btnRadio11);
+            this.panel5.Controls.Add(this.btnRadio06);
+            this.panel5.Controls.Add(this.btnRadio01);
             this.panel5.Location = new System.Drawing.Point(319, 2);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(543, 358);
             this.panel5.TabIndex = 6;
             // 
-            // button32
+            // btnRadio20
             // 
-            this.button32.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button32.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button32.Location = new System.Drawing.Point(387, 258);
-            this.button32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(91, 74);
-            this.button32.TabIndex = 22;
-            this.button32.Text = "Radio 20";
-            this.button32.UseVisualStyleBackColor = false;
+            this.btnRadio20.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio20.Location = new System.Drawing.Point(387, 258);
+            this.btnRadio20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio20.Name = "btnRadio20";
+            this.btnRadio20.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio20.TabIndex = 22;
+            this.btnRadio20.Text = "Radio 20";
+            this.btnRadio20.UseVisualStyleBackColor = false;
+            this.btnRadio20.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button41
+            // btnRadio15
             // 
-            this.button41.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button41.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button41.Location = new System.Drawing.Point(387, 182);
-            this.button41.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button41.Name = "button41";
-            this.button41.Size = new System.Drawing.Size(91, 74);
-            this.button41.TabIndex = 21;
-            this.button41.Text = "Radio 15";
-            this.button41.UseVisualStyleBackColor = false;
+            this.btnRadio15.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio15.Location = new System.Drawing.Point(387, 182);
+            this.btnRadio15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio15.Name = "btnRadio15";
+            this.btnRadio15.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio15.TabIndex = 21;
+            this.btnRadio15.Text = "Radio 15";
+            this.btnRadio15.UseVisualStyleBackColor = false;
+            this.btnRadio15.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button50
+            // btnRadio10
             // 
-            this.button50.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button50.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button50.Location = new System.Drawing.Point(387, 107);
-            this.button50.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button50.Name = "button50";
-            this.button50.Size = new System.Drawing.Size(91, 74);
-            this.button50.TabIndex = 20;
-            this.button50.Text = "Radio 10";
-            this.button50.UseVisualStyleBackColor = false;
+            this.btnRadio10.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio10.Location = new System.Drawing.Point(387, 107);
+            this.btnRadio10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio10.Name = "btnRadio10";
+            this.btnRadio10.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio10.TabIndex = 20;
+            this.btnRadio10.Text = "Radio 10";
+            this.btnRadio10.UseVisualStyleBackColor = false;
+            this.btnRadio10.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button51
+            // btnRadio05
             // 
-            this.button51.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button51.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button51.Location = new System.Drawing.Point(387, 28);
-            this.button51.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button51.Name = "button51";
-            this.button51.Size = new System.Drawing.Size(91, 74);
-            this.button51.TabIndex = 19;
-            this.button51.Text = "Radio 05";
-            this.button51.UseVisualStyleBackColor = false;
+            this.btnRadio05.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio05.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio05.Location = new System.Drawing.Point(387, 28);
+            this.btnRadio05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio05.Name = "btnRadio05";
+            this.btnRadio05.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio05.TabIndex = 19;
+            this.btnRadio05.Text = "Radio 05";
+            this.btnRadio05.UseVisualStyleBackColor = false;
+            this.btnRadio05.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button33
+            // btnRadio19
             // 
-            this.button33.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button33.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button33.Location = new System.Drawing.Point(291, 258);
-            this.button33.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(91, 74);
-            this.button33.TabIndex = 18;
-            this.button33.Text = "Radio 19";
-            this.button33.UseVisualStyleBackColor = false;
+            this.btnRadio19.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio19.Location = new System.Drawing.Point(291, 258);
+            this.btnRadio19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio19.Name = "btnRadio19";
+            this.btnRadio19.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio19.TabIndex = 18;
+            this.btnRadio19.Text = "Radio 19";
+            this.btnRadio19.UseVisualStyleBackColor = false;
+            this.btnRadio19.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button34
+            // btnRadio14
             // 
-            this.button34.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button34.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button34.Location = new System.Drawing.Point(291, 182);
-            this.button34.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(91, 74);
-            this.button34.TabIndex = 17;
-            this.button34.Text = "Radio 14";
-            this.button34.UseVisualStyleBackColor = false;
+            this.btnRadio14.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio14.Location = new System.Drawing.Point(291, 182);
+            this.btnRadio14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio14.Name = "btnRadio14";
+            this.btnRadio14.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio14.TabIndex = 17;
+            this.btnRadio14.Text = "Radio 14";
+            this.btnRadio14.UseVisualStyleBackColor = false;
+            this.btnRadio14.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button35
+            // btnRadio09
             // 
-            this.button35.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button35.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button35.Location = new System.Drawing.Point(291, 105);
-            this.button35.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(91, 74);
-            this.button35.TabIndex = 16;
-            this.button35.Text = "Radio 09";
-            this.button35.UseVisualStyleBackColor = false;
+            this.btnRadio09.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio09.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio09.Location = new System.Drawing.Point(291, 105);
+            this.btnRadio09.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio09.Name = "btnRadio09";
+            this.btnRadio09.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio09.TabIndex = 16;
+            this.btnRadio09.Text = "Radio 09";
+            this.btnRadio09.UseVisualStyleBackColor = false;
+            this.btnRadio09.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button36
+            // btnRadio04
             // 
-            this.button36.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button36.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button36.Location = new System.Drawing.Point(291, 28);
-            this.button36.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(91, 74);
-            this.button36.TabIndex = 15;
-            this.button36.Text = "Radio 04";
-            this.button36.UseVisualStyleBackColor = false;
+            this.btnRadio04.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio04.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio04.Location = new System.Drawing.Point(291, 28);
+            this.btnRadio04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio04.Name = "btnRadio04";
+            this.btnRadio04.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio04.TabIndex = 15;
+            this.btnRadio04.Text = "Radio 04";
+            this.btnRadio04.UseVisualStyleBackColor = false;
+            this.btnRadio04.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button37
+            // btnRadio17
             // 
-            this.button37.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button37.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button37.Location = new System.Drawing.Point(99, 260);
-            this.button37.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button37.Name = "button37";
-            this.button37.Size = new System.Drawing.Size(91, 74);
-            this.button37.TabIndex = 14;
-            this.button37.Text = "Radio 17";
-            this.button37.UseVisualStyleBackColor = false;
+            this.btnRadio17.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio17.Location = new System.Drawing.Point(99, 260);
+            this.btnRadio17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio17.Name = "btnRadio17";
+            this.btnRadio17.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio17.TabIndex = 14;
+            this.btnRadio17.Text = "Radio 17";
+            this.btnRadio17.UseVisualStyleBackColor = false;
+            this.btnRadio17.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button38
+            // btnRadio12
             // 
-            this.button38.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button38.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button38.Location = new System.Drawing.Point(99, 183);
-            this.button38.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(91, 74);
-            this.button38.TabIndex = 13;
-            this.button38.Text = "Radio 12";
-            this.button38.UseVisualStyleBackColor = false;
+            this.btnRadio12.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio12.Location = new System.Drawing.Point(99, 183);
+            this.btnRadio12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio12.Name = "btnRadio12";
+            this.btnRadio12.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio12.TabIndex = 13;
+            this.btnRadio12.Text = "Radio 12";
+            this.btnRadio12.UseVisualStyleBackColor = false;
+            this.btnRadio12.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button39
+            // btnRadio07
             // 
-            this.button39.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button39.Location = new System.Drawing.Point(99, 106);
-            this.button39.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(91, 74);
-            this.button39.TabIndex = 12;
-            this.button39.Text = "Radio 07";
-            this.button39.UseVisualStyleBackColor = false;
+            this.btnRadio07.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio07.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio07.Location = new System.Drawing.Point(99, 106);
+            this.btnRadio07.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio07.Name = "btnRadio07";
+            this.btnRadio07.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio07.TabIndex = 12;
+            this.btnRadio07.Text = "Radio 07";
+            this.btnRadio07.UseVisualStyleBackColor = false;
+            this.btnRadio07.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button40
+            // btnRadio02
             // 
-            this.button40.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button40.Location = new System.Drawing.Point(99, 30);
-            this.button40.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button40.Name = "button40";
-            this.button40.Size = new System.Drawing.Size(91, 74);
-            this.button40.TabIndex = 11;
-            this.button40.Text = "Radio 02";
-            this.button40.UseVisualStyleBackColor = false;
+            this.btnRadio02.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio02.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio02.Location = new System.Drawing.Point(99, 30);
+            this.btnRadio02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio02.Name = "btnRadio02";
+            this.btnRadio02.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio02.TabIndex = 11;
+            this.btnRadio02.Text = "Radio 02";
+            this.btnRadio02.UseVisualStyleBackColor = false;
+            this.btnRadio02.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
             // label3
             // 
@@ -312,101 +324,109 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Radios";
             // 
-            // button42
+            // btnRadio18
             // 
-            this.button42.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button42.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button42.Location = new System.Drawing.Point(195, 260);
-            this.button42.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button42.Name = "button42";
-            this.button42.Size = new System.Drawing.Size(91, 74);
-            this.button42.TabIndex = 8;
-            this.button42.Text = "Radio 18";
-            this.button42.UseVisualStyleBackColor = false;
+            this.btnRadio18.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio18.Location = new System.Drawing.Point(195, 260);
+            this.btnRadio18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio18.Name = "btnRadio18";
+            this.btnRadio18.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio18.TabIndex = 8;
+            this.btnRadio18.Text = "Radio 18";
+            this.btnRadio18.UseVisualStyleBackColor = false;
+            this.btnRadio18.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button43
+            // btnRadio13
             // 
-            this.button43.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button43.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button43.Location = new System.Drawing.Point(195, 183);
-            this.button43.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button43.Name = "button43";
-            this.button43.Size = new System.Drawing.Size(91, 74);
-            this.button43.TabIndex = 7;
-            this.button43.Text = "Radio 13";
-            this.button43.UseVisualStyleBackColor = false;
+            this.btnRadio13.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio13.Location = new System.Drawing.Point(195, 183);
+            this.btnRadio13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio13.Name = "btnRadio13";
+            this.btnRadio13.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio13.TabIndex = 7;
+            this.btnRadio13.Text = "Radio 13";
+            this.btnRadio13.UseVisualStyleBackColor = false;
+            this.btnRadio13.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button44
+            // btnRadio08
             // 
-            this.button44.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button44.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button44.Location = new System.Drawing.Point(195, 106);
-            this.button44.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button44.Name = "button44";
-            this.button44.Size = new System.Drawing.Size(91, 74);
-            this.button44.TabIndex = 6;
-            this.button44.Text = "Radio 08";
-            this.button44.UseVisualStyleBackColor = false;
+            this.btnRadio08.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio08.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio08.Location = new System.Drawing.Point(195, 106);
+            this.btnRadio08.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio08.Name = "btnRadio08";
+            this.btnRadio08.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio08.TabIndex = 6;
+            this.btnRadio08.Text = "Radio 08";
+            this.btnRadio08.UseVisualStyleBackColor = false;
+            this.btnRadio08.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button45
+            // btnRadio03
             // 
-            this.button45.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button45.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button45.Location = new System.Drawing.Point(195, 30);
-            this.button45.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(91, 74);
-            this.button45.TabIndex = 5;
-            this.button45.Text = "Radio 03";
-            this.button45.UseVisualStyleBackColor = false;
+            this.btnRadio03.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio03.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio03.Location = new System.Drawing.Point(195, 30);
+            this.btnRadio03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio03.Name = "btnRadio03";
+            this.btnRadio03.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio03.TabIndex = 5;
+            this.btnRadio03.Text = "Radio 03";
+            this.btnRadio03.UseVisualStyleBackColor = false;
+            this.btnRadio03.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button46
+            // btnRadio16
             // 
-            this.button46.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button46.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button46.Location = new System.Drawing.Point(3, 261);
-            this.button46.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button46.Name = "button46";
-            this.button46.Size = new System.Drawing.Size(91, 74);
-            this.button46.TabIndex = 4;
-            this.button46.Text = "Radio 16";
-            this.button46.UseVisualStyleBackColor = false;
+            this.btnRadio16.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio16.Location = new System.Drawing.Point(3, 261);
+            this.btnRadio16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio16.Name = "btnRadio16";
+            this.btnRadio16.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio16.TabIndex = 4;
+            this.btnRadio16.Text = "Radio 16";
+            this.btnRadio16.UseVisualStyleBackColor = false;
+            this.btnRadio16.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button47
+            // btnRadio11
             // 
-            this.button47.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button47.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button47.Location = new System.Drawing.Point(3, 185);
-            this.button47.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(91, 74);
-            this.button47.TabIndex = 3;
-            this.button47.Text = "Radio 11";
-            this.button47.UseVisualStyleBackColor = false;
+            this.btnRadio11.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio11.Location = new System.Drawing.Point(3, 185);
+            this.btnRadio11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio11.Name = "btnRadio11";
+            this.btnRadio11.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio11.TabIndex = 3;
+            this.btnRadio11.Text = "Radio 11";
+            this.btnRadio11.UseVisualStyleBackColor = false;
+            this.btnRadio11.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button48
+            // btnRadio06
             // 
-            this.button48.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button48.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button48.Location = new System.Drawing.Point(3, 107);
-            this.button48.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(91, 74);
-            this.button48.TabIndex = 2;
-            this.button48.Text = "Radio 06";
-            this.button48.UseVisualStyleBackColor = false;
+            this.btnRadio06.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio06.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio06.Location = new System.Drawing.Point(3, 107);
+            this.btnRadio06.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio06.Name = "btnRadio06";
+            this.btnRadio06.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio06.TabIndex = 2;
+            this.btnRadio06.Text = "Radio 06";
+            this.btnRadio06.UseVisualStyleBackColor = false;
+            this.btnRadio06.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // button49
+            // btnRadio01
             // 
-            this.button49.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button49.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button49.Location = new System.Drawing.Point(3, 30);
-            this.button49.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button49.Name = "button49";
-            this.button49.Size = new System.Drawing.Size(91, 74);
-            this.button49.TabIndex = 1;
-            this.button49.Text = "Radio 01";
-            this.button49.UseVisualStyleBackColor = false;
+            this.btnRadio01.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio01.Location = new System.Drawing.Point(3, 30);
+            this.btnRadio01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRadio01.Name = "btnRadio01";
+            this.btnRadio01.Size = new System.Drawing.Size(91, 74);
+            this.btnRadio01.TabIndex = 1;
+            this.btnRadio01.Text = "Radio 01";
+            this.btnRadio01.UseVisualStyleBackColor = false;
+            this.btnRadio01.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
             // panel6
             // 
@@ -1569,27 +1589,27 @@
         private System.Windows.Forms.Button btnTraineeCC;
         private System.Windows.Forms.Button btnTraineeAA;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.Button button41;
-        private System.Windows.Forms.Button button50;
-        private System.Windows.Forms.Button button51;
-        private System.Windows.Forms.Button button33;
-        private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Button button35;
-        private System.Windows.Forms.Button button36;
-        private System.Windows.Forms.Button button37;
-        private System.Windows.Forms.Button button38;
-        private System.Windows.Forms.Button button39;
-        private System.Windows.Forms.Button button40;
+        private System.Windows.Forms.Button btnRadio20;
+        private System.Windows.Forms.Button btnRadio15;
+        private System.Windows.Forms.Button btnRadio10;
+        private System.Windows.Forms.Button btnRadio05;
+        private System.Windows.Forms.Button btnRadio19;
+        private System.Windows.Forms.Button btnRadio14;
+        private System.Windows.Forms.Button btnRadio09;
+        private System.Windows.Forms.Button btnRadio04;
+        private System.Windows.Forms.Button btnRadio17;
+        private System.Windows.Forms.Button btnRadio12;
+        private System.Windows.Forms.Button btnRadio07;
+        private System.Windows.Forms.Button btnRadio02;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button42;
-        private System.Windows.Forms.Button button43;
-        private System.Windows.Forms.Button button44;
-        private System.Windows.Forms.Button button45;
-        private System.Windows.Forms.Button button46;
-        private System.Windows.Forms.Button button47;
-        private System.Windows.Forms.Button button48;
-        private System.Windows.Forms.Button button49;
+        private System.Windows.Forms.Button btnRadio18;
+        private System.Windows.Forms.Button btnRadio13;
+        private System.Windows.Forms.Button btnRadio08;
+        private System.Windows.Forms.Button btnRadio03;
+        private System.Windows.Forms.Button btnRadio16;
+        private System.Windows.Forms.Button btnRadio11;
+        private System.Windows.Forms.Button btnRadio06;
+        private System.Windows.Forms.Button btnRadio01;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnRole20;
         private System.Windows.Forms.Button btnRole15;

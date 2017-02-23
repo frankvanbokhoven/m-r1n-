@@ -10,8 +10,10 @@ namespace UNET_Trainer
 
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
+        private Boolean MonitorRadio = false;
         
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
+        bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         private static FrmUNETMain inst;
         public static FrmUNETMain GetForm
         {
@@ -151,7 +153,6 @@ namespace UNET_Trainer
         private void btnMonitorTrainee_Click(object sender, EventArgs e)
         {
             SetTraineeStatus();
-            SetTraineeStatus();
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
@@ -166,24 +167,7 @@ namespace UNET_Trainer
             }
         }
 
-
-
-    
-
-       
-        /// <summary>
-        /// geeft het control object terug met een gegeven naam
-        /// </summary>
-        /// <param name="Name"></param>
-        /// <returns></returns>
-        private  Control GetControlByName(string Name)
-        {
-            foreach (Control c in this.Controls)
-                if (c.Name == Name)
-                    return c;
-
-            return null;
-        }
+  
         #region trainee events
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
@@ -195,12 +179,6 @@ namespace UNET_Trainer
             for (int i = 0; i <= 15; i++)
             {
                 MonitorTraineeArray[i] = false;
-
-                //    foreach (Control c in this.Controls)
-                //        if (c.Name == Name)
-                //            return c;
-                //    //and also g
-                //    ((Button)GetControlByName(string.Format("btnTrainee{0}", i))).BackColor = System.Drawing.Color.Aqua;
             }
 
             // A little amateur.. but it just is the fastest manner
@@ -217,9 +195,26 @@ namespace UNET_Trainer
             btnTraineeLL.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeMM.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeNN.BackColor = System.Drawing.Color.LightGreen;
+            btnTraineePP.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeRR.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeSS.BackColor = System.Drawing.Color.LightGreen;
 
+            btnTraineeAA.ForeColor = System.Drawing.Color.Black;
+            btnTraineeBB.ForeColor = System.Drawing.Color.Black;
+            btnTraineeCC.ForeColor = System.Drawing.Color.Black;
+            btnTraineeDD.ForeColor = System.Drawing.Color.Black;
+            btnTraineeEE.ForeColor = System.Drawing.Color.Black;
+            btnTraineeFF.ForeColor = System.Drawing.Color.Black;
+            btnTraineeGG.ForeColor = System.Drawing.Color.Black;
+            btnTraineeHH.ForeColor = System.Drawing.Color.Black;
+            btnTraineeJJ.ForeColor = System.Drawing.Color.Black;
+            btnTraineeKK.ForeColor = System.Drawing.Color.Black;
+            btnTraineeLL.ForeColor = System.Drawing.Color.Black;
+            btnTraineeMM.ForeColor = System.Drawing.Color.Black;
+            btnTraineeNN.ForeColor = System.Drawing.Color.Black;
+            btnTraineePP.ForeColor = System.Drawing.Color.Black;
+            btnTraineeRR.ForeColor = System.Drawing.Color.Black;
+            btnTraineeSS.ForeColor = System.Drawing.Color.Black;
 
         }
 
@@ -237,6 +232,7 @@ namespace UNET_Trainer
                 int traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), _btn.Name.Remove(0, 3)));
                 MonitorTraineeArray[traineeIndex] = true;
                 _btn.BackColor = System.Drawing.Color.SaddleBrown;
+                _btn.ForeColor = System.Drawing.Color.White;
             }
         }
 
@@ -245,18 +241,112 @@ namespace UNET_Trainer
             SetTraineeStatus();
 
             SetStatusAndColorTraineeButtons((Button)sender);
-          }
-
-
-
+        }
         #endregion
 
+
         #region radio events
-        private void btnMonitorRadio_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Hier wordt de kleur van de radio knop weer teruggezet, alsmede de array
+        /// </summary>
+        private void SetRadioStatus()
         {
 
+            //loop thrue the Monitortraineearray to set the proper status
+            for (int i = 0; i <= 19; i++)
+            {
+                MonitorRadioArray[i] = false;
+            }
+
+            // A little amateur.. but it just is the fastest manner
+            btnRadio01.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio02.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio03.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio04.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio05.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio06.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio07.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio08.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio09.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio10.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio11.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio12.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio13.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio14.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio15.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio16.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio17.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio18.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio19.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio20.BackColor = System.Drawing.Color.MediumSpringGreen;
+
+            btnRadio01.ForeColor = System.Drawing.Color.Black;
+            btnRadio02.ForeColor = System.Drawing.Color.Black;
+            btnRadio03.ForeColor = System.Drawing.Color.Black;
+            btnRadio04.ForeColor = System.Drawing.Color.Black;
+            btnRadio05.ForeColor = System.Drawing.Color.Black;
+            btnRadio06.ForeColor = System.Drawing.Color.Black;
+            btnRadio07.ForeColor = System.Drawing.Color.Black;
+            btnRadio08.ForeColor = System.Drawing.Color.Black;
+            btnRadio09.ForeColor = System.Drawing.Color.Black;
+            btnRadio10.ForeColor = System.Drawing.Color.Black;
+            btnRadio11.ForeColor = System.Drawing.Color.Black;
+            btnRadio12.ForeColor = System.Drawing.Color.Black;
+            btnRadio13.ForeColor = System.Drawing.Color.Black;
+            btnRadio14.ForeColor = System.Drawing.Color.Black;
+            btnRadio15.ForeColor = System.Drawing.Color.Black;
+            btnRadio16.ForeColor = System.Drawing.Color.Black;
+            btnRadio17.ForeColor = System.Drawing.Color.Black;
+            btnRadio18.ForeColor = System.Drawing.Color.Black;
+            btnRadio19.ForeColor = System.Drawing.Color.Black;
+            btnRadio20.ForeColor = System.Drawing.Color.Black;
         }
 
+
+        private void btnMonitorRadio_Click(object sender, EventArgs e)
+        {
+            SetRadioStatus();
+            if (!MonitorRadio)
+            {
+                MonitorRadio = true;
+                btnMonitorRadio.ForeColor = System.Drawing.Color.SaddleBrown;
+                btnMonitorRadio.ForeColor = System.Drawing.Color.White;
+            }
+            else
+            {
+                MonitorRadio = false;
+                btnMonitorRadio.BackColor = System.Drawing.Color.Aqua;
+                btnMonitorRadio.ForeColor = System.Drawing.Color.Black;
+            }
+
+        }      
+      
+
+        private void btnRadio01_Click(object sender, EventArgs e)
+        {
+            SetRadioStatus();
+
+            SetStatusAndColorRadioButtons((Button)sender);
+        }
+
+        /// <summary>
+        /// When the button  'monitor radio' clicked and after that one of the radio buttons,
+        /// this radio button must be set to brown, and a possible other trainee button must be set to the default color
+        /// this generic code covers this for all all buttons at once
+        /// </summary>
+        /// <param name="_btn"></param>
+        private void SetStatusAndColorRadioButtons(Button _btn)
+        {
+            if (MonitorRadio)
+            {
+                // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
+                int radioIndex = (int)(Enum.Parse(typeof(Enums.Radios), _btn.Name.Remove(0, 3)));
+                MonitorRadioArray[radioIndex] = true;
+                _btn.BackColor = System.Drawing.Color.SaddleBrown;
+                _btn.ForeColor = System.Drawing.Color.White;
+            }
+        }
         #endregion
     }
 }
