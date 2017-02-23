@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 namespace UNET_Trainer
 {
+
+
     public partial class FrmUNETMain : FrmUNETbase
     {
 
@@ -149,6 +151,7 @@ namespace UNET_Trainer
         private void btnMonitorTrainee_Click(object sender, EventArgs e)
         {
             SetTraineeStatus();
+            SetTraineeStatus();
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
@@ -163,42 +166,44 @@ namespace UNET_Trainer
             }
         }
 
-        private void btnRole1_Click(object sender, EventArgs e)
-        {
 
+
+    
+
+       
+        /// <summary>
+        /// geeft het control object terug met een gegeven naam
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <returns></returns>
+        private  Control GetControlByName(string Name)
+        {
+            foreach (Control c in this.Controls)
+                if (c.Name == Name)
+                    return c;
+
+            return null;
         }
-
-        private void btnTraineeAA_Click(object sender, EventArgs e)
-        {
-            SetTraineeStatus();
-
-            if (MonitorTrainee)
-            {
-                MonitorTraineeArray[0] = true;
-                btnTraineeAA.BackColor = System.Drawing.Color.SaddleBrown;
-            }
-         }
-
-
+        #region trainee events
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
         /// </summary>
         private void SetTraineeStatus()
-        { 
+        {
 
             //loop thrue the Monitortraineearray to set the proper status
             for (int i = 0; i <= 15; i++)
             {
                 MonitorTraineeArray[i] = false;
 
-            //    foreach (Control c in this.Controls)
-            //        if (c.Name == Name)
-            //            return c;
-            //    //and also g
-            //    ((Button)GetControlByName(string.Format("btnTrainee{0}", i))).BackColor = System.Drawing.Color.Aqua;
+                //    foreach (Control c in this.Controls)
+                //        if (c.Name == Name)
+                //            return c;
+                //    //and also g
+                //    ((Button)GetControlByName(string.Format("btnTrainee{0}", i))).BackColor = System.Drawing.Color.Aqua;
             }
 
-    // A little amateur.. but it just is the fastest manner
+            // A little amateur.. but it just is the fastest manner
             btnTraineeAA.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeBB.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeCC.BackColor = System.Drawing.Color.LightGreen;
@@ -214,33 +219,44 @@ namespace UNET_Trainer
             btnTraineeNN.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeRR.BackColor = System.Drawing.Color.LightGreen;
             btnTraineeSS.BackColor = System.Drawing.Color.LightGreen;
-         
+
 
         }
 
         /// <summary>
-        /// geeft het control object terug met een gegeven naam
+        /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
+        /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
+        /// this generic code covers this for all all buttons at once
         /// </summary>
-        /// <param name="Name"></param>
-        /// <returns></returns>
-        private  Control GetControlByName(string Name)
+        /// <param name="_btn"></param>
+        private void SetStatusAndColorTraineeButtons(Button _btn)
         {
-            foreach (Control c in this.Controls)
-                if (c.Name == Name)
-                    return c;
-
-            return null;
+            if (MonitorTrainee)
+            {
+                // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
+                int traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), _btn.Name.Remove(0, 3)));
+                MonitorTraineeArray[traineeIndex] = true;
+                _btn.BackColor = System.Drawing.Color.SaddleBrown;
+            }
         }
 
-        private void btnTraineeBB_Click(object sender, EventArgs e)
+        private void btnTraineeAA_Click(object sender, EventArgs e)
         {
             SetTraineeStatus();
 
-            if (MonitorTrainee)
-            {
-                MonitorTraineeArray[1] = true;
-                btnTraineeBB.BackColor = System.Drawing.Color.SaddleBrown;
-            }
+            SetStatusAndColorTraineeButtons((Button)sender);
+          }
+
+
+
+        #endregion
+
+        #region radio events
+        private void btnMonitorRadio_Click(object sender, EventArgs e)
+        {
+
         }
+
+        #endregion
     }
 }

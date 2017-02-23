@@ -810,7 +810,6 @@
             this.btnRole1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole1.UseVisualStyleBackColor = false;
-            this.btnRole1.Click += new System.EventHandler(this.btnRole1_Click);
             // 
             // panel4
             // 
@@ -872,6 +871,7 @@
             this.btnTraineeSS.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeSS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeSS.UseVisualStyleBackColor = false;
+            this.btnTraineeSS.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineePP
             // 
@@ -889,6 +889,7 @@
             this.btnTraineePP.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineePP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineePP.UseVisualStyleBackColor = false;
+            this.btnTraineePP.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeMM
             // 
@@ -905,6 +906,7 @@
             this.btnTraineeMM.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeMM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeMM.UseVisualStyleBackColor = false;
+            this.btnTraineeMM.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeKK
             // 
@@ -921,6 +923,7 @@
             this.btnTraineeKK.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeKK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeKK.UseVisualStyleBackColor = false;
+            this.btnTraineeKK.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeHH
             // 
@@ -938,6 +941,7 @@
             this.btnTraineeHH.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeHH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeHH.UseVisualStyleBackColor = false;
+            this.btnTraineeHH.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeFF
             // 
@@ -954,6 +958,7 @@
             this.btnTraineeFF.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeFF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeFF.UseVisualStyleBackColor = false;
+            this.btnTraineeFF.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeDD
             // 
@@ -970,6 +975,7 @@
             this.btnTraineeDD.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeDD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeDD.UseVisualStyleBackColor = false;
+            this.btnTraineeDD.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeBB
             // 
@@ -986,7 +992,7 @@
             this.btnTraineeBB.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeBB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeBB.UseVisualStyleBackColor = false;
-            this.btnTraineeBB.Click += new System.EventHandler(this.btnTraineeBB_Click);
+            this.btnTraineeBB.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // label1
             // 
@@ -1028,6 +1034,7 @@
             this.btnTraineeRR.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeRR.UseVisualStyleBackColor = false;
+            this.btnTraineeRR.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeNN
             // 
@@ -1044,6 +1051,7 @@
             this.btnTraineeNN.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeNN.UseVisualStyleBackColor = false;
+            this.btnTraineeNN.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeLL
             // 
@@ -1060,6 +1068,7 @@
             this.btnTraineeLL.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeLL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeLL.UseVisualStyleBackColor = false;
+            this.btnTraineeLL.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeJJ
             // 
@@ -1077,6 +1086,7 @@
             this.btnTraineeJJ.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeJJ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeJJ.UseVisualStyleBackColor = false;
+            this.btnTraineeJJ.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeGG
             // 
@@ -1094,6 +1104,7 @@
             this.btnTraineeGG.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeGG.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeGG.UseVisualStyleBackColor = false;
+            this.btnTraineeGG.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeEE
             // 
@@ -1110,6 +1121,7 @@
             this.btnTraineeEE.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeEE.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeEE.UseVisualStyleBackColor = false;
+            this.btnTraineeEE.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeCC
             // 
@@ -1126,6 +1138,7 @@
             this.btnTraineeCC.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraineeCC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeCC.UseVisualStyleBackColor = false;
+            this.btnTraineeCC.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeAA
             // 
@@ -1193,6 +1206,7 @@
             this.btnMonitorRadio.TabIndex = 3;
             this.btnMonitorRadio.Text = "Monitor radio";
             this.btnMonitorRadio.UseVisualStyleBackColor = false;
+            this.btnMonitorRadio.Click += new System.EventHandler(this.btnMonitorRadio_Click);
             // 
             // btnMonitorTrainee
             // 
