@@ -310,7 +310,7 @@ namespace UNET_Trainer
             if (!MonitorRadio)
             {
                 MonitorRadio = true;
-                btnMonitorRadio.ForeColor = System.Drawing.Color.SaddleBrown;
+                btnMonitorRadio.BackColor = System.Drawing.Color.SaddleBrown;
                 btnMonitorRadio.ForeColor = System.Drawing.Color.White;
             }
             else
