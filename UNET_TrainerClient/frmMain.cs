@@ -135,11 +135,11 @@ namespace UNET_TrainerClient
             try
             {
                 //frank: terugzetten
-                //ua = BuildUserAgent.Build(BuildUserAgent.Build(ConfigureVersion_1_4.WithVersion_1_4(Configure.Pjsip4Net(new MyConfigurator())))); //  .Pjsip4Net.With(new MyConfigurator()))));
-                //ua.Log += new EventHandler<LogEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
-                //ua.CallManager.CallStateChanged += new EventHandler<CallStateChangedEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
-                //ua.AccountManager.AccountStateChanged += new EventHandler<AccountStateChangedEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
-                //ua.CallManager.IncomingCall += new EventHandler<pjsip4net.Core.Utils.EventArgs<pjsip4net.Interfaces.ICall>>();// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
+                ua = BuildUserAgent.Build(BuildUserAgent.Build(ConfigureVersion_1_4.WithVersion_1_4(Configure.Pjsip4Net(new MyConfigurator())))); //  .Pjsip4Net.With(new MyConfigurator()))));
+                ua.Log += new EventHandler<LogEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
+                ua.CallManager.CallStateChanged += new EventHandler<CallStateChangedEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
+                ua.AccountManager.AccountStateChanged += new EventHandler<AccountStateChangedEventArgs>(// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
+                ua.CallManager.IncomingCall += new EventHandler<pjsip4net.Core.Utils.EventArgs<pjsip4net.Interfaces.ICall>>();// TODO: Warning!!!! NULL EXPRESSION DETECTED...            );
                 return true;
             }
             catch (PjsipErrorException ex)
