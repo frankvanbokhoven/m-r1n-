@@ -14,6 +14,7 @@ namespace UNET_Trainer
         
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
+        bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
         public static FrmUNETMain GetForm
         {
@@ -348,5 +349,60 @@ namespace UNET_Trainer
             }
         }
         #endregion
+
+        private void btnExersise01_Click(object sender, EventArgs e)
+        {
+            SetExerciseStatus();
+            SetStatusAndColorExerciseButtons((Button)sender);
+
+        }
+
+        private void SetStatusAndColorExerciseButtons(Button _btn)
+        {
+            int exerciseIndex;
+            // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
+            if (_btn.Name.ToLower() != "btnil")
+            {
+                exerciseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 3)));
+            }
+            else
+            {
+                exerciseIndex = 8;
+            }
+                ExerciseArray[exerciseIndex] = true;
+                _btn.BackColor = System.Drawing.Color.SaddleBrown;
+                _btn.ForeColor = System.Drawing.Color.White;
+         }
+
+        private void SetExerciseStatus()
+        {
+            //loop thrue the Exersise array to set the proper status
+            for (int i = 0; i <= 8; i++)
+            {
+                ExerciseArray[i] = false;
+            }
+
+            //reset the colors of the exersise buttons
+            btnExersise01.BackColor = System.Drawing.Color.Aqua;
+            btnExersise02.BackColor = System.Drawing.Color.Aqua;
+            btnExersise03.BackColor = System.Drawing.Color.Aqua;
+            btnExersise04.BackColor = System.Drawing.Color.Aqua;
+            btnExersise05.BackColor = System.Drawing.Color.Aqua;
+            btnExersise06.BackColor = System.Drawing.Color.Aqua;
+            btnExersise07.BackColor = System.Drawing.Color.Aqua;
+            btnExersise08.BackColor = System.Drawing.Color.Aqua;
+            btnIL.BackColor = System.Drawing.Color.Aqua;
+
+            btnExersise01.ForeColor = System.Drawing.Color.Black;
+            btnExersise02.ForeColor = System.Drawing.Color.Black;
+            btnExersise03.ForeColor = System.Drawing.Color.Black;
+            btnExersise04.ForeColor = System.Drawing.Color.Black;
+            btnExersise05.ForeColor = System.Drawing.Color.Black;
+            btnExersise06.ForeColor = System.Drawing.Color.Black;
+            btnExersise07.ForeColor = System.Drawing.Color.Black;
+            btnExersise08.ForeColor = System.Drawing.Color.Black;
+            btnIL.ForeColor = System.Drawing.Color.Black;
+
+        }
     }
 }

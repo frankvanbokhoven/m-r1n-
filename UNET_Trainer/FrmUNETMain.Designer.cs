@@ -1294,9 +1294,10 @@
             this.btnIL.Name = "btnIL";
             this.btnIL.Size = new System.Drawing.Size(91, 74);
             this.btnIL.TabIndex = 9;
-            this.btnIL.Text = "il";
+            this.btnIL.Text = "Il";
             this.btnIL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnIL.UseVisualStyleBackColor = false;
+            this.btnIL.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise08
             // 
@@ -1313,6 +1314,7 @@
             this.btnExersise08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise08.UseVisualStyleBackColor = false;
+            this.btnExersise08.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise07
             // 
@@ -1329,6 +1331,7 @@
             this.btnExersise07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise07.UseVisualStyleBackColor = false;
+            this.btnExersise07.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise06
             // 
@@ -1345,6 +1348,7 @@
             this.btnExersise06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise06.UseVisualStyleBackColor = false;
+            this.btnExersise06.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise05
             // 
@@ -1361,6 +1365,7 @@
             this.btnExersise05.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise05.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise05.UseVisualStyleBackColor = false;
+            this.btnExersise05.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise04
             // 
@@ -1377,6 +1382,7 @@
             this.btnExersise04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise04.UseVisualStyleBackColor = false;
+            this.btnExersise04.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise03
             // 
@@ -1393,6 +1399,7 @@
             this.btnExersise03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise03.UseVisualStyleBackColor = false;
+            this.btnExersise03.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise02
             // 
@@ -1409,6 +1416,7 @@
             this.btnExersise02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise02.UseVisualStyleBackColor = false;
+            this.btnExersise02.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise01
             // 
@@ -1425,6 +1433,7 @@
             this.btnExersise01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnExersise01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise01.UseVisualStyleBackColor = false;
+            this.btnExersise01.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // panel1
             // 

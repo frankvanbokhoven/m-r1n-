@@ -55,5 +55,19 @@ namespace UNET_Trainer
             Radio19 = 18,
             Radio20 = 19
         }
+
+
+        public enum Exercises
+        {
+            Exersise01 = 0,
+            Exersise02 = 1,
+            Exersise03 = 2,
+            Exersise04 = 3,
+            Exersise05 = 4,
+            Exersise06 = 5,
+            Exersise07 = 6,
+            Exersise08 = 7,
+            Il
+        }
     }
 }
