@@ -85,6 +85,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Exercise.cs" />
+    <Compile Include="Classes\Platform.cs" />
+    <Compile Include="Classes\Radio.cs" />
+    <Compile Include="Classes\Role.cs" />
+    <Compile Include="Classes\Trainee.cs" />
+    <Compile Include="Classes\Instructor.cs" />
+    <Compile Include="Classes\UNET_Server_Singleton.cs" />
     <Compile Include="SaveFileInfo.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
