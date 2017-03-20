@@ -625,7 +625,6 @@ namespace Sipek
             this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
             this.toolStripMenuItemEdit.Size = new System.Drawing.Size(204, 22);
             this.toolStripMenuItemEdit.Text = "Edit";
-            this.toolStripMenuItemEdit.Click += new System.EventHandler(this.toolStripMenuItemEdit_Click);
             // 
             // toolStripMenuItemRemove
             // 
@@ -644,14 +643,12 @@ namespace Sipek
             this.toolStripMenuItemIM.Name = "toolStripMenuItemIM";
             this.toolStripMenuItemIM.Size = new System.Drawing.Size(204, 22);
             this.toolStripMenuItemIM.Text = "Send an Instant Message";
-            this.toolStripMenuItemIM.Click += new System.EventHandler(this.toolStripMenuItemIM_Click);
             // 
             // placeACallToolStripMenuItem
             // 
             this.placeACallToolStripMenuItem.Name = "placeACallToolStripMenuItem";
             this.placeACallToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.placeACallToolStripMenuItem.Text = "Place a Call";
-            this.placeACallToolStripMenuItem.Click += new System.EventHandler(this.placeACallToolStripMenuItem_Click);
             // 
             // tabPageAccounts
             // 

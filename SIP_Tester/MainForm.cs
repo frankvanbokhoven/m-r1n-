@@ -288,14 +288,6 @@ namespace Sipek
                 RefreshForm();
         }
 
-        public void onMessageReceived(string from, string message)
-        {
-            if (InvokeRequired)
-                this.BeginInvoke(new MessageReceivedDelegate(this.MessageReceived), new object[] { from, message });
-            else
-                MessageReceived(from, message);
-        }
-
         public void onBuddyStateChanged(int buddyId, int status, string text)
         {
             if (InvokeRequired)
@@ -347,37 +339,37 @@ namespace Sipek
 
            }
 
-        private void MessageReceived(string from, string message)
-        {
-            // extract buddy ID
-            string buddyId = parseFrom(from);
+        //private void MessageReceived(string from, string message)
+        //{
+        //    // extract buddy ID
+        //    string buddyId = parseFrom(from);
 
-            // check if ChatForm already opened
-            foreach (Form ctrl in Application.OpenForms)
-            {
-                if (ctrl.Name == "ChatForm")
-                {
-                    ((ChatForm)ctrl).BuddyName = buddyId;
-                    ((ChatForm)ctrl).LastMessage = message;
-                    ctrl.Focus();
-                    return;
-                }
-            }
+        //    // check if ChatForm already opened
+        //    foreach (Form ctrl in Application.OpenForms)
+        //    {
+        //        if (ctrl.Name == "ChatForm")
+        //        {
+        //          //  ((ChatForm)ctrl).BuddyName = buddyId;
+        //         //   ((ChatForm)ctrl).LastMessage = message;
+        //            ctrl.Focus();
+        //            return;
+        //        }
+        //    }
 
-            // if not, create new instance
-            ChatForm bf = new ChatForm(SipekResources);
-            int id = CBuddyList.getInstance().getBuddyId(buddyId);
-            if (id >= 0)
-            {
-                //_buddyId = id;        
-                CBuddyRecord buddy = CBuddyList.getInstance()[id];
-                //_titleText.Caption = buddy.FirstName + ", " + buddy.LastName;
-                bf.BuddyId = (int)id;
-            }
-            bf.BuddyName = buddyId;
-            bf.LastMessage = message;
-            bf.ShowDialog();
-        }
+        //    // if not, create new instance
+        //  //  ChatForm bf = new ChatForm(SipekResources);
+        //    int id = CBuddyList.getInstance().getBuddyId(buddyId);
+        //    if (id >= 0)
+        //    {
+        //        //_buddyId = id;        
+        //        CBuddyRecord buddy = CBuddyList.getInstance()[id];
+        //        //_titleText.Caption = buddy.FirstName + ", " + buddy.LastName;
+        //      //  bf.BuddyId = (int)id;
+        //    }
+        //  //  bf.BuddyName = buddyId;
+        //  //  bf.LastMessage = message;
+        //  //  bf.ShowDialog();
+        //}
 
         private string parseFrom(string from)
         {
@@ -786,9 +778,9 @@ namespace Sipek
                 int id = CBuddyList.getInstance().getBuddyId(record.Number);
                 if (id > 0)
                 {
-                    ChatForm bf = new ChatForm(SipekResources);
-                    bf.BuddyId = id;
-                    bf.ShowDialog();
+                   // ChatForm bf = new ChatForm(SipekResources);
+                  //  bf.BuddyId = id;
+                  //  bf.ShowDialog();
                 }
             }
         }
@@ -1013,8 +1005,8 @@ namespace Sipek
                 SipekResources.CallManager.IncomingCallNotification += new DIncomingCallNotification(CallManager_IncomingCallNotification);
                 // Register callbacks from pjsipWrapper
                 //SipekFactory.getCommonProxy().CallStateChanged += onTelephonyRefresh;
-                SipekResources.Messenger.MessageReceived += onMessageReceived;
-                SipekResources.Messenger.BuddyStatusChanged += onBuddyStateChanged;
+               // SipekResources.Messenger.MessageReceived += onMessageReceived;
+               // SipekResources.Messenger.BuddyStatusChanged += onBuddyStateChanged;
                 SipekResources.Registrar.AccountStateChanged += onAccountStateChanged;
                 SipekResources.StackProxy.MessageWaitingIndication += onMessageWaitingIndication;
 

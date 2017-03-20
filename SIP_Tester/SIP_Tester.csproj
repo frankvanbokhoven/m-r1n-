@@ -95,12 +95,6 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="calllog.cs" />
-    <Compile Include="ChatForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChatForm.Designer.cs">
-      <DependentUpon>ChatForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="KeyboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,10 +124,6 @@
     <EmbeddedResource Include="AboutBox.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChatForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyboardForm.resx">
       <SubType>Designer</SubType>
