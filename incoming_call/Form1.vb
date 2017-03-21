@@ -74,6 +74,8 @@ Public Class Form1
     End Sub
     Private Shared Sub incomingCall(ByVal sender As Object, e As pjsip4net.Core.Utils.EventArgs(Of pjsip4net.Interfaces.ICall))
         log("Incoming Call from " & e.Data.RemoteInfo & vbCrLf)
+        Form1.invLogWrite("Incoming Call from " & e.Data.RemoteInfo & vbCrLf)
+
     End Sub
     Private Shared Sub CallManager_CallStateChanged(ByVal sender As Object, ByVal e As CallStateChangedEventArgs)
         log(e.MediaState & " " & e.DestinationUri & " " & e.Duration.TotalMinutes & vbCrLf)
@@ -88,7 +90,10 @@ Public Class Form1
 #Region "SIP-Account Registration"
     Private Function register() As Boolean
         Try
-            ua = BuildUserAgent.Start(BuildUserAgent.Build(ConfigureVersion_1_4.WithVersion_1_4(Configure.Pjsip4Net.With(New MyConfigurator))))
+
+            '' todo: hier zit een probleem..
+            ua = BuildUserAgent.Build(ConfigureVersion_1_4.WithVersion_1_4(Configure.Pjsip4Net.With(New MyConfigurator)))
+
             AddHandler ua.Log, New EventHandler(Of LogEventArgs)(AddressOf intLog)
             AddHandler ua.CallManager.CallStateChanged, New EventHandler(Of CallStateChangedEventArgs)(AddressOf Form1.CallManager_CallStateChanged)
             AddHandler ua.AccountManager.AccountStateChanged, New EventHandler(Of AccountStateChangedEventArgs)(AddressOf Form1.Accounts_AccountStateChanged)
@@ -124,7 +129,7 @@ Public Class Form1
                 _registered = True
                 log("Account successfully registered." & vbCrLf)
             Else
-                log("Account could not be registered." & vbCrLf)
+                log("Account could Not be registered." & vbCrLf)
             End If
         End If
         btnRegister.Enabled = True
@@ -138,6 +143,10 @@ Public Class Form1
             Me.unregister()
         End If
     End Sub
+
+    Private Sub btnCall_Click(sender As Object, e As EventArgs) Handles btnCall.Click
+        ua.CallManager.MakeCall("1003@unet")
+    End Sub
 #End Region
 
 End Class
@@ -146,7 +155,7 @@ Public Class MyConfigurator
     Implements IConfigurationProvider
 
     Public Sub Configure(ByVal context As IConfigurationContext) Implements pjsip4net.Core.Interfaces.IConfigurationProvider.Configure
-        Dim registrar As String = "sip:" & Form1.txtDomain.Text
+        Dim registrar As String = "sip: " & Form1.txtDomain.Text
         Dim accountId As String = New SipUriBuilder().AppendDomain(Form1.txtDomain.Text).AppendExtension(Form1.txtUser.Text).ToString
         Dim proxy As String = "sip:" & Form1.txtProxy.Text
 

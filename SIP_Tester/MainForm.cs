@@ -288,12 +288,18 @@ namespace Sipek
                 RefreshForm();
         }
 
-        public void onBuddyStateChanged(int buddyId, int status, string text)
+        //public void onBuddyStateChanged(int buddyId, int status, string text)
+        //{
+        //    if (InvokeRequired)
+        //        this.BeginInvoke(new BuddyStateChangedDelegate(this.BuddyStateChanged), new object[] { buddyId, status, text });
+        //    else
+        //        BuddyStateChanged(buddyId, status, text);
+        //}
+
+            public void onMessageReceived()
         {
-            if (InvokeRequired)
-                this.BeginInvoke(new BuddyStateChangedDelegate(this.BuddyStateChanged), new object[] { buddyId, status, text });
-            else
-                BuddyStateChanged(buddyId, status, text);
+            notifyIcon.ShowBalloonTip(30, "SIP Tester", "Incoming call from " + 0 + "!", ToolTipIcon.Info);
+
         }
 
         public void onAccountStateChanged(int accId, int accState)
@@ -314,7 +320,7 @@ namespace Sipek
 
         private void OnIncomingCall(int sessionId, string number, string info)
         {
-            notifyIcon.ShowBalloonTip(30, "Sipek Softphone", "Incoming call from " + number + "!", ToolTipIcon.Info);
+            notifyIcon.ShowBalloonTip(30, "SIP Tester", "Incoming call from " + number + "!", ToolTipIcon.Info);
         }
         /////////////////////////////////////////////////////////////////////////////////////
         /// Buddy List Methods
@@ -339,72 +345,40 @@ namespace Sipek
 
            }
 
-        //private void MessageReceived(string from, string message)
+        //private string parseFrom(string from)
         //{
-        //    // extract buddy ID
-        //    string buddyId = parseFrom(from);
+        //    string number = from.Replace("<sip:", "");
 
-        //    // check if ChatForm already opened
-        //    foreach (Form ctrl in Application.OpenForms)
+        //    int atPos = number.IndexOf('@');
+        //    if (atPos >= 0)
         //    {
-        //        if (ctrl.Name == "ChatForm")
+        //        number = number.Remove(atPos);
+        //        int first = number.IndexOf('"');
+        //        if (first >= 0)
         //        {
-        //          //  ((ChatForm)ctrl).BuddyName = buddyId;
-        //         //   ((ChatForm)ctrl).LastMessage = message;
-        //            ctrl.Focus();
-        //            return;
+        //            int last = number.LastIndexOf('"');
+        //            number = number.Remove(0, last + 1);
+        //            number = number.Trim();
         //        }
         //    }
-
-        //    // if not, create new instance
-        //  //  ChatForm bf = new ChatForm(SipekResources);
-        //    int id = CBuddyList.getInstance().getBuddyId(buddyId);
-        //    if (id >= 0)
+        //    else
         //    {
-        //        //_buddyId = id;        
-        //        CBuddyRecord buddy = CBuddyList.getInstance()[id];
-        //        //_titleText.Caption = buddy.FirstName + ", " + buddy.LastName;
-        //      //  bf.BuddyId = (int)id;
+        //        int semiPos = number.IndexOf(';');
+        //        if (semiPos >= 0)
+        //        {
+        //            number = number.Remove(semiPos);
+        //        }
+        //        else
+        //        {
+        //            int colPos = number.IndexOf(':');
+        //            if (colPos >= 0)
+        //            {
+        //                number = number.Remove(colPos);
+        //            }
+        //        }
         //    }
-        //  //  bf.BuddyName = buddyId;
-        //  //  bf.LastMessage = message;
-        //  //  bf.ShowDialog();
+        //    return number;
         //}
-
-        private string parseFrom(string from)
-        {
-            string number = from.Replace("<sip:", "");
-
-            int atPos = number.IndexOf('@');
-            if (atPos >= 0)
-            {
-                number = number.Remove(atPos);
-                int first = number.IndexOf('"');
-                if (first >= 0)
-                {
-                    int last = number.LastIndexOf('"');
-                    number = number.Remove(0, last + 1);
-                    number = number.Trim();
-                }
-            }
-            else
-            {
-                int semiPos = number.IndexOf(';');
-                if (semiPos >= 0)
-                {
-                    number = number.Remove(semiPos);
-                }
-                else
-                {
-                    int colPos = number.IndexOf(':');
-                    if (colPos >= 0)
-                    {
-                        number = number.Remove(colPos);
-                    }
-                }
-            }
-            return number;
-        }
 
         private void MessageWaiting(int mwi, string info)
         {
@@ -1004,8 +978,8 @@ namespace Sipek
                 SipekResources.CallManager.CallStateRefresh += onCallStateChanged;
                 SipekResources.CallManager.IncomingCallNotification += new DIncomingCallNotification(CallManager_IncomingCallNotification);
                 // Register callbacks from pjsipWrapper
-                //SipekFactory.getCommonProxy().CallStateChanged += onTelephonyRefresh;
-               // SipekResources.Messenger.MessageReceived += onMessageReceived;
+              //  SipekFactory.getCommonProxy().CallStateChanged += onTelephonyRefresh;
+                SipekResources.Messenger.MessageReceived += onMessageReceived;
                // SipekResources.Messenger.BuddyStatusChanged += onBuddyStateChanged;
                 SipekResources.Registrar.AccountStateChanged += onAccountStateChanged;
                 SipekResources.StackProxy.MessageWaitingIndication += onMessageWaitingIndication;
