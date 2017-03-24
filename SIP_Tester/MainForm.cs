@@ -1,28 +1,3 @@
-/* 
- * Copyright (C) 2008 Sasa Coh <sasacoh@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
- * 
- * WaveLib library sources http://www.codeproject.com/KB/graphics/AudioLib.aspx
- * 
- * Visit SipekSDK page at http://voipengine.googlepages.com/
- * 
- * Visit SIPek's home page at http://sipekphone.googlepages.com/ 
- * 
- */
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,11 +9,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Forms.Design;
 using Sipek.Common;
 using Sipek.Common.CallControl;
+using WaveLib.AudioMixer; 
 
-#if LINUX
-#else
-  using WaveLib.AudioMixer; // see http://www.codeproject.com/KB/graphics/AudioLib.aspx
-#endif
 
 namespace Sipek
 {
@@ -71,12 +43,8 @@ namespace Sipek
             InitializeComponent();
 
 
-#if TLS
-      this.Text += " TLS";
-      HEADER_TEXT = this.Text;
-#else
+
             HEADER_TEXT = this.Text;
-#endif
 
             // Check if settings upgrade needed?
             if (Properties.Settings.Default.cfgUpdgradeSettings == true)
@@ -288,14 +256,7 @@ namespace Sipek
                 RefreshForm();
         }
 
-        //public void onBuddyStateChanged(int buddyId, int status, string text)
-        //{
-        //    if (InvokeRequired)
-        //        this.BeginInvoke(new BuddyStateChangedDelegate(this.BuddyStateChanged), new object[] { buddyId, status, text });
-        //    else
-        //        BuddyStateChanged(buddyId, status, text);
-        //}
-
+    
             public void onMessageReceived()
         {
             notifyIcon.ShowBalloonTip(30, "SIP Tester", "Incoming call from " + 0 + "!", ToolTipIcon.Info);
@@ -345,41 +306,7 @@ namespace Sipek
 
            }
 
-        //private string parseFrom(string from)
-        //{
-        //    string number = from.Replace("<sip:", "");
-
-        //    int atPos = number.IndexOf('@');
-        //    if (atPos >= 0)
-        //    {
-        //        number = number.Remove(atPos);
-        //        int first = number.IndexOf('"');
-        //        if (first >= 0)
-        //        {
-        //            int last = number.LastIndexOf('"');
-        //            number = number.Remove(0, last + 1);
-        //            number = number.Trim();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        int semiPos = number.IndexOf(';');
-        //        if (semiPos >= 0)
-        //        {
-        //            number = number.Remove(semiPos);
-        //        }
-        //        else
-        //        {
-        //            int colPos = number.IndexOf(':');
-        //            if (colPos >= 0)
-        //            {
-        //                number = number.Remove(colPos);
-        //            }
-        //        }
-        //    }
-        //    return number;
-        //}
-
+    
         private void MessageWaiting(int mwi, string info)
         {
             // "Messages-Waiting: yes\r\nMessage-Account: sip:*97@192.168.60.211\r\nVoice-Message: 5/2 (0/0)\r\n"
@@ -974,7 +901,7 @@ namespace Sipek
             // Register callbacks from callcontrol
             log.Info("Opened SIP_Tester");
             try
-            {
+            { 
                 SipekResources.CallManager.CallStateRefresh += onCallStateChanged;
                 SipekResources.CallManager.IncomingCallNotification += new DIncomingCallNotification(CallManager_IncomingCallNotification);
                 // Register callbacks from pjsipWrapper
@@ -1005,9 +932,7 @@ namespace Sipek
 
                 //////////////////////////////////////////////////////////////////////////
                 // load settings
-
                 this.UpdateCallRegister();
-
                 this.UpdateAccountList();
 
                 // Set user status
@@ -1047,6 +972,81 @@ namespace Sipek
             SettingsForm sf = new SettingsForm(this.SipekResources);
             //sf.activateTab("");
             sf.ShowDialog();
+        }
+
+        public void onMessageReceived(string from, string message)
+        {
+            if (InvokeRequired)
+                this.BeginInvoke(new MessageReceivedDelegate(this.MessageReceived), new object[] { from, message });
+            else
+                MessageReceived(from, message);
+        }
+
+        private void MessageReceived(string from, string message)
+        {
+            // extract buddy ID
+            string buddyId = parseFrom(from);
+
+            // check if ChatForm already opened
+            foreach (Form ctrl in Application.OpenForms)
+            {
+                if (ctrl.Name == "ChatForm")
+                {
+                //    ((ChatForm)ctrl).BuddyName = buddyId;
+                //    ((ChatForm)ctrl).LastMessage = message;
+                    ctrl.Focus();
+                    return;
+                }
+            }
+
+            // if not, create new instance
+        //    ChatForm bf = new ChatForm(SipekResources);
+            int id = CBuddyList.getInstance().getBuddyId(buddyId);
+            if (id >= 0)
+            {
+                //_buddyId = id;        
+                CBuddyRecord buddy = CBuddyList.getInstance()[id];
+                //_titleText.Caption = buddy.FirstName + ", " + buddy.LastName;
+           //     bf.BuddyId = (int)id;
+            }
+          //  bf.BuddyName = buddyId;
+          //  bf.LastMessage = message;
+         //   bf.ShowDialog();
+        }
+
+        private string parseFrom(string from)
+        {
+            string number = from.Replace("<sip:", "");
+
+            int atPos = number.IndexOf('@');
+            if (atPos >= 0)
+            {
+                number = number.Remove(atPos);
+                int first = number.IndexOf('"');
+                if (first >= 0)
+                {
+                    int last = number.LastIndexOf('"');
+                    number = number.Remove(0, last + 1);
+                    number = number.Trim();
+                }
+            }
+            else
+            {
+                int semiPos = number.IndexOf(';');
+                if (semiPos >= 0)
+                {
+                    number = number.Remove(semiPos);
+                }
+                else
+                {
+                    int colPos = number.IndexOf(':');
+                    if (colPos >= 0)
+                    {
+                        number = number.Remove(colPos);
+                    }
+                }
+            }
+            return number;
         }
 
         private void unconditionalToolStripMenuItem_Click(object sender, EventArgs e)
