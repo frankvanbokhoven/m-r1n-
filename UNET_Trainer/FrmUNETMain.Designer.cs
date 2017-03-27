@@ -160,9 +160,9 @@
             // 
             // btnRadio20
             // 
-            this.btnRadio20.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio20.Location = new System.Drawing.Point(387, 258);
+            this.btnRadio20.Location = new System.Drawing.Point(420, 276);
             this.btnRadio20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio20.Name = "btnRadio20";
             this.btnRadio20.Size = new System.Drawing.Size(91, 74);
@@ -173,9 +173,9 @@
             // 
             // btnRadio15
             // 
-            this.btnRadio15.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio15.Location = new System.Drawing.Point(387, 182);
+            this.btnRadio15.Location = new System.Drawing.Point(420, 195);
             this.btnRadio15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio15.Name = "btnRadio15";
             this.btnRadio15.Size = new System.Drawing.Size(91, 74);
@@ -186,9 +186,9 @@
             // 
             // btnRadio10
             // 
-            this.btnRadio10.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio10.Location = new System.Drawing.Point(387, 107);
+            this.btnRadio10.Location = new System.Drawing.Point(420, 111);
             this.btnRadio10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio10.Name = "btnRadio10";
             this.btnRadio10.Size = new System.Drawing.Size(91, 74);
@@ -199,9 +199,9 @@
             // 
             // btnRadio05
             // 
-            this.btnRadio05.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio05.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio05.Location = new System.Drawing.Point(387, 28);
+            this.btnRadio05.Location = new System.Drawing.Point(420, 28);
             this.btnRadio05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio05.Name = "btnRadio05";
             this.btnRadio05.Size = new System.Drawing.Size(91, 74);
@@ -212,9 +212,9 @@
             // 
             // btnRadio19
             // 
-            this.btnRadio19.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio19.Location = new System.Drawing.Point(291, 258);
+            this.btnRadio19.Location = new System.Drawing.Point(316, 276);
             this.btnRadio19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio19.Name = "btnRadio19";
             this.btnRadio19.Size = new System.Drawing.Size(91, 74);
@@ -225,9 +225,9 @@
             // 
             // btnRadio14
             // 
-            this.btnRadio14.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio14.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio14.Location = new System.Drawing.Point(291, 182);
+            this.btnRadio14.Location = new System.Drawing.Point(316, 195);
             this.btnRadio14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio14.Name = "btnRadio14";
             this.btnRadio14.Size = new System.Drawing.Size(91, 74);
@@ -238,9 +238,9 @@
             // 
             // btnRadio09
             // 
-            this.btnRadio09.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio09.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio09.Location = new System.Drawing.Point(291, 105);
+            this.btnRadio09.Location = new System.Drawing.Point(316, 111);
             this.btnRadio09.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio09.Name = "btnRadio09";
             this.btnRadio09.Size = new System.Drawing.Size(91, 74);
@@ -251,9 +251,9 @@
             // 
             // btnRadio04
             // 
-            this.btnRadio04.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio04.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio04.Location = new System.Drawing.Point(291, 28);
+            this.btnRadio04.Location = new System.Drawing.Point(316, 28);
             this.btnRadio04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio04.Name = "btnRadio04";
             this.btnRadio04.Size = new System.Drawing.Size(91, 74);
@@ -264,9 +264,9 @@
             // 
             // btnRadio17
             // 
-            this.btnRadio17.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio17.Location = new System.Drawing.Point(99, 260);
+            this.btnRadio17.Location = new System.Drawing.Point(108, 276);
             this.btnRadio17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio17.Name = "btnRadio17";
             this.btnRadio17.Size = new System.Drawing.Size(91, 74);
@@ -277,9 +277,9 @@
             // 
             // btnRadio12
             // 
-            this.btnRadio12.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio12.Location = new System.Drawing.Point(99, 183);
+            this.btnRadio12.Location = new System.Drawing.Point(108, 195);
             this.btnRadio12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio12.Name = "btnRadio12";
             this.btnRadio12.Size = new System.Drawing.Size(91, 74);
@@ -290,9 +290,9 @@
             // 
             // btnRadio07
             // 
-            this.btnRadio07.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio07.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio07.Location = new System.Drawing.Point(99, 106);
+            this.btnRadio07.Location = new System.Drawing.Point(108, 111);
             this.btnRadio07.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio07.Name = "btnRadio07";
             this.btnRadio07.Size = new System.Drawing.Size(91, 74);
@@ -303,9 +303,9 @@
             // 
             // btnRadio02
             // 
-            this.btnRadio02.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio02.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio02.Location = new System.Drawing.Point(99, 30);
+            this.btnRadio02.Location = new System.Drawing.Point(106, 30);
             this.btnRadio02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio02.Name = "btnRadio02";
             this.btnRadio02.Size = new System.Drawing.Size(91, 74);
@@ -326,9 +326,9 @@
             // 
             // btnRadio18
             // 
-            this.btnRadio18.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio18.Location = new System.Drawing.Point(195, 260);
+            this.btnRadio18.Location = new System.Drawing.Point(212, 276);
             this.btnRadio18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio18.Name = "btnRadio18";
             this.btnRadio18.Size = new System.Drawing.Size(91, 74);
@@ -339,9 +339,9 @@
             // 
             // btnRadio13
             // 
-            this.btnRadio13.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio13.Location = new System.Drawing.Point(195, 183);
+            this.btnRadio13.Location = new System.Drawing.Point(212, 195);
             this.btnRadio13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio13.Name = "btnRadio13";
             this.btnRadio13.Size = new System.Drawing.Size(91, 74);
@@ -352,9 +352,9 @@
             // 
             // btnRadio08
             // 
-            this.btnRadio08.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio08.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio08.Location = new System.Drawing.Point(195, 106);
+            this.btnRadio08.Location = new System.Drawing.Point(212, 111);
             this.btnRadio08.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio08.Name = "btnRadio08";
             this.btnRadio08.Size = new System.Drawing.Size(91, 74);
@@ -365,9 +365,9 @@
             // 
             // btnRadio03
             // 
-            this.btnRadio03.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio03.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio03.Location = new System.Drawing.Point(195, 30);
+            this.btnRadio03.Location = new System.Drawing.Point(212, 30);
             this.btnRadio03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio03.Name = "btnRadio03";
             this.btnRadio03.Size = new System.Drawing.Size(91, 74);
@@ -378,9 +378,9 @@
             // 
             // btnRadio16
             // 
-            this.btnRadio16.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio16.Location = new System.Drawing.Point(3, 261);
+            this.btnRadio16.Location = new System.Drawing.Point(3, 276);
             this.btnRadio16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio16.Name = "btnRadio16";
             this.btnRadio16.Size = new System.Drawing.Size(91, 74);
@@ -391,9 +391,9 @@
             // 
             // btnRadio11
             // 
-            this.btnRadio11.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio11.Location = new System.Drawing.Point(3, 185);
+            this.btnRadio11.Location = new System.Drawing.Point(3, 195);
             this.btnRadio11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio11.Name = "btnRadio11";
             this.btnRadio11.Size = new System.Drawing.Size(91, 74);
@@ -404,9 +404,9 @@
             // 
             // btnRadio06
             // 
-            this.btnRadio06.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio06.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio06.Location = new System.Drawing.Point(3, 107);
+            this.btnRadio06.Location = new System.Drawing.Point(3, 111);
             this.btnRadio06.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio06.Name = "btnRadio06";
             this.btnRadio06.Size = new System.Drawing.Size(91, 74);
@@ -417,7 +417,7 @@
             // 
             // btnRadio01
             // 
-            this.btnRadio01.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnRadio01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio01.Location = new System.Drawing.Point(3, 30);
             this.btnRadio01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -480,7 +480,7 @@
             this.btnRole20.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole20.ImageIndex = 1;
             this.btnRole20.ImageList = this.imageListStatus;
-            this.btnRole20.Location = new System.Drawing.Point(387, 263);
+            this.btnRole20.Location = new System.Drawing.Point(420, 277);
             this.btnRole20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole20.Name = "btnRole20";
             this.btnRole20.Size = new System.Drawing.Size(91, 74);
@@ -505,7 +505,7 @@
             this.btnRole15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole15.ImageIndex = 1;
             this.btnRole15.ImageList = this.imageListStatus;
-            this.btnRole15.Location = new System.Drawing.Point(387, 183);
+            this.btnRole15.Location = new System.Drawing.Point(420, 195);
             this.btnRole15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole15.Name = "btnRole15";
             this.btnRole15.Size = new System.Drawing.Size(91, 74);
@@ -522,7 +522,7 @@
             this.btnRole10.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole10.ImageIndex = 1;
             this.btnRole10.ImageList = this.imageListStatus;
-            this.btnRole10.Location = new System.Drawing.Point(387, 106);
+            this.btnRole10.Location = new System.Drawing.Point(420, 112);
             this.btnRole10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole10.Name = "btnRole10";
             this.btnRole10.Size = new System.Drawing.Size(91, 74);
@@ -539,7 +539,7 @@
             this.btnRole5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole5.ImageIndex = 1;
             this.btnRole5.ImageList = this.imageListStatus;
-            this.btnRole5.Location = new System.Drawing.Point(387, 30);
+            this.btnRole5.Location = new System.Drawing.Point(420, 30);
             this.btnRole5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole5.Name = "btnRole5";
             this.btnRole5.Size = new System.Drawing.Size(91, 74);
@@ -556,7 +556,7 @@
             this.btnRole19.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole19.ImageIndex = 1;
             this.btnRole19.ImageList = this.imageListStatus;
-            this.btnRole19.Location = new System.Drawing.Point(291, 260);
+            this.btnRole19.Location = new System.Drawing.Point(316, 277);
             this.btnRole19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole19.Name = "btnRole19";
             this.btnRole19.Size = new System.Drawing.Size(91, 74);
@@ -573,7 +573,7 @@
             this.btnRole14.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole14.ImageIndex = 2;
             this.btnRole14.ImageList = this.imageListStatus;
-            this.btnRole14.Location = new System.Drawing.Point(291, 183);
+            this.btnRole14.Location = new System.Drawing.Point(316, 195);
             this.btnRole14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole14.Name = "btnRole14";
             this.btnRole14.Size = new System.Drawing.Size(91, 74);
@@ -590,7 +590,7 @@
             this.btnRole9.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole9.ImageIndex = 0;
             this.btnRole9.ImageList = this.imageListStatus;
-            this.btnRole9.Location = new System.Drawing.Point(291, 106);
+            this.btnRole9.Location = new System.Drawing.Point(316, 112);
             this.btnRole9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole9.Name = "btnRole9";
             this.btnRole9.Size = new System.Drawing.Size(91, 74);
@@ -607,7 +607,7 @@
             this.btnRole4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole4.ImageIndex = 2;
             this.btnRole4.ImageList = this.imageListStatus;
-            this.btnRole4.Location = new System.Drawing.Point(291, 30);
+            this.btnRole4.Location = new System.Drawing.Point(316, 30);
             this.btnRole4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole4.Name = "btnRole4";
             this.btnRole4.Size = new System.Drawing.Size(91, 74);
@@ -624,7 +624,7 @@
             this.btnRole17.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole17.ImageIndex = 1;
             this.btnRole17.ImageList = this.imageListStatus;
-            this.btnRole17.Location = new System.Drawing.Point(99, 260);
+            this.btnRole17.Location = new System.Drawing.Point(108, 277);
             this.btnRole17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole17.Name = "btnRole17";
             this.btnRole17.Size = new System.Drawing.Size(91, 74);
@@ -641,7 +641,7 @@
             this.btnRole12.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole12.ImageIndex = 1;
             this.btnRole12.ImageList = this.imageListStatus;
-            this.btnRole12.Location = new System.Drawing.Point(99, 183);
+            this.btnRole12.Location = new System.Drawing.Point(108, 195);
             this.btnRole12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole12.Name = "btnRole12";
             this.btnRole12.Size = new System.Drawing.Size(91, 74);
@@ -658,7 +658,7 @@
             this.btnRole7.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole7.ImageIndex = 1;
             this.btnRole7.ImageList = this.imageListStatus;
-            this.btnRole7.Location = new System.Drawing.Point(99, 106);
+            this.btnRole7.Location = new System.Drawing.Point(108, 112);
             this.btnRole7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole7.Name = "btnRole7";
             this.btnRole7.Size = new System.Drawing.Size(91, 74);
@@ -675,7 +675,7 @@
             this.btnRole2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole2.ImageIndex = 2;
             this.btnRole2.ImageList = this.imageListStatus;
-            this.btnRole2.Location = new System.Drawing.Point(99, 30);
+            this.btnRole2.Location = new System.Drawing.Point(108, 30);
             this.btnRole2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole2.Name = "btnRole2";
             this.btnRole2.Size = new System.Drawing.Size(91, 74);
@@ -702,7 +702,7 @@
             this.btnRole18.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole18.ImageIndex = 1;
             this.btnRole18.ImageList = this.imageListStatus;
-            this.btnRole18.Location = new System.Drawing.Point(195, 260);
+            this.btnRole18.Location = new System.Drawing.Point(212, 277);
             this.btnRole18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole18.Name = "btnRole18";
             this.btnRole18.Size = new System.Drawing.Size(91, 74);
@@ -719,7 +719,7 @@
             this.btnRole13.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole13.ImageIndex = 1;
             this.btnRole13.ImageList = this.imageListStatus;
-            this.btnRole13.Location = new System.Drawing.Point(195, 183);
+            this.btnRole13.Location = new System.Drawing.Point(212, 195);
             this.btnRole13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole13.Name = "btnRole13";
             this.btnRole13.Size = new System.Drawing.Size(91, 74);
@@ -736,7 +736,7 @@
             this.btnRole8.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole8.ImageIndex = 1;
             this.btnRole8.ImageList = this.imageListStatus;
-            this.btnRole8.Location = new System.Drawing.Point(195, 106);
+            this.btnRole8.Location = new System.Drawing.Point(212, 112);
             this.btnRole8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole8.Name = "btnRole8";
             this.btnRole8.Size = new System.Drawing.Size(91, 74);
@@ -753,7 +753,7 @@
             this.btnRole3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole3.ImageIndex = 2;
             this.btnRole3.ImageList = this.imageListStatus;
-            this.btnRole3.Location = new System.Drawing.Point(195, 30);
+            this.btnRole3.Location = new System.Drawing.Point(212, 30);
             this.btnRole3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole3.Name = "btnRole3";
             this.btnRole3.Size = new System.Drawing.Size(91, 74);
@@ -770,7 +770,7 @@
             this.btnRole16.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole16.ImageIndex = 1;
             this.btnRole16.ImageList = this.imageListStatus;
-            this.btnRole16.Location = new System.Drawing.Point(3, 261);
+            this.btnRole16.Location = new System.Drawing.Point(3, 277);
             this.btnRole16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole16.Name = "btnRole16";
             this.btnRole16.Size = new System.Drawing.Size(91, 74);
@@ -787,7 +787,7 @@
             this.btnRole11.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole11.ImageIndex = 1;
             this.btnRole11.ImageList = this.imageListStatus;
-            this.btnRole11.Location = new System.Drawing.Point(3, 185);
+            this.btnRole11.Location = new System.Drawing.Point(3, 195);
             this.btnRole11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole11.Name = "btnRole11";
             this.btnRole11.Size = new System.Drawing.Size(91, 74);
@@ -804,7 +804,7 @@
             this.btnRole6.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole6.ImageIndex = 1;
             this.btnRole6.ImageList = this.imageListStatus;
-            this.btnRole6.Location = new System.Drawing.Point(3, 107);
+            this.btnRole6.Location = new System.Drawing.Point(3, 112);
             this.btnRole6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole6.Name = "btnRole6";
             this.btnRole6.Size = new System.Drawing.Size(91, 74);

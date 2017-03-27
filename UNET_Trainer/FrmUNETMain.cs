@@ -261,26 +261,26 @@ namespace UNET_Trainer
             }
 
             // A little amateur.. but it just is the fastest manner
-            btnRadio01.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio02.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio03.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio04.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio05.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio06.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio07.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio08.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio09.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio10.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio11.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio12.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio13.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio14.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio15.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio16.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio17.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio18.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio19.BackColor = System.Drawing.Color.MediumSpringGreen;
-            btnRadio20.BackColor = System.Drawing.Color.MediumSpringGreen;
+            btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio14.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
+            btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
 
             btnRadio01.ForeColor = System.Drawing.Color.Black;
             btnRadio02.ForeColor = System.Drawing.Color.Black;
@@ -346,6 +346,12 @@ namespace UNET_Trainer
                 MonitorRadioArray[radioIndex] = true;
                 _btn.BackColor = System.Drawing.Color.SaddleBrown;
                 _btn.ForeColor = System.Drawing.Color.White;
+            }
+            else
+            {
+                //color should be green, described in paragraph 2.1.7
+                _btn.BackColor = System.Drawing.Color.LimeGreen;
+                _btn.ForeColor = System.Drawing.Color.Black;
             }
         }
         #endregion

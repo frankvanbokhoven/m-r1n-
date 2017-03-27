@@ -54,10 +54,10 @@
             this.btnSelectAllTrainees = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnInstructor04 = new System.Windows.Forms.Button();
+            this.btnInstructor03 = new System.Windows.Forms.Button();
+            this.btnInstructor02 = new System.Windows.Forms.Button();
+            this.btnInstructor01 = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -416,10 +416,10 @@
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.btnInstructor04);
+            this.panel3.Controls.Add(this.btnInstructor03);
+            this.panel3.Controls.Add(this.btnInstructor02);
+            this.panel3.Controls.Add(this.btnInstructor01);
             this.panel3.Location = new System.Drawing.Point(479, 130);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
@@ -436,62 +436,62 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Instructors";
             // 
-            // button1
+            // btnInstructor04
             // 
-            this.button1.BackColor = System.Drawing.Color.GreenYellow;
-            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.ImageIndex = 1;
-            this.button1.Location = new System.Drawing.Point(3, 334);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 74);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Instructor 04";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnInstructor04.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnInstructor04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor04.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnInstructor04.ImageIndex = 1;
+            this.btnInstructor04.Location = new System.Drawing.Point(3, 334);
+            this.btnInstructor04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInstructor04.Name = "btnInstructor04";
+            this.btnInstructor04.Size = new System.Drawing.Size(146, 74);
+            this.btnInstructor04.TabIndex = 4;
+            this.btnInstructor04.Text = "Instructor 04";
+            this.btnInstructor04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInstructor04.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnInstructor03
             // 
-            this.button2.BackColor = System.Drawing.Color.GreenYellow;
-            this.button2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button2.Location = new System.Drawing.Point(3, 234);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 74);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Instructor 03";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnInstructor03.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnInstructor03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor03.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnInstructor03.Location = new System.Drawing.Point(3, 234);
+            this.btnInstructor03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInstructor03.Name = "btnInstructor03";
+            this.btnInstructor03.Size = new System.Drawing.Size(146, 74);
+            this.btnInstructor03.TabIndex = 3;
+            this.btnInstructor03.Text = "Instructor 03";
+            this.btnInstructor03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInstructor03.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnInstructor02
             // 
-            this.button3.BackColor = System.Drawing.Color.GreenYellow;
-            this.button3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button3.Location = new System.Drawing.Point(3, 131);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 74);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Instructor 02";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnInstructor02.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnInstructor02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor02.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnInstructor02.Location = new System.Drawing.Point(3, 131);
+            this.btnInstructor02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInstructor02.Name = "btnInstructor02";
+            this.btnInstructor02.Size = new System.Drawing.Size(146, 74);
+            this.btnInstructor02.TabIndex = 2;
+            this.btnInstructor02.Text = "Instructor 02";
+            this.btnInstructor02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInstructor02.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnInstructor01
             // 
-            this.button4.BackColor = System.Drawing.Color.GreenYellow;
-            this.button4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button4.Location = new System.Drawing.Point(3, 39);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(146, 74);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Instructor 01";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnInstructor01.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnInstructor01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor01.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnInstructor01.Location = new System.Drawing.Point(3, 39);
+            this.btnInstructor01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInstructor01.Name = "btnInstructor01";
+            this.btnInstructor01.Size = new System.Drawing.Size(146, 74);
+            this.btnInstructor01.TabIndex = 1;
+            this.btnInstructor01.Text = "Instructor 01";
+            this.btnInstructor01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnInstructor01.UseVisualStyleBackColor = false;
             // 
             // FrmClassBroadcast
             // 
@@ -547,9 +547,9 @@
         private System.Windows.Forms.Button btnSelectAllTrainees;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnInstructor04;
+        private System.Windows.Forms.Button btnInstructor03;
+        private System.Windows.Forms.Button btnInstructor02;
+        private System.Windows.Forms.Button btnInstructor01;
     }
 }

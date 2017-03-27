@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Marine\GitSources\SIP_Tester\bin\SipekSdk.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B0B842D8-3A40-47EC-BC69-17889A43A197}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>SipekSdk</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Sipek</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="pjsipDll">
+      <HintPath>..\..\SIP_Tester\bin\pjsipDll.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\TimerExpiredCallback.cs" />
+    <Compile Include="Common\ITimer.cs" />
+    <Compile Include="Common\NullTimer.cs" />
+    <Compile Include="Common\ETimerType.cs" />
+    <Compile Include="Common\IStateMachine.cs" />
+    <Compile Include="Common\NullStateMachine.cs" />
+    <Compile Include="Common\IRegistrar.cs" />
+    <Compile Include="Common\AbstractFactory.cs" />
+    <Compile Include="Common\NullFactory.cs" />
+    <Compile Include="Common\IPresenceAndMessaging.cs" />
+    <Compile Include="Common\IConfiguratorInterface.cs" />
+    <Compile Include="Common\IAccount.cs" />
+    <Compile Include="Common\NullConfigurator.cs" />
+    <Compile Include="Common\ICallProxyInterface.cs" />
+    <Compile Include="Common\DAccountStateChanged.cs" />
+    <Compile Include="Common\EUserStatus.cs" />
+    <Compile Include="Common\EServiceCodes.cs" />
+    <Compile Include="Common\ECallNotification.cs" />
+    <Compile Include="Common\EDtmfMode.cs" />
+    <Compile Include="Common\ETransportMode.cs" />
+    <Compile Include="Common\ETones.cs" />
+    <Compile Include="Common\IMediaProxyInterface.cs" />
+    <Compile Include="Common\NullMediaProxy.cs" />
+    <Compile Include="Common\DMessageReceived.cs" />
+    <Compile Include="Common\DBuddyStatusChanged.cs" />
+    <Compile Include="Common\ESessionState.cs" />
+    <Compile Include="Common\DDtmfDigitReceived.cs" />
+    <Compile Include="Common\DMessageWaitingNotification.cs" />
+    <Compile Include="Common\DCallReplaced.cs" />
+    <Compile Include="Common\IVoipProxy.cs" />
+    <Compile Include="Common\DCallStateChanged.cs" />
+    <Compile Include="Common\DCallIncoming.cs" />
+    <Compile Include="Common\DCallNotification.cs" />
+    <Compile Include="Common\NullCallProxy.cs" />
+    <Compile Include="Common\NullVoipProxy.cs" />
+    <Compile Include="Common\EStateId.cs" />
+    <Compile Include="Common\IAbstractState.cs" />
+    <Compile Include="Common\NullState.cs" />
+    <Compile Include="Common\ECallType.cs" />
+    <Compile Include="Common\ICallLogInterface.cs" />
+    <Compile Include="Common\CCallRecord.cs" />
+    <Compile Include="Common\NullCallLogger.cs" />
+    <Compile Include="Common\CallControl\CStateMachine.cs" />
+    <Compile Include="Common\CallControl\DCallStateRefresh.cs" />
+    <Compile Include="Common\CallControl\DIncomingCallNotification.cs" />
+    <Compile Include="Common\CallControl\CCallManager.cs" />
+    <Compile Include="Common\CallControl\CIdleState.cs" />
+    <Compile Include="Common\CallControl\CConnectingState.cs" />
+    <Compile Include="Common\CallControl\CAlertingState.cs" />
+    <Compile Include="Common\CallControl\CActiveState.cs" />
+    <Compile Include="Common\CallControl\CReleasedState.cs" />
+    <Compile Include="Common\CallControl\CTerminatedState.cs" />
+    <Compile Include="Common\CallControl\CIncomingState.cs" />
+    <Compile Include="Common\CallControl\CHoldingState.cs" />
+    <Compile Include="PJSUA2\SipAccount.cs" />
+    <Compile Include="Sip\pjsipRegistrar.cs" />
+    <Compile Include="Sip\pjsipPresenceAndMessaging.cs" />
+    <Compile Include="Sip\OnCallStateChanged.cs" />
+    <Compile Include="Sip\OnCallIncoming.cs" />
+    <Compile Include="Sip\OnCallHoldConfirm.cs" />
+    <Compile Include="Sip\pjsipCallProxy.cs" />
+    <Compile Include="Sip\SipConfigStruct.cs" />
+    <Compile Include="Sip\OnDtmfDigitCallback.cs" />
+    <Compile Include="Sip\OnMessageWaitingCallback.cs" />
+    <Compile Include="Sip\OnCallReplacedCallback.cs" />
+    <Compile Include="Sip\pjsipStackProxy.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

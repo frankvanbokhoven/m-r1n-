@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\UNET_Singleton.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="FrmAudio.cs">
       <SubType>Form</SubType>

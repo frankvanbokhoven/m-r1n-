@@ -42,8 +42,7 @@ namespace Sipek
         {
             InitializeComponent();
 
-
-
+ 
             HEADER_TEXT = this.Text;
 
             // Check if settings upgrade needed?
