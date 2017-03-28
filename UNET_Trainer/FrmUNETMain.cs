@@ -121,6 +121,7 @@ namespace UNET_Trainer
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
+            this.Text = "UNET Instructor";
         }
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)

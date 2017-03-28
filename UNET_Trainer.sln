@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer", "UNET_Trainer\UNET_Trainer.csproj", "{A1EE7471-9FFF-4C2A-A49B-F2C07F4E1238}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer_Instructor", "UNET_Trainer\UNET_Trainer_Instructor.csproj", "{A1EE7471-9FFF-4C2A-A49B-F2C07F4E1238}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Server", "UNET_Server\UNET_Server.csproj", "{CDFB319E-B84C-4341-9BD6-41C7C543BA14}"
 EndProject
@@ -11,13 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIP_Tester", "SIP_Tester\SI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FgDotNetControls", "FgDotNetControls\FgDotNetControls.csproj", "{478816D0-3A16-4B65-9826-8F90FBA2BF29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_TrainerClient", "UNET_TrainerClient\UNET_TrainerClient.csproj", "{9F0500DC-79C7-4237-88B3-D3AAB9A84234}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_TrainerClientPJSIP4NET", "UNET_TrainerClient\UNET_TrainerClientPJSIP4NET.csproj", "{9F0500DC-79C7-4237-88B3-D3AAB9A84234}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupSIPTester", "SetupSIPTester\SetupSIPTester.vdproj", "{6FA859E1-D353-4215-9EF2-BC178CA314B0}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "incoming_call", "incoming_call\incoming_call.vbproj", "{18D558B1-B70A-474C-BCEA-65D47654AF68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Tester", "UNET_Tester\UNET_Tester.csproj", "{A846E562-3039-46A3-8802-9798845EF969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer_Trainee", "UNET_Trainer_Trainee\UNET_Trainer_Trainee.csproj", "{A56B87B3-C303-4414-948C-923639D7E069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,14 @@ Global
 		{A846E562-3039-46A3-8802-9798845EF969}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A846E562-3039-46A3-8802-9798845EF969}.Release|x86.ActiveCfg = Release|Any CPU
 		{A846E562-3039-46A3-8802-9798845EF969}.Release|x86.Build.0 = Release|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Debug|x86.Build.0 = Debug|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Release|x86.ActiveCfg = Release|Any CPU
+		{A56B87B3-C303-4414-948C-923639D7E069}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

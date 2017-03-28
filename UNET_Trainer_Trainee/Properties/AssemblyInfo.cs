@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UNET_Trainer_Instructor")]
+[assembly: AssemblyTitle("UNET_Trainer_Trainee")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UNET_Trainer_Instructor")]
+[assembly: AssemblyProduct("UNET_Trainer_Trainee")]
 [assembly: AssemblyCopyright("Copyright © Marine  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a1ee7471-9fff-4c2a-a49b-f2c07f4e1238")]
+[assembly: Guid("a56b87b3-c303-4414-948c-923639d7e069")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,7 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2017.03.28")]
+[assembly: AssemblyVersion("1.2017.3.28")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-// Let log4net know that it can look for configuration in the default application config file
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]

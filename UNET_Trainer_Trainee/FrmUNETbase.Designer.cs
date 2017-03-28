@@ -1,4 +1,4 @@
-﻿namespace UNET_Trainer
+﻿namespace UNET_Trainer_Trainee
 {
     partial class FrmUNETbase
     {
@@ -34,11 +34,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1126, 691);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1007, 682);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmUNETbase";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.FrmUNETMain_Load);
+            this.Text = "FrmUNETbase";
+            this.Load += new System.EventHandler(this.FrmUNETbase_Load);
             this.ResumeLayout(false);
 
         }
@@ -46,4 +47,3 @@
         #endregion
     }
 }
-

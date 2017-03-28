@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnRadio20 = new System.Windows.Forms.Button();
@@ -55,7 +54,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnRole20 = new System.Windows.Forms.Button();
-            this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
+            this.imageListStatus = new System.Windows.Forms.ImageList();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
             this.btnRole5 = new System.Windows.Forms.Button();
@@ -119,7 +118,7 @@
             this.btnRadios = new System.Windows.Forms.Button();
             this.btnTrainees = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
