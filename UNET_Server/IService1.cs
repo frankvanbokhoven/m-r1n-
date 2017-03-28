@@ -34,6 +34,11 @@ namespace TestMTOM
 
         [OperationContract]
         void SaveLargeObject(SaveFileInfo _request);
+
+
+        //for testing purposes
+        [OperationContract]
+        List<string> GetExercises();
     }
 
     [DataContract]

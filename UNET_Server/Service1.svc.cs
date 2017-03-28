@@ -19,6 +19,7 @@ namespace TestMTOM
         private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
         private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
         private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
+        private UNET_Server.Classes.UNET_Server_Singleton UNET_Singleton;
         private byte[] FileToByteArray(string fileName)
         {
             byte[] buff = null;
@@ -80,7 +81,30 @@ namespace TestMTOM
             }
         }
 
-      
+        /// <summary>
+        /// Get the exercises from the inline memory
+        /// </summary>
+        /// <returns></returns>
+        public   List<string> GetExercises()
+        {
+        List<string> result = new List<string>();
+            try
+            {
+
+               // for
+                result.AddRange(Directory.GetFiles(@"c:\temp"));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
+                result.Add("Error retrieving exercices");
+                throw;
+            }
+            return result;
+        }
+
+
         /// <summary>
         /// Create a listing of the files that exist in the FileSource directory and return this list to the client
         /// </summary>

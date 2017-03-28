@@ -13,6 +13,8 @@ namespace UNET_Server.Classes
         private static readonly object syncRoot = new object();
         private UNET_Server_Singleton() { }
 
+        public Exercise[] Exercises;
+
         public static UNET_Server_Singleton Instance
         {
             get
