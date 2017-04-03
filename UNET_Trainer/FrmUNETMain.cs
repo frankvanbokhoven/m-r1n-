@@ -169,7 +169,50 @@ namespace UNET_Trainer
             }
         }
 
-  
+        /// <summary>
+        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
+        /// their space can be used for the other panels.
+        /// </summary>
+        private void ResizePanels(Panel _panel, int _numberOfPanels)
+        {
+            //begin met alle controls op invisible te zetten.
+            foreach (Button b in _panel.Controls)
+            {
+                b.Visible = false;
+            }
+            //get the number of panels
+            int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfPanels)) + 1; //rond dit getal naar beneden af
+            int availablehorspace = _panel.Width / squareroot;
+            int availablevertspace = _panel.Height / squareroot;
+            int controlindex = 0;
+            int buttonstop = 0;
+
+            for (int i = 1; i <= squareroot; i++) // van boven naar onder
+            {
+                int buttonleft = 0;
+                for (int j = 1; j <= squareroot; j++) // van links naar rechts
+                {
+                    if (controlindex < _numberOfPanels)
+                    {
+                        ((Button)(panel2.Controls[controlindex])).Visible = true;
+                        ((Button)(panel2.Controls[controlindex])).Top = buttonstop;
+                        ((Button)(panel2.Controls[controlindex])).Left = buttonleft;
+                        ((Button)(panel2.Controls[controlindex])).Width = availablehorspace;
+                        ((Button)(panel2.Controls[controlindex])).Height = availablehorspace;
+
+                        controlindex++;
+                        buttonleft += availablehorspace; //tel de breedte van 1 button op bij de left, voor de volgende
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                buttonstop += availablevertspace;
+            }
+        }
+
         #region trainee events
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
