@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer_Instructor", "UNET_Trainer\UNET_Trainer_Instructor.csproj", "{A1EE7471-9FFF-4C2A-A49B-F2C07F4E1238}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFB319E-B84C-4341-9BD6-41C7C543BA14} = {CDFB319E-B84C-4341-9BD6-41C7C543BA14}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Server", "UNET_Server\UNET_Server.csproj", "{CDFB319E-B84C-4341-9BD6-41C7C543BA14}"
 EndProject
@@ -12,16 +15,27 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FgDotNetControls", "FgDotNetControls\FgDotNetControls.csproj", "{478816D0-3A16-4B65-9826-8F90FBA2BF29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_TrainerClientPJSIP4NET", "UNET_TrainerClient\UNET_TrainerClientPJSIP4NET.csproj", "{9F0500DC-79C7-4237-88B3-D3AAB9A84234}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFB319E-B84C-4341-9BD6-41C7C543BA14} = {CDFB319E-B84C-4341-9BD6-41C7C543BA14}
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupSIPTester", "SetupSIPTester\SetupSIPTester.vdproj", "{6FA859E1-D353-4215-9EF2-BC178CA314B0}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "incoming_call", "incoming_call\incoming_call.vbproj", "{18D558B1-B70A-474C-BCEA-65D47654AF68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Tester", "UNET_Tester\UNET_Tester.csproj", "{A846E562-3039-46A3-8802-9798845EF969}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFB319E-B84C-4341-9BD6-41C7C543BA14} = {CDFB319E-B84C-4341-9BD6-41C7C543BA14}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer_Trainee", "UNET_Trainer_Trainee\UNET_Trainer_Trainee.csproj", "{A56B87B3-C303-4414-948C-923639D7E069}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CDFB319E-B84C-4341-9BD6-41C7C543BA14} = {CDFB319E-B84C-4341-9BD6-41C7C543BA14}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SipekSdk", "SipekSDK\SipekSdk.csproj", "{B0B842D8-3A40-47EC-BC69-17889A43A197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PJProject-2.6-Win32.CSharp", "PJSUA2\PJProject-2.6-Win32.CSharp.csproj", "{61B3E232-24EF-4E15-9ED7-4102B1C431BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +121,14 @@ Global
 		{B0B842D8-3A40-47EC-BC69-17889A43A197}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0B842D8-3A40-47EC-BC69-17889A43A197}.Release|x86.ActiveCfg = Release|Any CPU
 		{B0B842D8-3A40-47EC-BC69-17889A43A197}.Release|x86.Build.0 = Release|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Debug|x86.Build.0 = Debug|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{61B3E232-24EF-4E15-9ED7-4102B1C431BC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

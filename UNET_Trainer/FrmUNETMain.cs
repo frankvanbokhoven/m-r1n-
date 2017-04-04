@@ -213,6 +213,28 @@ namespace UNET_Trainer
             }
         }
 
+        #region WCF events
+        private void HandleWCFEvents()
+        {
+            try
+            {
+                using (UNET_Trainer.UNET_Server.IService1 unetServer = new UNET_Trainer.UNET_Server.IService1())
+                {
+             //       unetServer.
+
+
+                  //  comboBox1.Items.AddRange(streamClient.GetAvailableFiles());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message ));
+                // throw;
+            }
+        }
+        #endregion
+
         #region trainee events
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
