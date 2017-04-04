@@ -123,7 +123,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51537</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/TestMTOM</IISUrl>
+          <IISUrl>http://localhost/UNET_Server</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

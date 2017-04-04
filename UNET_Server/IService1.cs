@@ -9,7 +9,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace TestMTOM
+namespace UNET_Server
 {
     using System.Runtime.Serialization;
     using System.ServiceModel;
@@ -21,24 +21,70 @@ namespace TestMTOM
     public interface IService1
     {
        
-        //look at: https://social.msdn.microsoft.com/Forums/vstudio/en-US/e647042b-a3c9-4d93-a6f5-6ca583b5babc/send-stream-type-as-a-datamember-in-the-datacontract?forum=wcf
+        ////look at: https://social.msdn.microsoft.com/Forums/vstudio/en-US/e647042b-a3c9-4d93-a6f5-6ca583b5babc/send-stream-type-as-a-datamember-in-the-datacontract?forum=wcf
+        //[OperationContract]
+        //Stream GetLargeObject(string _filename);
+
+
+        //[OperationContract]        
+        //List<string> GetAvailableFiles();
+
+        //[OperationContract]
+        //List<string> GetTestRoles();
+
+        //[OperationContract]
+        //void SaveLargeObject(SaveFileInfo _request);
+
+
+        //Getters
         [OperationContract]
-        Stream GetLargeObject(string _filename);
-
-
-        [OperationContract]        
-        List<string> GetAvailableFiles();
-
-        [OperationContract]
-        List<string> GetTestRoles();
-
-        [OperationContract]
-        void SaveLargeObject(SaveFileInfo _request);
-
+        List<string> GetExercises();
 
         //for testing purposes
         [OperationContract]
-        List<string> GetExercises();
+        List<string> GetRoles();
+
+        //for testing purposes
+        [OperationContract]
+        List<string> GetRadios();
+
+        //for testing purposes
+        [OperationContract]
+        List<string> GetInstructors();
+
+        //for testing purposes
+        [OperationContract]
+        List<string> GetTrainees();
+
+        //for testing purposes
+        [OperationContract]
+        List<string> GetPlatforms();
+
+
+
+        //Setters
+        [OperationContract]
+        bool SetExercises(string _exercise);
+
+        //for testing purposes
+        [OperationContract]
+        bool SetRoles(string _role);
+
+        //for testing purposes
+        [OperationContract]
+        bool SetRadios(string _radio);
+
+        //for testing purposes
+        [OperationContract]
+        bool SetInstructors(string _instructor);
+
+        //for testing purposes
+        [OperationContract]
+        bool SetTrainees(string _trainee);
+
+        //for testing purposes
+        [OperationContract]
+        bool SetPlatforms(string _platform);
     }
 
     [DataContract]
