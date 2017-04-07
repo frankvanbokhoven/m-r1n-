@@ -218,14 +218,7 @@ namespace UNET_Trainer
         {
             try
             {
-                using (UNET_Trainer.UNET_Server.IService1 unetServer = new UNET_Trainer.UNET_Server.IService1())
-                {
-             //       unetServer.
-
-
-                  //  comboBox1.Items.AddRange(streamClient.GetAvailableFiles());
-
-                }
+               
             }
             catch (Exception ex)
             {

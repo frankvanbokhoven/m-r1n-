@@ -18,7 +18,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UNET_TrainerClient.UNET_Server_Reference;
 using pjsip4net.Core.Interfaces.ApiProviders;
 using pjsip4net.Core.Interfaces;
 using pjsip4net.Core.Utils;
@@ -47,8 +46,8 @@ namespace UNET_TrainerClient
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.DarkGreen;
-            GetAvailableList();
-            GetRoles();
+         //   GetAvailableList();
+         //   GetRoles();
 
             _registered = false;
             btnRegister.Text = "Registreer!";
@@ -191,48 +190,6 @@ namespace UNET_TrainerClient
         }
         #endregion
 
-
-        /// <summary>
-        /// laadt de beschikbare files (ALS TEST)
-        /// </summary>
-        private void GetAvailableList()
-        {
-            try
-            {
-                using (UNET_Server_Reference.Service1Client reference = new UNET_Server_Reference.Service1Client())
-                {
-                    reference.Open();
-
-                    cbxDownloads.Items.AddRange(reference.GetAvailableFiles());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error retrieving file list");
-                // throw;
-            }
-        }
-
-        /// <summary>
-        /// Get roles (TEST method!)
-        /// </summary>
-        private void GetRoles()
-        {
-            try
-            {
-                using (UNET_Server_Reference.Service1Client reference = new UNET_Server_Reference.Service1Client())
-                {
-                    reference.Open();
-
-                    cbxRoles.Items.AddRange(reference.GetTestRoles());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error retrieving Roles");
-                // throw;
-            }
-        }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {

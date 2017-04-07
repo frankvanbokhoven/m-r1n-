@@ -118,7 +118,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UNET_Server\Reference.cs">
+    <Compile Include="Service References\UNET_Service\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -170,28 +170,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\UNET_Server\Service1.wsdl" />
-    <None Include="Service References\UNET_Server\Service1.xsd">
+    <None Include="Service References\UNET_Service\Service1.wsdl" />
+    <None Include="Service References\UNET_Service\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Server\Service11.xsd">
+    <None Include="Service References\UNET_Service\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Server\Service12.xsd">
+    <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Exercise.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UNET_Server\Reference.svcmap">
+    <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\UNET_Server\configuration.svcinfo" />
-    <None Include="Service References\UNET_Server\configuration91.svcinfo" />
-    <None Include="Service References\UNET_Server\Service1.disco" />
+    <None Include="Service References\UNET_Service\configuration.svcinfo" />
+    <None Include="Service References\UNET_Service\configuration91.svcinfo" />
+    <None Include="Service References\UNET_Service\Service1.disco" />
     <None Include="Images\Red.png" />
     <None Include="Images\Green.png" />
     <None Include="Images\Grey.png" />
@@ -201,7 +207,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UNET_Server\" />
+    <WCFMetadataStorage Include="Service References\UNET_Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

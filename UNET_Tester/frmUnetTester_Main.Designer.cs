@@ -51,9 +51,11 @@
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Location = new System.Drawing.Point(38, 53);
+            this.groupBox1.Location = new System.Drawing.Point(28, 43);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 258);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(321, 210);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
@@ -61,9 +63,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 205);
+            this.label4.Location = new System.Drawing.Point(37, 167);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Radio";
             // 
@@ -91,18 +94,20 @@
             "18",
             "19",
             "20"});
-            this.comboBox4.Location = new System.Drawing.Point(234, 202);
+            this.comboBox4.Location = new System.Drawing.Point(176, 164);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 24);
+            this.comboBox4.Size = new System.Drawing.Size(92, 21);
             this.comboBox4.TabIndex = 6;
             this.comboBox4.Text = "4";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 156);
+            this.label3.Location = new System.Drawing.Point(37, 127);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Role";
             // 
@@ -130,18 +135,20 @@
             "18",
             "19",
             "20"});
-            this.comboBox3.Location = new System.Drawing.Point(234, 153);
+            this.comboBox3.Location = new System.Drawing.Point(176, 124);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 24);
+            this.comboBox3.Size = new System.Drawing.Size(92, 21);
             this.comboBox3.TabIndex = 4;
             this.comboBox3.Text = "4";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 107);
+            this.label2.Location = new System.Drawing.Point(37, 87);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 17);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Trainees";
             // 
@@ -165,18 +172,20 @@
             "14",
             "15",
             "16"});
-            this.comboBox2.Location = new System.Drawing.Point(234, 104);
+            this.comboBox2.Location = new System.Drawing.Point(176, 84);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.Size = new System.Drawing.Size(92, 21);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.Text = "4";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 53);
+            this.label1.Location = new System.Drawing.Point(37, 43);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 17);
+            this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Exercise";
             // 
@@ -192,20 +201,23 @@
             "6",
             "7",
             "8"});
-            this.comboBox1.Location = new System.Drawing.Point(234, 50);
+            this.comboBox1.Location = new System.Drawing.Point(176, 41);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = "4";
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // frmUNETTester_Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(532, 439);
+            this.ClientSize = new System.Drawing.Size(399, 357);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmUNETTester_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UNET Tester";
