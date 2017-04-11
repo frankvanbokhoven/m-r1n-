@@ -25,6 +25,7 @@ namespace UNET_Trainer
                 lblTitle.Text = _formtitle;
             }
         }
+
         public FrmUNETbaseSub()
         {
             InitializeComponent();

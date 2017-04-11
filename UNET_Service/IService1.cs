@@ -52,23 +52,24 @@ namespace UNET_Service
         [OperationContract]
         bool SetExercises(List<Classes.Exercise> _exercises);
 
-        //for testing purposes
+        
         [OperationContract]
         bool SetRoles(List<Classes.Role> _role);
 
-        //for testing purposes
+
+        [OperationContract]
+        bool SetRolesCount(int _count);
+
         [OperationContract]
         bool SetRadios(List<Classes.Radio> _radio);
 
-        //for testing purposes
         [OperationContract]
         bool SetInstructors(List<Classes.Instructor> _instructor);
 
-        //for testing purposes
+      
         [OperationContract]
         bool SetTrainees(List<Classes.Trainee> _trainee);
 
-        //for testing purposes
         [OperationContract]
         bool SetPlatforms(List<Classes.Platform> _platform);
     }

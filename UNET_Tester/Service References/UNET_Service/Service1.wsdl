@@ -69,6 +69,12 @@
   <wsdl:message name="IService1_SetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetRadios_InputMessage">
     <wsdl:part name="parameters" element="tns:SetRadios" />
   </wsdl:message>
@@ -129,6 +135,10 @@
     <wsdl:operation name="SetRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoles" message="tns:IService1_SetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesResponse" message="tns:IService1_SetRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRolesCount" message="tns:IService1_SetRolesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesCountResponse" message="tns:IService1_SetRolesCount_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetRadios">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadios" message="tns:IService1_SetRadios_InputMessage" />
@@ -224,6 +234,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetRoles">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRolesCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

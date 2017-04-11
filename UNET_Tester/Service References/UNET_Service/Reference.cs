@@ -453,6 +453,12 @@ namespace UNET_Tester.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
         System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Tester.UNET_Service.Role[] _role);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
+        bool SetRolesCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
+        System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         bool SetRadios(UNET_Tester.UNET_Service.Radio[] _radio);
         
@@ -575,6 +581,14 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Tester.UNET_Service.Role[] _role) {
             return base.Channel.SetRolesAsync(_role);
+        }
+        
+        public bool SetRolesCount(int _count) {
+            return base.Channel.SetRolesCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count) {
+            return base.Channel.SetRolesCountAsync(_count);
         }
         
         public bool SetRadios(UNET_Tester.UNET_Service.Radio[] _radio) {

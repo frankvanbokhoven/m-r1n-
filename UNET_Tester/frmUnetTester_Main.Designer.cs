@@ -33,7 +33,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbxRole = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.cbxRole);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.label1);
@@ -111,10 +111,10 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Role";
             // 
-            // comboBox3
+            // cbxRole
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.cbxRole.FormattingEnabled = true;
+            this.cbxRole.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -135,12 +135,13 @@
             "18",
             "19",
             "20"});
-            this.comboBox3.Location = new System.Drawing.Point(176, 124);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(92, 21);
-            this.comboBox3.TabIndex = 4;
-            this.comboBox3.Text = "4";
+            this.cbxRole.Location = new System.Drawing.Point(176, 124);
+            this.cbxRole.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxRole.Name = "cbxRole";
+            this.cbxRole.Size = new System.Drawing.Size(92, 21);
+            this.cbxRole.TabIndex = 4;
+            this.cbxRole.Text = "4";
+            this.cbxRole.SelectedIndexChanged += new System.EventHandler(this.cbxRole_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -252,7 +253,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbxRole;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ListBox listBoxGetmethods;

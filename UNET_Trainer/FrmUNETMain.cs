@@ -1,5 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Trainer.UNET_Service;
 
 namespace UNET_Trainer
 {
@@ -7,6 +15,8 @@ namespace UNET_Trainer
 
     public partial class FrmUNETMain : FrmUNETbase
     {
+        //log4net
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
@@ -70,6 +80,7 @@ namespace UNET_Trainer
 
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
+        /// It also enables/disables buttons based on the number of exercises given bij the service
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
@@ -96,7 +107,6 @@ namespace UNET_Trainer
                     { ((Button)c).ImageIndex = 1; }
                 }
 
-
                 if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
                 {
                     if (((Button)c).ImageIndex == 1)
@@ -106,15 +116,68 @@ namespace UNET_Trainer
                     else
                     { ((Button)c).ImageIndex = 1; }
                 }
-
-
                 else
                 {
                     SetButtonStatus(c);
+                } 
+            }
+
+            try
+            {
+                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                {
+                    service.Open();
+                 
+                    //enable the Exercise buttons
+                    var resultlist = service.GetExercises();
+                    List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
+
+                    btnExersise01.Enabled = lst.Count > 1;
+                    btnExersise02.Enabled = lst.Count > 2;
+                    btnExersise03.Enabled = lst.Count > 3;
+                    btnExersise04.Enabled = lst.Count > 4;
+                    btnExersise05.Enabled = lst.Count > 5;
+                    btnExersise06.Enabled = lst.Count > 6;
+                    btnExersise07.Enabled = lst.Count > 7;
+                    btnExersise08.Enabled = lst.Count > 8;
+
+
+                    //enable the Roles buttons
+                    var rolelist = service.GetRoles();
+                    List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+
+                    btnRole1.Enabled = lstrole.Count > 1;
+                    btnRole2.Enabled = lstrole.Count > 2;
+                    btnRole3.Enabled = lstrole.Count > 3;
+                    btnRole4.Enabled = lstrole.Count > 4;
+                    btnRole5.Enabled = lstrole.Count > 5;
+                    btnRole6.Enabled = lstrole.Count > 6;
+                    btnRole7.Enabled = lstrole.Count > 7;
+                    btnRole8.Enabled = lstrole.Count > 8;
+                    btnRole9.Enabled = lstrole.Count > 9;
+                    btnRole10.Enabled = lstrole.Count > 10;
+                    btnRole11.Enabled = lstrole.Count > 11;
+                    btnRole12.Enabled = lstrole.Count > 12;
+                    btnRole13.Enabled = lstrole.Count > 13;
+                    btnRole14.Enabled = lstrole.Count > 14;
+                    btnRole15.Enabled = lstrole.Count > 15;
+                    btnRole16.Enabled = lstrole.Count > 16;
+                    btnRole17.Enabled = lstrole.Count > 17;
+                    btnRole18.Enabled = lstrole.Count > 18;
+                    btnRole19.Enabled = lstrole.Count > 19;
+                    btnRole20.Enabled = lstrole.Count > 20;
+
+
+                    service.Close();
                 }
             }
+            catch (Exception ex)
+            {
+                log.Error("Error using WCF SetButtonStatus", ex);
+                // throw;
+            }
         }
-
 
         #endregion
 

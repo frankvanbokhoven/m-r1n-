@@ -115,6 +115,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetRolesCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRolesCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRolesCountResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SetRadios">
     <xs:complexType>
       <xs:sequence>

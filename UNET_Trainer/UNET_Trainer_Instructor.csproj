@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UNET_Trainer</RootNamespace>
     <AssemblyName>UNET_Trainer</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,7 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\UNET_Singleton.cs" />
+    <Compile Include="Classes\Exercise.cs" />
+    <Compile Include="Classes\Instructor.cs" />
+    <Compile Include="Classes\Platform.cs" />
+    <Compile Include="Classes\Radio.cs" />
+    <Compile Include="Classes\Role.cs" />
+    <Compile Include="Classes\Trainee.cs" />
+    <Compile Include="Classes\UNET_Service_Singleton.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="FrmAudio.cs">
@@ -180,10 +187,22 @@
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\Service13.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Exercise.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Instructor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Platform.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Radio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Trainee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

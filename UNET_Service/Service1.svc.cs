@@ -157,16 +157,12 @@ namespace UNET_Service
                 }
 
 
-                // result = new List<UNET_Service.Classes.Platform>(singleton.Platforms);
-
-
-                result = true;
+                 result = true;
             }
             catch (Exception ex)
             {
                 log.Error("Error setting exersisecount", ex);
                 result = false;
-
             }
             return result;
         }
@@ -182,22 +178,91 @@ namespace UNET_Service
             try
             {
                 UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
-                singleton.Exercises = _exercises;
+                //first clear the array
+                singleton.Exercises.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_exercises.Count-1); i++)
+                {
+                    Classes.Exercise exercise = new Classes.Exercise();
+                    exercise.Number = i;
+                    exercise.SpecificationName = string.Format("Exercise_{0}", i);
+                    singleton.Exercises.Add(exercise);
+                }
 
                 result = true;
             }
             catch (Exception ex)
             {
-                log.Error("Error setting exercises.", ex);
+                log.Error("Error setting exersisecount", ex);
                 result = false;
-                // log.Fatal("Set Exercises: ", ex);
+
+            }
+            return result;
+        }
+
+
+        public bool SetRolesCount(int _count)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Roles.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                {
+                    Classes.Role role = new Classes.Role();
+                    role.ID = i;
+                    role.Name = string.Format("Role{0}", i);
+                    singleton.Roles.Add(role);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting exersisecount", ex);
+                result = false;
+
             }
             return result;
         }
 
         public bool SetRoles(List<Classes.Role>  _role)
         {
-            return true;
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Roles.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_role.Count - 1); i++)
+                {
+                    Classes.Role role = new Classes.Role();
+                    role.ID = i;
+                    role.Name = string.Format("Role{0}", i);
+                    singleton.Roles.Add(role);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting exersisecount", ex);
+                result = false;
+
+            }
+            return result;
         }
 
         public bool SetRadios(List<Classes.Radio>  _radio)
