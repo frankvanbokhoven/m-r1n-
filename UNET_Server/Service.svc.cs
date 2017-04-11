@@ -52,94 +52,91 @@ namespace UNET_Server
         }
 
 
-        public List<string> GetRoles()
+        public List<UNET_Server.Classes.Role> GetRoles()
         {
-            List<string> result = new List<string>();
+            List<UNET_Server.Classes.Role> result = new List<UNET_Server.Classes.Role>();
             try
             {
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+                UNET_Server.Classes.UNET_Server_Singleton singleton = UNET_Server.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Server.Classes.Role>(singleton.Roles);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
+                Console.WriteLine("Exception retrieving the available Roles: " + ex.Message);
+                 throw;
+            }
+            return result;
+        }
+
+        public List<UNET_Server.Classes.Radio> GetRadios()
+        {
+            List<UNET_Server.Classes.Radio> result = new List<UNET_Server.Classes.Radio>();
+            try
+            {
+                UNET_Server.Classes.UNET_Server_Singleton singleton = UNET_Server.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Server.Classes.Radio>(singleton.Radios);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the available Radios: " + ex.Message);
+                 throw;
+            }
+            return result;
+        }
+
+        public List<UNET_Server.Classes.Instructor> GetInstructors()
+        {
+            List<UNET_Server.Classes.Instructor> result = new List<UNET_Server.Classes.Instructor>();
+            try
+            {
+                UNET_Server.Classes.UNET_Server_Singleton singleton = UNET_Server.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Server.Classes.Instructor>(singleton.Instructors);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the available Instructors: " + ex.Message);
+
                 throw;
             }
             return result;
         }
 
-        public List<string> GetRadios()
+        public List<UNET_Server.Classes.Trainee> GetTrainees()
         {
-            List<string> result = new List<string>();
+            List<UNET_Server.Classes.Trainee> result = new List<UNET_Server.Classes.Trainee>();
             try
             {
 
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+                UNET_Server.Classes.UNET_Server_Singleton singleton = UNET_Server.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Server.Classes.Trainee>(singleton.Trainees);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
-                throw;
-            }
-            return result;
-        }
-
-        public List<string> GetInstructors()
-        {
-            List<string> result = new List<string>();
-            try
-            {
-
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
-                throw;
-            }
-            return result;
-        }
-
-        public List<string> GetTrainees()
-        {
-            List<string> result = new List<string>();
-            try
-            {
-
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
+                Console.WriteLine("Exception retrieving the available trainees: " + ex.Message);
+     
                 throw;
             }
             return result;
         }
 
 
-        public List<string> GetPlatforms()
+        public List<UNET_Server.Classes.Platform> GetPlatforms()
         {
-            List<string> result = new List<string>();
+            List<UNET_Server.Classes.Platform > result = new List<UNET_Server.Classes.Platform>();
             try
             {
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+
+                UNET_Server.Classes.UNET_Server_Singleton singleton = UNET_Server.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Server.Classes.Platform>(singleton.Platforms);
+
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
+                Console.WriteLine("Exception retrieving the available platforms: " + ex.Message);
+
                 throw;
             }
             return result;

@@ -14,6 +14,11 @@ namespace UNET_Server.Classes
         private UNET_Server_Singleton() { }
 
         public Exercise[] Exercises;
+        public Role[] Roles;
+        public Radio[] Radios;
+        public Instructor[] Instructors;
+        public Trainee[] Trainees;
+        public Platform[] Platforms;
 
         public static UNET_Server_Singleton Instance
         {

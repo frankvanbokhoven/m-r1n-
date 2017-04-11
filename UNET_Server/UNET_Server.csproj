@@ -92,7 +92,6 @@
     <Compile Include="Classes\Trainee.cs" />
     <Compile Include="Classes\Instructor.cs" />
     <Compile Include="Classes\UNET_Server_Singleton.cs" />
-    <Compile Include="SaveFileInfo.cs" />
     <Compile Include="Service.svc.cs">
       <DependentUpon>Service.svc</DependentUpon>
     </Compile>
