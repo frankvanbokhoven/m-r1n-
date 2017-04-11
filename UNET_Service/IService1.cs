@@ -26,23 +26,23 @@ namespace UNET_Service
 
         //for testing purposes
         [OperationContract]
-        List<string> GetRoles();
+        List<UNET_Service.Classes.Role> GetRoles();
 
         //for testing purposes
         [OperationContract]
-        List<string> GetRadios();
+        List<UNET_Service.Classes.Radio > GetRadios();
 
         //for testing purposes
         [OperationContract]
-        List<string> GetInstructors();
+        List<UNET_Service.Classes.Instructor > GetInstructors();
 
         //for testing purposes
         [OperationContract]
-        List<string> GetTrainees();
+        List<UNET_Service.Classes.Trainee> GetTrainees();
 
         //for testing purposes
         [OperationContract]
-        List<string> GetPlatforms();
+        List<UNET_Service.Classes.Platform> GetPlatforms();
 
 
         //Setters
@@ -54,23 +54,23 @@ namespace UNET_Service
 
         //for testing purposes
         [OperationContract]
-        bool SetRoles(string _role);
+        bool SetRoles(List<Classes.Role> _role);
 
         //for testing purposes
         [OperationContract]
-        bool SetRadios(string _radio);
+        bool SetRadios(List<Classes.Radio> _radio);
 
         //for testing purposes
         [OperationContract]
-        bool SetInstructors(string _instructor);
+        bool SetInstructors(List<Classes.Instructor> _instructor);
 
         //for testing purposes
         [OperationContract]
-        bool SetTrainees(string _trainee);
+        bool SetTrainees(List<Classes.Trainee> _trainee);
 
         //for testing purposes
         [OperationContract]
-        bool SetPlatforms(string _platform);
+        bool SetPlatforms(List<Classes.Platform> _platform);
     }
 
  }

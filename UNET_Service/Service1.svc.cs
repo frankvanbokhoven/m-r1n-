@@ -16,22 +16,10 @@ namespace UNET_Service
         private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
         private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
         private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
-        private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"]; //@"c:\temp\ServiceLog.txt";
-        private byte[] FileToByteArray(string fileName)
-        {
-            byte[] buff = null;
-            FileStream fs = new FileStream(fileName,
-                FileMode.Open, FileAccess.Read);
-            BinaryReader br = new BinaryReader(fs);
-            long numBytes = new FileInfo(fileName).Length;
-            buff = br.ReadBytes((int)numBytes);
-            return buff;
-        }
+        private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
+        //log4net
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-      
-
-
-      
 
         #region Getters
         /// <summary>
@@ -43,12 +31,12 @@ namespace UNET_Service
             List<UNET_Service.Classes.Exercise> result = new List<UNET_Service.Classes.Exercise>();
             try
             {
-                UNET_Service.Classes.UNET_Server_Singleton singleton = UNET_Service.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Service.Classes.Exercise>(singleton.Exercises);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
+                log.Error("Exception retrieving the available exercises: ", ex);
 
                 throw;
             }
@@ -56,98 +44,155 @@ namespace UNET_Service
         }
 
 
-        public List<string> GetRoles()
+        public List<UNET_Service.Classes.Role> GetRoles()
         {
-            List<string> result = new List<string>();
+            List<UNET_Service.Classes.Role> result = new List<UNET_Service.Classes.Role>();
             try
             {
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Service.Classes.Role>(singleton.Roles);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception retrieving the available exercises: ", ex);
+             //   result.Add("Error retrieving exercices");
+                throw;
+            }
+            return result;
+        }
+
+        public List<UNET_Service.Classes.Radio> GetRadios()
+        {
+            List<UNET_Service.Classes.Radio > result = new List<UNET_Service.Classes.Radio>();
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Service.Classes.Radio>(singleton.Radios);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
+                log.Error("Exception retrieving the available Radios: ", ex);
+                 throw;
+            }
+            return result;
+        }
+
+        public List<UNET_Service.Classes.Instructor> GetInstructors()
+        {
+            List<UNET_Service.Classes.Instructor> result = new List<UNET_Service.Classes.Instructor>();
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Service.Classes.Instructor>(singleton.Instructors);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the available Instructors: " + ex.Message);
+
                 throw;
             }
             return result;
         }
 
-        public List<string> GetRadios()
+        public List<UNET_Service.Classes.Trainee> GetTrainees()
         {
-            List<string> result = new List<string>();
+            List<UNET_Service.Classes.Trainee> result = new List<UNET_Service.Classes.Trainee>();
             try
             {
 
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Service.Classes.Trainee>(singleton.Trainees);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
+                Console.WriteLine("Exception retrieving the available trainees: " + ex.Message);
+
                 throw;
             }
             return result;
         }
 
-        public List<string> GetInstructors()
+
+        public List<UNET_Service.Classes.Platform> GetPlatforms()
         {
-            List<string> result = new List<string>();
+            List<UNET_Service.Classes.Platform> result = new List<UNET_Service.Classes.Platform>();
             try
             {
 
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Service.Classes.Platform>(singleton.Platforms);
+
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
-                throw;
-            }
-            return result;
-        }
+                Console.WriteLine("Exception retrieving the available platforms: " + ex.Message);
 
-        public List<string> GetTrainees()
-        {
-            List<string> result = new List<string>();
-            try
-            {
-
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
                 throw;
             }
             return result;
         }
 
 
-        public List<string> GetPlatforms()
-        {
-            List<string> result = new List<string>();
-            try
-            {
-                // for
-                result.AddRange(Directory.GetFiles(@"c:\temp"));
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception retrieving the available exercises: " + ex.Message);
-                result.Add("Error retrieving exercices");
-                throw;
-            }
-            return result;
-        }
+        //public List<string> GetInstructors()
+        //{
+        //    List<string> result = new List<string>();
+        //    try
+        //    {
+
+        //        // for
+        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Exception retrieving the available exercises: ", ex);
+        //        //result.Add("Error retrieving exercices");
+        //        throw;
+        //    }
+        //    return result;
+        //}
+
+        //public List<string> GetTrainees()
+        //{
+        //    List<string> result = new List<string>();
+        //    try
+        //    {
+
+        //        // for
+        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Exception retrieving the available exercises: ", ex);
+        //        result.Add("Error retrieving exercices");
+        //        throw;
+        //    }
+        //    return result;
+        //}
+
+
+        //public List<string> GetPlatforms()
+        //{
+        //    List<string> result = new List<string>();
+        //    try
+        //    {
+        //        // for
+        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Exception retrieving the available exercises: ", ex);
+        //        result.Add("Error retrieving exercices");
+        //        throw;
+        //    }
+        //    return result;
+        //}
 
         #endregion
 
@@ -157,12 +202,14 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                //UNET_Server_Singleton.
+                //UNET_Service_Singleton.
                 result = true;
             }
             catch (Exception ex)
             {
+                log.Error("Error setting exersisecount", ex);
                 result = false;
+
             }
             return result;
         }
@@ -177,43 +224,44 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Service.Classes.UNET_Server_Singleton singleton = UNET_Service.Classes.UNET_Server_Singleton.Instance;//get the singleton object
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
                 singleton.Exercises = _exercises.ToArray();
 
                 result = true;
             }
             catch (Exception ex)
             {
+                log.Error("Error setting exercises.", ex);
                 result = false;
-               // log.Fatal("Set Exercises: ", ex);
+                // log.Fatal("Set Exercises: ", ex);
             }
             return result;
         }
 
-        public bool SetRoles(string _role)
+        public bool SetRoles(List<Classes.Role>  _role)
         {
             return true;
         }
 
-        public bool SetRadios(string _radio)
-        {
-            return true;
-        }
-
-
-        public bool SetInstructors(string _instructor)
+        public bool SetRadios(List<Classes.Radio>  _radio)
         {
             return true;
         }
 
 
-        public bool SetTrainees(string _trainee)
+        public bool SetInstructors(List<Classes.Instructor> _instructor)
         {
             return true;
         }
 
 
-        public bool SetPlatforms(string _platform)
+        public bool SetTrainees(List<Classes.Trainee>  _trainee)
+        {
+            return true;
+        }
+
+
+        public bool SetPlatforms(List<Classes.Platform>  _platform)
         {
             return true;
         }
@@ -239,3 +287,4 @@ namespace UNET_Service
 
     }
 }
+
