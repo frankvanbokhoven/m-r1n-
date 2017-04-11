@@ -36,6 +36,10 @@
     <ApplicationIcon>MarinRed.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -51,6 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Exercise.cs" />
+    <Compile Include="Classes\Instructor.cs" />
+    <Compile Include="Classes\Platform.cs" />
+    <Compile Include="Classes\Radio.cs" />
+    <Compile Include="Classes\Role.cs" />
+    <Compile Include="Classes\Trainee.cs" />
+    <Compile Include="Classes\UNET_Service_Singleton.cs" />
     <Compile Include="frmUnetTester_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +87,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,10 +107,22 @@
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\Service13.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Exercise.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Instructor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Platform.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Radio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Trainee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

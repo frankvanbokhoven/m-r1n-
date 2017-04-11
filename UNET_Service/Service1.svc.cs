@@ -135,65 +135,6 @@ namespace UNET_Service
             return result;
         }
 
-
-
-        //public List<string> GetInstructors()
-        //{
-        //    List<string> result = new List<string>();
-        //    try
-        //    {
-
-        //        // for
-        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Exception retrieving the available exercises: ", ex);
-        //        //result.Add("Error retrieving exercices");
-        //        throw;
-        //    }
-        //    return result;
-        //}
-
-        //public List<string> GetTrainees()
-        //{
-        //    List<string> result = new List<string>();
-        //    try
-        //    {
-
-        //        // for
-        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Exception retrieving the available exercises: ", ex);
-        //        result.Add("Error retrieving exercices");
-        //        throw;
-        //    }
-        //    return result;
-        //}
-
-
-        //public List<string> GetPlatforms()
-        //{
-        //    List<string> result = new List<string>();
-        //    try
-        //    {
-        //        // for
-        //        result.AddRange(Directory.GetFiles(@"c:\temp"));
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Exception retrieving the available exercises: ", ex);
-        //        result.Add("Error retrieving exercices");
-        //        throw;
-        //    }
-        //    return result;
-        //}
-
         #endregion
 
         #region Setters
@@ -202,7 +143,23 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                //UNET_Service_Singleton.
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Exercises.Clear();
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_count); i++)
+                {
+                    Classes.Exercise exercise = new Classes.Exercise();
+                    exercise.Number = i;
+                    exercise.SpecificationName = string.Format("Exercise_{0}", i);
+                    singleton.Exercises.Add(exercise);
+                }
+
+
+                // result = new List<UNET_Service.Classes.Platform>(singleton.Platforms);
+
+
                 result = true;
             }
             catch (Exception ex)
@@ -225,7 +182,7 @@ namespace UNET_Service
             try
             {
                 UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
-                singleton.Exercises = _exercises.ToArray();
+                singleton.Exercises = _exercises;
 
                 result = true;
             }

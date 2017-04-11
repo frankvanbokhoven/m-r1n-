@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UNET_Service.Classes
+namespace UNET_Tester.Classes
 {
 
-    public sealed class UNET_Service_Singleton
+    public sealed class UNET_Singleton
     {
-        private static UNET_Service_Singleton instance = null;
+        private static UNET_Singleton instance = null;
         // adding locking object
         private static readonly object syncRoot = new object();
-        private UNET_Service_Singleton() { }
+        private UNET_Singleton() { }
 
         public List<Exercise> Exercises = new List<Exercise>();
         public List<Role> Roles = new List<Role>();
@@ -20,7 +20,7 @@ namespace UNET_Service.Classes
         public List<Trainee> Trainees = new List<Trainee>();
         public List<Platform> Platforms = new List<Platform>();
 
-        public static UNET_Service_Singleton Instance
+        public static UNET_Singleton Instance
         {
             get
             {
@@ -30,18 +30,12 @@ namespace UNET_Service.Classes
                     {
                         if (instance == null)
                         {
-                            instance = new UNET_Service_Singleton();                         
-
+                            instance = new UNET_Singleton();
                         }
                     }
                 }
                 return instance;
             }
         }
-
-        //private UNET_Service_Singleton()
-        //{
-        //    Exercises = new List<Exercise>();
-        //}
     }
 }

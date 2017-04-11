@@ -13,4 +13,70 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Exercise" nillable="true" type="tns:Exercise" />
+  <xs:complexType name="ArrayOfRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRole" nillable="true" type="tns:ArrayOfRole" />
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Role" nillable="true" type="tns:Role" />
+  <xs:complexType name="ArrayOfRadio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Radio" nillable="true" type="tns:Radio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRadio" nillable="true" type="tns:ArrayOfRadio" />
+  <xs:complexType name="Radio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="NoiseLevel" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Radio" nillable="true" type="tns:Radio" />
+  <xs:complexType name="ArrayOfInstructor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Instructor" nillable="true" type="tns:Instructor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInstructor" nillable="true" type="tns:ArrayOfInstructor" />
+  <xs:complexType name="Instructor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Instructor" nillable="true" type="tns:Instructor" />
+  <xs:complexType name="ArrayOfTrainee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Trainee" nillable="true" type="tns:Trainee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrainee" nillable="true" type="tns:ArrayOfTrainee" />
+  <xs:complexType name="Trainee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Trainee" nillable="true" type="tns:Trainee" />
+  <xs:complexType name="ArrayOfPlatform">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Platform" nillable="true" type="tns:Platform" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlatform" nillable="true" type="tns:ArrayOfPlatform" />
+  <xs:complexType name="Platform">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Platform" nillable="true" type="tns:Platform" />
 </xs:schema>
