@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class pjsua2
+    {
+        public static readonly int INVALID_ID = pjsua2PINVOKE.INVALID_ID_get();
+        public static readonly int SUCCESS = pjsua2PINVOKE.SUCCESS_get();
 
-public class pjsua2 {
-  public static readonly int INVALID_ID = pjsua2PINVOKE.INVALID_ID_get();
-  public static readonly int SUCCESS = pjsua2PINVOKE.SUCCESS_get();
-
+    }
 }

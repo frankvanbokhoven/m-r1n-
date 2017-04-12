@@ -8,10 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_sip_timer_use {
-  PJSUA_SIP_TIMER_INACTIVE,
-  PJSUA_SIP_TIMER_OPTIONAL,
-  PJSUA_SIP_TIMER_REQUIRED,
-  PJSUA_SIP_TIMER_ALWAYS
+namespace PJSUA2
+{
+    public enum pjsua_sip_timer_use
+    {
+        PJSUA_SIP_TIMER_INACTIVE,
+        PJSUA_SIP_TIMER_OPTIONAL,
+        PJSUA_SIP_TIMER_REQUIRED,
+        PJSUA_SIP_TIMER_ALWAYS
+    }
 }

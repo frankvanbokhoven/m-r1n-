@@ -8,68 +8,88 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class CallVidSetStreamParam : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class CallVidSetStreamParam : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal CallVidSetStreamParam(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallVidSetStreamParam obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~CallVidSetStreamParam() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_CallVidSetStreamParam(swigCPtr);
+        internal CallVidSetStreamParam(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallVidSetStreamParam obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~CallVidSetStreamParam()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_CallVidSetStreamParam(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public int medIdx
+        {
+            set
+            {
+                pjsua2PINVOKE.CallVidSetStreamParam_medIdx_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = pjsua2PINVOKE.CallVidSetStreamParam_medIdx_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public pjmedia_dir dir
+        {
+            set
+            {
+                pjsua2PINVOKE.CallVidSetStreamParam_dir_set(swigCPtr, (int)value);
+            }
+            get
+            {
+                pjmedia_dir ret = (pjmedia_dir)pjsua2PINVOKE.CallVidSetStreamParam_dir_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public int capDev
+        {
+            set
+            {
+                pjsua2PINVOKE.CallVidSetStreamParam_capDev_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = pjsua2PINVOKE.CallVidSetStreamParam_capDev_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public CallVidSetStreamParam() : this(pjsua2PINVOKE.new_CallVidSetStreamParam(), true)
+        {
+        }
+
     }
-  }
-
-  public int medIdx {
-    set {
-      pjsua2PINVOKE.CallVidSetStreamParam_medIdx_set(swigCPtr, value);
-    } 
-    get {
-      int ret = pjsua2PINVOKE.CallVidSetStreamParam_medIdx_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public pjmedia_dir dir {
-    set {
-      pjsua2PINVOKE.CallVidSetStreamParam_dir_set(swigCPtr, (int)value);
-    } 
-    get {
-      pjmedia_dir ret = (pjmedia_dir)pjsua2PINVOKE.CallVidSetStreamParam_dir_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public int capDev {
-    set {
-      pjsua2PINVOKE.CallVidSetStreamParam_capDev_set(swigCPtr, value);
-    } 
-    get {
-      int ret = pjsua2PINVOKE.CallVidSetStreamParam_capDev_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public CallVidSetStreamParam() : this(pjsua2PINVOKE.new_CallVidSetStreamParam(), true) {
-  }
-
 }

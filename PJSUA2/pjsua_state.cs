@@ -8,12 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_state {
-  PJSUA_STATE_NULL,
-  PJSUA_STATE_CREATED,
-  PJSUA_STATE_INIT,
-  PJSUA_STATE_STARTING,
-  PJSUA_STATE_RUNNING,
-  PJSUA_STATE_CLOSING
+namespace PJSUA2
+{
+    public enum pjsua_state
+    {
+        PJSUA_STATE_NULL,
+        PJSUA_STATE_CREATED,
+        PJSUA_STATE_INIT,
+        PJSUA_STATE_STARTING,
+        PJSUA_STATE_RUNNING,
+        PJSUA_STATE_CLOSING
+    }
 }

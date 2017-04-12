@@ -8,7 +8,10 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_invalid_id_const_ {
-  PJSUA_INVALID_ID = -1
+namespace PJSUA2
+{
+    public enum pjsua_invalid_id_const_
+    {
+        PJSUA_INVALID_ID = -1
+    }
 }

@@ -8,8 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_snd_dev_mode {
-  PJSUA_SND_DEV_SPEAKER_ONLY = 1,
-  PJSUA_SND_DEV_NO_IMMEDIATE_OPEN = 2
+namespace PJSUA2
+{
+    public enum pjsua_snd_dev_mode
+    {
+        PJSUA_SND_DEV_SPEAKER_ONLY = 1,
+        PJSUA_SND_DEV_NO_IMMEDIATE_OPEN = 2
+    }
 }

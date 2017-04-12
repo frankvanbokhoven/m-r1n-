@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_buddy_status {
-  PJSUA_BUDDY_STATUS_UNKNOWN,
-  PJSUA_BUDDY_STATUS_ONLINE,
-  PJSUA_BUDDY_STATUS_OFFLINE
+namespace PJSUA2
+{
+    public enum pjsua_buddy_status
+    {
+        PJSUA_BUDDY_STATUS_UNKNOWN,
+        PJSUA_BUDDY_STATUS_ONLINE,
+        PJSUA_BUDDY_STATUS_OFFLINE
+    }
 }

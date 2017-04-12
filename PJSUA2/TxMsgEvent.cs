@@ -8,49 +8,63 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class TxMsgEvent : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class TxMsgEvent : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal TxMsgEvent(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TxMsgEvent obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~TxMsgEvent() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_TxMsgEvent(swigCPtr);
+        internal TxMsgEvent(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TxMsgEvent obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~TxMsgEvent()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_TxMsgEvent(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SipTxData tdata
+        {
+            set
+            {
+                pjsua2PINVOKE.TxMsgEvent_tdata_set(swigCPtr, SipTxData.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = pjsua2PINVOKE.TxMsgEvent_tdata_get(swigCPtr);
+                SipTxData ret = (cPtr == global::System.IntPtr.Zero) ? null : new SipTxData(cPtr, false);
+                return ret;
+            }
+        }
+
+        public TxMsgEvent() : this(pjsua2PINVOKE.new_TxMsgEvent(), true)
+        {
+        }
+
     }
-  }
-
-  public SipTxData tdata {
-    set {
-      pjsua2PINVOKE.TxMsgEvent_tdata_set(swigCPtr, SipTxData.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = pjsua2PINVOKE.TxMsgEvent_tdata_get(swigCPtr);
-      SipTxData ret = (cPtr == global::System.IntPtr.Zero) ? null : new SipTxData(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public TxMsgEvent() : this(pjsua2PINVOKE.new_TxMsgEvent(), true) {
-  }
-
 }

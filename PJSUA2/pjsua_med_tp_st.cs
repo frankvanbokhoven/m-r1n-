@@ -8,12 +8,15 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_med_tp_st {
-  PJSUA_MED_TP_NULL,
-  PJSUA_MED_TP_CREATING,
-  PJSUA_MED_TP_IDLE,
-  PJSUA_MED_TP_INIT,
-  PJSUA_MED_TP_RUNNING,
-  PJSUA_MED_TP_DISABLED
+namespace PJSUA2
+{
+    public enum pjsua_med_tp_st
+    {
+        PJSUA_MED_TP_NULL,
+        PJSUA_MED_TP_CREATING,
+        PJSUA_MED_TP_IDLE,
+        PJSUA_MED_TP_INIT,
+        PJSUA_MED_TP_RUNNING,
+        PJSUA_MED_TP_DISABLED
+    }
 }

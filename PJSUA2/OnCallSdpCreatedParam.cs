@@ -8,60 +8,77 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class OnCallSdpCreatedParam : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class OnCallSdpCreatedParam : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal OnCallSdpCreatedParam(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(OnCallSdpCreatedParam obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~OnCallSdpCreatedParam() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_OnCallSdpCreatedParam(swigCPtr);
+        internal OnCallSdpCreatedParam(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(OnCallSdpCreatedParam obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~OnCallSdpCreatedParam()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_OnCallSdpCreatedParam(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public SdpSession sdp
+        {
+            set
+            {
+                pjsua2PINVOKE.OnCallSdpCreatedParam_sdp_set(swigCPtr, SdpSession.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = pjsua2PINVOKE.OnCallSdpCreatedParam_sdp_get(swigCPtr);
+                SdpSession ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdpSession(cPtr, false);
+                return ret;
+            }
+        }
+
+        public SdpSession remSdp
+        {
+            set
+            {
+                pjsua2PINVOKE.OnCallSdpCreatedParam_remSdp_set(swigCPtr, SdpSession.getCPtr(value));
+            }
+            get
+            {
+                global::System.IntPtr cPtr = pjsua2PINVOKE.OnCallSdpCreatedParam_remSdp_get(swigCPtr);
+                SdpSession ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdpSession(cPtr, false);
+                return ret;
+            }
+        }
+
+        public OnCallSdpCreatedParam() : this(pjsua2PINVOKE.new_OnCallSdpCreatedParam(), true)
+        {
+        }
+
     }
-  }
-
-  public SdpSession sdp {
-    set {
-      pjsua2PINVOKE.OnCallSdpCreatedParam_sdp_set(swigCPtr, SdpSession.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = pjsua2PINVOKE.OnCallSdpCreatedParam_sdp_get(swigCPtr);
-      SdpSession ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdpSession(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public SdpSession remSdp {
-    set {
-      pjsua2PINVOKE.OnCallSdpCreatedParam_remSdp_set(swigCPtr, SdpSession.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = pjsua2PINVOKE.OnCallSdpCreatedParam_remSdp_get(swigCPtr);
-      SdpSession ret = (cPtr == global::System.IntPtr.Zero) ? null : new SdpSession(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public OnCallSdpCreatedParam() : this(pjsua2PINVOKE.new_OnCallSdpCreatedParam(), true) {
-  }
-
 }

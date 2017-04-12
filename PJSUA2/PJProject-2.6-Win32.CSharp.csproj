@@ -7,8 +7,8 @@
     <ProjectGuid>{61B3E232-24EF-4E15-9ED7-4102B1C431BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PJProject_2._6_Win32.CSharp</RootNamespace>
-    <AssemblyName>PJProject-2.6-Win32.CSharp</AssemblyName>
+    <RootNamespace>PJSUA2</RootNamespace>
+    <AssemblyName>PJSUA2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

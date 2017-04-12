@@ -8,62 +8,79 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class MediaTransportInfo : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class MediaTransportInfo : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal MediaTransportInfo(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(MediaTransportInfo obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~MediaTransportInfo() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_MediaTransportInfo(swigCPtr);
+        internal MediaTransportInfo(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(MediaTransportInfo obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~MediaTransportInfo()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_MediaTransportInfo(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public string srcRtpName
+        {
+            set
+            {
+                pjsua2PINVOKE.MediaTransportInfo_srcRtpName_set(swigCPtr, value);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = pjsua2PINVOKE.MediaTransportInfo_srcRtpName_get(swigCPtr);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public string srcRtcpName
+        {
+            set
+            {
+                pjsua2PINVOKE.MediaTransportInfo_srcRtcpName_set(swigCPtr, value);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = pjsua2PINVOKE.MediaTransportInfo_srcRtcpName_get(swigCPtr);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public MediaTransportInfo() : this(pjsua2PINVOKE.new_MediaTransportInfo(), true)
+        {
+        }
+
     }
-  }
-
-  public string srcRtpName {
-    set {
-      pjsua2PINVOKE.MediaTransportInfo_srcRtpName_set(swigCPtr, value);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      string ret = pjsua2PINVOKE.MediaTransportInfo_srcRtpName_get(swigCPtr);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  public string srcRtcpName {
-    set {
-      pjsua2PINVOKE.MediaTransportInfo_srcRtcpName_set(swigCPtr, value);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      string ret = pjsua2PINVOKE.MediaTransportInfo_srcRtcpName_get(swigCPtr);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  public MediaTransportInfo() : this(pjsua2PINVOKE.new_MediaTransportInfo(), true) {
-  }
-
 }

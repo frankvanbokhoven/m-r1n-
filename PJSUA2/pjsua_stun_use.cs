@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_stun_use {
-  PJSUA_STUN_USE_DEFAULT,
-  PJSUA_STUN_USE_DISABLED,
-  PJSUA_STUN_RETRY_ON_FAILURE
+namespace PJSUA2
+{
+    public enum pjsua_stun_use
+    {
+        PJSUA_STUN_USE_DEFAULT,
+        PJSUA_STUN_USE_DISABLED,
+        PJSUA_STUN_RETRY_ON_FAILURE
+    }
 }

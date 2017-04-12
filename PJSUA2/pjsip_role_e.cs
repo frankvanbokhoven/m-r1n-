@@ -8,10 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsip_role_e {
-  PJSIP_ROLE_UAC,
-  PJSIP_ROLE_UAS,
-  PJSIP_UAC_ROLE = PJSIP_ROLE_UAC,
-  PJSIP_UAS_ROLE = PJSIP_ROLE_UAS
+namespace PJSUA2
+{
+    public enum pjsip_role_e
+    {
+        PJSIP_ROLE_UAC,
+        PJSIP_ROLE_UAS,
+        PJSIP_UAC_ROLE = PJSIP_ROLE_UAC,
+        PJSIP_UAS_ROLE = PJSIP_ROLE_UAS
+    }
 }

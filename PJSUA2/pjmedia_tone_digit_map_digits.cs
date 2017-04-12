@@ -7,121 +7,129 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
-
-/*Fix - Mark Kruger - almost total rewrite*/
-public class pjmedia_tone_digit_map_digits_digit : global::System.IDisposable
+namespace PJSUA2
 {
-    private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-    private int Index = 0;
-
-    internal pjmedia_tone_digit_map_digits_digit(global::System.IntPtr cPtr, int Index)
+    /*Fix - Mark Kruger - almost total rewrite*/
+    public class pjmedia_tone_digit_map_digits_digit : global::System.IDisposable
     {
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        this.Index = Index;
-    }
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private int Index = 0;
 
-    public char digit
-    {
-        set
+        internal pjmedia_tone_digit_map_digits_digit(global::System.IntPtr cPtr, int Index)
         {
-            pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_digit_set(swigCPtr, Index, value);
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            this.Index = Index;
         }
-        get
-        {
-            return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_digit_get(swigCPtr, Index);
-        }
-    }
 
-    public short freq1
-    {
-        set
+        public char digit
         {
-            pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq1_set(swigCPtr, Index, value);
-        }
-        get
-        {
-            return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq1_get(swigCPtr, Index);
-        }
-    }
-
-    public short freq2
-    {
-        set
-        {
-            pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq2_set(swigCPtr, Index, value);
-        }
-        get
-        {
-            return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq2_get(swigCPtr, Index);
-        }
-    }
-
-    ~pjmedia_tone_digit_map_digits_digit()
-    {
-        Dispose();
-    }
-
-    public virtual void Dispose()
-    {
-        lock (this)
-        {
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            set
             {
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_digit_set(swigCPtr, Index, value);
             }
+            get
+            {
+                return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_digit_get(swigCPtr, Index);
+            }
+        }
 
-            global::System.GC.SuppressFinalize(this);
+        public short freq1
+        {
+            set
+            {
+                pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq1_set(swigCPtr, Index, value);
+            }
+            get
+            {
+                return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq1_get(swigCPtr, Index);
+            }
+        }
+
+        public short freq2
+        {
+            set
+            {
+                pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq2_set(swigCPtr, Index, value);
+            }
+            get
+            {
+                return pjsua2PINVOKE.CSharp_pjmedia_tone_digit_map_digits_digit_freq2_get(swigCPtr, Index);
+            }
+        }
+
+        ~pjmedia_tone_digit_map_digits_digit()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+
+                global::System.GC.SuppressFinalize(this);
+            }
         }
     }
+
+    public class pjmedia_tone_digit_map_digits : global::System.IDisposable
+    {
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private pjmedia_tone_digit_map_digits_digit[] Digits = null;
+
+        internal pjmedia_tone_digit_map_digits(global::System.IntPtr cPtr, int Max)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Digits = new pjmedia_tone_digit_map_digits_digit[Max];
+
+            for (int Counter = 0; Counter < Max; Counter++)
+            {
+                Digits[Counter] = new pjmedia_tone_digit_map_digits_digit(cPtr, Counter);
+            }
+        }
+
+        ~pjmedia_tone_digit_map_digits()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                foreach (pjmedia_tone_digit_map_digits_digit digit in Digits)
+                {
+                    digit?.Dispose();
+                }
+
+                Digits = null;
+
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public pjmedia_tone_digit_map_digits_digit this[int Index]
+        {
+            get
+            {
+                return Digits[Index];
+            }
+            set
+            {
+                Digits[Index].digit = value.digit;
+                Digits[Index].freq1 = value.freq1;
+                Digits[Index].freq2 = value.freq2;
+            }
+        }
+    }
+    /*endfix - Mark Kruger*/
 }
-
-public class pjmedia_tone_digit_map_digits : global::System.IDisposable {
-
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  private pjmedia_tone_digit_map_digits_digit[] Digits = null;
-
-  internal pjmedia_tone_digit_map_digits(global::System.IntPtr cPtr, int Max) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-    Digits = new pjmedia_tone_digit_map_digits_digit[Max];
-
-    for (int Counter = 0; Counter < Max; Counter++)
-    {
-        Digits[Counter] = new pjmedia_tone_digit_map_digits_digit(cPtr, Counter);
-    }
-  }
-
-  ~pjmedia_tone_digit_map_digits() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      foreach (pjmedia_tone_digit_map_digits_digit digit in Digits)
-      {
-        digit?.Dispose();
-      }
-
-      Digits = null;
-
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-    }
-  }
-
-  public pjmedia_tone_digit_map_digits_digit this[int Index]
-  {
-    get
-    {
-       return Digits[Index];
-    }
-    set
-    {
-       Digits[Index].digit = value.digit;
-       Digits[Index].freq1 = value.freq1;
-       Digits[Index].freq2 = value.freq2;
-    }
-  }
-}
-/*endfix - Mark Kruger*/

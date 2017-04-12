@@ -9,7 +9,11 @@
 //------------------------------------------------------------------------------
 
 
-public enum pjsua_call_hold_type {
-  PJSUA_CALL_HOLD_TYPE_RFC3264,
-  PJSUA_CALL_HOLD_TYPE_RFC2543
+namespace PJSUA2
+{
+    public enum pjsua_call_hold_type
+    {
+        PJSUA_CALL_HOLD_TYPE_RFC3264,
+        PJSUA_CALL_HOLD_TYPE_RFC2543
+    }
 }

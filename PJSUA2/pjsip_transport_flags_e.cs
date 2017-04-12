@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsip_transport_flags_e {
-  PJSIP_TRANSPORT_RELIABLE = 1,
-  PJSIP_TRANSPORT_SECURE = 2,
-  PJSIP_TRANSPORT_DATAGRAM = 4
+namespace PJSUA2
+{
+    public enum pjsip_transport_flags_e
+    {
+        PJSIP_TRANSPORT_RELIABLE = 1,
+        PJSIP_TRANSPORT_SECURE = 2,
+        PJSIP_TRANSPORT_DATAGRAM = 4
+    }
 }

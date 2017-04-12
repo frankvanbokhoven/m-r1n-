@@ -8,63 +8,79 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class JsonDocument : PersistentDocument
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-public class JsonDocument : PersistentDocument {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-  internal JsonDocument(global::System.IntPtr cPtr, bool cMemoryOwn) : base(pjsua2PINVOKE.JsonDocument_SWIGUpcast(cPtr), cMemoryOwn) {
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(JsonDocument obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~JsonDocument() {
-    Dispose();
-  }
-
-  public override void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_JsonDocument(swigCPtr);
+        internal JsonDocument(global::System.IntPtr cPtr, bool cMemoryOwn) : base(pjsua2PINVOKE.JsonDocument_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
-      base.Dispose();
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(JsonDocument obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~JsonDocument()
+        {
+            Dispose();
+        }
+
+        public override void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_JsonDocument(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+                base.Dispose();
+            }
+        }
+
+        public JsonDocument() : this(pjsua2PINVOKE.new_JsonDocument(), true)
+        {
+        }
+
+        public override void loadFile(string filename)
+        {
+            pjsua2PINVOKE.JsonDocument_loadFile(swigCPtr, filename);
+            if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public override void loadString(string input)
+        {
+            pjsua2PINVOKE.JsonDocument_loadString(swigCPtr, input);
+            if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public override void saveFile(string filename)
+        {
+            pjsua2PINVOKE.JsonDocument_saveFile(swigCPtr, filename);
+            if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public override string saveString()
+        {
+            string ret = pjsua2PINVOKE.JsonDocument_saveString(swigCPtr);
+            if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public override ContainerNode getRootContainer()
+        {
+            ContainerNode ret = new ContainerNode(pjsua2PINVOKE.JsonDocument_getRootContainer(swigCPtr), false);
+            return ret;
+        }
+
     }
-  }
-
-  public JsonDocument() : this(pjsua2PINVOKE.new_JsonDocument(), true) {
-  }
-
-  public override void loadFile(string filename) {
-    pjsua2PINVOKE.JsonDocument_loadFile(swigCPtr, filename);
-    if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public override void loadString(string input) {
-    pjsua2PINVOKE.JsonDocument_loadString(swigCPtr, input);
-    if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public override void saveFile(string filename) {
-    pjsua2PINVOKE.JsonDocument_saveFile(swigCPtr, filename);
-    if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public override string saveString() {
-    string ret = pjsua2PINVOKE.JsonDocument_saveString(swigCPtr);
-    if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public override ContainerNode getRootContainer() {
-    ContainerNode ret = new ContainerNode(pjsua2PINVOKE.JsonDocument_getRootContainer(swigCPtr), false);
-    return ret;
-  }
-
 }

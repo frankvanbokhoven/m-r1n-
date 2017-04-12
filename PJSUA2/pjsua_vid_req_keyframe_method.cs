@@ -8,8 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_vid_req_keyframe_method {
-  PJSUA_VID_REQ_KEYFRAME_SIP_INFO = 1,
-  PJSUA_VID_REQ_KEYFRAME_RTCP_PLI = 2
+namespace PJSUA2
+{
+    public enum pjsua_vid_req_keyframe_method
+    {
+        PJSUA_VID_REQ_KEYFRAME_SIP_INFO = 1,
+        PJSUA_VID_REQ_KEYFRAME_RTCP_PLI = 2
+    }
 }

@@ -8,10 +8,13 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsip_transport_state {
-  PJSIP_TP_STATE_CONNECTED,
-  PJSIP_TP_STATE_DISCONNECTED,
-  PJSIP_TP_STATE_SHUTDOWN,
-  PJSIP_TP_STATE_DESTROY
+namespace PJSUA2
+{
+    public enum pjsip_transport_state
+    {
+        PJSIP_TP_STATE_CONNECTED,
+        PJSIP_TP_STATE_DISCONNECTED,
+        PJSIP_TP_STATE_SHUTDOWN,
+        PJSIP_TP_STATE_DESTROY
+    }
 }

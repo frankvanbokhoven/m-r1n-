@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_destroy_flag {
-  PJSUA_DESTROY_NO_RX_MSG = 1,
-  PJSUA_DESTROY_NO_TX_MSG = 2,
-  PJSUA_DESTROY_NO_NETWORK = PJSUA_DESTROY_NO_RX_MSG|PJSUA_DESTROY_NO_TX_MSG
+namespace PJSUA2
+{
+    public enum pjsua_destroy_flag
+    {
+        PJSUA_DESTROY_NO_RX_MSG = 1,
+        PJSUA_DESTROY_NO_TX_MSG = 2,
+        PJSUA_DESTROY_NO_NETWORK = PJSUA_DESTROY_NO_RX_MSG | PJSUA_DESTROY_NO_TX_MSG
+    }
 }

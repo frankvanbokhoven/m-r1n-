@@ -8,8 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_ipv6_use {
-  PJSUA_IPV6_DISABLED,
-  PJSUA_IPV6_ENABLED
+namespace PJSUA2
+{
+    public enum pjsua_ipv6_use
+    {
+        PJSUA_IPV6_DISABLED,
+        PJSUA_IPV6_ENABLED
+    }
 }

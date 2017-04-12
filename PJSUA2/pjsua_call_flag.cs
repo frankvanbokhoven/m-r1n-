@@ -9,11 +9,15 @@
 //------------------------------------------------------------------------------
 
 
-public enum pjsua_call_flag {
-  PJSUA_CALL_UNHOLD = 1,
-  PJSUA_CALL_UPDATE_CONTACT = 2,
-  PJSUA_CALL_INCLUDE_DISABLED_MEDIA = 4,
-  PJSUA_CALL_NO_SDP_OFFER = 8,
-  PJSUA_CALL_REINIT_MEDIA = 16,
-  PJSUA_CALL_UPDATE_VIA = 32
+namespace PJSUA2
+{
+    public enum pjsua_call_flag
+    {
+        PJSUA_CALL_UNHOLD = 1,
+        PJSUA_CALL_UPDATE_CONTACT = 2,
+        PJSUA_CALL_INCLUDE_DISABLED_MEDIA = 4,
+        PJSUA_CALL_NO_SDP_OFFER = 8,
+        PJSUA_CALL_REINIT_MEDIA = 16,
+        PJSUA_CALL_UPDATE_VIA = 32
+    }
 }

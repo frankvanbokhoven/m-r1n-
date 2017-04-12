@@ -8,9 +8,12 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_100rel_use {
-  PJSUA_100REL_NOT_USED,
-  PJSUA_100REL_MANDATORY,
-  PJSUA_100REL_OPTIONAL
+namespace PJSUA2
+{
+    public enum pjsua_100rel_use
+    {
+        PJSUA_100REL_NOT_USED,
+        PJSUA_100REL_MANDATORY,
+        PJSUA_100REL_OPTIONAL
+    }
 }

@@ -8,7 +8,10 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsua_create_media_transport_flag {
-  PJSUA_MED_TP_CLOSE_MEMBER = 1
+namespace PJSUA2
+{
+    public enum pjsua_create_media_transport_flag
+    {
+        PJSUA_MED_TP_CLOSE_MEMBER = 1
+    }
 }

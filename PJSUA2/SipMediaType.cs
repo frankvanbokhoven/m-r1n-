@@ -8,62 +8,79 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class SipMediaType : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class SipMediaType : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal SipMediaType(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SipMediaType obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~SipMediaType() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_SipMediaType(swigCPtr);
+        internal SipMediaType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SipMediaType obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~SipMediaType()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_SipMediaType(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public string type
+        {
+            set
+            {
+                pjsua2PINVOKE.SipMediaType_type_set(swigCPtr, value);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = pjsua2PINVOKE.SipMediaType_type_get(swigCPtr);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public string subType
+        {
+            set
+            {
+                pjsua2PINVOKE.SipMediaType_subType_set(swigCPtr, value);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = pjsua2PINVOKE.SipMediaType_subType_get(swigCPtr);
+                if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        public SipMediaType() : this(pjsua2PINVOKE.new_SipMediaType(), true)
+        {
+        }
+
     }
-  }
-
-  public string type {
-    set {
-      pjsua2PINVOKE.SipMediaType_type_set(swigCPtr, value);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      string ret = pjsua2PINVOKE.SipMediaType_type_get(swigCPtr);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  public string subType {
-    set {
-      pjsua2PINVOKE.SipMediaType_subType_set(swigCPtr, value);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-    } 
-    get {
-      string ret = pjsua2PINVOKE.SipMediaType_subType_get(swigCPtr);
-      if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
-      return ret;
-    } 
-  }
-
-  public SipMediaType() : this(pjsua2PINVOKE.new_SipMediaType(), true) {
-  }
-
 }

@@ -72,6 +72,9 @@
       <HintPath>..\lib\pjsipDll.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="PJSUA2">
+      <HintPath>..\PJSUA2\bin\Debug\PJSUA2.dll</HintPath>
+    </Reference>
     <Reference Include="SipekSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\SipekSdk.dll</HintPath>

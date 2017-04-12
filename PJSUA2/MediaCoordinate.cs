@@ -8,58 +8,75 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+namespace PJSUA2
+{
+    public class MediaCoordinate : global::System.IDisposable
+    {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
-public class MediaCoordinate : global::System.IDisposable {
-  private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-  protected bool swigCMemOwn;
-
-  internal MediaCoordinate(global::System.IntPtr cPtr, bool cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-  }
-
-  internal static global::System.Runtime.InteropServices.HandleRef getCPtr(MediaCoordinate obj) {
-    return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-  }
-
-  ~MediaCoordinate() {
-    Dispose();
-  }
-
-  public virtual void Dispose() {
-    lock(this) {
-      if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-        if (swigCMemOwn) {
-          swigCMemOwn = false;
-          pjsua2PINVOKE.delete_MediaCoordinate(swigCPtr);
+        internal MediaCoordinate(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-      }
-      global::System.GC.SuppressFinalize(this);
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(MediaCoordinate obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        ~MediaCoordinate()
+        {
+            Dispose();
+        }
+
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        pjsua2PINVOKE.delete_MediaCoordinate(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                global::System.GC.SuppressFinalize(this);
+            }
+        }
+
+        public int x
+        {
+            set
+            {
+                pjsua2PINVOKE.MediaCoordinate_x_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = pjsua2PINVOKE.MediaCoordinate_x_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public int y
+        {
+            set
+            {
+                pjsua2PINVOKE.MediaCoordinate_y_set(swigCPtr, value);
+            }
+            get
+            {
+                int ret = pjsua2PINVOKE.MediaCoordinate_y_get(swigCPtr);
+                return ret;
+            }
+        }
+
+        public MediaCoordinate() : this(pjsua2PINVOKE.new_MediaCoordinate(), true)
+        {
+        }
+
     }
-  }
-
-  public int x {
-    set {
-      pjsua2PINVOKE.MediaCoordinate_x_set(swigCPtr, value);
-    } 
-    get {
-      int ret = pjsua2PINVOKE.MediaCoordinate_x_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public int y {
-    set {
-      pjsua2PINVOKE.MediaCoordinate_y_set(swigCPtr, value);
-    } 
-    get {
-      int ret = pjsua2PINVOKE.MediaCoordinate_y_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public MediaCoordinate() : this(pjsua2PINVOKE.new_MediaCoordinate(), true) {
-  }
-
 }
