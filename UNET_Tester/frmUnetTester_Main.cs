@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNET_Tester.UNET_Service;
+using ColorMine;
 
 namespace UNET_Tester
 {
@@ -24,8 +26,36 @@ namespace UNET_Tester
         private void frmMain_Load(object sender, EventArgs e)
         {
             cbxExercise.SelectedValue = 5;
+            cbxRadios.SelectedValue = 5;
+            cbxRole.SelectedValue = 5;
+            cbxTrainee.SelectedValue = 5;
             GetUNETStatus();
         }
+
+        /// <summary>
+        /// add a line to the top of the listbox
+        /// </summary>
+        /// <param name="_item"></param>
+        /// <param name="_color"></param>
+        private void AddToListbox(string _item, [Optional] Color _color)
+        {
+
+            string additionDate = string.Format("{0}/{1}/{2}-{3}:{4}:{5}", DateTime.Now.Year.ToString("00"), DateTime.Now.Month.ToString("00"), DateTime.Now.Date.ToString("00"), DateTime.Now.Hour.ToString("00"), DateTime.Now.Minute.ToString("00"), DateTime.Now.Second.ToString("00"));
+
+
+            if (_color != Color.White)
+            {
+                listBoxGetmethods.ForeColor = _color;
+            }
+            listBoxGetmethods.Items.Insert(0,(string.Format("{0} => {1}", additionDate, _item)));
+            if (_color != Color.White)
+            {
+                listBoxGetmethods.ForeColor = Color.White;
+            }
+
+        }
+
+
 
         private void GetUNETStatus()
         {
@@ -40,7 +70,7 @@ namespace UNET_Tester
 
                     foreach (Exercise exer in lst)
                     {
-                        listBoxGetmethods.Items.Add(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
+                        AddToListbox(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
                     }
 
                     //Roles
@@ -49,11 +79,26 @@ namespace UNET_Tester
 
                     foreach (Role rol in lstrol)
                     {
-                        listBoxGetmethods.Items.Add(string.Format("Role: {0}, Name: {1}", rol.ID, rol.Name));
+                        AddToListbox(string.Format("Role: {0}, Name: {1}", rol.ID, rol.Name));
                     }
 
+                    //Trainee
+                    var traineelist = service.GetTrainees();
+                    List<Trainee> lsttrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
 
+                    foreach (Trainee trainee in lsttrainee)
+                    {
+                        AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
+                    }
 
+                    //Radio
+                    var radiolist = service.GetRadios();
+                    List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (Radio radio in radiolist)
+                    {
+                        AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
+                    }
 
                     service.Close();
                 }
@@ -61,7 +106,7 @@ namespace UNET_Tester
             }
             catch (Exception ex)
             {
-                listBoxGetmethods.Items.Add(String.Format("Error using WCF methods>{0}", ex.Message));
+                AddToListbox(String.Format("Error using WCF methods>{0}", ex.Message));
                 log.Error("Error using WCF method change exercise", ex);
                 // throw;
             }
@@ -71,7 +116,7 @@ namespace UNET_Tester
         {
             try
             {
-                listBoxGetmethods.Items.Add(string.Format("Set Exercises to: {0}", Convert.ToInt16(cbxExercise.SelectedValue)));
+                AddToListbox(string.Format("Set Exercises to: {0}", Convert.ToInt16(cbxExercise.SelectedValue)), Color.LimeGreen);
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -96,10 +141,70 @@ namespace UNET_Tester
 
         private void cbxRole_SelectedIndexChanged(object sender, EventArgs e)
         {
+          
+
+        }
+
+        private void cbxRadios_SelectedValueChanged(object sender, EventArgs e)
+        {
             try
             {
-                listBoxGetmethods.Items.Add(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.SelectedValue)));
-                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+                AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.SelectedValue)),Color.LimeGreen);
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                {
+                    service.Open();
+
+                    service.SetRadiosCount(Convert.ToInt16(cbxRadios.Text));
+
+                    service.Close();
+                }
+
+                GetUNETStatus();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change role", ex);
+                // throw;
+            }
+        }
+
+        private void cbxTrainee_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                AddToListbox(string.Format("Set Trainees to: {0}", Convert.ToInt16(cbxTrainee.SelectedValue)), Color.LimeGreen);
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                {
+                    service.Open();
+
+                    service.SetTraineesCount(Convert.ToInt16(cbxTrainee.Text));
+
+                    service.Close();
+                }
+
+                GetUNETStatus();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change trainee", ex);
+                // throw;
+            }
+        }
+
+        private void cbxRole_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                AddToListbox(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.SelectedValue)), Color.LimeGreen);
+                // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
                 {
@@ -119,7 +224,6 @@ namespace UNET_Tester
                 log.Error("Error using WCF method change role", ex);
                 // throw;
             }
-
         }
     }
 }

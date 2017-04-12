@@ -64,6 +64,12 @@ namespace UNET_Service
         bool SetRadios(List<Classes.Radio> _radio);
 
         [OperationContract]
+        bool SetRadiosCount(int _count);
+
+        [OperationContract]
+        bool SetTraineesCount(int _count);
+
+        [OperationContract]
         bool SetInstructors(List<Classes.Instructor> _instructor);
 
       

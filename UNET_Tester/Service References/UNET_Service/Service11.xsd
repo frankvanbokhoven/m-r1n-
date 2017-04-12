@@ -143,6 +143,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetRadiosCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRadiosCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRadiosCountResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineesCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineesCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTraineesCountResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SetInstructors">
     <xs:complexType>
       <xs:sequence>

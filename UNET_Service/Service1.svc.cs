@@ -202,6 +202,68 @@ namespace UNET_Service
             return result;
         }
 
+        public bool SetTraineesCount(int _count)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Trainees.Clear();
+
+
+                //and create a number of Trainees
+                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                {
+                    Classes.Trainee  trainee = new Classes.Trainee();
+                    trainee.ID = i;
+                    trainee.Name = string.Format("Trainee{0}", i);
+                    singleton.Trainees.Add(trainee);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting trainee", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+        public bool SetRadiosCount(int _count)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Radios.Clear();
+
+
+                //and create a number of Radios
+                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                {
+                    Classes.Radio radio = new Classes.Radio();
+                    radio.ID = i;
+                    radio.Description = string.Format("Radio{0}", i);
+                    singleton.Radios.Add(radio);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting radiocount", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
 
         public bool SetRolesCount(int _count)
         {

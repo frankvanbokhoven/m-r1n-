@@ -453,11 +453,29 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
         System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Trainer.UNET_Service.Role[] _role);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
+        bool SetRolesCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
+        System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         bool SetRadios(UNET_Trainer.UNET_Service.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Trainer.UNET_Service.Radio[] _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
+        bool SetRadiosCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
+        System.Threading.Tasks.Task<bool> SetRadiosCountAsync(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineesCount", ReplyAction="http://tempuri.org/IService1/SetTraineesCountResponse")]
+        bool SetTraineesCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineesCount", ReplyAction="http://tempuri.org/IService1/SetTraineesCountResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
         bool SetInstructors(UNET_Trainer.UNET_Service.Instructor[] _instructor);
@@ -577,12 +595,36 @@ namespace UNET_Trainer.UNET_Service {
             return base.Channel.SetRolesAsync(_role);
         }
         
+        public bool SetRolesCount(int _count) {
+            return base.Channel.SetRolesCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count) {
+            return base.Channel.SetRolesCountAsync(_count);
+        }
+        
         public bool SetRadios(UNET_Trainer.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadios(_radio);
         }
         
         public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Trainer.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
+        }
+        
+        public bool SetRadiosCount(int _count) {
+            return base.Channel.SetRadiosCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadiosCountAsync(int _count) {
+            return base.Channel.SetRadiosCountAsync(_count);
+        }
+        
+        public bool SetTraineesCount(int _count) {
+            return base.Channel.SetTraineesCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count) {
+            return base.Channel.SetTraineesCountAsync(_count);
         }
         
         public bool SetInstructors(UNET_Trainer.UNET_Service.Instructor[] _instructor) {

@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbxRadios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxRole = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbxTrainee = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxExercise = new System.Windows.Forms.ComboBox();
             this.listBoxGetmethods = new System.Windows.Forms.ListBox();
@@ -45,11 +45,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.cbxRadios);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbxRole);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cbxTrainee);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbxExercise);
             this.groupBox1.Location = new System.Drawing.Point(12, 11);
@@ -70,10 +70,10 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Radio";
             // 
-            // comboBox4
+            // cbxRadios
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cbxRadios.FormattingEnabled = true;
+            this.cbxRadios.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -94,12 +94,13 @@
             "18",
             "19",
             "20"});
-            this.comboBox4.Location = new System.Drawing.Point(176, 164);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(92, 21);
-            this.comboBox4.TabIndex = 6;
-            this.comboBox4.Text = "4";
+            this.cbxRadios.Location = new System.Drawing.Point(176, 164);
+            this.cbxRadios.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxRadios.Name = "cbxRadios";
+            this.cbxRadios.Size = new System.Drawing.Size(92, 21);
+            this.cbxRadios.TabIndex = 6;
+            this.cbxRadios.Text = "4";
+            this.cbxRadios.SelectedValueChanged += new System.EventHandler(this.cbxRadios_SelectedValueChanged);
             // 
             // label3
             // 
@@ -142,6 +143,7 @@
             this.cbxRole.TabIndex = 4;
             this.cbxRole.Text = "4";
             this.cbxRole.SelectedIndexChanged += new System.EventHandler(this.cbxRole_SelectedIndexChanged);
+            this.cbxRole.SelectedValueChanged += new System.EventHandler(this.cbxRole_SelectedValueChanged);
             // 
             // label2
             // 
@@ -153,10 +155,10 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Trainees";
             // 
-            // comboBox2
+            // cbxTrainee
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbxTrainee.FormattingEnabled = true;
+            this.cbxTrainee.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -173,12 +175,13 @@
             "14",
             "15",
             "16"});
-            this.comboBox2.Location = new System.Drawing.Point(176, 84);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(92, 21);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "4";
+            this.cbxTrainee.Location = new System.Drawing.Point(176, 84);
+            this.cbxTrainee.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxTrainee.Name = "cbxTrainee";
+            this.cbxTrainee.Size = new System.Drawing.Size(92, 21);
+            this.cbxTrainee.TabIndex = 2;
+            this.cbxTrainee.Text = "4";
+            this.cbxTrainee.SelectedValueChanged += new System.EventHandler(this.cbxTrainee_SelectedValueChanged);
             // 
             // label1
             // 
@@ -216,13 +219,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxGetmethods.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.listBoxGetmethods.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxGetmethods.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxGetmethods.ForeColor = System.Drawing.SystemColors.Window;
             this.listBoxGetmethods.FormattingEnabled = true;
-            this.listBoxGetmethods.ItemHeight = 16;
+            this.listBoxGetmethods.ItemHeight = 15;
             this.listBoxGetmethods.Location = new System.Drawing.Point(12, 220);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(447, 580);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(447, 574);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // frmUNETTester_Main
@@ -251,11 +254,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbxExercise;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbxRadios;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxRole;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbxTrainee;
         private System.Windows.Forms.ListBox listBoxGetmethods;
     }
 }

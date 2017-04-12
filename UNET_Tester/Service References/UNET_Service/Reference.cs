@@ -465,6 +465,18 @@ namespace UNET_Tester.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Tester.UNET_Service.Radio[] _radio);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
+        bool SetRadiosCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
+        System.Threading.Tasks.Task<bool> SetRadiosCountAsync(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineesCount", ReplyAction="http://tempuri.org/IService1/SetTraineesCountResponse")]
+        bool SetTraineesCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineesCount", ReplyAction="http://tempuri.org/IService1/SetTraineesCountResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
         bool SetInstructors(UNET_Tester.UNET_Service.Instructor[] _instructor);
         
@@ -597,6 +609,22 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Tester.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
+        }
+        
+        public bool SetRadiosCount(int _count) {
+            return base.Channel.SetRadiosCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadiosCountAsync(int _count) {
+            return base.Channel.SetRadiosCountAsync(_count);
+        }
+        
+        public bool SetTraineesCount(int _count) {
+            return base.Channel.SetTraineesCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count) {
+            return base.Channel.SetTraineesCountAsync(_count);
         }
         
         public bool SetInstructors(UNET_Tester.UNET_Service.Instructor[] _instructor) {
