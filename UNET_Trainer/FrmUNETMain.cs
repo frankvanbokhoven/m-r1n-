@@ -119,7 +119,7 @@ namespace UNET_Trainer
                 else
                 {
                     SetButtonStatus(c);
-                } 
+                }
             }
 
             try
@@ -214,17 +214,24 @@ namespace UNET_Trainer
                     btnTraineePP.Enabled = lstTrainee.Count >= 14;
                     btnTraineeRR.Enabled = lstTrainee.Count >= 15;
                     btnTraineeSS.Enabled = lstTrainee.Count >= 16;
-                 //   btnAssist.Enabled = lstTrainee.Count >= 17;                
+                    //   btnAssist.Enabled = lstTrainee.Count >= 17;                
                     service.Close();
-                }
 
-                // now make any disabled button INVISIBLE
-                foreach (Control c in parent.Controls)
-                {
-                    if (c.GetType() == typeof(Button))
+
+                    // now make any disabled button INVISIBLE
+                    foreach (Control c in parent.Controls)
                     {
-                        ((Button)c).Visible = ((Button)c).Enabled;
+                        if (c.GetType() == typeof(Button))
+                        {
+                            ((Button)c).Visible = ((Button)c).Enabled;
+                        }
                     }
+
+                    //now resize all buttons to make optimal use of the available room
+                    ResizePanels(panelExercises, lst.Count);
+                    ResizePanels(panelRadios, lstRadio.Count);
+                    ResizePanels(panelRoles, lstrole.Count);
+                    ResizePanels(panelTrainees, lstTrainee.Count);
                 }
             }
             catch (Exception ex)
@@ -291,43 +298,63 @@ namespace UNET_Trainer
         /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
         /// their space can be used for the other panels.
         /// </summary>
+        /// <summary>
+        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
+        /// their space can be used for the other panels.
+        /// </summary>
         private void ResizePanels(Panel _panel, int _numberOfPanels)
         {
-            //begin met alle controls op invisible te zetten.
-            foreach (Button b in _panel.Controls)
+            try
             {
-                b.Visible = false;
-            }
-            //get the number of panels
-            int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfPanels)) + 1; //rond dit getal naar beneden af
-            int availablehorspace = _panel.Width / squareroot;
-            int availablevertspace = _panel.Height / squareroot;
-            int controlindex = 0;
-            int buttonstop = 0;
-
-            for (int i = 1; i <= squareroot; i++) // van boven naar onder
-            {
-                int buttonleft = 0;
-                for (int j = 1; j <= squareroot; j++) // van links naar rechts
+                //begin met alle controls op invisible te zetten.
+                foreach (Control c in _panel.Controls)
                 {
-                    if (controlindex < _numberOfPanels)
+                    if (c is Button)
                     {
-                        ((Button)(panel2.Controls[controlindex])).Visible = true;
-                        ((Button)(panel2.Controls[controlindex])).Top = buttonstop;
-                        ((Button)(panel2.Controls[controlindex])).Left = buttonleft;
-                        ((Button)(panel2.Controls[controlindex])).Width = availablehorspace;
-                        ((Button)(panel2.Controls[controlindex])).Height = availablehorspace;
-
-                        controlindex++;
-                        buttonleft += availablehorspace; //tel de breedte van 1 button op bij de left, voor de volgende
-                    }
-                    else
-                    {
-                        break;
+                        c.Visible = false;
                     }
                 }
 
-                buttonstop += availablevertspace;
+                //daarna bereken de beschikbare ruimte
+                int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfPanels)) + 1; //rond dit getal naar beneden af
+                int availablehorspace = _panel.Width / squareroot;
+                int availablevertspace = _panel.Height / squareroot;
+                int controlindex = 0;
+                int buttonstop = 0;
+
+                //bouw dan de grid op..
+                for (int i = 1; i <= squareroot; i++) // van boven naar onder
+                {
+                    int buttonleft = 0;
+                    for (int j = 1; j <= squareroot; j++) // van links naar rechts
+                    {
+                        if (controlindex < _numberOfPanels)
+                        {
+                            if (_panel.Controls[controlindex] is Button) //het moet wel een button zijn
+                            {
+                                ((Button)(_panel.Controls[controlindex])).Visible = true;
+                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop;
+                                ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
+                                ((Button)(_panel.Controls[controlindex])).Width = availablehorspace;
+                                ((Button)(_panel.Controls[controlindex])).Height = availablehorspace;
+                             
+                                buttonleft += availablehorspace; //tel de breedte van 1 button op bij de left, voor de volgende
+                            }
+                            controlindex++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    buttonstop += availablevertspace;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error SetPanels", ex);
+                // throw;
             }
         }
 
