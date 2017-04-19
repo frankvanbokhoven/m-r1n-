@@ -43,6 +43,10 @@ namespace UNET_Service
         Classes.CurrentInfo GetExerciseInfo(int _traineeID);
 
         //Setters
+
+        [OperationContract]
+        bool SetExerciseInfo(Classes.Exercise);
+
         [OperationContract]
         bool SetExerciseCount(int _count);
 

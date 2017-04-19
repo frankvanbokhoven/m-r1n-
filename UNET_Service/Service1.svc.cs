@@ -455,6 +455,42 @@ namespace UNET_Service
         }
 
         /// <summary>
+        /// with this method, a trainee can 'register' himself as
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public bool SetExerciseInfo(Classes.CurrentInfo _exercise)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.CurrentInfoList
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_platform.Count - 1); i++)
+                {
+                    Classes.Platform platform = new Classes.Platform();
+                    platform.ID = i;
+                    platform.Description = string.Format("Platform{0}", i);
+                    singleton.Platforms.Add(platform);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting platform", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Given the id of the trainee, retrieve the current info for this trainee
         /// </summary>
         /// <param name="_traineeID"></param>
