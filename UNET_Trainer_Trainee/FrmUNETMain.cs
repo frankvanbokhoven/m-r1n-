@@ -67,6 +67,8 @@ namespace UNET_Trainer_Trainee
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             this.Text = "UNET Trainee";
+            timer1.Enabled = true;
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -82,7 +84,7 @@ namespace UNET_Trainer_Trainee
                     service.Open();
 
                     //enable the Exercise buttons
-                    Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeId);
+                 var currentInfo = service.GetExerciseInfo(TraineeID);
                     lblPlatform.Text = currentInfo.Platform;
                     lblConsole.Text = currentInfo.ConsoleRole;
                     lblExerciseMode.Text = currentInfo.ExerciseMode;

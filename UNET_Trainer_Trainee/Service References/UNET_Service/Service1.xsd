@@ -79,4 +79,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Platform" nillable="true" type="tns:Platform" />
+  <xs:complexType name="CurrentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConsoleRole" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExerciseMode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CurrentInfo" nillable="true" type="tns:CurrentInfo" />
 </xs:schema>

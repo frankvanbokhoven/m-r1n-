@@ -465,8 +465,8 @@ namespace UNET_Service
             try
 
             {
-                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
-                                                                                                                             //   result = singleton.CurrentInfoList[_traineeID]; //NEE!! want als er een tussenuitvalt, werkt dit niet meer.
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+                                                                                                                             
                 foreach (Classes.CurrentInfo cu in singleton.CurrentInfoList)
                 {
                     if (cu.ID == _traineeID)
@@ -480,7 +480,7 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-                log.Error("Error getting the exercise info ");
+                log.Error("Error getting the exercise info " + ex.Message);
                 result = null;
             }
 

@@ -395,6 +395,115 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.SerializableAttribute()]
+    public partial class CurrentInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ConsoleRoleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExerciseModeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExerciseNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PlatformField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ConsoleRole {
+            get {
+                return this.ConsoleRoleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ConsoleRoleField, value) != true)) {
+                    this.ConsoleRoleField = value;
+                    this.RaisePropertyChanged("ConsoleRole");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExerciseMode {
+            get {
+                return this.ExerciseModeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExerciseModeField, value) != true)) {
+                    this.ExerciseModeField = value;
+                    this.RaisePropertyChanged("ExerciseMode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExerciseName {
+            get {
+                return this.ExerciseNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExerciseNameField, value) != true)) {
+                    this.ExerciseNameField = value;
+                    this.RaisePropertyChanged("ExerciseName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Platform {
+            get {
+                return this.PlatformField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlatformField, value) != true)) {
+                    this.PlatformField = value;
+                    this.RaisePropertyChanged("Platform");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
@@ -434,6 +543,12 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
         System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Platform[]> GetPlatformsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
+        UNET_Trainer_Trainee.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
+        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -569,6 +684,14 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Platform[]> GetPlatformsAsync() {
             return base.Channel.GetPlatformsAsync();
+        }
+        
+        public UNET_Trainer_Trainee.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
+            return base.Channel.GetExerciseInfo(_traineeID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
+            return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
         
         public bool SetExerciseCount(int _count) {

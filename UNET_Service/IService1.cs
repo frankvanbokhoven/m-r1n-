@@ -24,26 +24,23 @@ namespace UNET_Service
         [OperationContract]
         List<UNET_Service.Classes.Exercise> GetExercises();
 
-        //for testing purposes
         [OperationContract]
         List<UNET_Service.Classes.Role> GetRoles();
 
-        //for testing purposes
         [OperationContract]
         List<UNET_Service.Classes.Radio > GetRadios();
-
-        //for testing purposes
+    
         [OperationContract]
         List<UNET_Service.Classes.Instructor > GetInstructors();
-
-        //for testing purposes
+ 
         [OperationContract]
         List<UNET_Service.Classes.Trainee> GetTrainees();
-
-        //for testing purposes
+       
         [OperationContract]
         List<UNET_Service.Classes.Platform> GetPlatforms();
 
+        [OperationContract]
+        Classes.CurrentInfo GetExerciseInfo(int _traineeID);
 
         //Setters
         [OperationContract]
@@ -72,15 +69,12 @@ namespace UNET_Service
         [OperationContract]
         bool SetInstructors(List<Classes.Instructor> _instructor);
 
-      
         [OperationContract]
         bool SetTrainees(List<Classes.Trainee> _trainee);
 
         [OperationContract]
         bool SetPlatforms(List<Classes.Platform> _platform);
 
-        [OperationContract]
-        Classes.CurrentInfo  GetExerciseInfo(int _traineeID);
     }
 
  }

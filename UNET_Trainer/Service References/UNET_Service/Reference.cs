@@ -544,6 +544,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
         System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.Platform[]> GetPlatformsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
+        UNET_Trainer.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
+        System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
         
@@ -603,12 +609,6 @@ namespace UNET_Trainer.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
         System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Trainer.UNET_Service.Platform[] _platform);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        UNET_Trainer.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -684,6 +684,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.Platform[]> GetPlatformsAsync() {
             return base.Channel.GetPlatformsAsync();
+        }
+        
+        public UNET_Trainer.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
+            return base.Channel.GetExerciseInfo(_traineeID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
+            return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
         
         public bool SetExerciseCount(int _count) {
@@ -764,14 +772,6 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Trainer.UNET_Service.Platform[] _platform) {
             return base.Channel.SetPlatformsAsync(_platform);
-        }
-        
-        public UNET_Trainer.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
-            return base.Channel.GetExerciseInfo(_traineeID);
-        }
-        
-        public System.Threading.Tasks.Task<UNET_Trainer.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
-            return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
     }
 }

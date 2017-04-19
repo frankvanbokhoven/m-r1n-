@@ -51,6 +51,12 @@
   <wsdl:message name="IService1_GetPlatforms_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlatformsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetExerciseInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExerciseInfo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExerciseInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExerciseInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetExerciseCount_InputMessage">
     <wsdl:part name="parameters" element="tns:SetExerciseCount" />
   </wsdl:message>
@@ -111,12 +117,6 @@
   <wsdl:message name="IService1_SetPlatforms_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetExerciseInfo_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetExerciseInfo" />
-  </wsdl:message>
-  <wsdl:message name="IService1_GetExerciseInfo_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetExerciseInfoResponse" />
-  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExercises" message="tns:IService1_GetExercises_InputMessage" />
@@ -141,6 +141,10 @@
     <wsdl:operation name="GetPlatforms">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlatforms" message="tns:IService1_GetPlatforms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlatformsResponse" message="tns:IService1_GetPlatforms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExerciseInfo" message="tns:IService1_GetExerciseInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExerciseInfoResponse" message="tns:IService1_GetExerciseInfo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetExerciseCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseCount" message="tns:IService1_SetExerciseCount_InputMessage" />
@@ -181,10 +185,6 @@
     <wsdl:operation name="SetPlatforms">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetPlatforms" message="tns:IService1_SetPlatforms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetPlatformsResponse" message="tns:IService1_SetPlatforms_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetExerciseInfo">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExerciseInfo" message="tns:IService1_GetExerciseInfo_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExerciseInfoResponse" message="tns:IService1_GetExerciseInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SecureHttp" type="tns:IService1">
@@ -237,6 +237,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPlatforms">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetPlatforms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseInfo">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetExerciseInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -327,15 +336,6 @@
     </wsdl:operation>
     <wsdl:operation name="SetPlatforms">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetPlatforms" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetExerciseInfo">
-      <soap12:operation soapAction="http://tempuri.org/IService1/GetExerciseInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
