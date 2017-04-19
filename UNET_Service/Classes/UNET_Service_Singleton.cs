@@ -19,6 +19,7 @@ namespace UNET_Service.Classes
         public List<Instructor> Instructors = new List<Instructor>();
         public List<Trainee> Trainees = new List<Trainee>();
         public List<Platform> Platforms = new List<Platform>();
+        public List<Classes.CurrentInfo> CurrentInfoList = new List<Classes.CurrentInfo>();
 
         public static UNET_Service_Singleton Instance
         {

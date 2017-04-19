@@ -117,6 +117,9 @@
             // 
             // tbLeftShadow
             // 
+            this.tbLeftShadow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbLeftShadow.BackColor = System.Drawing.Color.Transparent;
             this.tbLeftShadow.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbLeftShadow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,6 +189,9 @@
             // 
             // tbRightShadow
             // 
+            this.tbRightShadow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRightShadow.BackColor = System.Drawing.Color.Transparent;
             this.tbRightShadow.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbRightShadow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -255,6 +261,9 @@
             // 
             // tbLeftVolume
             // 
+            this.tbLeftVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbLeftVolume.BackColor = System.Drawing.Color.Transparent;
             this.tbLeftVolume.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbLeftVolume.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -324,6 +333,9 @@
             // 
             // tbRightValue
             // 
+            this.tbRightValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRightValue.BackColor = System.Drawing.Color.Transparent;
             this.tbRightValue.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbRightValue.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -393,6 +405,9 @@
             // 
             // tbLeftESMMM
             // 
+            this.tbLeftESMMM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbLeftESMMM.BackColor = System.Drawing.Color.Transparent;
             this.tbLeftESMMM.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbLeftESMMM.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -462,6 +477,9 @@
             // 
             // tbRightESMMM
             // 
+            this.tbRightESMMM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRightESMMM.BackColor = System.Drawing.Color.Transparent;
             this.tbRightESMMM.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbRightESMMM.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -531,6 +549,9 @@
             // 
             // tbMicGain
             // 
+            this.tbMicGain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbMicGain.BackColor = System.Drawing.Color.Transparent;
             this.tbMicGain.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.tbMicGain.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

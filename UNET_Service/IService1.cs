@@ -78,6 +78,9 @@ namespace UNET_Service
 
         [OperationContract]
         bool SetPlatforms(List<Classes.Platform> _platform);
+
+        [OperationContract]
+        Classes.CurrentInfo  GetExerciseInfo(int _traineeID);
     }
 
  }

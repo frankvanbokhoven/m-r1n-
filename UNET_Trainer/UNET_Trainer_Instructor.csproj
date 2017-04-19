@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CurrentInfo.cs" />
     <Compile Include="Classes\Exercise.cs" />
     <Compile Include="Classes\Instructor.cs" />
     <Compile Include="Classes\Platform.cs" />
@@ -186,6 +187,9 @@
     </None>
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.CurrentInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Exercise.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

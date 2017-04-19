@@ -13,7 +13,6 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_GetExercises_InputMessage">
@@ -70,11 +69,29 @@
   <wsdl:message name="IService1_SetRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetRadios_InputMessage">
     <wsdl:part name="parameters" element="tns:SetRadios" />
   </wsdl:message>
   <wsdl:message name="IService1_SetRadios_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetRadiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadiosCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadiosCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadiosCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadiosCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineesCountResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_SetInstructors_InputMessage">
     <wsdl:part name="parameters" element="tns:SetInstructors" />
@@ -131,9 +148,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoles" message="tns:IService1_SetRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesResponse" message="tns:IService1_SetRoles_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRolesCount" message="tns:IService1_SetRolesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesCountResponse" message="tns:IService1_SetRolesCount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetRadios">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadios" message="tns:IService1_SetRadios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosResponse" message="tns:IService1_SetRadios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRadiosCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadiosCount" message="tns:IService1_SetRadiosCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosCountResponse" message="tns:IService1_SetRadiosCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineesCount" message="tns:IService1_SetTraineesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineesCountResponse" message="tns:IService1_SetTraineesCount_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetInstructors">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetInstructors" message="tns:IService1_SetInstructors_InputMessage" />
@@ -232,8 +261,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRolesCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetRadios">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetRadios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadiosCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadiosCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineesCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineesCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

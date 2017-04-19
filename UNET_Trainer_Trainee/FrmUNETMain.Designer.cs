@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.btnClose = new System.Windows.Forms.Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pnlPointToPoint = new System.Windows.Forms.Panel();
             this.btnRole20 = new System.Windows.Forms.Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
@@ -60,7 +60,7 @@
             this.btnRadio02 = new System.Windows.Forms.Button();
             this.btnRadio04 = new System.Windows.Forms.Button();
             this.btnRadio05 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.pnlRadios = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSetup = new System.Windows.Forms.Label();
             this.btnAudio = new System.Windows.Forms.Button();
@@ -69,16 +69,17 @@
             this.btnMonitorTrainee = new System.Windows.Forms.Button();
             this.btnClassBroadcast = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblPlatform = new System.Windows.Forms.Label();
+            this.lblConsole = new System.Windows.Forms.Label();
+            this.lblExerciseMode = new System.Windows.Forms.Label();
+            this.lblExerciseName = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlPointToPoint.SuspendLayout();
+            this.pnlRadios.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,7 +90,7 @@
             this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(456, 648);
+            this.btnClose.Location = new System.Drawing.Point(721, 599);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(65, 34);
@@ -106,35 +107,35 @@
             this.imageListStatus.Images.SetKeyName(1, "Red24.png");
             this.imageListStatus.Images.SetKeyName(2, "Green24.png");
             // 
-            // panel6
+            // pnlPointToPoint
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.btnRole20);
-            this.panel6.Controls.Add(this.btnRole15);
-            this.panel6.Controls.Add(this.btnRole10);
-            this.panel6.Controls.Add(this.btnRole5);
-            this.panel6.Controls.Add(this.btnRole19);
-            this.panel6.Controls.Add(this.btnRole14);
-            this.panel6.Controls.Add(this.btnRole9);
-            this.panel6.Controls.Add(this.btnRole4);
-            this.panel6.Controls.Add(this.btnRole17);
-            this.panel6.Controls.Add(this.btnRole12);
-            this.panel6.Controls.Add(this.btnRole7);
-            this.panel6.Controls.Add(this.btnRole2);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Controls.Add(this.btnRole18);
-            this.panel6.Controls.Add(this.btnRole13);
-            this.panel6.Controls.Add(this.btnRole8);
-            this.panel6.Controls.Add(this.btnRole3);
-            this.panel6.Controls.Add(this.btnRole16);
-            this.panel6.Controls.Add(this.btnRole11);
-            this.panel6.Controls.Add(this.btnRole6);
-            this.panel6.Controls.Add(this.btnRole1);
-            this.panel6.Location = new System.Drawing.Point(101, 246);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(543, 373);
-            this.panel6.TabIndex = 25;
+            this.pnlPointToPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPointToPoint.Controls.Add(this.btnRole20);
+            this.pnlPointToPoint.Controls.Add(this.btnRole15);
+            this.pnlPointToPoint.Controls.Add(this.btnRole10);
+            this.pnlPointToPoint.Controls.Add(this.btnRole5);
+            this.pnlPointToPoint.Controls.Add(this.btnRole19);
+            this.pnlPointToPoint.Controls.Add(this.btnRole14);
+            this.pnlPointToPoint.Controls.Add(this.btnRole9);
+            this.pnlPointToPoint.Controls.Add(this.btnRole4);
+            this.pnlPointToPoint.Controls.Add(this.btnRole17);
+            this.pnlPointToPoint.Controls.Add(this.btnRole12);
+            this.pnlPointToPoint.Controls.Add(this.btnRole7);
+            this.pnlPointToPoint.Controls.Add(this.btnRole2);
+            this.pnlPointToPoint.Controls.Add(this.label4);
+            this.pnlPointToPoint.Controls.Add(this.btnRole18);
+            this.pnlPointToPoint.Controls.Add(this.btnRole13);
+            this.pnlPointToPoint.Controls.Add(this.btnRole8);
+            this.pnlPointToPoint.Controls.Add(this.btnRole3);
+            this.pnlPointToPoint.Controls.Add(this.btnRole16);
+            this.pnlPointToPoint.Controls.Add(this.btnRole11);
+            this.pnlPointToPoint.Controls.Add(this.btnRole6);
+            this.pnlPointToPoint.Controls.Add(this.btnRole1);
+            this.pnlPointToPoint.Location = new System.Drawing.Point(61, 292);
+            this.pnlPointToPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlPointToPoint.Name = "pnlPointToPoint";
+            this.pnlPointToPoint.Size = new System.Drawing.Size(583, 382);
+            this.pnlPointToPoint.TabIndex = 25;
             // 
             // btnRole20
             // 
@@ -515,7 +516,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(165, 9);
+            this.label3.Location = new System.Drawing.Point(205, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 17);
             this.label3.TabIndex = 10;
@@ -557,20 +558,20 @@
             this.btnRadio05.Text = "Radio 05";
             this.btnRadio05.UseVisualStyleBackColor = false;
             // 
-            // panel5
+            // pnlRadios
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.btnRadio05);
-            this.panel5.Controls.Add(this.btnRadio04);
-            this.panel5.Controls.Add(this.btnRadio02);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.btnRadio03);
-            this.panel5.Controls.Add(this.btnRadio01);
-            this.panel5.Location = new System.Drawing.Point(101, 96);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(543, 127);
-            this.panel5.TabIndex = 26;
+            this.pnlRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlRadios.Controls.Add(this.btnRadio05);
+            this.pnlRadios.Controls.Add(this.btnRadio04);
+            this.pnlRadios.Controls.Add(this.btnRadio02);
+            this.pnlRadios.Controls.Add(this.label3);
+            this.pnlRadios.Controls.Add(this.btnRadio03);
+            this.pnlRadios.Controls.Add(this.btnRadio01);
+            this.pnlRadios.Location = new System.Drawing.Point(65, 53);
+            this.pnlRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlRadios.Name = "pnlRadios";
+            this.pnlRadios.Size = new System.Drawing.Size(579, 220);
+            this.pnlRadios.TabIndex = 26;
             // 
             // panel1
             // 
@@ -605,6 +606,7 @@
             this.btnAudio.TabIndex = 4;
             this.btnAudio.Text = "Audio";
             this.btnAudio.UseVisualStyleBackColor = false;
+            this.btnAudio.Click += new System.EventHandler(this.btnAudio_Click);
             // 
             // panel3
             // 
@@ -655,10 +657,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.lblPlatform);
+            this.groupBox1.Controls.Add(this.lblConsole);
+            this.groupBox1.Controls.Add(this.lblExerciseMode);
+            this.groupBox1.Controls.Add(this.lblExerciseName);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -671,45 +673,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Exercise information";
             // 
-            // label11
+            // lblPlatform
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(153, 170);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 20);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "xxxx";
+            this.lblPlatform.AutoSize = true;
+            this.lblPlatform.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlatform.Location = new System.Drawing.Point(153, 170);
+            this.lblPlatform.Name = "lblPlatform";
+            this.lblPlatform.Size = new System.Drawing.Size(45, 20);
+            this.lblPlatform.TabIndex = 19;
+            this.lblPlatform.Text = "xxxx";
             // 
-            // label10
+            // lblConsole
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(153, 130);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(45, 20);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "xxxx";
+            this.lblConsole.AutoSize = true;
+            this.lblConsole.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsole.Location = new System.Drawing.Point(153, 130);
+            this.lblConsole.Name = "lblConsole";
+            this.lblConsole.Size = new System.Drawing.Size(45, 20);
+            this.lblConsole.TabIndex = 18;
+            this.lblConsole.Text = "xxxx";
             // 
-            // label9
+            // lblExerciseMode
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(153, 94);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "xxxx";
+            this.lblExerciseMode.AutoSize = true;
+            this.lblExerciseMode.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExerciseMode.Location = new System.Drawing.Point(153, 94);
+            this.lblExerciseMode.Name = "lblExerciseMode";
+            this.lblExerciseMode.Size = new System.Drawing.Size(45, 20);
+            this.lblExerciseMode.TabIndex = 17;
+            this.lblExerciseMode.Text = "xxxx";
             // 
-            // label8
+            // lblExerciseName
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(153, 60);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 20);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "xxxx";
+            this.lblExerciseName.AutoSize = true;
+            this.lblExerciseName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExerciseName.Location = new System.Drawing.Point(153, 60);
+            this.lblExerciseName.Name = "lblExerciseName";
+            this.lblExerciseName.Size = new System.Drawing.Size(45, 20);
+            this.lblExerciseName.TabIndex = 16;
+            this.lblExerciseName.Text = "xxxx";
             // 
             // label7
             // 
@@ -751,6 +753,11 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Exercise Name:";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 750;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -759,16 +766,16 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.pnlRadios);
+            this.Controls.Add(this.pnlPointToPoint);
             this.Controls.Add(this.btnClose);
             this.Name = "FrmUNETMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.pnlPointToPoint.ResumeLayout(false);
+            this.pnlPointToPoint.PerformLayout();
+            this.pnlRadios.ResumeLayout(false);
+            this.pnlRadios.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -783,7 +790,7 @@
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ImageList imageListStatus;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel pnlPointToPoint;
         private System.Windows.Forms.Button btnRole20;
         private System.Windows.Forms.Button btnRole15;
         private System.Windows.Forms.Button btnRole10;
@@ -811,7 +818,7 @@
         private System.Windows.Forms.Button btnRadio02;
         private System.Windows.Forms.Button btnRadio04;
         private System.Windows.Forms.Button btnRadio05;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel pnlRadios;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSetup;
         private System.Windows.Forms.Button btnAudio;
@@ -820,14 +827,15 @@
         private System.Windows.Forms.Button btnMonitorTrainee;
         private System.Windows.Forms.Button btnClassBroadcast;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblPlatform;
+        private System.Windows.Forms.Label lblConsole;
+        private System.Windows.Forms.Label lblExerciseMode;
+        private System.Windows.Forms.Label lblExerciseName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

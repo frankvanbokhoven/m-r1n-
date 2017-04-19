@@ -13,9 +13,9 @@ namespace UNET_Service
         (RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService1
     {
-        private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
-        private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
-        private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
+        //private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
+        //private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
+        //private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
         private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -320,7 +320,7 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-                log.Error("Error setting exersisecount", ex);
+                log.Error("Error setting roles", ex);
                 result = false;
 
             }
@@ -329,25 +329,163 @@ namespace UNET_Service
 
         public bool SetRadios(List<Classes.Radio>  _radio)
         {
-            return true;
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Radios.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_radio.Count - 1); i++)
+                {
+                    Classes.Radio radio = new Classes.Radio();
+                    radio.ID = i;
+                    radio.Description = string.Format("Radio{0}", i);
+                    singleton.Radios.Add(radio);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting radios", ex);
+                result = false;
+
+            }
+            return result;
         }
 
 
         public bool SetInstructors(List<Classes.Instructor> _instructor)
         {
-            return true;
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Instructors.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_instructor.Count - 1); i++)
+                {
+                    Classes.Instructor instructor = new Classes.Instructor();
+                    instructor.ID = i;
+                    instructor.Name = string.Format("Instructor{0}", i);
+                    singleton.Instructors.Add(instructor);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting instructor", ex);
+                result = false;
+
+            }
+            return result;
         }
 
 
         public bool SetTrainees(List<Classes.Trainee>  _trainee)
         {
-            return true;
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Trainees.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_trainee.Count - 1); i++)
+                {
+                    Classes.Trainee trainee = new Classes.Trainee();
+                    trainee.ID = i;
+                    trainee.Name = string.Format("Trainee{0}", i);
+                    singleton.Trainees.Add(trainee);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting trainee", ex);
+                result = false;
+
+            }
+            return result;
         }
 
 
         public bool SetPlatforms(List<Classes.Platform>  _platform)
         {
-            return true;
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Platforms.Clear();
+
+
+                //and create a number of exercises
+                for (int i = 1; i <= Convert.ToInt16(_platform.Count - 1); i++)
+                {
+                    Classes.Platform platform = new Classes.Platform();
+                    platform.ID = i;
+                    platform.Description = string.Format("Platform{0}", i);
+                    singleton.Platforms.Add(platform);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting platform", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Given the id of the trainee, retrieve the current info for this trainee
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <returns></returns>
+        public Classes.CurrentInfo GetExerciseInfo(int _traineeID)
+        {
+            Classes.CurrentInfo result = null;
+            try
+
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
+                                                                                                                             //   result = singleton.CurrentInfoList[_traineeID]; //NEE!! want als er een tussenuitvalt, werkt dit niet meer.
+                foreach (Classes.CurrentInfo cu in singleton.CurrentInfoList)
+                {
+                    if (cu.ID == _traineeID)
+                    {
+                        result = cu;
+                        break;
+                    }
+                }
+                // Classes.CurrentInfo result = new Classes.CurrentInfo();
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error getting the exercise info ");
+                result = null;
+            }
+
+
+            return result;
         }
         #endregion 
 

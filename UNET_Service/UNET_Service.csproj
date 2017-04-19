@@ -84,6 +84,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CurrentInfo.cs" />
     <Compile Include="Classes\Exercise.cs" />
     <Compile Include="Classes\Instructor.cs" />
     <Compile Include="Classes\Platform.cs" />

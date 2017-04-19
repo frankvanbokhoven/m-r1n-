@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -48,11 +52,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CurrentInfo.cs" />
+    <Compile Include="FrmAudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAudio.Designer.cs">
+      <DependentUpon>FrmAudio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUNETbase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmUNETbase.Designer.cs">
       <DependentUpon>FrmUNETbase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUNETbaseSub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUNETbaseSub.Designer.cs">
+      <DependentUpon>FrmUNETbaseSub.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUNETMain.cs">
       <SubType>Form</SubType>
@@ -67,8 +84,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmAudio.resx">
+      <DependentUpon>FrmAudio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmUNETbase.resx">
       <DependentUpon>FrmUNETbase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUNETbaseSub.resx">
+      <DependentUpon>FrmUNETbaseSub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUNETMain.resx">
       <DependentUpon>FrmUNETMain.cs</DependentUpon>
@@ -82,6 +105,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,10 +125,22 @@
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\Service13.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Exercise.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Instructor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Platform.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Radio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Role.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Trainee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -131,6 +167,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PJSUA2\PJProject-2.6-Win32.CSharp.csproj">
+      <Project>{61b3e232-24ef-4e15-9ed7-4102b1c431bc}</Project>
+      <Name>PJProject-2.6-Win32.CSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
