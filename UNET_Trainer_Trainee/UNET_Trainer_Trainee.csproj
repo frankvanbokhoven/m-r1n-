@@ -86,7 +86,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="SIP\Config.cs" />
+    <Compile Include="SIP\SipAccount.cs" />
+    <Compile Include="SIP\SipBuddy.cs" />
     <Compile Include="SIP\SIPCall.cs" />
+    <Compile Include="SIP\UserAgent.cs" />
     <EmbeddedResource Include="FrmAudio.resx">
       <DependentUpon>FrmAudio.cs</DependentUpon>
     </EmbeddedResource>

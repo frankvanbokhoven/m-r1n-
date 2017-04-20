@@ -9,6 +9,22 @@ namespace UNET_Trainer_Trainee.SIP
 {
     public class SIPCall
     {
+        private SipAccount UAacc;
+
+        public void SipCall(Account acc, int callID = PJSUA_INVALID_ID) : Call(acc, callID)
+        {
+            UAacc = (SipAccount*)&acc;
+            // connect(this,SIGNAL(sendCallState(int)),UAacc,SLOT(newCallState(int)));
+        }
+
+        virtual void onCallState(OnCallStateParam &prm);
+
+
+        private void sendCallState(int state)
+        {
+            //todo!
+        }
+  
         /*!
          * \brief SipCall::onCallState
          * \param prm
@@ -26,10 +42,10 @@ namespace UNET_Trainer_Trainee.SIP
                 case PJSUA2.pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
 
                     // Remove the call from the account
-                    UAacc->removeCall(this);
+                    UAacc.removeCall(this);
 
                     // Show we are now disconnected
-                    UAacc->newCallState(0);
+                    UAacc.newCallState(0);
 
                     // Delete the call object
                     delete this;
@@ -45,18 +61,18 @@ namespace UNET_Trainer_Trainee.SIP
                         {
                             if (ci.media[i].type == PJSUA2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
                             {
-                                aud_med = (PJSUA2.AudioMedia)this->getMedia(i);
-                                PJSUA2.StreamInfo si = this->getStreamInfo(i);
+                                aud_med = (PJSUA2.AudioMedia)this.getMedia(i);
+                                PJSUA2.StreamInfo si = this.getStreamInfo(i);
                                 //todo   std::cout << "*** Media codec: " << si.codecName << std::endl;
                                 break;
                             }
                         }
 
-                        if (aud_med)
+                        if (aud_med != null)
                         {
                             // Get playback & capture devices
-                            PJSUA2.AudioMedia & play_med = PJSUA2.Endpoint::instance().audDevManager().getPlaybackDevMedia();
-                            PJSUA2.AudioMedia & cap_med = PJSUA2.Endpoint::instance().audDevManager().getCaptureDevMedia();
+                            PJSUA2.AudioMedia & play_med = PJSUA2.Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                            PJSUA2.AudioMedia & cap_med = PJSUA2.Endpoint.instance().audDevManager().getCaptureDevMedia();
 
                             // Start audio transmissions
                             cap_med.startTransmit(aud_med);
@@ -67,7 +83,7 @@ namespace UNET_Trainer_Trainee.SIP
                         }
 
                         // Show we are connected
-                        UAacc->newCallState(1);
+                        UAacc.newCallState(1);
                         break;
                     }
                 //      case PJSIP_INV_STATE_NULL:
@@ -79,7 +95,7 @@ namespace UNET_Trainer_Trainee.SIP
                 //      case PJSIP_INV_STATE_CALLING:
                 //        break;
                 default:
-                    break;
+                break;
             }
 
         }
