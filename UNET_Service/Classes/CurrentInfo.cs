@@ -15,5 +15,17 @@ namespace UNET_Service.Classes
         public string ExerciseMode;
         public string ConsoleRole;
         public string Platform;
+
+
+
+        //public CurrentInfo(int _id, string _exerciseName, string _exerciseMode, string _consoleRole, string _platform)
+        //{
+        //    //  ID = new Guid(); //using the guid, we always have a unique ID
+        //    ID = _id;
+        //    ExerciseName = _exerciseName;
+        //    ExerciseMode = _exerciseMode;
+        //    ConsoleRole = _consoleRole;
+        //    Platform = _platform;
+        //}
     }
 }

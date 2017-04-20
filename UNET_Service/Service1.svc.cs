@@ -459,31 +459,36 @@ namespace UNET_Service
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public bool SetExerciseInfo(Classes.CurrentInfo _exercise)
+        public bool RegisterTrainee(Classes.CurrentInfo _currentInfo)
         {
             bool result = true;
             try
             {
                 UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
-                //first clear the array
-                singleton.CurrentInfoList
-
-
-                //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_platform.Count - 1); i++)
+                bool existing = false;
+                //try to find the given traineeclient in the list. If found, update the information, otherwise add the traineeclient
+                for (int i = 1; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
                 {
-                    Classes.Platform platform = new Classes.Platform();
-                    platform.ID = i;
-                    platform.Description = string.Format("Platform{0}", i);
-                    singleton.Platforms.Add(platform);
-                }
+                    //try to find a currentinfo object in the list with the same id
+                    if(singleton.CurrentInfoList[i].ID == _currentInfo.ID)
+                    {
 
+                        singleton.CurrentInfoList[i] = _currentInfo; //overwrite the currentinfo object with the one from the client
+                        existing = true;
+                        break;
+                    }
+                    //if the currentinfo is not found, then create one and add it to the list
+                    if(!existing)
+                    {
+                        singleton.CurrentInfoList.Add(_currentInfo);
+                    }                   
+                }
 
                 result = true;
             }
             catch (Exception ex)
             {
-                log.Error("Error setting platform", ex);
+                log.Error("Error setting Registering Trainees", ex);
                 result = false;
 
             }

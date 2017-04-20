@@ -8,13 +8,16 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
-
-public enum pjsip_inv_state {
-  PJSIP_INV_STATE_NULL,
-  PJSIP_INV_STATE_CALLING,
-  PJSIP_INV_STATE_INCOMING,
-  PJSIP_INV_STATE_EARLY,
-  PJSIP_INV_STATE_CONNECTING,
-  PJSIP_INV_STATE_CONFIRMED,
-  PJSIP_INV_STATE_DISCONNECTED
+namespace PJSUA2
+{
+    public enum pjsip_inv_state
+    {
+        PJSIP_INV_STATE_NULL,
+        PJSIP_INV_STATE_CALLING,
+        PJSIP_INV_STATE_INCOMING,
+        PJSIP_INV_STATE_EARLY,
+        PJSIP_INV_STATE_CONNECTING,
+        PJSIP_INV_STATE_CONFIRMED,
+        PJSIP_INV_STATE_DISCONNECTED
+    }
 }

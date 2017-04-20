@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Collections.Specialized;
 using log4net;
 
 namespace UNET_Trainer_Trainee
@@ -68,6 +70,11 @@ namespace UNET_Trainer_Trainee
         {
             this.Text = "UNET Trainee";
             timer1.Enabled = true;
+
+            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+            TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+
+
 
         }
 

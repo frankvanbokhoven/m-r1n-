@@ -550,6 +550,12 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
         System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
+        bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
+        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
         
@@ -692,6 +698,14 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
             return base.Channel.GetExerciseInfoAsync(_traineeID);
+        }
+        
+        public bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo) {
+            return base.Channel.RegisterTrainee(_currentInfo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo) {
+            return base.Channel.RegisterTraineeAsync(_currentInfo);
         }
         
         public bool SetExerciseCount(int _count) {

@@ -44,19 +44,18 @@ namespace UNET_Service
 
         //Setters
 
+   //     [CollectionDataContract(Name = "Custom{0}List", ItemName = "CustomItem")]
         [OperationContract]
-        bool SetExerciseInfo(Classes.Exercise);
+        bool RegisterTrainee(Classes.CurrentInfo _currentInfo);
 
         [OperationContract]
         bool SetExerciseCount(int _count);
 
         [OperationContract]
         bool SetExercises(List<Classes.Exercise> _exercises);
-
         
         [OperationContract]
         bool SetRoles(List<Classes.Role> _role);
-
 
         [OperationContract]
         bool SetRolesCount(int _count);
@@ -78,7 +77,6 @@ namespace UNET_Service
 
         [OperationContract]
         bool SetPlatforms(List<Classes.Platform> _platform);
-
     }
 
  }

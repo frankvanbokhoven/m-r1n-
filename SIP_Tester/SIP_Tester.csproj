@@ -236,6 +236,12 @@
     <Content Include="Resources\phone_speaker.png" />
     <Content Include="Sipek.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PJSUA2\PJProject-2.6-Win32.CSharp.csproj">
+      <Project>{61b3e232-24ef-4e15-9ed7-4102b1c431bc}</Project>
+      <Name>PJProject-2.6-Win32.CSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

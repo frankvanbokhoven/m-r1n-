@@ -7,12 +7,15 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
+namespace PJSUA2
+{
 
-
-public enum pjmedia_type {
-  PJMEDIA_TYPE_NONE,
-  PJMEDIA_TYPE_AUDIO,
-  PJMEDIA_TYPE_VIDEO,
-  PJMEDIA_TYPE_APPLICATION,
-  PJMEDIA_TYPE_UNKNOWN
+    public enum pjmedia_type
+    {
+        PJMEDIA_TYPE_NONE,
+        PJMEDIA_TYPE_AUDIO,
+        PJMEDIA_TYPE_VIDEO,
+        PJMEDIA_TYPE_APPLICATION,
+        PJMEDIA_TYPE_UNKNOWN
+    }
 }
