@@ -10,18 +10,18 @@ namespace UNET_Trainer_Trainee.SIP
     {
         public Config()
         {
-            load();
+    //        load();
         }
 
     ///
     /// \brief Config::load
     ///
-   private void load()
-    {
+   //private void load()
+   // {
 
-        load(&sipServer, &sipPort, &sipDomain, &port, &sipAccount, &logLevel, &sipRetry, &sipTimeOut, &ecaServer, &ecaPort);
-    }
-
+   //    load(&sipServer, &sipPort, &sipDomain, &port, &sipAccount, &logLevel, &sipRetry, &sipTimeOut, &ecaServer, &ecaPort);
+  //  }
+/*
    private void load(String _sipServer, int _sipPort, String _sipDomain, int _port, String _sipAccount, int _logLevel, int _sipRetry, int _sipTimeOut, String _ecaServer, int _ecaPort)
     {
 
@@ -207,7 +207,7 @@ void Config::setVoiceVolumeSweep(int value) { voiceVolumeSweep = value; }
 QString Config::getSystemUserName() const           { return systemUserName; }
 void Config::setSystemUserName(const QString &value) { systemUserName = value; }
 
-
+*/
 
     }
 }

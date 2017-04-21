@@ -331,6 +331,7 @@
             this.Controls.Add(this.btnApplyConfig);
             this.Name = "usercontrolConfig";
             this.Size = new System.Drawing.Size(1038, 642);
+            this.Load += new System.EventHandler(this.usercontrolConfig_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

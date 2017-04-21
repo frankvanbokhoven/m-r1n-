@@ -60,10 +60,10 @@ namespace UNET_Trainer
             {
                 pnlColorExample.BackColor = Color.FromName(ddlColorButton.SelectedItem.ToString());
             }
-
-
-            catch
-            { }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error changing index: " + ex.Message);
+            }
         }
 
         private void ddlFont_SelectedIndexChanged(object sender, EventArgs e)

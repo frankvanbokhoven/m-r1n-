@@ -42,6 +42,7 @@
             this.tabControlSetup.SuspendLayout();
             this.tabPageColors.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPageConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlSetup
@@ -155,7 +156,7 @@
             this.tabPageConfig.TabIndex = 1;
             this.tabPageConfig.Text = "Config";
             this.tabPageConfig.UseVisualStyleBackColor = true;
-            // 
+             // 
             // FrmSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -171,6 +172,7 @@
             this.tabPageColors.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPageConfig.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
