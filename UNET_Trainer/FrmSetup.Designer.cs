@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tabControlSetup = new System.Windows.Forms.TabControl();
+            this.tabPageColors = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTestFont = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -35,9 +37,35 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlColorExample = new System.Windows.Forms.Panel();
             this.ddlColorButton = new System.Windows.Forms.ComboBox();
-            this.btnApply = new System.Windows.Forms.Button();
+            this.btnApplyColors = new System.Windows.Forms.Button();
+            this.tabPageConfig = new System.Windows.Forms.TabPage();
+            this.tabControlSetup.SuspendLayout();
+            this.tabPageColors.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabControlSetup
+            // 
+            this.tabControlSetup.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.tabControlSetup.Controls.Add(this.tabPageColors);
+            this.tabControlSetup.Controls.Add(this.tabPageConfig);
+            this.tabControlSetup.HotTrack = true;
+            this.tabControlSetup.Location = new System.Drawing.Point(0, 69);
+            this.tabControlSetup.Name = "tabControlSetup";
+            this.tabControlSetup.SelectedIndex = 0;
+            this.tabControlSetup.Size = new System.Drawing.Size(1169, 592);
+            this.tabControlSetup.TabIndex = 11;
+            // 
+            // tabPageColors
+            // 
+            this.tabPageColors.Controls.Add(this.groupBox1);
+            this.tabPageColors.Location = new System.Drawing.Point(4, 28);
+            this.tabPageColors.Name = "tabPageColors";
+            this.tabPageColors.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageColors.Size = new System.Drawing.Size(1161, 560);
+            this.tabPageColors.TabIndex = 0;
+            this.tabPageColors.Text = "Colors for Trainer";
+            this.tabPageColors.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -47,12 +75,13 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.pnlColorExample);
             this.groupBox1.Controls.Add(this.ddlColorButton);
-            this.groupBox1.Controls.Add(this.btnApply);
+            this.groupBox1.Controls.Add(this.btnApplyColors);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(43, 104);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(691, 452);
-            this.groupBox1.TabIndex = 10;
+            this.groupBox1.Size = new System.Drawing.Size(1155, 554);
+            this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Colors for Trainer";
             // 
@@ -81,7 +110,6 @@
             this.ddlFont.Name = "ddlFont";
             this.ddlFont.Size = new System.Drawing.Size(296, 28);
             this.ddlFont.TabIndex = 13;
-            this.ddlFont.SelectedIndexChanged += new System.EventHandler(this.ddlFont_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -106,30 +134,41 @@
             this.ddlColorButton.Name = "ddlColorButton";
             this.ddlColorButton.Size = new System.Drawing.Size(296, 28);
             this.ddlColorButton.TabIndex = 10;
-            this.ddlColorButton.SelectedIndexChanged += new System.EventHandler(this.ddlColorButton_SelectedIndexChanged);
             // 
-            // btnApply
+            // btnApplyColors
             // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnApply.BackColor = System.Drawing.Color.Aqua;
-            this.btnApply.Location = new System.Drawing.Point(474, 368);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(152, 53);
-            this.btnApply.TabIndex = 9;
-            this.btnApply.Text = "Apply changes";
-            this.btnApply.UseVisualStyleBackColor = false;
+            this.btnApplyColors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnApplyColors.BackColor = System.Drawing.Color.Aqua;
+            this.btnApplyColors.Location = new System.Drawing.Point(37, 483);
+            this.btnApplyColors.Name = "btnApplyColors";
+            this.btnApplyColors.Size = new System.Drawing.Size(152, 53);
+            this.btnApplyColors.TabIndex = 9;
+            this.btnApplyColors.Text = "Apply changes";
+            this.btnApplyColors.UseVisualStyleBackColor = false;
+            // 
+            // tabPageConfig
+            // 
+            this.tabPageConfig.Location = new System.Drawing.Point(4, 28);
+            this.tabPageConfig.Name = "tabPageConfig";
+            this.tabPageConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageConfig.Size = new System.Drawing.Size(1161, 560);
+            this.tabPageConfig.TabIndex = 1;
+            this.tabPageConfig.Text = "Config";
+            this.tabPageConfig.UseVisualStyleBackColor = true;
             // 
             // FrmSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 796);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tabControlSetup);
             this.Name = "FrmSetup";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Setup";
-            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.tabControlSetup, 0);
+            this.tabControlSetup.ResumeLayout(false);
+            this.tabPageColors.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -138,13 +177,16 @@
 
         #endregion
 
+        private System.Windows.Forms.TabControl tabControlSetup;
+        private System.Windows.Forms.TabPage tabPageColors;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.ComboBox ddlColorButton;
         private System.Windows.Forms.Label lblTestFont;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox ddlFont;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlColorExample;
+        private System.Windows.Forms.ComboBox ddlColorButton;
+        private System.Windows.Forms.Button btnApplyColors;
+        private System.Windows.Forms.TabPage tabPageConfig;
     }
 }

@@ -8,23 +8,21 @@ namespace UNET_Trainer_Trainee.SIP
 {
    public class Config
     {
-        Config::Config()
-{
-  fileName = "config.json";
-
-  load();
-    }
+        public Config()
+        {
+            load();
+        }
 
     ///
     /// \brief Config::load
     ///
-    void Config::load()
+   private void load()
     {
 
         load(&sipServer, &sipPort, &sipDomain, &port, &sipAccount, &logLevel, &sipRetry, &sipTimeOut, &ecaServer, &ecaPort);
     }
 
-    void Config::load(QString* _sipServer, int* _sipPort, QString* _sipDomain, int* _port, QString* _sipAccount, int* _logLevel, int* _sipRetry, int* _sipTimeOut, QString* _ecaServer, int* _ecaPort)
+   private void load(String _sipServer, int _sipPort, String _sipDomain, int _port, String _sipAccount, int _logLevel, int _sipRetry, int _sipTimeOut, String _ecaServer, int _ecaPort)
     {
 
         // Check if file exists otherwise use defaults
@@ -91,11 +89,11 @@ namespace UNET_Trainer_Trainee.SIP
     ///
     /// \brief Config::loadDefaults
     ///
-    void Config::loadDefaults(QString* _sipServer, int* _sipPort,
-                              QString* _sipDomain, int* _port,
-                              QString* _sipAccount, int* _logLevel,
-                              int* _sipRetry, int* _sipTimeOut,
-                              QString* _ecaServer, int* _ecaPort)
+  private  void loadDefaults(String _sipServer, int _sipPort,
+                              String _sipDomain, int _port,
+                              String _sipAccount, int _logLevel,
+                              int _sipRetry, int _sipTimeOut,
+                              String _ecaServer, int _ecaPort)
     {
 
         *_sipServer = "10.0.1.101";
@@ -129,9 +127,8 @@ namespace UNET_Trainer_Trainee.SIP
     //!
     //! \brief Config::save
     //!
-    void Config::save()
+  private  void save()
     {
-
         // Create JSON object from current configuration
         QJsonObject object;
 

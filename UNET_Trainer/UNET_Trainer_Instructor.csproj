@@ -131,6 +131,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="usercontrolConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="usercontrolConfig.Designer.cs">
+      <DependentUpon>usercontrolConfig.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmAudio.resx">
       <DependentUpon>FrmAudio.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +168,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="usercontrolConfig.resx">
+      <DependentUpon>usercontrolConfig.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
