@@ -8,21 +8,14 @@ namespace UNET_Trainer_Trainee.SIP
 {
     public class SipAccount
     {
-        std::vector<PJSUA2.Call*> calls;
-
-
-       public void removeCall(PJSUA2.Call _call);
-       public virtual void onRegState(PJSUA2.OnRegStateParam _prm);
-       public virtual void onIncomingCall(PJSUA2.OnIncomingCallParam _iprm);
-       public virtual void onInstantMessage(OnInstantMessageParam _prm);
+        std::vector<PJSUA2.Call> calls;
 
         signals:
         void sendNewCallState(int state);
         void sendNewRegState(int state);
         void sendNewIM(QString IM);
-
-        public slots:  void newCallState(int state);
-        /*!
+        public slots:  
+         /*!
  * \brief SipAccount::removeCall Removes the selected call
  * \param call
  */
@@ -47,16 +40,14 @@ namespace UNET_Trainer_Trainee.SIP
        public void onRegState(PJSUA2.OnRegStateParam _prm)
         {
             PJSUA2.AccountInfo ai = getInfo();
-           //todo std::cout << (ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=")
-                  << _prm.code << std::endl;
+           //todo std::cout << (ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=") << _prm.code << std::endl;
 
             switch (_prm.code)
             {
-                case PJSIP_SC_OK:
+                case PJSUA2.pjsip_status_code.PJSIP_SC_OK:
 
                     break;
-                case PJSIP_SC_REQUEST_TIMEOUT:
-
+                case PJSUA2.pjsip_status_code.PJSIP_SC_REQUEST_TIMEOUT:
                     break;
                 default:
                     break;
@@ -74,18 +65,17 @@ namespace UNET_Trainer_Trainee.SIP
         {
 
             SIPCall call = new SIPCall(this, _prm.callId);
-            CallInfo ci = call->getInfo();
-            CallOpParam prm;
+            PJSUA2.CallInfo ci = call.getInfo();
+            PJSUA2.CallOpParam prm;
 
-            std::cout << "*** Incoming Call: " << ci.remoteUri << " ["
-                      << ci.stateText << "]" << std::endl;
+        //todo    std::cout << "*** Incoming Call: " << ci.remoteUri << " [" << ci.stateText << "]" << std::endl;
 
             // Store this call
             calls.push_back(call);
-            _prm.statusCode = (pjsip_status_code)200;
+            _prm.statusCode = (PJSUA2.pjsip_status_code)200;
 
             // Answer the call
-            call->answer(prm);
+            call.answer(prm);
         }
 
         /*!
