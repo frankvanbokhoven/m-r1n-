@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UNET_Trainer_Trainee.SIP
 {
-   public class Config
+   public class Config //DEZE CLASS IS IN ZIJN GEHEEL VERVANGEN DOOR APP.CONFIG READ/WRITE
     {
         public Config()
         {

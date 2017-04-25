@@ -12,10 +12,8 @@ namespace UNET_Trainer_Trainee.SIP
      private  Config conf;
      private SipAccount acc;
      private List<SipBuddy> buddies;
-
-      
-     public slots:
-  
+   
+     
      // signals:
      public void forwardNewCallState(int state);
      public void forwardNewRegState(int state);
@@ -56,7 +54,7 @@ namespace UNET_Trainer_Trainee.SIP
         // Init library
         try
         {
-            PJSUA2.EpConfig ep_cfg;
+            PJSUA2.EpConfig ep_cfg = new PJSUA2.EpConfig();//hier is de new erbijgezet
             ep_cfg.logConfig.level = conf.getLogLevel(); // Default = 4
             ep.libInit(ep_cfg);
         }
@@ -68,7 +66,7 @@ namespace UNET_Trainer_Trainee.SIP
         // Create transport
         try
         {
-            PJSUA2.TransportConfig tcfg;
+            PJSUA2.TransportConfig tcfg = new PJSUA2.TransportConfig();//frank: hier is de new erbij gezet
             tcfg.port = conf.getPort();
             ep.transportCreate(PJSUA2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
         }
@@ -79,7 +77,7 @@ namespace UNET_Trainer_Trainee.SIP
         // Start library
         try
         {
-            ep->libStart();
+            ep.libStart();
         }
         catch (Exception ex) {
          //todo   std::cout << "Startup error: " << err.info() << std::endl;
@@ -108,24 +106,24 @@ namespace UNET_Trainer_Trainee.SIP
 
         // Create SIP account
         //std::auto_ptr<UAAccount> acc(new UAAccount);
-        acc = new SipAccount;
+        acc = new SipAccount();
         acc.create(acc_cfg);
 
         // Create & set presence
         setPresence(acc);
 
-        // Create buddies
-        PJSUA2.BuddyConfig pCfg;
-        PJSUA2.BuddyConfig sCfg;
+            // Create buddies
+            PJSUA2.BuddyConfig pCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
+            PJSUA2.BuddyConfig sCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
         SipBuddy platformBuddy = new SipBuddy("Platform", conf.getSipDomain(), acc);
         SipBuddy serverBuddy = new SipBuddy("Server", conf.getSipDomain(), acc);
 
-        pCfg.uri = "sip:" + platformBuddy.getName().toStdString() + "@" + conf.getSipDomain().toStdString();
-        sCfg.uri = "sip:" + serverBuddy.getName().toStdString() + "@" + conf.getSipDomain().toStdString();
+        pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
+        sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
 
         try
         {
-            platformBuddy.create(*acc, pCfg);
+            platformBuddy.create(acc, pCfg);
             platformBuddy.subscribePresence(true);
 
             serverBuddy.create(*acc, sCfg);
@@ -147,7 +145,7 @@ namespace UNET_Trainer_Trainee.SIP
         /*!
          * \brief UserAgent::UserAgentStop
          */
-      public  void UserAgentStop()
+      public void UserAgentStop()
     {
 
           //todo  std::cout << "Stopping endpoint" << std::endl;
@@ -217,7 +215,7 @@ namespace UNET_Trainer_Trainee.SIP
 
                 for (uint i = 0; i < civ.size(); i++)
                 {
-                    PJSUA2.CodecInfo* ci = civ.at(i);
+                    PJSUA2.CodecInfo ci = civ.at(i);
                  //todo   std::cout << "ID: " << ci->codecId << "\tPriority: " << (uint)ci->priority << "\tDesc: " << ci->desc << std::endl;
                 }
 
@@ -332,7 +330,7 @@ namespace UNET_Trainer_Trainee.SIP
              public void receiveIMRequest(String destination, String message) {
 
                     // Find buddy matching destination
-                    for (int i = 0; i < buddies.length(); i++)
+                    for (int i = 0; i < buddies.Count -1; i++)
                     {
 
                         if (buddies.at(i)->getName().compare(destination, Qt::CaseInsensitive) == 0)

@@ -10,16 +10,15 @@ namespace UNET_Trainer_Trainee.SIP
     public class SIPCall
     {
         private SipAccount UAacc;
+        public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
-        public void SipCall(Account acc, int callID = PJSUA_INVALID_ID) : Call(acc, callID)
+        public  PJSUA2.Call(acc, callID) SipCall(PJSUA2.Account acc, int callID = PJSUA_INVALID_ID) 
         {
-            UAacc = (SipAccount*)&acc;
+            UAacc = (SipAccount)acc;
             // connect(this,SIGNAL(sendCallState(int)),UAacc,SLOT(newCallState(int)));
         }
 
-        virtual void onCallState(OnCallStateParam &prm);
-
-
+  
         private void sendCallState(int state)
         {
             //todo!

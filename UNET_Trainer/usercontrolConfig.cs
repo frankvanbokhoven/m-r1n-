@@ -22,19 +22,19 @@ namespace UNET_Trainer
         {
             try
             {
-                cbxTraineeID.Text = ConfigurationManager.AppSettings("TraineeID").ToString();
-                txtSIPServer.Text = ConfigurationManager.AppSettings("SIPServer").ToString();
-                txtSIPport.Text = ConfigurationManager.AppSettings("SIPPort").ToString();
-                txtSIPdomain.Text = ConfigurationManager.AppSettings("SIPDomain").ToString();
-                txtPort.Text = ConfigurationManager.AppSettings("Port").ToString();
-                txtSIPaccount.Text = ConfigurationManager.AppSettings("SIPAccount").ToString();
-                txtLogLevel.Text = ConfigurationManager.AppSettings("LogLevel").ToString();
-                txtSIPretry.Text = ConfigurationManager.AppSettings("SIPRetry").ToString();
-                txtSIPtimeout.Text = ConfigurationManager.AppSettings("SIPTimeout").ToString();
-                txtMaxVoiceVolume.Text = ConfigurationManager.AppSettings("MaxVoiceVolume").ToString();
-                txtMinVoiceVolume.Text = ConfigurationManager.AppSettings("MinVoiceVolume").ToString();
-                txtVoiceVolumeSweep.Text = ConfigurationManager.AppSettings("VoiceVolumeSweep").ToString();
-                txtSystemUserName.Text = ConfigurationManager.AppSettings("SystemUserName").ToString();
+                cbxTraineeID.Text = ConfigurationManager.AppSettings["TraineeID"].ToString();
+                txtSIPServer.Text = ConfigurationManager.AppSettings["SIPServer"].ToString();
+                txtSIPport.Text = ConfigurationManager.AppSettings["SIPPort"].ToString();
+                txtSIPdomain.Text = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+                txtPort.Text = ConfigurationManager.AppSettings["Port"].ToString();
+                txtSIPaccount.Text = ConfigurationManager.AppSettings["SIPAccount"].ToString();
+                txtLogLevel.Text = ConfigurationManager.AppSettings["LogLevel"].ToString();
+                txtSIPretry.Text = ConfigurationManager.AppSettings["SIPRetry"].ToString();
+                txtSIPtimeout.Text = ConfigurationManager.AppSettings["SIPTimeout"].ToString();
+                txtMaxVoiceVolume.Text = ConfigurationManager.AppSettings["MaxVoiceVolume"].ToString();
+                txtMinVoiceVolume.Text = ConfigurationManager.AppSettings["MinVoiceVolume"].ToString();
+                txtVoiceVolumeSweep.Text = ConfigurationManager.AppSettings["VoiceVolumeSweep"].ToString();
+                txtSystemUserName.Text = ConfigurationManager.AppSettings["SystemUserName"].ToString();
             }
             catch (Exception ex)
             {
