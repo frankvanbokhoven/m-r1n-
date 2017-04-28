@@ -10,12 +10,18 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
 using log4net;
+using PJSUA2;
 
 namespace UNET_Trainer_Trainee
 {
     public partial class FrmUNETMain : FrmUNETbase
     {
-        //log4net
+        //pjsua2
+        public Endpoint endpoint;
+        public EpConfig ep_cfg;
+
+              
+        //log4net 
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private Boolean Muted = false;
@@ -39,6 +45,28 @@ namespace UNET_Trainer_Trainee
         public FrmUNETMain()
         {
             InitializeComponent();
+            endpoint = new Endpoint();
+            endpoint.libCreate();
+            //Initialize endpoint
+            endpoint.libInit(ep_cfg);
+            //Create sip transport and errorhandling
+            TransportConfig tcfg = new TransportConfig();
+            tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+            try
+            {
+                endpoint.transportCreate(PJSUA2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+            }
+            catch (Exception ex)
+            {
+                //todo  MessageBox.Show(ex.Message);
+            }
+
+            //Configure an AccountConfig
+            AccountConfig acfg = new AccountConfig();
+            acfg.idUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipAccount"]);
+            acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipServer"]);
+            AuthCredInfo cred = new AuthCredInfo("digest", "*", "test", 0, "secret");
+            acfg.sipConfig.authCreds.Add(cred); //todo: in het voorbeeld staat hier: push_back, maar die is er niet!       
         }
 
         /// <summary>
@@ -166,6 +194,13 @@ namespace UNET_Trainer_Trainee
         {
             FrmAudio frm = new FrmAudio();
             frm.Show();
+        }
+
+        private void FrmUNETMain_Shown(object sender, EventArgs e)
+        {
+
+            SIP.SipAccount sipaccount = new SIP.SipAccount();
+           // sipaccoun
         }
     }
 }

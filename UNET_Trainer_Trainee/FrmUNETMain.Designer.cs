@@ -772,6 +772,7 @@
             this.Name = "FrmUNETMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
+            this.Shown += new System.EventHandler(this.FrmUNETMain_Shown);
             this.pnlPointToPoint.ResumeLayout(false);
             this.pnlPointToPoint.PerformLayout();
             this.pnlRadios.ResumeLayout(false);

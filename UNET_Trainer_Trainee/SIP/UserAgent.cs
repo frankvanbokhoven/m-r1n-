@@ -15,9 +15,9 @@ namespace UNET_Trainer_Trainee.SIP
    
      
      // signals:
-     public void forwardNewCallState(int state);
-     public void forwardNewRegState(int state);
-     public void forwardNewIM(QString IM);
+  //   public void forwardNewCallState(int state);
+  //   public void forwardNewRegState(int state);
+  //   public void forwardNewIM(QString IM);
         /*!
  * \brief UserAgent::UserAgent
  * \param config
@@ -36,111 +36,111 @@ namespace UNET_Trainer_Trainee.SIP
       //hoeft niet in c#  delete ep;
     }
 
-   public void UserAgentStart()
-    {
+   //public void UserAgentStart()
+   // {
 
-     //todo   std::cout << "Starting User Agent" << std::endl;
+   //  //todo   std::cout << "Starting User Agent" << std::endl;
 
-        // Create endpoint
-        try
-        {
-          PJSUA2.Endpoint  ep = new PJSUA2.Endpoint();
-            ep.libCreate();
-        }
-        catch (Exception ex) {
-         //todo   std::cout << "Exception " << err.info() << std::endl;
-        }
+   //     // Create endpoint
+   //     try
+   //     {
+   //       PJSUA2.Endpoint  ep = new PJSUA2.Endpoint();
+   //         ep.libCreate();
+   //     }
+   //     catch (Exception ex) {
+   //      //todo   std::cout << "Exception " << err.info() << std::endl;
+   //     }
 
-        // Init library
-        try
-        {
-            PJSUA2.EpConfig ep_cfg = new PJSUA2.EpConfig();//hier is de new erbijgezet
-            ep_cfg.logConfig.level = conf.getLogLevel(); // Default = 4
-            ep.libInit(ep_cfg);
-        }
-        catch (Exception ex)
-        {
-         //todo   std::cout << "Initialization error: " << err.info() << std::endl;
-        }
+   //     // Init library
+   //     try
+   //     {
+   //         PJSUA2.EpConfig ep_cfg = new PJSUA2.EpConfig();//hier is de new erbijgezet
+   //         ep_cfg.logConfig.level = conf.getLogLevel(); // Default = 4
+   //         ep.libInit(ep_cfg);
+   //     }
+   //     catch (Exception ex)
+   //     {
+   //      //todo   std::cout << "Initialization error: " << err.info() << std::endl;
+   //     }
 
-        // Create transport
-        try
-        {
-            PJSUA2.TransportConfig tcfg = new PJSUA2.TransportConfig();//frank: hier is de new erbij gezet
-            tcfg.port = conf.getPort();
-            ep.transportCreate(PJSUA2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
-        }
-        catch (Exception ex) {
-          //todo  std::cout << "Transport creation error: " << err.info() << std::endl;
-        }
+   //     // Create transport
+   //     try
+   //     {
+   //         PJSUA2.TransportConfig tcfg = new PJSUA2.TransportConfig();//frank: hier is de new erbij gezet
+   //         tcfg.port = conf.getPort();
+   //         ep.transportCreate(PJSUA2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+   //     }
+   //     catch (Exception ex) {
+   //       //todo  std::cout << "Transport creation error: " << err.info() << std::endl;
+   //     }
 
-        // Start library
-        try
-        {
-            ep.libStart();
-        }
-        catch (Exception ex) {
-         //todo   std::cout << "Startup error: " << err.info() << std::endl;
-        }
+   //     // Start library
+   //     try
+   //     {
+   //         ep.libStart();
+   //     }
+   //     catch (Exception ex) {
+   //      //todo   std::cout << "Startup error: " << err.info() << std::endl;
+   //     }
 
-        // Configure sound devices
-        configureSoundDevices();
+   //     // Configure sound devices
+   //     configureSoundDevices();
 
-        // Create account configuration
-        PJSUA2.AccountConfig acc_cfg;
-        string accountName = "sip:" + conf.getSipAccount().toStdString() + "@" + conf.getSipDomain().toStdString();
-        string sipServer = "sip:" + conf.getSipServer().toStdString();
-        acc_cfg.idUri = accountName;
+   //     // Create account configuration
+   //     PJSUA2.AccountConfig acc_cfg;
+   //     string accountName = "sip:" + conf.getSipAccount().toStdString() + "@" + conf.getSipDomain().toStdString();
+   //     string sipServer = "sip:" + conf.getSipServer().toStdString();
+   //     acc_cfg.idUri = accountName;
 
-        acc_cfg.regConfig.registrarUri = sipServer;
-        acc_cfg.regConfig.timeoutSec = conf.getSipTimeOut();
-        acc_cfg.regConfig.retryIntervalSec = conf.getSipRetry();
+   //     acc_cfg.regConfig.registrarUri = sipServer;
+   //     acc_cfg.regConfig.timeoutSec = conf.getSipTimeOut();
+   //     acc_cfg.regConfig.retryIntervalSec = conf.getSipRetry();
 
-        // Set server proxy
-        PJSUA2.StringVector proxy = acc_cfg.sipConfig.proxies;
-        proxy.push_back(sipServer + ";transport=udp");
+   //     // Set server proxy
+   //     PJSUA2.StringVector proxy = acc_cfg.sipConfig.proxies;
+   //     proxy.push_back(sipServer + ";transport=udp");
 
-        acc_cfg.sipConfig.proxies = proxy;
-        acc_cfg.sipConfig.authCreds.push_back(AuthCredInfo("digest", conf.getSipServer().toStdString(),
-                                                            conf.getSipAccount().toStdString(), 0, "password"));
+   //     acc_cfg.sipConfig.proxies = proxy;
+   //     acc_cfg.sipConfig.authCreds.push_back(AuthCredInfo("digest", conf.getSipServer().toStdString(),
+   //                                                         conf.getSipAccount().toStdString(), 0, "password"));
 
-        // Create SIP account
-        //std::auto_ptr<UAAccount> acc(new UAAccount);
-        acc = new SipAccount();
-        acc.create(acc_cfg);
+   //     // Create SIP account
+   //     //std::auto_ptr<UAAccount> acc(new UAAccount);
+   //     acc = new SipAccount();
+   //     acc.create(acc_cfg);
 
-        // Create & set presence
-        setPresence(acc);
+   //     // Create & set presence
+   //     setPresence(acc);
 
-            // Create buddies
-            PJSUA2.BuddyConfig pCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
-            PJSUA2.BuddyConfig sCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
-        SipBuddy platformBuddy = new SipBuddy("Platform", conf.getSipDomain(), acc);
-        SipBuddy serverBuddy = new SipBuddy("Server", conf.getSipDomain(), acc);
+   //         // Create buddies
+   //         PJSUA2.BuddyConfig pCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
+   //         PJSUA2.BuddyConfig sCfg = new PJSUA2.BuddyConfig();//hier is de new erbijgezet
+   //     SipBuddy platformBuddy = new SipBuddy("Platform", conf.getSipDomain(), acc);
+   //     SipBuddy serverBuddy = new SipBuddy("Server", conf.getSipDomain(), acc);
 
-        pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
-        sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
+   //     pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
+   //     sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + conf.getSipDomain().toStdString();
 
-        try
-        {
-            platformBuddy.create(acc, pCfg);
-            platformBuddy.subscribePresence(true);
+   //     try
+   //     {
+   //         platformBuddy.create(acc, pCfg);
+   //         platformBuddy.subscribePresence(true);
 
-            serverBuddy.create(*acc, sCfg);
-            serverBuddy.subscribePresence(true);
+   //         serverBuddy.create(*acc, sCfg);
+   //         serverBuddy.subscribePresence(true);
 
-            buddies.append(platformBuddy);
-            buddies.append(serverBuddy);
-        }
-        catch (Exception ex) {
-         //todo   std::cout << err.info() << std::endl;
-        }
+   //         buddies.append(platformBuddy);
+   //         buddies.append(serverBuddy);
+   //     }
+   //     catch (Exception ex) {
+   //      //todo   std::cout << err.info() << std::endl;
+   //     }
 
-        // Connect signals & slots
-        connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-        connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-        connect(acc, SIGNAL(sendNewIM(QString)), this, SLOT(receiveNewIM(QString)));
-        }
+   //     // Connect signals & slots
+   //     connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+   //     connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+   //     connect(acc, SIGNAL(sendNewIM(QString)), this, SLOT(receiveNewIM(QString)));
+   //     }
 
         /*!
          * \brief UserAgent::UserAgentStop
@@ -155,13 +155,13 @@ namespace UNET_Trainer_Trainee.SIP
                 ep.libRegisterThread("program thread");
 
             // Disconnect account
-            acc.disconnect();
+         //   acc.disconnect();
 
             // Stop endpoint
             ep.libDestroy();
 
             // Send new state
-            emit forwardNewRegState(-2);
+       //     emit forwardNewRegState(-2);
         }
 
         /*!
@@ -181,7 +181,7 @@ namespace UNET_Trainer_Trainee.SIP
                 //    ps.activity = PJRPID_ACTIVITY_BUSY;
                 //    ps.note = "On the phone";
 
-                acc.setOnlineStatus(ps);
+             //   acc.setOnlineStatus(ps);
             }
             catch (Exception ex)
             {
@@ -213,11 +213,11 @@ namespace UNET_Trainer_Trainee.SIP
 
              //todo:   std::cout << "<--- Start codec list --->" << std::endl;
 
-                for (uint i = 0; i < civ.size(); i++)
-                {
-                    PJSUA2.CodecInfo ci = civ.at(i);
+              //  for (uint i = 0; i < civ.size(); i++)
+               // {
+               //     PJSUA2.CodecInfo ci = civ.at(i);
                  //todo   std::cout << "ID: " << ci->codecId << "\tPriority: " << (uint)ci->priority << "\tDesc: " << ci->desc << std::endl;
-                }
+               // }
 
              //todo   std::cout << "<--- End codec list --->" << std::endl;
 
@@ -300,49 +300,49 @@ namespace UNET_Trainer_Trainee.SIP
                  * \brief UserAgent::receiveNewCallState
                  * \param state
                  */
-              public  void receiveNewCallState(int state) {
+             // public  void receiveNewCallState(int state) {
 
-                    emit forwardNewCallState(state);
-                }
+             //       emit forwardNewCallState(state);
+             //   }
 
-                /*!
-                 * \brief UserAgent::receiveNewRegState
-                 * \param state
-                 */
-              public  void receiveNewRegState(int state) {
+             //   /*!
+             //    * \brief UserAgent::receiveNewRegState
+             //    * \param state
+             //    */
+             // public  void receiveNewRegState(int state) {
 
-                    emit forwardNewRegState(state);
-                }
+             //       emit forwardNewRegState(state);
+             //   }
 
-                /*!
-                 * \brief UserAgent::receiveNewIM
-                 * \param IM
-                 */
-              public  void receiveNewIM(String IM) {
-                    emit forwardNewIM(IM);
-                }
+             //   /*!
+             //    * \brief UserAgent::receiveNewIM
+             //    * \param IM
+             //    */
+             // public  void receiveNewIM(String IM) {
+             //       emit forwardNewIM(IM);
+             //   }
 
-                /*!
-                 * \brief UserAgent::receiveIMRequest
-                 * \param destination
-                 * \param message
-                 */
-             public void receiveIMRequest(String destination, String message) {
+             //   /*!
+             //    * \brief UserAgent::receiveIMRequest
+             //    * \param destination
+             //    * \param message
+             //    */
+             //public void receiveIMRequest(String destination, String message) {
 
-                    // Find buddy matching destination
-                    for (int i = 0; i < buddies.Count -1; i++)
-                    {
+             //       // Find buddy matching destination
+             //       for (int i = 0; i < buddies.Count -1; i++)
+             //       {
 
-                        if (buddies.at(i)->getName().compare(destination, Qt::CaseInsensitive) == 0)
-                        {
+             //           if (buddies.at(i)->getName().compare(destination, Qt::CaseInsensitive) == 0)
+             //           {
 
-                            SendInstantMessageParam prm;
-                            prm.content = message.toStdString();
-                            buddies.at(i)->sendInstantMessage(prm);
-                            break;
-                        }
-                    }
-                }
+             //               SendInstantMessageParam prm;
+             //               prm.content = message.toStdString();
+             //               buddies.at(i)->sendInstantMessage(prm);
+             //               break;
+             //           }
+             //       }
+             //   }
 
                 /*!
                  * \brief UserAgent::receiveInputMute
@@ -361,4 +361,4 @@ namespace UNET_Trainer_Trainee.SIP
 
                 }
             }
-}
+

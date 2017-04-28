@@ -31,7 +31,7 @@ namespace UNET_Trainer_Trainee.SIP
         public void onBuddyState()
         {
 
-            PJSUA2.BuddyInfo bi = getInfo();
+           // PJSUA2.BuddyInfo bi = getInfo();
             //todo: message   std::cout << "Buddy " << bi.uri << " is " << bi.presStatus.statusText << std::endl;
         }
 
