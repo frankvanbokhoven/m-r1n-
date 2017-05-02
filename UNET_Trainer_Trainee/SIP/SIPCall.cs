@@ -3,100 +3,105 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using pjsua2;
 
 
 namespace UNET_Trainer_Trainee.SIP
 {
     public class SIPCall
     {
+        //log4net
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private SipAccount UAacc;
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
-        //public  PJSUA2.Call(acc, callID) SipCall(PJSUA2.Account acc, int callID = PJSUA_INVALID_ID) 
-        //{
-        //    UAacc = (SipAccount)acc;
-        //    // connect(this,SIGNAL(sendCallState(int)),UAacc,SLOT(newCallState(int)));
-        //}
+        public void pjsua2.Call(acc, callID) 
+        {
+            SipCall(PJSUA2.Account acc, int callID = PJSUA_INVALID_ID);
+            UAacc = (SipAccount)acc;
+             connect(this,SIGNAL(sendCallState(int)),UAacc,SLOT(newCallState(int)));
+        }
 
-  
-        //private void sendCallState(int state)
-        //{
-        //    //todo!
-        //}
-  
-        ///*!
-        // * \brief SipCall::onCallState
-        // * \param prm
-        // */
-        //void onCallState(PJSUA2.OnCallStateParam _oncallstateparam)
-        //{
 
-        //    // Print the new call state
-        //    PJSUA2.CallInfo ci = PJSUA2.Call.getInfo();
-        //    //  std::cout << "*** Call: " << ci.remoteUri << " [" << ci.stateText << "]" << std::endl;
+        private void sendCallState(int state)
+        {
+            //todo!
+        }
 
-        //    // Execute commands according to the new state
-        //    switch (ci.state)
-        //    {
-        //        case PJSUA2.pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
+        /*!
+         * \brief SipCall::onCallState
+         * \param prm
+         */
+        void onCallState(pjsua2.OnCallStateParam _oncallstateparam)
+        {
 
-        //            // Remove the call from the account
-        //            UAacc.removeCall(this);
+            // Print the new call state
+            pjsua2.CallInfo ci = Call.getInfo();
+            log.Info("*** Call: " +  ci.remoteUri + " [" + ci.stateText + "]" );
 
-        //            // Show we are now disconnected
-        //            UAacc.newCallState(0);
+            // Execute commands according to the new state
+            switch (ci.state)
+            {
+                case pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
 
-        //            // Delete the call object
-        //            delete this;
+                    // Remove the call from the account
+                    UAacc.removeCall(this);
 
-        //            break;
-        //        case PJSUA2.pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
-        //            {
+                    // Show we are now disconnected
+                    UAacc.newCallState(0);
 
-        //                PJSUA2.AudioMedia aud_med = null;
+                    // Delete the call object
+                    delete this;
 
-        //                // Find Audio in call
-        //                for (int i = 0; i < ci.media.size(); i++)
-        //                {
-        //                    if (ci.media[i].type == PJSUA2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
-        //                    {
-        //                        aud_med = (PJSUA2.AudioMedia)this.getMedia(i);
-        //                        PJSUA2.StreamInfo si = this.getStreamInfo(i);
-        //                        //todo   std::cout << "*** Media codec: " << si.codecName << std::endl;
-        //                        break;
-        //                    }
-        //                }
+                    break;
+                case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
+                    {
 
-        //                if (aud_med != null)
-        //                {
-        //                    // Get playback & capture devices
-        //                    PJSUA2.AudioMedia & play_med = PJSUA2.Endpoint.instance().audDevManager().getPlaybackDevMedia();
-        //                    PJSUA2.AudioMedia & cap_med = PJSUA2.Endpoint.instance().audDevManager().getCaptureDevMedia();
+                        AudioMedia aud_med = null;
 
-        //                    // Start audio transmissions
-        //                    cap_med.startTransmit(aud_med);
-        //                    aud_med->startTransmit(play_med);
-        //                }
-        //                else {
-        //                    //todo:   std::cout << std::endl << "******\t NO AUDIO FOUND IN CALL \t******" << std::endl << std::endl;
-        //                }
+                        // Find Audio in call
+                        for (int i = 0; i < ci.media.size(); i++)
+                        {
+                            if (ci.media[i].type == PJSUA2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                            {
+                                aud_med = (PJSUA2.AudioMedia)this.getMedia(i);
+                                StreamInfo si = this.getStreamInfo(i);
+                                log.Info("*** Media codec: " + si.codecName);
+                                break;
+                            }
+                        }
 
-        //                // Show we are connected
-        //                UAacc.newCallState(1);
-        //                break;
-        //            }
-        //        //      case PJSIP_INV_STATE_NULL:
-        //        //        break;
-        //        //      case PJSIP_INV_STATE_EARLY:
-        //        //        break;
-        //        //      case PJSIP_INV_STATE_INCOMING:
-        //        //        break;
-        //        //      case PJSIP_INV_STATE_CALLING:
-        //        //        break;
-        //        default:
-        //        break;
-        //    }
+                        if (aud_med != null)
+                        {
+                            // Get playback & capture devices
+                            AudioMedia & play_med = PJSUA2.Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                            AudioMedia & cap_med = PJSUA2.Endpoint.instance().audDevManager().getCaptureDevMedia();
 
-        //}
+                            // Start audio transmissions
+                            cap_med.startTransmit(aud_med);
+                            aud_med->startTransmit(play_med);
+                        }
+                        else {
+                            log.Info("******\t NO AUDIO FOUND IN CALL \t******");
+                        }
+
+                        // Show we are connected
+                        UAacc.newCallState(1);
+                        break;
+                    }
+                case pjsip_inv_state.PJSIP_INV_STATE_NULL:
+                    break;
+                case pjsip_inv_state.PJSIP_INV_STATE_EARLY:
+                    break;
+                case pjsip_inv_state.PJSIP_INV_STATE_INCOMING:
+                    break;
+                case pjsip_inv_state.PJSIP_INV_STATE_CALLING:
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 }

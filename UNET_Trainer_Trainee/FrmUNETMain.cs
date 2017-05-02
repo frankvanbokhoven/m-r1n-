@@ -16,14 +16,13 @@ namespace UNET_Trainer_Trainee
 {
     public partial class FrmUNETMain : FrmUNETbase
     {
+        //log4net
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //pjsua2
         public Endpoint endpoint;
         public EpConfig ep_cfg;
-
               
-        //log4net 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
@@ -59,7 +58,7 @@ namespace UNET_Trainer_Trainee
             }
             catch (Exception ex)
             {
-                //todo  MessageBox.Show(ex.Message);
+                 MessageBox.Show(ex.Message);
             }
 
             //Configure an AccountConfig
@@ -121,12 +120,18 @@ namespace UNET_Trainer_Trainee
 
                     //enable the Exercise buttons
                  var currentInfo = service.GetExerciseInfo(TraineeID);
-                    lblPlatform.Text = currentInfo.Platform;
-                    lblConsole.Text = currentInfo.ConsoleRole;
-                    lblExerciseMode.Text = currentInfo.ExerciseMode;
-                    lblExerciseName.Text = currentInfo.ExerciseName;
+                    if (currentInfo != null)
+                    {
+                        lblPlatform.Text = currentInfo.Platform;
+                        lblConsole.Text = currentInfo.ConsoleRole;
+                        lblExerciseMode.Text = currentInfo.ExerciseMode;
+                        lblExerciseName.Text = currentInfo.ExerciseName;
 
-
+                    }
+                    else
+                    {
+                        Console.Write("The service.getexerciseinfo object is empty!!!");
+                    }
                
                     service.Close();
                                       
