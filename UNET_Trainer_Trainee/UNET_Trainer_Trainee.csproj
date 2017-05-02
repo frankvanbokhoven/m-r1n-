@@ -41,6 +41,10 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="pjsipDll, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\pjsipDll.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -188,9 +192,9 @@
     <Content Include="MarineGrey.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PJSUA2\PJProject-2.6-Win32.CSharp.csproj">
-      <Project>{61b3e232-24ef-4e15-9ed7-4102b1c431bc}</Project>
-      <Name>PJProject-2.6-Win32.CSharp</Name>
+    <ProjectReference Include="..\pjsua2_net\pjsua2_net.csproj">
+      <Project>{ca2466ca-8339-4162-a68b-6c6ed21e8d53}</Project>
+      <Name>pjsua2_net</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

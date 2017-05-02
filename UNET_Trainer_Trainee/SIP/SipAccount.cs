@@ -1,4 +1,4 @@
-﻿using PJSUA2;
+﻿using pjsua2;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UNET_Trainer_Trainee.SIP
 {
-    public class SipAccount : PJSUA2.Account
+    public class SipAccount : pjsua2.Account
     {
    
 
@@ -17,7 +17,7 @@ namespace UNET_Trainer_Trainee.SIP
               
         }
  //       //  std::vector<PJSUA2.Call> calls;
- //       public List<PJSUA2.Call> calls;
+ //       public List<pjsua2.Call> calls;
  //       // signals:
  //       public void sendNewCallState(int state)
  //       {

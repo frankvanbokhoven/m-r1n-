@@ -10,7 +10,7 @@ using System.Windows.Forms.Design;
 using Sipek.Common;
 using Sipek.Common.CallControl;
 using WaveLib.AudioMixer;
-using PJSUA2;
+
 
 
 

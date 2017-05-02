@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using pjsua2;
 
 namespace UNET_Trainer_Trainee.SIP
 {
    public class UserAgent
     {
-     private PJSUA2.Endpoint ep;
+     private pjsua2.Endpoint ep;
      private  Config conf;
      private SipAccount acc;
      private List<SipBuddy> buddies;
@@ -151,8 +152,9 @@ namespace UNET_Trainer_Trainee.SIP
           //todo  std::cout << "Stopping endpoint" << std::endl;
 
             // Register thread if necessary
-            if (!ep.libIsThreadRegistered())
-                ep.libRegisterThread("program thread");
+        //todo:
+            //   if (!ep.libIsThreadRegistered())
+         //       ep.libRegisterThread("program thread");
 
             // Disconnect account
          //   acc.disconnect();
@@ -169,12 +171,12 @@ namespace UNET_Trainer_Trainee.SIP
          * \param acc
          * \param status
          */
-        public void setPresence(SipAccount acc, PJSUA2.pjsua_buddy_status status) {
+        public void setPresence(SipAccount acc, pjsua2.pjsua_buddy_status status) {
 
             try
             {
 
-                PJSUA2.PresenceStatus ps = new PJSUA2.PresenceStatus();
+                pjsua2.PresenceStatus ps = new pjsua2.PresenceStatus();
                 ps.status = status;
 
                 // Optional, set the activity and some note
@@ -209,7 +211,7 @@ namespace UNET_Trainer_Trainee.SIP
                 // Disable GSM codec
                 ep.codecSetPriority("GSM/8000/1", 0);
 
-                PJSUA2.CodecInfoVector civ = ep.codecEnum();
+                pjsua2.CodecInfoVector civ = ep.codecEnum();
 
              //todo:   std::cout << "<--- Start codec list --->" << std::endl;
 

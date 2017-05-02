@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
 using log4net;
-using PJSUA2;
+using pjsua2;
 
 namespace UNET_Trainer_Trainee
 {
@@ -47,6 +47,7 @@ namespace UNET_Trainer_Trainee
             InitializeComponent();
             endpoint = new Endpoint();
             endpoint.libCreate();
+            ep_cfg = new EpConfig();
             //Initialize endpoint
             endpoint.libInit(ep_cfg);
             //Create sip transport and errorhandling
@@ -54,7 +55,7 @@ namespace UNET_Trainer_Trainee
             tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
             try
             {
-                endpoint.transportCreate(PJSUA2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+                endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
             }
             catch (Exception ex)
             {

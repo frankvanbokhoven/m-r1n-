@@ -8,9 +8,11 @@
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
 
+using System;
+
 namespace PJSUA2
 {
-    class pjsua2PINVOKE
+    class pjsua2PINVOKE // pjsipdllPINVOKE
     {
 
         protected class SWIGExceptionHelper
@@ -49,11 +51,12 @@ namespace PJSUA2
                                         ExceptionDelegate overflowDelegate,
                                         ExceptionDelegate systemExceptionDelegate);
 
-            [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_pjsipDll.dll")]
-            public static extern void SWIGRegisterExceptionCallbacksArgument_pjsipDll.dll(
-                                        ExceptionArgumentDelegate argumentDelegate,
-                                        ExceptionArgumentDelegate argumentNullDelegate,
-                                        ExceptionArgumentDelegate argumentOutOfRangeDelegate);
+          //frank: commentaar gemaakt
+          //  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "SWIGRegisterExceptionArgumentCallbacks_pjsipDll.dll")]
+          //  public static extern void SWIGRegisterExceptionCallbacksArgument_pjsua2.dll(
+          //                              ExceptionArgumentDelegate argumentDelegate,
+          //                              ExceptionArgumentDelegate argumentNullDelegate,
+          //                              ExceptionArgumentDelegate argumentOutOfRangeDelegate);
 
             static void SetPendingApplicationException(string message)
             {
@@ -119,23 +122,49 @@ namespace PJSUA2
 
             static SWIGExceptionHelper()
             {
-                SWIGRegisterExceptionCallbacks_pjsipDll.dll(
-                                          applicationDelegate,
-                                          arithmeticDelegate,
-                                          divideByZeroDelegate,
-                                          indexOutOfRangeDelegate,
-                                          invalidCastDelegate,
-                                          invalidOperationDelegate,
-                                          ioDelegate,
-                                          nullReferenceDelegate,
-                                          outOfMemoryDelegate,
-                                          overflowDelegate,
-                                          systemDelegate);
 
-                SWIGRegisterExceptionCallbacksArgument_pjsipDll.dll(
-                                          argumentDelegate,
-                                          argumentNullDelegate,
-                                          argumentOutOfRangeDelegate);
+                //todo: terugzetten
+                //SWIGRegisterExceptionCallbacks_pjsipdll(applicationDelegate,
+                //                          arithmeticDelegate,
+                //                          divideByZeroDelegate,
+                //                          indexOutOfRangeDelegate,
+                //                          invalidCastDelegate,
+                //                          invalidOperationDelegate,
+                //                          ioDelegate,
+                //                          nullReferenceDelegate,
+                //                          outOfMemoryDelegate,
+                //                          overflowDelegate,
+                //                          systemDelegate
+                //    );
+
+                //SWIGRegisterExceptionCallbacks_pjsipDll(
+                //                          applicationDelegate,
+                //                          arithmeticDelegate,
+                //                          divideByZeroDelegate,
+                //                          indexOutOfRangeDelegate,
+                //                          invalidCastDelegate,
+                //                          invalidOperationDelegate,
+                //                          ioDelegate,
+                //                          nullReferenceDelegate,
+                //                          outOfMemoryDelegate,
+                //                          overflowDelegate,
+                //                          systemDelegate);
+
+                // todo: terugzetten SWIGRegisterExceptionCallbacksArgument_pjsua2(
+                //       argumentDelegate,
+                //       argumentNullDelegate,
+                //       argumentOutOfRangeDelegate
+                //    );
+
+               // SWIGRegisterExceptionCallbacksArgument_pjsipDll(
+               //                           argumentDelegate,
+               //                           argumentNullDelegate,
+               //                           argumentOutOfRangeDelegate);
+            }
+
+            private static void SWIGRegisterExceptionCallbacksArgument_pjsua2(ExceptionArgumentDelegate argumentDelegate, ExceptionArgumentDelegate argumentNullDelegate, ExceptionArgumentDelegate argumentOutOfRangeDelegate)
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -164,7 +193,7 @@ namespace PJSUA2
                 if (pendingException != null)
                     throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
                 pendingException = e;
-                lock (typeof(pjsipDll.PINVOKE))
+                lock (typeof(pjsua2PINVOKE))
                 {
                     numExceptionsPending++;
                 }
@@ -179,7 +208,7 @@ namespace PJSUA2
                     {
                         e = pendingException;
                         pendingException = null;
-                        lock (typeof(pjsipDll.dllPINVOKE))
+                        lock (typeof(pjsua2PINVOKE))
                         {
                             numExceptionsPending--;
                         }
@@ -190,32 +219,32 @@ namespace PJSUA2
         }
 
 
-        protected class SWIGStringHelper
-        {
+        //protected class SWIGStringHelper
+        //{
 
-            public delegate string SWIGStringDelegate(string message);
-            static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
+        //    public delegate string SWIGStringDelegate(string message);
+        //    static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 
-            [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "SWIGRegisterStringCallback_pjsipDll.dll")]
-            public static extern void SWIGRegisterStringCallback_pjsipDll.dll(SWIGStringDelegate stringDelegate);
+        //    [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "SWIGRegisterStringCallback_pjsipDll")]
+        //    public static extern void SWIGRegisterStringCallback_pjsipDll(SWIGStringDelegate stringDelegate);
 
-            static string CreateString(string cString)
-            {
-                return cString;
-            }
+        //    static string CreateString(string cString)
+        //    {
+        //        return cString;
+        //    }
 
-            static SWIGStringHelper()
-            {
-                SWIGRegisterStringCallback_pjsipDll.dll(stringDelegate);
-            }
-        }
+        //    static SWIGStringHelper()
+        //    {
+        //        SWIGRegisterStringCallback_pjsipDll(stringDelegate);
+        //    }
+        //}
 
-        static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
+       // static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
 
 
-        static pjsipDll.dllPINVOKE()
-        {
-        }
+      //  static pjsipDllPINVOKE()
+      //  {
+      //  }
 
 
         [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "CSharp_pj_qos_params_flags_set")]
@@ -6790,7 +6819,7 @@ namespace PJSUA2
         [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "CSharp_Endpoint_instance")]
         public static extern global::System.IntPtr Endpoint_instance();
 
-        [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "CSharp_new_Endpoint")]
+        [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "PJSUA2.CSharp_new_Endpoint")]
         public static extern global::System.IntPtr new_Endpoint();
 
         [global::System.Runtime.InteropServices.DllImport("pjsipDll.dll", EntryPoint = "CSharp_delete_Endpoint")]
