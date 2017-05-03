@@ -16,11 +16,11 @@ namespace UNET_Trainer_Trainee.SIP
         private SipAccount UAacc;
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
-        public void pjsua2.Call(acc, callID) 
+        public void Call(Account acc, int callID = PJSUA_INVALID_ID)
         {
-            SipCall(PJSUA2.Account acc, int callID = PJSUA_INVALID_ID);
+            //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
-             connect(this,SIGNAL(sendCallState(int)),UAacc,SLOT(newCallState(int)));
+            connect(this, SIGNAL(sendCallState(int)), UAacc, SLOT(newCallState(int)));
         }
 
 
@@ -33,12 +33,12 @@ namespace UNET_Trainer_Trainee.SIP
          * \brief SipCall::onCallState
          * \param prm
          */
-        void onCallState(pjsua2.OnCallStateParam _oncallstateparam)
+     public void onCallState(pjsua2.OnCallStateParam _oncallstateparam)
         {
 
             // Print the new call state
-            pjsua2.CallInfo ci = Call.getInfo();
-            log.Info("*** Call: " +  ci.remoteUri + " [" + ci.stateText + "]" );
+            pjsua2.CallInfo ci =   getInfo();
+            log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Execute commands according to the new state
             switch (ci.state)
@@ -52,7 +52,7 @@ namespace UNET_Trainer_Trainee.SIP
                     UAacc.newCallState(0);
 
                     // Delete the call object
-                    delete this;
+                    GC.Collect();//  delete this;
 
                     break;
                 case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
@@ -61,11 +61,11 @@ namespace UNET_Trainer_Trainee.SIP
                         AudioMedia aud_med = null;
 
                         // Find Audio in call
-                        for (int i = 0; i < ci.media.size(); i++)
+                        for (int i = 0; i < ci.media.Count; i++)
                         {
-                            if (ci.media[i].type == PJSUA2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                            if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
                             {
-                                aud_med = (PJSUA2.AudioMedia)this.getMedia(i);
+                                aud_med = (pjsua2.AudioMedia)this.getMedia(i);
                                 StreamInfo si = this.getStreamInfo(i);
                                 log.Info("*** Media codec: " + si.codecName);
                                 break;
@@ -75,12 +75,12 @@ namespace UNET_Trainer_Trainee.SIP
                         if (aud_med != null)
                         {
                             // Get playback & capture devices
-                            AudioMedia & play_med = PJSUA2.Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                            AudioMedia & cap_med = PJSUA2.Endpoint.instance().audDevManager().getCaptureDevMedia();
+                            AudioMedia & play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                            AudioMedia & cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
                             // Start audio transmissions
                             cap_med.startTransmit(aud_med);
-                            aud_med->startTransmit(play_med);
+                            aud_med.startTransmit(play_med);
                         }
                         else {
                             log.Info("******\t NO AUDIO FOUND IN CALL \t******");

@@ -39,10 +39,11 @@ namespace UNET_Trainer_Trainee.SIP
             Console.Write(string.Format("IM message: {0}", _im));
         }
 
-        /*!
-* \brief SipAccount::removeCall Removes the selected call
-* \param call
-*/
+
+        /// <summary>
+        /// brief SipAccount::removeCall Removes the selected call param call
+        /// </summary>
+        /// <param name="call"></param>
         public void removeCall(pjsua2.Call call)
         {
             foreach (pjsua2.Call callitr in Calls)
@@ -52,16 +53,16 @@ namespace UNET_Trainer_Trainee.SIP
                 callitr.Dispose();
             }
 
-          //  for (vector<PJSUA2.Call>::iterator it = calls.begin(); it != calls.end(); ++it)
-            foreach(Call indcall in Calls)
-                {
-                    CallOpParam cop = new CallOpParam();
-                    cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
-                    indcall.hangup(cop);
-                }
+            //  for (vector<PJSUA2.Call>::iterator it = calls.begin(); it != calls.end(); ++it)
+            foreach (Call indcall in Calls)
+            {
+                CallOpParam cop = new CallOpParam();
+                cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
+                indcall.hangup(cop);
+            }
             {
 
-          
+
             }
         }
 
@@ -101,7 +102,7 @@ namespace UNET_Trainer_Trainee.SIP
             CallInfo ci = call.getInfo();
             CallOpParam prm;
 
-            //todo    std::cout << "*** Incoming Call: " << ci.remoteUri << " [" << ci.stateText << "]" << std::endl;
+           Console.Write("*** Incoming Call: " +  ci.remoteUri + " [" + ci.stateText + "]");
 
             // Store this call
             calls.push_back(call);
