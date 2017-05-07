@@ -60,10 +60,6 @@ namespace UNET_Trainer_Trainee.SIP
                 cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
                 indcall.hangup(cop);
             }
-            {
-
-
-            }
         }
 
 
@@ -88,7 +84,7 @@ namespace UNET_Trainer_Trainee.SIP
             }
 
             // Emit the new registration state
-            sendNewRegState(_prm.code);
+            sendNewRegState(Convert.ToInt16(_prm.code));
         }
 
         /*!
@@ -105,7 +101,7 @@ namespace UNET_Trainer_Trainee.SIP
            Console.Write("*** Incoming Call: " +  ci.remoteUri + " [" + ci.stateText + "]");
 
             // Store this call
-            calls.push_back(call);
+            Calls.push_back(call);
             _prm.statusCode = (pjsua2.pjsip_status_code)200;
 
             // Answer the call

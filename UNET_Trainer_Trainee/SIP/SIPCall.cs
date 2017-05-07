@@ -37,7 +37,7 @@ namespace UNET_Trainer_Trainee.SIP
         {
 
             // Print the new call state
-            pjsua2.CallInfo ci =   getInfo();
+            pjsua2.CallInfo ci = getInfo();
             log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Execute commands according to the new state
