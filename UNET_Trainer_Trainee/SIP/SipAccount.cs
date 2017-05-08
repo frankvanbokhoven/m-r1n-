@@ -70,7 +70,7 @@ namespace UNET_Trainer_Trainee.SIP
         public void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-            log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code="));
+            log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
 
             switch (_prm.code)
             {
@@ -94,18 +94,22 @@ namespace UNET_Trainer_Trainee.SIP
         public void onIncomingCall(OnIncomingCallParam _prm)
         {
 
-            SIPCall call = new SIPCall(this, _prm.callId);
-            CallInfo ci = call.getInfo();
-            CallOpParam prm;
+            SIPCall call = new SIPCall();// (_prm.callId);
 
-           Console.Write("*** Incoming Call: " +  ci.remoteUri + " [" + ci.stateText + "]");
 
-            // Store this call
-            Calls.push_back(call);
-            _prm.statusCode = (pjsua2.pjsip_status_code)200;
+            //todo: werkend maken
 
-            // Answer the call
-            call.answer(prm);
+           // CallInfo ci = call.Call.getInfo();
+           // CallOpParam prm;
+
+           //Console.Write("*** Incoming Call: " +  ci.remoteUri + " [" + ci.stateText + "]");
+
+           // // Store this call
+           // Calls.push_back(call);
+           // _prm.statusCode = (pjsua2.pjsip_status_code)200;
+
+           // // Answer the call
+           // call.answer(prm);
         }
 
         /*!

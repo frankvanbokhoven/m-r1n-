@@ -20,9 +20,17 @@ namespace UNET_Trainer_Trainee.SIP
 
 
         // signals:
-        //   public void forwardNewCallState(int state);
-        //   public void forwardNewRegState(int state);
-        //   public void forwardNewIM(QString IM);
+           public void forwardNewCallState(int state)
+        { //todo: implementern
+        }
+           public void forwardNewRegState(int state)
+        {
+            //todo: implementeren
+        }
+           public void forwardNewIM(String IM)
+        {
+            //todo: implementeren
+        }
         /*!
  * \brief UserAgent::UserAgent
  * \param config
@@ -106,10 +114,10 @@ namespace UNET_Trainer_Trainee.SIP
 
             // Set server proxy
             StringVector proxy = acc_cfg.sipConfig.proxies;
-            proxy.push_back(sipServer + ";transport=udp");
+        //todo: terugzetten    proxy.push_back(sipServer + ";transport=udp");
 
             acc_cfg.sipConfig.proxies = proxy;
-            acc_cfg.sipConfig.authCreds.push_back(AuthCredInfo("digest", ConfigurationManager.AppSettings["SIPSever"].ToString(), ConfigurationManager.AppSettings["SIPAccount"].ToString(), 0, "password"));
+         //todo: terugzetten   acc_cfg.sipConfig.authCreds.push_back(AuthCredInfo("digest", ConfigurationManager.AppSettings["SIPSever"].ToString(), ConfigurationManager.AppSettings["SIPAccount"].ToString(), 0, "password"));
 
             // Create SIP account
             //std::auto_ptr<UAAccount> acc(new UAAccount);
@@ -117,8 +125,7 @@ namespace UNET_Trainer_Trainee.SIP
             acc.create(acc_cfg);
 
             // Create & set presence
-            setPresence(acc);
-
+            setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
             // Create buddies
             BuddyConfig pCfg = new BuddyConfig();//hier is de new erbijgezet
             BuddyConfig sCfg = new BuddyConfig();//hier is de new erbijgezet
@@ -128,26 +135,27 @@ namespace UNET_Trainer_Trainee.SIP
             pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
             sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
 
-            try
-            {
-                platformBuddy.create(acc, pCfg);
-                platformBuddy.subscribePresence(true);
+            //todo: terugzetten
+            //try
+            //{
+            //    platformBuddy.create(acc, pCfg);
+            //    platformBuddy.subscribePresence(true);
 
-                serverBuddy.create(acc, sCfg);
-                serverBuddy.subscribePresence(true);
+            //    serverBuddy.create(acc, sCfg);
+            //    serverBuddy.subscribePresence(true);
 
-                buddies.Add(platformBuddy);
-                buddies.Add(serverBuddy);
-            }
-            catch (Exception ex)
-            {
-                log.Error(ex.Message);
-            }
+            //    buddies.Add(platformBuddy);
+            //    buddies.Add(serverBuddy);
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error(ex.Message);
+            //}
 
-            // Connect signals & slots
-            connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            connect(acc, SIGNAL(sendNewIM(QString)), this, SLOT(receiveNewIM(QString)));
+            //// Connect signals & slots
+            //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+            //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+            //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
         /*!
@@ -158,18 +166,19 @@ namespace UNET_Trainer_Trainee.SIP
 
             Console.Write("Stopping endpoint");
 
-            //   Register thread if necessary
-            if (!ep.libIsThreadRegistered())
-                ep.libRegisterThread("program thread");
+            //todo: terugzetten
+            ////   Register thread if necessary
+            //if (!ep.libIsThreadRegistered())
+            //    ep.libRegisterThread("program thread");
 
-            // Disconnect account;
-            acc.disconnect();
+            //// Disconnect account;
+            //acc.disconnect();
 
-            //  Stop endpoint
-            ep.libDestroy();
+            ////  Stop endpoint
+            //ep.libDestroy();
 
-            // Send new state
-            emit forwardNewRegState(-2);
+            //// Send new state
+            //emit forwardNewRegState(-2);
         }
 
         /*!
@@ -223,10 +232,10 @@ namespace UNET_Trainer_Trainee.SIP
 
             log.Info("<--- Start codec list --->");
 
-            for (uint i = 0; i < civ.size(); i++)
+            for (int i = 0; i < civ.Count -1; i++)
             {
-                CodecInfo ci = civ.at(i);
-                log.Info("ID: " << ci->codecId << "\tPriority: " << (uint)ci->priority << "\tDesc: " << ci->desc << std::endl;
+                CodecInfo ci = civ[i];//.at(i);
+                log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
             }
 
             log.Info("<--- End codec list --->)");
@@ -244,10 +253,12 @@ namespace UNET_Trainer_Trainee.SIP
             //    Turn off Comfort noise generator
             ep.audDevManager().setCng(false, true);
 
-            ep.audDevManager().setExtFormat();
+            MediaFormatAudio aud = new MediaFormatAudio(); //todo: dit ding initialiseren
+            
+            ep.audDevManager().setExtFormat(aud, true);
 
             //   --------------------------------------
-            ep.audDevManager().getCaptureDev;
+            ep.audDevManager().getCaptureDev();
 
             log.Info("###" + "VAD Check");
             log.Info("###" + (ep.audDevManager().getVad() ? "VAD Detected" : "VAD Not Detected"));
@@ -270,7 +281,7 @@ namespace UNET_Trainer_Trainee.SIP
         public void receiveNewCallState(int state)
         {
 
-            emit forwardNewCallState(state);
+            forwardNewCallState(state);
         }
 
         /*!
@@ -280,7 +291,7 @@ namespace UNET_Trainer_Trainee.SIP
         public void receiveNewRegState(int state)
         {
 
-            emit forwardNewRegState(state);
+            forwardNewRegState(state);
         }
 
         /*!
@@ -289,7 +300,7 @@ namespace UNET_Trainer_Trainee.SIP
          */
         public void receiveNewIM(String IM)
         {
-            emit forwardNewIM(IM);
+            forwardNewIM(IM);
         }
 
         /*!
@@ -304,12 +315,12 @@ namespace UNET_Trainer_Trainee.SIP
             for (int i = 0; i < buddies.Count - 1; i++)
             {
 
-                if (buddies.at(i).getName().compare(destination, Qt::CaseInsensitive) == 0)
+                if (buddies[i].getName().ToLower().CompareTo(destination) == 0)  //.compare(destination, Qt::CaseInsensitive) == 0)
                 {
 
                     SendInstantMessageParam prm = new SendInstantMessageParam();
                     prm.content = message;
-                    buddies.at(i)->sendInstantMessage(prm);
+                //todo: terugzetten    buddies[i].sendInstantMessage(prm);
                     break;
                 }
             }

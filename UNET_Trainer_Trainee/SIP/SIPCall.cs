@@ -20,7 +20,7 @@ namespace UNET_Trainer_Trainee.SIP
         {
             //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
-            connect(this, SIGNAL(sendCallState(int)), UAacc, SLOT(newCallState(int)));
+         // todo   connect(this, SIGNAL(sendCallState(int)), UAacc, SLOT(newCallState(int)));
         }
 
 
@@ -37,7 +37,8 @@ namespace UNET_Trainer_Trainee.SIP
         {
 
             // Print the new call state
-            pjsua2.CallInfo ci = getInfo();
+            pjsua2.CallInfo ci = new CallInfo();
+       //todo     ci.getInfo();
             log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Execute commands according to the new state
@@ -46,7 +47,7 @@ namespace UNET_Trainer_Trainee.SIP
                 case pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
 
                     // Remove the call from the account
-                    UAacc.removeCall(this);
+               //todo     UAacc.removeCall(this);
 
                     // Show we are now disconnected
                     UAacc.newCallState(0);
@@ -65,9 +66,10 @@ namespace UNET_Trainer_Trainee.SIP
                         {
                             if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
                             {
-                                aud_med = (pjsua2.AudioMedia)this.getMedia(i);
-                                StreamInfo si = this.getStreamInfo(i);
-                                log.Info("*** Media codec: " + si.codecName);
+                                //todo
+                                //aud_med = (pjsua2.AudioMedia)this.getMedia(i);
+                                //StreamInfo si = this.getStreamInfo(i);
+                                //log.Info("*** Media codec: " + si.codecName);
                                 break;
                             }
                         }
@@ -75,12 +77,13 @@ namespace UNET_Trainer_Trainee.SIP
                         if (aud_med != null)
                         {
                             // Get playback & capture devices
-                            AudioMedia & play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                            AudioMedia & cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                            //todo: terugzetten
+                        //    AudioMedia & play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                        //    AudioMedia & cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
-                            // Start audio transmissions
-                            cap_med.startTransmit(aud_med);
-                            aud_med.startTransmit(play_med);
+                        //    // Start audio transmissions
+                        //    cap_med.startTransmit(aud_med);
+                        //    aud_med.startTransmit(play_med);
                         }
                         else {
                             log.Info("******\t NO AUDIO FOUND IN CALL \t******");
