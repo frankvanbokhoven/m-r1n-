@@ -74,7 +74,7 @@ namespace UNET_Trainer_Trainee.SIP
             }
             catch (Exception ex)
             {
-                //todo   std::cout << "Initialization error: " << err.info() << std::endl;
+                log.Error("Initialization error: " + ex.Message);
             }
 
             // Create transport
@@ -86,7 +86,7 @@ namespace UNET_Trainer_Trainee.SIP
             }
             catch (Exception ex)
             {
-                //todo  std::cout << "Transport creation error: " << err.info() << std::endl;
+               log.Error( "Transport creation error: " +  ex.Message);
             }
 
             // Start library
@@ -114,10 +114,10 @@ namespace UNET_Trainer_Trainee.SIP
 
             // Set server proxy
             StringVector proxy = acc_cfg.sipConfig.proxies;
-        //todo: terugzetten    proxy.push_back(sipServer + ";transport=udp");
+            proxy.Add(sipServer + ";transport=udp"); //todo: was: push_back
 
             acc_cfg.sipConfig.proxies = proxy;
-         //todo: terugzetten   acc_cfg.sipConfig.authCreds.push_back(AuthCredInfo("digest", ConfigurationManager.AppSettings["SIPSever"].ToString(), ConfigurationManager.AppSettings["SIPAccount"].ToString(), 0, "password"));
+            acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["SIPSever"].ToString(), ConfigurationManager.AppSettings["SIPAccount"].ToString(), 0, "password")); //todo: was: push_back
 
             // Create SIP account
             //std::auto_ptr<UAAccount> acc(new UAAccount);
@@ -135,50 +135,49 @@ namespace UNET_Trainer_Trainee.SIP
             pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
             sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
 
-            //todo: terugzetten
-            //try
-            //{
-            //    platformBuddy.create(acc, pCfg);
-            //    platformBuddy.subscribePresence(true);
+            try
+            {
+                platformBuddy = new Buddy("Naam van de platform buddy", pCfg.uri.ToString(),acc);
+                platformBuddy.subscribePresence(true);
 
-            //    serverBuddy.create(acc, sCfg);
-            //    serverBuddy.subscribePresence(true);
+                serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
+                serverBuddy.subscribePresence(true);
 
-            //    buddies.Add(platformBuddy);
-            //    buddies.Add(serverBuddy);
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error(ex.Message);
-            //}
+                buddies.Add(platformBuddy);
+                buddies.Add(serverBuddy);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+            }
 
-            //// Connect signals & slots
-            //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
+            // Connect signals & slots
+            connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+            connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+            connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
-        /*!
-         * \brief UserAgent::UserAgentStop
-         */
+
+         /// <summary>
+         /// brief UserAgent::UserAgentStop
+         /// </summary>
         public void UserAgentStop()
         {
 
             Console.Write("Stopping endpoint");
 
-            //todo: terugzetten
-            ////   Register thread if necessary
-            //if (!ep.libIsThreadRegistered())
-            //    ep.libRegisterThread("program thread");
+            //  Register thread if necessary
+            //  if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
+                ep.libRegisterWorkerThread("program thread");// .libRegisterThread("program thread");
 
-            //// Disconnect account;
-            //acc.disconnect();
+            // Disconnect account;
+            acc.Dispose();// .disconnect();
 
-            ////  Stop endpoint
-            //ep.libDestroy();
+            //  Stop endpoint
+            ep.libDestroy();
 
-            //// Send new state
-            //emit forwardNewRegState(-2);
+            // Send new state
+            forwardNewRegState(-2);
         }
 
         /*!
@@ -213,19 +212,18 @@ namespace UNET_Trainer_Trainee.SIP
          */
         public void configureSoundDevices()
         {
+            // Configure codecs
 
-            //  Configure codecs
-
-            //      Set L16 to highest priority
+            // Set L16 to highest priority
             ep.codecSetPriority("L16/44100/1", 255);
 
-            //  Set G722 to first fallback
+            // Set G722 to first fallback
             ep.codecSetPriority("G722/16000/1", 253);
 
-            //   Set Speex to second fallback
+            // Set Speex to second fallback
             ep.codecSetPriority("speex/16000/1", 250);
 
-            //  Disable GSM codec
+            // Disable GSM codec
             ep.codecSetPriority("GSM/8000/1", 0);
 
             pjsua2.CodecInfoVector civ = ep.codecEnum();
@@ -234,12 +232,13 @@ namespace UNET_Trainer_Trainee.SIP
 
             for (int i = 0; i < civ.Count -1; i++)
             {
-                CodecInfo ci = civ[i];//.at(i);
+                CodecInfo ci = civ[i];
                 log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+                Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
             }
 
-            log.Info("<--- End codec list --->)");
-
+            log.Info("<--- End codec list --->");
+            Console.Write("<--- End codec list --->");
 
             //    Turn off Voice Activation Detection
             ep.audDevManager().setVad(false, false);

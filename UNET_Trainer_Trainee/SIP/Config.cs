@@ -8,12 +8,7 @@ namespace UNET_Trainer_Trainee.SIP
 {
    public class Config //DEZE CLASS IS IN ZIJN GEHEEL VERVANGEN DOOR APP.CONFIG READ/WRITE
     {
-        public Config()
-        {
-    //        load();
-        }
-
-    ///
+     ///
     /// \brief Config::load
     ///
    //private void load()

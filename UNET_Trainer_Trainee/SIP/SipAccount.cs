@@ -18,8 +18,7 @@ namespace UNET_Trainer_Trainee.SIP
         {
               
         }
-        //  std::vector<PJSUA2.Call> calls;
-        public List<pjsua2.Call> Calls;
+         public List<pjsua2.Call> Calls;
         // signals:
         public void sendNewCallState(int state)
         {
@@ -53,7 +52,6 @@ namespace UNET_Trainer_Trainee.SIP
                 callitr.Dispose();
             }
 
-            //  for (vector<PJSUA2.Call>::iterator it = calls.begin(); it != calls.end(); ++it)
             foreach (Call indcall in Calls)
             {
                 CallOpParam cop = new CallOpParam();
@@ -63,11 +61,13 @@ namespace UNET_Trainer_Trainee.SIP
         }
 
 
-        /*!
-         * \brief SipAccount::onRegState
-         * \param prm
-         */
-        public void onRegState(pjsua2.OnRegStateParam _prm)
+
+         /// <summary>
+         /// SipAccount::onRegState
+         /// </summary>
+         /// TODO: LET OP: de override is door Frank bijgevoegd omdat VS dit voorstelde
+         /// <param name="_prm"></param>
+        public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
             log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
@@ -87,41 +87,41 @@ namespace UNET_Trainer_Trainee.SIP
             sendNewRegState(Convert.ToInt16(_prm.code));
         }
 
-        /*!
-         * \brief SipAccount::onIncomingCall
-         * \param iprm
-         */
-        public void onIncomingCall(OnIncomingCallParam _prm)
+
+
+        /// <summary>
+        ///  SipAccount::onIncomingCall
+        /// TODO: LET OP: de override is door Frank bijgevoegd omdat VS dit voorstelde
+        /// </summary> 
+        public override void onIncomingCall(OnIncomingCallParam _prm)
         {
+            Call call = new Call(this, _prm.callId);
+ 
+            CallInfo ci = call.getInfo();
+            CallOpParam prm = new CallOpParam();
 
-            SIPCall call = new SIPCall();// (_prm.callId);
+            Console.Write("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
+            // Store this call
+            Calls.Add(call); //.push_back(call);
+            prm.statusCode = (pjsua2.pjsip_status_code)200;
 
-            //todo: werkend maken
-
-           // CallInfo ci = call.Call.getInfo();
-           // CallOpParam prm;
-
-           //Console.Write("*** Incoming Call: " +  ci.remoteUri + " [" + ci.stateText + "]");
-
-           // // Store this call
-           // Calls.push_back(call);
-           // _prm.statusCode = (pjsua2.pjsip_status_code)200;
-
-           // // Answer the call
-           // call.answer(prm);
+            // Answer the call
+            call.answer(prm);
         }
 
-        /*!
-         * \brief SipAccount::onInstantMessage
-         * \param prm
-         */
-        public void onInstantMessage(OnInstantMessageParam _prm)
+       
+        /// <summary>
+        /// brief SipAccount::onInstantMessage
+        /// TODO: LET OP: de override is door Frank bijgevoegd omdat VS dit voorstelde
+        /// </summary>
+        /// <param name="_prm"></param>
+        public override void onInstantMessage(OnInstantMessageParam _prm)
         {
 
-            String message = "todo: somestring";// String::fromStdString(_prm.msgBody);
+            String message =_prm.msgBody;
 
-            //  std::cout << "*** Incomming IM: " << prm.msgBody << std::endl;
+            Console.Write("*** Incomming IM: " + _prm.msgBody);
 
             sendNewIM(message);
         }

@@ -22,7 +22,9 @@ namespace UNET_Trainer_Trainee
         //pjsua2
         public Endpoint endpoint;
         public EpConfig ep_cfg;
-              
+        public AccountConfig acfg = new AccountConfig();
+        public TransportConfig tcfg = new TransportConfig();
+
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
@@ -50,7 +52,6 @@ namespace UNET_Trainer_Trainee
             //Initialize endpoint
             endpoint.libInit(ep_cfg);
             //Create sip transport and errorhandling
-            TransportConfig tcfg = new TransportConfig();
             tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
             try
             {
@@ -62,11 +63,10 @@ namespace UNET_Trainer_Trainee
             }
 
             //Configure an AccountConfig
-            AccountConfig acfg = new AccountConfig();
             acfg.idUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipAccount"]);
             acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipServer"]);
             AuthCredInfo cred = new AuthCredInfo("digest", "*", "test", 0, "secret");
-            acfg.sipConfig.authCreds.Add(cred); //todo: in het voorbeeld staat hier: push_back, maar die is er niet!       
+            acfg.sipConfig.authCreds.Add(cred); 
         }
 
         /// <summary>
@@ -101,8 +101,6 @@ namespace UNET_Trainer_Trainee
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
-
-
 
         }
 
