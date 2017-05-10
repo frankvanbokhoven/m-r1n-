@@ -137,11 +137,11 @@ namespace UNET_Trainer_Trainee.SIP
 
             try
             {
-                platformBuddy = new Buddy("Naam van de platform buddy", pCfg.uri.ToString(),acc);
-                platformBuddy.subscribePresence(true);
+              //  platformBuddy = new Buddy("Naam van de platform buddy", pCfg.uri.ToString(),acc);
+               //TODO TERUGZETTEN platformBuddy.subscribePresence(true);
 
-                serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
-                serverBuddy.subscribePresence(true);
+              //  serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
+               //TODO: TERUGZETTEN serverBuddy.subscribePresence(true);
 
                 buddies.Add(platformBuddy);
                 buddies.Add(serverBuddy);
@@ -151,10 +151,10 @@ namespace UNET_Trainer_Trainee.SIP
                 log.Error(ex.Message);
             }
 
-            // Connect signals & slots
-            connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
+          // Connect signals & slots
+          //  connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+          ;//  connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+          //  connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
 
