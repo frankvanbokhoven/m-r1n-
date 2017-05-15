@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using pjsua2;
 using System.Configuration;
 
@@ -14,7 +15,6 @@ namespace UNET_Trainer_Trainee.SIP
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private pjsua2.Endpoint ep;
-        private Config conf;
         private SipAccount acc;
         private List<SipBuddy> buddies;
 
@@ -31,14 +31,7 @@ namespace UNET_Trainer_Trainee.SIP
         {
             //todo: implementeren
         }
-        /*!
- * \brief UserAgent::UserAgent
- * \param config
- */
-        public UserAgent(Config config)
-        {
-            conf = config;
-        }
+
         /*!
          * \brief UserAgent::~UserAgent
          */
@@ -52,7 +45,7 @@ namespace UNET_Trainer_Trainee.SIP
         public void UserAgentStart()
         {
 
-            //todo   std::cout << "Starting User Agent" << std::endl;
+            Console.Write("Starting User Agent");
 
             // Create endpoint
             try
@@ -86,7 +79,7 @@ namespace UNET_Trainer_Trainee.SIP
             }
             catch (Exception ex)
             {
-               log.Error( "Transport creation error: " +  ex.Message);
+                log.Error("Transport creation error: " + ex.Message);
             }
 
             // Start library
@@ -137,11 +130,11 @@ namespace UNET_Trainer_Trainee.SIP
 
             try
             {
-              //  platformBuddy = new Buddy("Naam van de platform buddy", pCfg.uri.ToString(),acc);
-               //TODO TERUGZETTEN platformBuddy.subscribePresence(true);
+                platformBuddy = new SipBuddy("Naam van de platform buddy", pCfg.uri.ToString(), acc);
+                platformBuddy.subscribePresence(true);
 
-              //  serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
-               //TODO: TERUGZETTEN serverBuddy.subscribePresence(true);
+                serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
+                serverBuddy.subscribePresence(true);
 
                 buddies.Add(platformBuddy);
                 buddies.Add(serverBuddy);
@@ -151,16 +144,15 @@ namespace UNET_Trainer_Trainee.SIP
                 log.Error(ex.Message);
             }
 
-          // Connect signals & slots
-          //  connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-          ;//  connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-          //  connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
+            // Connect signals & slots
+            // connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+            // connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+            // connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
-
-         /// <summary>
-         /// brief UserAgent::UserAgentStop
-         /// </summary>
+        /// <summary>
+        /// brief UserAgent::UserAgentStop
+        /// </summary>
         public void UserAgentStop()
         {
 
@@ -187,10 +179,8 @@ namespace UNET_Trainer_Trainee.SIP
          */
         public void setPresence(SipAccount acc, pjsua2.pjsua_buddy_status status)
         {
-
             try
             {
-
                 pjsua2.PresenceStatus ps = new pjsua2.PresenceStatus();
                 ps.status = status;
 

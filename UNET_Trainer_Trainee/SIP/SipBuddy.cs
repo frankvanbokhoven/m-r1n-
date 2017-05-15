@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using pjsua2;
 
 namespace UNET_Trainer_Trainee.SIP
 {
-    public class SipBuddy
+    public class SipBuddy: Buddy
     {
         public string Name;//frank: let op deze properties zijn erbij gezet.
         public string Domain;
@@ -18,7 +19,6 @@ namespace UNET_Trainer_Trainee.SIP
         //param account
         public SipBuddy(String name, String domain, SipAccount account)
         {
-
             Name = name;
             Domain = domain;
             Account = account;
@@ -28,11 +28,10 @@ namespace UNET_Trainer_Trainee.SIP
         /*!
          * \brief SipBuddy::onBuddyState
          */
-        public void onBuddyState()
+        public override void onBuddyState()
         {
-
-           // PJSUA2.BuddyInfo bi = getInfo();
-            //todo: message   std::cout << "Buddy " << bi.uri << " is " << bi.presStatus.statusText << std::endl;
+            BuddyInfo bi = getInfo();
+            Console.Write("Buddy " + bi.uri + " is " + bi.presStatus.statusText);
         }
 
         /*!

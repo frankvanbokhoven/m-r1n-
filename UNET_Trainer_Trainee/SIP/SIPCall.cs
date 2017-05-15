@@ -8,7 +8,7 @@ using pjsua2;
 
 namespace UNET_Trainer_Trainee.SIP
 {
-    public class SIPCall
+    public class SIPCall : pjsua2.Call
     {
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -16,11 +16,18 @@ namespace UNET_Trainer_Trainee.SIP
         private SipAccount UAacc;
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
-        public void Call(Account acc, int callID = PJSUA_INVALID_ID)
+
+        /// <summary>
+        /// constructor
+        /// We explicitly reroute to the constructor of the Call baseclass
+        /// </summary>
+        /// <param name="acc"></param>
+        /// <param name="callID"></param>
+        public SIPCall(Account acc, int callID = PJSUA_INVALID_ID) : base(acc, callID)
         {
             //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
-         // todo   connect(this, SIGNAL(sendCallState(int)), UAacc, SLOT(newCallState(int)));
+            //noot: hier staat in de c++ code een uitgesterde regel
         }
 
 
@@ -29,16 +36,18 @@ namespace UNET_Trainer_Trainee.SIP
             //todo!
         }
 
-        /*!
-         * \brief SipCall::onCallState
-         * \param prm
-         */
-     public void onCallState(pjsua2.OnCallStateParam _oncallstateparam)
+
+        /// <summary>
+        /// brief SipCall::onCallState
+        /// </summary>
+        /// <param name="_oncallstateparam"></param>
+        public void onCallState(pjsua2.OnCallStateParam _prm)
         {
 
             // Print the new call state
             pjsua2.CallInfo ci = new CallInfo();
-            ci.getInfo();
+
+            ci = getInfo(); //hier wordt de getInfo methode van de Call baseclass gebruikt!!
 
             log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
@@ -48,7 +57,7 @@ namespace UNET_Trainer_Trainee.SIP
                 case pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
 
                     // Remove the call from the account
-               //todo     UAacc.removeCall(this);
+                    //todo: moet verwijderen!!!!! UAacc.removeCall();
 
                     // Show we are now disconnected
                     UAacc.newCallState(0);
@@ -67,10 +76,9 @@ namespace UNET_Trainer_Trainee.SIP
                         {
                             if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
                             {
-                                //todo
-                                //aud_med = (pjsua2.AudioMedia)this.getMedia(i);
-                                //StreamInfo si = this.getStreamInfo(i);
-                                //log.Info("*** Media codec: " + si.codecName);
+                                aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
+                                StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
+                                log.Info("*** Media codec: " + si.codecName);
                                 break;
                             }
                         }
@@ -78,13 +86,12 @@ namespace UNET_Trainer_Trainee.SIP
                         if (aud_med != null)
                         {
                             // Get playback & capture devices
-                            //todo: terugzetten
-                        //    AudioMedia & play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                        //    AudioMedia & cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                            AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                            AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
-                        //    // Start audio transmissions
-                        //    cap_med.startTransmit(aud_med);
-                        //    aud_med.startTransmit(play_med);
+                            // Start audio transmissions
+                            aud_med.startTransmit(play_med);
+                            cap_med.startTransmit(aud_med);
                         }
                         else {
                             log.Info("******\t NO AUDIO FOUND IN CALL \t******");
