@@ -2893,6 +2893,21 @@ class pjsua2PINVOKE {
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_Endpoint_libStopWorkerThreads")]
   public static extern void Endpoint_libStopWorkerThreads(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  ////////////////////////////////
+  //Om onduidelijke redenen zijn de libregisterthread NIET opgenomen in deze wrapper, terwijl deze wel noodzakelijk is
+  //om de thread te registreren. vandaar dat deze er met de hand bijgezet zijn
+  ////////////////////////////////
+  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "CSharp_Endpoint_libRegisterThread")]
+  public static extern void Endpoint_libRegisterThread(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "CSharp_Endpoint_libStopThreads")]
+  public static extern void Endpoint_libStopThreads(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  //deze methode is handmatig toegevoegd!!
+  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint = "CSharp_Endpoint_libIsThreadRegistered")]
+  public static extern void Endpoint_libIsThreadRegistered(global::System.Runtime.InteropServices.HandleRef jarg1);
+  ////////////////////////////////
+
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_Endpoint_libHandleEvents")]
   public static extern int Endpoint_libHandleEvents(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 

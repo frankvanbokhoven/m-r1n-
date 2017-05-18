@@ -16,7 +16,7 @@ namespace UNET_Trainer_Trainee.SIP
 
         private pjsua2.Endpoint ep;
         private SipAccount acc;
-        private List<SipBuddy> buddies;
+        private List<SipBuddy> buddies = new List<SipBuddy>();
 
 
         // signals:
@@ -42,7 +42,7 @@ namespace UNET_Trainer_Trainee.SIP
             //hoeft niet in c#  delete ep;
         }
 
-        public void UserAgentStart()
+        public void UserAgentStart(Endpoint _ep)
         {
 
             Console.Write("Starting User Agent");
@@ -50,8 +50,8 @@ namespace UNET_Trainer_Trainee.SIP
             // Create endpoint
             try
             {
-                Endpoint ep = new Endpoint();
-                ep.libCreate();
+                ep = _ep;
+              //  ep.libCreate();
             }
             catch (Exception ex)
             {
@@ -61,9 +61,9 @@ namespace UNET_Trainer_Trainee.SIP
             // Init library
             try
             {
-                EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-                ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-                ep.libInit(ep_cfg);
+               // EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+              //  ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+              //  ep.libInit(ep_cfg);
             }
             catch (Exception ex)
             {
@@ -73,9 +73,9 @@ namespace UNET_Trainer_Trainee.SIP
             // Create transport
             try
             {
-                TransportConfig tcfg = new TransportConfig();//frank: hier is de new erbij gezet
-                tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-                ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+              //  TransportConfig tcfg = new TransportConfig();//frank: hier is de new erbij gezet
+              //  tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+              //  ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
             }
             catch (Exception ex)
             {
@@ -85,16 +85,14 @@ namespace UNET_Trainer_Trainee.SIP
             // Start library
             try
             {
-                ep.libStart();
+              //  ep.libStart();
             }
             catch (Exception ex)
             {
                 log.Error("Startup error: " + ex.Message);
             }
 
-            // Configure sound devices
-            configureSoundDevices();
-
+    
             // Create account configuration
             AccountConfig acc_cfg = new AccountConfig();
             string accountName = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
@@ -110,14 +108,23 @@ namespace UNET_Trainer_Trainee.SIP
             proxy.Add(sipServer + ";transport=udp"); //todo: was: push_back
 
             acc_cfg.sipConfig.proxies = proxy;
-            acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["SIPSever"].ToString(), ConfigurationManager.AppSettings["SIPAccount"].ToString(), 0, "password")); //todo: was: push_back
-
-            // Create SIP account
-            //std::auto_ptr<UAAccount> acc(new UAAccount);
-            acc = new SipAccount();
-            acc.create(acc_cfg);
-
+            acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
+      
+            //Configure an AccountConfig (zie pagina 43 pjsua2doc.pdf)
             // Create & set presence
+            AccountConfig acfg = new AccountConfig();
+            acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            acc_cfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
+            acc_cfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+
+            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
+
+            acfg.sipConfig.authCreds.Add(cred);
+            acfg.regConfig.registerOnAdd = true;
+            // Create SIP account
+            acc = new SipAccount();
+            acc.create(acfg, true);
             setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
             // Create buddies
             BuddyConfig pCfg = new BuddyConfig();//hier is de new erbijgezet
@@ -130,10 +137,14 @@ namespace UNET_Trainer_Trainee.SIP
 
             try
             {
-                platformBuddy = new SipBuddy("Naam van de platform buddy", pCfg.uri.ToString(), acc);
+                //  platformBuddy = new SipBuddy("Naam van de platform buddy", pCfg.uri.ToString(), acc);
+                Console.Write("Subscribing platform buddy...");
+                platformBuddy.create(acc, pCfg);
                 platformBuddy.subscribePresence(true);
 
-                serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
+                //  serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
+                Console.Write("Subscribing server buddy....");
+                serverBuddy.create(acc, sCfg);
                 serverBuddy.subscribePresence(true);
 
                 buddies.Add(platformBuddy);
@@ -159,8 +170,8 @@ namespace UNET_Trainer_Trainee.SIP
             Console.Write("Stopping endpoint");
 
             //  Register thread if necessary
-            //  if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
-                ep.libRegisterWorkerThread("program thread");// .libRegisterThread("program thread");
+          // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
+              ep.libRegisterWorkerThread("program thread");// .libRegisterThread("program thread");
 
             // Disconnect account;
             acc.Dispose();// .disconnect();
@@ -197,61 +208,61 @@ namespace UNET_Trainer_Trainee.SIP
             }
         }
 
-        /*!
-         * \brief UserAgent::configureSoundDevices
-         */
-        public void configureSoundDevices()
-        {
-            // Configure codecs
+        ///*!
+        // * \brief UserAgent::configureSoundDevices
+        // */
+        //public void configureSoundDevices()
+        //{
+        //    // Configure codecs
 
-            // Set L16 to highest priority
-            ep.codecSetPriority("L16/44100/1", 255);
+        //    // Set L16 to highest priority
+        //    ep.codecSetPriority("L16/44100/1", 255);
 
-            // Set G722 to first fallback
-            ep.codecSetPriority("G722/16000/1", 253);
+        //    // Set G722 to first fallback
+        //    ep.codecSetPriority("G722/16000/1", 253);
 
-            // Set Speex to second fallback
-            ep.codecSetPriority("speex/16000/1", 250);
+        //    // Set Speex to second fallback
+        //    ep.codecSetPriority("speex/16000/1", 250);
 
-            // Disable GSM codec
-            ep.codecSetPriority("GSM/8000/1", 0);
+        //    // Disable GSM codec
+        //    ep.codecSetPriority("GSM/8000/1", 0);
 
-            pjsua2.CodecInfoVector civ = ep.codecEnum();
+        //    pjsua2.CodecInfoVector civ = ep.codecEnum();
 
-            log.Info("<--- Start codec list --->");
+        //    log.Info("<--- Start codec list --->");
 
-            for (int i = 0; i < civ.Count -1; i++)
-            {
-                CodecInfo ci = civ[i];
-                log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
-                Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
-            }
+        //    for (int i = 0; i < civ.Count -1; i++)
+        //    {
+        //        CodecInfo ci = civ[i];
+        //        log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+        //        Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+        //    }
 
-            log.Info("<--- End codec list --->");
-            Console.Write("<--- End codec list --->");
+        //    log.Info("<--- End codec list --->");
+        //    Console.Write("<--- End codec list --->");
 
-            //    Turn off Voice Activation Detection
-            ep.audDevManager().setVad(false, false);
+        //    //    Turn off Voice Activation Detection
+        //    ep.audDevManager().setVad(false, false);
 
-            //    Turn off Echo Cancelation
-            ep.audDevManager().setEcOptions(0, 0);
+        //    //    Turn off Echo Cancelation
+        //    ep.audDevManager().setEcOptions(0, 0);
 
-            //   Turn off Packet loss concealment
-            ep.audDevManager().setPlc(false, true);
+        //    //   Turn off Packet loss concealment
+        //    ep.audDevManager().setPlc(false, true);
 
-            //    Turn off Comfort noise generator
-            ep.audDevManager().setCng(false, true);
+        //    //    Turn off Comfort noise generator
+        //    ep.audDevManager().setCng(false, true);
 
-            MediaFormatAudio aud = new MediaFormatAudio(); //todo: dit ding initialiseren
+        //    MediaFormatAudio aud = new MediaFormatAudio(); //todo: dit ding initialiseren
             
-            ep.audDevManager().setExtFormat(aud, true);
+        //    ep.audDevManager().setExtFormat(aud, true);
 
-            //   --------------------------------------
-            ep.audDevManager().getCaptureDev();
+        //    //   --------------------------------------
+        //    ep.audDevManager().getCaptureDev();
 
-            log.Info("###" + "VAD Check");
-            log.Info("###" + (ep.audDevManager().getVad() ? "VAD Detected" : "VAD Not Detected"));
-        }
+        //    log.Info("###" + "VAD Check");
+        //    log.Info("###" + (ep.audDevManager().getVad() ? "VAD Detected" : "VAD Not Detected"));
+        //}
 
         /*!
          * \brief UserAgent::run

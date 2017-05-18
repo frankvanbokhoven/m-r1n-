@@ -73,7 +73,24 @@ public class Endpoint : global::System.IDisposable {
     if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void libRegisterWorkerThread(string name) {
+        ////////////////////////////////////////////////
+        #region hackedcode
+        public void libRegisterThread(string name)
+        {
+            pjsua2PINVOKE.Endpoint_libRegisterThread(swigCPtr, name);
+            if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void libStopThreads()
+        {
+            pjsua2PINVOKE.Endpoint_libStopThreads(swigCPtr);
+        }
+
+        
+        #endregion
+        ////////////////////////////////////////////////
+
+        public void libRegisterWorkerThread(string name) {
     pjsua2PINVOKE.Endpoint_libRegisterWorkerThread(swigCPtr, name);
     if (pjsua2PINVOKE.SWIGPendingException.Pending) throw pjsua2PINVOKE.SWIGPendingException.Retrieve();
   }

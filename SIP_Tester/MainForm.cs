@@ -112,11 +112,6 @@ namespace Sipek
                 switch (acc.RegState)
                 {
                     case -1:
-                        //if (!acc.Enabled)
-                        //{
-                        //  regstate = "Disabled";
-                        //}
-                        //else 
                         if (acc.HostName.Length == 0)
                         {
                             regstate = "Empty";
@@ -171,7 +166,7 @@ namespace Sipek
         }
 
         /// <summary>
-        /// 
+        /// Update the list of calls
         /// </summary>
         private void UpdateCallRegister()
         {

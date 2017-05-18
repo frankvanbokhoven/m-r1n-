@@ -350,7 +350,6 @@
             this.label4.Size = new System.Drawing.Size(104, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Point to Point";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // btnRole18
             // 
@@ -771,8 +770,8 @@
             this.Controls.Add(this.btnClose);
             this.Name = "FrmUNETMain";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUNETMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
-            this.Shown += new System.EventHandler(this.FrmUNETMain_Shown);
             this.pnlPointToPoint.ResumeLayout(false);
             this.pnlPointToPoint.PerformLayout();
             this.pnlRadios.ResumeLayout(false);

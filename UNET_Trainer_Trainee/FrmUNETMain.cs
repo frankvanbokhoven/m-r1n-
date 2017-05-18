@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using log4net;
 using pjsua2;
+using System.Threading;
 
 namespace UNET_Trainer_Trainee
 {
@@ -24,10 +25,14 @@ namespace UNET_Trainer_Trainee
         public EpConfig ep_cfg;
         public AccountConfig acfg = new AccountConfig();
         public TransportConfig tcfg = new TransportConfig();
+        //the accounts
+        pjsua2.Account account;
+        SIP.SipAccount saccount;
 
-        private Boolean Muted = false;
-        private Boolean MonitorTrainee = false;
-        private Boolean MonitorRadio = false;
+
+      //  private Boolean Muted = false;
+      //  private Boolean MonitorTrainee = false;
+      //  private Boolean MonitorRadio = false;
         public int TraineeID = 1;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
@@ -46,27 +51,7 @@ namespace UNET_Trainer_Trainee
         public FrmUNETMain()
         {
             InitializeComponent();
-            endpoint = new Endpoint();
-            endpoint.libCreate();
-            ep_cfg = new EpConfig();
-            //Initialize endpoint
-            endpoint.libInit(ep_cfg);
-            //Create sip transport and errorhandling
-            tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-            try
-            {
-                endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
-            }
-            catch (Exception ex)
-            {
-                 MessageBox.Show(ex.Message);
-            }
-
-            //Configure an AccountConfig
-            acfg.idUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipAccount"]);
-            acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipServer"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", "*", "test", 0, "secret");
-            acfg.sipConfig.authCreds.Add(cred); 
+         
         }
 
         /// <summary>
@@ -89,25 +74,68 @@ namespace UNET_Trainer_Trainee
             this.Close();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             this.Text = "UNET Trainee";
-            timer1.Enabled = true;
+         //   timer1.Enabled = true;
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
+            endpoint = new Endpoint();
+            endpoint.libCreate();
+          //  endpoint.libRegisterWorkerThread("UNETthread");
+            endpoint.libRegisterThread("UNETthread");
+
+            ep_cfg = new EpConfig();
+            ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]);
+            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+            //todo: hier kunnen nog 1001 params geconfigureerd worden
+            
+            //Initialize endpoint
+            endpoint.libInit(ep_cfg);
+             //Create sip transport and errorhandling
+            tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+           
+            try
+            {
+                endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+                SIP.UserAgent useragent = new SIP.UserAgent();
+                useragent.UserAgentStart(endpoint);
+             
+                //Configure an AccountConfig (zie pagina 43 pjsua2doc.pdf)
+              //  acfg.idUri = string.Format("sip:{0}@unet", ConfigurationManager.AppSettings["sipAccount"]);
+              //  acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipServer"]);
+
+              //  AuthCredInfo cred = new AuthCredInfo("digest", "*", ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
+                
+              //  acfg.sipConfig.authCreds.Add(cred);
+              //  acfg.regConfig.registerOnAdd = true;             
+                // account = new Account();
+                // account.create(acfg);
+             //   saccount = new SIP.SipAccount();
+             //   SIP.SipBuddy buddy = new SIP.SipBuddy("1025@unet", "unet", saccount);
+             //   saccount.addBuddy(buddy );         
+             //   saccount.setDefault();
+              //   PresenceStatus ps = new PresenceStatus();
+              //   ps.status = pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE;
+              //   saccount.setOnlineStatus(ps);
+              //   saccount.setRegistration(true);
+                
+             //   saccount.create(acfg,true);
+             //   Thread.Sleep(500);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                log.Error("Error creating accounts " + ex.Message);
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             SetButtonStatus(this);
-
 
             try
             {
@@ -124,11 +152,10 @@ namespace UNET_Trainer_Trainee
                         lblConsole.Text = currentInfo.ConsoleRole;
                         lblExerciseMode.Text = currentInfo.ExerciseMode;
                         lblExerciseName.Text = currentInfo.ExerciseName;
-
                     }
                     else
                     {
-                        Console.Write("The service.getexerciseinfo object is empty!!!");
+                      //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
                     }
                
                     service.Close();
@@ -200,11 +227,29 @@ namespace UNET_Trainer_Trainee
             frm.Show();
         }
 
-        private void FrmUNETMain_Shown(object sender, EventArgs e)
+        private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            ///this code destroys the SIP connection and clears the relevant objects
+            try
+            {
+                //dispose all sip objects, so they can be garbage collected
+                if (!object.ReferenceEquals(saccount, null))
+                {
+                    saccount.Dispose();
+                }
+              //  account.Dispose();
 
-            SIP.SipAccount sipaccount = new SIP.SipAccount();
-           // sipaccoun
+                endpoint.libDestroy();
+                endpoint.Dispose();
+
+                //force garbage collection of all disposed objects
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error UN-registering SIP connection", ex);
+                // throw;
+            }
         }
     }
 }
