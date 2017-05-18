@@ -11,13 +11,13 @@ namespace UNET_Trainer_Trainee.SIP
     {
         public string Name;//frank: let op deze properties zijn erbij gezet.
         public string Domain;
-        public SipAccount Account;
+        public Account Account;
 
         //brief SipBuddy::SipBuddy
         //param name
         //param domain
         //param account
-        public SipBuddy(String name, String domain, SipAccount account)
+        public SipBuddy(String name, String domain, Account account)
         {
             Name = name;
             Domain = domain;

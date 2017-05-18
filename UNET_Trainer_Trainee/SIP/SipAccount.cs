@@ -71,6 +71,7 @@ namespace UNET_Trainer_Trainee.SIP
         {
             pjsua2.AccountInfo ai = getInfo();
             log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
+            Console.Write(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
 
             switch (_prm.code)
             {

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using pjsua2;
 using System.Configuration;
 
@@ -15,11 +11,11 @@ namespace UNET_Trainer_Trainee.SIP
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private pjsua2.Endpoint ep;
-        private SipAccount acc;
-        private List<SipBuddy> buddies = new List<SipBuddy>();
+        private Account acc;
+         private List<SipBuddy> buddies = new List<SipBuddy>();
 
 
-        // signals:
+        // signals
            public void forwardNewCallState(int state)
         { //todo: implementern
         }
@@ -32,9 +28,9 @@ namespace UNET_Trainer_Trainee.SIP
             //todo: implementeren
         }
 
-        /*!
-         * \brief UserAgent::~UserAgent
-         */
+        ///
+        /// brief UserAgent::~UserAgent
+        ////
         public UserAgent()
         {
 
@@ -42,16 +38,24 @@ namespace UNET_Trainer_Trainee.SIP
             //hoeft niet in c#  delete ep;
         }
 
-        public void UserAgentStart(Endpoint _ep)
+        public void UserAgentStart()
         {
 
             Console.Write("Starting User Agent");
 
-            // Create endpoint
+
+
+
+         
+          
+            //todo: hier kunnen nog 1001 params geconfigureerd worden
+
+             // Create endpoint
             try
             {
-                ep = _ep;
-              //  ep.libCreate();
+                ep = new Endpoint();
+                ep.libCreate();
+                ep.libRegisterThread("UNETthread");
             }
             catch (Exception ex)
             {
@@ -61,9 +65,12 @@ namespace UNET_Trainer_Trainee.SIP
             // Init library
             try
             {
-               // EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-              //  ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-              //  ep.libInit(ep_cfg);
+                EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+                ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+                ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+                ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+
+                ep.libInit(ep_cfg);
             }
             catch (Exception ex)
             {
@@ -73,9 +80,9 @@ namespace UNET_Trainer_Trainee.SIP
             // Create transport
             try
             {
-              //  TransportConfig tcfg = new TransportConfig();//frank: hier is de new erbij gezet
-              //  tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-              //  ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+                TransportConfig tcfg = new TransportConfig();//frank: hier is de new erbij gezet
+                tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+                ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
             }
             catch (Exception ex)
             {
@@ -85,50 +92,55 @@ namespace UNET_Trainer_Trainee.SIP
             // Start library
             try
             {
-              //  ep.libStart();
+                ep.libStart();
             }
             catch (Exception ex)
             {
                 log.Error("Startup error: " + ex.Message);
             }
-
     
-            // Create account configuration
-            AccountConfig acc_cfg = new AccountConfig();
-            string accountName = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            string sipServer = "sip:" + ConfigurationManager.AppSettings["SIPServer"].ToString();
-            acc_cfg.idUri = accountName;
+            //AccountConfig acc_cfg = new AccountConfig();
+            //string accountName = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //string sipServer = "sip:" + ConfigurationManager.AppSettings["SIPServer"].ToString();
+            //acc_cfg.idUri = accountName;
 
-            acc_cfg.regConfig.registrarUri = sipServer;
-            acc_cfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
-            acc_cfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+            //acc_cfg.regConfig.registrarUri = sipServer;
+            //acc_cfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
+            //acc_cfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
 
-            // Set server proxy
-            StringVector proxy = acc_cfg.sipConfig.proxies;
-            proxy.Add(sipServer + ";transport=udp"); //todo: was: push_back
+            //// Set server proxy
+            //StringVector proxy = acc_cfg.sipConfig.proxies;
+            //proxy.Add(sipServer + ";transport=udp"); //todo: was: push_back
 
-            acc_cfg.sipConfig.proxies = proxy;
-            acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
-      
+            //acc_cfg.sipConfig.proxies = proxy;
+            //acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
             //Configure an AccountConfig (zie pagina 43 pjsua2doc.pdf)
+  
+            
             // Create & set presence
+            // Create account configuration
             AccountConfig acfg = new AccountConfig();
             acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            acc_cfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
-            acc_cfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-
+            string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            acfg.regConfig.registrarUri = sipserver;
+            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
+            acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
             AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
-
             acfg.sipConfig.authCreds.Add(cred);
             acfg.regConfig.registerOnAdd = true;
+            acfg.regConfig.dropCallsOnFail = true;
+            //// Set server proxy
+            StringVector proxy = acfg.sipConfig.proxies;
+            proxy.Add(sipserver + ";transport=udp");
+            acfg.sipConfig.proxies = proxy;
+            acfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
             // Create SIP account
             acc = new SipAccount();
             acc.create(acfg, true);
             setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
             // Create buddies
-            BuddyConfig pCfg = new BuddyConfig();//hier is de new erbijgezet
-            BuddyConfig sCfg = new BuddyConfig();//hier is de new erbijgezet
+            BuddyConfig pCfg = new BuddyConfig();
+            BuddyConfig sCfg = new BuddyConfig();
             SipBuddy platformBuddy = new SipBuddy("Platform", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
             SipBuddy serverBuddy = new SipBuddy("Server", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
 
@@ -149,16 +161,20 @@ namespace UNET_Trainer_Trainee.SIP
 
                 buddies.Add(platformBuddy);
                 buddies.Add(serverBuddy);
+
+                acc.addBuddy(platformBuddy);
+                acc.addBuddy(serverBuddy);
+
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message);
             }
 
-            // Connect signals & slots
-            // connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            // connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            // connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
+            // Connect signals & slots            
+             //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+             //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+             //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
         /// <summary>
@@ -166,15 +182,13 @@ namespace UNET_Trainer_Trainee.SIP
         /// </summary>
         public void UserAgentStop()
         {
-
             Console.Write("Stopping endpoint");
-
             //  Register thread if necessary
-          // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
+            // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
               ep.libRegisterWorkerThread("program thread");// .libRegisterThread("program thread");
 
             // Disconnect account;
-            acc.Dispose();// .disconnect();
+            acc.Dispose();
 
             //  Stop endpoint
             ep.libDestroy();
@@ -188,7 +202,7 @@ namespace UNET_Trainer_Trainee.SIP
          * \param acc
          * \param status
          */
-        public void setPresence(SipAccount acc, pjsua2.pjsua_buddy_status status)
+        public void setPresence(Account acc, pjsua2.pjsua_buddy_status status)
         {
             try
             {
@@ -196,14 +210,13 @@ namespace UNET_Trainer_Trainee.SIP
                 ps.status = status;
 
                 // Optional, set the activity and some note
-                ps.activity = pjrpid_activity.PJRPID_ACTIVITY_BUSY;
-                ps.note = "On the phone";
+              //  ps.activity = pjrpid_activity.PJRPID_ACTIVITY_BUSY;
+              //  ps.note = "On the phone";
 
                 acc.setOnlineStatus(ps);
             }
             catch (Exception ex)
             {
-
                 Console.Write("*** Presence Error: " + ex.Message + ex.InnerException);
             }
         }
@@ -211,76 +224,67 @@ namespace UNET_Trainer_Trainee.SIP
         ///*!
         // * \brief UserAgent::configureSoundDevices
         // */
-        //public void configureSoundDevices()
-        //{
-        //    // Configure codecs
-
-        //    // Set L16 to highest priority
-        //    ep.codecSetPriority("L16/44100/1", 255);
-
-        //    // Set G722 to first fallback
-        //    ep.codecSetPriority("G722/16000/1", 253);
-
-        //    // Set Speex to second fallback
-        //    ep.codecSetPriority("speex/16000/1", 250);
-
-        //    // Disable GSM codec
-        //    ep.codecSetPriority("GSM/8000/1", 0);
-
-        //    pjsua2.CodecInfoVector civ = ep.codecEnum();
-
-        //    log.Info("<--- Start codec list --->");
-
-        //    for (int i = 0; i < civ.Count -1; i++)
-        //    {
-        //        CodecInfo ci = civ[i];
-        //        log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
-        //        Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
-        //    }
-
-        //    log.Info("<--- End codec list --->");
-        //    Console.Write("<--- End codec list --->");
-
-        //    //    Turn off Voice Activation Detection
-        //    ep.audDevManager().setVad(false, false);
-
-        //    //    Turn off Echo Cancelation
-        //    ep.audDevManager().setEcOptions(0, 0);
-
-        //    //   Turn off Packet loss concealment
-        //    ep.audDevManager().setPlc(false, true);
-
-        //    //    Turn off Comfort noise generator
-        //    ep.audDevManager().setCng(false, true);
-
-        //    MediaFormatAudio aud = new MediaFormatAudio(); //todo: dit ding initialiseren
-            
-        //    ep.audDevManager().setExtFormat(aud, true);
-
-        //    //   --------------------------------------
-        //    ep.audDevManager().getCaptureDev();
-
-        //    log.Info("###" + "VAD Check");
-        //    log.Info("###" + (ep.audDevManager().getVad() ? "VAD Detected" : "VAD Not Detected"));
-        //}
-
-        /*!
-         * \brief UserAgent::run
-         */
-        public void run()
+        public void configureSoundDevices()
         {
+            // Configure codecs
 
+            // Set L16 to highest priority
+            ep.codecSetPriority("L16/44100/1", 255);
+
+            // Set G722 to first fallback
+            ep.codecSetPriority("G722/16000/1", 253);
+
+            // Set Speex to second fallback
+            ep.codecSetPriority("speex/16000/1", 250);
+
+            // Disable GSM codec
+            ep.codecSetPriority("GSM/8000/1", 0);
+
+            pjsua2.CodecInfoVector civ = ep.codecEnum();
+
+            log.Info("<--- Start codec list --->");
+
+            for (int i = 0; i < civ.Count - 1; i++)
+            {
+                CodecInfo ci = civ[i];
+                log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+                Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+            }
+
+            log.Info("<--- End codec list --->");
+            Console.Write("<--- End codec list --->");
+
+            //    Turn off Voice Activation Detection
+            ep.audDevManager().setVad(false, false);
+
+            //    Turn off Echo Cancelation
+            ep.audDevManager().setEcOptions(0, 0);
+
+            //   Turn off Packet loss concealment
+            ep.audDevManager().setPlc(false, true);
+
+            //    Turn off Comfort noise generator
+            ep.audDevManager().setCng(false, true);
+
+            MediaFormatAudio aud = new MediaFormatAudio(); //todo: dit ding initialiseren
+
+            ep.audDevManager().setExtFormat(aud, true);
+
+            //   --------------------------------------
+            ep.audDevManager().getCaptureDev();
+
+            log.Info("###" + "VAD Check");
+            log.Info("###" + (ep.audDevManager().getVad() ? "VAD Detected" : "VAD Not Detected"));
         }
 
-        #region Slots
 
+        #region Slots
         /*!
          * \brief UserAgent::receiveNewCallState
          * \param state
          */
         public void receiveNewCallState(int state)
         {
-
             forwardNewCallState(state);
         }
 
@@ -290,7 +294,6 @@ namespace UNET_Trainer_Trainee.SIP
          */
         public void receiveNewRegState(int state)
         {
-
             forwardNewRegState(state);
         }
 
@@ -326,13 +329,13 @@ namespace UNET_Trainer_Trainee.SIP
             }
         }
         #endregion
+
         /*!
          * \brief UserAgent::receiveInputMute
          * \param mute
          */
         public void receiveInputMute(bool mute)
         {
-
             // Set input volume to 0 when muted
             // NOTE: mute is inversed
             // TODO: real mute function to keep volume value

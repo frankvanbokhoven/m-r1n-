@@ -77,54 +77,18 @@ namespace UNET_Trainer_Trainee
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             this.Text = "UNET Trainee";
-         //   timer1.Enabled = true;
+            //todo: terugzetten   timer1.Enabled = true;
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
-            endpoint = new Endpoint();
-            endpoint.libCreate();
-          //  endpoint.libRegisterWorkerThread("UNETthread");
-            endpoint.libRegisterThread("UNETthread");
-
-            ep_cfg = new EpConfig();
-            ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]);
-            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
-            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
-            //todo: hier kunnen nog 1001 params geconfigureerd worden
-            
-            //Initialize endpoint
-            endpoint.libInit(ep_cfg);
-             //Create sip transport and errorhandling
-            tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-           
             try
             {
-                endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+                //Create sip transport and errorhandling
+                //tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+                //endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
                 SIP.UserAgent useragent = new SIP.UserAgent();
-                useragent.UserAgentStart(endpoint);
-             
-                //Configure an AccountConfig (zie pagina 43 pjsua2doc.pdf)
-              //  acfg.idUri = string.Format("sip:{0}@unet", ConfigurationManager.AppSettings["sipAccount"]);
-              //  acfg.regConfig.registrarUri = string.Format("sip:{0}", ConfigurationManager.AppSettings["sipServer"]);
-
-              //  AuthCredInfo cred = new AuthCredInfo("digest", "*", ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
-                
-              //  acfg.sipConfig.authCreds.Add(cred);
-              //  acfg.regConfig.registerOnAdd = true;             
-                // account = new Account();
-                // account.create(acfg);
-             //   saccount = new SIP.SipAccount();
-             //   SIP.SipBuddy buddy = new SIP.SipBuddy("1025@unet", "unet", saccount);
-             //   saccount.addBuddy(buddy );         
-             //   saccount.setDefault();
-              //   PresenceStatus ps = new PresenceStatus();
-              //   ps.status = pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE;
-              //   saccount.setOnlineStatus(ps);
-              //   saccount.setRegistration(true);
-                
-             //   saccount.create(acfg,true);
-             //   Thread.Sleep(500);
+                useragent.UserAgentStart();
             }
             catch (Exception ex)
             {
@@ -158,8 +122,7 @@ namespace UNET_Trainer_Trainee
                       //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
                     }
                
-                    service.Close();
-                                      
+                    service.Close();                                      
                 }
             }
             catch (Exception ex)
@@ -167,8 +130,6 @@ namespace UNET_Trainer_Trainee
                 log.Error("Error updating screen controls", ex);
                 // throw;
             }
-
-
 
             SetButtonStatus(pnlPointToPoint);
             SetButtonStatus(pnlRadios);
@@ -248,7 +209,6 @@ namespace UNET_Trainer_Trainee
             catch (Exception ex)
             {
                 log.Error("Error UN-registering SIP connection", ex);
-                // throw;
             }
         }
     }
