@@ -5527,7 +5527,7 @@ class pjsua2PINVOKE {
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_Call_onCreateMediaTransportSwigExplicitCall")]
   public static extern void Call_onCreateMediaTransportSwigExplicitCall(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_Call_director_connect")]
+  [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint= "_CSharp_Call_director_connect@88")]
   public static extern void Call_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1, Call.SwigDelegateCall_0 delegate0, Call.SwigDelegateCall_1 delegate1, Call.SwigDelegateCall_2 delegate2, Call.SwigDelegateCall_3 delegate3, Call.SwigDelegateCall_4 delegate4, Call.SwigDelegateCall_5 delegate5, Call.SwigDelegateCall_6 delegate6, Call.SwigDelegateCall_7 delegate7, Call.SwigDelegateCall_8 delegate8, Call.SwigDelegateCall_9 delegate9, Call.SwigDelegateCall_10 delegate10, Call.SwigDelegateCall_11 delegate11, Call.SwigDelegateCall_12 delegate12, Call.SwigDelegateCall_13 delegate13, Call.SwigDelegateCall_14 delegate14, Call.SwigDelegateCall_15 delegate15, Call.SwigDelegateCall_16 delegate16, Call.SwigDelegateCall_17 delegate17, Call.SwigDelegateCall_18 delegate18);
 
   [global::System.Runtime.InteropServices.DllImport("pjsua2", EntryPoint="CSharp_CallMediaInfoVector_Clear")]

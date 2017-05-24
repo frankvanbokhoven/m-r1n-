@@ -111,6 +111,12 @@
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UNET_Service\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.CurrentInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Exercise.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

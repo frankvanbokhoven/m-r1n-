@@ -498,6 +498,7 @@
             this.btnRadio01.TabIndex = 1;
             this.btnRadio01.Text = "Radio 01";
             this.btnRadio01.UseVisualStyleBackColor = false;
+            this.btnRadio01.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
             // btnRadio03
             // 

@@ -42,9 +42,16 @@ namespace UNET_Service
         [OperationContract]
         Classes.CurrentInfo GetExerciseInfo(int _traineeID);
 
-        //Setters
+        [OperationContract]
+        bool[] GetTraineeStatus();
 
-   //     [CollectionDataContract(Name = "Custom{0}List", ItemName = "CustomItem")]
+        [OperationContract]
+        bool GetTraineeStatusChanged();
+
+        [OperationContract]
+        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+
+        //Setters
         [OperationContract]
         bool RegisterTrainee(Classes.CurrentInfo _currentInfo);
 

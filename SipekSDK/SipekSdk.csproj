@@ -111,7 +111,6 @@
     <Compile Include="Common\CallControl\CTerminatedState.cs" />
     <Compile Include="Common\CallControl\CIncomingState.cs" />
     <Compile Include="Common\CallControl\CHoldingState.cs" />
-    <Compile Include="PJSUA2\SipAccount.cs" />
     <Compile Include="Sip\pjsipRegistrar.cs" />
     <Compile Include="Sip\pjsipPresenceAndMessaging.cs" />
     <Compile Include="Sip\OnCallStateChanged.cs" />

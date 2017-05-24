@@ -21,18 +21,16 @@ namespace UNET_Trainer_Trainee
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         //pjsua2
-        public Endpoint endpoint;
-        public EpConfig ep_cfg;
-        public AccountConfig acfg = new AccountConfig();
-        public TransportConfig tcfg = new TransportConfig();
+      //  public Endpoint endpoint;
+      //  public EpConfig ep_cfg;
+      //  public AccountConfig acfg = new AccountConfig();
+       // public TransportConfig tcfg = new TransportConfig();
         //the accounts
-        pjsua2.Account account;
-        SIP.SipAccount saccount;
+        private SIP.UserAgent useragent;
 
-
-      //  private Boolean Muted = false;
-      //  private Boolean MonitorTrainee = false;
-      //  private Boolean MonitorRadio = false;
+        //  private Boolean Muted = false;
+        //  private Boolean MonitorTrainee = false;
+        //  private Boolean MonitorRadio = false;
         public int TraineeID = 1;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
@@ -87,7 +85,7 @@ namespace UNET_Trainer_Trainee
                 //Create sip transport and errorhandling
                 //tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
                 //endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
-                SIP.UserAgent useragent = new SIP.UserAgent();
+                useragent = new SIP.UserAgent();
                 useragent.UserAgentStart();
             }
             catch (Exception ex)
@@ -178,8 +176,6 @@ namespace UNET_Trainer_Trainee
                     SetButtonStatus(c);
                 }
             }
-
-
         }
 
         private void btnAudio_Click(object sender, EventArgs e)
@@ -191,24 +187,42 @@ namespace UNET_Trainer_Trainee
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             ///this code destroys the SIP connection and clears the relevant objects
+            //try
+            //{
+            //dispose all sip objects, so they can be garbage collected
+
+            if (!object.ReferenceEquals(useragent, null))
+               {
+                useragent.UserAgentStop();
+                  // useragent.
+               }
+ 
+            //    endpoint.libDestroy();
+            //    endpoint.Dispose();
+
+            //    //force garbage collection of all disposed objects
+            //    GC.Collect();
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Error UN-registering SIP connection", ex);
+            //}
+        }
+
+        private void btnRadio01_Click(object sender, EventArgs e)
+        {
             try
-            {
-                //dispose all sip objects, so they can be garbage collected
-                if (!object.ReferenceEquals(saccount, null))
-                {
-                    saccount.Dispose();
-                }
-              //  account.Dispose();
-
-                endpoint.libDestroy();
-                endpoint.Dispose();
-
-                //force garbage collection of all disposed objects
-                GC.Collect();
+            {                
+    
+            SIP.SIPCall sc = new SIP.SIPCall(useragent.acc,TraineeID);
+            CallOpParam cop = new CallOpParam();
+            cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+            sc.makeCall("sip:1011@10.0.128.128",cop);
             }
             catch (Exception ex)
             {
-                log.Error("Error UN-registering SIP connection", ex);
+                log.Error("Error updating screen controls", ex);
+                // throw;
             }
         }
     }

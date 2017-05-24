@@ -21,6 +21,8 @@ namespace UNET_Service.Classes
         public List<Platform> Platforms = new List<Platform>();
         public List<Classes.CurrentInfo> CurrentInfoList = new List<Classes.CurrentInfo>();
 
+        public bool TraineeStatusChanged = false;
+
         public static UNET_Service_Singleton Instance
         {
             get

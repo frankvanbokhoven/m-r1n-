@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbxExercise = new System.Windows.Forms.ComboBox();
             this.listBoxGetmethods = new System.Windows.Forms.ListBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,21 +54,20 @@
             this.groupBox1.Controls.Add(this.cbxTrainee);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbxExercise);
-            this.groupBox1.Location = new System.Drawing.Point(12, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(16, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(447, 204);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(596, 251);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 167);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(49, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Radio";
             // 
@@ -94,10 +95,10 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(176, 164);
-            this.cbxRadios.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxRadios.Location = new System.Drawing.Point(235, 202);
+            this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
-            this.cbxRadios.Size = new System.Drawing.Size(92, 21);
+            this.cbxRadios.Size = new System.Drawing.Size(121, 24);
             this.cbxRadios.TabIndex = 6;
             this.cbxRadios.Text = "4";
             this.cbxRadios.SelectedValueChanged += new System.EventHandler(this.cbxRadios_SelectedValueChanged);
@@ -105,10 +106,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 127);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(49, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Role";
             // 
@@ -136,10 +136,10 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(176, 124);
-            this.cbxRole.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxRole.Location = new System.Drawing.Point(235, 153);
+            this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
-            this.cbxRole.Size = new System.Drawing.Size(92, 21);
+            this.cbxRole.Size = new System.Drawing.Size(121, 24);
             this.cbxRole.TabIndex = 4;
             this.cbxRole.Text = "4";
             this.cbxRole.SelectedIndexChanged += new System.EventHandler(this.cbxRole_SelectedIndexChanged);
@@ -148,10 +148,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 87);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(49, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Trainees";
             // 
@@ -175,10 +174,10 @@
             "14",
             "15",
             "16"});
-            this.cbxTrainee.Location = new System.Drawing.Point(176, 84);
-            this.cbxTrainee.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxTrainee.Location = new System.Drawing.Point(235, 103);
+            this.cbxTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxTrainee.Name = "cbxTrainee";
-            this.cbxTrainee.Size = new System.Drawing.Size(92, 21);
+            this.cbxTrainee.Size = new System.Drawing.Size(121, 24);
             this.cbxTrainee.TabIndex = 2;
             this.cbxTrainee.Text = "4";
             this.cbxTrainee.SelectedValueChanged += new System.EventHandler(this.cbxTrainee_SelectedValueChanged);
@@ -186,10 +185,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 43);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(49, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Exercise";
             // 
@@ -205,10 +203,10 @@
             "6",
             "7",
             "8"});
-            this.cbxExercise.Location = new System.Drawing.Point(176, 41);
-            this.cbxExercise.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxExercise.Location = new System.Drawing.Point(235, 50);
+            this.cbxExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxExercise.Name = "cbxExercise";
-            this.cbxExercise.Size = new System.Drawing.Size(92, 21);
+            this.cbxExercise.Size = new System.Drawing.Size(121, 24);
             this.cbxExercise.TabIndex = 0;
             this.cbxExercise.Text = "4";
             this.cbxExercise.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
@@ -222,22 +220,28 @@
             this.listBoxGetmethods.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxGetmethods.ForeColor = System.Drawing.SystemColors.Window;
             this.listBoxGetmethods.FormattingEnabled = true;
-            this.listBoxGetmethods.ItemHeight = 15;
-            this.listBoxGetmethods.Location = new System.Drawing.Point(12, 220);
+            this.listBoxGetmethods.ItemHeight = 18;
+            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 271);
+            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(447, 574);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(595, 706);
             this.listBoxGetmethods.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmUNETTester_Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(471, 820);
+            this.ClientSize = new System.Drawing.Size(628, 1009);
             this.Controls.Add(this.listBoxGetmethods);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmUNETTester_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UNET Tester";
@@ -260,6 +264,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbxTrainee;
         private System.Windows.Forms.ListBox listBoxGetmethods;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

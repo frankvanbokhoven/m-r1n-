@@ -140,6 +140,9 @@
     <None Include="Service References\UNET_Service\Service12.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UNET_Service\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.CurrentInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

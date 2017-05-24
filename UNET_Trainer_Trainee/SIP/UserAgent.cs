@@ -10,9 +10,9 @@ namespace UNET_Trainer_Trainee.SIP
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private pjsua2.Endpoint ep;
-        private Account acc;
-         private List<SipBuddy> buddies = new List<SipBuddy>();
+        public pjsua2.Endpoint ep;
+        public SipAccount acc;
+        public List<SipBuddy> buddies = new List<SipBuddy>();
 
 
         // signals
@@ -42,15 +42,8 @@ namespace UNET_Trainer_Trainee.SIP
         {
 
             Console.Write("Starting User Agent");
-
-
-
-
-         
-          
-            //todo: hier kunnen nog 1001 params geconfigureerd worden
-
-             // Create endpoint
+ 
+            // Create endpoint
             try
             {
                 ep = new Endpoint();
@@ -99,23 +92,6 @@ namespace UNET_Trainer_Trainee.SIP
                 log.Error("Startup error: " + ex.Message);
             }
     
-            //AccountConfig acc_cfg = new AccountConfig();
-            //string accountName = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //string sipServer = "sip:" + ConfigurationManager.AppSettings["SIPServer"].ToString();
-            //acc_cfg.idUri = accountName;
-
-            //acc_cfg.regConfig.registrarUri = sipServer;
-            //acc_cfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
-            //acc_cfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-
-            //// Set server proxy
-            //StringVector proxy = acc_cfg.sipConfig.proxies;
-            //proxy.Add(sipServer + ";transport=udp"); //todo: was: push_back
-
-            //acc_cfg.sipConfig.proxies = proxy;
-            //acc_cfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
-            //Configure an AccountConfig (zie pagina 43 pjsua2doc.pdf)
-  
             
             // Create & set presence
             // Create account configuration
@@ -143,7 +119,6 @@ namespace UNET_Trainer_Trainee.SIP
             BuddyConfig sCfg = new BuddyConfig();
             SipBuddy platformBuddy = new SipBuddy("Platform", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
             SipBuddy serverBuddy = new SipBuddy("Server", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
-
             pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
             sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
 
@@ -185,16 +160,38 @@ namespace UNET_Trainer_Trainee.SIP
             Console.Write("Stopping endpoint");
             //  Register thread if necessary
             // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
-              ep.libRegisterWorkerThread("program thread");// .libRegisterThread("program thread");
+            //ep.libStopThreads();// ("program thread");// .libRegisterThread("program thread");
 
-            // Disconnect account;
-            acc.Dispose();
+            //// Disconnect account;
+            //acc.Dispose();
 
-            //  Stop endpoint
-            ep.libDestroy();
+            ////  Stop endpoint
+            //ep.libDestroy();
 
-            // Send new state
-            forwardNewRegState(-2);
+            //// Send new state
+            //forwardNewRegState(-2);
+
+
+
+            ///this code destroys the SIP connection and clears the relevant objects
+            try
+            {
+                //dispose all sip objects, so they can be garbage collected
+              ///  if (!object.ReferenceEquals(acc, null))
+              //  {
+               //     acc.Dispose();
+               // }
+
+                ep.libDestroy();
+                ep.Dispose();
+
+                //force garbage collection of all disposed objects
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error UN-registering SIP connection", ex);
+            }
         }
 
         /*!
@@ -202,7 +199,7 @@ namespace UNET_Trainer_Trainee.SIP
          * \param acc
          * \param status
          */
-        public void setPresence(Account acc, pjsua2.pjsua_buddy_status status)
+        public void setPresence(SipAccount acc, pjsua2.pjsua_buddy_status status)
         {
             try
             {

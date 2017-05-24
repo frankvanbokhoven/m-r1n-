@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost/UNET_Service/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="d556317a-197c-4432-9c53-153492f7f409" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="e0959903-09b6-46df-a3c7-d3312711bdc5" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?disco" />
-    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="d5c32d09-dcac-43b9-a9b5-b3bb33a4540b" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" />
+    <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="d556317a-197c-4432-9c53-153492f7f409" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="e9408a5d-c092-48fe-8515-8de694ba1e2d" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="d5c32d09-dcac-43b9-a9b5-b3bb33a4540b" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" />
     <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="bc2b5744-8c61-48e9-a887-90048daf6e5d" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?wsdl" />
+    <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="ddff0b40-ba4e-4228-87f2-5b71220f4444" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

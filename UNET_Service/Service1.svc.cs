@@ -19,7 +19,7 @@ namespace UNET_Service
         private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+        
 
         #region Getters
         /// <summary>
@@ -43,6 +43,30 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// Only when this statuschanged is true, the clients have to  bother updating the other statusses
+        /// </summary>
+        /// <returns></returns>
+        public bool GetTraineeStatusChanged()
+        {
+            UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+
+            return singleton.TraineeStatusChanged;
+        }
+
+        /// <summary>
+        /// Set the changed status for every individual trainee
+        /// </summary>
+        /// <param name="_traineeId"></param>
+        /// <param name="_changed"></param>
+        /// <returns></returns>
+        public bool SetTraineeStatusChanged(int _traineeId, bool _changed)
+        {
+            UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+
+
+            return true;
+        }
 
         public List<UNET_Service.Classes.Role> GetRoles()
         {
@@ -166,6 +190,19 @@ namespace UNET_Service
             }
             return result;
         }
+
+        /// <summary>
+        /// Retrieve an list of
+        /// </summary>
+        /// <returns></returns>
+        public bool[] GetTraineeStatus()
+        {
+            bool[] traineestatus = new bool[8];
+            traineestatus[0] = true;
+            traineestatus[1] = false;
+            return traineestatus;
+        }
+
 
         /// <summary>
         /// Overwrite the list of exercises

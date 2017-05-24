@@ -33,7 +33,12 @@ namespace UNET_Trainer_Trainee.SIP
 
         private void sendCallState(int state)
         {
-            //todo!
+            CallInfo ci = getInfo();
+            if(ci.state == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED )
+            {
+                //delete the call
+                this.Dispose(); //todo: testen of dispose werkt om de call op te hangen
+            }
         }
 
 

@@ -419,6 +419,12 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlatformField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UNET_Trainer_Trainee.UNET_Service.Radio[] RadiosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UNET_Trainer_Trainee.UNET_Service.Role[] RolesField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -494,6 +500,32 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UNET_Trainer_Trainee.UNET_Service.Radio[] Radios {
+            get {
+                return this.RadiosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RadiosField, value) != true)) {
+                    this.RadiosField = value;
+                    this.RaisePropertyChanged("Radios");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UNET_Trainer_Trainee.UNET_Service.Role[] Roles {
+            get {
+                return this.RolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                    this.RolesField = value;
+                    this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -549,6 +581,18 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
         System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
+        bool[] GetTraineeStatus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
+        System.Threading.Tasks.Task<bool[]> GetTraineeStatusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/TraineeStatusChangedResponse")]
+        bool TraineeStatusChanged();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/TraineeStatusChangedResponse")]
+        System.Threading.Tasks.Task<bool> TraineeStatusChangedAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
         bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo);
@@ -698,6 +742,22 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
             return base.Channel.GetExerciseInfoAsync(_traineeID);
+        }
+        
+        public bool[] GetTraineeStatus() {
+            return base.Channel.GetTraineeStatus();
+        }
+        
+        public System.Threading.Tasks.Task<bool[]> GetTraineeStatusAsync() {
+            return base.Channel.GetTraineeStatusAsync();
+        }
+        
+        public bool TraineeStatusChanged() {
+            return base.Channel.TraineeStatusChanged();
+        }
+        
+        public System.Threading.Tasks.Task<bool> TraineeStatusChangedAsync() {
+            return base.Channel.TraineeStatusChangedAsync();
         }
         
         public bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo) {

@@ -30,6 +30,8 @@ namespace UNET_Tester
             cbxRole.SelectedValue = 5;
             cbxTrainee.SelectedValue = 5;
             GetUNETStatus();
+
+            timer1.Enabled = true;
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace UNET_Tester
             {
                 listBoxGetmethods.ForeColor = _color;
             }
-            listBoxGetmethods.Items.Insert(0,(string.Format("{0} => {1}", additionDate, _item)));
+            listBoxGetmethods.Items.Insert(0, (string.Format("{0} => {1}", additionDate, _item)));
             if (_color != Color.White)
             {
                 listBoxGetmethods.ForeColor = Color.White;
@@ -141,7 +143,7 @@ namespace UNET_Tester
 
         private void cbxRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -149,7 +151,7 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.SelectedValue)),Color.LimeGreen);
+                AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.SelectedValue)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -208,8 +210,10 @@ namespace UNET_Tester
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
                 {
-                    service.Open();
-
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
                     service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
 
                     service.Close();
@@ -224,6 +228,50 @@ namespace UNET_Tester
                 log.Error("Error using WCF method change role", ex);
                 // throw;
             }
+        }
+
+
+        /// <summary>
+        /// Get the latest status
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                {
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+
+                    //The radiobuttons only have to be refreshed when there actually is something changed, hence the traineestatuschanged bool
+                    if (service.GetTraineeStatusChanged() == true)
+                    {
+
+                        //enable the Exercise buttons
+                        bool[] traineestatus = service.GetTraineeStatus();
+                        if (traineestatus != null)
+                        {
+                            for (int i = 0; i <= 7; i++)
+                            {
+
+                                AddToListbox(string.Format("Trainee status: Trainee{0}: {1}", i, Convert.ToString(traineestatus[i])));
+                            }
+                        }
+                    }
+                    service.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error updating screen controls", ex);
+            }
+
         }
     }
 }

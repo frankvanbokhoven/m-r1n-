@@ -352,7 +352,12 @@ public class Call : global::System.IDisposable {
       swigDelegate17 = new SwigDelegateCall_17(SwigDirectoronCallMediaEvent);
     if (SwigDerivedClassHasMethod("onCreateMediaTransport", swigMethodTypes18))
       swigDelegate18 = new SwigDelegateCall_18(SwigDirectoronCreateMediaTransport);
-    pjsua2PINVOKE.Call_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18);
+            if (SwigDerivedClassHasMethod("onCreateMediaTransport", swigMethodTypes19))
+                swigDelegate19 = new SwigDelegateCall_19(SwigDirectoronCreateMediaTransport);
+            if (SwigDerivedClassHasMethod("onCreateMediaTransport", swigMethodTypes20))
+                swigDelegate20 = new SwigDelegateCall_20(SwigDirectoronCreateMediaTransport);
+
+            pjsua2PINVOKE.Call_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14, swigDelegate15, swigDelegate16, swigDelegate17, swigDelegate18);
   }
 
   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
@@ -456,8 +461,12 @@ public class Call : global::System.IDisposable {
   public delegate void SwigDelegateCall_16(global::System.IntPtr prm);
   public delegate void SwigDelegateCall_17(global::System.IntPtr prm);
   public delegate void SwigDelegateCall_18(global::System.IntPtr prm);
+  /*frank: deze zijn erbij gezet omdat pjsua2 er 21 verwacht maar er maar 19 zijn */
+        public delegate void SwigDelegateCall_19(global::System.IntPtr prm);
+        public delegate void SwigDelegateCall_20(global::System.IntPtr prm);
 
-  private SwigDelegateCall_0 swigDelegate0;
+
+        private SwigDelegateCall_0 swigDelegate0;
   private SwigDelegateCall_1 swigDelegate1;
   private SwigDelegateCall_2 swigDelegate2;
   private SwigDelegateCall_3 swigDelegate3;
@@ -476,8 +485,11 @@ public class Call : global::System.IDisposable {
   private SwigDelegateCall_16 swigDelegate16;
   private SwigDelegateCall_17 swigDelegate17;
   private SwigDelegateCall_18 swigDelegate18;
+        /*frank: deze zijn toegevoegd omdat er orgineel maar 19 parameters zijn maar pjsua2 er 21 verwacht */
+        private SwigDelegateCall_19 swigDelegate19;
+        private SwigDelegateCall_20 swigDelegate20;
 
-  private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(OnCallStateParam) };
+        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(OnCallStateParam) };
   private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(OnCallTsxStateParam) };
   private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(OnCallMediaStateParam) };
   private static global::System.Type[] swigMethodTypes3 = new global::System.Type[] { typeof(OnCallSdpCreatedParam) };
@@ -496,6 +508,9 @@ public class Call : global::System.IDisposable {
   private static global::System.Type[] swigMethodTypes16 = new global::System.Type[] { typeof(OnCallMediaTransportStateParam) };
   private static global::System.Type[] swigMethodTypes17 = new global::System.Type[] { typeof(OnCallMediaEventParam) };
   private static global::System.Type[] swigMethodTypes18 = new global::System.Type[] { typeof(OnCreateMediaTransportParam) };
-}
+  /*frank: erbij gezet omdat orgineel er slechts 19 parameters zijn, maar pjsua2 er 21 verwacht */
+  private static global::System.Type[] swigMethodTypes19 = new global::System.Type[] { typeof(OnCreateMediaTransportParam) };
+  private static global::System.Type[] swigMethodTypes20 = new global::System.Type[] { typeof(OnCreateMediaTransportParam) };
+    }
 
 }

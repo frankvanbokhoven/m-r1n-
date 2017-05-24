@@ -106,7 +106,7 @@ namespace UNET_Trainer_Trainee.SIP
             // Store this call
             Calls.Add(call); //.push_back(call);
             prm.statusCode = (pjsua2.pjsip_status_code)200;
-
+              
             // Answer the call
             call.answer(prm);
         }
