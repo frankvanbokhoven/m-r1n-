@@ -1,0 +1,6 @@
+    <Reference Include="PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">..\Release\PJSUA2_NET.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">..\Debug\PJSUA2_NET.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
