@@ -39,18 +39,24 @@ namespace TestPJSUA2Mark
         {
             try
             {
-                listBox1.AppendText("Registering: 10031@unet ");
+                AddToListbox("Registering: 10031@unet ");
                 SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                 sc.makeCall("sip:1003@unet", cop);
-                listBox1.AppendText("1011@unet successfully registered!!");
+                AddToListbox("1011@unet successfully registered!!");
             }
             catch (Exception ex)
             {
                 log.Error("Error updating screen controls", ex);
                 // throw;
             }
+        }
+
+        private void AddToListbox(string _text)
+        {
+            listBox1.AppendText(Environment.NewLine);
+            listBox1.AppendText(DateTime.Now.ToShortDateString() + " : " + _text);
         }
 
         private void btnCall_Click(object sender, EventArgs e)
@@ -61,15 +67,15 @@ namespace TestPJSUA2Mark
             }
             else
             {
-                listBox1.AppendText("Starting a call to: " + txtAccount.Text);
+                AddToListbox("Starting a call to: " + txtAccount.Text);
                 try
                 {
-                    listBox1.AppendText("Registering: 1003@unet");
+                    AddToListbox("Registering: 1003@unet");
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall("sip:1003@10.0.128.128", cop);
-                    listBox1.AppendText("Call successfully made to: 1003@unet");
+                    AddToListbox("Call successfully made to: 1003@unet");
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +88,7 @@ namespace TestPJSUA2Mark
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            listBox1.AppendText("Started this test client");        ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+            AddToListbox("Started this test client");        ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
             try

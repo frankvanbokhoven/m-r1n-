@@ -105,7 +105,7 @@ namespace TestPJSUA2Mark.SIP
             Console.Write("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Store this call
-            Calls.Add(call); //.push_back(call);
+            Calls.Add(call); 
             prm.statusCode = (pjsua2.pjsip_status_code)200;
 
             // Answer the call

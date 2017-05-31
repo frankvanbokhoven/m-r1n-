@@ -98,7 +98,7 @@ namespace TestPJSUA2Mark.SIP
             // Create account configuration
             AccountConfig acfg = new AccountConfig();
             acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServere"]);
+            string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
             acfg.regConfig.registrarUri = sipserver;
             acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); 
             acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
