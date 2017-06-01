@@ -107,6 +107,8 @@ namespace TestPJSUA2Mark.SIP
                             // Start audio transmissions
                             aud_med.startTransmit(play_med);
                             cap_med.startTransmit(aud_med);
+                            Classes.WCFcaller.SetSIPStatusMessage("Audio media ");
+
                         }
                         else {
                             log.Info("******\t NO AUDIO FOUND IN CALL \t******");

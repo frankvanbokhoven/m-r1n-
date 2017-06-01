@@ -110,6 +110,26 @@ namespace UNET_Service
             }
             return result; //return the pipe separated messages string
         }
+
+        public bool ClearStatusMessages(string _id)
+        {
+            bool result = false;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+
+                //now remove all these items using lync
+                singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error clearing the SIPStatusMessage list: ", ex);
+                //throw;
+                result = false;
+            }
+            return result; 
+        }
         #endregion
 
         /// <summary>

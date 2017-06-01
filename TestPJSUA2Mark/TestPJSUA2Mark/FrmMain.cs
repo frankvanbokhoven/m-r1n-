@@ -35,20 +35,7 @@ namespace TestPJSUA2Mark
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            try
-            {
-                AddToListbox("Registering: 1003@unet ");
-                SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
-                CallOpParam cop = new CallOpParam();
-                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall("sip:1003@unet", cop);
-                AddToListbox("1003@unet successfully registered!!");
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error updating screen controls", ex);
-                // throw;
-            }
+ 
         }
 
         #region threadsafecalls
@@ -99,20 +86,20 @@ namespace TestPJSUA2Mark
         /// <param name="e"></param>
         private void btnCall_Click(object sender, EventArgs e)
         {
-            if (txtAccount.Text.Length == 0)
+            if (cbxAccount.Text.Length == 0)
             {
                 MessageBox.Show("You MUST enter an account!!");
             }
             else
             {
-                AddToListbox("Starting a call to: " + txtAccount.Text);
+                AddToListbox("Starting a call to: " + cbxAccount.Text);
                 try
                 {
-                    AddToListbox(string.Format("Calling: {0}@unet", txtAccount.Text.Trim()));
+                    AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    sc.makeCall(string.Format("sip:{0}@10.0.128.128", txtAccount.Text.Trim()), cop);
+                    sc.makeCall(string.Format("sip:{0}@10.0.128.128", cbxAccount.Text.Trim()), cop);
                     AddToListbox("Call successfully made to: 1003@unet");
                 }
                 catch (Exception ex)

@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="SecureHttp_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetExercises_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExercises" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExercises_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExercisesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRadios_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRadios" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetRadios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRadiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetInstructors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstructors" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetInstructors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstructorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainees_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTrainees" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTrainees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlatforms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlatforms" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPlatforms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlatformsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExerciseInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExerciseInfo" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExerciseInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExerciseInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeStatusChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeStatusChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeStatusChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeStatusChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeStatusChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeStatusChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetSIPStatusMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSIPStatusMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetSIPStatusMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSIPStatusMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetSIPStatusMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSIPStatusMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetSIPStatusMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSIPStatusMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ClearStatusMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearStatusMessages" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ClearStatusMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearStatusMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegisterTrainee_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTrainee" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RegisterTrainee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterTraineeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExercises_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetExercises" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExercises_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetExercisesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRolesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRolesCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadios_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadios" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadiosCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadiosCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadiosCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadiosCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineesCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineesCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineesCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineesCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetInstructors_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructors" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetInstructors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTrainees_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTrainees" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTrainees_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetPlatforms_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPlatforms" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetPlatforms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetExercises">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExercises" message="tns:IService1_GetExercises_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExercisesResponse" message="tns:IService1_GetExercises_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetRoles" message="tns:IService1_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetRolesResponse" message="tns:IService1_GetRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRadios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetRadios" message="tns:IService1_GetRadios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetRadiosResponse" message="tns:IService1_GetRadios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstructors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetInstructors" message="tns:IService1_GetInstructors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetInstructorsResponse" message="tns:IService1_GetInstructors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainees" message="tns:IService1_GetTrainees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineesResponse" message="tns:IService1_GetTrainees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlatforms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlatforms" message="tns:IService1_GetPlatforms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPlatformsResponse" message="tns:IService1_GetPlatforms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExerciseInfo" message="tns:IService1_GetExerciseInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExerciseInfoResponse" message="tns:IService1_GetExerciseInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeStatus" message="tns:IService1_GetTraineeStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusResponse" message="tns:IService1_GetTraineeStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeStatusChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChanged" message="tns:IService1_GetTraineeStatusChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChangedResponse" message="tns:IService1_GetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeStatusChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSIPStatusMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetSIPStatusMessage" message="tns:IService1_GetSIPStatusMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetSIPStatusMessageResponse" message="tns:IService1_GetSIPStatusMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSIPStatusMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetSIPStatusMessage" message="tns:IService1_SetSIPStatusMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetSIPStatusMessageResponse" message="tns:IService1_SetSIPStatusMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearStatusMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ClearStatusMessages" message="tns:IService1_ClearStatusMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ClearStatusMessagesResponse" message="tns:IService1_ClearStatusMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterTrainee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterTrainee" message="tns:IService1_RegisterTrainee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegisterTraineeResponse" message="tns:IService1_RegisterTrainee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseCount" message="tns:IService1_SetExerciseCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExerciseCountResponse" message="tns:IService1_SetExerciseCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetExercises">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExercises" message="tns:IService1_SetExercises_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExercisesResponse" message="tns:IService1_SetExercises_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoles" message="tns:IService1_SetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesResponse" message="tns:IService1_SetRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRolesCount" message="tns:IService1_SetRolesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRolesCountResponse" message="tns:IService1_SetRolesCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRadios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadios" message="tns:IService1_SetRadios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosResponse" message="tns:IService1_SetRadios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRadiosCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadiosCount" message="tns:IService1_SetRadiosCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosCountResponse" message="tns:IService1_SetRadiosCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineesCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineesCount" message="tns:IService1_SetTraineesCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineesCountResponse" message="tns:IService1_SetTraineesCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetInstructors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetInstructors" message="tns:IService1_SetInstructors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetInstructorsResponse" message="tns:IService1_SetInstructors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrainees">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTrainees" message="tns:IService1_SetTrainees_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineesResponse" message="tns:IService1_SetTrainees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPlatforms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetPlatforms" message="tns:IService1_SetPlatforms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetPlatformsResponse" message="tns:IService1_SetPlatforms_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecureHttp" type="tns:IService1">
+    <wsp:PolicyReference URI="#SecureHttp_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetExercises">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetExercises" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRadios">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetRadios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstructors">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetInstructors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainees">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTrainees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlatforms">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetPlatforms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseInfo">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetExerciseInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineeStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeStatusChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeStatusChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSIPStatusMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetSIPStatusMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSIPStatusMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetSIPStatusMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearStatusMessages">
+      <soap12:operation soapAction="http://tempuri.org/IService1/ClearStatusMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterTrainee">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RegisterTrainee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetExerciseCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetExercises">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetExercises" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRoles">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRolesCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRolesCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadios">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadiosCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadiosCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineesCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineesCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetInstructors">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetInstructors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrainees">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTrainees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPlatforms">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetPlatforms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="SecureHttp" binding="tns:SecureHttp">
+      <soap12:address location="http://spectreyggdra/UNET_Service/Service1.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://spectreyggdra/UNET_Service/Service1.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

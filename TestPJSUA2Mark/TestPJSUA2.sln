@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPJSUA2", "TestPJSUA2Mark\TestPJSUA2.csproj", "{FBF31DBD-966B-46DE-9A2D-5A7409141830}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PJSUA2Implementation", "PJSUA2Implementation\PJSUA2Implementation.csproj", "{05BD2036-6F02-4E59-849E-AB226CE50EC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FBF31DBD-966B-46DE-9A2D-5A7409141830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBF31DBD-966B-46DE-9A2D-5A7409141830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBF31DBD-966B-46DE-9A2D-5A7409141830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05BD2036-6F02-4E59-849E-AB226CE50EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05BD2036-6F02-4E59-849E-AB226CE50EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05BD2036-6F02-4E59-849E-AB226CE50EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05BD2036-6F02-4E59-849E-AB226CE50EC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

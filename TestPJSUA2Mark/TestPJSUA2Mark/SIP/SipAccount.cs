@@ -73,8 +73,9 @@ namespace TestPJSUA2Mark.SIP
         public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-            log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri );
-            Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri);
+         //   log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri );
+        //    Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri);
+            Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri  + " " + _prm.status + " " + _prm.reason);
 
             switch (_prm.code)
             {

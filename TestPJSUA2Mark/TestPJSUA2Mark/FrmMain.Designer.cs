@@ -30,8 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.txtAccount = new System.Windows.Forms.TextBox();
+            this.cbxAccount = new System.Windows.Forms.ComboBox();
             this.btnCall = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,8 +42,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.txtAccount);
+            this.panel1.Controls.Add(this.cbxAccount);
             this.panel1.Controls.Add(this.btnCall);
             this.panel1.Controls.Add(this.btnRegister);
             this.panel1.Controls.Add(this.button1);
@@ -55,22 +53,21 @@
             this.panel1.Size = new System.Drawing.Size(808, 181);
             this.panel1.TabIndex = 2;
             // 
-            // comboBox1
+            // cbxAccount
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(293, 95);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(139, 24);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // txtAccount
-            // 
-            this.txtAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccount.Location = new System.Drawing.Point(262, 22);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(100, 30);
-            this.txtAccount.TabIndex = 4;
-            this.txtAccount.Text = "1003";
+            this.cbxAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxAccount.FormattingEnabled = true;
+            this.cbxAccount.Items.AddRange(new object[] {
+            "1001",
+            "1003",
+            "1013",
+            "1014",
+            "1015",
+            "1016"});
+            this.cbxAccount.Location = new System.Drawing.Point(246, 22);
+            this.cbxAccount.Name = "cbxAccount";
+            this.cbxAccount.Size = new System.Drawing.Size(139, 28);
+            this.cbxAccount.TabIndex = 4;
             // 
             // btnCall
             // 
@@ -139,7 +136,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,9 +146,8 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCall;
-        private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.TextBox listBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxAccount;
         private System.Windows.Forms.Timer timerSIPMessages;
     }
 }
