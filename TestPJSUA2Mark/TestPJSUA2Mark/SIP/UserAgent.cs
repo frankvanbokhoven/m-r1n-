@@ -38,9 +38,8 @@ namespace TestPJSUA2Mark.SIP
         public void UserAgentStart()
         {
 
-            Console.Write("Starting User Agent");
-
-
+            Classes.WCFcaller.SetSIPStatusMessage("Starting User Agent");
+        
             // Create endpoint
             try
             {
@@ -100,18 +99,18 @@ namespace TestPJSUA2Mark.SIP
             acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
             string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
             acfg.regConfig.registrarUri = sipserver;
-            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); 
+            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
             acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
             AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
             cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
             acfg.regConfig.registerOnAdd = true;
             acfg.regConfig.timeoutSec = 180;
             acfg.sipConfig.authCreds.Add(cred);
-            acfg.regConfig.dropCallsOnFail = true;        
+            acfg.regConfig.dropCallsOnFail = true;
 
-            
+
             // Create SIP account
-            acc = new SipAccount();            
+            acc = new SipAccount();
             acc.create(acfg, true);
             setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
 
@@ -165,22 +164,15 @@ namespace TestPJSUA2Mark.SIP
         /// </summary>
         public void UserAgentStop()
         {
-            Console.Write("Stopping endpoint");
-            //  Register thread if necessary
-            // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
-            //ep.libStopThreads();// ("program thread");// .libRegisterThread("program thread");
-
-            //// Disconnect account;
-            //acc.Dispose();
-            ////  Stop endpoint
-            //ep.libDestroy();
-            //// Send new state
-            //forwardNewRegState(-2);
+            Classes.WCFcaller.SetSIPStatusMessage("Stopping endpoint");
+           
             ///this code destroys the SIP connection and clears the relevant objects
             try
             {
                 //dispose all sip objects, so they can be garbage collected
+                
                 ep.libDestroy();
+                
                 ep.Dispose();
                 //force garbage collection of all disposed objects
                 GC.Collect();
@@ -191,11 +183,11 @@ namespace TestPJSUA2Mark.SIP
             }
         }
 
-         /*
-         * \brief UserAgent::setPresence
-         * \param acc
-         * \param status
-         */
+        /*
+        * \brief UserAgent::setPresence
+        * \param acc
+        * \param status
+        */
         public void setPresence(SipAccount acc, pjsua2.pjsua_buddy_status status)
         {
             try
@@ -211,7 +203,7 @@ namespace TestPJSUA2Mark.SIP
             }
             catch (Exception ex)
             {
-                Console.Write("*** Presence Error: " + ex.Message + ex.InnerException);
+                Classes.WCFcaller.SetSIPStatusMessage("*** Presence Error: " + ex.Message + ex.InnerException);
             }
         }
 
@@ -242,11 +234,11 @@ namespace TestPJSUA2Mark.SIP
             {
                 CodecInfo ci = civ[i];
                 log.Info("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
-                Console.Write("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
+                Classes.WCFcaller.SetSIPStatusMessage("ID: " + ci.codecId + "\tPriority: " + ci.priority.ToString() + "\tDesc: " + ci.desc);
             }
 
             log.Info("<--- End codec list --->");
-            Console.Write("<--- End codec list --->");
+            Classes.WCFcaller.SetSIPStatusMessage("<--- End codec list --->");
 
             //    Turn off Voice Activation Detection
             ep.audDevManager().setVad(false, false);
@@ -291,20 +283,21 @@ namespace TestPJSUA2Mark.SIP
             forwardNewRegState(state);
         }
 
-        /*!
-         * \brief UserAgent::receiveNewIM
-         * \param IM
-         */
+         /// <summary>
+         /// brief UserAgent::receiveNewIM
+         /// param IM
+         /// </summary>
+         /// <param name="IM"></param>
         public void receiveNewIM(String IM)
         {
             forwardNewIM(IM);
         }
-
-        /*!
-         * \brief UserAgent::receiveIMRequest
-         * \param destination
-         * \param message
-         */
+        
+         
+         /// <summary>
+         /// \brief UserAgent::receiveIMRequest
+         /// <param name="destination"></param>
+         /// <param name="message"></param>
         public void receiveIMRequest(String destination, String message)
         {
 
@@ -324,10 +317,11 @@ namespace TestPJSUA2Mark.SIP
         }
         #endregion
 
-        /*!
-         * \brief UserAgent::receiveInputMute
-         * \param mute
-         */
+
+        /// <summary>
+        ///  \brief UserAgent::receiveInputMute param mute
+        /// </summary>
+        /// <param name="mute"></param>
         public void receiveInputMute(bool mute)
         {
             // Set input volume to 0 when muted

@@ -28,28 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtAccount = new System.Windows.Forms.TextBox();
             this.btnCall = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtAccount = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.TextBox();
+            this.timerSIPMessages = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.txtAccount);
             this.panel1.Controls.Add(this.btnCall);
             this.panel1.Controls.Add(this.btnRegister);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(0, 181);
+            this.panel1.MinimumSize = new System.Drawing.Size(2, 181);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(808, 181);
             this.panel1.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(293, 95);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(139, 24);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // txtAccount
+            // 
+            this.txtAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccount.Location = new System.Drawing.Point(262, 22);
+            this.txtAccount.Name = "txtAccount";
+            this.txtAccount.Size = new System.Drawing.Size(100, 30);
+            this.txtAccount.TabIndex = 4;
+            this.txtAccount.Text = "1003";
             // 
             // btnCall
             // 
@@ -91,15 +112,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtAccount
-            // 
-            this.txtAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccount.Location = new System.Drawing.Point(262, 22);
-            this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(100, 30);
-            this.txtAccount.TabIndex = 4;
-            this.txtAccount.Text = "1003";
-            // 
             // listBox1
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -108,6 +120,11 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(808, 439);
             this.listBox1.TabIndex = 3;
+            // 
+            // timerSIPMessages
+            // 
+            this.timerSIPMessages.Interval = 500;
+            this.timerSIPMessages.Tick += new System.EventHandler(this.timerSIPMessages_Tick);
             // 
             // FrmMain
             // 
@@ -118,7 +135,8 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Test PJSUA2 Mark";
+            this.Text = "Test PJSUA2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -134,6 +152,8 @@
         private System.Windows.Forms.Button btnCall;
         private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.TextBox listBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Timer timerSIPMessages;
     }
 }
 

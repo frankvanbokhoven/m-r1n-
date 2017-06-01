@@ -90,6 +90,7 @@
     <Compile Include="Classes\Platform.cs" />
     <Compile Include="Classes\Radio.cs" />
     <Compile Include="Classes\Role.cs" />
+    <Compile Include="Classes\SIPStatusMessage.cs" />
     <Compile Include="Classes\Trainee.cs" />
     <Compile Include="Classes\UNET_Service_Singleton.cs" />
     <Compile Include="Service1.svc.cs">

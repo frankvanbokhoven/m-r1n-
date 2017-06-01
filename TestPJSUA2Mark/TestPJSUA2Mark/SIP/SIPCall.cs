@@ -41,20 +41,26 @@ namespace TestPJSUA2Mark.SIP
             }
         }
 
+        public override void onTypingIndication(OnTypingIndicationParam prm)
+        {
+            base.onTypingIndication(prm);
+            Classes.WCFcaller.SetSIPStatusMessage("*** Typing: " + prm.rdata );
 
+        }
         /// <summary>
         /// brief SipCall::onCallState
         /// </summary>
         /// <param name="_oncallstateparam"></param>
-        public void onCallState(pjsua2.OnCallStateParam _prm)
+        public override void onCallState(pjsua2.OnCallStateParam _prm)
         {
-
+            base.onCallState(_prm);
             // Print the new call state
             pjsua2.CallInfo ci = new CallInfo();
 
             ci = getInfo(); //hier wordt de getInfo methode van de Call baseclass gebruikt!!
 
             log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+            Classes.WCFcaller.SetSIPStatusMessage("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Execute commands according to the new state
             switch (ci.state)
@@ -69,24 +75,28 @@ namespace TestPJSUA2Mark.SIP
 
                     // Delete the call object
                     GC.Collect();//  delete this;
+                    Classes.WCFcaller.SetSIPStatusMessage("*** Disconnected: " + ci.remoteUri );
 
                     break;
                 case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
                     {
+                        Classes.WCFcaller.SetSIPStatusMessage(ci.remoteUri + " Has answered the call!!");
 
                         AudioMedia aud_med = null;
 
-                        // Find Audio in call
-                        for (int i = 0; i < ci.media.Count; i++)
-                        {
-                            if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
-                            {
-                                aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
-                                StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
-                                log.Info("*** Media codec: " + si.codecName);
-                                break;
-                            }
-                        }
+                        //// Find Audio in call
+                        //for (int i = 0; i < ci.media.Count; i++)
+                        //{
+                        //    if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                        //    {
+                        //        aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
+                        //        StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
+                        //        log.Info("*** Media codec: " + si.codecName);
+                        //        Classes.WCFcaller.SetSIPStatusMessage("*** Media codec: " + si.codecName);
+
+                        //        break;
+                        //    }
+                        //}
 
                         if (aud_med != null)
                         {
@@ -100,6 +110,8 @@ namespace TestPJSUA2Mark.SIP
                         }
                         else {
                             log.Info("******\t NO AUDIO FOUND IN CALL \t******");
+                            Classes.WCFcaller.SetSIPStatusMessage("******\t NO AUDIO FOUND IN CALL \t******");
+
                         }
 
                         // Show we are connected

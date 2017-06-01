@@ -16,7 +16,7 @@ namespace TestPJSUA2Mark.SIP
 
         public SipAccount()
         {
-           
+            Calls = new List<Call>();
         }
         public List<pjsua2.Call> Calls;
 
@@ -36,7 +36,7 @@ namespace TestPJSUA2Mark.SIP
         /// <param name="_im"></param>
         public void sendNewIM(String _im)
         {
-            Console.Write(string.Format("IM message: {0}", _im));
+            Classes.WCFcaller.SetSIPStatusMessage(string.Format("IM message: {0}", _im));
         }
 
 
@@ -50,6 +50,8 @@ namespace TestPJSUA2Mark.SIP
             {
 
                 //    callitr.Remove();
+
+                Classes.WCFcaller.SetSIPStatusMessage("*** removed Call: " + callitr.ToString());
                 callitr.Dispose();
             }
 
@@ -71,8 +73,8 @@ namespace TestPJSUA2Mark.SIP
         public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-            log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
-            Console.Write(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=");
+            log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri );
+            Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri);
 
             switch (_prm.code)
             {
@@ -97,19 +99,27 @@ namespace TestPJSUA2Mark.SIP
         /// </summary> 
         public override void onIncomingCall(OnIncomingCallParam _prm)
         {
-            Call call = new Call(this, _prm.callId);
+            try
+            {
+                Call call = new Call(this, _prm.callId);
 
-            CallInfo ci = call.getInfo();
-            CallOpParam prm = new CallOpParam();
+                CallInfo ci = call.getInfo();
+                CallOpParam prm = new CallOpParam();
 
-            Console.Write("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                Classes.WCFcaller.SetSIPStatusMessage("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
-            // Store this call
-            Calls.Add(call); 
-            prm.statusCode = (pjsua2.pjsip_status_code)200;
+                // Store this call
+                Calls.Add(call);
+                prm.statusCode = (pjsua2.pjsip_status_code)200;
 
-            // Answer the call
-            call.answer(prm);
+                // Answer the call
+                call.answer(prm);
+
+            }
+            catch (Exception ex)
+            {
+                Classes.WCFcaller.SetSIPStatusMessage("*** Error on incoming call: " + ex.Message + ex.InnerException);
+            }
         }
 
 
@@ -123,7 +133,7 @@ namespace TestPJSUA2Mark.SIP
 
             String message = _prm.msgBody;
 
-            Console.Write("*** Incomming IM: " + _prm.msgBody);
+            Classes.WCFcaller.SetSIPStatusMessage("*** Incomming IM: " + _prm.msgBody);
 
             sendNewIM(message);
         }

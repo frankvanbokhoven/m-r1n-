@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.Linq;
 
 namespace UNET_Service
 {
@@ -43,6 +44,74 @@ namespace UNET_Service
             return result;
         }
 
+        #region Status messages
+        /// <summary>
+        /// To avoid thread problems, a client can call this method to report information
+        /// This method adds the sip status message to the stack and this stack is read by method GetSIPStatusMessage
+        /// </summary>
+        /// <param name="_message"></param>
+        /// <param name="_id"></param>
+        /// <returns></returns>
+        public bool SetSIPStatusMessage(string _message, string _id)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+                singleton.SIPStatusMessageList.Add(new Classes.SIPStatusMessage(_id, _message));
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding to the SIPStatusMessage list: ", ex);
+                //throw;
+                result = false;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Return the statusmessages for the given sip client (identified by an id) and clear the message stack
+        /// After returning the statusmessages, they are cleare from the list
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <returns></returns>
+        public string GetSIPStatusMessage(string _id)
+        {
+            string result = string.Empty;
+            try
+            {
+                UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;
+
+                //use lync to select the messages for given sipclient
+                List<Classes.SIPStatusMessage> list =  singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<Classes.SIPStatusMessage>();
+
+                //then build the pipe separated result string
+                foreach(Classes.SIPStatusMessage ssm in list)
+                {
+                    result += ssm.Message + "|";
+                }
+                //remove last pipe, if it exists in the string
+                if(result.Length > 0) //if the string is NOT empty
+                {
+                    if(result[result.Length-1] == '|') //if the last character is a pipe
+                    {
+                        result = result.Remove(result.Length - 1);//remove the last pipe
+                    }
+                }
+                //now remove all these items using lync
+                singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding to the SIPStatusMessage list: ", ex);
+                //throw;
+                result = ex.Message;
+            }
+            return result; //return the pipe separated messages string
+        }
+        #endregion
+
         /// <summary>
         /// Only when this statuschanged is true, the clients have to  bother updating the other statusses
         /// </summary>
@@ -80,7 +149,7 @@ namespace UNET_Service
             {
                 log.Error("Exception retrieving the available exercises: ", ex);
              //   result.Add("Error retrieving exercices");
-                throw;
+              //  throw;
             }
             return result;
         }

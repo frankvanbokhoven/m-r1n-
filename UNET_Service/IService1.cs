@@ -51,6 +51,13 @@ namespace UNET_Service
         [OperationContract]
         bool SetTraineeStatusChanged(int _traineeId, bool _changed);
 
+        #region statusmessages
+        [OperationContract]
+        string GetSIPStatusMessage(string _id);
+
+        [OperationContract]
+        bool SetSIPStatusMessage(string _message, string _id);
+        #endregion
         //Setters
         [OperationContract]
         bool RegisterTrainee(Classes.CurrentInfo _currentInfo);

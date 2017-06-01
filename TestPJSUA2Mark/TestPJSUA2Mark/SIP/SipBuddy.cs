@@ -31,7 +31,7 @@ namespace TestPJSUA2Mark.SIP
         public override void onBuddyState()
         {
             BuddyInfo bi = getInfo();
-            Console.Write("Buddy " + bi.uri + " is " + bi.presStatus.statusText);
+            Classes.WCFcaller.SetSIPStatusMessage("Buddy " + bi.uri + " is " + bi.presStatus.statusText);
         }
 
         /*!
