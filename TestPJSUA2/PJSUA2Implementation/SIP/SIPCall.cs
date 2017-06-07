@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,10 @@ using System.Threading.Tasks;
 using pjsua2;
 
 
-namespace UNET_Trainer_Trainee.SIP
+namespace PJSUA2Implementation.SIP
 {
     public class SIPCall : pjsua2.Call
     {
-        //log4net
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         private SipAccount UAacc;
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
@@ -23,7 +21,7 @@ namespace UNET_Trainer_Trainee.SIP
         /// </summary>
         /// <param name="acc"></param>
         /// <param name="callID"></param>
-        public SIPCall(Account acc, int callID = PJSUA_INVALID_ID) : base(acc, callID)
+        public SIPCall(pjsua2.Account acc, int callID = PJSUA_INVALID_ID) : base(acc, callID)
         {
             //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
@@ -34,7 +32,7 @@ namespace UNET_Trainer_Trainee.SIP
         private void sendCallState(int state)
         {
             CallInfo ci = getInfo();
-            if(ci.state == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED )
+            if (ci.state == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
             {
                 //delete the call
                 this.Dispose(); //todo: testen of dispose werkt om de call op te hangen
@@ -54,7 +52,7 @@ namespace UNET_Trainer_Trainee.SIP
 
             ci = getInfo(); //hier wordt de getInfo methode van de Call baseclass gebruikt!!
 
-            log.Info("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+             Console.Write("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
             // Execute commands according to the new state
             switch (ci.state)
@@ -83,7 +81,7 @@ namespace UNET_Trainer_Trainee.SIP
                             {
                                 aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
                                 StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
-                                log.Info("*** Media codec: " + si.codecName);
+                                Console.Write("*** Media codec: " + si.codecName);
                                 break;
                             }
                         }
@@ -99,7 +97,7 @@ namespace UNET_Trainer_Trainee.SIP
                             cap_med.startTransmit(aud_med);
                         }
                         else {
-                            log.Info("****** NO AUDIO FOUND IN CALL ******");
+                            Console.Write("****** NO AUDIO FOUND IN CALL ******");
                         }
 
                         // Show we are connected

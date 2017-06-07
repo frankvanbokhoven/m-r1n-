@@ -211,6 +211,11 @@ namespace UNET_Trainer_Trainee
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
+            MakeCall(1);
+        }
+
+        private void MakeCall(int traineeid)
+        {
             try
             {                
     

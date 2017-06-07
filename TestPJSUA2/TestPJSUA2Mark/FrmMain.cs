@@ -33,11 +33,7 @@ namespace TestPJSUA2Mark
             this.Close();
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
-        {
- 
-        }
-
+    
         #region threadsafecalls
         //private void setTextUnsafe(object sender, EventArgs e)
         //{
@@ -77,6 +73,25 @@ namespace TestPJSUA2Mark
             listBox1.AppendText(Environment.NewLine);
             listBox1.AppendText(DateTime.Now.ToShortDateString() + " : " + _text);
 
+            if(_text.ToLower().Contains("incoming"))
+            {
+                btnAnswer.Visible = true;
+                btnAnswer.BackColor = Color.LimeGreen;
+                btnAnswer.Text = "Opnemen";
+            }
+
+            if (_text.ToLower().Contains("answered"))
+            {
+                btnAnswer.Visible = true;
+                btnAnswer.BackColor = Color.Red;
+                btnAnswer.Text = "Ophangen";
+            }
+
+            if (_text.ToLower().Contains("account:"))
+            {
+                toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf("Account:"));
+            }
+
         }
 
         /// <summary>
@@ -95,12 +110,13 @@ namespace TestPJSUA2Mark
                 AddToListbox("Starting a call to: " + cbxAccount.Text);
                 try
                 {
+                    string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    sc.makeCall(string.Format("sip:{0}@10.0.128.128", cbxAccount.Text.Trim()), cop);
-                    AddToListbox("Call successfully made to: 1003@unet");
+                    sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
+                    AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
                 }
                 catch (Exception ex)
                 {
@@ -117,11 +133,13 @@ namespace TestPJSUA2Mark
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
             timerSIPMessages.Enabled = true;
             //   cc = new Classes.ConsoleCatcher(listBox1); //the consolecatcher makes all messages that are written to the console, appear in the listbox on the form
-           // using (var consoleWriter = new Classes.ConsoleWriter())
-           // {
-           ////     consoleWriter.WriteEvent += consoleWriter_WriteEvent;
-           //     Console.SetOut(consoleWriter);
-           // }
+            // using (var consoleWriter = new Classes.ConsoleWriter())
+            // {
+            ////     consoleWriter.WriteEvent += consoleWriter_WriteEvent;
+            //     Console.SetOut(consoleWriter);
+            // }
+
+            btnAnswer.Visible = false;
 
             try
             {
@@ -150,6 +168,7 @@ namespace TestPJSUA2Mark
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             //stop the sip connection in a nice manner before closing
+            useragent.ep.hangupAllCalls();
             useragent.UserAgentStop();
         }
 
@@ -164,5 +183,25 @@ namespace TestPJSUA2Mark
                   AddToListbox(str);
             }
         }
+
+        private void btnAnswer_Click(object sender, EventArgs e)
+        {
+                    AddToListbox("Answering call: " + cbxAccount.Text);
+                try
+                {
+          //      useragent.ep.ca
+                    AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    CallOpParam cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    sc.makeCall(string.Format("sip:{0}@10.0.128.128", cbxAccount.Text.Trim()), cop);
+                    AddToListbox(string.Format("Call successfully made to: {0}@unet", cbxAccount.Text.Trim()));
+                }
+                catch (Exception ex)
+                {
+                  AddToListbox(("Error answering the call" + ex.Message ));
+                    // throw;
+                }
+            }
     }
 }

@@ -132,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="SIP\SIPAccount.cs" />
     <Compile Include="usercontrolConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
