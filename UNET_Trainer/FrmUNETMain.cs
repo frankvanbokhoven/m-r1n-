@@ -128,7 +128,7 @@ namespace UNET_Trainer
                 }
                 else
                 {
-                    SetButtonStatus(c);
+                  //  SetButtonStatus(c);
                 }
                 Application.DoEvents();
             }
@@ -230,11 +230,12 @@ namespace UNET_Trainer
                 btnTraineeSS.Enabled = lstTrainee.Count >= 16;
 
                 //now resize all buttons to make optimal use of the available room
-                ResizeButtons(panelExercises, lst.Count, "exersise");
+                ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
+                ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+
                 ResizeButtons(panelRadios, lstRadio.Count, "radio");
                 ResizeButtons(panelRoles, lstrole.Count, "role");
-                ResizeButtons(panelTrainees, lstTrainee.Count, "trainee");
-            }
+             }
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
@@ -299,31 +300,33 @@ namespace UNET_Trainer
         /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
         /// their space can be used for the other panels.
         /// </summary>
-        private void ResizeButtons(Panel _panel, int _numberOfPanels, string _group)
+        private void ResizeButtons(Panel _panel, int _numberOfButtons, string _group)
         {
             try
             {
                 // now make any disabled button INVISIBLE
-                foreach (Control c in _panel.Controls)
-                {
-                    if (c.GetType() == typeof(Button))
-                    {
-                        ((Button)c).Visible = ((Button)c).Enabled;
-                    }
-                }
-                //begin met alle controls op invisible te zetten.
                 //foreach (Control c in _panel.Controls)
                 //{
-                //    if (c is Button)
+                //    if (c.GetType() == typeof(Button))
                 //    {
-                //        c.Visible = false;
+                //        ((Button)c).Visible = ((Button)c).Enabled;
                 //    }
                 //}
+                //begin met alle controls op invisible te zetten.
+                foreach (Control c in _panel.Controls)
+                {
+                    if (c is Button) 
+                    {
+                       if(!c.Name.Contains("Close"))
+                        {
+                            c.Visible = false;
+                        }
+                    }
+                }
+                //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
 
-                //daarna bereken de beschikbare ruimte
-                int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfPanels)) + 1; //rond dit getal naar beneden af
-                int availablehorspace = _panel.Width / squareroot;
-                int availablevertspace = _panel.Height / squareroot;
+                int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
+                int squaresize = _panel.Width / squareroot;
                 int controlindex = 0;
                 int buttonstop = 0;
 
@@ -334,18 +337,17 @@ namespace UNET_Trainer
                     int buttonleft = 0;
                     for (int j = 1; j <= squareroot; j++) // van links naar rechts
                     {
-                        if (controlindex < _numberOfPanels)
+                        if (controlindex <= _numberOfButtons)
                         {
                             if ((_panel.Controls[controlindex] is Button) && ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
                             {
                                 ((Button)(_panel.Controls[controlindex])).Visible = true;
                                 ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
                                 ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
-                                ((Button)(_panel.Controls[controlindex])).Width = availablehorspace;
-
-                                ((Button)(_panel.Controls[controlindex])).Height = availablehorspace;
+                                ((Button)(_panel.Controls[controlindex])).Width = squaresize;
+                                ((Button)(_panel.Controls[controlindex])).Height = squaresize;
                                 verttotal += ((Button)(_panel.Controls[controlindex])).Height;
-                                buttonleft += availablehorspace; //tel de breedte van 1 button op bij de left, voor de volgende
+                                buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
 
                                 // if(verttotal > _panel.Height)
                                 // {
@@ -362,8 +364,8 @@ namespace UNET_Trainer
                         }
                     }
 
-                    // buttonstop += availablevertspace;
-                    buttonstop += availablehorspace;
+                    // buttonstop += numberfitvertically;
+                    buttonstop += squaresize;
                 }
             }
             catch (Exception ex)
@@ -373,19 +375,60 @@ namespace UNET_Trainer
             }
         }
 
-        #region WCF events
-        private void HandleWCFEvents()
+        #region resize buttons
+        /// <summary>
+        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
+        /// their space can be used for the other panels.
+        /// </summary>
+        private void ResizeButtonsVertical(Panel _panel, int _numberOfButtons, string _group)
         {
-            try
+            if (_numberOfButtons > 0)
             {
+                try
+                {
+                    //begin met alle controls op invisible te zetten.
+                    foreach (Control c in _panel.Controls)
+                    {
+                        if (c is Button)
+                        {
+                            c.Visible = false;
+                        }
+                    }
+                    //daarna bereken de beschikbare verticale ruimte; 
+                    int buttonheight = Convert.ToInt16((_panel.Height - 22) / _numberOfButtons);
+                    int buttonstop = 0;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
-                // throw;
+                    //bouw dan de grid op..
+                    for (int i = 1; i <= _numberOfButtons; i++) // van boven naar onder
+                    {
+                        if (i <= _numberOfButtons)
+                        {
+                            if ((_panel.Controls[i] is Button) && ((_panel.Controls[i].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
+                            {
+                                ((Button)(_panel.Controls[i])).Visible = true;
+                                ((Button)(_panel.Controls[i])).Top = buttonstop + 22;
+                                ((Button)(_panel.Controls[i])).Left = 2;
+                                ((Button)(_panel.Controls[i])).Width = _panel.Width - 4;
+                                ((Button)(_panel.Controls[i])).Height = buttonheight - 2;
+                                buttonstop += ((Button)(_panel.Controls[i])).Height;
+
+                                Application.DoEvents();
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    log.Error("Error SetPanels", ex);
+                    // throw;
+                }
             }
         }
+
         #endregion
 
         #region trainee events
@@ -551,7 +594,7 @@ namespace UNET_Trainer
         }
 
         /// <summary>
-        /// When the button  'monitor radio' clicked and after that one of the radio buttons,
+        /// When the button  'monitor radio' is clicked and thereafter one of the radio buttons,
         /// this radio button must be set to brown, and a possible other trainee button must be set to the default color
         /// this generic code covers this for all all buttons at once
         /// </summary>
@@ -637,6 +680,11 @@ namespace UNET_Trainer
             {
                 service.Close();
             }
+        }
+
+        private void FrmUNETMain_Activated(object sender, EventArgs e)
+        {
+    //        SetButtonStatus(this);
         }
     }
 }

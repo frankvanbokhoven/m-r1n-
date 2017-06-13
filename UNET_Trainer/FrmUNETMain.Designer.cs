@@ -77,7 +77,6 @@
             this.btnRole6 = new System.Windows.Forms.Button();
             this.btnRole1 = new System.Windows.Forms.Button();
             this.panelTrainees = new System.Windows.Forms.Panel();
-            this.btnAssist = new System.Windows.Forms.Button();
             this.btnTraineeSS = new System.Windows.Forms.Button();
             this.btnTraineePP = new System.Windows.Forms.Button();
             this.btnTraineeMM = new System.Windows.Forms.Button();
@@ -87,7 +86,6 @@
             this.btnTraineeDD = new System.Windows.Forms.Button();
             this.btnTraineeBB = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnIntercom = new System.Windows.Forms.Button();
             this.btnTraineeRR = new System.Windows.Forms.Button();
             this.btnTraineeNN = new System.Windows.Forms.Button();
             this.btnTraineeLL = new System.Windows.Forms.Button();
@@ -104,7 +102,6 @@
             this.btnClassBroadcast = new System.Windows.Forms.Button();
             this.panelExercises = new System.Windows.Forms.Panel();
             this.lblExercises = new System.Windows.Forms.Label();
-            this.btnIL = new System.Windows.Forms.Button();
             this.btnExersise08 = new System.Windows.Forms.Button();
             this.btnExersise07 = new System.Windows.Forms.Button();
             this.btnExersise06 = new System.Windows.Forms.Button();
@@ -120,12 +117,19 @@
             this.btnTrainees = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnIL = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnAssist = new System.Windows.Forms.Button();
+            this.btnIntercom = new System.Windows.Forms.Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panelExercises.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelRadios
@@ -153,10 +157,10 @@
             this.panelRadios.Controls.Add(this.btnRadio11);
             this.panelRadios.Controls.Add(this.btnRadio06);
             this.panelRadios.Controls.Add(this.btnRadio01);
-            this.panelRadios.Location = new System.Drawing.Point(393, 2);
+            this.panelRadios.Location = new System.Drawing.Point(413, 2);
             this.panelRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRadios.Name = "panelRadios";
-            this.panelRadios.Size = new System.Drawing.Size(543, 358);
+            this.panelRadios.Size = new System.Drawing.Size(540, 358);
             this.panelRadios.TabIndex = 6;
             // 
             // btnClose
@@ -164,11 +168,11 @@
             this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(473, 8);
+            this.btnClose.Location = new System.Drawing.Point(476, 11);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(65, 34);
-            this.btnClose.TabIndex = 24;
+            this.btnClose.Size = new System.Drawing.Size(62, 34);
+            this.btnClose.TabIndex = 25;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -332,10 +336,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(165, 9);
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 17);
+            this.label3.Size = new System.Drawing.Size(92, 28);
             this.label3.TabIndex = 10;
             this.label3.Text = "Radios";
             // 
@@ -467,10 +471,10 @@
             this.panelRoles.Controls.Add(this.btnRole11);
             this.panelRoles.Controls.Add(this.btnRole6);
             this.panelRoles.Controls.Add(this.btnRole1);
-            this.panelRoles.Location = new System.Drawing.Point(393, 367);
+            this.panelRoles.Location = new System.Drawing.Point(413, 367);
             this.panelRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRoles.Name = "panelRoles";
-            this.panelRoles.Size = new System.Drawing.Size(544, 369);
+            this.panelRoles.Size = new System.Drawing.Size(540, 369);
             this.panelRoles.TabIndex = 7;
             // 
             // btnRole20
@@ -688,10 +692,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(165, 9);
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(1, 2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
+            this.label4.Size = new System.Drawing.Size(77, 28);
             this.label4.TabIndex = 10;
             this.label4.Text = "Roles";
             // 
@@ -834,7 +838,6 @@
             // panelTrainees
             // 
             this.panelTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTrainees.Controls.Add(this.btnAssist);
             this.panelTrainees.Controls.Add(this.btnTraineeSS);
             this.panelTrainees.Controls.Add(this.btnTraineePP);
             this.panelTrainees.Controls.Add(this.btnTraineeMM);
@@ -844,7 +847,6 @@
             this.panelTrainees.Controls.Add(this.btnTraineeDD);
             this.panelTrainees.Controls.Add(this.btnTraineeBB);
             this.panelTrainees.Controls.Add(this.label1);
-            this.panelTrainees.Controls.Add(this.btnIntercom);
             this.panelTrainees.Controls.Add(this.btnTraineeRR);
             this.panelTrainees.Controls.Add(this.btnTraineeNN);
             this.panelTrainees.Controls.Add(this.btnTraineeLL);
@@ -853,28 +855,11 @@
             this.panelTrainees.Controls.Add(this.btnTraineeEE);
             this.panelTrainees.Controls.Add(this.btnTraineeCC);
             this.panelTrainees.Controls.Add(this.btnTraineeAA);
-            this.panelTrainees.Location = new System.Drawing.Point(155, 2);
+            this.panelTrainees.Location = new System.Drawing.Point(175, 2);
             this.panelTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelTrainees.Name = "panelTrainees";
-            this.panelTrainees.Size = new System.Drawing.Size(232, 733);
+            this.panelTrainees.Size = new System.Drawing.Size(232, 652);
             this.panelTrainees.TabIndex = 5;
-            // 
-            // btnAssist
-            // 
-            this.btnAssist.BackColor = System.Drawing.Color.Aqua;
-            this.btnAssist.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssist.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnAssist.ImageIndex = 0;
-            this.btnAssist.ImageList = this.imageListStatus;
-            this.btnAssist.Location = new System.Drawing.Point(99, 645);
-            this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAssist.Name = "btnAssist";
-            this.btnAssist.Size = new System.Drawing.Size(91, 74);
-            this.btnAssist.TabIndex = 19;
-            this.btnAssist.Text = "Assist";
-            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAssist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAssist.UseVisualStyleBackColor = false;
             // 
             // btnTraineeSS
             // 
@@ -1017,27 +1002,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 10);
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.Size = new System.Drawing.Size(114, 28);
             this.label1.TabIndex = 10;
             this.label1.Text = "Trainees";
-            // 
-            // btnIntercom
-            // 
-            this.btnIntercom.BackColor = System.Drawing.Color.Aqua;
-            this.btnIntercom.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIntercom.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnIntercom.ImageList = this.imageListStatus;
-            this.btnIntercom.Location = new System.Drawing.Point(3, 646);
-            this.btnIntercom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnIntercom.Name = "btnIntercom";
-            this.btnIntercom.Size = new System.Drawing.Size(91, 74);
-            this.btnIntercom.TabIndex = 9;
-            this.btnIntercom.Text = "Intercom";
-            this.btnIntercom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIntercom.UseVisualStyleBackColor = false;
             // 
             // btnTraineeRR
             // 
@@ -1186,30 +1156,30 @@
             this.panel3.Controls.Add(this.btnMonitorRadio);
             this.panel3.Controls.Add(this.btnMonitorTrainee);
             this.panel3.Controls.Add(this.btnClassBroadcast);
-            this.panel3.Location = new System.Drawing.Point(963, 383);
+            this.panel3.Location = new System.Drawing.Point(958, 383);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(98, 352);
+            this.panel3.Size = new System.Drawing.Size(104, 352);
             this.panel3.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 2);
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.Size = new System.Drawing.Size(98, 22);
             this.label2.TabIndex = 11;
             this.label2.Text = "Functions";
             // 
             // btnMute
             // 
-            this.btnMute.BackColor = System.Drawing.Color.Aqua;
-            this.btnMute.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMute.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMute.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMute.Location = new System.Drawing.Point(3, 272);
             this.btnMute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMute.Name = "btnMute";
-            this.btnMute.Size = new System.Drawing.Size(91, 80);
+            this.btnMute.Size = new System.Drawing.Size(96, 80);
             this.btnMute.TabIndex = 4;
             this.btnMute.Text = "Mute   radio";
             this.btnMute.UseVisualStyleBackColor = false;
@@ -1217,12 +1187,12 @@
             // 
             // btnMonitorRadio
             // 
-            this.btnMonitorRadio.BackColor = System.Drawing.Color.Aqua;
-            this.btnMonitorRadio.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorRadio.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMonitorRadio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitorRadio.Location = new System.Drawing.Point(3, 190);
             this.btnMonitorRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMonitorRadio.Name = "btnMonitorRadio";
-            this.btnMonitorRadio.Size = new System.Drawing.Size(91, 80);
+            this.btnMonitorRadio.Size = new System.Drawing.Size(96, 80);
             this.btnMonitorRadio.TabIndex = 3;
             this.btnMonitorRadio.Text = "Monitor radio";
             this.btnMonitorRadio.UseVisualStyleBackColor = false;
@@ -1230,12 +1200,12 @@
             // 
             // btnMonitorTrainee
             // 
-            this.btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
-            this.btnMonitorTrainee.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorTrainee.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 106);
             this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMonitorTrainee.Name = "btnMonitorTrainee";
-            this.btnMonitorTrainee.Size = new System.Drawing.Size(91, 80);
+            this.btnMonitorTrainee.Size = new System.Drawing.Size(96, 80);
             this.btnMonitorTrainee.TabIndex = 2;
             this.btnMonitorTrainee.Text = "Monitor trainee";
             this.btnMonitorTrainee.UseVisualStyleBackColor = false;
@@ -1243,12 +1213,12 @@
             // 
             // btnClassBroadcast
             // 
-            this.btnClassBroadcast.BackColor = System.Drawing.Color.Aqua;
-            this.btnClassBroadcast.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClassBroadcast.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
             this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClassBroadcast.Name = "btnClassBroadcast";
-            this.btnClassBroadcast.Size = new System.Drawing.Size(91, 80);
+            this.btnClassBroadcast.Size = new System.Drawing.Size(96, 80);
             this.btnClassBroadcast.TabIndex = 1;
             this.btnClassBroadcast.Text = "Class b/cast";
             this.btnClassBroadcast.UseVisualStyleBackColor = false;
@@ -1258,7 +1228,6 @@
             // 
             this.panelExercises.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelExercises.Controls.Add(this.lblExercises);
-            this.panelExercises.Controls.Add(this.btnIL);
             this.panelExercises.Controls.Add(this.btnExersise08);
             this.panelExercises.Controls.Add(this.btnExersise07);
             this.panelExercises.Controls.Add(this.btnExersise06);
@@ -1270,34 +1239,18 @@
             this.panelExercises.Location = new System.Drawing.Point(3, 2);
             this.panelExercises.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelExercises.Name = "panelExercises";
-            this.panelExercises.Size = new System.Drawing.Size(146, 733);
+            this.panelExercises.Size = new System.Drawing.Size(167, 652);
             this.panelExercises.TabIndex = 3;
             // 
             // lblExercises
             // 
             this.lblExercises.AutoSize = true;
-            this.lblExercises.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExercises.Location = new System.Drawing.Point(1, 10);
+            this.lblExercises.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExercises.Location = new System.Drawing.Point(1, 2);
             this.lblExercises.Name = "lblExercises";
-            this.lblExercises.Size = new System.Drawing.Size(80, 17);
+            this.lblExercises.Size = new System.Drawing.Size(127, 28);
             this.lblExercises.TabIndex = 10;
             this.lblExercises.Text = "Exercises";
-            // 
-            // btnIL
-            // 
-            this.btnIL.BackColor = System.Drawing.Color.Aqua;
-            this.btnIL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnIL.ImageList = this.imageListStatus;
-            this.btnIL.Location = new System.Drawing.Point(3, 646);
-            this.btnIL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnIL.Name = "btnIL";
-            this.btnIL.Size = new System.Drawing.Size(91, 74);
-            this.btnIL.TabIndex = 9;
-            this.btnIL.Text = "Il";
-            this.btnIL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIL.UseVisualStyleBackColor = false;
-            this.btnIL.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
             // btnExersise08
             // 
@@ -1444,31 +1397,31 @@
             this.panel1.Controls.Add(this.btnRadios);
             this.panel1.Controls.Add(this.btnTrainees);
             this.panel1.Controls.Add(this.btnRoles);
-            this.panel1.Location = new System.Drawing.Point(963, 6);
+            this.panel1.Location = new System.Drawing.Point(958, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(98, 371);
+            this.panel1.Size = new System.Drawing.Size(103, 371);
             this.panel1.TabIndex = 2;
             // 
             // lblSetup
             // 
             this.lblSetup.AutoSize = true;
-            this.lblSetup.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSetup.Location = new System.Drawing.Point(8, 7);
+            this.lblSetup.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSetup.Location = new System.Drawing.Point(1, 2);
             this.lblSetup.Name = "lblSetup";
-            this.lblSetup.Size = new System.Drawing.Size(50, 17);
+            this.lblSetup.Size = new System.Drawing.Size(79, 28);
             this.lblSetup.TabIndex = 11;
             this.lblSetup.Text = "Setup";
             this.lblSetup.Click += new System.EventHandler(this.lblSetup_Click);
             // 
             // btnAudio
             // 
-            this.btnAudio.BackColor = System.Drawing.Color.Aqua;
-            this.btnAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAudio.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnAudio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAudio.Location = new System.Drawing.Point(3, 284);
             this.btnAudio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAudio.Name = "btnAudio";
-            this.btnAudio.Size = new System.Drawing.Size(91, 80);
+            this.btnAudio.Size = new System.Drawing.Size(96, 80);
             this.btnAudio.TabIndex = 4;
             this.btnAudio.Text = "Audio";
             this.btnAudio.UseVisualStyleBackColor = false;
@@ -1476,12 +1429,12 @@
             // 
             // btnRadios
             // 
-            this.btnRadios.BackColor = System.Drawing.Color.Aqua;
-            this.btnRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadios.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnRadios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadios.Location = new System.Drawing.Point(3, 201);
             this.btnRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadios.Name = "btnRadios";
-            this.btnRadios.Size = new System.Drawing.Size(91, 80);
+            this.btnRadios.Size = new System.Drawing.Size(96, 80);
             this.btnRadios.TabIndex = 3;
             this.btnRadios.Text = "Radios";
             this.btnRadios.UseVisualStyleBackColor = false;
@@ -1489,25 +1442,25 @@
             // 
             // btnTrainees
             // 
-            this.btnTrainees.BackColor = System.Drawing.Color.Aqua;
-            this.btnTrainees.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrainees.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnTrainees.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTrainees.Location = new System.Drawing.Point(3, 114);
             this.btnTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTrainees.Name = "btnTrainees";
-            this.btnTrainees.Size = new System.Drawing.Size(91, 80);
+            this.btnTrainees.Size = new System.Drawing.Size(96, 80);
             this.btnTrainees.TabIndex = 2;
-            this.btnTrainees.Text = "Trainees";
+            this.btnTrainees.Text = "Trainee";
             this.btnTrainees.UseVisualStyleBackColor = false;
             this.btnTrainees.Click += new System.EventHandler(this.btnTrainees_Click);
             // 
             // btnRoles
             // 
-            this.btnRoles.BackColor = System.Drawing.Color.Aqua;
-            this.btnRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRoles.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnRoles.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRoles.Location = new System.Drawing.Point(3, 30);
             this.btnRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRoles.Name = "btnRoles";
-            this.btnRoles.Size = new System.Drawing.Size(91, 80);
+            this.btnRoles.Size = new System.Drawing.Size(96, 80);
             this.btnRoles.TabIndex = 1;
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = false;
@@ -1515,14 +1468,82 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 2000;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnIL);
+            this.panel2.Location = new System.Drawing.Point(3, 659);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(167, 77);
+            this.panel2.TabIndex = 8;
+            // 
+            // btnIL
+            // 
+            this.btnIL.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnIL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnIL.ImageList = this.imageListStatus;
+            this.btnIL.Location = new System.Drawing.Point(8, 0);
+            this.btnIL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIL.Name = "btnIL";
+            this.btnIL.Size = new System.Drawing.Size(154, 74);
+            this.btnIL.TabIndex = 10;
+            this.btnIL.Text = "Il";
+            this.btnIL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIL.UseVisualStyleBackColor = false;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.btnAssist);
+            this.panel4.Controls.Add(this.btnIntercom);
+            this.panel4.Location = new System.Drawing.Point(175, 660);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(232, 75);
+            this.panel4.TabIndex = 9;
+            // 
+            // btnAssist
+            // 
+            this.btnAssist.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnAssist.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssist.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnAssist.ImageIndex = 0;
+            this.btnAssist.ImageList = this.imageListStatus;
+            this.btnAssist.Location = new System.Drawing.Point(122, -1);
+            this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAssist.Name = "btnAssist";
+            this.btnAssist.Size = new System.Drawing.Size(105, 74);
+            this.btnAssist.TabIndex = 20;
+            this.btnAssist.Text = "Assist";
+            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAssist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAssist.UseVisualStyleBackColor = false;
+            // 
+            // btnIntercom
+            // 
+            this.btnIntercom.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnIntercom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIntercom.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnIntercom.ImageList = this.imageListStatus;
+            this.btnIntercom.Location = new System.Drawing.Point(3, -2);
+            this.btnIntercom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIntercom.Name = "btnIntercom";
+            this.btnIntercom.Size = new System.Drawing.Size(114, 74);
+            this.btnIntercom.TabIndex = 10;
+            this.btnIntercom.Text = "Intercom";
+            this.btnIntercom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIntercom.UseVisualStyleBackColor = false;
             // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 833);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelRadios);
             this.Controls.Add(this.panelRoles);
             this.Controls.Add(this.panelTrainees);
@@ -1536,6 +1557,7 @@
             this.Opacity = 0.85D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmUNETMain";
+            this.Activated += new System.EventHandler(this.FrmUNETMain_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUNETMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
             this.panelRadios.ResumeLayout(false);
@@ -1550,6 +1572,8 @@
             this.panelExercises.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1569,7 +1593,6 @@
         private System.Windows.Forms.Button btnExersise03;
         private System.Windows.Forms.Button btnExersise02;
         private System.Windows.Forms.Button btnExersise01;
-        private System.Windows.Forms.Button btnIL;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnMute;
         private System.Windows.Forms.Button btnMonitorRadio;
@@ -1579,7 +1602,6 @@
         private System.Windows.Forms.Label lblSetup;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelTrainees;
-        private System.Windows.Forms.Button btnAssist;
         private System.Windows.Forms.Button btnTraineeSS;
         private System.Windows.Forms.Button btnTraineePP;
         private System.Windows.Forms.Button btnTraineeMM;
@@ -1589,7 +1611,6 @@
         private System.Windows.Forms.Button btnTraineeDD;
         private System.Windows.Forms.Button btnTraineeBB;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnIntercom;
         private System.Windows.Forms.Button btnTraineeRR;
         private System.Windows.Forms.Button btnTraineeNN;
         private System.Windows.Forms.Button btnTraineeLL;
@@ -1645,5 +1666,10 @@
         private System.Windows.Forms.ImageList imageListStatus;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnIL;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnAssist;
+        private System.Windows.Forms.Button btnIntercom;
     }
 }

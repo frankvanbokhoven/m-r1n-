@@ -40,6 +40,7 @@
             this.Name = "FrmUNETbase";
             this.Text = "FrmUNETbase";
             this.Load += new System.EventHandler(this.FrmUNETbase_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmUNETbase_MouseDown);
             this.ResumeLayout(false);
 
         }

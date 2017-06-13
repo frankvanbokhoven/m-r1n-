@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNET_Tester.UNET_Service;
 using ColorMine;
+using System.Configuration;
 
 namespace UNET_Tester
 {
@@ -24,10 +25,10 @@ namespace UNET_Tester
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            cbxExercise.SelectedValue = 5;
-            cbxRadios.SelectedValue = 5;
-            cbxRole.SelectedValue = 5;
-            cbxTrainee.SelectedValue = 5;
+            cbxExercise.Text = ConfigurationManager.AppSettings["Exersise"];
+            cbxRadios.Text = ConfigurationManager.AppSettings["Radio"];
+            cbxRole.Text = ConfigurationManager.AppSettings["Role"];
+            cbxTrainee.Text = ConfigurationManager.AppSettings["Trainee"];
             GetUNETStatus();
 
             timer1.Enabled = true;

@@ -134,7 +134,7 @@
             this.pnlPointToPoint.Location = new System.Drawing.Point(61, 292);
             this.pnlPointToPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlPointToPoint.Name = "pnlPointToPoint";
-            this.pnlPointToPoint.Size = new System.Drawing.Size(583, 382);
+            this.pnlPointToPoint.Size = new System.Drawing.Size(583, 411);
             this.pnlPointToPoint.TabIndex = 25;
             // 
             // btnRole20
@@ -344,10 +344,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(209, 11);
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(2, 2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 17);
+            this.label4.Size = new System.Drawing.Size(164, 28);
             this.label4.TabIndex = 10;
             this.label4.Text = "Point to Point";
             // 
@@ -515,10 +515,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(205, 11);
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(2, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 17);
+            this.label3.Size = new System.Drawing.Size(92, 28);
             this.label3.TabIndex = 10;
             this.label3.Text = "Radios";
             // 
@@ -665,10 +665,10 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(717, 12);
+            this.groupBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(678, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(306, 199);
+            this.groupBox1.Size = new System.Drawing.Size(345, 199);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Exercise information";

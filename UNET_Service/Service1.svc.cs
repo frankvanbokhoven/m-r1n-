@@ -261,7 +261,7 @@ namespace UNET_Service
                 singleton.Exercises.Clear();
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_count); i++)
+                for (int i = 0; i <= Convert.ToInt16(_count-1); i++)
                 {
                     Classes.Exercise exercise = new Classes.Exercise();
                     exercise.Number = i;
@@ -309,7 +309,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_exercises.Count-1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_exercises.Count-1); i++)
                 {
                     Classes.Exercise exercise = new Classes.Exercise();
                     exercise.Number = i;
@@ -339,7 +339,7 @@ namespace UNET_Service
 
 
                 //and create a number of Trainees
-                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
                 {
                     Classes.Trainee  trainee = new Classes.Trainee();
                     trainee.ID = i;
@@ -370,7 +370,7 @@ namespace UNET_Service
 
 
                 //and create a number of Radios
-                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
                 {
                     Classes.Radio radio = new Classes.Radio();
                     radio.ID = i;
@@ -402,7 +402,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
                 {
                     Classes.Role role = new Classes.Role();
                     role.ID = i;
@@ -433,7 +433,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_role.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_role.Count - 1); i++)
                 {
                     Classes.Role role = new Classes.Role();
                     role.ID = i;
@@ -464,7 +464,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_radio.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_radio.Count - 1); i++)
                 {
                     Classes.Radio radio = new Classes.Radio();
                     radio.ID = i;
@@ -496,7 +496,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_instructor.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_instructor.Count - 1); i++)
                 {
                     Classes.Instructor instructor = new Classes.Instructor();
                     instructor.ID = i;
@@ -528,7 +528,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_trainee.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_trainee.Count - 1); i++)
                 {
                     Classes.Trainee trainee = new Classes.Trainee();
                     trainee.ID = i;
@@ -560,7 +560,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 1; i <= Convert.ToInt16(_platform.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_platform.Count - 1); i++)
                 {
                     Classes.Platform platform = new Classes.Platform();
                     platform.ID = i;
@@ -593,7 +593,7 @@ namespace UNET_Service
                 UNET_Service.Classes.UNET_Service_Singleton singleton = UNET_Service.Classes.UNET_Service_Singleton.Instance;//get the singleton object
                 bool existing = false;
                 //try to find the given traineeclient in the list. If found, update the information, otherwise add the traineeclient
-                for (int i = 1; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
+                for (int i = 0; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
                 {
                     //try to find a currentinfo object in the list with the same id
                     if(singleton.CurrentInfoList[i].ID == _currentInfo.ID)
