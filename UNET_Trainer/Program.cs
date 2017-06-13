@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Diagnostics;
 
 namespace UNET_Trainer
 {
@@ -11,6 +12,7 @@ namespace UNET_Trainer
     {
         static Mutex _m;
 
+        [DebuggerNonUserCode]  //alleen in deze methode willen we de exceptie NIET zien
         static bool IsSingleInstance()
         {
             try
@@ -33,6 +35,7 @@ namespace UNET_Trainer
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
+        [DebuggerNonUserCode]  //alleen in deze methode willen we de exceptie NIET zien
         static void Main()
         {
             if (!Program.IsSingleInstance())

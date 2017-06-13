@@ -41,6 +41,8 @@
             this.cbxExercise = new System.Windows.Forms.ComboBox();
             this.listBoxGetmethods = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnQuit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -222,9 +224,9 @@
             this.listBoxGetmethods.FormattingEnabled = true;
             this.listBoxGetmethods.ItemHeight = 18;
             this.listBoxGetmethods.Location = new System.Drawing.Point(16, 271);
-            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(595, 706);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(595, 616);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -232,12 +234,42 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnClear.Location = new System.Drawing.Point(16, 892);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 31);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnQuit
+            // 
+            this.btnQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnQuit.BackColor = System.Drawing.Color.Red;
+            this.btnQuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuit.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnQuit.Location = new System.Drawing.Point(536, 892);
+            this.btnQuit.Name = "btnQuit";
+            this.btnQuit.Size = new System.Drawing.Size(75, 31);
+            this.btnQuit.TabIndex = 3;
+            this.btnQuit.Text = "Quit";
+            this.btnQuit.UseVisualStyleBackColor = false;
+            this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
+            // 
             // frmUNETTester_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(628, 1009);
+            this.ClientSize = new System.Drawing.Size(628, 928);
+            this.Controls.Add(this.btnQuit);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.listBoxGetmethods);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -265,6 +297,8 @@
         private System.Windows.Forms.ComboBox cbxTrainee;
         private System.Windows.Forms.ListBox listBoxGetmethods;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnQuit;
     }
 }
 

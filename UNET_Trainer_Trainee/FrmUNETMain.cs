@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Collections.Specialized;
 using log4net;
 using pjsua2;
+using PJSUA2Implementation.SIP;
 using System.Threading;
 
 namespace UNET_Trainer_Trainee
@@ -20,13 +21,17 @@ namespace UNET_Trainer_Trainee
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+        public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+
+
         //pjsua2
-      //  public Endpoint endpoint;
-      //  public EpConfig ep_cfg;
-      //  public AccountConfig acfg = new AccountConfig();
-       // public TransportConfig tcfg = new TransportConfig();
+        //  public Endpoint endpoint;
+        //  public EpConfig ep_cfg;
+        //  public AccountConfig acfg = new AccountConfig();
+        // public TransportConfig tcfg = new TransportConfig();
         //the accounts
-        private SIP.UserAgent useragent;
+        private PJSUA2Implementation.SIP.UserAgent useragent;
 
         //  private Boolean Muted = false;
         //  private Boolean MonitorTrainee = false;
@@ -49,7 +54,7 @@ namespace UNET_Trainer_Trainee
         public FrmUNETMain()
         {
             InitializeComponent();
-         
+
         }
 
         /// <summary>
@@ -82,11 +87,10 @@ namespace UNET_Trainer_Trainee
 
             try
             {
-                //Create sip transport and errorhandling
-                //tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-                //endpoint.transportCreate(pjsua2.pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
-                useragent = new SIP.UserAgent();
+                //the useragent holds everything needed for the sip communication
+                useragent = new PJSUA2Implementation.SIP.UserAgent();
                 useragent.UserAgentStart();
+
             }
             catch (Exception ex)
             {
@@ -107,7 +111,7 @@ namespace UNET_Trainer_Trainee
                     service.Open();
 
                     //enable the Exercise buttons
-                 var currentInfo = service.GetExerciseInfo(TraineeID);
+                    var currentInfo = service.GetExerciseInfo(TraineeID);
                     if (currentInfo != null)
                     {
                         lblPlatform.Text = currentInfo.Platform;
@@ -117,10 +121,10 @@ namespace UNET_Trainer_Trainee
                     }
                     else
                     {
-                      //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
+                        //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
                     }
-               
-                    service.Close();                                      
+
+                    service.Close();
                 }
             }
             catch (Exception ex)
@@ -192,11 +196,11 @@ namespace UNET_Trainer_Trainee
             //dispose all sip objects, so they can be garbage collected
 
             if (!object.ReferenceEquals(useragent, null))
-               {
+            {
                 useragent.UserAgentStop();
-                  // useragent.
-               }
- 
+                // useragent.
+            }
+
             //    endpoint.libDestroy();
             //    endpoint.Dispose();
 
@@ -217,12 +221,12 @@ namespace UNET_Trainer_Trainee
         private void MakeCall(int traineeid)
         {
             try
-            {                
-    
-            SIP.SIPCall sc = new SIP.SIPCall(useragent.acc,TraineeID);
-            CallOpParam cop = new CallOpParam();
-            cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-            sc.makeCall("sip:1011@10.0.128.128",cop);
+            {
+
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                CallOpParam cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                sc.makeCall(string.Format("sip:{0}@{1}",SIPAccountname, SIPServer ), cop);
             }
             catch (Exception ex)
             {

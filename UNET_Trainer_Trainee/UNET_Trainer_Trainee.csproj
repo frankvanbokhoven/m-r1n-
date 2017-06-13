@@ -41,6 +41,12 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PJSUA2Implementation">
+      <HintPath>..\TestPJSUA2\PJSUA2Implementation\bin\Debug\PJSUA2Implementation.dll</HintPath>
+    </Reference>
+    <Reference Include="PJSUA2_NET">
+      <HintPath>..\TestPJSUA2\PJSUA2_NET\Debug\PJSUA2_NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -89,11 +95,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SIP\Config.cs" />
-    <Compile Include="SIP\SipAccount.cs" />
-    <Compile Include="SIP\SipBuddy.cs" />
-    <Compile Include="SIP\SIPCall.cs" />
-    <Compile Include="SIP\UserAgent.cs" />
     <EmbeddedResource Include="FrmAudio.resx">
       <DependentUpon>FrmAudio.cs</DependentUpon>
     </EmbeddedResource>

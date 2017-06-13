@@ -21,7 +21,7 @@ namespace UNET_Trainer
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        
+        private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -97,6 +97,16 @@ namespace UNET_Trainer
                     { ((Button)c).ImageIndex = 1; }
                 }
 
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
+                {
+                    if (((Button)c).ImageIndex == 1)
+                    {
+                        ((Button)c).ImageIndex = 2;
+                    }
+                    else
+                    { ((Button)c).ImageIndex = 1; }
+                }
+
                 if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
                 {
                     if (((Button)c).ImageIndex == 1)
@@ -120,119 +130,110 @@ namespace UNET_Trainer
                 {
                     SetButtonStatus(c);
                 }
+                Application.DoEvents();
             }
 
             try
             {
-                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+                // visible/invisible and also set the statusled
+                //  {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-
-                    //enable the Exercise buttons
-                    var resultlist = service.GetExercises();
-                    List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
-
-                    btnExersise01.Enabled = lst.Count >= 1;
-                    btnExersise02.Enabled = lst.Count >= 2;
-                    btnExersise03.Enabled = lst.Count >= 3;
-                    btnExersise04.Enabled = lst.Count >= 4;
-                    btnExersise05.Enabled = lst.Count >= 5;
-                    btnExersise06.Enabled = lst.Count >= 6;
-                    btnExersise07.Enabled = lst.Count >= 7;
-                    btnExersise08.Enabled = lst.Count >= 8;
-
-
-                    //enable the Roles buttons
-                    var rolelist = service.GetRoles();
-                    List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
-
-                    btnRole1.Enabled = lstrole.Count >= 1;
-                    btnRole2.Enabled = lstrole.Count >= 2;
-                    btnRole3.Enabled = lstrole.Count >= 3;
-                    btnRole4.Enabled = lstrole.Count >= 4;
-                    btnRole5.Enabled = lstrole.Count >= 5;
-                    btnRole6.Enabled = lstrole.Count >= 6;
-                    btnRole7.Enabled = lstrole.Count >= 7;
-                    btnRole8.Enabled = lstrole.Count >= 8;
-                    btnRole9.Enabled = lstrole.Count >= 9;
-                    btnRole10.Enabled = lstrole.Count >= 10;
-                    btnRole11.Enabled = lstrole.Count >= 11;
-                    btnRole12.Enabled = lstrole.Count >= 12;
-                    btnRole13.Enabled = lstrole.Count >= 13;
-                    btnRole14.Enabled = lstrole.Count >= 14;
-                    btnRole15.Enabled = lstrole.Count >= 15;
-                    btnRole16.Enabled = lstrole.Count >= 16;
-                    btnRole17.Enabled = lstrole.Count >= 17;
-                    btnRole18.Enabled = lstrole.Count >= 18;
-                    btnRole19.Enabled = lstrole.Count >= 19;
-                    btnRole20.Enabled = lstrole.Count >= 20;
-
-
-                    //enable the Roles buttons
-                    var radiolist = service.GetRadios();
-                    List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
-
-                    btnRadio01.Enabled = lstRadio.Count >= 1;
-                    btnRadio02.Enabled = lstRadio.Count >= 2;
-                    btnRadio03.Enabled = lstRadio.Count >= 3;
-                    btnRadio04.Enabled = lstRadio.Count >= 4;
-                    btnRadio05.Enabled = lstRadio.Count >= 5;
-                    btnRadio06.Enabled = lstRadio.Count >= 6;
-                    btnRadio07.Enabled = lstRadio.Count >= 7;
-                    btnRadio08.Enabled = lstRadio.Count >= 8;
-                    btnRadio09.Enabled = lstRadio.Count >= 9;
-                    btnRadio10.Enabled = lstRadio.Count >= 10;
-                    btnRadio11.Enabled = lstRadio.Count >= 11;
-                    btnRadio12.Enabled = lstRadio.Count >= 12;
-                    btnRadio13.Enabled = lstRadio.Count >= 13;
-                    btnRadio14.Enabled = lstRadio.Count >= 14;
-                    btnRadio15.Enabled = lstRadio.Count >= 15;
-                    btnRadio16.Enabled = lstRadio.Count >= 16;
-                    btnRadio17.Enabled = lstRadio.Count >= 17;
-                    btnRadio18.Enabled = lstRadio.Count >= 18;
-                    btnRadio19.Enabled = lstRadio.Count >= 19;
-                    btnRadio20.Enabled = lstRadio.Count >= 20;
-
-                    //enable the Roles buttons
-                    var traineelist = service.GetTrainees();
-                    List<Trainee> lstTrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
-
-                    btnTraineeAA.Enabled = lstTrainee.Count >= 1;
-                    btnTraineeBB.Enabled = lstTrainee.Count >= 2;
-                    btnTraineeCC.Enabled = lstTrainee.Count >= 3;
-                    btnTraineeDD.Enabled = lstTrainee.Count >= 4;
-                    btnTraineeEE.Enabled = lstTrainee.Count >= 5;
-                    btnTraineeFF.Enabled = lstTrainee.Count >= 6;
-                    btnTraineeGG.Enabled = lstTrainee.Count >= 7;
-                    btnTraineeHH.Enabled = lstTrainee.Count >= 8;
-                    btnTraineeJJ.Enabled = lstTrainee.Count >= 9;
-                    btnTraineeKK.Enabled = lstTrainee.Count >= 10;
-                    btnTraineeLL.Enabled = lstTrainee.Count >= 11;
-                    btnTraineeMM.Enabled = lstTrainee.Count >= 12;
-                    btnTraineeNN.Enabled = lstTrainee.Count >= 13;
-                    btnTraineePP.Enabled = lstTrainee.Count >= 14;
-                    btnTraineeRR.Enabled = lstTrainee.Count >= 15;
-                    btnTraineeSS.Enabled = lstTrainee.Count >= 16;
-                    //   btnAssist.Enabled = lstTrainee.Count >= 17;                
-                    service.Close();
-
-
-                    // now make any disabled button INVISIBLE
-                    foreach (Control c in parent.Controls)
-                    {
-                        if (c.GetType() == typeof(Button))
-                        {
-                            ((Button)c).Visible = ((Button)c).Enabled;
-                        }
-                    }
-
-                    //now resize all buttons to make optimal use of the available room
-                    ResizePanels(panelExercises, lst.Count);
-                    ResizePanels(panelRadios, lstRadio.Count);
-                    ResizePanels(panelRoles, lstrole.Count);
-                    ResizePanels(panelTrainees, lstTrainee.Count);
                 }
+
+                //enable the Exercise buttons
+                var resultlist = service.GetExercises();
+                List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
+
+                btnExersise01.Enabled = lst.Count >= 1;
+                btnExersise02.Enabled = lst.Count >= 2;
+                btnExersise03.Enabled = lst.Count >= 3;
+                btnExersise04.Enabled = lst.Count >= 4;
+                btnExersise05.Enabled = lst.Count >= 5;
+                btnExersise06.Enabled = lst.Count >= 6;
+                btnExersise07.Enabled = lst.Count >= 7;
+                btnExersise08.Enabled = lst.Count >= 8;
+
+
+                //enable the Roles buttons
+                var rolelist = service.GetRoles();
+                List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+
+                btnRole1.Enabled = lstrole.Count >= 1;
+                btnRole2.Enabled = lstrole.Count >= 2;
+                btnRole3.Enabled = lstrole.Count >= 3;
+                btnRole4.Enabled = lstrole.Count >= 4;
+                btnRole5.Enabled = lstrole.Count >= 5;
+                btnRole6.Enabled = lstrole.Count >= 6;
+                btnRole7.Enabled = lstrole.Count >= 7;
+                btnRole8.Enabled = lstrole.Count >= 8;
+                btnRole9.Enabled = lstrole.Count >= 9;
+                btnRole10.Enabled = lstrole.Count >= 10;
+                btnRole11.Enabled = lstrole.Count >= 11;
+                btnRole12.Enabled = lstrole.Count >= 12;
+                btnRole13.Enabled = lstrole.Count >= 13;
+                btnRole14.Enabled = lstrole.Count >= 14;
+                btnRole15.Enabled = lstrole.Count >= 15;
+                btnRole16.Enabled = lstrole.Count >= 16;
+                btnRole17.Enabled = lstrole.Count >= 17;
+                btnRole18.Enabled = lstrole.Count >= 18;
+                btnRole19.Enabled = lstrole.Count >= 19;
+                btnRole20.Enabled = lstrole.Count >= 20;
+
+
+                //enable the Roles buttons
+                var radiolist = service.GetRadios();
+                List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                btnRadio01.Enabled = lstRadio.Count >= 1;
+                btnRadio02.Enabled = lstRadio.Count >= 2;
+                btnRadio03.Enabled = lstRadio.Count >= 3;
+                btnRadio04.Enabled = lstRadio.Count >= 4;
+                btnRadio05.Enabled = lstRadio.Count >= 5;
+                btnRadio06.Enabled = lstRadio.Count >= 6;
+                btnRadio07.Enabled = lstRadio.Count >= 7;
+                btnRadio08.Enabled = lstRadio.Count >= 8;
+                btnRadio09.Enabled = lstRadio.Count >= 9;
+                btnRadio10.Enabled = lstRadio.Count >= 10;
+                btnRadio11.Enabled = lstRadio.Count >= 11;
+                btnRadio12.Enabled = lstRadio.Count >= 12;
+                btnRadio13.Enabled = lstRadio.Count >= 13;
+                btnRadio14.Enabled = lstRadio.Count >= 14;
+                btnRadio15.Enabled = lstRadio.Count >= 15;
+                btnRadio16.Enabled = lstRadio.Count >= 16;
+                btnRadio17.Enabled = lstRadio.Count >= 17;
+                btnRadio18.Enabled = lstRadio.Count >= 18;
+                btnRadio19.Enabled = lstRadio.Count >= 19;
+                btnRadio20.Enabled = lstRadio.Count >= 20;
+
+                //enable the Roles buttons
+                var traineelist = service.GetTrainees();
+                List<Trainee> lstTrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
+
+                btnTraineeAA.Enabled = lstTrainee.Count >= 1;
+                btnTraineeBB.Enabled = lstTrainee.Count >= 2;
+                btnTraineeCC.Enabled = lstTrainee.Count >= 3;
+                btnTraineeDD.Enabled = lstTrainee.Count >= 4;
+                btnTraineeEE.Enabled = lstTrainee.Count >= 5;
+                btnTraineeFF.Enabled = lstTrainee.Count >= 6;
+                btnTraineeGG.Enabled = lstTrainee.Count >= 7;
+                btnTraineeHH.Enabled = lstTrainee.Count >= 8;
+                btnTraineeJJ.Enabled = lstTrainee.Count >= 9;
+                btnTraineeKK.Enabled = lstTrainee.Count >= 10;
+                btnTraineeLL.Enabled = lstTrainee.Count >= 11;
+                btnTraineeMM.Enabled = lstTrainee.Count >= 12;
+                btnTraineeNN.Enabled = lstTrainee.Count >= 13;
+                btnTraineePP.Enabled = lstTrainee.Count >= 14;
+                btnTraineeRR.Enabled = lstTrainee.Count >= 15;
+                btnTraineeSS.Enabled = lstTrainee.Count >= 16;
+
+                //now resize all buttons to make optimal use of the available room
+                ResizeButtons(panelExercises, lst.Count, "exersise");
+                ResizeButtons(panelRadios, lstRadio.Count, "radio");
+                ResizeButtons(panelRoles, lstrole.Count, "role");
+                ResizeButtons(panelTrainees, lstTrainee.Count, "trainee");
             }
             catch (Exception ex)
             {
@@ -285,7 +286,7 @@ namespace UNET_Trainer
                 MonitorTrainee = true;
                 btnMonitorTrainee.BackColor = System.Drawing.Color.SaddleBrown;
                 btnMonitorTrainee.ForeColor = System.Drawing.Color.White;
-             }
+            }
             else
             {
                 MonitorTrainee = false;
@@ -298,22 +299,26 @@ namespace UNET_Trainer
         /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
         /// their space can be used for the other panels.
         /// </summary>
-        /// <summary>
-        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
-        /// their space can be used for the other panels.
-        /// </summary>
-        private void ResizePanels(Panel _panel, int _numberOfPanels)
+        private void ResizeButtons(Panel _panel, int _numberOfPanels, string _group)
         {
             try
             {
-                //begin met alle controls op invisible te zetten.
+                // now make any disabled button INVISIBLE
                 foreach (Control c in _panel.Controls)
                 {
-                    if (c is Button)
+                    if (c.GetType() == typeof(Button))
                     {
-                        c.Visible = false;
+                        ((Button)c).Visible = ((Button)c).Enabled;
                     }
                 }
+                //begin met alle controls op invisible te zetten.
+                //foreach (Control c in _panel.Controls)
+                //{
+                //    if (c is Button)
+                //    {
+                //        c.Visible = false;
+                //    }
+                //}
 
                 //daarna bereken de beschikbare ruimte
                 int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfPanels)) + 1; //rond dit getal naar beneden af
@@ -325,20 +330,29 @@ namespace UNET_Trainer
                 //bouw dan de grid op..
                 for (int i = 1; i <= squareroot; i++) // van boven naar onder
                 {
+                    int verttotal = 0;
                     int buttonleft = 0;
                     for (int j = 1; j <= squareroot; j++) // van links naar rechts
                     {
                         if (controlindex < _numberOfPanels)
                         {
-                            if (_panel.Controls[controlindex] is Button) //het moet wel een button zijn
+                            if ((_panel.Controls[controlindex] is Button) && ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
                             {
                                 ((Button)(_panel.Controls[controlindex])).Visible = true;
-                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop;
+                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
                                 ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
                                 ((Button)(_panel.Controls[controlindex])).Width = availablehorspace;
+
                                 ((Button)(_panel.Controls[controlindex])).Height = availablehorspace;
-                             
+                                verttotal += ((Button)(_panel.Controls[controlindex])).Height;
                                 buttonleft += availablehorspace; //tel de breedte van 1 button op bij de left, voor de volgende
+
+                                // if(verttotal > _panel.Height)
+                                // {
+                                //     ((Button)(_panel.Controls[controlindex])).Height = verttotal - _panel.Height;
+                                //  }
+
+                                Application.DoEvents();
                             }
                             controlindex++;
                         }
@@ -348,7 +362,8 @@ namespace UNET_Trainer
                         }
                     }
 
-                    buttonstop += availablevertspace;
+                    // buttonstop += availablevertspace;
+                    buttonstop += availablehorspace;
                 }
             }
             catch (Exception ex)
@@ -363,11 +378,11 @@ namespace UNET_Trainer
         {
             try
             {
-               
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message ));
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
                 // throw;
             }
         }
@@ -525,8 +540,8 @@ namespace UNET_Trainer
                 btnMonitorRadio.ForeColor = System.Drawing.Color.Black;
             }
 
-        }      
-      
+        }
+
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
@@ -579,10 +594,10 @@ namespace UNET_Trainer
             {
                 exerciseIndex = 8;
             }
-                ExerciseArray[exerciseIndex] = true;
-                _btn.BackColor = System.Drawing.Color.SaddleBrown;
-                _btn.ForeColor = System.Drawing.Color.White;
-         }
+            ExerciseArray[exerciseIndex] = true;
+            _btn.BackColor = System.Drawing.Color.SaddleBrown;
+            _btn.ForeColor = System.Drawing.Color.White;
+        }
 
         private void SetExerciseStatus()
         {
@@ -613,6 +628,15 @@ namespace UNET_Trainer
             btnExersise08.ForeColor = System.Drawing.Color.Black;
             btnIL.ForeColor = System.Drawing.Color.Black;
 
+        }
+
+        private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //close the connection to the wcf service, if it is still opened
+            if (service.State == System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Close();
+            }
         }
     }
 }

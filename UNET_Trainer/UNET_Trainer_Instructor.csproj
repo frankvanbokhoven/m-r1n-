@@ -45,6 +45,9 @@
       <HintPath>..\UNET_TrainerClient\packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PJSUA2_NET">
+      <HintPath>..\TestPJSUA2\PJSUA2_NET\Debug\PJSUA2_NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -132,7 +135,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SIP\SIPAccount.cs" />
     <Compile Include="usercontrolConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -242,6 +244,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\UNET_Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SIP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -189,13 +189,13 @@ namespace TestPJSUA2Mark
                     AddToListbox("Answering call: " + cbxAccount.Text);
                 try
                 {
-          //      useragent.ep.ca
+                string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    sc.makeCall(string.Format("sip:{0}@10.0.128.128", cbxAccount.Text.Trim()), cop);
-                    AddToListbox(string.Format("Call successfully made to: {0}@unet", cbxAccount.Text.Trim()));
+                    sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
+                    AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(),sipserver ));
                 }
                 catch (Exception ex)
                 {

@@ -17,7 +17,6 @@ namespace UNET_Tester
     {
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         public frmUNETTester_Main()
         {
             InitializeComponent();
@@ -32,7 +31,9 @@ namespace UNET_Tester
             GetUNETStatus();
 
             timer1.Enabled = true;
-        }
+
+
+            }
 
         /// <summary>
         /// add a line to the top of the listbox
@@ -74,6 +75,7 @@ namespace UNET_Tester
                     {
                         AddToListbox(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
                     }
+                    cbxExercise.Text = lst.Count.ToString();
 
                     //Roles
                     var rolelist = service.GetRoles();
@@ -83,6 +85,7 @@ namespace UNET_Tester
                     {
                         AddToListbox(string.Format("Role: {0}, Name: {1}", rol.ID, rol.Name));
                     }
+                    cbxRole.Text = lstrol.Count.ToString();
 
                     //Trainee
                     var traineelist = service.GetTrainees();
@@ -92,15 +95,17 @@ namespace UNET_Tester
                     {
                         AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
                     }
+                    cbxTrainee.Text = lsttrainee.Count.ToString();
 
                     //Radio
                     var radiolist = service.GetRadios();
                     List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
 
-                    foreach (Radio radio in radiolist)
+                    foreach (Radio radio in lstRadio)
                     {
                         AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
                     }
+                    cbxRadios.Text = lstRadio.Count.ToString();
 
                     service.Close();
                 }
@@ -230,6 +235,13 @@ namespace UNET_Tester
             }
         }
 
+        /// <summary>
+        /// at program start of after a clearing of the listbox, you want to see what the current server status is
+        /// </summary>
+        private void GetServerStatus()
+        {
+
+        }
 
         /// <summary>
         /// Get the latest status
@@ -272,6 +284,18 @@ namespace UNET_Tester
                 log.Error("Error updating screen controls", ex);
             }
 
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            listBoxGetmethods.Items.Clear();
+
+            GetUNETStatus();
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

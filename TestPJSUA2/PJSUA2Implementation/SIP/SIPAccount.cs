@@ -108,7 +108,7 @@ namespace PJSUA2Implementation.SIP
                 // Store this call
                 Calls.Add(call);
                 prm.statusCode = (pjsua2.pjsip_status_code)200;
-// Answer the call
+                // Answer the call
                 call.answer(prm);
              
 
