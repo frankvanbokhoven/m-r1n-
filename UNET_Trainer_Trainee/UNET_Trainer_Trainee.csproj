@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CurrentInfo.cs" />
+    <Compile Include="Classes\Radio.cs" />
+    <Compile Include="Classes\Role.cs" />
     <Compile Include="FrmAudio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +120,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.CurrentInfo.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Exercise.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Instructor.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Platform.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Radio.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Role.datasource" />
+    <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Trainee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -139,27 +148,6 @@
     </None>
     <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.CurrentInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Exercise.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Instructor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Platform.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Radio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer_Trainee.UNET_Service.Trainee.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

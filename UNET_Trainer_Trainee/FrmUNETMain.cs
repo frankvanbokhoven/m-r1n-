@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Collections;
 using System.Collections.Specialized;
 using log4net;
 using pjsua2;
 using PJSUA2Implementation.SIP;
 using System.Threading;
+
 
 namespace UNET_Trainer_Trainee
 {
@@ -23,6 +25,7 @@ namespace UNET_Trainer_Trainee
 
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+        private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
 
 
         //pjsua2
@@ -175,10 +178,63 @@ namespace UNET_Trainer_Trainee
                     else
                     { ((Button)c).ImageIndex = 1; }
                 }
-                else
+                Application.DoEvents();
+
+            }
+
+            try
+            {
+                // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+                // visible/invisible and also set the statusled
+                //  {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
-                    SetButtonStatus(c);
+                    service.Open();
                 }
+
+             
+                //enable the Roles buttons
+                var rolelist = service.GetRoles();
+                List<Classes.Role> lstrole = rolelist.ToList<Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+
+                btnRole1.Enabled = lstrole.Count >= 1;
+                btnRole2.Enabled = lstrole.Count >= 2;
+                btnRole3.Enabled = lstrole.Count >= 3; 
+                btnRole4.Enabled = lstrole.Count >= 4;
+                btnRole5.Enabled = lstrole.Count >= 5;
+                btnRole6.Enabled = lstrole.Count >= 6;
+                btnRole7.Enabled = lstrole.Count >= 7;
+                btnRole8.Enabled = lstrole.Count >= 8;
+                btnRole9.Enabled = lstrole.Count >= 9;
+                btnRole10.Enabled = lstrole.Count >= 10;
+                btnRole11.Enabled = lstrole.Count >= 11;
+                btnRole12.Enabled = lstrole.Count >= 12;
+                btnRole13.Enabled = lstrole.Count >= 13;
+                btnRole14.Enabled = lstrole.Count >= 14;
+                btnRole15.Enabled = lstrole.Count >= 15;
+                btnRole16.Enabled = lstrole.Count >= 16;
+                btnRole17.Enabled = lstrole.Count >= 17;
+                btnRole18.Enabled = lstrole.Count >= 18;
+                btnRole19.Enabled = lstrole.Count >= 19;
+                btnRole20.Enabled = lstrole.Count >= 20;
+
+                //enable the Roles buttons
+                var radiolist = service.GetRadios();
+                List<Classes.Radio> lstRadio = radiolist.ToList<Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                btnRadio01.Enabled = lstRadio.Count >= 1;
+                btnRadio02.Enabled = lstRadio.Count >= 2;
+                btnRadio03.Enabled = lstRadio.Count >= 3;
+                btnRadio04.Enabled = lstRadio.Count >= 4;
+                btnRadio05.Enabled = lstRadio.Count >= 5;
+                //now resize all buttons to make optimal use of the available room
+                ResizeButtons(pnlRadios, lstRadio.Count, "radio");
+                ResizeButtons(pnlPointToPoint, lstrole.Count, "role");
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error using WCF SetButtonStatus", ex);
+                // throw;
             }
         }
 
@@ -190,27 +246,16 @@ namespace UNET_Trainer_Trainee
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ///this code destroys the SIP connection and clears the relevant objects
-            //try
-            //{
-            //dispose all sip objects, so they can be garbage collected
-
+            //close the useragent en with that the sip connection
             if (!object.ReferenceEquals(useragent, null))
             {
                 useragent.UserAgentStop();
-                // useragent.
             }
-
-            //    endpoint.libDestroy();
-            //    endpoint.Dispose();
-
-            //    //force garbage collection of all disposed objects
-            //    GC.Collect();
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error("Error UN-registering SIP connection", ex);
-            //}
+            //close the connection to the wcf service, if it is still opened
+            if (service.State == System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Close();
+            }
         }
 
         private void btnRadio01_Click(object sender, EventArgs e)
@@ -222,7 +267,6 @@ namespace UNET_Trainer_Trainee
         {
             try
             {
-
                 PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;

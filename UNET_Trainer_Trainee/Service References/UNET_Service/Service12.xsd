@@ -100,15 +100,73 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TraineeStatusChanged">
+  <xs:element name="GetTraineeStatusChanged">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TraineeStatusChangedResponse">
+  <xs:element name="GetTraineeStatusChangedResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="TraineeStatusChangedResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="GetTraineeStatusChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeStatusChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
+        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeStatusChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTraineeStatusChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSIPStatusMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSIPStatusMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSIPStatusMessageResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSIPStatusMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSIPStatusMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetSIPStatusMessageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearStatusMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearStatusMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClearStatusMessagesResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

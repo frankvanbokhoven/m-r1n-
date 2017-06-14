@@ -9,578 +9,53 @@
 //------------------------------------------------------------------------------
 
 namespace UNET_Trainer_Trainee.UNET_Service {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Exercise", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Exercise : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SpecificationNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Number {
-            get {
-                return this.NumberField;
-            }
-            set {
-                if ((this.NumberField.Equals(value) != true)) {
-                    this.NumberField = value;
-                    this.RaisePropertyChanged("Number");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SpecificationName {
-            get {
-                return this.SpecificationNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SpecificationNameField, value) != true)) {
-                    this.SpecificationNameField = value;
-                    this.RaisePropertyChanged("SpecificationName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Radio", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Radio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NoiseLevelField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NoiseLevel {
-            get {
-                return this.NoiseLevelField;
-            }
-            set {
-                if ((this.NoiseLevelField.Equals(value) != true)) {
-                    this.NoiseLevelField = value;
-                    this.RaisePropertyChanged("NoiseLevel");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Instructor", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Instructor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Trainee", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Trainee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Platform", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Platform : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class CurrentInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ConsoleRoleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ExerciseModeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ExerciseNameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PlatformField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UNET_Trainer_Trainee.UNET_Service.Radio[] RadiosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UNET_Trainer_Trainee.UNET_Service.Role[] RolesField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ConsoleRole {
-            get {
-                return this.ConsoleRoleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ConsoleRoleField, value) != true)) {
-                    this.ConsoleRoleField = value;
-                    this.RaisePropertyChanged("ConsoleRole");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ExerciseMode {
-            get {
-                return this.ExerciseModeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ExerciseModeField, value) != true)) {
-                    this.ExerciseModeField = value;
-                    this.RaisePropertyChanged("ExerciseMode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ExerciseName {
-            get {
-                return this.ExerciseNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ExerciseNameField, value) != true)) {
-                    this.ExerciseNameField = value;
-                    this.RaisePropertyChanged("ExerciseName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Platform {
-            get {
-                return this.PlatformField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlatformField, value) != true)) {
-                    this.PlatformField = value;
-                    this.RaisePropertyChanged("Platform");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UNET_Trainer_Trainee.UNET_Service.Radio[] Radios {
-            get {
-                return this.RadiosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RadiosField, value) != true)) {
-                    this.RadiosField = value;
-                    this.RaisePropertyChanged("Radios");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UNET_Trainer_Trainee.UNET_Service.Role[] Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Exercise[] GetExercises();
+        PJSUA2Implementation.UNET_Service.Exercise[] GetExercises();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Exercise[]> GetExercisesAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Exercise[]> GetExercisesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Role[] GetRoles();
+        PJSUA2Implementation.UNET_Service.Role[] GetRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Role[]> GetRolesAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Role[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Radio[] GetRadios();
+        PJSUA2Implementation.UNET_Service.Radio[] GetRadios();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Radio[]> GetRadiosAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Radio[]> GetRadiosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Instructor[] GetInstructors();
+        PJSUA2Implementation.UNET_Service.Instructor[] GetInstructors();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Instructor[]> GetInstructorsAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Instructor[]> GetInstructorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Trainee[] GetTrainees();
+        PJSUA2Implementation.UNET_Service.Trainee[] GetTrainees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Trainee[]> GetTraineesAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Trainee[]> GetTraineesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        UNET_Trainer_Trainee.UNET_Service.Platform[] GetPlatforms();
+        PJSUA2Implementation.UNET_Service.Platform[] GetPlatforms();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Platform[]> GetPlatformsAsync();
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Platform[]> GetPlatformsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        UNET_Trainer_Trainee.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
+        PJSUA2Implementation.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
+        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
         bool[] GetTraineeStatus();
@@ -588,17 +63,41 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
         System.Threading.Tasks.Task<bool[]> GetTraineeStatusAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/TraineeStatusChangedResponse")]
-        bool TraineeStatusChanged();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusChangedResponse")]
+        bool GetTraineeStatusChanged();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/TraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/TraineeStatusChangedResponse")]
-        System.Threading.Tasks.Task<bool> TraineeStatusChangedAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusChangedResponse")]
+        System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
+        string GetSIPStatusMessage(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
+        System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
+        bool SetSIPStatusMessage(string _message, string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
+        System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        bool ClearStatusMessages(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo);
+        bool RegisterTrainee(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo);
+        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -607,16 +106,16 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetExerciseCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        bool SetExercises(UNET_Trainer_Trainee.UNET_Service.Exercise[] _exercises);
+        bool SetExercises(PJSUA2Implementation.UNET_Service.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        System.Threading.Tasks.Task<bool> SetExercisesAsync(UNET_Trainer_Trainee.UNET_Service.Exercise[] _exercises);
+        System.Threading.Tasks.Task<bool> SetExercisesAsync(PJSUA2Implementation.UNET_Service.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        bool SetRoles(UNET_Trainer_Trainee.UNET_Service.Role[] _role);
+        bool SetRoles(PJSUA2Implementation.UNET_Service.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Trainer_Trainee.UNET_Service.Role[] _role);
+        System.Threading.Tasks.Task<bool> SetRolesAsync(PJSUA2Implementation.UNET_Service.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
         bool SetRolesCount(int _count);
@@ -625,10 +124,10 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        bool SetRadios(UNET_Trainer_Trainee.UNET_Service.Radio[] _radio);
+        bool SetRadios(PJSUA2Implementation.UNET_Service.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Trainer_Trainee.UNET_Service.Radio[] _radio);
+        System.Threading.Tasks.Task<bool> SetRadiosAsync(PJSUA2Implementation.UNET_Service.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
@@ -643,22 +142,22 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        bool SetInstructors(UNET_Trainer_Trainee.UNET_Service.Instructor[] _instructor);
+        bool SetInstructors(PJSUA2Implementation.UNET_Service.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        System.Threading.Tasks.Task<bool> SetInstructorsAsync(UNET_Trainer_Trainee.UNET_Service.Instructor[] _instructor);
+        System.Threading.Tasks.Task<bool> SetInstructorsAsync(PJSUA2Implementation.UNET_Service.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        bool SetTrainees(UNET_Trainer_Trainee.UNET_Service.Trainee[] _trainee);
+        bool SetTrainees(PJSUA2Implementation.UNET_Service.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        System.Threading.Tasks.Task<bool> SetTraineesAsync(UNET_Trainer_Trainee.UNET_Service.Trainee[] _trainee);
+        System.Threading.Tasks.Task<bool> SetTraineesAsync(PJSUA2Implementation.UNET_Service.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        bool SetPlatforms(UNET_Trainer_Trainee.UNET_Service.Platform[] _platform);
+        bool SetPlatforms(PJSUA2Implementation.UNET_Service.Platform[] _platform);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Trainer_Trainee.UNET_Service.Platform[] _platform);
+        System.Threading.Tasks.Task<bool> SetPlatformsAsync(PJSUA2Implementation.UNET_Service.Platform[] _platform);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -688,59 +187,59 @@ namespace UNET_Trainer_Trainee.UNET_Service {
                 base(binding, remoteAddress) {
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Exercise[] GetExercises() {
+        public PJSUA2Implementation.UNET_Service.Exercise[] GetExercises() {
             return base.Channel.GetExercises();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Exercise[]> GetExercisesAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Exercise[]> GetExercisesAsync() {
             return base.Channel.GetExercisesAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Role[] GetRoles() {
+        public PJSUA2Implementation.UNET_Service.Role[] GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Role[]> GetRolesAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Role[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Radio[] GetRadios() {
+        public PJSUA2Implementation.UNET_Service.Radio[] GetRadios() {
             return base.Channel.GetRadios();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Radio[]> GetRadiosAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Radio[]> GetRadiosAsync() {
             return base.Channel.GetRadiosAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Instructor[] GetInstructors() {
+        public PJSUA2Implementation.UNET_Service.Instructor[] GetInstructors() {
             return base.Channel.GetInstructors();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Instructor[]> GetInstructorsAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Instructor[]> GetInstructorsAsync() {
             return base.Channel.GetInstructorsAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Trainee[] GetTrainees() {
+        public PJSUA2Implementation.UNET_Service.Trainee[] GetTrainees() {
             return base.Channel.GetTrainees();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Trainee[]> GetTraineesAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Trainee[]> GetTraineesAsync() {
             return base.Channel.GetTraineesAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.Platform[] GetPlatforms() {
+        public PJSUA2Implementation.UNET_Service.Platform[] GetPlatforms() {
             return base.Channel.GetPlatforms();
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.Platform[]> GetPlatformsAsync() {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Platform[]> GetPlatformsAsync() {
             return base.Channel.GetPlatformsAsync();
         }
         
-        public UNET_Trainer_Trainee.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
+        public PJSUA2Implementation.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
             return base.Channel.GetExerciseInfo(_traineeID);
         }
         
-        public System.Threading.Tasks.Task<UNET_Trainer_Trainee.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
+        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
             return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
         
@@ -752,19 +251,51 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.GetTraineeStatusAsync();
         }
         
-        public bool TraineeStatusChanged() {
-            return base.Channel.TraineeStatusChanged();
+        public bool GetTraineeStatusChanged() {
+            return base.Channel.GetTraineeStatusChanged();
         }
         
-        public System.Threading.Tasks.Task<bool> TraineeStatusChangedAsync() {
-            return base.Channel.TraineeStatusChangedAsync();
+        public System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync() {
+            return base.Channel.GetTraineeStatusChangedAsync();
         }
         
-        public bool RegisterTrainee(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo) {
+        public bool SetTraineeStatusChanged(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChanged(_traineeId, _changed);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
+        }
+        
+        public string GetSIPStatusMessage(string _id) {
+            return base.Channel.GetSIPStatusMessage(_id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id) {
+            return base.Channel.GetSIPStatusMessageAsync(_id);
+        }
+        
+        public bool SetSIPStatusMessage(string _message, string _id) {
+            return base.Channel.SetSIPStatusMessage(_message, _id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id) {
+            return base.Channel.SetSIPStatusMessageAsync(_message, _id);
+        }
+        
+        public bool ClearStatusMessages(string _id) {
+            return base.Channel.ClearStatusMessages(_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id) {
+            return base.Channel.ClearStatusMessagesAsync(_id);
+        }
+        
+        public bool RegisterTrainee(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTrainee(_currentInfo);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Trainer_Trainee.UNET_Service.CurrentInfo _currentInfo) {
+        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTraineeAsync(_currentInfo);
         }
         
@@ -776,19 +307,19 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetExerciseCountAsync(_count);
         }
         
-        public bool SetExercises(UNET_Trainer_Trainee.UNET_Service.Exercise[] _exercises) {
+        public bool SetExercises(PJSUA2Implementation.UNET_Service.Exercise[] _exercises) {
             return base.Channel.SetExercises(_exercises);
         }
         
-        public System.Threading.Tasks.Task<bool> SetExercisesAsync(UNET_Trainer_Trainee.UNET_Service.Exercise[] _exercises) {
+        public System.Threading.Tasks.Task<bool> SetExercisesAsync(PJSUA2Implementation.UNET_Service.Exercise[] _exercises) {
             return base.Channel.SetExercisesAsync(_exercises);
         }
         
-        public bool SetRoles(UNET_Trainer_Trainee.UNET_Service.Role[] _role) {
+        public bool SetRoles(PJSUA2Implementation.UNET_Service.Role[] _role) {
             return base.Channel.SetRoles(_role);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Trainer_Trainee.UNET_Service.Role[] _role) {
+        public System.Threading.Tasks.Task<bool> SetRolesAsync(PJSUA2Implementation.UNET_Service.Role[] _role) {
             return base.Channel.SetRolesAsync(_role);
         }
         
@@ -800,11 +331,11 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetRolesCountAsync(_count);
         }
         
-        public bool SetRadios(UNET_Trainer_Trainee.UNET_Service.Radio[] _radio) {
+        public bool SetRadios(PJSUA2Implementation.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadios(_radio);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Trainer_Trainee.UNET_Service.Radio[] _radio) {
+        public System.Threading.Tasks.Task<bool> SetRadiosAsync(PJSUA2Implementation.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
         }
         
@@ -824,27 +355,27 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetTraineesCountAsync(_count);
         }
         
-        public bool SetInstructors(UNET_Trainer_Trainee.UNET_Service.Instructor[] _instructor) {
+        public bool SetInstructors(PJSUA2Implementation.UNET_Service.Instructor[] _instructor) {
             return base.Channel.SetInstructors(_instructor);
         }
         
-        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(UNET_Trainer_Trainee.UNET_Service.Instructor[] _instructor) {
+        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(PJSUA2Implementation.UNET_Service.Instructor[] _instructor) {
             return base.Channel.SetInstructorsAsync(_instructor);
         }
         
-        public bool SetTrainees(UNET_Trainer_Trainee.UNET_Service.Trainee[] _trainee) {
+        public bool SetTrainees(PJSUA2Implementation.UNET_Service.Trainee[] _trainee) {
             return base.Channel.SetTrainees(_trainee);
         }
         
-        public System.Threading.Tasks.Task<bool> SetTraineesAsync(UNET_Trainer_Trainee.UNET_Service.Trainee[] _trainee) {
+        public System.Threading.Tasks.Task<bool> SetTraineesAsync(PJSUA2Implementation.UNET_Service.Trainee[] _trainee) {
             return base.Channel.SetTraineesAsync(_trainee);
         }
         
-        public bool SetPlatforms(UNET_Trainer_Trainee.UNET_Service.Platform[] _platform) {
+        public bool SetPlatforms(PJSUA2Implementation.UNET_Service.Platform[] _platform) {
             return base.Channel.SetPlatforms(_platform);
         }
         
-        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Trainer_Trainee.UNET_Service.Platform[] _platform) {
+        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(PJSUA2Implementation.UNET_Service.Platform[] _platform) {
             return base.Channel.SetPlatformsAsync(_platform);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using pjsua2;
 using System.Threading;
+using System.Configuration;
 
 namespace PJSUA2Implementation.SIP
 {
