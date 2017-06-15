@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" />
+  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
   <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GetExercises">
     <xs:complexType>
@@ -10,7 +10,7 @@
   <xs:element name="GetExercisesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetExercisesResult" nillable="true" type="q1:ArrayOfExercise" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetExercisesResult" nillable="true" type="q1:ArrayOfExercise" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -22,7 +22,7 @@
   <xs:element name="GetRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetRolesResult" nillable="true" type="q2:ArrayOfRole" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetRolesResult" nillable="true" type="q2:ArrayOfRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -34,7 +34,7 @@
   <xs:element name="GetRadiosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetRadiosResult" nillable="true" type="q3:ArrayOfRadio" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetRadiosResult" nillable="true" type="q3:ArrayOfRadio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -46,7 +46,7 @@
   <xs:element name="GetInstructorsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetInstructorsResult" nillable="true" type="q4:ArrayOfInstructor" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetInstructorsResult" nillable="true" type="q4:ArrayOfInstructor" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -58,7 +58,7 @@
   <xs:element name="GetTraineesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetTraineesResult" nillable="true" type="q5:ArrayOfTrainee" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetTraineesResult" nillable="true" type="q5:ArrayOfTrainee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -70,7 +70,7 @@
   <xs:element name="GetPlatformsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetPlatformsResult" nillable="true" type="q6:ArrayOfPlatform" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetPlatformsResult" nillable="true" type="q6:ArrayOfPlatform" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -84,7 +84,7 @@
   <xs:element name="GetExerciseInfoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="GetExerciseInfoResult" nillable="true" type="q7:CurrentInfo" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="GetExerciseInfoResult" nillable="true" type="q7:CurrentInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,10 +112,68 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetTraineeStatusChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
+        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeStatusChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTraineeStatusChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSIPStatusMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSIPStatusMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetSIPStatusMessageResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSIPStatusMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_message" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSIPStatusMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetSIPStatusMessageResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearStatusMessages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearStatusMessagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ClearStatusMessagesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RegisterTrainee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_currentInfo" nillable="true" type="q9:CurrentInfo" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_currentInfo" nillable="true" type="q9:CurrentInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -143,7 +201,7 @@
   <xs:element name="SetExercises">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_exercises" nillable="true" type="q10:ArrayOfExercise" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_exercises" nillable="true" type="q10:ArrayOfExercise" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -157,7 +215,7 @@
   <xs:element name="SetRoles">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_role" nillable="true" type="q11:ArrayOfRole" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_role" nillable="true" type="q11:ArrayOfRole" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -185,7 +243,7 @@
   <xs:element name="SetRadios">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_radio" nillable="true" type="q12:ArrayOfRadio" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_radio" nillable="true" type="q12:ArrayOfRadio" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -227,7 +285,7 @@
   <xs:element name="SetInstructors">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_instructor" nillable="true" type="q13:ArrayOfInstructor" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_instructor" nillable="true" type="q13:ArrayOfInstructor" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -241,7 +299,7 @@
   <xs:element name="SetTrainees">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_trainee" nillable="true" type="q14:ArrayOfTrainee" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_trainee" nillable="true" type="q14:ArrayOfTrainee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -255,7 +313,7 @@
   <xs:element name="SetPlatforms">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" minOccurs="0" name="_platform" nillable="true" type="q15:ArrayOfPlatform" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_platform" nillable="true" type="q15:ArrayOfPlatform" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

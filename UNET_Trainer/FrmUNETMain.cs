@@ -160,7 +160,7 @@ namespace UNET_Trainer
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
                 List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
-
+            
                 btnRole1.Enabled = lstrole.Count >= 1;
                 btnRole2.Enabled = lstrole.Count >= 2;
                 btnRole3.Enabled = lstrole.Count >= 3;

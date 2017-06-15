@@ -62,6 +62,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UNET_Classes">
+      <HintPath>..\UNET_Classes\bin\Debug\UNET_Classes.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
@@ -191,6 +194,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UNET_Service\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.CurrentInfo.datasource">

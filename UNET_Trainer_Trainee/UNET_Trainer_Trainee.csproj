@@ -64,8 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CurrentInfo.cs" />
-    <Compile Include="Classes\Radio.cs" />
-    <Compile Include="Classes\Role.cs" />
     <Compile Include="FrmAudio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +125,13 @@
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Radio.datasource" />
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Role.datasource" />
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Trainee.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.CurrentInfo.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Platform.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Radio.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Role.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Trainee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,25 +164,23 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UNET_Service\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\Service1.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="MarineGrey.ico" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\UNET_Service\configuration.svcinfo" />
+    <None Include="Service References\UNET_Service\configuration91.svcinfo" />
+    <None Include="Service References\UNET_Service\Service1.disco" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MarineGrey.ico" />
+    <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
+      <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
+      <Name>UNET_Classes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\UNET_Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

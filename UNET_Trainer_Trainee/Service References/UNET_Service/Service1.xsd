@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UNET_Classes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UNET_Classes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="ArrayOfExercise">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Exercise" nillable="true" type="tns:Exercise" />
@@ -86,8 +86,6 @@
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Radios" nillable="true" type="tns:ArrayOfRadio" />
-      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRole" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CurrentInfo" nillable="true" type="tns:CurrentInfo" />

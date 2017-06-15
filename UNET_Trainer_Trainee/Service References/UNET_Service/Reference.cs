@@ -16,46 +16,46 @@ namespace UNET_Trainer_Trainee.UNET_Service {
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        PJSUA2Implementation.UNET_Service.Exercise[] GetExercises();
+        UNET_Classes.Exercise[] GetExercises();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Exercise[]> GetExercisesAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Exercise[]> GetExercisesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        PJSUA2Implementation.UNET_Service.Role[] GetRoles();
+        UNET_Classes.Role[] GetRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Role[]> GetRolesAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Role[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        PJSUA2Implementation.UNET_Service.Radio[] GetRadios();
+        UNET_Classes.Radio[] GetRadios();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Radio[]> GetRadiosAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Radio[]> GetRadiosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        PJSUA2Implementation.UNET_Service.Instructor[] GetInstructors();
+        UNET_Classes.Instructor[] GetInstructors();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Instructor[]> GetInstructorsAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Instructor[]> GetInstructorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        PJSUA2Implementation.UNET_Service.Trainee[] GetTrainees();
+        UNET_Classes.Trainee[] GetTrainees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Trainee[]> GetTraineesAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        PJSUA2Implementation.UNET_Service.Platform[] GetPlatforms();
+        UNET_Classes.Platform[] GetPlatforms();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Platform[]> GetPlatformsAsync();
+        System.Threading.Tasks.Task<UNET_Classes.Platform[]> GetPlatformsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        PJSUA2Implementation.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
+        UNET_Classes.CurrentInfo GetExerciseInfo(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
+        System.Threading.Tasks.Task<UNET_Classes.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
         bool[] GetTraineeStatus();
@@ -94,10 +94,10 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        bool RegisterTrainee(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo);
+        bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo);
+        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Classes.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -106,16 +106,16 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetExerciseCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        bool SetExercises(PJSUA2Implementation.UNET_Service.Exercise[] _exercises);
+        bool SetExercises(UNET_Classes.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        System.Threading.Tasks.Task<bool> SetExercisesAsync(PJSUA2Implementation.UNET_Service.Exercise[] _exercises);
+        System.Threading.Tasks.Task<bool> SetExercisesAsync(UNET_Classes.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        bool SetRoles(PJSUA2Implementation.UNET_Service.Role[] _role);
+        bool SetRoles(UNET_Classes.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        System.Threading.Tasks.Task<bool> SetRolesAsync(PJSUA2Implementation.UNET_Service.Role[] _role);
+        System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Classes.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
         bool SetRolesCount(int _count);
@@ -124,10 +124,10 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        bool SetRadios(PJSUA2Implementation.UNET_Service.Radio[] _radio);
+        bool SetRadios(UNET_Classes.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        System.Threading.Tasks.Task<bool> SetRadiosAsync(PJSUA2Implementation.UNET_Service.Radio[] _radio);
+        System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Classes.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
@@ -142,22 +142,22 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        bool SetInstructors(PJSUA2Implementation.UNET_Service.Instructor[] _instructor);
+        bool SetInstructors(UNET_Classes.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        System.Threading.Tasks.Task<bool> SetInstructorsAsync(PJSUA2Implementation.UNET_Service.Instructor[] _instructor);
+        System.Threading.Tasks.Task<bool> SetInstructorsAsync(UNET_Classes.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        bool SetTrainees(PJSUA2Implementation.UNET_Service.Trainee[] _trainee);
+        bool SetTrainees(UNET_Classes.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        System.Threading.Tasks.Task<bool> SetTraineesAsync(PJSUA2Implementation.UNET_Service.Trainee[] _trainee);
+        System.Threading.Tasks.Task<bool> SetTraineesAsync(UNET_Classes.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        bool SetPlatforms(PJSUA2Implementation.UNET_Service.Platform[] _platform);
+        bool SetPlatforms(UNET_Classes.Platform[] _platform);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        System.Threading.Tasks.Task<bool> SetPlatformsAsync(PJSUA2Implementation.UNET_Service.Platform[] _platform);
+        System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Classes.Platform[] _platform);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -187,59 +187,59 @@ namespace UNET_Trainer_Trainee.UNET_Service {
                 base(binding, remoteAddress) {
         }
         
-        public PJSUA2Implementation.UNET_Service.Exercise[] GetExercises() {
+        public UNET_Classes.Exercise[] GetExercises() {
             return base.Channel.GetExercises();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Exercise[]> GetExercisesAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Exercise[]> GetExercisesAsync() {
             return base.Channel.GetExercisesAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.Role[] GetRoles() {
+        public UNET_Classes.Role[] GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Role[]> GetRolesAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Role[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.Radio[] GetRadios() {
+        public UNET_Classes.Radio[] GetRadios() {
             return base.Channel.GetRadios();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Radio[]> GetRadiosAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Radio[]> GetRadiosAsync() {
             return base.Channel.GetRadiosAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.Instructor[] GetInstructors() {
+        public UNET_Classes.Instructor[] GetInstructors() {
             return base.Channel.GetInstructors();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Instructor[]> GetInstructorsAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Instructor[]> GetInstructorsAsync() {
             return base.Channel.GetInstructorsAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.Trainee[] GetTrainees() {
+        public UNET_Classes.Trainee[] GetTrainees() {
             return base.Channel.GetTrainees();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Trainee[]> GetTraineesAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAsync() {
             return base.Channel.GetTraineesAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.Platform[] GetPlatforms() {
+        public UNET_Classes.Platform[] GetPlatforms() {
             return base.Channel.GetPlatforms();
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.Platform[]> GetPlatformsAsync() {
+        public System.Threading.Tasks.Task<UNET_Classes.Platform[]> GetPlatformsAsync() {
             return base.Channel.GetPlatformsAsync();
         }
         
-        public PJSUA2Implementation.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
+        public UNET_Classes.CurrentInfo GetExerciseInfo(int _traineeID) {
             return base.Channel.GetExerciseInfo(_traineeID);
         }
         
-        public System.Threading.Tasks.Task<PJSUA2Implementation.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
+        public System.Threading.Tasks.Task<UNET_Classes.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
             return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
         
@@ -291,11 +291,11 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.ClearStatusMessagesAsync(_id);
         }
         
-        public bool RegisterTrainee(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo) {
+        public bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTrainee(_currentInfo);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(PJSUA2Implementation.UNET_Service.CurrentInfo _currentInfo) {
+        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Classes.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTraineeAsync(_currentInfo);
         }
         
@@ -307,19 +307,19 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetExerciseCountAsync(_count);
         }
         
-        public bool SetExercises(PJSUA2Implementation.UNET_Service.Exercise[] _exercises) {
+        public bool SetExercises(UNET_Classes.Exercise[] _exercises) {
             return base.Channel.SetExercises(_exercises);
         }
         
-        public System.Threading.Tasks.Task<bool> SetExercisesAsync(PJSUA2Implementation.UNET_Service.Exercise[] _exercises) {
+        public System.Threading.Tasks.Task<bool> SetExercisesAsync(UNET_Classes.Exercise[] _exercises) {
             return base.Channel.SetExercisesAsync(_exercises);
         }
         
-        public bool SetRoles(PJSUA2Implementation.UNET_Service.Role[] _role) {
+        public bool SetRoles(UNET_Classes.Role[] _role) {
             return base.Channel.SetRoles(_role);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRolesAsync(PJSUA2Implementation.UNET_Service.Role[] _role) {
+        public System.Threading.Tasks.Task<bool> SetRolesAsync(UNET_Classes.Role[] _role) {
             return base.Channel.SetRolesAsync(_role);
         }
         
@@ -331,11 +331,11 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetRolesCountAsync(_count);
         }
         
-        public bool SetRadios(PJSUA2Implementation.UNET_Service.Radio[] _radio) {
+        public bool SetRadios(UNET_Classes.Radio[] _radio) {
             return base.Channel.SetRadios(_radio);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRadiosAsync(PJSUA2Implementation.UNET_Service.Radio[] _radio) {
+        public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Classes.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
         }
         
@@ -355,27 +355,27 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.SetTraineesCountAsync(_count);
         }
         
-        public bool SetInstructors(PJSUA2Implementation.UNET_Service.Instructor[] _instructor) {
+        public bool SetInstructors(UNET_Classes.Instructor[] _instructor) {
             return base.Channel.SetInstructors(_instructor);
         }
         
-        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(PJSUA2Implementation.UNET_Service.Instructor[] _instructor) {
+        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(UNET_Classes.Instructor[] _instructor) {
             return base.Channel.SetInstructorsAsync(_instructor);
         }
         
-        public bool SetTrainees(PJSUA2Implementation.UNET_Service.Trainee[] _trainee) {
+        public bool SetTrainees(UNET_Classes.Trainee[] _trainee) {
             return base.Channel.SetTrainees(_trainee);
         }
         
-        public System.Threading.Tasks.Task<bool> SetTraineesAsync(PJSUA2Implementation.UNET_Service.Trainee[] _trainee) {
+        public System.Threading.Tasks.Task<bool> SetTraineesAsync(UNET_Classes.Trainee[] _trainee) {
             return base.Channel.SetTraineesAsync(_trainee);
         }
         
-        public bool SetPlatforms(PJSUA2Implementation.UNET_Service.Platform[] _platform) {
+        public bool SetPlatforms(UNET_Classes.Platform[] _platform) {
             return base.Channel.SetPlatforms(_platform);
         }
         
-        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(PJSUA2Implementation.UNET_Service.Platform[] _platform) {
+        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Classes.Platform[] _platform) {
             return base.Channel.SetPlatformsAsync(_platform);
         }
     }

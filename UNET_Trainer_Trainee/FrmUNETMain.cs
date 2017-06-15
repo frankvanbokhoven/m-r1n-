@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using log4net;
 using pjsua2;
+using UNET_Classes;
 
 
 
@@ -27,24 +28,16 @@ namespace UNET_Trainer_Trainee
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
    
-
-        //pjsua2
-        //  public Endpoint endpoint;
-        //  public EpConfig ep_cfg;
-        //  public AccountConfig acfg = new AccountConfig();
-        // public TransportConfig tcfg = new TransportConfig();
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
-
-        //  private Boolean Muted = false;
-        //  private Boolean MonitorTrainee = false;
-        //  private Boolean MonitorRadio = false;
         public int TraineeID = 1;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
+        private object rolelist;
+
         public static FrmUNETMain GetForm
         {
             get
@@ -194,13 +187,17 @@ namespace UNET_Trainer_Trainee
                 }
 
                 //enable the Roles buttons
-                var rolelist = service.GetRoles();
+                List<UNET_Classes.Role> rolelist = service.GetRoles().ToList<UNET_Classes.Role>();// service.GetRoles().Cast<Role>();
 
 
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                List<Classes.Role> lstrole = rolelist.Cast<Classes.Role>().ToList(); //C# v3 manier om een array in een list te krijgen
+                //  List<UNET_Classes.Role> lstrole = rolelist.Cast<UNET_Classes.Role>().ToList(); //C# v3 manier om een array in een list te krijgen
+                List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+
+                //  List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+
                 btnRole1.Enabled = lstrole.Count >= 1;
                 btnRole2.Enabled = lstrole.Count >= 2;
                 btnRole3.Enabled = lstrole.Count >= 3;
@@ -227,8 +224,7 @@ namespace UNET_Trainer_Trainee
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                List<Classes.Radio> lstRadio = radiolist.Cast<Classes.Radio>().ToList(); //C# v3 manier om een array in een list te krijgen
-
+                List<UNET_Classes.Radio> lstRadio = radiolist.Cast<UNET_Classes.Radio>().ToList(); 
                 btnRadio01.Enabled = lstRadio.Count >= 1;
                 btnRadio02.Enabled = lstRadio.Count >= 2;
                 btnRadio03.Enabled = lstRadio.Count >= 3;

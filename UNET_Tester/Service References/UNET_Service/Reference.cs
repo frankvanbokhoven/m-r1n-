@@ -15,7 +15,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Exercise", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Exercise", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Exercise : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -76,7 +76,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -137,7 +137,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Radio", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Radio", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Radio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -214,7 +214,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Instructor", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Instructor", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Instructor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -275,7 +275,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Trainee", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Trainee", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Trainee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -336,7 +336,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Platform", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Platform", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Platform : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -397,7 +397,7 @@ namespace UNET_Tester.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class CurrentInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -418,12 +418,6 @@ namespace UNET_Tester.UNET_Service {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlatformField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UNET_Tester.UNET_Service.Radio[] RadiosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UNET_Tester.UNET_Service.Role[] RolesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -500,32 +494,6 @@ namespace UNET_Tester.UNET_Service {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UNET_Tester.UNET_Service.Radio[] Radios {
-            get {
-                return this.RadiosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RadiosField, value) != true)) {
-                    this.RadiosField = value;
-                    this.RaisePropertyChanged("Radios");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UNET_Tester.UNET_Service.Role[] Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -593,6 +561,30 @@ namespace UNET_Tester.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
+        string GetSIPStatusMessage(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
+        System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
+        bool SetSIPStatusMessage(string _message, string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
+        System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        bool ClearStatusMessages(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
         bool RegisterTrainee(UNET_Tester.UNET_Service.CurrentInfo _currentInfo);
@@ -758,6 +750,38 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync() {
             return base.Channel.GetTraineeStatusChangedAsync();
+        }
+        
+        public bool SetTraineeStatusChanged(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChanged(_traineeId, _changed);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
+        }
+        
+        public string GetSIPStatusMessage(string _id) {
+            return base.Channel.GetSIPStatusMessage(_id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id) {
+            return base.Channel.GetSIPStatusMessageAsync(_id);
+        }
+        
+        public bool SetSIPStatusMessage(string _message, string _id) {
+            return base.Channel.SetSIPStatusMessage(_message, _id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id) {
+            return base.Channel.SetSIPStatusMessageAsync(_message, _id);
+        }
+        
+        public bool ClearStatusMessages(string _id) {
+            return base.Channel.ClearStatusMessages(_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id) {
+            return base.Channel.ClearStatusMessagesAsync(_id);
         }
         
         public bool RegisterTrainee(UNET_Tester.UNET_Service.CurrentInfo _currentInfo) {
