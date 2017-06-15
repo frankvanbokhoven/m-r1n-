@@ -60,13 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Exercise.cs" />
-    <Compile Include="Classes\Instructor.cs" />
-    <Compile Include="Classes\Platform.cs" />
-    <Compile Include="Classes\Radio.cs" />
-    <Compile Include="Classes\Role.cs" />
-    <Compile Include="Classes\Trainee.cs" />
-    <Compile Include="Classes\UNET_Service_Singleton.cs" />
     <Compile Include="frmUnetTester_Main.cs">
       <SubType>Form</SubType>
     </Compile>
