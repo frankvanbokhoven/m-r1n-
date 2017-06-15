@@ -145,7 +145,7 @@ namespace UNET_Trainer
 
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
-                List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
 
                 btnExersise01.Enabled = lst.Count >= 1;
                 btnExersise02.Enabled = lst.Count >= 2;
@@ -159,7 +159,7 @@ namespace UNET_Trainer
 
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
-                List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
             
                 btnRole1.Enabled = lstrole.Count >= 1;
                 btnRole2.Enabled = lstrole.Count >= 2;
@@ -185,7 +185,7 @@ namespace UNET_Trainer
 
                 //enable the Roles buttons
                 var radiolist = service.GetRadios();
-                List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
 
                 btnRadio01.Enabled = lstRadio.Count >= 1;
                 btnRadio02.Enabled = lstRadio.Count >= 2;
@@ -210,7 +210,7 @@ namespace UNET_Trainer
 
                 //enable the Roles buttons
                 var traineelist = service.GetTrainees();
-                List<Trainee> lstTrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
 
                 btnTraineeAA.Enabled = lstTrainee.Count >= 1;
                 btnTraineeBB.Enabled = lstTrainee.Count >= 2;
@@ -230,12 +230,12 @@ namespace UNET_Trainer
                 btnTraineeSS.Enabled = lstTrainee.Count >= 16;
 
                 //now resize all buttons to make optimal use of the available room
-                ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
-                ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
 
-                ResizeButtons(panelRadios, lstRadio.Count, "radio");
-                ResizeButtons(panelRoles, lstrole.Count, "role");
-             }
+                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
+                UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
+            }
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
@@ -295,127 +295,6 @@ namespace UNET_Trainer
                 btnMonitorTrainee.ForeColor = System.Drawing.Color.Black;
             }
         }
-
-        /// <summary>
-        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
-        /// their space can be used for the other panels.
-        /// todo: extentiemethod van maken
-        /// </summary>
-        private void ResizeButtons(Panel _panel, int _numberOfButtons, string _group)
-        {
-            try
-            {
-                //begin met alle controls op invisible te zetten.
-                foreach (Control c in _panel.Controls)
-                {
-                    if (c is Button) 
-                    {
-                       if(!c.Name.Contains("Close"))
-                        {
-                            c.Visible = false;
-                        }
-                    }
-                }
-                //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
-                int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
-                int squaresize = _panel.Width / squareroot;
-                int controlindex = 0;
-                int buttonstop = 0;
-
-                //bouw dan de grid op, van links naar rechts en van boven naar onder
-                for (int i = 1; i <= squareroot; i++) // van links naar rechts
-                {
-                    int verttotal = 0;
-                    int buttonleft = 0;
-                    for (int j = 1; j <= squareroot; j++) // van boven naar onder
-                    {
-                        if (controlindex <= _numberOfButtons)
-                        {
-                            if ((_panel.Controls[controlindex] is Button) && ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
-                            {
-                                ((Button)(_panel.Controls[controlindex])).Visible = true;
-                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
-                                ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
-                                ((Button)(_panel.Controls[controlindex])).Width = squaresize;
-                                ((Button)(_panel.Controls[controlindex])).Height = squaresize;
-                                verttotal += ((Button)(_panel.Controls[controlindex])).Height;
-                                buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
- 
-                                Application.DoEvents();
-                            }
-                            controlindex++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-
-                    buttonstop += squaresize;
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error SetPanels", ex);
-                // throw;
-            }
-        }
-
-        #region resize buttons
-        /// <summary>
-        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
-        /// their space can be used for the other panels.
-        /// </summary>
-        private void ResizeButtonsVertical(Panel _panel, int _numberOfButtons, string _group)
-        {
-            if (_numberOfButtons > 0)
-            {
-                try
-                {
-                    //begin met alle controls op invisible te zetten.
-                    foreach (Control c in _panel.Controls)
-                    {
-                        if (c is Button)
-                        {
-                            c.Visible = false;
-                        }
-                    }
-                    //daarna bereken de beschikbare verticale ruimte; 
-                    int buttonheight = Convert.ToInt16((_panel.Height - 22) / _numberOfButtons);
-                    int buttonstop = 0;
-
-                    //bouw dan de grid op..
-                    for (int i = 1; i <= _numberOfButtons; i++) // van boven naar onder
-                    {
-                        if (i <= _numberOfButtons)
-                        {
-                            if ((_panel.Controls[i] is Button) && ((_panel.Controls[i].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
-                            {
-                                ((Button)(_panel.Controls[i])).Visible = true;
-                                ((Button)(_panel.Controls[i])).Top = buttonstop + 22;
-                                ((Button)(_panel.Controls[i])).Left = 2;
-                                ((Button)(_panel.Controls[i])).Width = _panel.Width - 4;
-                                ((Button)(_panel.Controls[i])).Height = buttonheight - 2;
-                                buttonstop += ((Button)(_panel.Controls[i])).Height;
-
-                                Application.DoEvents();
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    log.Error("Error SetPanels", ex);
-                    // throw;
-                }
-            }
-        }
-
-        #endregion
 
         #region trainee events
         /// <summary>
