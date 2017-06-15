@@ -22,25 +22,25 @@ namespace UNET_Service
     {
         //Getters
         [OperationContract]
-        List<UNET_Service.Classes.Exercise> GetExercises();
+        List<UNET_Classes.Exercise> GetExercises();
 
         [OperationContract]
-        List<UNET_Service.Classes.Role> GetRoles();
+        List<UNET_Classes.Role> GetRoles();
 
         [OperationContract]
-        List<UNET_Service.Classes.Radio > GetRadios();
+        List<UNET_Classes.Radio > GetRadios();
     
         [OperationContract]
-        List<UNET_Service.Classes.Instructor > GetInstructors();
+        List<UNET_Classes.Instructor > GetInstructors();
  
         [OperationContract]
-        List<UNET_Service.Classes.Trainee> GetTrainees();
+        List<UNET_Classes.Trainee> GetTrainees();
        
         [OperationContract]
-        List<UNET_Service.Classes.Platform> GetPlatforms();
+        List<UNET_Classes.Platform> GetPlatforms();
 
         [OperationContract]
-        Classes.CurrentInfo GetExerciseInfo(int _traineeID);
+        UNET_Classes.CurrentInfo GetExerciseInfo(int _traineeID);
 
         [OperationContract]
         bool[] GetTraineeStatus();
@@ -64,22 +64,22 @@ namespace UNET_Service
 
         //Setters
         [OperationContract]
-        bool RegisterTrainee(Classes.CurrentInfo _currentInfo);
+        bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo);
 
         [OperationContract]
         bool SetExerciseCount(int _count);
 
         [OperationContract]
-        bool SetExercises(List<Classes.Exercise> _exercises);
+        bool SetExercises(List<UNET_Classes.Exercise> _exercises);
         
         [OperationContract]
-        bool SetRoles(List<Classes.Role> _role);
+        bool SetRoles(List<UNET_Classes.Role> _role);
 
         [OperationContract]
         bool SetRolesCount(int _count);
 
         [OperationContract]
-        bool SetRadios(List<Classes.Radio> _radio);
+        bool SetRadios(List<UNET_Classes.Radio> _radio);
 
         [OperationContract]
         bool SetRadiosCount(int _count);
@@ -88,13 +88,13 @@ namespace UNET_Service
         bool SetTraineesCount(int _count);
 
         [OperationContract]
-        bool SetInstructors(List<Classes.Instructor> _instructor);
+        bool SetInstructors(List<UNET_Classes.Instructor> _instructor);
 
         [OperationContract]
-        bool SetTrainees(List<Classes.Trainee> _trainee);
+        bool SetTrainees(List<UNET_Classes.Trainee> _trainee);
 
         [OperationContract]
-        bool SetPlatforms(List<Classes.Platform> _platform);
+        bool SetPlatforms(List<UNET_Classes.Platform> _platform);
     }
 
  }

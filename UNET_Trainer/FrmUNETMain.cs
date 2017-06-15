@@ -299,19 +299,12 @@ namespace UNET_Trainer
         /// <summary>
         /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
         /// their space can be used for the other panels.
+        /// todo: extentiemethod van maken
         /// </summary>
         private void ResizeButtons(Panel _panel, int _numberOfButtons, string _group)
         {
             try
             {
-                // now make any disabled button INVISIBLE
-                //foreach (Control c in _panel.Controls)
-                //{
-                //    if (c.GetType() == typeof(Button))
-                //    {
-                //        ((Button)c).Visible = ((Button)c).Enabled;
-                //    }
-                //}
                 //begin met alle controls op invisible te zetten.
                 foreach (Control c in _panel.Controls)
                 {
@@ -324,18 +317,17 @@ namespace UNET_Trainer
                     }
                 }
                 //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
-
                 int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
                 int squaresize = _panel.Width / squareroot;
                 int controlindex = 0;
                 int buttonstop = 0;
 
-                //bouw dan de grid op..
-                for (int i = 1; i <= squareroot; i++) // van boven naar onder
+                //bouw dan de grid op, van links naar rechts en van boven naar onder
+                for (int i = 1; i <= squareroot; i++) // van links naar rechts
                 {
                     int verttotal = 0;
                     int buttonleft = 0;
-                    for (int j = 1; j <= squareroot; j++) // van links naar rechts
+                    for (int j = 1; j <= squareroot; j++) // van boven naar onder
                     {
                         if (controlindex <= _numberOfButtons)
                         {
@@ -348,12 +340,7 @@ namespace UNET_Trainer
                                 ((Button)(_panel.Controls[controlindex])).Height = squaresize;
                                 verttotal += ((Button)(_panel.Controls[controlindex])).Height;
                                 buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
-
-                                // if(verttotal > _panel.Height)
-                                // {
-                                //     ((Button)(_panel.Controls[controlindex])).Height = verttotal - _panel.Height;
-                                //  }
-
+ 
                                 Application.DoEvents();
                             }
                             controlindex++;
@@ -364,7 +351,6 @@ namespace UNET_Trainer
                         }
                     }
 
-                    // buttonstop += numberfitvertically;
                     buttonstop += squaresize;
                 }
             }

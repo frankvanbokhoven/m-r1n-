@@ -12,8 +12,8 @@ using System.Collections;
 using System.Collections.Specialized;
 using log4net;
 using pjsua2;
-using PJSUA2Implementation.SIP;
-using System.Threading;
+
+
 
 
 namespace UNET_Trainer_Trainee
@@ -26,7 +26,7 @@ namespace UNET_Trainer_Trainee
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
-
+   
 
         //pjsua2
         //  public Endpoint endpoint;
@@ -82,6 +82,7 @@ namespace UNET_Trainer_Trainee
 
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             this.Text = "UNET Trainee";
             //todo: terugzetten   timer1.Enabled = true;
 
@@ -192,14 +193,17 @@ namespace UNET_Trainer_Trainee
                     service.Open();
                 }
 
-             
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
-                List<Classes.Role> lstrole = rolelist.ToList<Classes.Role>(); //C# v3 manier om een array in een list te krijgen
 
+
+                //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
+                //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
+                //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
+                List<Classes.Role> lstrole = rolelist.Cast<Classes.Role>().ToList(); //C# v3 manier om een array in een list te krijgen
                 btnRole1.Enabled = lstrole.Count >= 1;
                 btnRole2.Enabled = lstrole.Count >= 2;
-                btnRole3.Enabled = lstrole.Count >= 3; 
+                btnRole3.Enabled = lstrole.Count >= 3;
                 btnRole4.Enabled = lstrole.Count >= 4;
                 btnRole5.Enabled = lstrole.Count >= 5;
                 btnRole6.Enabled = lstrole.Count >= 6;
@@ -218,15 +222,20 @@ namespace UNET_Trainer_Trainee
                 btnRole19.Enabled = lstrole.Count >= 19;
                 btnRole20.Enabled = lstrole.Count >= 20;
 
-                //enable the Roles buttons
+                ////enable the Roles buttons
                 var radiolist = service.GetRadios();
-                List<Classes.Radio> lstRadio = radiolist.ToList<Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
+                //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
+                //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
+                List<Classes.Radio> lstRadio = radiolist.Cast<Classes.Radio>().ToList(); //C# v3 manier om een array in een list te krijgen
 
                 btnRadio01.Enabled = lstRadio.Count >= 1;
                 btnRadio02.Enabled = lstRadio.Count >= 2;
                 btnRadio03.Enabled = lstRadio.Count >= 3;
                 btnRadio04.Enabled = lstRadio.Count >= 4;
                 btnRadio05.Enabled = lstRadio.Count >= 5;
+
+
                 //now resize all buttons to make optimal use of the available room
                 ResizeButtons(pnlRadios, lstRadio.Count, "radio");
                 ResizeButtons(pnlPointToPoint, lstrole.Count, "role");
@@ -234,6 +243,71 @@ namespace UNET_Trainer_Trainee
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
+                // throw;
+            }
+        }
+
+        /// <summary>
+        /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and
+        /// their space can be used for the other panels.
+        /// todo: extentiemethod van maken
+        /// </summary>
+        private void ResizeButtons(Panel _panel, int _numberOfButtons, string _group)
+        {
+            try
+            {
+                //begin met alle controls op invisible te zetten.
+                foreach (Control c in _panel.Controls)
+                {
+                    if (c is Button)
+                    {
+                        if (!c.Name.Contains("Close"))
+                        {
+                            c.Visible = false;
+                        }
+                    }
+                }
+                //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
+                int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
+                int squaresize = _panel.Width / squareroot;
+                int controlindex = 0;
+                int buttonstop = 0;
+
+                //bouw dan de grid op, van links naar rechts en van boven naar onder
+                for (int i = 1; i <= squareroot; i++) // van links naar rechts
+                {
+                    int verttotal = 0;
+                    int buttonleft = 0;
+                    for (int j = 1; j <= squareroot; j++) // van boven naar onder
+                    {
+                        if (controlindex <= _numberOfButtons)
+                        {
+                            if ((_panel.Controls[controlindex] is Button) && ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
+                            {
+                                ((Button)(_panel.Controls[controlindex])).Visible = true;
+                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
+                                ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
+                                ((Button)(_panel.Controls[controlindex])).Width = squaresize;
+                                ((Button)(_panel.Controls[controlindex])).Height = squaresize;
+                                verttotal += ((Button)(_panel.Controls[controlindex])).Height;
+                                buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
+
+                                Application.DoEvents();
+                            }
+                            controlindex++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    buttonstop += squaresize;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error SetPanels", ex);
                 // throw;
             }
         }

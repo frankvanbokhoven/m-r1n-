@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UNET_Service.Classes
+namespace UNET_Classes
 {
     /// <summary>
     /// the SIPStatusMessage holds a message that is sent via WCF by a sipclient.

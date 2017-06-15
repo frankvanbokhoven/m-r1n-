@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UNET_Service.Classes
+namespace UNET_Classes
 {
-    public class Platform
+    public class Radio
     {
         public int ID { get; set; }
         public string Description { get; set; }
+        public int NoiseLevel { get; set; }
     }
 }

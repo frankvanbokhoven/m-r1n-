@@ -84,15 +84,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CurrentInfo.cs" />
-    <Compile Include="Classes\Exercise.cs" />
-    <Compile Include="Classes\Instructor.cs" />
-    <Compile Include="Classes\Platform.cs" />
-    <Compile Include="Classes\Radio.cs" />
-    <Compile Include="Classes\Role.cs" />
-    <Compile Include="Classes\SIPStatusMessage.cs" />
-    <Compile Include="Classes\Trainee.cs" />
-    <Compile Include="Classes\UNET_Service_Singleton.cs" />
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -104,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
+      <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
+      <Name>UNET_Classes</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
