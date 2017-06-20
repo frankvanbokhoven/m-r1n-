@@ -52,6 +52,8 @@ namespace UNET_Trainer
             {
                ddlFont.Items.Add(oneFontFamily.Name);
             }
+
+            ddlFont.Text = "";
         }
 
         private void ddlColorButton_SelectedIndexChanged(object sender, EventArgs e)

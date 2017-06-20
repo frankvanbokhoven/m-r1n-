@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using UNET_Classes;
 
-namespace UNET_Classes
+namespace UNET_Service
 {
 
     public sealed class UNET_Singleton

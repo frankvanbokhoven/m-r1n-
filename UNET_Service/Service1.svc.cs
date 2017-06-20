@@ -33,7 +33,7 @@ namespace UNET_Service
             List<UNET_Classes.Exercise> result = new List<UNET_Classes.Exercise>();
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Exercise>(singleton.Exercises);
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+                UNET_Singleton singleton = UNET_Singleton.Instance;
                 singleton.SIPStatusMessageList.Add(new SIPStatusMessage(_id, _message));
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace UNET_Service
             string result = string.Empty;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+                UNET_Singleton singleton = UNET_Singleton.Instance;
 
                 //use lync to select the messages for given sipclient
                 List<SIPStatusMessage> list =  singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<SIPStatusMessage>();
@@ -117,7 +117,7 @@ namespace UNET_Service
             bool result = false;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+                UNET_Singleton singleton = UNET_Singleton.Instance;
 
                 //now remove all these items using lync
                 singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
@@ -139,7 +139,7 @@ namespace UNET_Service
         /// <returns></returns>
         public bool GetTraineeStatusChanged()
         {
-            UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+            UNET_Singleton singleton = UNET_Singleton.Instance;
 
             return singleton.TraineeStatusChanged;
         }
@@ -152,7 +152,7 @@ namespace UNET_Service
         /// <returns></returns>
         public bool SetTraineeStatusChanged(int _traineeId, bool _changed)
         {
-            UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+            UNET_Singleton singleton = UNET_Singleton.Instance;
 
 
             return true;
@@ -163,7 +163,7 @@ namespace UNET_Service
             List<UNET_Classes.Role> result = new List<UNET_Classes.Role>();
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Role>(singleton.Roles);
             }
             catch (Exception ex)
@@ -180,7 +180,7 @@ namespace UNET_Service
             List<UNET_Classes.Radio > result = new List<UNET_Classes.Radio>();
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Radio>(singleton.Radios);
 
             }
@@ -197,7 +197,7 @@ namespace UNET_Service
             List<UNET_Classes.Instructor> result = new List<UNET_Classes.Instructor>();
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Instructor>(singleton.Instructors);
             }
             catch (Exception ex)
@@ -215,7 +215,7 @@ namespace UNET_Service
             try
             {
 
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Trainee>(singleton.Trainees);
 
             }
@@ -235,7 +235,7 @@ namespace UNET_Service
             try
             {
 
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = new List<UNET_Classes.Platform>(singleton.Platforms);
 
 
@@ -257,7 +257,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Exercises.Clear();
 
@@ -304,7 +304,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Exercises.Clear();
 
@@ -334,7 +334,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Trainees.Clear();
 
@@ -365,7 +365,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Radios.Clear();
 
@@ -397,7 +397,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Roles.Clear();
 
@@ -428,7 +428,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Roles.Clear();
 
@@ -459,7 +459,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Radios.Clear();
 
@@ -491,7 +491,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Instructors.Clear();
 
@@ -523,7 +523,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Trainees.Clear();
 
@@ -555,7 +555,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first clear the array
                 singleton.Platforms.Clear();
 
@@ -591,7 +591,7 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;//get the singleton object
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 bool existing = false;
                 //try to find the given traineeclient in the list. If found, update the information, otherwise add the traineeclient
                 for (int i = 0; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
@@ -633,7 +633,7 @@ namespace UNET_Service
             try
 
             {
-                UNET_Classes.UNET_Singleton singleton = UNET_Classes.UNET_Singleton.Instance;
+                UNET_Singleton singleton = UNET_Singleton.Instance;
                                                                                                                              
                 foreach (CurrentInfo cu in singleton.CurrentInfoList)
                 {

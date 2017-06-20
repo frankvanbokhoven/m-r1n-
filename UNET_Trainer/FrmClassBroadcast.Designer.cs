@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.pnlTrainees = new System.Windows.Forms.Panel();
             this.btnTraineeSS = new System.Windows.Forms.Button();
             this.btnTraineePP = new System.Windows.Forms.Button();
             this.btnTraineeMM = new System.Windows.Forms.Button();
@@ -58,37 +59,38 @@
             this.btnInstructor03 = new System.Windows.Forms.Button();
             this.btnInstructor02 = new System.Windows.Forms.Button();
             this.btnInstructor01 = new System.Windows.Forms.Button();
-            this.panel4.SuspendLayout();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlTrainees.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlTrainees
             // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.btnTraineeSS);
-            this.panel4.Controls.Add(this.btnTraineePP);
-            this.panel4.Controls.Add(this.btnTraineeMM);
-            this.panel4.Controls.Add(this.btnTraineeKK);
-            this.panel4.Controls.Add(this.btnTraineeHH);
-            this.panel4.Controls.Add(this.btnTraineeFF);
-            this.panel4.Controls.Add(this.btnTraineeDD);
-            this.panel4.Controls.Add(this.btnTraineeBB);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.btnTraineeRR);
-            this.panel4.Controls.Add(this.btnTraineeNN);
-            this.panel4.Controls.Add(this.btnTraineeLL);
-            this.panel4.Controls.Add(this.btnTraineeJJ);
-            this.panel4.Controls.Add(this.btnTraineeGG);
-            this.panel4.Controls.Add(this.btnTraineeEE);
-            this.panel4.Controls.Add(this.btnTraineeCC);
-            this.panel4.Controls.Add(this.btnTraineeAA);
-            this.panel4.Location = new System.Drawing.Point(909, 56);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(199, 652);
-            this.panel4.TabIndex = 10;
+            this.pnlTrainees.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTrainees.Controls.Add(this.btnTraineeSS);
+            this.pnlTrainees.Controls.Add(this.btnTraineePP);
+            this.pnlTrainees.Controls.Add(this.btnTraineeMM);
+            this.pnlTrainees.Controls.Add(this.btnTraineeKK);
+            this.pnlTrainees.Controls.Add(this.btnTraineeHH);
+            this.pnlTrainees.Controls.Add(this.btnTraineeFF);
+            this.pnlTrainees.Controls.Add(this.btnTraineeDD);
+            this.pnlTrainees.Controls.Add(this.btnTraineeBB);
+            this.pnlTrainees.Controls.Add(this.label1);
+            this.pnlTrainees.Controls.Add(this.btnTraineeRR);
+            this.pnlTrainees.Controls.Add(this.btnTraineeNN);
+            this.pnlTrainees.Controls.Add(this.btnTraineeLL);
+            this.pnlTrainees.Controls.Add(this.btnTraineeJJ);
+            this.pnlTrainees.Controls.Add(this.btnTraineeGG);
+            this.pnlTrainees.Controls.Add(this.btnTraineeEE);
+            this.pnlTrainees.Controls.Add(this.btnTraineeCC);
+            this.pnlTrainees.Controls.Add(this.btnTraineeAA);
+            this.pnlTrainees.Location = new System.Drawing.Point(909, 56);
+            this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlTrainees.Name = "pnlTrainees";
+            this.pnlTrainees.Size = new System.Drawing.Size(199, 652);
+            this.pnlTrainees.TabIndex = 10;
             // 
             // btnTraineeSS
             // 
@@ -493,6 +495,11 @@
             this.btnInstructor01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnInstructor01.UseVisualStyleBackColor = false;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmClassBroadcast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -500,17 +507,17 @@
             this.ClientSize = new System.Drawing.Size(1120, 746);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlTrainees);
             this.Name = "FrmClassBroadcast";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmClassBroadcast";
             this.Load += new System.EventHandler(this.FrmClassBroadcast_Load);
-            this.Controls.SetChildIndex(this.panel4, 0);
+            this.Controls.SetChildIndex(this.pnlTrainees, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.panel3, 0);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.pnlTrainees.ResumeLayout(false);
+            this.pnlTrainees.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -521,7 +528,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlTrainees;
         private System.Windows.Forms.Button btnTraineeSS;
         private System.Windows.Forms.Button btnTraineePP;
         private System.Windows.Forms.Button btnTraineeMM;
@@ -551,5 +558,6 @@
         private System.Windows.Forms.Button btnInstructor03;
         private System.Windows.Forms.Button btnInstructor02;
         private System.Windows.Forms.Button btnInstructor01;
+        private System.Windows.Forms.Timer timer1;
     }
 }

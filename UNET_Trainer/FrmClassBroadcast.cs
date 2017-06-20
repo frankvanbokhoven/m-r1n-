@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Classes;
 
 namespace UNET_Trainer
 {
@@ -63,6 +64,11 @@ namespace UNET_Trainer
             btnInstructor02.BackColor = Constants.Extinguised;
             btnInstructor03.BackColor = Constants.Extinguised;
             btnInstructor04.BackColor = Constants.Extinguised;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UNET_Classes.Helpers.ResizeButtons(pnlTrainees, 5,"trainee");
         }
     }
 }
