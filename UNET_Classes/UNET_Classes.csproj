@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="CheckFormVisible.cs" />
     <Compile Include="CurrentInfo.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Exercise.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Instructor.cs" />

@@ -13,7 +13,8 @@ namespace UNET_Trainer
 {
     public partial class FrmRadioSetup : FrmUNETbaseSub
     {
-        private int SelectedButtonIndex = -1; //this property is set after the click of a radio button
+        private int SelectedNoiseButtonIndex = -1; //this property is set after the click of a radio button
+        private int SelectedRadioButtonIndex = -1; // index of one of the radio buttons
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
      //   private int NoiseLevel = 1;
         public FrmRadioSetup()
@@ -21,117 +22,173 @@ namespace UNET_Trainer
             InitializeComponent();
 
 
-            SetNoiseLevel(1);
+            SetNoiseLevel();
         }
 
 
 #region NoiseLevel
 
-        private void SetNoiseLevel(int _noiselevel)
+        private void SetNoiseLevel()
         {
-           //  we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
-           // if (service.State != System.ServiceModel.CommunicationState.Opened)
-           // {
-           //     service.Open();
-           // }
-           //   service.SetNoiseLevelChanged()
+     
+            //  we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
 
-             switch (_noiselevel)
+             switch (noiselevel)
                 {
                 case 0:
                     {
-                        btn1.BackColor = Color.White;
-                        btn2.BackColor = Color.White;
-                        btn3.BackColor = Color.White;
-                        btn4.BackColor = Color.White;
-                        btn5.BackColor = Color.White;
-                        btnOff.BackColor = Color.LightBlue; ;
+                        btnNoise1.BackColor = Color.White;
+                        btnNoise1.ForeColor = Color.Black; 
+                        btnNoise2.BackColor = Color.White;
+                        btnNoise2.ForeColor = Color.Black;
+                        btnNoise3.BackColor = Color.White;
+                        btnNoise3.ForeColor = Color.Black;
+                        btnNoise4.BackColor = Color.White;
+                        btnNoise4.ForeColor = Color.Black;
+                        btnNoise5.BackColor = Color.White;
+                        btnNoise5.ForeColor = Color.Black;
+                        btnNoiseOff.BackColor = Color.DarkBlue;
+                        btnNoiseOff.ForeColor = Color.White;
+                        
                         break;
                     }
                 case 1:
                     {
-                        btn1.BackColor = Color.LightBlue;
-                        btn2.BackColor = Color.White;
-                        btn3.BackColor = Color.White;
-                        btn4.BackColor = Color.White;
-                        btn5.BackColor = Color.White;
-                        btnOff.BackColor = Color.White;
+                        btnNoise1.BackColor = Color.DarkBlue;
+                        btnNoise1.ForeColor = Color.White;
+                        btnNoise2.BackColor = Color.White;
+                        btnNoise2.ForeColor = Color.Black;
+                        btnNoise3.BackColor = Color.White;
+                        btnNoise3.ForeColor = Color.Black;
+                        btnNoise4.BackColor = Color.White;
+                        btnNoise4.ForeColor = Color.Black;
+                        btnNoise5.BackColor = Color.White;
+                        btnNoise5.ForeColor = Color.Black;
+                        btnNoiseOff.BackColor = Color.White;
+                        btnNoiseOff.ForeColor = Color.Black;
                         break;
                     }
                 case 2:
                     {
-                        btn1.BackColor = Color.LightBlue;
-                        btn2.BackColor = Color.LightBlue;
-                        btn3.BackColor = Color.White;
-                        btn4.BackColor = Color.White;
-                        btn5.BackColor = Color.White;
-                        btnOff.BackColor = Color.White;
+                        btnNoise1.BackColor = Color.DarkBlue;
+                        btnNoise1.ForeColor = Color.White;
+                        btnNoise2.BackColor = Color.DarkBlue;
+                        btnNoise2.ForeColor = Color.White;
+                        btnNoise3.BackColor = Color.White;
+                        btnNoise3.ForeColor = Color.Black;
+                        btnNoise4.BackColor = Color.White;
+                        btnNoise4.ForeColor = Color.Black;
+                        btnNoise5.BackColor = Color.White;
+                        btnNoise5.ForeColor = Color.Black;
+                        btnNoiseOff.BackColor = Color.White;
+                        btnNoiseOff.ForeColor = Color.Black;
+
                         break;
                     }
                 case 3:
                     {
-                        btn1.BackColor = Color.LightBlue;
-                        btn2.BackColor = Color.LightBlue;
-                        btn3.BackColor = Color.LightBlue;
-                        btn4.BackColor = Color.White;
-                        btn5.BackColor = Color.White;
-                        btnOff.BackColor = Color.White;
+                        btnNoise1.BackColor = Color.DarkBlue;
+                        btnNoise1.ForeColor = Color.White;
+                        btnNoise2.BackColor = Color.DarkBlue;
+                        btnNoise2.ForeColor = Color.White;
+                        btnNoise3.BackColor = Color.DarkBlue;
+                        btnNoise3.ForeColor = Color.White;
+                        btnNoise4.BackColor = Color.White;
+                        btnNoise4.ForeColor = Color.Black;
+                        btnNoise5.BackColor = Color.White;
+                        btnNoise5.ForeColor = Color.Black;
+                        btnNoiseOff.BackColor = Color.White;
+                        btnNoiseOff.ForeColor = Color.Black;
                         break;
                     }
                 case 4:
                     {
-                        btn1.BackColor = Color.LightBlue;
-                        btn2.BackColor = Color.LightBlue;
-                        btn3.BackColor = Color.LightBlue;
-                        btn4.BackColor = Color.LightBlue;
-                        btn5.BackColor = Color.White;
-                        btnOff.BackColor = Color.White;
+                        btnNoise1.BackColor = Color.DarkBlue;
+                        btnNoise1.ForeColor = Color.White;
+                        btnNoise2.BackColor = Color.DarkBlue;
+                        btnNoise2.ForeColor = Color.White;
+                        btnNoise3.BackColor = Color.DarkBlue;
+                        btnNoise3.ForeColor = Color.White;
+                        btnNoise4.BackColor = Color.DarkBlue;
+                        btnNoise5.BackColor = Color.White;
+                        btnNoise5.ForeColor = Color.Black;
+                        btnNoiseOff.BackColor = Color.White;
+                        btnNoiseOff.ForeColor = Color.Black;
                         break;
                     }
                 case 5:
                     {
-                        btn1.BackColor = Color.LightBlue;
-                        btn2.BackColor = Color.LightBlue;
-                        btn3.BackColor = Color.LightBlue;
-                        btn4.BackColor = Color.LightBlue;
-                        btn5.BackColor = Color.LightBlue;
-                        btnOff.BackColor = Color.White;
+                        btnNoise1.BackColor = Color.DarkBlue;
+                        btnNoise1.ForeColor = Color.White;
+                        btnNoise2.BackColor = Color.DarkBlue;
+                        btnNoise2.ForeColor = Color.White;
+                        btnNoise3.BackColor = Color.DarkBlue;
+                        btnNoise3.ForeColor = Color.White;
+                        btnNoise4.BackColor = Color.DarkBlue;
+                        btnNoise4.ForeColor = Color.White;
+                        btnNoise5.BackColor = Color.DarkBlue;
+                        btnNoise5.ForeColor = Color.White;
+                        btnNoiseOff.BackColor = Color.White;
+                        btnNoiseOff.ForeColor = Color.Black;
                         break;
                     }
             }
         }
+
+        private void SetNoiseLevelWCF(int _noiselevel)
+        {
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            SelectedNoiseButtonIndex = _noiselevel;
+
+            var radiolist = service.SetNoiseLevel(SelectedRadioButtonIndex, SelectedNoiseButtonIndex);
+            service.SetNoiseLevelChanged(SelectedRadioButtonIndex, true);
+        }
         #endregion
 
         #region noiselevel
-        private void btnOff_Click(object sender, EventArgs e)
+        private void btnNoiseOff_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(0); //todo: enum van maken
+            SetNoiseLevel(); //todo: enum van maken
+            SetNoiseLevelWCF(0);
         }
 
-        private void btn1_Click(object sender, EventArgs e)
+        private void btnNoise1_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(1);
+            SetNoiseLevel();
+            SetNoiseLevelWCF(1);
         }
 
-        private void btn2_Click(object sender, EventArgs e)
+        private void btnNoise2_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(2);
+            SetNoiseLevel();
+            SetNoiseLevelWCF(2);
         }
 
-        private void btn3_Click(object sender, EventArgs e)
+        private void btnNoise3_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(3);
+            SetNoiseLevel();
+            SetNoiseLevelWCF(3);
         }
 
-        private void btn4_Click(object sender, EventArgs e)
+        private void btnNoise4_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(4);
+            SetNoiseLevel();
+            SetNoiseLevelWCF(4);
         }
 
-        private void btn5_Click(object sender, EventArgs e)
+        private void btnNoise5_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(5);
+            SetNoiseLevel();
+            SetNoiseLevelWCF(5);
         }
         #endregion
 
@@ -244,7 +301,7 @@ namespace UNET_Trainer
             {
                 if ((c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio"))) && c.Enabled)
                 {
-                    ((Button)c).BackColor = System.Drawing.Color.SaddleBrown;
+                    ((Button)c).BackColor = System.Drawing.Color.DarkKhaki;
                     ((Button)c).ForeColor = System.Drawing.Color.White;
                 }
             }
@@ -257,10 +314,10 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            SelectedButtonIndex = Convert.ToInt16( Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
-            int noiselevel = service.GetNoiseLevel(SelectedButtonIndex);
-
-             SetNoiseLevel(noiselevel);
+              SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
+   
+            SetNoiseLevel();
 
             //enable the Roles buttons
             var radiolist = service.GetRadios();

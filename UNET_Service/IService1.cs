@@ -55,6 +55,9 @@ namespace UNET_Service
         bool SetNoiseLevelChanged(int _radioId, bool _changed);
 
         [OperationContract]
+        bool SetNoiseLevel(int _radioID, int _noiselevel);
+
+        [OperationContract]
         bool GetNoiseLevelChanged();
 
         [OperationContract]

@@ -82,6 +82,12 @@
   <wsdl:message name="IService1_SetNoiseLevelChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetNoiseLevelChangedResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetNoiseLevelChanged_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNoiseLevelChanged" />
   </wsdl:message>
@@ -222,6 +228,10 @@
     <wsdl:operation name="SetNoiseLevelChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChanged" message="tns:IService1_SetNoiseLevelChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChangedResponse" message="tns:IService1_SetNoiseLevelChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevel" message="tns:IService1_SetNoiseLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelResponse" message="tns:IService1_SetNoiseLevel_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNoiseLevelChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelChanged" message="tns:IService1_GetNoiseLevelChanged_InputMessage" />
@@ -383,6 +393,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetNoiseLevelChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevelChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

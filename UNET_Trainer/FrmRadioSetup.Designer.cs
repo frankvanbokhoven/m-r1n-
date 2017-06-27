@@ -52,13 +52,13 @@
             this.btnRadio06 = new System.Windows.Forms.Button();
             this.btnRadio01 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnOff = new System.Windows.Forms.Button();
-            this.btn1 = new System.Windows.Forms.Button();
+            this.btnNoiseOff = new System.Windows.Forms.Button();
+            this.btnNoise1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn2 = new System.Windows.Forms.Button();
-            this.btn3 = new System.Windows.Forms.Button();
-            this.btn4 = new System.Windows.Forms.Button();
-            this.btn5 = new System.Windows.Forms.Button();
+            this.btnNoise2 = new System.Windows.Forms.Button();
+            this.btnNoise3 = new System.Windows.Forms.Button();
+            this.btnNoise4 = new System.Windows.Forms.Button();
+            this.btnNoise5 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlRadios.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -368,13 +368,13 @@
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnOff);
-            this.panel3.Controls.Add(this.btn1);
+            this.panel3.Controls.Add(this.btnNoiseOff);
+            this.panel3.Controls.Add(this.btnNoise1);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.btn2);
-            this.panel3.Controls.Add(this.btn3);
-            this.panel3.Controls.Add(this.btn4);
-            this.panel3.Controls.Add(this.btn5);
+            this.panel3.Controls.Add(this.btnNoise2);
+            this.panel3.Controls.Add(this.btnNoise3);
+            this.panel3.Controls.Add(this.btnNoise4);
+            this.panel3.Controls.Add(this.btnNoise5);
             this.panel3.Location = new System.Drawing.Point(701, 73);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
@@ -383,34 +383,34 @@
             // 
             // btnOff
             // 
-            this.btnOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnOff.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOff.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnOff.ImageIndex = 1;
-            this.btnOff.Location = new System.Drawing.Point(3, 429);
-            this.btnOff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOff.Name = "btnOff";
-            this.btnOff.Size = new System.Drawing.Size(146, 74);
-            this.btnOff.TabIndex = 12;
-            this.btnOff.Text = "Off";
-            this.btnOff.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnOff.UseVisualStyleBackColor = false;
-            this.btnOff.Click += new System.EventHandler(this.btnOff_Click);
+            this.btnNoiseOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnNoiseOff.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoiseOff.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoiseOff.ImageIndex = 1;
+            this.btnNoiseOff.Location = new System.Drawing.Point(3, 429);
+            this.btnNoiseOff.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoiseOff.Name = "btnNoiseOff";
+            this.btnNoiseOff.Size = new System.Drawing.Size(146, 74);
+            this.btnNoiseOff.TabIndex = 12;
+            this.btnNoiseOff.Text = "Off";
+            this.btnNoiseOff.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoiseOff.UseVisualStyleBackColor = false;
+            this.btnNoiseOff.Click += new System.EventHandler(this.btnNoiseOff_Click);
             // 
             // btn1
             // 
-            this.btn1.BackColor = System.Drawing.Color.White;
-            this.btn1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn1.Location = new System.Drawing.Point(3, 351);
-            this.btn1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(146, 74);
-            this.btn1.TabIndex = 11;
-            this.btn1.Text = "1";
-            this.btn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn1.UseVisualStyleBackColor = false;
-            this.btn1.Click += new System.EventHandler(this.btn1_Click);
+            this.btnNoise1.BackColor = System.Drawing.Color.White;
+            this.btnNoise1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoise1.Location = new System.Drawing.Point(3, 351);
+            this.btnNoise1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise1.Name = "btnNoise1";
+            this.btnNoise1.Size = new System.Drawing.Size(146, 74);
+            this.btnNoise1.TabIndex = 11;
+            this.btnNoise1.Text = "1";
+            this.btnNoise1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoise1.UseVisualStyleBackColor = false;
+            this.btnNoise1.Click += new System.EventHandler(this.btnNoise1_Click);
             // 
             // label1
             // 
@@ -424,64 +424,64 @@
             // 
             // btn2
             // 
-            this.btn2.BackColor = System.Drawing.Color.White;
-            this.btn2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn2.ImageIndex = 1;
-            this.btn2.Location = new System.Drawing.Point(3, 273);
-            this.btn2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(146, 74);
-            this.btn2.TabIndex = 4;
-            this.btn2.Text = "2";
-            this.btn2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn2.UseVisualStyleBackColor = false;
-            this.btn2.Click += new System.EventHandler(this.btn2_Click);
+            this.btnNoise2.BackColor = System.Drawing.Color.White;
+            this.btnNoise2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoise2.ImageIndex = 1;
+            this.btnNoise2.Location = new System.Drawing.Point(3, 273);
+            this.btnNoise2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise2.Name = "btnNoise2";
+            this.btnNoise2.Size = new System.Drawing.Size(146, 74);
+            this.btnNoise2.TabIndex = 4;
+            this.btnNoise2.Text = "2";
+            this.btnNoise2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoise2.UseVisualStyleBackColor = false;
+            this.btnNoise2.Click += new System.EventHandler(this.btnNoise2_Click);
             // 
             // btn3
             // 
-            this.btn3.BackColor = System.Drawing.Color.White;
-            this.btn3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn3.Location = new System.Drawing.Point(3, 195);
-            this.btn3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(146, 74);
-            this.btn3.TabIndex = 3;
-            this.btn3.Text = "3";
-            this.btn3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn3.UseVisualStyleBackColor = false;
-            this.btn3.Click += new System.EventHandler(this.btn3_Click);
+            this.btnNoise3.BackColor = System.Drawing.Color.White;
+            this.btnNoise3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoise3.Location = new System.Drawing.Point(3, 195);
+            this.btnNoise3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise3.Name = "btnNoise3";
+            this.btnNoise3.Size = new System.Drawing.Size(146, 74);
+            this.btnNoise3.TabIndex = 3;
+            this.btnNoise3.Text = "3";
+            this.btnNoise3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoise3.UseVisualStyleBackColor = false;
+            this.btnNoise3.Click += new System.EventHandler(this.btnNoise3_Click);
             // 
             // btn4
             // 
-            this.btn4.BackColor = System.Drawing.Color.White;
-            this.btn4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn4.Location = new System.Drawing.Point(3, 117);
-            this.btn4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn4.Name = "btn4";
-            this.btn4.Size = new System.Drawing.Size(146, 74);
-            this.btn4.TabIndex = 2;
-            this.btn4.Text = "4";
-            this.btn4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn4.UseVisualStyleBackColor = false;
-            this.btn4.Click += new System.EventHandler(this.btn4_Click);
+            this.btnNoise4.BackColor = System.Drawing.Color.White;
+            this.btnNoise4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoise4.Location = new System.Drawing.Point(3, 117);
+            this.btnNoise4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise4.Name = "btnNoise4";
+            this.btnNoise4.Size = new System.Drawing.Size(146, 74);
+            this.btnNoise4.TabIndex = 2;
+            this.btnNoise4.Text = "4";
+            this.btnNoise4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoise4.UseVisualStyleBackColor = false;
+            this.btnNoise4.Click += new System.EventHandler(this.btnNoise4_Click);
             // 
             // btn5
             // 
-            this.btn5.BackColor = System.Drawing.Color.White;
-            this.btn5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn5.Location = new System.Drawing.Point(3, 39);
-            this.btn5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn5.Name = "btn5";
-            this.btn5.Size = new System.Drawing.Size(146, 74);
-            this.btn5.TabIndex = 1;
-            this.btn5.Text = "5";
-            this.btn5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn5.UseVisualStyleBackColor = false;
-            this.btn5.Click += new System.EventHandler(this.btn5_Click);
+            this.btnNoise5.BackColor = System.Drawing.Color.White;
+            this.btnNoise5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoise5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnNoise5.Location = new System.Drawing.Point(3, 39);
+            this.btnNoise5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNoise5.Name = "btnNoise5";
+            this.btnNoise5.Size = new System.Drawing.Size(146, 74);
+            this.btnNoise5.TabIndex = 1;
+            this.btnNoise5.Text = "5";
+            this.btnNoise5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNoise5.UseVisualStyleBackColor = false;
+            this.btnNoise5.Click += new System.EventHandler(this.btnNoise5_Click);
             // 
             // timer1
             // 
@@ -536,13 +536,13 @@
         private System.Windows.Forms.Button btnRadio06;
         private System.Windows.Forms.Button btnRadio01;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnOff;
-        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.Button btnNoiseOff;
+        private System.Windows.Forms.Button btnNoise1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn2;
-        private System.Windows.Forms.Button btn3;
-        private System.Windows.Forms.Button btn4;
-        private System.Windows.Forms.Button btn5;
+        private System.Windows.Forms.Button btnNoise2;
+        private System.Windows.Forms.Button btnNoise3;
+        private System.Windows.Forms.Button btnNoise4;
+        private System.Windows.Forms.Button btnNoise5;
         private System.Windows.Forms.Timer timer1;
     }
 }

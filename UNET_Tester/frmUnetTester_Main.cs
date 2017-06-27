@@ -119,9 +119,6 @@ namespace UNET_Tester
                         i++;
                     }
 
-
-
-
                     service.Close();
                 }
 
@@ -303,7 +300,7 @@ namespace UNET_Tester
 
                     //enable the Exercise buttons
                     List<Radio> radiolist = service.GetRadios().ToList<Radio>();
-                    int i = 0;
+                    int i = 1;
                     foreach (Radio radio in radiolist)
                     {
                         lbxNoiseLevel.Items.Add(string.Format("Radio {0} Noise: {1}", i, Convert.ToString(radio.NoiseLevel)));

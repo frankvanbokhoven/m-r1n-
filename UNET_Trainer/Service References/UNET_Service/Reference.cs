@@ -81,6 +81,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
         System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        bool SetNoiseLevel(int _radioID, int _noiselevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelChangedResponse")]
         bool GetNoiseLevelChanged();
         
@@ -291,6 +297,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed) {
             return base.Channel.SetNoiseLevelChangedAsync(_radioId, _changed);
+        }
+        
+        public bool SetNoiseLevel(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevel(_radioID, _noiselevel);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevelAsync(_radioID, _noiselevel);
         }
         
         public bool GetNoiseLevelChanged() {
