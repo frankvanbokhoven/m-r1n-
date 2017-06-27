@@ -176,7 +176,7 @@ namespace Sipek.Sip
             break;
         }
       }
-      catch (ArgumentOutOfRangeException ex)
+      catch (ArgumentOutOfRangeException )
       {
       }
       return str;

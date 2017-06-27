@@ -51,6 +51,15 @@ namespace UNET_Service
         [OperationContract]
         bool SetTraineeStatusChanged(int _traineeId, bool _changed);
 
+        [OperationContract]
+        bool SetNoiseLevelChanged(int _radioId, bool _changed);
+
+        [OperationContract]
+        bool GetNoiseLevelChanged();
+
+        [OperationContract]
+        int GetNoiseLevel(int _radioID);
+
         #region statusmessages
         [OperationContract]
         string GetSIPStatusMessage(string _id);

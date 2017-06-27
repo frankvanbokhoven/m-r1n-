@@ -127,6 +127,47 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetNoiseLevelChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioId" type="xs:int" />
+        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevelChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNoiseLevelChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevelChanged">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevelChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNoiseLevelChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNoiseLevelResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSIPStatusMessage">
     <xs:complexType>
       <xs:sequence>

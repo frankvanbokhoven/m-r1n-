@@ -144,6 +144,12 @@ namespace UNET_Service
             return singleton.TraineeStatusChanged;
         }
 
+       public bool GetNoiseLevelChanged()
+        {
+            UNET_Singleton singleton = UNET_Singleton.Instance;
+            return singleton.NoiseLevelChanged;
+        }
+
         /// <summary>
         /// Set the changed status for every individual trainee
         /// </summary>
@@ -153,8 +159,21 @@ namespace UNET_Service
         public bool SetTraineeStatusChanged(int _traineeId, bool _changed)
         {
             UNET_Singleton singleton = UNET_Singleton.Instance;
+            singleton.TraineeStatusChanged = _changed;
+
+            return true;
+        }
 
 
+        /// <summary>
+        /// </summary>
+        /// <param name="_radioid"></param>
+        /// <param name="_changed"></param>
+        /// <returns></returns>
+        public bool SetNoiseLevelChanged(int _radioid, bool _changed)
+        {
+            UNET_Singleton singleton = UNET_Singleton.Instance;
+            singleton.NoiseLevelChanged = _changed;
             return true;
         }
 
@@ -252,6 +271,73 @@ namespace UNET_Service
         #endregion
 
         #region Setters
+
+        /// <summary>
+        /// use case: 3.1.3.8.3
+        /// We try to find the radio, given the id in parameter _radioID
+        /// once we found it, we set the noiselevel
+        /// </summary>
+        /// <param name="_radioID"></param>
+        /// <param name="_noiselevel"></param>
+        /// <returns></returns>
+        public bool SetNoiseLevel(int _radioID, int _noiselevel)
+        {
+            bool result = false;
+
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+
+                foreach (Radio radio in singleton.Radios)
+                {
+                    if (radio.ID == _radioID)
+                    {
+                        radio.NoiseLevel = _noiselevel;
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting the noiselevel for id: " + _radioID + ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// use case: 3.1.3.8.3
+        /// We try to find the radio, given the id in parameter _radioID
+        /// once we found it, we return the noiselevel
+        /// </summary>
+        /// <param name="_radioID"></param>
+        /// <returns></returns>
+        public int GetNoiseLevel(int _radioID)
+        {
+            int result = 0;
+
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+
+                foreach (Radio  radio in singleton.Radios)
+                {
+                    if (radio.ID == _radioID)
+                    {
+                        result = radio.NoiseLevel;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error getting the noiselevel for id: " + _radioID + ex.Message);
+                result = 0;
+            }
+            return result;
+        }
+
         public bool SetExerciseCount(int _count)
         {
             bool result = true;

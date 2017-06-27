@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,13 @@ namespace UNET_Trainer
 {
     public partial class FrmUNETbase : Form
     {
+        //log4net
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        [DllImport("user32.dll")]
+        protected static extern IntPtr GetForegroundWindow();
+
+
         public FrmUNETbase()
         {
             InitializeComponent();
@@ -41,6 +49,19 @@ namespace UNET_Trainer
             int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
             this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
             this.Size = new Size(w, h);
+        }
+
+
+        /// <summary>
+        /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
+          /// https://stackoverflow.com/questions/76455/how-do-you-change-the-color-of-the-border-on-a-group-box
+      /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void UC_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
+
         }
     }
 }

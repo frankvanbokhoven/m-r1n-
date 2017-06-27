@@ -12,13 +12,9 @@ using UNET_Trainer.UNET_Service;
 namespace UNET_Trainer
 {
 
-
     public partial class FrmUNETMain : FrmUNETbase
     {
-        //log4net
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-        private Boolean Muted = false;
+         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
@@ -39,6 +35,13 @@ namespace UNET_Trainer
         public FrmUNETMain()
         {
             InitializeComponent();
+            panelExercises.Paint += UC_Paint;
+            panelRadios.Paint += UC_Paint;
+            panelRoles.Paint += UC_Paint;
+            panelRadios.Paint += UC_Paint;
+            panelSetup.Paint += UC_Paint;
+            panelFunctions.Paint += UC_Paint;
+            panelAssist.Paint += UC_Paint;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -72,8 +75,10 @@ namespace UNET_Trainer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-            SetButtonStatus(this);
+            if (GetForegroundWindow() == this.Handle)
+            {
+                SetButtonStatus(this);
+            }
         }
 
         #region Status setters
@@ -84,54 +89,54 @@ namespace UNET_Trainer
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-            // first the trainees, we assume the name of the button component is the key for the function
+          //  first the trainees, we assume the name of the button component is the key for the function
             foreach (Control c in parent.Controls)
-            {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
                 {
-                    if (((Button)c).ImageIndex == 1)
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
                     {
-                        ((Button)c).ImageIndex = 2;
+                        if (((Button)c).ImageIndex == 1)
+                        {
+                            ((Button)c).ImageIndex = 2;
+                        }
+                        else
+                        { ((Button)c).ImageIndex = 1; }
                     }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
 
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
-                {
-                    if (((Button)c).ImageIndex == 1)
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
                     {
-                        ((Button)c).ImageIndex = 2;
+                        if (((Button)c).ImageIndex == 1)
+                        {
+                            ((Button)c).ImageIndex = 2;
+                        }
+                        else
+                        { ((Button)c).ImageIndex = 1; }
                     }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
 
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
-                {
-                    if (((Button)c).ImageIndex == 1)
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
                     {
-                        ((Button)c).ImageIndex = 2;
+                        if (((Button)c).ImageIndex == 1)
+                        {
+                            ((Button)c).ImageIndex = 2;
+                        }
+                        else
+                        { ((Button)c).ImageIndex = 1; }
                     }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
 
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
-                {
-                    if (((Button)c).ImageIndex == 1)
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
                     {
-                        ((Button)c).ImageIndex = 2;
+                        if (((Button)c).ImageIndex == 1)
+                        {
+                            ((Button)c).ImageIndex = 2;
+                        }
+                        else
+                        { ((Button)c).ImageIndex = 1; }
                     }
                     else
-                    { ((Button)c).ImageIndex = 1; }
+                    {
+                        //  SetButtonStatus(c);
+                    }
+                    Application.DoEvents();
                 }
-                else
-                {
-                  //  SetButtonStatus(c);
-                }
-                Application.DoEvents();
-            }
 
             try
             {
@@ -155,6 +160,8 @@ namespace UNET_Trainer
                 btnExersise06.Enabled = lst.Count >= 6;
                 btnExersise07.Enabled = lst.Count >= 7;
                 btnExersise08.Enabled = lst.Count >= 8;
+                //now resize all buttons to make optimal use of the available room
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 
 
                 //enable the Roles buttons
@@ -181,6 +188,7 @@ namespace UNET_Trainer
                 btnRole18.Enabled = lstrole.Count >= 18;
                 btnRole19.Enabled = lstrole.Count >= 19;
                 btnRole20.Enabled = lstrole.Count >= 20;
+                UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
 
                 //enable the Roles buttons
@@ -207,6 +215,7 @@ namespace UNET_Trainer
                 btnRadio18.Enabled = lstRadio.Count >= 18;
                 btnRadio19.Enabled = lstRadio.Count >= 19;
                 btnRadio20.Enabled = lstRadio.Count >= 20;
+                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 //enable the Roles buttons
                 var traineelist = service.GetTrainees();
@@ -228,13 +237,7 @@ namespace UNET_Trainer
                 btnTraineePP.Enabled = lstTrainee.Count >= 14;
                 btnTraineeRR.Enabled = lstTrainee.Count >= 15;
                 btnTraineeSS.Enabled = lstTrainee.Count >= 16;
-
-                //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
-
-                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
-                UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
             }
             catch (Exception ex)
             {

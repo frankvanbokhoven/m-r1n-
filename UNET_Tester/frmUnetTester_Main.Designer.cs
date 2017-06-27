@@ -43,11 +43,15 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
+            this.grbxNoiseLevel = new System.Windows.Forms.GroupBox();
+            this.lbxNoiseLevel = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
+            this.grbxNoiseLevel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.grbxNoiseLevel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cbxRadios);
             this.groupBox1.Controls.Add(this.label3);
@@ -97,10 +101,10 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(235, 202);
+            this.cbxRadios.Location = new System.Drawing.Point(116, 202);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
-            this.cbxRadios.Size = new System.Drawing.Size(121, 24);
+            this.cbxRadios.Size = new System.Drawing.Size(120, 24);
             this.cbxRadios.TabIndex = 6;
             this.cbxRadios.Text = "4";
             this.cbxRadios.SelectedValueChanged += new System.EventHandler(this.cbxRadios_SelectedValueChanged);
@@ -138,10 +142,10 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(235, 153);
+            this.cbxRole.Location = new System.Drawing.Point(116, 153);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
-            this.cbxRole.Size = new System.Drawing.Size(121, 24);
+            this.cbxRole.Size = new System.Drawing.Size(120, 24);
             this.cbxRole.TabIndex = 4;
             this.cbxRole.Text = "4";
             this.cbxRole.SelectedIndexChanged += new System.EventHandler(this.cbxRole_SelectedIndexChanged);
@@ -176,10 +180,10 @@
             "14",
             "15",
             "16"});
-            this.cbxTrainee.Location = new System.Drawing.Point(235, 103);
+            this.cbxTrainee.Location = new System.Drawing.Point(116, 103);
             this.cbxTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxTrainee.Name = "cbxTrainee";
-            this.cbxTrainee.Size = new System.Drawing.Size(121, 24);
+            this.cbxTrainee.Size = new System.Drawing.Size(120, 24);
             this.cbxTrainee.TabIndex = 2;
             this.cbxTrainee.Text = "4";
             this.cbxTrainee.SelectedValueChanged += new System.EventHandler(this.cbxTrainee_SelectedValueChanged);
@@ -205,10 +209,10 @@
             "6",
             "7",
             "8"});
-            this.cbxExercise.Location = new System.Drawing.Point(235, 50);
+            this.cbxExercise.Location = new System.Drawing.Point(116, 50);
             this.cbxExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxExercise.Name = "cbxExercise";
-            this.cbxExercise.Size = new System.Drawing.Size(121, 24);
+            this.cbxExercise.Size = new System.Drawing.Size(120, 24);
             this.cbxExercise.TabIndex = 0;
             this.cbxExercise.Text = "4";
             this.cbxExercise.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
@@ -262,6 +266,34 @@
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
+            // grbxNoiseLevel
+            // 
+            this.grbxNoiseLevel.Controls.Add(this.lbxNoiseLevel);
+            this.grbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grbxNoiseLevel.Location = new System.Drawing.Point(393, 17);
+            this.grbxNoiseLevel.Name = "grbxNoiseLevel";
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(200, 232);
+            this.grbxNoiseLevel.TabIndex = 8;
+            this.grbxNoiseLevel.TabStop = false;
+            this.grbxNoiseLevel.Text = "Noise level";
+            // 
+            // lbxNoiseLevel
+            // 
+            this.lbxNoiseLevel.BackColor = System.Drawing.Color.DimGray;
+            this.lbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxNoiseLevel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbxNoiseLevel.ForeColor = System.Drawing.Color.White;
+            this.lbxNoiseLevel.FormattingEnabled = true;
+            this.lbxNoiseLevel.ItemHeight = 20;
+            this.lbxNoiseLevel.Items.AddRange(new object[] {
+            "test",
+            "test",
+            "test"});
+            this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 18);
+            this.lbxNoiseLevel.Name = "lbxNoiseLevel";
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(194, 211);
+            this.lbxNoiseLevel.TabIndex = 0;
+            // 
             // frmUNETTester_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -277,9 +309,11 @@
             this.Name = "frmUNETTester_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UNET Tester";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUNETTester_Main_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grbxNoiseLevel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -299,6 +333,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnQuit;
+        private System.Windows.Forms.GroupBox grbxNoiseLevel;
+        private System.Windows.Forms.ListBox lbxNoiseLevel;
     }
 }
 

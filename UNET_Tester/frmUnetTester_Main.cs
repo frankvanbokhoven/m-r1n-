@@ -18,6 +18,8 @@ namespace UNET_Tester
     {
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+
         public frmUNETTester_Main()
         {
             InitializeComponent();
@@ -107,6 +109,18 @@ namespace UNET_Tester
                         AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
                     }
                     cbxRadios.Text = lstRadio.Count.ToString();
+
+                    ///updaten noiselevel
+                    lbxNoiseLevel.Items.Clear();
+                     int i = 0;
+                    foreach (Radio radio in radiolist)
+                    {
+                        lbxNoiseLevel.Items.Add(string.Format("Radio {0} Noise: {1}", i, Convert.ToString(radio.NoiseLevel)));
+                        i++;
+                    }
+
+
+
 
                     service.Close();
                 }
@@ -254,37 +268,54 @@ namespace UNET_Tester
             try
             {
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                //    using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                //    {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
-                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    service.Open();
+                }
+
+
+                //The radiobuttons only have to be refreshed when there actually is something changed, hence the traineestatuschanged bool
+                if (service.GetTraineeStatusChanged() == true)
+                {
+
+                    //enable the Exercise buttons
+                    bool[] traineestatus = service.GetTraineeStatus();
+                    if (traineestatus != null)
                     {
-                        service.Open();
-                    }
-
-
-                    //The radiobuttons only have to be refreshed when there actually is something changed, hence the traineestatuschanged bool
-                    if (service.GetTraineeStatusChanged() == true)
-                    {
-
-                        //enable the Exercise buttons
-                        bool[] traineestatus = service.GetTraineeStatus();
-                        if (traineestatus != null)
+                        for (int i = 0; i <= 7; i++)
                         {
-                            for (int i = 0; i <= 7; i++)
-                            {
 
-                                AddToListbox(string.Format("Trainee status: Trainee{0}: {1}", i, Convert.ToString(traineestatus[i])));
-                            }
+                            AddToListbox(string.Format("Trainee status: Trainee{0}: {1}", i, Convert.ToString(traineestatus[i])));
                         }
                     }
-                    service.Close();
+                    //          }
+
+                }
+
+
+                //if something is changed with the noiselevels, update the listbox
+                if (service.GetNoiseLevelChanged() == true)
+                {
+
+                    lbxNoiseLevel.Items.Clear();
+
+                    //enable the Exercise buttons
+                    List<Radio> radiolist = service.GetRadios().ToList<Radio>();
+                    int i = 0;
+                    foreach (Radio radio in radiolist)
+                    {
+                        lbxNoiseLevel.Items.Add(string.Format("Radio {0} Noise: {1}", i, Convert.ToString(radio.NoiseLevel)));
+                        i++;
+                    }
                 }
             }
+
             catch (Exception ex)
             {
                 log.Error("Error updating screen controls", ex);
             }
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -297,6 +328,11 @@ namespace UNET_Tester
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void frmUNETTester_Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            service.Close();
         }
     }
 }

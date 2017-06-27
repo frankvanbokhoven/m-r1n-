@@ -36,7 +36,7 @@ namespace UNET_Trainer_Trainee
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
-        private object rolelist;
+     //   private object rolelist;
 
         public static FrmUNETMain GetForm
         {

@@ -208,7 +208,7 @@ namespace Sipek.Common.CallControl
           stateMachine.Session = key;
           this._calls.Add(key, stateMachine);
         }
-        catch (ArgumentException ex)
+        catch (ArgumentException)
         {
           this._calls[key].destroy();
           this._calls.Add(key, stateMachine);

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace UNET_Classes
 {
@@ -22,42 +19,73 @@ namespace UNET_Classes
                 //begin met alle controls op invisible te zetten.
                 foreach (Control c in _panel.Controls)
                 {
-                    if (c is Button)
+                    if ((c is Button) && (((Button)c).Enabled == false))
                     {
                         if (!c.Name.Contains("Close"))
                         {
+
                             c.Visible = false;
                         }
                     }
                 }
+               
                 //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
                 int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
                 int squaresize = _panel.Width / squareroot;
                 int controlindex = 0;
-                int buttonstop = 0;
+                int buttonstop = 22;
+                int verttotal = 0;
+                int buttonleft = 0;
+
+                foreach (var but in _panel.Controls.OfType<Button>().Where(t => t.Enabled))
+                {
+                    if (!((Button)but).Name.Contains("Close"))
+                    {
+                         if(controlindex == squareroot)
+                        {
+                            buttonstop = buttonstop + squaresize;
+                            buttonleft = 0;
+                        }                   
+                        ((Button)(but)).Visible = true;
+                        ((Button)(but)).Top = buttonstop;
+                        ((Button)(but)).Left = buttonleft;
+                        ((Button)(but)).Width = squaresize;
+                        ((Button)(but)).Height = squaresize;
+                        //  ((Button)(_panel.Controls[controlindex])).Enabled = true;
+                        verttotal += ((Button)(but)).Height;
+                        buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
+
+
+
+                        controlindex++;
+                    }
+                    Application.DoEvents();
+                }
 
                 //bouw dan de grid op, van links naar rechts en van boven naar onder
-                for (int i = 1; i <= squareroot; i++) // van links naar rechts
+                for (int i = 1; i <= squareroot; i++) // van boven naar onders
                 {
-                    int verttotal = 0;
-                    int buttonleft = 0;
-                    for (int j = 1; j <= squareroot; j++) // van boven naar onder
+                
+                    for (int j = 1; j <= squareroot; j++) // van links naar rechts
                     {
                         if (controlindex <= _numberOfButtons)
-                        {
-                            if ((_panel.Controls[controlindex] is Button) && ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
-                            {
-                                ((Button)(_panel.Controls[controlindex])).Visible = true;
-                                ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
-                                ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
-                                ((Button)(_panel.Controls[controlindex])).Width = squaresize;
-                                ((Button)(_panel.Controls[controlindex])).Height = squaresize;
-                                verttotal += ((Button)(_panel.Controls[controlindex])).Height;
-                                buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
-
-                                Application.DoEvents();
-                            }
-                            controlindex++;
+                        {                         
+                            //    if ((_panel.Controls[controlindex] is Button) && 
+                            //    ((_panel.Controls[controlindex].Name.ToLower().Contains(_group.ToLower()))) &&
+                            //    ((_panel.Controls[controlindex].Enabled))
+                            //    ) //het moet wel een button zijn
+                            //{
+                            //    ((Button)(_panel.Controls[controlindex])).Visible = true;
+                            //    ((Button)(_panel.Controls[controlindex])).Top = buttonstop + 22;
+                            //    ((Button)(_panel.Controls[controlindex])).Left = buttonleft;
+                            //    ((Button)(_panel.Controls[controlindex])).Width = squaresize;
+                            //    ((Button)(_panel.Controls[controlindex])).Height = squaresize;
+                            //    //  ((Button)(_panel.Controls[controlindex])).Enabled = true;
+                            //    verttotal += ((Button)(_panel.Controls[controlindex])).Height;
+                            //    buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
+                            //    Application.DoEvents();
+                            //}
+                           //  controlindex++;
                         }
                         else
                         {
@@ -89,37 +117,52 @@ namespace UNET_Classes
                     //begin met alle controls op invisible te zetten.
                     foreach (Control c in _panel.Controls)
                     {
-                        if (c is Button)
+                        if ((c is Button) && (((Button)c).Enabled == false))
                         {
                             c.Visible = false;
                         }
+
                     }
                     //daarna bereken de beschikbare verticale ruimte; 
                     int buttonheight = Convert.ToInt16((_panel.Height - 22) / _numberOfButtons);
                     int buttonstop = 0;
 
                     //bouw dan de grid op..
-                    for (int i = 1; i <= _numberOfButtons; i++) // van boven naar onder
+                    foreach(var but in _panel.Controls.OfType<Button>().Where(t => t.Enabled))
                     {
-                        if (i <= _numberOfButtons)
-                        {
-                            if ((_panel.Controls[i] is Button) && ((_panel.Controls[i].Name.ToLower().Contains(_group.ToLower())))) //het moet wel een button zijn
-                            {
-                                ((Button)(_panel.Controls[i])).Visible = true;
-                                ((Button)(_panel.Controls[i])).Top = buttonstop + 22;
-                                ((Button)(_panel.Controls[i])).Left = 2;
-                                ((Button)(_panel.Controls[i])).Width = _panel.Width - 4;
-                                ((Button)(_panel.Controls[i])).Height = buttonheight - 2;
-                                buttonstop += ((Button)(_panel.Controls[i])).Height;
+                        ((Button)(but)).Visible = true;
+                        ((Button)(but)).Top = buttonstop + 22;
+                        ((Button)(but)).Left = 2;
+                        ((Button)(but)).Width = _panel.Width - 4;
+                        ((Button)(but)).Height = buttonheight - 2;
+                        buttonstop += ((Button)(but)).Height;
 
-                                Application.DoEvents();
-                            }
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        Application.DoEvents();
                     }
+
+                    //for (int i = 1; i <= _numberOfButtons; i++) // van boven naar onder
+                    //{
+                    //    if (i <= _numberOfButtons)
+                    //    {
+                    //        if ((_panel.Controls[i] is Button) && ((_panel.Controls[i].Name.ToLower().Contains(_group.ToLower())))
+                    //            &&
+                    //              ((_panel.Controls[i].Enabled))) //het moet wel een button zijn
+                    //        {
+                    //            ((Button)(_panel.Controls[i])).Visible = true;
+                    //            ((Button)(_panel.Controls[i])).Top = buttonstop + 22;
+                    //            ((Button)(_panel.Controls[i])).Left = 2;
+                    //            ((Button)(_panel.Controls[i])).Width = _panel.Width - 4;
+                    //            ((Button)(_panel.Controls[i])).Height = buttonheight - 2;
+                    //            buttonstop += ((Button)(_panel.Controls[i])).Height;
+
+                    //            Application.DoEvents();
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        break;
+                    //    }
+                    //}
                 }
                 catch (Exception)
                 {
@@ -128,9 +171,6 @@ namespace UNET_Classes
                 }
             }
         }
-
         #endregion
-
-
     }
 }
