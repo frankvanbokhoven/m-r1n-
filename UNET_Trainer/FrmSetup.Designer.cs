@@ -39,7 +39,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.rbDark = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBlue = new System.Windows.Forms.Button();
             this.btnLight = new System.Windows.Forms.Button();
             this.btnDark = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -48,14 +48,14 @@
             // lblTitle
             // 
             this.lblTitle.Location = new System.Drawing.Point(7, 16);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // lblTestFont
             // 
             this.lblTestFont.AutoSize = true;
             this.lblTestFont.Location = new System.Drawing.Point(380, 201);
             this.lblTestFont.Name = "lblTestFont";
-            this.lblTestFont.Size = new System.Drawing.Size(63, 15);
+            this.lblTestFont.Size = new System.Drawing.Size(81, 20);
             this.lblTestFont.TabIndex = 22;
             this.lblTestFont.Text = "Test font";
             // 
@@ -64,7 +64,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(63, 174);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 15);
+            this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Font";
             // 
@@ -74,7 +74,7 @@
             this.ddlFont.Location = new System.Drawing.Point(67, 196);
             this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlFont.Name = "ddlFont";
-            this.ddlFont.Size = new System.Drawing.Size(296, 23);
+            this.ddlFont.Size = new System.Drawing.Size(296, 26);
             this.ddlFont.TabIndex = 20;
             // 
             // label1
@@ -82,7 +82,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(63, 100);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 15);
+            this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 19;
             this.label1.Text = "Color of buttons";
             // 
@@ -100,7 +100,7 @@
             this.ddlColorButton.Location = new System.Drawing.Point(67, 122);
             this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlColorButton.Name = "ddlColorButton";
-            this.ddlColorButton.Size = new System.Drawing.Size(296, 23);
+            this.ddlColorButton.Size = new System.Drawing.Size(296, 26);
             this.ddlColorButton.TabIndex = 17;
             // 
             // btnApplyColors
@@ -120,7 +120,7 @@
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.rbDark);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnBlue);
             this.groupBox1.Controls.Add(this.btnLight);
             this.groupBox1.Controls.Add(this.btnDark);
             this.groupBox1.Location = new System.Drawing.Point(67, 257);
@@ -138,44 +138,44 @@
             this.radioButton2.Location = new System.Drawing.Point(311, 134);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
+            this.radioButton2.Size = new System.Drawing.Size(17, 16);
             this.radioButton2.TabIndex = 5;
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(184, 134);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.Size = new System.Drawing.Size(17, 16);
             this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // rbDark
             // 
             this.rbDark.AutoSize = true;
+            this.rbDark.Checked = true;
             this.rbDark.Location = new System.Drawing.Point(64, 134);
             this.rbDark.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbDark.Name = "rbDark";
-            this.rbDark.Size = new System.Drawing.Size(14, 13);
+            this.rbDark.Size = new System.Drawing.Size(17, 16);
             this.rbDark.TabIndex = 3;
+            this.rbDark.TabStop = true;
             this.rbDark.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnBlue
             // 
-            this.button1.BackColor = System.Drawing.Color.SkyBlue;
-            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(264, 22);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 105);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Dark";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnBlue.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnBlue.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBlue.ForeColor = System.Drawing.Color.White;
+            this.btnBlue.Location = new System.Drawing.Point(264, 22);
+            this.btnBlue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBlue.Name = "btnBlue";
+            this.btnBlue.Size = new System.Drawing.Size(120, 105);
+            this.btnBlue.TabIndex = 2;
+            this.btnBlue.Text = "Blue";
+            this.btnBlue.UseVisualStyleBackColor = false;
             // 
             // btnLight
             // 
@@ -205,7 +205,7 @@
             // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 747);
             this.Controls.Add(this.groupBox1);
@@ -250,7 +250,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton rbDark;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.Button btnLight;
         private System.Windows.Forms.Button btnDark;
     }

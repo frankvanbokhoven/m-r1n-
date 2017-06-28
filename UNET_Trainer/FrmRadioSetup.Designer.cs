@@ -51,7 +51,7 @@
             this.btnRadio11 = new System.Windows.Forms.Button();
             this.btnRadio06 = new System.Windows.Forms.Button();
             this.btnRadio01 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelNoise = new System.Windows.Forms.Panel();
             this.btnNoiseOff = new System.Windows.Forms.Button();
             this.btnNoise1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,7 +61,7 @@
             this.btnNoise5 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlRadios.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelNoise.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlRadios
@@ -364,24 +364,24 @@
             this.btnRadio01.UseVisualStyleBackColor = false;
             this.btnRadio01.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // panel3
+            // panelNoise
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnNoiseOff);
-            this.panel3.Controls.Add(this.btnNoise1);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.btnNoise2);
-            this.panel3.Controls.Add(this.btnNoise3);
-            this.panel3.Controls.Add(this.btnNoise4);
-            this.panel3.Controls.Add(this.btnNoise5);
-            this.panel3.Location = new System.Drawing.Point(701, 73);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(158, 523);
-            this.panel3.TabIndex = 13;
+            this.panelNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelNoise.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNoise.Controls.Add(this.btnNoiseOff);
+            this.panelNoise.Controls.Add(this.btnNoise1);
+            this.panelNoise.Controls.Add(this.label1);
+            this.panelNoise.Controls.Add(this.btnNoise2);
+            this.panelNoise.Controls.Add(this.btnNoise3);
+            this.panelNoise.Controls.Add(this.btnNoise4);
+            this.panelNoise.Controls.Add(this.btnNoise5);
+            this.panelNoise.Location = new System.Drawing.Point(701, 73);
+            this.panelNoise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelNoise.Name = "panelNoise";
+            this.panelNoise.Size = new System.Drawing.Size(158, 523);
+            this.panelNoise.TabIndex = 13;
             // 
-            // btnOff
+            // btnNoiseOff
             // 
             this.btnNoiseOff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnNoiseOff.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -397,7 +397,7 @@
             this.btnNoiseOff.UseVisualStyleBackColor = false;
             this.btnNoiseOff.Click += new System.EventHandler(this.btnNoiseOff_Click);
             // 
-            // btn1
+            // btnNoise1
             // 
             this.btnNoise1.BackColor = System.Drawing.Color.White;
             this.btnNoise1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -422,7 +422,7 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Noise level";
             // 
-            // btn2
+            // btnNoise2
             // 
             this.btnNoise2.BackColor = System.Drawing.Color.White;
             this.btnNoise2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -438,7 +438,7 @@
             this.btnNoise2.UseVisualStyleBackColor = false;
             this.btnNoise2.Click += new System.EventHandler(this.btnNoise2_Click);
             // 
-            // btn3
+            // btnNoise3
             // 
             this.btnNoise3.BackColor = System.Drawing.Color.White;
             this.btnNoise3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,7 +453,7 @@
             this.btnNoise3.UseVisualStyleBackColor = false;
             this.btnNoise3.Click += new System.EventHandler(this.btnNoise3_Click);
             // 
-            // btn4
+            // btnNoise4
             // 
             this.btnNoise4.BackColor = System.Drawing.Color.White;
             this.btnNoise4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -468,7 +468,7 @@
             this.btnNoise4.UseVisualStyleBackColor = false;
             this.btnNoise4.Click += new System.EventHandler(this.btnNoise4_Click);
             // 
-            // btn5
+            // btnNoise5
             // 
             this.btnNoise5.BackColor = System.Drawing.Color.White;
             this.btnNoise5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -493,7 +493,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 709);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panelNoise);
             this.Controls.Add(this.pnlRadios);
             this.Name = "FrmRadioSetup";
             this.ShowIcon = false;
@@ -502,11 +502,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRadioSetup_FormClosing);
             this.Load += new System.EventHandler(this.FrmRadioSetup_Load);
             this.Controls.SetChildIndex(this.pnlRadios, 0);
-            this.Controls.SetChildIndex(this.panel3, 0);
+            this.Controls.SetChildIndex(this.panelNoise, 0);
             this.pnlRadios.ResumeLayout(false);
             this.pnlRadios.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelNoise.ResumeLayout(false);
+            this.panelNoise.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -535,7 +535,7 @@
         private System.Windows.Forms.Button btnRadio11;
         private System.Windows.Forms.Button btnRadio06;
         private System.Windows.Forms.Button btnRadio01;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelNoise;
         private System.Windows.Forms.Button btnNoiseOff;
         private System.Windows.Forms.Button btnNoise1;
         private System.Windows.Forms.Label label1;

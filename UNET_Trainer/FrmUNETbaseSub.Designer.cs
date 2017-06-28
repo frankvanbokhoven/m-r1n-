@@ -39,6 +39,7 @@
             // 
             this.btnMainPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainPage.Location = new System.Drawing.Point(12, 495);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 53);
@@ -52,6 +53,7 @@
             // 
             this.btnServiceRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnServiceRequest.BackColor = System.Drawing.Color.Aqua;
+            this.btnServiceRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnServiceRequest.Location = new System.Drawing.Point(170, 495);
             this.btnServiceRequest.Name = "btnServiceRequest";
             this.btnServiceRequest.Size = new System.Drawing.Size(152, 53);

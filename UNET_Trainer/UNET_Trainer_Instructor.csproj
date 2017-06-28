@@ -65,6 +65,9 @@
     <Reference Include="UNET_Classes">
       <HintPath>..\UNET_Classes\bin\Debug\UNET_Classes.dll</HintPath>
     </Reference>
+    <Reference Include="UNET_ConferenceBridge">
+      <HintPath>..\UNET_ConferenceBridge\bin\Debug\UNET_ConferenceBridge.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />

@@ -16,22 +16,24 @@ namespace UNET_Trainer
         private int SelectedNoiseButtonIndex = -1; //this property is set after the click of a radio button
         private int SelectedRadioButtonIndex = -1; // index of one of the radio buttons
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
-     //   private int NoiseLevel = 1;
         public FrmRadioSetup()
         {
             InitializeComponent();
-
-
-            SetNoiseLevel();
+            pnlRadios.Paint += UC_Paint;
+            panelNoise.Paint += UC_Paint;
+     
         }
 
 
-#region NoiseLevel
+        #region NoiseLevel
 
+
+        /// <summary>
+        /// after a radio is selected, the appropriate noiselevel is loaded from wcf and set into the noise buttons
+        /// </summary>
         private void SetNoiseLevel()
         {
-     
-            //  we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+            //open the connection to the service
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
@@ -39,12 +41,12 @@ namespace UNET_Trainer
             int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
 
-             switch (noiselevel)
-                {
+            switch (noiselevel)
+            {
                 case 0:
                     {
                         btnNoise1.BackColor = Color.White;
-                        btnNoise1.ForeColor = Color.Black; 
+                        btnNoise1.ForeColor = Color.Black;
                         btnNoise2.BackColor = Color.White;
                         btnNoise2.ForeColor = Color.Black;
                         btnNoise3.BackColor = Color.White;
@@ -55,7 +57,7 @@ namespace UNET_Trainer
                         btnNoise5.ForeColor = Color.Black;
                         btnNoiseOff.BackColor = Color.DarkBlue;
                         btnNoiseOff.ForeColor = Color.White;
-                        
+
                         break;
                     }
                 case 1:
@@ -141,23 +143,57 @@ namespace UNET_Trainer
             }
         }
 
+
+        /// <summary>
+        /// Set the selected noise level for the selected radio
+        /// </summary>
+        /// <param name="_noiselevel"></param>
         private void SetNoiseLevelWCF(int _noiselevel)
         {
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            if (SelectedRadioButtonIndex >= 0)
             {
-                service.Open();
-            }
-            SelectedNoiseButtonIndex = _noiselevel;
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                SelectedNoiseButtonIndex = _noiselevel;
 
-            var radiolist = service.SetNoiseLevel(SelectedRadioButtonIndex, SelectedNoiseButtonIndex);
-            service.SetNoiseLevelChanged(SelectedRadioButtonIndex, true);
+                var radiolist = service.SetNoiseLevel(SelectedRadioButtonIndex, SelectedNoiseButtonIndex);
+                service.SetNoiseLevelChanged(SelectedRadioButtonIndex, true);
+            }
+        }
+
+
+        private void FrmRadioSetup_Load(object sender, EventArgs e)
+        {
+            FormTitle = "Radio Setup";
+            timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (GetForegroundWindow() == this.Handle)
+            {
+                SetButtonStatus(this);
+            }
+        }
+
+        private void FrmRadioSetup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            service.Close();
+        }
+
+        private void btnRadio01_Click(object sender, EventArgs e)
+        {
+            // SetRadioStatus();      
+            SetStatusAndColorRadioButtons((Button)sender);
         }
         #endregion
 
-        #region noiselevel
+        #region set noiselevel
         private void btnNoiseOff_Click(object sender, EventArgs e)
         {
-            SetNoiseLevel(); //todo: enum van maken
+            SetNoiseLevel();
             SetNoiseLevelWCF(0);
         }
 
@@ -192,22 +228,8 @@ namespace UNET_Trainer
         }
         #endregion
 
-        private void FrmRadioSetup_Load(object sender, EventArgs e)
-        {
-            FormTitle = "Radio Setup";
-            timer1.Enabled = true;
-        }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (GetForegroundWindow() == this.Handle)
-            {
-                SetButtonStatus(this);
-            }
-        }
-
-
-        #region Status setters
+        #region Show radio buttons
 
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
@@ -218,7 +240,7 @@ namespace UNET_Trainer
             // first the trainees, we assume the name of the button component is the key for the function
             foreach (Control c in parent.Controls)
             {
-                   if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
                 {
                     if (((Button)c).ImageIndex == 1)
                     {
@@ -238,7 +260,7 @@ namespace UNET_Trainer
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-                }  
+                }
 
                 //enable the Roles buttons
                 var radiolist = service.GetRadios();
@@ -264,28 +286,15 @@ namespace UNET_Trainer
                 btnRadio18.Enabled = lstRadio.Count >= 18;
                 btnRadio19.Enabled = lstRadio.Count >= 19;
                 btnRadio20.Enabled = lstRadio.Count >= 20;
-     
+
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlRadios, lstRadio.Count, "radio");
-             }
+            }
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
                 // throw;
             }
-        }
-
-        #endregion
-
-        private void FrmRadioSetup_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            service.Close();
-        }
-
-        private void btnRadio01_Click(object sender, EventArgs e)
-        {
-           // SetRadioStatus();      
-           SetStatusAndColorRadioButtons((Button)sender);
         }
 
         /// <summary>
@@ -314,14 +323,15 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-              SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
             int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
-   
+
             SetNoiseLevel();
 
             //enable the Roles buttons
-            var radiolist = service.GetRadios();
-            List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+        //    var radiolist = service.GetRadios();
+         //   List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
         }
+        #endregion        
     }
 }

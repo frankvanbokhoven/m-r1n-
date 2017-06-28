@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.pnlRoles = new System.Windows.Forms.Panel();
             this.btnRole20 = new System.Windows.Forms.Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.btnRole12 = new System.Windows.Forms.Button();
             this.btnRole7 = new System.Windows.Forms.Button();
             this.btnRole2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.btnRole18 = new System.Windows.Forms.Button();
             this.btnRole13 = new System.Windows.Forms.Button();
             this.btnRole8 = new System.Windows.Forms.Button();
@@ -50,38 +50,40 @@
             this.btnRole11 = new System.Windows.Forms.Button();
             this.btnRole6 = new System.Windows.Forms.Button();
             this.btnRole1 = new System.Windows.Forms.Button();
-            this.panel6.SuspendLayout();
+            this.label3 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlRoles.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel6
+            // pnlRoles
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.btnRole20);
-            this.panel6.Controls.Add(this.btnRole15);
-            this.panel6.Controls.Add(this.btnRole10);
-            this.panel6.Controls.Add(this.btnRole5);
-            this.panel6.Controls.Add(this.btnRole19);
-            this.panel6.Controls.Add(this.btnRole14);
-            this.panel6.Controls.Add(this.btnRole9);
-            this.panel6.Controls.Add(this.btnRole4);
-            this.panel6.Controls.Add(this.btnRole17);
-            this.panel6.Controls.Add(this.btnRole12);
-            this.panel6.Controls.Add(this.btnRole7);
-            this.panel6.Controls.Add(this.btnRole2);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Controls.Add(this.btnRole18);
-            this.panel6.Controls.Add(this.btnRole13);
-            this.panel6.Controls.Add(this.btnRole8);
-            this.panel6.Controls.Add(this.btnRole3);
-            this.panel6.Controls.Add(this.btnRole16);
-            this.panel6.Controls.Add(this.btnRole11);
-            this.panel6.Controls.Add(this.btnRole6);
-            this.panel6.Controls.Add(this.btnRole1);
-            this.panel6.Location = new System.Drawing.Point(170, 139);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(604, 460);
-            this.panel6.TabIndex = 10;
+            this.pnlRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlRoles.Controls.Add(this.label3);
+            this.pnlRoles.Controls.Add(this.btnRole20);
+            this.pnlRoles.Controls.Add(this.btnRole15);
+            this.pnlRoles.Controls.Add(this.btnRole10);
+            this.pnlRoles.Controls.Add(this.btnRole5);
+            this.pnlRoles.Controls.Add(this.btnRole19);
+            this.pnlRoles.Controls.Add(this.btnRole14);
+            this.pnlRoles.Controls.Add(this.btnRole9);
+            this.pnlRoles.Controls.Add(this.btnRole4);
+            this.pnlRoles.Controls.Add(this.btnRole17);
+            this.pnlRoles.Controls.Add(this.btnRole12);
+            this.pnlRoles.Controls.Add(this.btnRole7);
+            this.pnlRoles.Controls.Add(this.btnRole2);
+            this.pnlRoles.Controls.Add(this.btnRole18);
+            this.pnlRoles.Controls.Add(this.btnRole13);
+            this.pnlRoles.Controls.Add(this.btnRole8);
+            this.pnlRoles.Controls.Add(this.btnRole3);
+            this.pnlRoles.Controls.Add(this.btnRole16);
+            this.pnlRoles.Controls.Add(this.btnRole11);
+            this.pnlRoles.Controls.Add(this.btnRole6);
+            this.pnlRoles.Controls.Add(this.btnRole1);
+            this.pnlRoles.Location = new System.Drawing.Point(53, 81);
+            this.pnlRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlRoles.Name = "pnlRoles";
+            this.pnlRoles.Size = new System.Drawing.Size(718, 512);
+            this.pnlRoles.TabIndex = 10;
             // 
             // btnRole20
             // 
@@ -263,16 +265,6 @@
             this.btnRole2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole2.UseVisualStyleBackColor = false;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(276, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Roles";
-            // 
             // btnRole18
             // 
             this.btnRole18.BackColor = System.Drawing.Color.Gold;
@@ -393,28 +385,44 @@
             this.btnRole1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole1.UseVisualStyleBackColor = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 28);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Roles";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 706);
-            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.pnlRoles);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "FrmRoles";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmRoles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRoles_FormClosing);
             this.Load += new System.EventHandler(this.FrmRoles_Load);
-            this.Controls.SetChildIndex(this.panel6, 0);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.Controls.SetChildIndex(this.pnlRoles, 0);
+            this.pnlRoles.ResumeLayout(false);
+            this.pnlRoles.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel pnlRoles;
         private System.Windows.Forms.Button btnRole20;
         private System.Windows.Forms.Button btnRole15;
         private System.Windows.Forms.Button btnRole10;
@@ -427,7 +435,6 @@
         private System.Windows.Forms.Button btnRole12;
         private System.Windows.Forms.Button btnRole7;
         private System.Windows.Forms.Button btnRole2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRole18;
         private System.Windows.Forms.Button btnRole13;
         private System.Windows.Forms.Button btnRole8;
@@ -436,5 +443,7 @@
         private System.Windows.Forms.Button btnRole11;
         private System.Windows.Forms.Button btnRole6;
         private System.Windows.Forms.Button btnRole1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Timer timer1;
     }
 }

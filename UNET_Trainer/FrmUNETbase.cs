@@ -53,7 +53,7 @@ namespace UNET_Trainer
             //     case "blue": { Theme = UNETTheme.utBlue; break; }
             //     default: { Theme = UNETTheme.utDark; break; }
             // }
-            //SetTheme(Theme, this);
+            SetTheme(Theme, this);
         }
 
         /// <summary>
@@ -62,7 +62,14 @@ namespace UNET_Trainer
         /// <param name="_theme"></param>
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
-            //loop thrue the controls
+            //we willen de parent ZELF ook themen als het een form is..
+            if (_parent.GetType().BaseType.BaseType.BaseType  == typeof(System.Windows.Forms.Form))
+            {
+                ((Form)_parent).ForeColor = Color.White;
+                ((Form)_parent).BackColor = Color.DimGray;
+            }
+            
+            //loop thrue the controls of the parent
             foreach (Control ctrl in _parent.Controls)
             {
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
@@ -73,7 +80,7 @@ namespace UNET_Trainer
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
                 {
                     ((Panel)ctrl).ForeColor = Color.White;
-                    ((Panel)ctrl).BackColor = Color.DimGray;
+                    ((Panel)ctrl).BackColor = Color.Gray;
                 }
 
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
@@ -146,6 +153,8 @@ namespace UNET_Trainer
         protected void UC_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
+         
+         //   ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid);
 
         }
     }

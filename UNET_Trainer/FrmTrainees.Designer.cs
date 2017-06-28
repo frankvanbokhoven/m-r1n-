@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.pnlTrainees = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnTraineeSS = new System.Windows.Forms.Button();
             this.btnTraineePP = new System.Windows.Forms.Button();
             this.btnTraineeMM = new System.Windows.Forms.Button();
@@ -37,7 +39,6 @@
             this.btnTraineeFF = new System.Windows.Forms.Button();
             this.btnTraineeDD = new System.Windows.Forms.Button();
             this.btnTraineeBB = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnTraineeRR = new System.Windows.Forms.Button();
             this.btnTraineeNN = new System.Windows.Forms.Button();
             this.btnTraineeLL = new System.Windows.Forms.Button();
@@ -46,34 +47,45 @@
             this.btnTraineeEE = new System.Windows.Forms.Button();
             this.btnTraineeCC = new System.Windows.Forms.Button();
             this.btnTraineeAA = new System.Windows.Forms.Button();
-            this.panel4.SuspendLayout();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pnlTrainees.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel4
+            // pnlTrainees
             // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.btnTraineeSS);
-            this.panel4.Controls.Add(this.btnTraineePP);
-            this.panel4.Controls.Add(this.btnTraineeMM);
-            this.panel4.Controls.Add(this.btnTraineeKK);
-            this.panel4.Controls.Add(this.btnTraineeHH);
-            this.panel4.Controls.Add(this.btnTraineeFF);
-            this.panel4.Controls.Add(this.btnTraineeDD);
-            this.panel4.Controls.Add(this.btnTraineeBB);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.btnTraineeRR);
-            this.panel4.Controls.Add(this.btnTraineeNN);
-            this.panel4.Controls.Add(this.btnTraineeLL);
-            this.panel4.Controls.Add(this.btnTraineeJJ);
-            this.panel4.Controls.Add(this.btnTraineeGG);
-            this.panel4.Controls.Add(this.btnTraineeEE);
-            this.panel4.Controls.Add(this.btnTraineeCC);
-            this.panel4.Controls.Add(this.btnTraineeAA);
-            this.panel4.Location = new System.Drawing.Point(234, 97);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(534, 498);
-            this.panel4.TabIndex = 10;
+            this.pnlTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlTrainees.Controls.Add(this.label3);
+            this.pnlTrainees.Controls.Add(this.btnTraineeSS);
+            this.pnlTrainees.Controls.Add(this.btnTraineePP);
+            this.pnlTrainees.Controls.Add(this.btnTraineeMM);
+            this.pnlTrainees.Controls.Add(this.btnTraineeKK);
+            this.pnlTrainees.Controls.Add(this.btnTraineeHH);
+            this.pnlTrainees.Controls.Add(this.btnTraineeFF);
+            this.pnlTrainees.Controls.Add(this.btnTraineeDD);
+            this.pnlTrainees.Controls.Add(this.btnTraineeBB);
+            this.pnlTrainees.Controls.Add(this.btnTraineeRR);
+            this.pnlTrainees.Controls.Add(this.btnTraineeNN);
+            this.pnlTrainees.Controls.Add(this.btnTraineeLL);
+            this.pnlTrainees.Controls.Add(this.btnTraineeJJ);
+            this.pnlTrainees.Controls.Add(this.btnTraineeGG);
+            this.pnlTrainees.Controls.Add(this.btnTraineeEE);
+            this.pnlTrainees.Controls.Add(this.btnTraineeCC);
+            this.pnlTrainees.Controls.Add(this.btnTraineeAA);
+            this.pnlTrainees.Location = new System.Drawing.Point(72, 97);
+            this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlTrainees.Name = "pnlTrainees";
+            this.pnlTrainees.Size = new System.Drawing.Size(696, 498);
+            this.pnlTrainees.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 28);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Trainees";
             // 
             // btnTraineeSS
             // 
@@ -88,6 +100,7 @@
             this.btnTraineeSS.Text = "Trainee SS";
             this.btnTraineeSS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeSS.UseVisualStyleBackColor = false;
+            this.btnTraineeSS.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineePP
             // 
@@ -103,6 +116,7 @@
             this.btnTraineePP.Text = "Trainee PP";
             this.btnTraineePP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineePP.UseVisualStyleBackColor = false;
+            this.btnTraineePP.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeMM
             // 
@@ -117,6 +131,7 @@
             this.btnTraineeMM.Text = "Trainee MM";
             this.btnTraineeMM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeMM.UseVisualStyleBackColor = false;
+            this.btnTraineeMM.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeKK
             // 
@@ -131,6 +146,7 @@
             this.btnTraineeKK.Text = "Trainee KK";
             this.btnTraineeKK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeKK.UseVisualStyleBackColor = false;
+            this.btnTraineeKK.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeHH
             // 
@@ -146,6 +162,7 @@
             this.btnTraineeHH.Text = "Trainee HH";
             this.btnTraineeHH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeHH.UseVisualStyleBackColor = false;
+            this.btnTraineeHH.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeFF
             // 
@@ -160,6 +177,7 @@
             this.btnTraineeFF.Text = "Trainee FF";
             this.btnTraineeFF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeFF.UseVisualStyleBackColor = false;
+            this.btnTraineeFF.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeDD
             // 
@@ -174,6 +192,7 @@
             this.btnTraineeDD.Text = "Trainee DD";
             this.btnTraineeDD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeDD.UseVisualStyleBackColor = false;
+            this.btnTraineeDD.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeBB
             // 
@@ -188,16 +207,7 @@
             this.btnTraineeBB.Text = "Trainee BB";
             this.btnTraineeBB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeBB.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Trainees";
+            this.btnTraineeBB.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeRR
             // 
@@ -212,6 +222,7 @@
             this.btnTraineeRR.Text = "Trainee RR";
             this.btnTraineeRR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeRR.UseVisualStyleBackColor = false;
+            this.btnTraineeRR.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeNN
             // 
@@ -226,6 +237,7 @@
             this.btnTraineeNN.Text = "Trainee NN";
             this.btnTraineeNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeNN.UseVisualStyleBackColor = false;
+            this.btnTraineeNN.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeLL
             // 
@@ -240,6 +252,7 @@
             this.btnTraineeLL.Text = "Trainee LL";
             this.btnTraineeLL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeLL.UseVisualStyleBackColor = false;
+            this.btnTraineeLL.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeJJ
             // 
@@ -255,6 +268,7 @@
             this.btnTraineeJJ.Text = "Trainee JJ";
             this.btnTraineeJJ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeJJ.UseVisualStyleBackColor = false;
+            this.btnTraineeJJ.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeGG
             // 
@@ -270,6 +284,7 @@
             this.btnTraineeGG.Text = "Trainee GG";
             this.btnTraineeGG.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeGG.UseVisualStyleBackColor = false;
+            this.btnTraineeGG.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeEE
             // 
@@ -284,6 +299,7 @@
             this.btnTraineeEE.Text = "Trainee EE";
             this.btnTraineeEE.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeEE.UseVisualStyleBackColor = false;
+            this.btnTraineeEE.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeCC
             // 
@@ -298,6 +314,7 @@
             this.btnTraineeCC.Text = "Trainee CC";
             this.btnTraineeCC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeCC.UseVisualStyleBackColor = false;
+            this.btnTraineeCC.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
             // btnTraineeAA
             // 
@@ -312,29 +329,36 @@
             this.btnTraineeAA.Text = "Trainee AA";
             this.btnTraineeAA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTraineeAA.UseVisualStyleBackColor = false;
+            this.btnTraineeAA.Click += new System.EventHandler(this.btnTraineeAA_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmTrainees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 706);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlTrainees);
             this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmTrainees";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmTrainees";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTrainees_FormClosing);
             this.Load += new System.EventHandler(this.FrmTrainees_Load);
-            this.Controls.SetChildIndex(this.panel4, 0);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.Controls.SetChildIndex(this.pnlTrainees, 0);
+            this.pnlTrainees.ResumeLayout(false);
+            this.pnlTrainees.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlTrainees;
         private System.Windows.Forms.Button btnTraineeSS;
         private System.Windows.Forms.Button btnTraineePP;
         private System.Windows.Forms.Button btnTraineeMM;
@@ -343,7 +367,6 @@
         private System.Windows.Forms.Button btnTraineeFF;
         private System.Windows.Forms.Button btnTraineeDD;
         private System.Windows.Forms.Button btnTraineeBB;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTraineeRR;
         private System.Windows.Forms.Button btnTraineeNN;
         private System.Windows.Forms.Button btnTraineeLL;
@@ -352,5 +375,7 @@
         private System.Windows.Forms.Button btnTraineeEE;
         private System.Windows.Forms.Button btnTraineeCC;
         private System.Windows.Forms.Button btnTraineeAA;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label3;
     }
 }

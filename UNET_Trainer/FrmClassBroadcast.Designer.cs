@@ -67,7 +67,6 @@
             // 
             // pnlTrainees
             // 
-            this.pnlTrainees.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTrainees.Controls.Add(this.btnTraineeSS);
             this.pnlTrainees.Controls.Add(this.btnTraineePP);
@@ -86,10 +85,11 @@
             this.pnlTrainees.Controls.Add(this.btnTraineeEE);
             this.pnlTrainees.Controls.Add(this.btnTraineeCC);
             this.pnlTrainees.Controls.Add(this.btnTraineeAA);
-            this.pnlTrainees.Location = new System.Drawing.Point(909, 56);
+            this.pnlTrainees.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlTrainees.Location = new System.Drawing.Point(921, 51);
             this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTrainees.Name = "pnlTrainees";
-            this.pnlTrainees.Size = new System.Drawing.Size(199, 652);
+            this.pnlTrainees.Size = new System.Drawing.Size(199, 695);
             this.pnlTrainees.TabIndex = 10;
             // 
             // btnTraineeSS
@@ -415,24 +415,24 @@
             // 
             // panel3
             // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnInstructor04);
             this.panel3.Controls.Add(this.btnInstructor03);
             this.panel3.Controls.Add(this.btnInstructor02);
             this.panel3.Controls.Add(this.btnInstructor01);
-            this.panel3.Location = new System.Drawing.Point(479, 130);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(732, 51);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(158, 429);
+            this.panel3.Size = new System.Drawing.Size(189, 695);
             this.panel3.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 10);
+            this.label3.Location = new System.Drawing.Point(33, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 17);
             this.label3.TabIndex = 10;

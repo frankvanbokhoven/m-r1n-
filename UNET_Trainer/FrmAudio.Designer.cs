@@ -47,13 +47,15 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.tbRightValue = new XComponent.SliderBar.MACTrackBar();
+            this.tbRightVolume = new XComponent.SliderBar.MACTrackBar();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tbLeftESMMM = new XComponent.SliderBar.MACTrackBar();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -125,7 +127,7 @@
             this.tbLeftShadow.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbLeftShadow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
             this.tbLeftShadow.IndentHeight = 6;
-            this.tbLeftShadow.Location = new System.Drawing.Point(10, 20);
+            this.tbLeftShadow.Location = new System.Drawing.Point(10, 27);
             this.tbLeftShadow.Margin = new System.Windows.Forms.Padding(2);
             this.tbLeftShadow.Maximum = 10;
             this.tbLeftShadow.Minimum = 0;
@@ -143,6 +145,7 @@
             this.tbLeftShadow.TrackLineHeight = 3;
             this.tbLeftShadow.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbLeftShadow.Value = 5;
+            this.tbLeftShadow.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbLeftShadow_ValueChanged);
             // 
             // panel3
             // 
@@ -215,6 +218,7 @@
             this.tbRightShadow.TrackLineHeight = 3;
             this.tbRightShadow.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbRightShadow.Value = 0;
+            this.tbRightShadow.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbRightShadow_ValueChanged);
             // 
             // panel4
             // 
@@ -287,6 +291,7 @@
             this.tbLeftVolume.TrackLineHeight = 3;
             this.tbLeftVolume.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbLeftVolume.Value = 0;
+            this.tbLeftVolume.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbLeftVolume_ValueChanged);
             // 
             // panel5
             // 
@@ -294,7 +299,7 @@
             this.panel5.Controls.Add(this.label9);
             this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.label11);
-            this.panel5.Controls.Add(this.tbRightValue);
+            this.panel5.Controls.Add(this.tbRightVolume);
             this.panel5.Location = new System.Drawing.Point(386, 58);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
@@ -331,38 +336,40 @@
             this.label11.TabIndex = 12;
             this.label11.Text = "Max";
             // 
-            // tbRightValue
+            // tbRightVolume
             // 
-            this.tbRightValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbRightVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbRightValue.BackColor = System.Drawing.Color.Transparent;
-            this.tbRightValue.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.tbRightValue.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbRightValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
-            this.tbRightValue.IndentHeight = 6;
-            this.tbRightValue.Location = new System.Drawing.Point(10, 20);
-            this.tbRightValue.Margin = new System.Windows.Forms.Padding(2);
-            this.tbRightValue.Maximum = 10;
-            this.tbRightValue.Minimum = 0;
-            this.tbRightValue.Name = "tbRightValue";
-            this.tbRightValue.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tbRightValue.Size = new System.Drawing.Size(93, 330);
-            this.tbRightValue.TabIndex = 11;
-            this.tbRightValue.TextTickStyle = System.Windows.Forms.TickStyle.Both;
-            this.tbRightValue.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
-            this.tbRightValue.TickHeight = 4;
-            this.tbRightValue.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.tbRightValue.TrackerColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(130)))), ((int)(((byte)(198)))));
-            this.tbRightValue.TrackerSize = new System.Drawing.Size(22, 22);
-            this.tbRightValue.TrackLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
-            this.tbRightValue.TrackLineHeight = 3;
-            this.tbRightValue.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
-            this.tbRightValue.Value = 0;
+            this.tbRightVolume.BackColor = System.Drawing.Color.Transparent;
+            this.tbRightVolume.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tbRightVolume.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbRightVolume.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
+            this.tbRightVolume.IndentHeight = 6;
+            this.tbRightVolume.Location = new System.Drawing.Point(10, 20);
+            this.tbRightVolume.Margin = new System.Windows.Forms.Padding(2);
+            this.tbRightVolume.Maximum = 10;
+            this.tbRightVolume.Minimum = 0;
+            this.tbRightVolume.Name = "tbRightVolume";
+            this.tbRightVolume.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.tbRightVolume.Size = new System.Drawing.Size(93, 330);
+            this.tbRightVolume.TabIndex = 11;
+            this.tbRightVolume.TextTickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbRightVolume.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
+            this.tbRightVolume.TickHeight = 4;
+            this.tbRightVolume.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.tbRightVolume.TrackerColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(130)))), ((int)(((byte)(198)))));
+            this.tbRightVolume.TrackerSize = new System.Drawing.Size(22, 22);
+            this.tbRightVolume.TrackLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
+            this.tbRightVolume.TrackLineHeight = 3;
+            this.tbRightVolume.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
+            this.tbRightVolume.Value = 0;
+            this.tbRightVolume.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbRightVolume_ValueChanged);
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label19);
             this.panel6.Controls.Add(this.label12);
             this.panel6.Controls.Add(this.label13);
             this.panel6.Controls.Add(this.label14);
@@ -373,15 +380,25 @@
             this.panel6.Size = new System.Drawing.Size(120, 452);
             this.panel6.TabIndex = 15;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 386);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(81, 17);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "MM Volume";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(7, 369);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(150, 17);
+            this.label12.Size = new System.Drawing.Size(77, 17);
             this.label12.TabIndex = 14;
-            this.label12.Text = "Left ESM / MM Volume";
+            this.label12.Text = "Left ESM / ";
             // 
             // label13
             // 
@@ -431,10 +448,12 @@
             this.tbLeftESMMM.TrackLineHeight = 3;
             this.tbLeftESMMM.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbLeftESMMM.Value = 0;
+            this.tbLeftESMMM.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbLeftESMMM_ValueChanged);
             // 
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.label21);
             this.panel7.Controls.Add(this.label15);
             this.panel7.Controls.Add(this.label16);
             this.panel7.Controls.Add(this.label17);
@@ -445,15 +464,25 @@
             this.panel7.Size = new System.Drawing.Size(120, 452);
             this.panel7.TabIndex = 16;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(7, 386);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 17);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "MM Volume";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(7, 369);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(159, 17);
+            this.label15.Size = new System.Drawing.Size(86, 17);
             this.label15.TabIndex = 14;
-            this.label15.Text = "Right ESM / MM Volume";
+            this.label15.Text = "Right ESM / ";
             // 
             // label16
             // 
@@ -485,13 +514,13 @@
             this.tbRightESMMM.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRightESMMM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
             this.tbRightESMMM.IndentHeight = 6;
-            this.tbRightESMMM.Location = new System.Drawing.Point(10, 20);
+            this.tbRightESMMM.Location = new System.Drawing.Point(10, 27);
             this.tbRightESMMM.Margin = new System.Windows.Forms.Padding(2);
             this.tbRightESMMM.Maximum = 10;
             this.tbRightESMMM.Minimum = 0;
             this.tbRightESMMM.Name = "tbRightESMMM";
             this.tbRightESMMM.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.tbRightESMMM.Size = new System.Drawing.Size(93, 330);
+            this.tbRightESMMM.Size = new System.Drawing.Size(93, 323);
             this.tbRightESMMM.TabIndex = 11;
             this.tbRightESMMM.TextTickStyle = System.Windows.Forms.TickStyle.Both;
             this.tbRightESMMM.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
@@ -503,6 +532,7 @@
             this.tbRightESMMM.TrackLineHeight = 3;
             this.tbRightESMMM.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbRightESMMM.Value = 0;
+            this.tbRightESMMM.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbRightESMMM_ValueChanged);
             // 
             // panel8
             // 
@@ -575,12 +605,13 @@
             this.tbMicGain.TrackLineHeight = 3;
             this.tbMicGain.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
             this.tbMicGain.Value = 0;
+            this.tbMicGain.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.tbMicGain_ValueChanged);
             // 
             // FrmAudio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 628);
+            this.ClientSize = new System.Drawing.Size(1213, 628);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -640,7 +671,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private XComponent.SliderBar.MACTrackBar tbRightValue;
+        private XComponent.SliderBar.MACTrackBar tbRightVolume;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
@@ -656,5 +687,7 @@
         private System.Windows.Forms.Label lblMin;
         private System.Windows.Forms.Label label20;
         private XComponent.SliderBar.MACTrackBar tbMicGain;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
     }
 }
