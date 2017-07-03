@@ -48,12 +48,11 @@
             this.btnTraineeCC = new System.Windows.Forms.Button();
             this.btnTraineeAA = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnBroadcast = new System.Windows.Forms.Button();
             this.btnSelectAllPositions = new System.Windows.Forms.Button();
             this.btnSelectAllInstructors = new System.Windows.Forms.Button();
             this.btnSelectAllTrainees = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlInstructors = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnInstructor04 = new System.Windows.Forms.Button();
             this.btnInstructor03 = new System.Windows.Forms.Button();
@@ -62,7 +61,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlTrainees.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlInstructors.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTrainees
@@ -86,10 +85,10 @@
             this.pnlTrainees.Controls.Add(this.btnTraineeCC);
             this.pnlTrainees.Controls.Add(this.btnTraineeAA);
             this.pnlTrainees.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTrainees.Location = new System.Drawing.Point(921, 51);
+            this.pnlTrainees.Location = new System.Drawing.Point(813, 51);
             this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTrainees.Name = "pnlTrainees";
-            this.pnlTrainees.Size = new System.Drawing.Size(199, 695);
+            this.pnlTrainees.Size = new System.Drawing.Size(307, 695);
             this.pnlTrainees.TabIndex = 10;
             // 
             // btnTraineeSS
@@ -335,7 +334,6 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnBroadcast);
             this.panel2.Controls.Add(this.btnSelectAllPositions);
             this.panel2.Controls.Add(this.btnSelectAllInstructors);
@@ -345,16 +343,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(158, 429);
             this.panel2.TabIndex = 11;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(45, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 17);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Functions";
             // 
             // btnBroadcast
             // 
@@ -413,28 +401,28 @@
             this.btnSelectAllTrainees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSelectAllTrainees.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // pnlInstructors
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.btnInstructor04);
-            this.panel3.Controls.Add(this.btnInstructor03);
-            this.panel3.Controls.Add(this.btnInstructor02);
-            this.panel3.Controls.Add(this.btnInstructor01);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(732, 51);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(189, 695);
-            this.panel3.TabIndex = 12;
+            this.pnlInstructors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlInstructors.Controls.Add(this.label3);
+            this.pnlInstructors.Controls.Add(this.btnInstructor04);
+            this.pnlInstructors.Controls.Add(this.btnInstructor03);
+            this.pnlInstructors.Controls.Add(this.btnInstructor02);
+            this.pnlInstructors.Controls.Add(this.btnInstructor01);
+            this.pnlInstructors.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlInstructors.Location = new System.Drawing.Point(513, 51);
+            this.pnlInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlInstructors.Name = "pnlInstructors";
+            this.pnlInstructors.Size = new System.Drawing.Size(300, 695);
+            this.pnlInstructors.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(33, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 17);
+            this.label3.Size = new System.Drawing.Size(118, 23);
             this.label3.TabIndex = 10;
             this.label3.Text = "Instructors";
             // 
@@ -505,23 +493,23 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 746);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlInstructors);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlTrainees);
             this.Name = "FrmClassBroadcast";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmClassBroadcast";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmClassBroadcast_FormClosing);
             this.Load += new System.EventHandler(this.FrmClassBroadcast_Load);
             this.Controls.SetChildIndex(this.pnlTrainees, 0);
             this.Controls.SetChildIndex(this.panel2, 0);
-            this.Controls.SetChildIndex(this.panel3, 0);
+            this.Controls.SetChildIndex(this.pnlInstructors, 0);
             this.pnlTrainees.ResumeLayout(false);
             this.pnlTrainees.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlInstructors.ResumeLayout(false);
+            this.pnlInstructors.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -547,12 +535,11 @@
         private System.Windows.Forms.Button btnTraineeCC;
         private System.Windows.Forms.Button btnTraineeAA;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBroadcast;
         private System.Windows.Forms.Button btnSelectAllPositions;
         private System.Windows.Forms.Button btnSelectAllInstructors;
         private System.Windows.Forms.Button btnSelectAllTrainees;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlInstructors;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnInstructor04;
         private System.Windows.Forms.Button btnInstructor03;

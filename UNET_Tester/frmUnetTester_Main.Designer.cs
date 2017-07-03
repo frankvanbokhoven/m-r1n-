@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbxNoiseLevel = new System.Windows.Forms.GroupBox();
+            this.lbxNoiseLevel = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxRadios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,14 +45,16 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.grbxNoiseLevel = new System.Windows.Forms.GroupBox();
-            this.lbxNoiseLevel = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxInstructor = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.cbxInstructor);
             this.groupBox1.Controls.Add(this.grbxNoiseLevel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cbxRadios);
@@ -64,14 +68,42 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(596, 251);
+            this.groupBox1.Size = new System.Drawing.Size(680, 251);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // grbxNoiseLevel
+            // 
+            this.grbxNoiseLevel.Controls.Add(this.lbxNoiseLevel);
+            this.grbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grbxNoiseLevel.Location = new System.Drawing.Point(477, 17);
+            this.grbxNoiseLevel.Name = "grbxNoiseLevel";
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(200, 232);
+            this.grbxNoiseLevel.TabIndex = 8;
+            this.grbxNoiseLevel.TabStop = false;
+            this.grbxNoiseLevel.Text = "Noise level";
+            // 
+            // lbxNoiseLevel
+            // 
+            this.lbxNoiseLevel.BackColor = System.Drawing.Color.DimGray;
+            this.lbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxNoiseLevel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbxNoiseLevel.ForeColor = System.Drawing.Color.White;
+            this.lbxNoiseLevel.FormattingEnabled = true;
+            this.lbxNoiseLevel.ItemHeight = 20;
+            this.lbxNoiseLevel.Items.AddRange(new object[] {
+            "test",
+            "test",
+            "test"});
+            this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 18);
+            this.lbxNoiseLevel.Name = "lbxNoiseLevel";
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(194, 211);
+            this.lbxNoiseLevel.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(49, 206);
+            this.label4.Location = new System.Drawing.Point(49, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -101,7 +133,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(116, 202);
+            this.cbxRadios.Location = new System.Drawing.Point(116, 181);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(120, 24);
@@ -112,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(49, 156);
+            this.label3.Location = new System.Drawing.Point(49, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 5;
@@ -142,7 +174,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(116, 153);
+            this.cbxRole.Location = new System.Drawing.Point(116, 138);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(120, 24);
@@ -154,7 +186,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 107);
+            this.label2.Location = new System.Drawing.Point(49, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 3;
@@ -180,7 +212,7 @@
             "14",
             "15",
             "16"});
-            this.cbxTrainee.Location = new System.Drawing.Point(116, 103);
+            this.cbxTrainee.Location = new System.Drawing.Point(116, 95);
             this.cbxTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxTrainee.Name = "cbxTrainee";
             this.cbxTrainee.Size = new System.Drawing.Size(120, 24);
@@ -230,7 +262,7 @@
             this.listBoxGetmethods.Location = new System.Drawing.Point(16, 271);
             this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(595, 616);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(675, 616);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -266,40 +298,53 @@
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
-            // grbxNoiseLevel
+            // label5
             // 
-            this.grbxNoiseLevel.Controls.Add(this.lbxNoiseLevel);
-            this.grbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.grbxNoiseLevel.Location = new System.Drawing.Point(393, 17);
-            this.grbxNoiseLevel.Name = "grbxNoiseLevel";
-            this.grbxNoiseLevel.Size = new System.Drawing.Size(200, 232);
-            this.grbxNoiseLevel.TabIndex = 8;
-            this.grbxNoiseLevel.TabStop = false;
-            this.grbxNoiseLevel.Text = "Noise level";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(270, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Instructor";
             // 
-            // lbxNoiseLevel
+            // cbxInstructor
             // 
-            this.lbxNoiseLevel.BackColor = System.Drawing.Color.DimGray;
-            this.lbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbxNoiseLevel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbxNoiseLevel.ForeColor = System.Drawing.Color.White;
-            this.lbxNoiseLevel.FormattingEnabled = true;
-            this.lbxNoiseLevel.ItemHeight = 20;
-            this.lbxNoiseLevel.Items.AddRange(new object[] {
-            "test",
-            "test",
-            "test"});
-            this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 18);
-            this.lbxNoiseLevel.Name = "lbxNoiseLevel";
-            this.lbxNoiseLevel.Size = new System.Drawing.Size(194, 211);
-            this.lbxNoiseLevel.TabIndex = 0;
+            this.cbxInstructor.FormattingEnabled = true;
+            this.cbxInstructor.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"});
+            this.cbxInstructor.Location = new System.Drawing.Point(337, 50);
+            this.cbxInstructor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxInstructor.Name = "cbxInstructor";
+            this.cbxInstructor.Size = new System.Drawing.Size(120, 24);
+            this.cbxInstructor.TabIndex = 9;
+            this.cbxInstructor.Text = "4";
+            this.cbxInstructor.SelectedValueChanged += new System.EventHandler(this.cbxInstructor_SelectedValueChanged);
             // 
             // frmUNETTester_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(628, 928);
+            this.ClientSize = new System.Drawing.Size(708, 928);
             this.Controls.Add(this.btnQuit);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.listBoxGetmethods);
@@ -335,6 +380,8 @@
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.GroupBox grbxNoiseLevel;
         private System.Windows.Forms.ListBox lbxNoiseLevel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbxInstructor;
     }
 }
 

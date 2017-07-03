@@ -31,6 +31,7 @@ namespace UNET_Tester
             cbxRadios.Text = ConfigurationManager.AppSettings["Radio"];
             cbxRole.Text = ConfigurationManager.AppSettings["Role"];
             cbxTrainee.Text = ConfigurationManager.AppSettings["Trainee"];
+            cbxInstructor.Text = ConfigurationManager.AppSettings["Instructor"];
             GetUNETStatus();
 
             timer1.Enabled = true;
@@ -109,6 +110,23 @@ namespace UNET_Tester
                         AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
                     }
                     cbxRadios.Text = lstRadio.Count.ToString();
+
+
+
+                    //Instructor
+                    var instructorlist = service.GetInstructors();
+                    List<Instructor> lstInstructor = instructorlist.ToList<Instructor>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (Instructor instructor in lstInstructor)
+                    {
+                        AddToListbox(string.Format("Instructor: {0}, Name: {1}", instructor.ID, instructor.Name));
+                    }
+                    cbxInstructor.Text = lstInstructor.Count.ToString();
+
+
+
+
+
 
                     ///updaten noiselevel
                     lbxNoiseLevel.Items.Clear();
@@ -330,6 +348,33 @@ namespace UNET_Tester
         private void frmUNETTester_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             service.Close();
+        }
+
+        private void cbxInstructor_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(cbxInstructor.SelectedValue)), Color.LimeGreen);
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                {
+                    service.Open();
+
+                    service.SetInstructors(Convert.ToInt16(cbxRadios.Text));
+
+                    service.Close();
+                }
+
+                GetUNETStatus();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change role", ex);
+                // throw;
+            }
         }
     }
 }
