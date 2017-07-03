@@ -106,6 +106,21 @@ namespace UNET_Trainer
                 Application.DoEvents();
             }
 
+            // first the trainees, we assume the name of the button component is the key for the function
+            foreach (Control c in parent.Controls)
+            {
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("instructor")))
+                {
+                    if (((Button)c).ImageIndex == 1)
+                    {
+                        ((Button)c).ImageIndex = 2;
+                    }
+                    else
+                    { ((Button)c).ImageIndex = 1; }
+                }
+                Application.DoEvents();
+            }
+
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons

@@ -32,7 +32,11 @@ namespace UNET_Service
     
         [OperationContract]
         List<UNET_Classes.Instructor > GetInstructors();
- 
+
+        [OperationContract]
+        bool SetInstructorsCount(int _count);
+
+
         [OperationContract]
         List<UNET_Classes.Trainee> GetTrainees();
        

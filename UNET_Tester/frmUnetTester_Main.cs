@@ -124,10 +124,6 @@ namespace UNET_Tester
                     cbxInstructor.Text = lstInstructor.Count.ToString();
 
 
-
-
-
-
                     ///updaten noiselevel
                     lbxNoiseLevel.Items.Clear();
                      int i = 0;
@@ -153,7 +149,7 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Exercises to: {0}", Convert.ToInt16(cbxExercise.SelectedValue)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Exercises to: {0}", Convert.ToInt16(cbxExercise.Text)), Color.LimeGreen);
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -165,7 +161,7 @@ namespace UNET_Tester
                     service.Close();
                 }
 
-                GetUNETStatus();
+           //     GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -176,17 +172,13 @@ namespace UNET_Tester
             }
         }
 
-        private void cbxRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-
-        }
 
         private void cbxRadios_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
-                AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.SelectedValue)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.Text)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -198,7 +190,7 @@ namespace UNET_Tester
                     service.Close();
                 }
 
-                GetUNETStatus();
+           //     GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -213,7 +205,7 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Trainees to: {0}", Convert.ToInt16(cbxTrainee.SelectedValue)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Trainees to: {0}", Convert.ToInt16(cbxTrainee.Text)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -225,7 +217,7 @@ namespace UNET_Tester
                     service.Close();
                 }
 
-                GetUNETStatus();
+          //      GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -240,7 +232,7 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.SelectedValue)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.Text)), Color.LimeGreen);
                 // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
@@ -254,7 +246,7 @@ namespace UNET_Tester
                     service.Close();
                 }
 
-                GetUNETStatus();
+       //         GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -337,7 +329,7 @@ namespace UNET_Tester
         {
             listBoxGetmethods.Items.Clear();
 
-            GetUNETStatus();
+         //   GetUNETStatus();
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -354,19 +346,19 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(cbxInstructor.SelectedValue)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(cbxInstructor.Text)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
                 using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
                 {
                     service.Open();
 
-                    service.SetInstructors(Convert.ToInt16(cbxRadios.Text));
+                    service.SetInstructorsCount(Convert.ToInt16(cbxInstructor.Text));
 
                     service.Close();
                 }
 
-                GetUNETStatus();
+          //      GetUNETStatus();
 
             }
             catch (Exception ex)

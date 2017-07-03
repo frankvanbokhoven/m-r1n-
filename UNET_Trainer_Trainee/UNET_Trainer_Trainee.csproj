@@ -34,11 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>MarineGrey.ico</ApplicationIcon>
+    <ApplicationIcon>MarineGreen.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MACTrackBarLib, Version=1.0.5896.38740, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PJSUA2Implementation">
@@ -164,6 +168,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MarineGreen.ico" />
     <Content Include="MarineGrey.ico" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
@@ -177,6 +182,10 @@
     <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNET_ConferenceBridge\UNET_ConferenceBridge.csproj">
+      <Project>{d7f73f50-13cf-4555-8d9a-8ab4cc5122c9}</Project>
+      <Name>UNET_ConferenceBridge</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

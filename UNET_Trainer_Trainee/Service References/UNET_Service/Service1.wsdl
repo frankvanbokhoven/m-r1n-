@@ -40,6 +40,12 @@
   <wsdl:message name="IService1_GetInstructors_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetInstructorsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetInstructorsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructorsCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetInstructorsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructorsCountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetTrainees_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTrainees" />
   </wsdl:message>
@@ -75,6 +81,30 @@
   </wsdl:message>
   <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevelChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevelChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetNoiseLevelChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoiseLevelChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetNoiseLevelChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoiseLevelChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetNoiseLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoiseLevel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetNoiseLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoiseLevelResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_GetSIPStatusMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSIPStatusMessage" />
@@ -177,6 +207,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetInstructors" message="tns:IService1_GetInstructors_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetInstructorsResponse" message="tns:IService1_GetInstructors_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetInstructorsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetInstructorsCount" message="tns:IService1_SetInstructorsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetInstructorsCountResponse" message="tns:IService1_SetInstructorsCount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetTrainees">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainees" message="tns:IService1_GetTrainees_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineesResponse" message="tns:IService1_GetTrainees_OutputMessage" />
@@ -200,6 +234,22 @@
     <wsdl:operation name="SetTraineeStatusChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevelChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChanged" message="tns:IService1_SetNoiseLevelChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChangedResponse" message="tns:IService1_SetNoiseLevelChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevel" message="tns:IService1_SetNoiseLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelResponse" message="tns:IService1_SetNoiseLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNoiseLevelChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelChanged" message="tns:IService1_GetNoiseLevelChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelChangedResponse" message="tns:IService1_GetNoiseLevelChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNoiseLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevel" message="tns:IService1_GetNoiseLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelResponse" message="tns:IService1_GetNoiseLevel_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSIPStatusMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetSIPStatusMessage" message="tns:IService1_GetSIPStatusMessage_InputMessage" />
@@ -297,6 +347,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetInstructorsCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetInstructorsCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTrainees">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetTrainees" style="document" />
       <wsdl:input>
@@ -344,6 +403,42 @@
     </wsdl:operation>
     <wsdl:operation name="SetTraineeStatusChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevelChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevelChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNoiseLevelChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetNoiseLevelChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNoiseLevel">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetNoiseLevel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

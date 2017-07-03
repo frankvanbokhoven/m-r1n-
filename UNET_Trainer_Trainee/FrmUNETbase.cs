@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Classes;
 
 namespace UNET_Trainer_Trainee
 {
     public partial class FrmUNETbase : Form
     {
+        protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
+
         public FrmUNETbase()
         {
             InitializeComponent();
@@ -37,8 +40,89 @@ namespace UNET_Trainer_Trainee
             this.Size = new Size(800, 600);
             // Display the form in the center of the screen.
             // this.StartPosition = FormStartPosition.Manual
-         //   SetFormSizeAndPosition();
+            //   SetFormSizeAndPosition();
+            SetTheme(Theme, this);
         }
+
+        #region theme
+
+        /// <summary>
+        /// Set the colors of the
+        /// </summary>
+        /// <param name="_theme"></param>
+        protected void SetTheme(UNETTheme _theme, Control _parent)
+        {
+            //we willen de parent ZELF ook themen als het een form is..
+            if (_parent.GetType().BaseType.BaseType == typeof(System.Windows.Forms.Form))
+            {
+                ((Form)_parent).ForeColor = Color.White;
+                ((Form)_parent).BackColor = Color.DimGray;
+            }
+
+            //loop thrue the controls of the parent
+            foreach (Control ctrl in _parent.Controls)
+            {
+                if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
+                {
+                    ((Form)ctrl).ForeColor = Color.White;
+                    ((Form)ctrl).BackColor = Color.DimGray;
+                }
+                if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
+                {
+                    ((GroupBox)ctrl).ForeColor = Color.White;
+                    ((GroupBox)ctrl).BackColor = Color.Gray;
+                }
+
+
+
+                if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                {
+                    if (((Button)ctrl).Name.ToLower().Contains("radio"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.DarkKhaki;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("close"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Red;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("trainee"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Peru;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("exersise"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.LimeGreen;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("role"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("noise"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.White;
+                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+                    }
+
+                    //   else
+                    //   {
+                    //       ((Button)ctrl).ForeColor = Color.White;
+                    //       ((Button)ctrl).BackColor = Color.DimGray;
+                    //   }
+                }
+                SetTheme(_theme, ctrl);
+            }
+        }
+        #endregion
 
         #region dragformbypanel
         /// <summary>

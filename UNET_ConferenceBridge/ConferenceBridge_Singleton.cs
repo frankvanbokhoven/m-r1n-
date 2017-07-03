@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UNET_Classes;
 
 namespace UNET_ConferenceBridge
 {
@@ -14,8 +15,8 @@ namespace UNET_ConferenceBridge
         private ConferenceBridge_Singleton() { }
 
         //public List<Exercise> Exercises = new List<Exercise>();
-        //public List<Role> Roles = new List<Role>();
-        //public List<Radio> Radios = new List<Radio>();
+        public List<Role> Roles = new List<Role>();
+        public List<UNET_Classes.Radio> Radios = new List<UNET_Classes.Radio>();
         //public List<Instructor> Instructors = new List<Instructor>();
         //public List<Trainee> Trainees = new List<Trainee>();
         //public List<Platform> Platforms = new List<Platform>();
@@ -23,6 +24,7 @@ namespace UNET_ConferenceBridge
         //public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
 
         public List<Object> ActiveCalls = new List<object>();
+       
 
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;

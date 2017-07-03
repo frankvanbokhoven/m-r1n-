@@ -63,12 +63,12 @@ namespace UNET_Trainer
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
             //we willen de parent ZELF ook themen als het een form is..
-            if (_parent.GetType().BaseType.BaseType.BaseType  == typeof(System.Windows.Forms.Form))
+            if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
             {
                 ((Form)_parent).ForeColor = Color.White;
                 ((Form)_parent).BackColor = Color.DimGray;
             }
-            
+
             //loop thrue the controls of the parent
             foreach (Control ctrl in _parent.Controls)
             {
@@ -82,6 +82,13 @@ namespace UNET_Trainer
                     ((Panel)ctrl).ForeColor = Color.White;
                     ((Panel)ctrl).BackColor = Color.Gray;
                 }
+
+                if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
+                {
+                    ((GroupBox)ctrl).ForeColor = Color.White;
+                    ((GroupBox)ctrl).BackColor = Color.Gray;
+                }
+
 
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                 {

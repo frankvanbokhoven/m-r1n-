@@ -50,6 +50,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetInstructorsCount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInstructorsCountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetInstructorsCountResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetTrainees">
     <xs:complexType>
       <xs:sequence />
@@ -142,6 +156,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetNoiseLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioID" type="xs:int" />
+        <xs:element minOccurs="0" name="_noiselevel" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNoiseLevelResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetNoiseLevelChanged">
     <xs:complexType>
       <xs:sequence />
@@ -151,6 +180,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="GetNoiseLevelChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNoiseLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNoiseLevelResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -189,52 +189,53 @@ namespace UNET_Trainer_Trainee
                 //enable the Roles buttons
                 List<UNET_Classes.Role> rolelist = service.GetRoles().ToList<UNET_Classes.Role>();// service.GetRoles().Cast<Role>();
 
+                UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
                 //  List<UNET_Classes.Role> lstrole = rolelist.Cast<UNET_Classes.Role>().ToList(); //C# v3 manier om een array in een list te krijgen
-                List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+                conference.Roles = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
 
                 //  List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
 
-                btnRole1.Enabled = lstrole.Count >= 1;
-                btnRole2.Enabled = lstrole.Count >= 2;
-                btnRole3.Enabled = lstrole.Count >= 3;
-                btnRole4.Enabled = lstrole.Count >= 4;
-                btnRole5.Enabled = lstrole.Count >= 5;
-                btnRole6.Enabled = lstrole.Count >= 6;
-                btnRole7.Enabled = lstrole.Count >= 7;
-                btnRole8.Enabled = lstrole.Count >= 8;
-                btnRole9.Enabled = lstrole.Count >= 9;
-                btnRole10.Enabled = lstrole.Count >= 10;
-                btnRole11.Enabled = lstrole.Count >= 11;
-                btnRole12.Enabled = lstrole.Count >= 12;
-                btnRole13.Enabled = lstrole.Count >= 13;
-                btnRole14.Enabled = lstrole.Count >= 14;
-                btnRole15.Enabled = lstrole.Count >= 15;
-                btnRole16.Enabled = lstrole.Count >= 16;
-                btnRole17.Enabled = lstrole.Count >= 17;
-                btnRole18.Enabled = lstrole.Count >= 18;
-                btnRole19.Enabled = lstrole.Count >= 19;
-                btnRole20.Enabled = lstrole.Count >= 20;
+                btnRole1.Enabled = conference.Roles.Count >= 1;
+                btnRole2.Enabled = conference.Roles.Count >= 2;
+                btnRole3.Enabled = conference.Roles.Count >= 3;
+                btnRole4.Enabled = conference.Roles.Count >= 4;
+                btnRole5.Enabled = conference.Roles.Count >= 5;
+                btnRole6.Enabled = conference.Roles.Count >= 6;
+                btnRole7.Enabled = conference.Roles.Count >= 7;
+                btnRole8.Enabled = conference.Roles.Count >= 8;
+                btnRole9.Enabled = conference.Roles.Count >= 9;
+                btnRole10.Enabled = conference.Roles.Count >= 10;
+                btnRole11.Enabled = conference.Roles.Count >= 11;
+                btnRole12.Enabled = conference.Roles.Count >= 12;
+                btnRole13.Enabled = conference.Roles.Count >= 13;
+                btnRole14.Enabled = conference.Roles.Count >= 14;
+                btnRole15.Enabled = conference.Roles.Count >= 15;
+                btnRole16.Enabled = conference.Roles.Count >= 16;
+                btnRole17.Enabled = conference.Roles.Count >= 17;
+                btnRole18.Enabled = conference.Roles.Count >= 18;
+                btnRole19.Enabled = conference.Roles.Count >= 19;
+                btnRole20.Enabled = conference.Roles.Count >= 20;
 
                 ////enable the Roles buttons
                 var radiolist = service.GetRadios();
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                List<UNET_Classes.Radio> lstRadio = radiolist.Cast<UNET_Classes.Radio>().ToList(); 
-                btnRadio01.Enabled = lstRadio.Count >= 1;
-                btnRadio02.Enabled = lstRadio.Count >= 2;
-                btnRadio03.Enabled = lstRadio.Count >= 3;
-                btnRadio04.Enabled = lstRadio.Count >= 4;
-                btnRadio05.Enabled = lstRadio.Count >= 5;
+                conference.Radios  = radiolist.Cast<UNET_Classes.Radio>().ToList(); 
+                btnRadio01.Enabled = conference.Radios.Count >= 1;
+                btnRadio02.Enabled = conference.Radios.Count >= 2;
+                btnRadio03.Enabled = conference.Radios.Count >= 3;
+                btnRadio04.Enabled = conference.Radios.Count >= 4;
+                btnRadio05.Enabled = conference.Radios.Count >= 5;
 
 
                 //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtons(pnlRadios, lstRadio.Count, "radio");
-                UNET_Classes.Helpers.ResizeButtons(pnlPointToPoint, lstrole.Count, "role");
+                UNET_Classes.Helpers.ResizeButtonsVertical (pnlRadios, conference.Radios.Count, "radio");
+                UNET_Classes.Helpers.ResizeButtonsVertical(pnlPointToPoint, conference.Roles.Count, "role");
             }
             catch (Exception ex)
             {
@@ -270,18 +271,18 @@ namespace UNET_Trainer_Trainee
 
         private void MakeCall(int traineeid)
         {
-            try
-            {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
-                CallOpParam cop = new CallOpParam();
-                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall(string.Format("sip:{0}@{1}",SIPAccountname, SIPServer ), cop);
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error updating screen controls", ex);
-                // throw;
-            }
+            //try
+            //{
+            //    PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+            //    CallOpParam cop = new CallOpParam();
+            //    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+            //    sc.makeCall(string.Format("sip:{0}@{1}",SIPAccountname, SIPServer ), cop);
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Error updating screen controls", ex);
+            //    // throw;
+            //}
         }
     }
 }

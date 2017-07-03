@@ -603,6 +603,37 @@ namespace UNET_Service
             return result;
         }
 
+        public bool SetInstructorsCount(int _count)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                //first clear the array
+                singleton.Instructors.Clear();
+
+
+                //and create a number of Trainees
+                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
+                {
+                    Instructor instructor = new Instructor();
+                    instructor.ID = i;
+                    instructor.Name = string.Format("Instructor{0}", i);
+                    singleton.Instructors.Add(instructor);
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting trainee", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
 
         public bool SetTrainees(List<Trainee>  _trainee)
         {
