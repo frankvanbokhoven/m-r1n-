@@ -40,6 +40,12 @@
   <wsdl:message name="IService1_GetInstructors_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetInstructorsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetInstructorsCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructorsCount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetInstructorsCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetInstructorsCountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetTrainees_InputMessage">
     <wsdl:part name="parameters" element="tns:GetTrainees" />
   </wsdl:message>
@@ -154,6 +160,12 @@
   <wsdl:message name="IService1_SetRadios_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetRadiosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRadioStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadioStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetRadiosCount_InputMessage">
     <wsdl:part name="parameters" element="tns:SetRadiosCount" />
   </wsdl:message>
@@ -200,6 +212,10 @@
     <wsdl:operation name="GetInstructors">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetInstructors" message="tns:IService1_GetInstructors_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetInstructorsResponse" message="tns:IService1_GetInstructors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetInstructorsCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetInstructorsCount" message="tns:IService1_SetInstructorsCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetInstructorsCountResponse" message="tns:IService1_SetInstructorsCount_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetTrainees">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainees" message="tns:IService1_GetTrainees_InputMessage" />
@@ -277,6 +293,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadios" message="tns:IService1_SetRadios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosResponse" message="tns:IService1_SetRadios_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetRadioStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadioStatus" message="tns:IService1_SetRadioStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadioStatusResponse" message="tns:IService1_SetRadioStatus_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetRadiosCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadiosCount" message="tns:IService1_SetRadiosCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosCountResponse" message="tns:IService1_SetRadiosCount_OutputMessage" />
@@ -330,6 +350,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetInstructors">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetInstructors" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetInstructorsCount">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetInstructorsCount" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -501,6 +530,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetRadios">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetRadios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadioStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadioStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -324,6 +324,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetRadioStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioNumber" type="xs:int" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_state" type="q13:UNETRadioState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRadioStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRadioStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SetRadiosCount">
     <xs:complexType>
       <xs:sequence>
@@ -355,7 +370,7 @@
   <xs:element name="SetInstructors">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_instructor" nillable="true" type="q13:ArrayOfInstructor" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_instructor" nillable="true" type="q14:ArrayOfInstructor" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -369,7 +384,7 @@
   <xs:element name="SetTrainees">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_trainee" nillable="true" type="q14:ArrayOfTrainee" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_trainee" nillable="true" type="q15:ArrayOfTrainee" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -383,7 +398,7 @@
   <xs:element name="SetPlatforms">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_platform" nillable="true" type="q15:ArrayOfPlatform" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/UNET_Classes" minOccurs="0" name="_platform" nillable="true" type="q16:ArrayOfPlatform" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

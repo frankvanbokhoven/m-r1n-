@@ -23,6 +23,9 @@ namespace UNET_Tester.UNET_Service {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExerciseNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -35,6 +38,19 @@ namespace UNET_Tester.UNET_Service {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExerciseName {
+            get {
+                return this.ExerciseNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExerciseNameField, value) != true)) {
+                    this.ExerciseNameField = value;
+                    this.RaisePropertyChanged("ExerciseName");
+                }
             }
         }
         
@@ -153,6 +169,9 @@ namespace UNET_Tester.UNET_Service {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NoiseLevelField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private UNET_Tester.UNET_Service.UNETRadioState StateField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -202,6 +221,19 @@ namespace UNET_Tester.UNET_Service {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public UNET_Tester.UNET_Service.UNETRadioState State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -210,6 +242,20 @@ namespace UNET_Tester.UNET_Service {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UNETRadioState", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
+    public enum UNETRadioState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsOff = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsRx = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsTx = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -652,6 +698,12 @@ namespace UNET_Tester.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Tester.UNET_Service.Radio[] _radio);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        bool SetRadioStatus(int _radioNumber, UNET_Tester.UNET_Service.UNETRadioState _state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, UNET_Tester.UNET_Service.UNETRadioState _state);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
         
@@ -900,6 +952,14 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Tester.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
+        }
+        
+        public bool SetRadioStatus(int _radioNumber, UNET_Tester.UNET_Service.UNETRadioState _state) {
+            return base.Channel.SetRadioStatus(_radioNumber, _state);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, UNET_Tester.UNET_Service.UNETRadioState _state) {
+            return base.Channel.SetRadioStatusAsync(_radioNumber, _state);
         }
         
         public bool SetRadiosCount(int _count) {

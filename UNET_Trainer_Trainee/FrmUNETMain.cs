@@ -13,6 +13,7 @@ using System.Collections.Specialized;
 using log4net;
 using pjsua2;
 using UNET_Classes;
+using UNET_ConferenceBridge;
 
 
 
@@ -27,7 +28,8 @@ namespace UNET_Trainer_Trainee
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
-   
+        UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
+
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public int TraineeID = 1;
@@ -50,6 +52,7 @@ namespace UNET_Trainer_Trainee
         public FrmUNETMain()
         {
             InitializeComponent();
+            log4net.Config.BasicConfigurator.Configure();
 
         }
 
@@ -91,9 +94,17 @@ namespace UNET_Trainer_Trainee
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " cannot continue. Contact your system administrator");
                 log.Error("Error creating accounts " + ex.Message);
+                this.Close();
             }
+
+            //btnRadio01.PerformClick();
+            //btnRadio02.PerformClick();
+            //btnRadio03.PerformClick();
+            //btnRadio04.PerformClick();
+            //btnRadio05.PerformClick();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -266,7 +277,67 @@ namespace UNET_Trainer_Trainee
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
-            MakeCall(1);
+            int radioNumber = -1;
+            try
+            {
+                //1 zoek uit welke radio geklikt heeft
+                string state = string.Empty;
+                radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((Button)sender).Name));
+                if (((Button)sender).Text.Trim().Length > 8)
+                {
+                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                }
+                else
+                {
+                    state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
+                }
+                //2 zoek die op in de radios lijst in de conferencebridge
+                //  switch(ucb.Radios[radioid].State)
+                switch (state)
+                {
+                    //3 zet de status   
+                    // case UNETRadioState.rsRx.ToString():
+                    case "Rx":
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
+                            break;
+                        }
+                    //    case UNETRadioState.rsOff:
+                    case "Off":
+                    default:
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
+                            break;
+                        }
+
+                    //   case UNETRadioState.rsTx:
+                    case "Tx":
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
+                            break;
+                        }
+                }
+                log.Info("Have set the status of the Radio: " + radioNumber + " to: " + state);
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                //set the new status
+                service.SetRadioStatus(Convert.ToInt16(radioNumber), ucb.Radios[radioNumber - 1].State);
+
+
+
+                MakeCall(Convert.ToInt16(radioNumber));
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting the status:" + radioNumber , ex);
+                // throw;
+            }
+
         }
 
         private void MakeCall(int traineeid)

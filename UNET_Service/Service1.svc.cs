@@ -15,14 +15,17 @@ namespace UNET_Service
         (RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService1
     {
+    
         //private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
         //private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
         //private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
         private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
 
+        public Service1()
+        {
+         }
         #region Getters
         /// <summary>
         /// Get the exercises from the inline memory
@@ -30,6 +33,11 @@ namespace UNET_Service
         /// <returns></returns>
         public List<UNET_Classes.Exercise> GetExercises()
         {
+            //todo!!! deze staat in een methode die toevallig snel wordt aangeroepen na de start, maar moet op een betere plaats
+            //constructor werkt niet
+            log4net.Config.BasicConfigurator.Configure();
+            log.Info("Successfully started UNET_Service");
+
             List<UNET_Classes.Exercise> result = new List<UNET_Classes.Exercise>();
             try
             {
@@ -539,6 +547,39 @@ namespace UNET_Service
             }
             return result;
         }
+
+        public bool SetRadioStatus(int _radioNumber, UNET_Classes.UNETRadioState _state)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                //first clear the array
+            
+
+                foreach(Radio radio in singleton.Radios) //because we use the foreacht, we implicitly protect this function from ever setting the state with a non existant id
+                {
+                    if(radio.ID == _radioNumber)
+                    {
+                        radio.State = _state;
+                        break;
+                    }
+                }
+
+                log.Error("Finised setting the Radio status. Radionummer: " + _radioNumber + " State: " + _state.ToString());
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting Radio Status", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
 
         public bool SetRadios(List<Radio>  _radio)
         {

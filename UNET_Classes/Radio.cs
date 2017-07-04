@@ -9,7 +9,7 @@ namespace UNET_Classes
 
     public class Radio
     {
-
+        private UNETRadioState state;
         /// <summary>
         /// de desigenserialisation annotation staat erboven omdat anders het gebruik van de
         /// wcf service mislukt.
@@ -21,5 +21,19 @@ namespace UNET_Classes
         public string Description { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int NoiseLevel { get; set; }
+        public UNETRadioState State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
+            }
+        }
+
+
+   
     }
 }

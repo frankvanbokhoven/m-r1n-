@@ -8,6 +8,7 @@
   <xs:element name="ArrayOfExercise" nillable="true" type="tns:ArrayOfExercise" />
   <xs:complexType name="Exercise">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" type="xs:int" />
       <xs:element minOccurs="0" name="SpecificationName" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -37,9 +38,18 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="NoiseLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="State" type="tns:UNETRadioState" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Radio" nillable="true" type="tns:Radio" />
+  <xs:simpleType name="UNETRadioState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="rsOff" />
+      <xs:enumeration value="rsRx" />
+      <xs:enumeration value="rsTx" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UNETRadioState" nillable="true" type="tns:UNETRadioState" />
   <xs:complexType name="ArrayOfInstructor">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Instructor" nillable="true" type="tns:Instructor" />

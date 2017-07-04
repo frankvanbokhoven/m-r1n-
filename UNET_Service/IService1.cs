@@ -14,6 +14,7 @@ namespace UNET_Service
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.ServiceModel;
+    using UNET_Classes;
 
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
@@ -96,6 +97,9 @@ namespace UNET_Service
 
         [OperationContract]
         bool SetRadios(List<UNET_Classes.Radio> _radio);
+
+        [OperationContract]
+        bool SetRadioStatus(int _radioNumber, UNET_Classes.UNETRadioState _state);
 
         [OperationContract]
         bool SetRadiosCount(int _count);

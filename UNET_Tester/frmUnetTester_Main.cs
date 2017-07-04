@@ -23,6 +23,7 @@ namespace UNET_Tester
         public frmUNETTester_Main()
         {
             InitializeComponent();
+            log4net.Config.BasicConfigurator.Configure();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace UNET_Tester
             timer1.Enabled = true;
 
 
-            }
+        }
 
         /// <summary>
         /// add a line to the top of the listbox
@@ -68,73 +69,75 @@ namespace UNET_Tester
         {
             try
             {
-                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
-                    //Exercises
-                    var resultlist = service.GetExercises();
-                    List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
-
-                    foreach (Exercise exer in lst)
-                    {
-                        AddToListbox(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
-                    }
-                    cbxExercise.Text = lst.Count.ToString();
-
-                    //Roles
-                    var rolelist = service.GetRoles();
-                    List<Role> lstrol = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
-
-                    foreach (Role rol in lstrol)
-                    {
-                        AddToListbox(string.Format("Role: {0}, Name: {1}", rol.ID, rol.Name));
-                    }
-                    cbxRole.Text = lstrol.Count.ToString();
-
-                    //Trainee
-                    var traineelist = service.GetTrainees();
-                    List<Trainee> lsttrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
-
-                    foreach (Trainee trainee in lsttrainee)
-                    {
-                        AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
-                    }
-                    cbxTrainee.Text = lsttrainee.Count.ToString();
-
-                    //Radio
-                    var radiolist = service.GetRadios();
-                    List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
-
-                    foreach (Radio radio in lstRadio)
-                    {
-                        AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
-                    }
-                    cbxRadios.Text = lstRadio.Count.ToString();
-
-
-
-                    //Instructor
-                    var instructorlist = service.GetInstructors();
-                    List<Instructor> lstInstructor = instructorlist.ToList<Instructor>(); //C# v3 manier om een array in een list te krijgen
-
-                    foreach (Instructor instructor in lstInstructor)
-                    {
-                        AddToListbox(string.Format("Instructor: {0}, Name: {1}", instructor.ID, instructor.Name));
-                    }
-                    cbxInstructor.Text = lstInstructor.Count.ToString();
-
-
-                    ///updaten noiselevel
-                    lbxNoiseLevel.Items.Clear();
-                     int i = 0;
-                    foreach (Radio radio in radiolist)
-                    {
-                        lbxNoiseLevel.Items.Add(string.Format("Radio {0} Noise: {1}", i, Convert.ToString(radio.NoiseLevel)));
-                        i++;
-                    }
-
-                    service.Close();
+                    service.Open();
                 }
+
+
+                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+                //Exercises
+                var resultlist = service.GetExercises();
+                List<Exercise> lst = resultlist.ToList<Exercise>(); //C# v3 manier om een array in een list te krijgen
+
+                foreach (Exercise exer in lst)
+                {
+                    AddToListbox(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
+                }
+                cbxExercise.Text = lst.Count.ToString();
+
+                //Roles
+                var rolelist = service.GetRoles();
+                List<Role> lstrol = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
+
+                foreach (Role rol in lstrol)
+                {
+                    AddToListbox(string.Format("Role: {0}, Name: {1}", rol.ID, rol.Name));
+                }
+                cbxRole.Text = lstrol.Count.ToString();
+
+                //Trainee
+                var traineelist = service.GetTrainees();
+                List<Trainee> lsttrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
+
+                foreach (Trainee trainee in lsttrainee)
+                {
+                    AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
+                }
+                cbxTrainee.Text = lsttrainee.Count.ToString();
+
+                //Radio
+                var radiolist = service.GetRadios();
+                List<Radio> lstRadio = radiolist.ToList<Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                foreach (Radio radio in lstRadio)
+                {
+                    AddToListbox(string.Format("Radio: {0}, Name: {1}", radio.ID, radio.Description));
+                }
+                cbxRadios.Text = lstRadio.Count.ToString();
+
+
+
+                //Instructor
+                var instructorlist = service.GetInstructors();
+                List<Instructor> lstInstructor = instructorlist.ToList<Instructor>(); //C# v3 manier om een array in een list te krijgen
+
+                foreach (Instructor instructor in lstInstructor)
+                {
+                    AddToListbox(string.Format("Instructor: {0}, Name: {1}", instructor.ID, instructor.Name));
+                }
+                cbxInstructor.Text = lstInstructor.Count.ToString();
+
+
+                ///updaten noiselevel
+                lbxNoiseLevel.Items.Clear();
+                int i = 0;
+                foreach (Radio radio in radiolist)
+                {
+                    lbxNoiseLevel.Items.Add(string.Format("Radio {0} Noise: {1} State: {2}", i, Convert.ToString(radio.NoiseLevel), radio.State.ToString()));
+                    i++;
+                }
+
 
             }
             catch (Exception ex)
@@ -152,16 +155,26 @@ namespace UNET_Tester
                 AddToListbox(string.Format("Set Exercises to: {0}", Convert.ToInt16(cbxExercise.Text)), Color.LimeGreen);
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
 
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-
-                    service.SetExerciseCount(Convert.ToInt16(cbxExercise.Text));
-
-                    service.Close();
                 }
+        
+                service.SetExerciseCount(Convert.ToInt16(cbxExercise.Text));
 
-           //     GetUNETStatus();
+                List<Exercise> elist = new List<Exercise>();
+                 for(int i = 1; i<= Convert.ToInt16(cbxExercise.Text); i++)
+                {
+                   Exercise  exe = new Exercise();
+                    exe.Number = i;
+                    exe.SpecificationName = txtSpecification.Text;
+                    exe.ExerciseName = txtName.Text;
+                    elist.Add(exe);
+                }
+         
+         //       service.SetExercises(elist);
+
+                 //     GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -181,16 +194,16 @@ namespace UNET_Tester
                 AddToListbox(string.Format("Set Radios to: {0}", Convert.ToInt16(cbxRadios.Text)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-
-                    service.SetRadiosCount(Convert.ToInt16(cbxRadios.Text));
-
-                    service.Close();
                 }
+          
+                service.SetRadiosCount(Convert.ToInt16(cbxRadios.Text));
 
-           //     GetUNETStatus();
+           
+
+                //     GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -208,16 +221,14 @@ namespace UNET_Tester
                 AddToListbox(string.Format("Set Trainees to: {0}", Convert.ToInt16(cbxTrainee.Text)), Color.LimeGreen);
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-
-                    service.SetTraineesCount(Convert.ToInt16(cbxTrainee.Text));
-
-                    service.Close();
                 }
+        
+                service.SetTraineesCount(Convert.ToInt16(cbxTrainee.Text));
 
-          //      GetUNETStatus();
+                 //      GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -235,18 +246,15 @@ namespace UNET_Tester
                 AddToListbox(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.Text)), Color.LimeGreen);
                 // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
 
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
-                    if (service.State != System.ServiceModel.CommunicationState.Opened)
-                    {
-                        service.Open();
-                    }
-                    service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
-
-                    service.Close();
+                    service.Open();
                 }
+                  service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
 
-       //         GetUNETStatus();
+        
+
+                //         GetUNETStatus();
 
             }
             catch (Exception ex)
@@ -329,7 +337,7 @@ namespace UNET_Tester
         {
             listBoxGetmethods.Items.Clear();
 
-         //   GetUNETStatus();
+            //   GetUNETStatus();
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
@@ -358,7 +366,7 @@ namespace UNET_Tester
                     service.Close();
                 }
 
-          //      GetUNETStatus();
+                //      GetUNETStatus();
 
             }
             catch (Exception ex)

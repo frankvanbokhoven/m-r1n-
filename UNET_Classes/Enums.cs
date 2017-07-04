@@ -13,6 +13,13 @@ namespace UNET_Classes
         utBlue
     };
 
+    public enum UNETRadioState
+    {
+        rsOff,  // off
+        rsRx,   // Receive sound, but no transmit
+        rsTx    // Receive and transmit sound
+    };
+
     public class Enums
     {
     }

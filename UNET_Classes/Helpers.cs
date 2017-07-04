@@ -71,6 +71,17 @@ namespace UNET_Classes
             }
         }
 
+        /// <summary>
+        /// Return only the numbers in a given string
+        /// https://stackoverflow.com/questions/11002527/extract-numbers-from-string-to-create-digit-only-string
+        /// </summary>
+        /// <param name="original"></param>
+        /// <returns></returns>
+        public static string ExtractNumber(string _original)
+        {
+            return new string(_original.Where(c => Char.IsDigit(c)).ToArray());
+        }
+
 
         /// <summary>
         /// Resize the panels, depending on the number of panels requested. Panels that are not nessecary, do not have to be visible and

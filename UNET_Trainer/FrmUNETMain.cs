@@ -35,6 +35,7 @@ namespace UNET_Trainer
         public FrmUNETMain()
         {
             InitializeComponent();
+            log4net.Config.BasicConfigurator.Configure();
             panelExercises.Paint += UC_Paint;
             panelRadios.Paint += UC_Paint;
             panelRoles.Paint += UC_Paint;

@@ -39,6 +39,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
         System.Threading.Tasks.Task<UNET_Classes.Instructor[]> GetInstructorsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructorsCount", ReplyAction="http://tempuri.org/IService1/SetInstructorsCountResponse")]
+        bool SetInstructorsCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructorsCount", ReplyAction="http://tempuri.org/IService1/SetInstructorsCountResponse")]
+        System.Threading.Tasks.Task<bool> SetInstructorsCountAsync(int _count);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
         UNET_Classes.Trainee[] GetTrainees();
         
@@ -153,6 +159,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Classes.Radio[] _radio);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        bool SetRadioStatus(int _radioNumber, UNET_Classes.UNETRadioState _state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, UNET_Classes.UNETRadioState _state);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
         
@@ -241,6 +253,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Classes.Instructor[]> GetInstructorsAsync() {
             return base.Channel.GetInstructorsAsync();
+        }
+        
+        public bool SetInstructorsCount(int _count) {
+            return base.Channel.SetInstructorsCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetInstructorsCountAsync(int _count) {
+            return base.Channel.SetInstructorsCountAsync(_count);
         }
         
         public UNET_Classes.Trainee[] GetTrainees() {
@@ -393,6 +413,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetRadiosAsync(UNET_Classes.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
+        }
+        
+        public bool SetRadioStatus(int _radioNumber, UNET_Classes.UNETRadioState _state) {
+            return base.Channel.SetRadioStatus(_radioNumber, _state);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, UNET_Classes.UNETRadioState _state) {
+            return base.Channel.SetRadioStatusAsync(_radioNumber, _state);
         }
         
         public bool SetRadiosCount(int _count) {

@@ -160,6 +160,12 @@
   <wsdl:message name="IService1_SetRadios_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetRadiosResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRadioStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadioStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetRadiosCount_InputMessage">
     <wsdl:part name="parameters" element="tns:SetRadiosCount" />
   </wsdl:message>
@@ -286,6 +292,10 @@
     <wsdl:operation name="SetRadios">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadios" message="tns:IService1_SetRadios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadiosResponse" message="tns:IService1_SetRadios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRadioStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadioStatus" message="tns:IService1_SetRadioStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadioStatusResponse" message="tns:IService1_SetRadioStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetRadiosCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadiosCount" message="tns:IService1_SetRadiosCount_InputMessage" />
@@ -520,6 +530,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetRadios">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetRadios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadioStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadioStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
