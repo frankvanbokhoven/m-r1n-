@@ -16,8 +16,18 @@ namespace UNET_Trainer
         private int SelectedNoiseButtonIndex = -1; //this property is set after the click of a radio button
         private int SelectedRadioButtonIndex = -1; // index of one of the radio buttons
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+
         public FrmRadioSetup()
         {
+            InitializeComponent();
+            pnlRadios.Paint += UC_Paint;
+            panelNoise.Paint += UC_Paint;
+
+        }
+        public FrmRadioSetup(int _exersise)
+        {
+            FormTitle = String.Format( "Radio Setup                                   Selected exersise: Exersise{0}", _exersise.ToString("00"));
+
             InitializeComponent();
             pnlRadios.Paint += UC_Paint;
             panelNoise.Paint += UC_Paint;
@@ -26,7 +36,7 @@ namespace UNET_Trainer
 
 
         #region NoiseLevel
-
+        
 
         /// <summary>
         /// after a radio is selected, the appropriate noiselevel is loaded from wcf and set into the noise buttons
@@ -118,6 +128,7 @@ namespace UNET_Trainer
                         btnNoise3.BackColor = Color.DarkBlue;
                         btnNoise3.ForeColor = Color.White;
                         btnNoise4.BackColor = Color.DarkBlue;
+                        btnNoise4.ForeColor = Color.White;
                         btnNoise5.BackColor = Color.White;
                         btnNoise5.ForeColor = Color.Black;
                         btnNoiseOff.BackColor = Color.White;
@@ -166,8 +177,7 @@ namespace UNET_Trainer
 
         private void FrmRadioSetup_Load(object sender, EventArgs e)
         {
-            FormTitle = "Radio Setup";
-            timer1.Enabled = true;
+             timer1.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -323,7 +333,7 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")) -1; //haal het indexnummer op van de button maar -1 want de index start bij  0
             int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
             SetNoiseLevel();

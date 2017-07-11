@@ -95,6 +95,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(115, 22);
             this.txtName.TabIndex = 13;
+            this.txtName.Text = "Exc_name_";
             // 
             // label6
             // 
@@ -111,6 +112,7 @@
             this.txtSpecification.Name = "txtSpecification";
             this.txtSpecification.Size = new System.Drawing.Size(115, 22);
             this.txtSpecification.TabIndex = 11;
+            this.txtSpecification.Text = "specifi_";
             // 
             // label5
             // 

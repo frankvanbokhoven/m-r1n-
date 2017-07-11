@@ -13,17 +13,26 @@ namespace UNET_Trainer
     public partial class FrmTrainees : FrmUNETbaseSub
     {
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+        private int SelectedExercise;
 
         public FrmTrainees()
         {
             InitializeComponent();
             pnlTrainees.Paint += UC_Paint;
+        }
+
+        public FrmTrainees(int _exersise)
+        {
+            SelectedExercise = _exersise;
+             FormTitle = String.Format("Trainee Assignment                              Selected exersise: Exersise{0}", _exersise.ToString("00"));
+             InitializeComponent();
+       
+            pnlTrainees.Paint += UC_Paint;
           }
 
         private void FrmTrainees_Load(object sender, EventArgs e)
         {
-            FormTitle = "Trainee Assignment";
-            timer1.Enabled = true;
+             timer1.Enabled = true;
 
         }
 
@@ -72,7 +81,7 @@ namespace UNET_Trainer
                     service.Open();
                 }
 
-                //enable the Roles buttons
+                //enable the Trainee buttons. All available trainees
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
 
@@ -95,6 +104,20 @@ namespace UNET_Trainer
        
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
+
+                //now retrieve which trainees are assigned to this exercise
+                //and color these darkblue
+                List<UNET_Classes.Trainee> lstTraineeAssigned = service.GetTraineesAssigned(SelectedExercise);
+                foreach(UNET_Classes.Trainee trainee in lstTraineeAssigned)
+                {
+                   Control ctrl =  this.Controls.Find("btnTrainee" + trainee.ID, false).First<Control>();
+                  if(ctrl != null)
+                  {
+                        ((Button)ctrl).BackColor = Color.DarkBlue;
+                        ((Button)ctrl).ForeColor = Color.White;
+                  }
+                }
+
             }
             catch (Exception ex)
             {

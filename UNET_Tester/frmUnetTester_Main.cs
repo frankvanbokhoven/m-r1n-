@@ -82,7 +82,7 @@ namespace UNET_Tester
 
                 foreach (Exercise exer in lst)
                 {
-                    AddToListbox(string.Format("Exercise: {0}, Name: {1}", exer.Number, exer.SpecificationName));
+                    AddToListbox(string.Format("Exercise: {0}, Name: {1}, Specificationname: {2}", exer.Number, exer.ExerciseName, exer.SpecificationName));
                 }
                 cbxExercise.Text = lst.Count.ToString();
 
@@ -167,8 +167,8 @@ namespace UNET_Tester
                 {
                    Exercise  exe = new Exercise();
                     exe.Number = i;
-                    exe.SpecificationName = txtSpecification.Text;
-                    exe.ExerciseName = txtName.Text;
+                    exe.SpecificationName = txtSpecification.Text + i.ToString("00");
+                    exe.ExerciseName = txtName.Text + i.ToString("00");
                     elist.Add(exe);
                 }
          

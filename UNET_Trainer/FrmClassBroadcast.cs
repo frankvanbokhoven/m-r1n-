@@ -132,8 +132,8 @@ namespace UNET_Trainer
                 }
 
                 //enable the Roles buttons
-                var radiolist = service.GetTrainees();
-                List<UNET_Classes.Trainee> lstRadio = radiolist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                var traineelist = service.GetTrainees();
+                List<UNET_Classes.Trainee> lstRadio = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
 
                 btnTraineeAA.Enabled = lstRadio.Count >= 1;
                 btnTraineeBB.Enabled = lstRadio.Count >= 2;

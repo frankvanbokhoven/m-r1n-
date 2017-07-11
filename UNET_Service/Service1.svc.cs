@@ -255,6 +255,24 @@ namespace UNET_Service
             return result;
         }
 
+        public List<UNET_Classes.Trainee>GetTraineesAssigned(int _exercise)
+        {
+            List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+                result = new List<Trainee>(singleton.Trainees).Where(t => t.ID == _exercise);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the available trainees: " + ex.Message);
+
+                throw;
+            }
+            return result;
+        }
+
 
         public List<UNET_Classes.Platform> GetPlatforms()
         {
@@ -417,6 +435,70 @@ namespace UNET_Service
             catch (Exception ex)
             {
                 log.Error("Error setting exersisecount", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// This method assigns a trainee to an exercise and instructor, OR removes it
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <param name="_exersiseID"></param>
+        /// <param name="_traineeID"></param>
+        /// <param name="_add"></param>
+        /// <returns></returns>
+        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                                                                   //find the richt instructor, exercise and trainee
+
+
+                foreach (Instructor inst in singleton.Instructors)  //find the given instructor
+                {
+                    if (inst.ID == _instructorID)
+                    {
+                        foreach (Exercise exe in inst.Exercises) //find the given exercise
+                        {
+                            if(exe.Number == _exersiseID)
+                            {
+                                bool found = false;
+                                foreach(Trainee  tr in exe.TraineesAssigned) //find the given trainee
+                                {
+                                    if(tr.ID == _traineeID)
+                                    {
+                                        found = true;
+                                        if(!_add)
+                                        {
+                                            exe.TraineesAssigned.Remove(tr);
+                                        }
+                                       break;
+                                    }
+
+                                   
+                                }
+                                if(!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
+                                {
+                                    exe.TraineesAssigned.Add(new Trainee(_traineeID, "traineename_nogverzinnen"));
+                                }
+                                break; 
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error assigning/deassigning trainee", ex);
                 result = false;
 
             }

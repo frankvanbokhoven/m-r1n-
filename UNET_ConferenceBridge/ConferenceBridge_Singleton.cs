@@ -24,8 +24,7 @@ namespace UNET_ConferenceBridge
         //public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
 
         public List<Object> ActiveCalls = new List<object>();
-       
-
+   
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
 

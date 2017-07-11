@@ -9,5 +9,6 @@ namespace UNET_Classes
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public List<Exercise> Exercises { get; set; }
     }
 }

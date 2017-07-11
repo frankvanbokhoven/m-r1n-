@@ -22,6 +22,9 @@ namespace UNET_Trainer
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
+        public UNET_Classes.Exercise SelectedExercise;
+        private int ExersiseIndex = -1;
+
         public static FrmUNETMain GetForm
         {
             get
@@ -58,7 +61,7 @@ namespace UNET_Trainer
 
         private void btnTrainees_Click(object sender, EventArgs e)
         {
-            FrmTrainees frm = new FrmTrainees();
+            FrmTrainees frm = new FrmTrainees(ExersiseIndex + 1);
             frm.Show();
         }
 
@@ -263,7 +266,7 @@ namespace UNET_Trainer
 
         private void btnRadios_Click(object sender, EventArgs e)
         {
-            FrmRadioSetup frm = new FrmRadioSetup();
+            FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex +1);
             frm.Show();
         }
 
@@ -490,25 +493,7 @@ namespace UNET_Trainer
         private void btnExersise01_Click(object sender, EventArgs e)
         {
             SetExerciseStatus();
-            SetStatusAndColorExerciseButtons((Button)sender);
-
-        }
-
-        private void SetStatusAndColorExerciseButtons(Button _btn)
-        {
-            int exerciseIndex;
-            // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
-            if (_btn.Name.ToLower() != "btnil")
-            {
-                exerciseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 3)));
-            }
-            else
-            {
-                exerciseIndex = 8;
-            }
-            ExerciseArray[exerciseIndex] = true;
-            _btn.BackColor = System.Drawing.Color.SaddleBrown;
-            _btn.ForeColor = System.Drawing.Color.White;
+            SetStatusAndColorExerciseButtons((Button)sender);     
         }
 
         private void SetExerciseStatus()
@@ -541,6 +526,24 @@ namespace UNET_Trainer
             btnIL.ForeColor = System.Drawing.Color.Black;
 
         }
+
+        private void SetStatusAndColorExerciseButtons(Button _btn)
+        {
+            // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
+            if (_btn.Name.ToLower() != "btnil")
+            {
+                ExersiseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 3)));
+            }
+            else
+            {
+                ExersiseIndex = 8;
+            }
+            ExerciseArray[ExersiseIndex] = true;
+            _btn.BackColor = System.Drawing.Color.SaddleBrown;
+            _btn.ForeColor = System.Drawing.Color.White;
+        }
+
+
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {

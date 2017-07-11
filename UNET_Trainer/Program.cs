@@ -10,6 +10,7 @@ namespace UNET_Trainer
 {
     static class Program
     {
+        // The mutex prevents an application of starting twice on one system
         static Mutex _m;
 
         [DebuggerNonUserCode]  //alleen in deze methode willen we de exceptie NIET zien
@@ -18,12 +19,12 @@ namespace UNET_Trainer
             try
             {
                 // Try to open existing mutex.
-                Mutex.OpenExisting("UNET");
+                Mutex.OpenExisting("UNET_Trainer_Instructor");
             }
             catch
             {
                 // If exception occurred, there is no such mutex.
-                Program._m = new Mutex(true, "UNET");
+                Program._m = new Mutex(true, "UNET_Trainer_Instructor");
 
                 // Only one instance.
                 return true;

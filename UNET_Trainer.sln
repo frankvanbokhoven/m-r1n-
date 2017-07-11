@@ -38,6 +38,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_ConferenceBridge", "UN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_SignalGenerator", "UNET_SignalGenerator\UNET_SignalGenerator.csproj", "{360517A6-76CB-4FB5-A347-FE18DADD9F2E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupUNET_Trainee", "SetupUNET_Trainee\SetupUNET_Trainee.vdproj", "{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupUNET_Instructor", "Setup_UNET_Instructor\Setup_UNET_Instructor.vdproj", "{2F31095F-1927-45AC-8A75-FA6249866C3F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupUNET_Tester", "SetupUNET_Tester\SetupUNET_Tester.vdproj", "{8E4F6FC2-921E-43B4-8E52-B978E52C9725}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -198,6 +204,24 @@ Global
 		{360517A6-76CB-4FB5-A347-FE18DADD9F2E}.Release|x64.Build.0 = Release|Any CPU
 		{360517A6-76CB-4FB5-A347-FE18DADD9F2E}.Release|x86.ActiveCfg = Release|Any CPU
 		{360517A6-76CB-4FB5-A347-FE18DADD9F2E}.Release|x86.Build.0 = Release|Any CPU
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Debug|Any CPU.ActiveCfg = Debug
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Debug|x64.ActiveCfg = Debug
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Debug|x86.ActiveCfg = Debug
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Release|Any CPU.ActiveCfg = Release
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Release|x64.ActiveCfg = Release
+		{D31EAC34-CD16-466D-A5A0-4C98EA1564CA}.Release|x86.ActiveCfg = Release
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Debug|Any CPU.ActiveCfg = Debug
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Debug|x64.ActiveCfg = Debug
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Debug|x86.ActiveCfg = Debug
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Release|Any CPU.ActiveCfg = Release
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Release|x64.ActiveCfg = Release
+		{2F31095F-1927-45AC-8A75-FA6249866C3F}.Release|x86.ActiveCfg = Release
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Debug|Any CPU.ActiveCfg = Debug
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Debug|x64.ActiveCfg = Debug
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Debug|x86.ActiveCfg = Debug
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Release|Any CPU.ActiveCfg = Release
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Release|x64.ActiveCfg = Release
+		{8E4F6FC2-921E-43B4-8E52-B978E52C9725}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

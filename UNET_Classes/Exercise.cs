@@ -20,6 +20,11 @@ namespace UNET_Classes
         public string SpecificationName { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ExerciseName { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Trainee> TraineesAssigned { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Role> RolesAssigned { get; set; }
+
 
     }
 }

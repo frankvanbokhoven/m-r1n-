@@ -73,7 +73,8 @@ namespace UNET_Trainer_Trainee
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+          //  this.Close();
+            Application.Exit();
         }
 
         private void FrmUNETMain_Load(object sender, EventArgs e)
