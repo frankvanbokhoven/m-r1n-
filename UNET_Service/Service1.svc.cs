@@ -255,13 +255,13 @@ namespace UNET_Service
             return result;
         }
 
-        public List<UNET_Classes.Trainee>GetTraineesAssigned(int _exercise)
+        public List<UNET_Classes.Trainee>GetTraineesAssigned(int _instructor, int _exercise)
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
-                result = new List<Trainee>(singleton.Trainees).Where(t => t.ID == _exercise);
+              //  result = new List<Trainee>(singleton.Instructors.Where(x => x.ID == _instructor).  .All<).Where(t => t.ID == _exercise);
 
             }
             catch (Exception ex)
