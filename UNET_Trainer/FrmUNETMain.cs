@@ -164,6 +164,13 @@ namespace UNET_Trainer
                 btnExersise06.Enabled = lst.Count >= 6;
                 btnExersise07.Enabled = lst.Count >= 7;
                 btnExersise08.Enabled = lst.Count >= 8;
+
+                foreach(UNET_Classes.Exercise exercise in lst)
+                {
+                   btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+  
+                }
+                 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 

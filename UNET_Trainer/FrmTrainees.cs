@@ -107,16 +107,16 @@ namespace UNET_Trainer
 
                 //now retrieve which trainees are assigned to this exercise
                 //and color these darkblue
-                List<UNET_Classes.Trainee> lstTraineeAssigned = service.GetTraineesAssigned(SelectedExercise);
-                foreach(UNET_Classes.Trainee trainee in lstTraineeAssigned)
-                {
-                   Control ctrl =  this.Controls.Find("btnTrainee" + trainee.ID, false).First<Control>();
-                  if(ctrl != null)
-                  {
-                        ((Button)ctrl).BackColor = Color.DarkBlue;
-                        ((Button)ctrl).ForeColor = Color.White;
-                  }
-                }
+                //List<UNET_Classes.Trainee> lstTraineeAssigned = service.GetTraineesAssigned(SelectedExercise);
+                //foreach(UNET_Classes.Trainee trainee in lstTraineeAssigned)
+                //{
+                //   Control ctrl =  this.Controls.Find("btnTrainee" + trainee.ID, false).First<Control>();
+                //  if(ctrl != null)
+                //  {
+                //        ((Button)ctrl).BackColor = Color.DarkBlue;
+                //        ((Button)ctrl).ForeColor = Color.White;
+                //  }
+                //}
 
             }
             catch (Exception ex)

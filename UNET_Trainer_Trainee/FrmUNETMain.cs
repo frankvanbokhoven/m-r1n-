@@ -95,7 +95,9 @@ namespace UNET_Trainer_Trainee
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " cannot continue. Contact your system administrator");
+                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine +
+                    "Contact your system administrator");
                 log.Error("Error creating accounts " + ex.Message);
                 this.Close();
             }

@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0DB1A011EB2948DAB7ADD1734404B13F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0FE227CDA1D6148848E4A524A5CB04EE"
         "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
         "MsmSig" = "8:_UNDEFINED"
@@ -94,12 +100,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AB664074B375D143E40F89E1A8C5AE8A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -145,6 +145,12 @@
         "OwnerKey" = "8:_59E686DF97B4184732FE5F089C367890"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AB664074B375D143E40F89E1A8C5AE8A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -163,6 +169,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -179,6 +201,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -210,7 +240,7 @@
         {
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0C0AF993E6F1916671961C8D353E038D"
             {
-            "AssemblyRegister" = "3:1"
+            "AssemblyRegister" = "3:2"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:PJSUA2_NET, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
@@ -237,6 +267,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0DB1A011EB2948DAB7ADD1734404B13F"
+            {
+            "SourcePath" = "8:..\\UNET_Trainer_Trainee\\bin\\Debug\\pjsua2.dll"
+            "TargetName" = "8:pjsua2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_C0BDF0CDA3A041AD8B6AF9A5E541F726"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:4"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FE227CDA1D6148848E4A524A5CB04EE"
@@ -513,7 +563,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
         "ProductCode" = "8:{59A718DA-D6EF-4B94-BE68-372E0287A1D8}"
-        "PackageCode" = "8:{C5662CAB-DE21-4247-9454-49E79ECF2C48}"
+        "PackageCode" = "8:{87873F31-CF8F-4CA4-BDEA-D7431DD2AA28}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -524,7 +574,7 @@
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:SetupUNET_Instructor"
+        "Title" = "8:UNET_Instructor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:HSO"
         "Keywords" = "8:"

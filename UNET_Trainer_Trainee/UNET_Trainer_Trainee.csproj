@@ -45,9 +45,6 @@
       <HintPath>..\packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PJSUA2Implementation">
-      <HintPath>..\TestPJSUA2\PJSUA2Implementation\bin\Debug\PJSUA2Implementation.dll</HintPath>
-    </Reference>
     <Reference Include="PJSUA2_NET">
       <HintPath>..\TestPJSUA2\PJSUA2_NET\Debug\PJSUA2_NET.dll</HintPath>
     </Reference>
@@ -179,6 +176,10 @@
     <None Include="Service References\UNET_Service\Service1.disco" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PJSUA2Implementation\PJSUA2Implementation.csproj">
+      <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>
+      <Name>PJSUA2Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>

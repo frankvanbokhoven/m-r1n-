@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UNET_Trainer_Instructor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("by Frank van Bokhoven")]
 [assembly: AssemblyProduct("UNET_Trainer_Instructor")]
 [assembly: AssemblyCopyright("Copyright © Marine  2017")]
 [assembly: AssemblyTrademark("")]
