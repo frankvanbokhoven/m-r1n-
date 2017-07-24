@@ -141,7 +141,7 @@
             // btnRole20
             // 
             this.btnRole20.BackColor = System.Drawing.Color.Gold;
-            this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole20.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole20.ImageIndex = 1;
             this.btnRole20.ImageList = this.imageListStatus;
@@ -151,14 +151,13 @@
             this.btnRole20.Size = new System.Drawing.Size(91, 74);
             this.btnRole20.TabIndex = 22;
             this.btnRole20.Text = "Platform Role 20";
-            this.btnRole20.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole20.UseVisualStyleBackColor = false;
             // 
             // btnRole15
             // 
             this.btnRole15.BackColor = System.Drawing.Color.Gold;
-            this.btnRole15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole15.ImageIndex = 1;
             this.btnRole15.ImageList = this.imageListStatus;
@@ -168,14 +167,13 @@
             this.btnRole15.Size = new System.Drawing.Size(91, 74);
             this.btnRole15.TabIndex = 21;
             this.btnRole15.Text = "Platform Role 15";
-            this.btnRole15.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole15.UseVisualStyleBackColor = false;
             // 
             // btnRole10
             // 
             this.btnRole10.BackColor = System.Drawing.Color.Gold;
-            this.btnRole10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole10.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole10.ImageIndex = 1;
             this.btnRole10.ImageList = this.imageListStatus;
@@ -185,14 +183,13 @@
             this.btnRole10.Size = new System.Drawing.Size(91, 74);
             this.btnRole10.TabIndex = 20;
             this.btnRole10.Text = "Platform Role 10";
-            this.btnRole10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
             // 
             // btnRole5
             // 
             this.btnRole5.BackColor = System.Drawing.Color.Gold;
-            this.btnRole5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole5.ImageIndex = 1;
             this.btnRole5.ImageList = this.imageListStatus;
@@ -202,14 +199,13 @@
             this.btnRole5.Size = new System.Drawing.Size(91, 74);
             this.btnRole5.TabIndex = 19;
             this.btnRole5.Text = "Platform Role 5";
-            this.btnRole5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole5.UseVisualStyleBackColor = false;
             // 
             // btnRole19
             // 
             this.btnRole19.BackColor = System.Drawing.Color.Gold;
-            this.btnRole19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole19.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole19.ImageIndex = 1;
             this.btnRole19.ImageList = this.imageListStatus;
@@ -219,14 +215,13 @@
             this.btnRole19.Size = new System.Drawing.Size(91, 74);
             this.btnRole19.TabIndex = 18;
             this.btnRole19.Text = "Platform Role 19";
-            this.btnRole19.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole19.UseVisualStyleBackColor = false;
             // 
             // btnRole14
             // 
             this.btnRole14.BackColor = System.Drawing.Color.Gold;
-            this.btnRole14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole14.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole14.ImageIndex = 2;
             this.btnRole14.ImageList = this.imageListStatus;
@@ -236,14 +231,13 @@
             this.btnRole14.Size = new System.Drawing.Size(91, 74);
             this.btnRole14.TabIndex = 17;
             this.btnRole14.Text = "Platform Role 14";
-            this.btnRole14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
             // 
             // btnRole9
             // 
             this.btnRole9.BackColor = System.Drawing.Color.Gold;
-            this.btnRole9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole9.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole9.ImageIndex = 0;
             this.btnRole9.ImageList = this.imageListStatus;
@@ -253,14 +247,13 @@
             this.btnRole9.Size = new System.Drawing.Size(91, 74);
             this.btnRole9.TabIndex = 16;
             this.btnRole9.Text = "Platform Role 9";
-            this.btnRole9.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole9.UseVisualStyleBackColor = false;
             // 
             // btnRole4
             // 
             this.btnRole4.BackColor = System.Drawing.Color.Gold;
-            this.btnRole4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole4.ImageIndex = 2;
             this.btnRole4.ImageList = this.imageListStatus;
@@ -270,14 +263,13 @@
             this.btnRole4.Size = new System.Drawing.Size(91, 74);
             this.btnRole4.TabIndex = 15;
             this.btnRole4.Text = "Platform Role 4";
-            this.btnRole4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole4.UseVisualStyleBackColor = false;
             // 
             // btnRole17
             // 
             this.btnRole17.BackColor = System.Drawing.Color.Gold;
-            this.btnRole17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole17.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole17.ImageIndex = 1;
             this.btnRole17.ImageList = this.imageListStatus;
@@ -287,14 +279,13 @@
             this.btnRole17.Size = new System.Drawing.Size(91, 74);
             this.btnRole17.TabIndex = 14;
             this.btnRole17.Text = "Platform Role 17";
-            this.btnRole17.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole17.UseVisualStyleBackColor = false;
             // 
             // btnRole12
             // 
             this.btnRole12.BackColor = System.Drawing.Color.Gold;
-            this.btnRole12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole12.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole12.ImageIndex = 1;
             this.btnRole12.ImageList = this.imageListStatus;
@@ -304,7 +295,6 @@
             this.btnRole12.Size = new System.Drawing.Size(91, 74);
             this.btnRole12.TabIndex = 13;
             this.btnRole12.Text = "Platform Role 12";
-            this.btnRole12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
             // 
@@ -328,7 +318,7 @@
             // btnRole2
             // 
             this.btnRole2.BackColor = System.Drawing.Color.Gold;
-            this.btnRole2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole2.ImageIndex = 2;
             this.btnRole2.ImageList = this.imageListStatus;
@@ -338,7 +328,6 @@
             this.btnRole2.Size = new System.Drawing.Size(91, 74);
             this.btnRole2.TabIndex = 11;
             this.btnRole2.Text = "Platform Role 2";
-            this.btnRole2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole2.UseVisualStyleBackColor = false;
             // 
@@ -355,7 +344,7 @@
             // btnRole18
             // 
             this.btnRole18.BackColor = System.Drawing.Color.Gold;
-            this.btnRole18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole18.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole18.ImageIndex = 1;
             this.btnRole18.ImageList = this.imageListStatus;
@@ -365,14 +354,13 @@
             this.btnRole18.Size = new System.Drawing.Size(91, 74);
             this.btnRole18.TabIndex = 8;
             this.btnRole18.Text = "Platform Role 18";
-            this.btnRole18.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole18.UseVisualStyleBackColor = false;
             // 
             // btnRole13
             // 
             this.btnRole13.BackColor = System.Drawing.Color.Gold;
-            this.btnRole13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole13.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole13.ImageIndex = 1;
             this.btnRole13.ImageList = this.imageListStatus;
@@ -382,14 +370,13 @@
             this.btnRole13.Size = new System.Drawing.Size(91, 74);
             this.btnRole13.TabIndex = 7;
             this.btnRole13.Text = "Platform Role 13";
-            this.btnRole13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
             // 
             // btnRole8
             // 
             this.btnRole8.BackColor = System.Drawing.Color.Gold;
-            this.btnRole8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole8.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole8.ImageIndex = 1;
             this.btnRole8.ImageList = this.imageListStatus;
@@ -399,14 +386,13 @@
             this.btnRole8.Size = new System.Drawing.Size(91, 74);
             this.btnRole8.TabIndex = 6;
             this.btnRole8.Text = "Platform Role 8";
-            this.btnRole8.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole8.UseVisualStyleBackColor = false;
             // 
             // btnRole3
             // 
             this.btnRole3.BackColor = System.Drawing.Color.Gold;
-            this.btnRole3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole3.ImageIndex = 2;
             this.btnRole3.ImageList = this.imageListStatus;
@@ -416,14 +402,13 @@
             this.btnRole3.Size = new System.Drawing.Size(91, 74);
             this.btnRole3.TabIndex = 5;
             this.btnRole3.Text = "Platform Role 3";
-            this.btnRole3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole3.UseVisualStyleBackColor = false;
             // 
             // btnRole16
             // 
             this.btnRole16.BackColor = System.Drawing.Color.Gold;
-            this.btnRole16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole16.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole16.ImageIndex = 1;
             this.btnRole16.ImageList = this.imageListStatus;
@@ -433,14 +418,13 @@
             this.btnRole16.Size = new System.Drawing.Size(91, 74);
             this.btnRole16.TabIndex = 4;
             this.btnRole16.Text = "Platform Role 16";
-            this.btnRole16.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole16.UseVisualStyleBackColor = false;
             // 
             // btnRole11
             // 
             this.btnRole11.BackColor = System.Drawing.Color.Gold;
-            this.btnRole11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole11.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole11.ImageIndex = 1;
             this.btnRole11.ImageList = this.imageListStatus;
@@ -450,14 +434,13 @@
             this.btnRole11.Size = new System.Drawing.Size(91, 74);
             this.btnRole11.TabIndex = 3;
             this.btnRole11.Text = "Platform Role 11";
-            this.btnRole11.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
             // 
             // btnRole6
             // 
             this.btnRole6.BackColor = System.Drawing.Color.Gold;
-            this.btnRole6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole6.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole6.ImageIndex = 1;
             this.btnRole6.ImageList = this.imageListStatus;
@@ -467,14 +450,13 @@
             this.btnRole6.Size = new System.Drawing.Size(91, 74);
             this.btnRole6.TabIndex = 2;
             this.btnRole6.Text = "Platform Role 6";
-            this.btnRole6.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole6.UseVisualStyleBackColor = false;
             // 
             // btnRole1
             // 
             this.btnRole1.BackColor = System.Drawing.Color.Gold;
-            this.btnRole1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole1.ImageIndex = 1;
             this.btnRole1.ImageList = this.imageListStatus;
@@ -484,7 +466,6 @@
             this.btnRole1.Size = new System.Drawing.Size(91, 74);
             this.btnRole1.TabIndex = 1;
             this.btnRole1.Text = "Platform Role 1";
-            this.btnRole1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole1.UseVisualStyleBackColor = false;
             // 

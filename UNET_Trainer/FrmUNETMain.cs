@@ -269,6 +269,24 @@ namespace UNET_Trainer
         {
             timer1.Enabled = true;
             this.Text = "UNET Instructor";
+
+            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+            TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+            try
+            {
+                //the useragent holds everything needed for the sip communication
+                useragent = new PJSUA2Implementation.SIP.UserAgent();
+                useragent.UserAgentStart();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine +
+                    "Contact your system administrator");
+                log.Error("Error creating accounts " + ex.Message);
+                this.Close();
+            }
         }
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)

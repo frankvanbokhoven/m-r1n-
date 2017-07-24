@@ -366,7 +366,6 @@
             // 
             // panelNoise
             // 
-            this.panelNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelNoise.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelNoise.Controls.Add(this.btnNoiseOff);
             this.panelNoise.Controls.Add(this.btnNoise1);
