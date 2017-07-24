@@ -1,19 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
-using System.Collections;
-using System.Collections.Specialized;
-using log4net;
 using pjsua2;
 using UNET_Classes;
-using UNET_ConferenceBridge;
 
 
 
@@ -25,15 +17,15 @@ namespace UNET_Trainer_Trainee
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        //the accounts
+        private PJSUA2Implementation.SIP.UserAgent useragent;
+        public int TraineeID = 1;
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
-        //the accounts
-        private PJSUA2Implementation.SIP.UserAgent useragent;
-        public int TraineeID = 1;
-
+     
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -101,13 +93,6 @@ namespace UNET_Trainer_Trainee
                 log.Error("Error creating accounts " + ex.Message);
                 this.Close();
             }
-
-            //btnRadio01.PerformClick();
-            //btnRadio02.PerformClick();
-            //btnRadio03.PerformClick();
-            //btnRadio04.PerformClick();
-            //btnRadio05.PerformClick();
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -304,6 +289,7 @@ namespace UNET_Trainer_Trainee
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
+                            MakeCall(TraineeID);
                             break;
                         }
                     //    case UNETRadioState.rsOff:
@@ -345,18 +331,18 @@ namespace UNET_Trainer_Trainee
 
         private void MakeCall(int traineeid)
         {
-            //try
-            //{
-            //    PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
-            //    CallOpParam cop = new CallOpParam();
-            //    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-            //    sc.makeCall(string.Format("sip:{0}@{1}",SIPAccountname, SIPServer ), cop);
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error("Error updating screen controls", ex);
-            //    // throw;
-            //}
+            try
+            {
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                CallOpParam cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error updating screen controls", ex);
+                // throw;
+            }
         }
     }
 }

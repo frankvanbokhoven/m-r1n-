@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using UNET_Trainer.UNET_Service;
+using pjsua2;
+using System.Configuration;
 
 namespace UNET_Trainer
 {
@@ -17,7 +13,17 @@ namespace UNET_Trainer
          private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
+  
+        //the accounts
+        private PJSUA2Implementation.SIP.UserAgent useragent;
+        public int TraineeID = 1;
+        public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+        public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+
+
+        /// WCF service
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+        //arrays that hold the statusses of the some
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -564,6 +570,22 @@ namespace UNET_Trainer
         private void FrmUNETMain_Activated(object sender, EventArgs e)
         {
     //        SetButtonStatus(this);
+        }
+
+        private void MakeCall(int traineeid)
+        {
+            try
+            {
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                CallOpParam cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error updating screen controls", ex);
+                // throw;
+            }
         }
     }
 }

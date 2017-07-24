@@ -89,7 +89,7 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Red;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(787, 657);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -491,7 +491,7 @@
             // btnRadio01
             // 
             this.btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio01.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio01.Location = new System.Drawing.Point(3, 30);
             this.btnRadio01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio01.Name = "btnRadio01";
@@ -505,7 +505,7 @@
             // btnRadio03
             // 
             this.btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio03.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio03.Location = new System.Drawing.Point(37, 121);
             this.btnRadio03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio03.Name = "btnRadio03";
@@ -528,7 +528,7 @@
             // btnRadio02
             // 
             this.btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio02.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio02.Location = new System.Drawing.Point(107, 30);
             this.btnRadio02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio02.Name = "btnRadio02";
@@ -541,7 +541,7 @@
             // btnRadio04
             // 
             this.btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio04.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio04.Location = new System.Drawing.Point(167, 121);
             this.btnRadio04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio04.Name = "btnRadio04";
@@ -554,7 +554,7 @@
             // btnRadio05
             // 
             this.btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio05.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio05.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio05.Location = new System.Drawing.Point(80, 210);
             this.btnRadio05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio05.Name = "btnRadio05";
@@ -604,7 +604,7 @@
             // btnAudio
             // 
             this.btnAudio.BackColor = System.Drawing.Color.Aqua;
-            this.btnAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAudio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAudio.Location = new System.Drawing.Point(3, 30);
             this.btnAudio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAudio.Name = "btnAudio";
@@ -640,7 +640,7 @@
             // btnMonitorTrainee
             // 
             this.btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
-            this.btnMonitorTrainee.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitorTrainee.Location = new System.Drawing.Point(-1, 119);
             this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMonitorTrainee.Name = "btnMonitorTrainee";
@@ -652,7 +652,7 @@
             // btnClassBroadcast
             // 
             this.btnClassBroadcast.BackColor = System.Drawing.Color.Aqua;
-            this.btnClassBroadcast.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
             this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClassBroadcast.Name = "btnClassBroadcast";

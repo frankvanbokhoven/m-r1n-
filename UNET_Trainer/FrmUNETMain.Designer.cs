@@ -94,12 +94,6 @@
             this.btnTraineeEE = new System.Windows.Forms.Button();
             this.btnTraineeCC = new System.Windows.Forms.Button();
             this.btnTraineeAA = new System.Windows.Forms.Button();
-            this.panelFunctions = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnMute = new System.Windows.Forms.Button();
-            this.btnMonitorRadio = new System.Windows.Forms.Button();
-            this.btnMonitorTrainee = new System.Windows.Forms.Button();
-            this.btnClassBroadcast = new System.Windows.Forms.Button();
             this.panelExercises = new System.Windows.Forms.Panel();
             this.lblExercises = new System.Windows.Forms.Label();
             this.btnExersise08 = new System.Windows.Forms.Button();
@@ -110,26 +104,34 @@
             this.btnExersise03 = new System.Windows.Forms.Button();
             this.btnExersise02 = new System.Windows.Forms.Button();
             this.btnExersise01 = new System.Windows.Forms.Button();
-            this.panelSetup = new System.Windows.Forms.Panel();
-            this.lblSetup = new System.Windows.Forms.Label();
-            this.btnAudio = new System.Windows.Forms.Button();
-            this.btnRadios = new System.Windows.Forms.Button();
-            this.btnTrainees = new System.Windows.Forms.Button();
-            this.btnRoles = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnIL = new System.Windows.Forms.Button();
             this.panelAssist = new System.Windows.Forms.Panel();
             this.btnAssist = new System.Windows.Forms.Button();
             this.btnIntercom = new System.Windows.Forms.Button();
+            this.panelRightDock = new System.Windows.Forms.Panel();
+            this.panelSetup = new System.Windows.Forms.Panel();
+            this.panelFunctions = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnMute = new System.Windows.Forms.Button();
+            this.btnMonitorRadio = new System.Windows.Forms.Button();
+            this.btnMonitorTrainee = new System.Windows.Forms.Button();
+            this.btnClassBroadcast = new System.Windows.Forms.Button();
+            this.lblSetup = new System.Windows.Forms.Label();
+            this.btnAudio = new System.Windows.Forms.Button();
+            this.btnRadios = new System.Windows.Forms.Button();
+            this.btnTrainees = new System.Windows.Forms.Button();
+            this.btnRoles = new System.Windows.Forms.Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
-            this.panelFunctions.SuspendLayout();
             this.panelExercises.SuspendLayout();
-            this.panelSetup.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelAssist.SuspendLayout();
+            this.panelRightDock.SuspendLayout();
+            this.panelSetup.SuspendLayout();
+            this.panelFunctions.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelRadios
@@ -181,7 +183,7 @@
             // btnRadio20
             // 
             this.btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio20.Location = new System.Drawing.Point(420, 276);
             this.btnRadio20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio20.Name = "btnRadio20";
@@ -194,7 +196,7 @@
             // btnRadio15
             // 
             this.btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio15.Location = new System.Drawing.Point(420, 194);
             this.btnRadio15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio15.Name = "btnRadio15";
@@ -207,7 +209,7 @@
             // btnRadio10
             // 
             this.btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio10.Location = new System.Drawing.Point(420, 111);
             this.btnRadio10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio10.Name = "btnRadio10";
@@ -220,7 +222,7 @@
             // btnRadio05
             // 
             this.btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio05.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio05.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio05.Location = new System.Drawing.Point(420, 28);
             this.btnRadio05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio05.Name = "btnRadio05";
@@ -233,7 +235,7 @@
             // btnRadio19
             // 
             this.btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio19.Location = new System.Drawing.Point(316, 276);
             this.btnRadio19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio19.Name = "btnRadio19";
@@ -259,7 +261,7 @@
             // btnRadio09
             // 
             this.btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio09.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio09.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio09.Location = new System.Drawing.Point(316, 111);
             this.btnRadio09.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio09.Name = "btnRadio09";
@@ -272,7 +274,7 @@
             // btnRadio04
             // 
             this.btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio04.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio04.Location = new System.Drawing.Point(316, 28);
             this.btnRadio04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio04.Name = "btnRadio04";
@@ -285,7 +287,7 @@
             // btnRadio17
             // 
             this.btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio17.Location = new System.Drawing.Point(108, 276);
             this.btnRadio17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio17.Name = "btnRadio17";
@@ -298,7 +300,7 @@
             // btnRadio12
             // 
             this.btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio12.Location = new System.Drawing.Point(108, 194);
             this.btnRadio12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio12.Name = "btnRadio12";
@@ -311,7 +313,7 @@
             // btnRadio07
             // 
             this.btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio07.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio07.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio07.Location = new System.Drawing.Point(108, 111);
             this.btnRadio07.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio07.Name = "btnRadio07";
@@ -324,7 +326,7 @@
             // btnRadio02
             // 
             this.btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio02.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio02.Location = new System.Drawing.Point(107, 30);
             this.btnRadio02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio02.Name = "btnRadio02";
@@ -347,7 +349,7 @@
             // btnRadio18
             // 
             this.btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio18.Location = new System.Drawing.Point(212, 276);
             this.btnRadio18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio18.Name = "btnRadio18";
@@ -360,7 +362,7 @@
             // btnRadio13
             // 
             this.btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio13.Location = new System.Drawing.Point(212, 194);
             this.btnRadio13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio13.Name = "btnRadio13";
@@ -373,7 +375,7 @@
             // btnRadio08
             // 
             this.btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio08.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio08.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio08.Location = new System.Drawing.Point(212, 111);
             this.btnRadio08.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio08.Name = "btnRadio08";
@@ -386,7 +388,7 @@
             // btnRadio03
             // 
             this.btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio03.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio03.Location = new System.Drawing.Point(212, 30);
             this.btnRadio03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio03.Name = "btnRadio03";
@@ -399,7 +401,7 @@
             // btnRadio16
             // 
             this.btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio16.Location = new System.Drawing.Point(3, 276);
             this.btnRadio16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio16.Name = "btnRadio16";
@@ -412,7 +414,7 @@
             // btnRadio11
             // 
             this.btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio11.Location = new System.Drawing.Point(3, 194);
             this.btnRadio11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio11.Name = "btnRadio11";
@@ -425,7 +427,7 @@
             // btnRadio06
             // 
             this.btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio06.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio06.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio06.Location = new System.Drawing.Point(3, 111);
             this.btnRadio06.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio06.Name = "btnRadio06";
@@ -438,7 +440,7 @@
             // btnRadio01
             // 
             this.btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadio01.Location = new System.Drawing.Point(3, 30);
             this.btnRadio01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRadio01.Name = "btnRadio01";
@@ -482,7 +484,7 @@
             // btnRole20
             // 
             this.btnRole20.BackColor = System.Drawing.Color.Gold;
-            this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole20.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole20.ImageIndex = 1;
             this.btnRole20.ImageList = this.imageListStatus;
@@ -507,7 +509,7 @@
             // btnRole15
             // 
             this.btnRole15.BackColor = System.Drawing.Color.Gold;
-            this.btnRole15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole15.ImageIndex = 1;
             this.btnRole15.ImageList = this.imageListStatus;
@@ -524,7 +526,7 @@
             // btnRole10
             // 
             this.btnRole10.BackColor = System.Drawing.Color.Gold;
-            this.btnRole10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole10.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole10.ImageIndex = 1;
             this.btnRole10.ImageList = this.imageListStatus;
@@ -541,7 +543,7 @@
             // btnRole5
             // 
             this.btnRole5.BackColor = System.Drawing.Color.Gold;
-            this.btnRole5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole5.ImageIndex = 1;
             this.btnRole5.ImageList = this.imageListStatus;
@@ -558,7 +560,7 @@
             // btnRole19
             // 
             this.btnRole19.BackColor = System.Drawing.Color.Gold;
-            this.btnRole19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole19.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole19.ImageIndex = 1;
             this.btnRole19.ImageList = this.imageListStatus;
@@ -575,7 +577,7 @@
             // btnRole14
             // 
             this.btnRole14.BackColor = System.Drawing.Color.Gold;
-            this.btnRole14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole14.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole14.ImageIndex = 2;
             this.btnRole14.ImageList = this.imageListStatus;
@@ -592,7 +594,7 @@
             // btnRole9
             // 
             this.btnRole9.BackColor = System.Drawing.Color.Gold;
-            this.btnRole9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole9.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole9.ImageIndex = 0;
             this.btnRole9.ImageList = this.imageListStatus;
@@ -609,7 +611,7 @@
             // btnRole4
             // 
             this.btnRole4.BackColor = System.Drawing.Color.Gold;
-            this.btnRole4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole4.ImageIndex = 2;
             this.btnRole4.ImageList = this.imageListStatus;
@@ -626,7 +628,7 @@
             // btnRole17
             // 
             this.btnRole17.BackColor = System.Drawing.Color.Gold;
-            this.btnRole17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole17.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole17.ImageIndex = 1;
             this.btnRole17.ImageList = this.imageListStatus;
@@ -643,7 +645,7 @@
             // btnRole12
             // 
             this.btnRole12.BackColor = System.Drawing.Color.Gold;
-            this.btnRole12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole12.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole12.ImageIndex = 1;
             this.btnRole12.ImageList = this.imageListStatus;
@@ -660,7 +662,7 @@
             // btnRole7
             // 
             this.btnRole7.BackColor = System.Drawing.Color.Gold;
-            this.btnRole7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole7.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole7.ImageIndex = 1;
             this.btnRole7.ImageList = this.imageListStatus;
@@ -677,7 +679,7 @@
             // btnRole2
             // 
             this.btnRole2.BackColor = System.Drawing.Color.Gold;
-            this.btnRole2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole2.ImageIndex = 2;
             this.btnRole2.ImageList = this.imageListStatus;
@@ -704,7 +706,7 @@
             // btnRole18
             // 
             this.btnRole18.BackColor = System.Drawing.Color.Gold;
-            this.btnRole18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole18.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole18.ImageIndex = 1;
             this.btnRole18.ImageList = this.imageListStatus;
@@ -721,7 +723,7 @@
             // btnRole13
             // 
             this.btnRole13.BackColor = System.Drawing.Color.Gold;
-            this.btnRole13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole13.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole13.ImageIndex = 1;
             this.btnRole13.ImageList = this.imageListStatus;
@@ -738,7 +740,7 @@
             // btnRole8
             // 
             this.btnRole8.BackColor = System.Drawing.Color.Gold;
-            this.btnRole8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole8.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole8.ImageIndex = 1;
             this.btnRole8.ImageList = this.imageListStatus;
@@ -755,7 +757,7 @@
             // btnRole3
             // 
             this.btnRole3.BackColor = System.Drawing.Color.Gold;
-            this.btnRole3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole3.ImageIndex = 2;
             this.btnRole3.ImageList = this.imageListStatus;
@@ -772,7 +774,7 @@
             // btnRole16
             // 
             this.btnRole16.BackColor = System.Drawing.Color.Gold;
-            this.btnRole16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole16.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole16.ImageIndex = 1;
             this.btnRole16.ImageList = this.imageListStatus;
@@ -789,7 +791,7 @@
             // btnRole11
             // 
             this.btnRole11.BackColor = System.Drawing.Color.Gold;
-            this.btnRole11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole11.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole11.ImageIndex = 1;
             this.btnRole11.ImageList = this.imageListStatus;
@@ -806,7 +808,7 @@
             // btnRole6
             // 
             this.btnRole6.BackColor = System.Drawing.Color.Gold;
-            this.btnRole6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole6.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole6.ImageIndex = 1;
             this.btnRole6.ImageList = this.imageListStatus;
@@ -823,7 +825,7 @@
             // btnRole1
             // 
             this.btnRole1.BackColor = System.Drawing.Color.Gold;
-            this.btnRole1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRole1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole1.ImageIndex = 1;
             this.btnRole1.ImageList = this.imageListStatus;
@@ -1150,87 +1152,6 @@
             this.btnTraineeAA.UseVisualStyleBackColor = false;
             this.btnTraineeAA.Click += new System.EventHandler(this.btnTraineeAA_Click);
             // 
-            // panelFunctions
-            // 
-            this.panelFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelFunctions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelFunctions.Controls.Add(this.label2);
-            this.panelFunctions.Controls.Add(this.btnMute);
-            this.panelFunctions.Controls.Add(this.btnMonitorRadio);
-            this.panelFunctions.Controls.Add(this.btnMonitorTrainee);
-            this.panelFunctions.Controls.Add(this.btnClassBroadcast);
-            this.panelFunctions.Location = new System.Drawing.Point(957, 383);
-            this.panelFunctions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panelFunctions.Name = "panelFunctions";
-            this.panelFunctions.Size = new System.Drawing.Size(103, 352);
-            this.panelFunctions.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 22);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Functions";
-            // 
-            // btnMute
-            // 
-            this.btnMute.BackColor = System.Drawing.Color.DimGray;
-            this.btnMute.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMute.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMute.Location = new System.Drawing.Point(3, 272);
-            this.btnMute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnMute.Name = "btnMute";
-            this.btnMute.Size = new System.Drawing.Size(96, 80);
-            this.btnMute.TabIndex = 4;
-            this.btnMute.Text = "Mute   radio";
-            this.btnMute.UseVisualStyleBackColor = false;
-            this.btnMute.Click += new System.EventHandler(this.btnMute_Click);
-            // 
-            // btnMonitorRadio
-            // 
-            this.btnMonitorRadio.BackColor = System.Drawing.Color.DimGray;
-            this.btnMonitorRadio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMonitorRadio.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMonitorRadio.Location = new System.Drawing.Point(3, 190);
-            this.btnMonitorRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnMonitorRadio.Name = "btnMonitorRadio";
-            this.btnMonitorRadio.Size = new System.Drawing.Size(96, 80);
-            this.btnMonitorRadio.TabIndex = 3;
-            this.btnMonitorRadio.Text = "Monitor radio";
-            this.btnMonitorRadio.UseVisualStyleBackColor = false;
-            this.btnMonitorRadio.Click += new System.EventHandler(this.btnMonitorRadio_Click);
-            // 
-            // btnMonitorTrainee
-            // 
-            this.btnMonitorTrainee.BackColor = System.Drawing.Color.DimGray;
-            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMonitorTrainee.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 106);
-            this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnMonitorTrainee.Name = "btnMonitorTrainee";
-            this.btnMonitorTrainee.Size = new System.Drawing.Size(96, 80);
-            this.btnMonitorTrainee.TabIndex = 2;
-            this.btnMonitorTrainee.Text = "Monitor trainee";
-            this.btnMonitorTrainee.UseVisualStyleBackColor = false;
-            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
-            // 
-            // btnClassBroadcast
-            // 
-            this.btnClassBroadcast.BackColor = System.Drawing.Color.DimGray;
-            this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClassBroadcast.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
-            this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClassBroadcast.Name = "btnClassBroadcast";
-            this.btnClassBroadcast.Size = new System.Drawing.Size(96, 80);
-            this.btnClassBroadcast.TabIndex = 1;
-            this.btnClassBroadcast.Text = "Class b/cast";
-            this.btnClassBroadcast.UseVisualStyleBackColor = false;
-            this.btnClassBroadcast.Click += new System.EventHandler(this.btnClassBroadcast_Click);
-            // 
             // panelExercises
             // 
             this.panelExercises.BackColor = System.Drawing.Color.DimGray;
@@ -1396,20 +1317,185 @@
             this.btnExersise01.UseVisualStyleBackColor = false;
             this.btnExersise01.Click += new System.EventHandler(this.btnExersise01_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DimGray;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnIL);
+            this.panel2.Location = new System.Drawing.Point(3, 658);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(167, 77);
+            this.panel2.TabIndex = 8;
+            // 
+            // btnIL
+            // 
+            this.btnIL.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnIL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnIL.ImageList = this.imageListStatus;
+            this.btnIL.Location = new System.Drawing.Point(8, 0);
+            this.btnIL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIL.Name = "btnIL";
+            this.btnIL.Size = new System.Drawing.Size(155, 74);
+            this.btnIL.TabIndex = 10;
+            this.btnIL.Text = "Il";
+            this.btnIL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIL.UseVisualStyleBackColor = false;
+            // 
+            // panelAssist
+            // 
+            this.panelAssist.BackColor = System.Drawing.Color.DimGray;
+            this.panelAssist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelAssist.Controls.Add(this.btnAssist);
+            this.panelAssist.Controls.Add(this.btnIntercom);
+            this.panelAssist.Location = new System.Drawing.Point(175, 660);
+            this.panelAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelAssist.Name = "panelAssist";
+            this.panelAssist.Size = new System.Drawing.Size(231, 75);
+            this.panelAssist.TabIndex = 9;
+            // 
+            // btnAssist
+            // 
+            this.btnAssist.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnAssist.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssist.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnAssist.ImageIndex = 0;
+            this.btnAssist.ImageList = this.imageListStatus;
+            this.btnAssist.Location = new System.Drawing.Point(123, -1);
+            this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAssist.Name = "btnAssist";
+            this.btnAssist.Size = new System.Drawing.Size(105, 74);
+            this.btnAssist.TabIndex = 20;
+            this.btnAssist.Text = "Assist";
+            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAssist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAssist.UseVisualStyleBackColor = false;
+            // 
+            // btnIntercom
+            // 
+            this.btnIntercom.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnIntercom.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIntercom.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnIntercom.ImageList = this.imageListStatus;
+            this.btnIntercom.Location = new System.Drawing.Point(3, -2);
+            this.btnIntercom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIntercom.Name = "btnIntercom";
+            this.btnIntercom.Size = new System.Drawing.Size(115, 74);
+            this.btnIntercom.TabIndex = 10;
+            this.btnIntercom.Text = "Intercom";
+            this.btnIntercom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnIntercom.UseVisualStyleBackColor = false;
+            // 
+            // panelRightDock
+            // 
+            this.panelRightDock.Controls.Add(this.panelSetup);
+            this.panelRightDock.Location = new System.Drawing.Point(957, 2);
+            this.panelRightDock.Name = "panelRightDock";
+            this.panelRightDock.Size = new System.Drawing.Size(106, 725);
+            this.panelRightDock.TabIndex = 28;
+            // 
             // panelSetup
             // 
-            this.panelSetup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelSetup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSetup.Controls.Add(this.panelFunctions);
             this.panelSetup.Controls.Add(this.lblSetup);
             this.panelSetup.Controls.Add(this.btnAudio);
             this.panelSetup.Controls.Add(this.btnRadios);
             this.panelSetup.Controls.Add(this.btnTrainees);
             this.panelSetup.Controls.Add(this.btnRoles);
-            this.panelSetup.Location = new System.Drawing.Point(957, 6);
+            this.panelSetup.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelSetup.Location = new System.Drawing.Point(0, 0);
             this.panelSetup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSetup.Name = "panelSetup";
-            this.panelSetup.Size = new System.Drawing.Size(103, 371);
-            this.panelSetup.TabIndex = 2;
+            this.panelSetup.Size = new System.Drawing.Size(106, 720);
+            this.panelSetup.TabIndex = 3;
+            // 
+            // panelFunctions
+            // 
+            this.panelFunctions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelFunctions.Controls.Add(this.label2);
+            this.panelFunctions.Controls.Add(this.btnMute);
+            this.panelFunctions.Controls.Add(this.btnMonitorRadio);
+            this.panelFunctions.Controls.Add(this.btnMonitorTrainee);
+            this.panelFunctions.Controls.Add(this.btnClassBroadcast);
+            this.panelFunctions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelFunctions.Location = new System.Drawing.Point(0, 366);
+            this.panelFunctions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelFunctions.Name = "panelFunctions";
+            this.panelFunctions.Size = new System.Drawing.Size(104, 352);
+            this.panelFunctions.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 22);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Functions";
+            // 
+            // btnMute
+            // 
+            this.btnMute.BackColor = System.Drawing.Color.DimGray;
+            this.btnMute.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMute.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnMute.Location = new System.Drawing.Point(3, 272);
+            this.btnMute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMute.Name = "btnMute";
+            this.btnMute.Size = new System.Drawing.Size(96, 80);
+            this.btnMute.TabIndex = 4;
+            this.btnMute.Text = "Mute   radio";
+            this.btnMute.UseVisualStyleBackColor = false;
+            this.btnMute.Click += new System.EventHandler(this.btnMute_Click);
+            // 
+            // btnMonitorRadio
+            // 
+            this.btnMonitorRadio.BackColor = System.Drawing.Color.DimGray;
+            this.btnMonitorRadio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorRadio.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnMonitorRadio.Location = new System.Drawing.Point(3, 190);
+            this.btnMonitorRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMonitorRadio.Name = "btnMonitorRadio";
+            this.btnMonitorRadio.Size = new System.Drawing.Size(96, 80);
+            this.btnMonitorRadio.TabIndex = 3;
+            this.btnMonitorRadio.Text = "Monitor radio";
+            this.btnMonitorRadio.UseVisualStyleBackColor = false;
+            this.btnMonitorRadio.Click += new System.EventHandler(this.btnMonitorRadio_Click);
+            // 
+            // btnMonitorTrainee
+            // 
+            this.btnMonitorTrainee.BackColor = System.Drawing.Color.DimGray;
+            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorTrainee.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 106);
+            this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMonitorTrainee.Name = "btnMonitorTrainee";
+            this.btnMonitorTrainee.Size = new System.Drawing.Size(96, 80);
+            this.btnMonitorTrainee.TabIndex = 2;
+            this.btnMonitorTrainee.Text = "Monitor trainee";
+            this.btnMonitorTrainee.UseVisualStyleBackColor = false;
+            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
+            // 
+            // btnClassBroadcast
+            // 
+            this.btnClassBroadcast.BackColor = System.Drawing.Color.DimGray;
+            this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClassBroadcast.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
+            this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClassBroadcast.Name = "btnClassBroadcast";
+            this.btnClassBroadcast.Size = new System.Drawing.Size(96, 80);
+            this.btnClassBroadcast.TabIndex = 1;
+            this.btnClassBroadcast.Text = "Class b/cast";
+            this.btnClassBroadcast.UseVisualStyleBackColor = false;
+            this.btnClassBroadcast.Click += new System.EventHandler(this.btnClassBroadcast_Click);
             // 
             // lblSetup
             // 
@@ -1478,95 +1564,19 @@
             this.btnRoles.UseVisualStyleBackColor = false;
             this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.DimGray;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnIL);
-            this.panel2.Location = new System.Drawing.Point(3, 658);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(167, 77);
-            this.panel2.TabIndex = 8;
-            // 
-            // btnIL
-            // 
-            this.btnIL.BackColor = System.Drawing.Color.SkyBlue;
-            this.btnIL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnIL.ImageList = this.imageListStatus;
-            this.btnIL.Location = new System.Drawing.Point(8, 0);
-            this.btnIL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnIL.Name = "btnIL";
-            this.btnIL.Size = new System.Drawing.Size(155, 74);
-            this.btnIL.TabIndex = 10;
-            this.btnIL.Text = "Il";
-            this.btnIL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIL.UseVisualStyleBackColor = false;
-            // 
-            // panelAssist
-            // 
-            this.panelAssist.BackColor = System.Drawing.Color.DimGray;
-            this.panelAssist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelAssist.Controls.Add(this.btnAssist);
-            this.panelAssist.Controls.Add(this.btnIntercom);
-            this.panelAssist.Location = new System.Drawing.Point(175, 660);
-            this.panelAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panelAssist.Name = "panelAssist";
-            this.panelAssist.Size = new System.Drawing.Size(231, 75);
-            this.panelAssist.TabIndex = 9;
-            // 
-            // btnAssist
-            // 
-            this.btnAssist.BackColor = System.Drawing.Color.SkyBlue;
-            this.btnAssist.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssist.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnAssist.ImageIndex = 0;
-            this.btnAssist.ImageList = this.imageListStatus;
-            this.btnAssist.Location = new System.Drawing.Point(123, -1);
-            this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAssist.Name = "btnAssist";
-            this.btnAssist.Size = new System.Drawing.Size(105, 74);
-            this.btnAssist.TabIndex = 20;
-            this.btnAssist.Text = "Assist";
-            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAssist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAssist.UseVisualStyleBackColor = false;
-            // 
-            // btnIntercom
-            // 
-            this.btnIntercom.BackColor = System.Drawing.Color.SkyBlue;
-            this.btnIntercom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIntercom.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnIntercom.ImageList = this.imageListStatus;
-            this.btnIntercom.Location = new System.Drawing.Point(3, -2);
-            this.btnIntercom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnIntercom.Name = "btnIntercom";
-            this.btnIntercom.Size = new System.Drawing.Size(115, 74);
-            this.btnIntercom.TabIndex = 10;
-            this.btnIntercom.Text = "Intercom";
-            this.btnIntercom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnIntercom.UseVisualStyleBackColor = false;
-            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1065, 775);
+            this.Controls.Add(this.panelRightDock);
             this.Controls.Add(this.panelAssist);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelRadios);
             this.Controls.Add(this.panelRoles);
             this.Controls.Add(this.panelTrainees);
-            this.Controls.Add(this.panelFunctions);
             this.Controls.Add(this.panelExercises);
-            this.Controls.Add(this.panelSetup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -1583,24 +1593,20 @@
             this.panelRoles.PerformLayout();
             this.panelTrainees.ResumeLayout(false);
             this.panelTrainees.PerformLayout();
-            this.panelFunctions.ResumeLayout(false);
-            this.panelFunctions.PerformLayout();
             this.panelExercises.ResumeLayout(false);
             this.panelExercises.PerformLayout();
-            this.panelSetup.ResumeLayout(false);
-            this.panelSetup.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panelAssist.ResumeLayout(false);
+            this.panelRightDock.ResumeLayout(false);
+            this.panelSetup.ResumeLayout(false);
+            this.panelSetup.PerformLayout();
+            this.panelFunctions.ResumeLayout(false);
+            this.panelFunctions.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelSetup;
-        private System.Windows.Forms.Button btnAudio;
-        private System.Windows.Forms.Button btnRadios;
-        private System.Windows.Forms.Button btnTrainees;
-        private System.Windows.Forms.Button btnRoles;
         private System.Windows.Forms.Panel panelExercises;
         private System.Windows.Forms.Button btnExersise08;
         private System.Windows.Forms.Button btnExersise07;
@@ -1610,14 +1616,7 @@
         private System.Windows.Forms.Button btnExersise03;
         private System.Windows.Forms.Button btnExersise02;
         private System.Windows.Forms.Button btnExersise01;
-        private System.Windows.Forms.Panel panelFunctions;
-        private System.Windows.Forms.Button btnMute;
-        private System.Windows.Forms.Button btnMonitorRadio;
-        private System.Windows.Forms.Button btnMonitorTrainee;
-        private System.Windows.Forms.Button btnClassBroadcast;
         private System.Windows.Forms.Label lblExercises;
-        private System.Windows.Forms.Label lblSetup;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelTrainees;
         private System.Windows.Forms.Button btnTraineeSS;
         private System.Windows.Forms.Button btnTraineePP;
@@ -1688,5 +1687,18 @@
         private System.Windows.Forms.Panel panelAssist;
         private System.Windows.Forms.Button btnAssist;
         private System.Windows.Forms.Button btnIntercom;
+        private System.Windows.Forms.Panel panelRightDock;
+        private System.Windows.Forms.Panel panelSetup;
+        private System.Windows.Forms.Panel panelFunctions;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnMute;
+        private System.Windows.Forms.Button btnMonitorRadio;
+        private System.Windows.Forms.Button btnMonitorTrainee;
+        private System.Windows.Forms.Button btnClassBroadcast;
+        private System.Windows.Forms.Label lblSetup;
+        private System.Windows.Forms.Button btnAudio;
+        private System.Windows.Forms.Button btnRadios;
+        private System.Windows.Forms.Button btnTrainees;
+        private System.Windows.Forms.Button btnRoles;
     }
 }

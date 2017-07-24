@@ -15,8 +15,20 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
+        "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0C0AF993E6F1916671961C8D353E038D"
         "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0C0AF993E6F1916671961C8D353E038D"
+        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,8 +111,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F80768F7455045908AC132B2F53D5395"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,6 +232,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -238,6 +270,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0828E2225BB8137CDED71FC9B4C952F7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:PJSUA2Implementation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0828E2225BB8137CDED71FC9B4C952F7"
+                    {
+                    "Name" = "8:PJSUA2Implementation.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:PJSUA2Implementation.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C0BDF0CDA3A041AD8B6AF9A5E541F726"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0C0AF993E6F1916671961C8D353E038D"
             {
             "AssemblyRegister" = "3:2"
@@ -506,6 +569,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F80768F7455045908AC132B2F53D5395"
+            {
+            "SourcePath" = "8:..\\UNET_Service\\Marine.ico"
+            "TargetName" = "8:Marine.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_C0BDF0CDA3A041AD8B6AF9A5E541F726"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -562,15 +645,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
-        "ProductCode" = "8:{59A718DA-D6EF-4B94-BE68-372E0287A1D8}"
-        "PackageCode" = "8:{87873F31-CF8F-4CA4-BDEA-D7431DD2AA28}"
+        "ProductCode" = "8:{A0DB3BC0-27BD-47F4-93B9-FE6ADE8FC862}"
+        "PackageCode" = "8:{C1248217-7128-4768-A30D-31514EB773B9}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.1"
+        "ProductVersion" = "8:0.0.2"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -580,7 +663,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:UNET Instructor"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_F80768F7455045908AC132B2F53D5395"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -685,7 +768,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D8F43186CFFC4093AA26E34243E6D5E3"
             {
-            "Name" = "8:UNET_Trainer_Instructor"
+            "Name" = "8:UNET Trainer Instructor"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -694,7 +777,7 @@
             "Target" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
             "Folder" = "8:_F252F2E07C234FC3A6F47674ECCCCBB2"
             "WorkingFolder" = "8:_C0BDF0CDA3A041AD8B6AF9A5E541F726"
-            "Icon" = "8:"
+            "Icon" = "8:_F80768F7455045908AC132B2F53D5395"
             "Feature" = "8:"
             }
         }

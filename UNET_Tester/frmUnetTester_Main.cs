@@ -376,5 +376,15 @@ namespace UNET_Tester
                 // throw;
             }
         }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            comboBox1_SelectedValueChanged(sender, e);
+            cbxInstructor_SelectedValueChanged(sender, e);
+            cbxRadios_SelectedValueChanged(sender, e);
+            cbxRole_SelectedValueChanged(sender, e);
+            cbxTrainee_SelectedValueChanged(sender, e);
+            
+        }
     }
 }
