@@ -172,7 +172,7 @@ namespace UNET_Tester
                     elist.Add(exe);
                 }
          
-         //       service.SetExercises(elist);
+                service.SetExercises(elist.ToArray());
 
                  //     GetUNETStatus();
 
@@ -250,11 +250,20 @@ namespace UNET_Tester
                 {
                     service.Open();
                 }
-                  service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
 
-        
 
-                //         GetUNETStatus();
+                // service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
+                List<Role> elist = new List<Role>();
+                for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
+                {
+                    Role exe = new Role();
+                    exe.ID = i;
+                    exe.Name = "Testrole-" + i.ToString("00");
+                    elist.Add(exe);
+                }
+
+                service.SetRoles(elist.ToArray());
+
 
             }
             catch (Exception ex)

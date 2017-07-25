@@ -364,6 +364,12 @@ namespace UNET_Service
             return result;
         }
 
+
+        /// <summary>
+        /// add mock exercises to the singleton
+        /// </summary>
+        /// <param name="_count"></param>
+        /// <returns></returns>
         public bool SetExerciseCount(int _count)
         {
             bool result = true;
@@ -420,14 +426,10 @@ namespace UNET_Service
                 //first clear the array
                 singleton.Exercises.Clear();
 
-
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_exercises.Count-1); i++)
+                foreach(UNET_Classes.Exercise exercise in _exercises)
                 {
-                    Exercise exercise = new Exercise();
-                    exercise.Number = i;
-                    exercise.SpecificationName = string.Format("Exercise_{0}", i);
-                    singleton.Exercises.Add(exercise);
+                      singleton.Exercises.Add(exercise);
+
                 }
 
                 result = true;
@@ -505,6 +507,11 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// add mock trainees to the singleton
+        /// </summary>
+        /// <param name="_count"></param>
+        /// <returns></returns>
         public bool SetTraineesCount(int _count)
         {
             bool result = true;
@@ -516,7 +523,7 @@ namespace UNET_Service
 
 
                 //and create a number of Trainees
-                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 1; i <= Convert.ToInt16(_count); i++)
                 {
                     Trainee  trainee = new Trainee();
                     trainee.ID = i;
@@ -536,6 +543,11 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// add mock radios to the singleton
+        /// </summary>
+        /// <param name="_count"></param>
+        /// <returns></returns>
         public bool SetRadiosCount(int _count)
         {
             bool result = true;
@@ -547,7 +559,7 @@ namespace UNET_Service
 
 
                 //and create a number of Radios
-                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 1; i <= Convert.ToInt16(_count); i++)
                 {
                     Radio radio = new Radio();
                     radio.ID = i;
@@ -567,7 +579,11 @@ namespace UNET_Service
             return result;
         }
 
-
+        /// <summary>
+        /// add mock roles to the singleton
+        /// </summary>
+        /// <param name="_count"></param>
+        /// <returns></returns>
         public bool SetRolesCount(int _count)
         {
             bool result = true;
@@ -579,7 +595,7 @@ namespace UNET_Service
 
 
                 //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 1; i <= Convert.ToInt16(_count); i++)
                 {
                     Role role = new Role();
                     role.ID = i;
@@ -599,7 +615,7 @@ namespace UNET_Service
             return result;
         }
 
-        public bool SetRoles(List<Role>  _role)
+        public bool SetRoles(List<Role> _role)
         {
             bool result = true;
             try
@@ -608,13 +624,8 @@ namespace UNET_Service
                 //first clear the array
                 singleton.Roles.Clear();
 
-
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_role.Count - 1); i++)
+                foreach (UNET_Classes.Role role in _role)
                 {
-                    Role role = new Role();
-                    role.ID = i;
-                    role.Name = string.Format("Role{0}", i);
                     singleton.Roles.Add(role);
                 }
 
@@ -673,14 +684,12 @@ namespace UNET_Service
                 singleton.Radios.Clear();
 
 
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_radio.Count - 1); i++)
+
+                foreach (UNET_Classes.Radio radio in _radio)
                 {
-                    Radio radio = new Radio();
-                    radio.ID = i;
-                    radio.Description = string.Format("Radio{0}", i);
                     singleton.Radios.Add(radio);
                 }
+
 
 
                 result = true;
@@ -705,15 +714,10 @@ namespace UNET_Service
                 singleton.Instructors.Clear();
 
 
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_instructor.Count - 1); i++)
+                foreach (UNET_Classes.Instructor instructor in _instructor)
                 {
-                    Instructor instructor = new Instructor();
-                    instructor.ID = i;
-                    instructor.Name = string.Format("Instructor{0}", i);
                     singleton.Instructors.Add(instructor);
                 }
-
 
                 result = true;
             }
@@ -726,6 +730,11 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// this function adds mock instructors to the singleton list
+        /// </summary>
+        /// <param name="_count"></param>
+        /// <returns></returns>
         public bool SetInstructorsCount(int _count)
         {
             bool result = true;
@@ -737,7 +746,7 @@ namespace UNET_Service
 
 
                 //and create a number of Trainees
-                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
+                for (int i = 1; i <= Convert.ToInt16(_count); i++)
                 {
                     Instructor instructor = new Instructor();
                     instructor.ID = i;
@@ -768,14 +777,11 @@ namespace UNET_Service
                 singleton.Trainees.Clear();
 
 
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_trainee.Count - 1); i++)
+                foreach (UNET_Classes.Trainee trainee in _trainee)
                 {
-                    Trainee trainee = new Trainee();
-                    trainee.ID = i;
-                    trainee.Name = string.Format("Trainee{0}", i);
                     singleton.Trainees.Add(trainee);
                 }
+
 
 
                 result = true;
@@ -789,7 +795,11 @@ namespace UNET_Service
             return result;
         }
 
-
+        /// <summary>
+        /// add mock platforms to the singleton
+        /// </summary>
+        /// <param name="_platform"></param>
+        /// <returns></returns>
         public bool SetPlatforms(List<Platform>  _platform)
         {
             bool result = true;

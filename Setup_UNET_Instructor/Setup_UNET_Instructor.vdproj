@@ -22,13 +22,13 @@
         "Entry"
         {
         "MsmKey" = "8:_0C0AF993E6F1916671961C8D353E038D"
-        "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
+        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_0C0AF993E6F1916671961C8D353E038D"
-        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
+        "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,12 +124,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_94BC65CE6BD4F718E7E197914543D436"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -149,6 +143,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_0FE227CDA1D6148848E4A524A5CB04EE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0828E2225BB8137CDED71FC9B4C952F7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -645,15 +645,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
-        "ProductCode" = "8:{A0DB3BC0-27BD-47F4-93B9-FE6ADE8FC862}"
-        "PackageCode" = "8:{8913A2D7-4E94-43D9-A766-3E8E96B2BB9E}"
+        "ProductCode" = "8:{2F95F873-DAE5-4E77-A1FF-92F993213BCB}"
+        "PackageCode" = "8:{D460762B-71CA-4DFA-B5FD-1E9E56E2B516}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.2"
+        "ProductVersion" = "8:0.0.4"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

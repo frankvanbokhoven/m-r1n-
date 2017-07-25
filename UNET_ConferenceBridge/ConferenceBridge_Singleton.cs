@@ -14,7 +14,7 @@ namespace UNET_ConferenceBridge
         private static readonly object syncRoot = new object();
         private ConferenceBridge_Singleton() { }
 
-        //public List<Exercise> Exercises = new List<Exercise>();
+        public List<Exercise> Exercises = new List<Exercise>();
         public List<Role> Roles = new List<Role>();
         public List<UNET_Classes.Radio> Radios = new List<UNET_Classes.Radio>();
         //public List<Instructor> Instructors = new List<Instructor>();

@@ -43,25 +43,24 @@ namespace UNET_Trainer
             // Display the form in the center of the screen.
             // this.StartPosition = FormStartPosition.Manual
             SetFormSizeAndPosition();
-
-
-            // //Set the general colors of the unettrainer
-            // switch (ConfigurationManager.AppSettings["Theme"].ToString())
-            // { 
-            //     case "dark": { Theme = UNETTheme.utDark; break; }
-            //     case "light": { Theme = UNETTheme.utLight; break; }
-            //     case "blue": { Theme = UNETTheme.utBlue; break; }
-            //     default: { Theme = UNETTheme.utDark; break; }
-            // }
             SetTheme(Theme, this);
         }
 
         /// <summary>
-        /// Set the colors of the
+        /// Set the general colors of the unettrainer          
         /// </summary>
         /// <param name="_theme"></param>
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
+            switch (ConfigurationManager.AppSettings["Theme"].ToString())
+            {
+                case "dark": { Theme = UNETTheme.utDark; break; }
+                case "light": { Theme = UNETTheme.utLight; break; }
+                case "blue": { Theme = UNETTheme.utBlue; break; }
+                default: { Theme = UNETTheme.utDark; break; }
+            }
+            //todo: deze theme ook daadwerkelijk hieronder andere kleuren maken
+
             //we willen de parent ZELF ook themen als het een form is..
             if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
             {
@@ -128,11 +127,17 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Color.DeepSkyBlue;
                     }
 
-                    //   else
-                    //   {
-                    //       ((Button)ctrl).ForeColor = Color.White;
-                    //       ((Button)ctrl).BackColor = Color.DimGray;
-                    //   }
+                    //if (((Button)ctrl).Name.ToLower().Contains("il") ||
+                    //    ((Button)ctrl).Name.ToLower().Contains("intercom") ||
+                    //    ((Button)ctrl).Name.ToLower().Contains("assist") ||
+                    //        ((Button)ctrl).Name.ToLower().Contains("main page") ||
+                    //        ((Button)ctrl).Name.ToLower().Contains("service request") ||
+                    //        ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
+                    //{
+                    //    ((Button)ctrl).ForeColor = Color.Black;
+                    //    ((Button)ctrl).BackColor = Color.Gray;
+                    //}
+
                 }
                 SetTheme(_theme, ctrl);
             }

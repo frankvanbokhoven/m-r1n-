@@ -66,10 +66,17 @@
             "1013",
             "1014",
             "1015",
-            "1016"});
+            "1016",
+            "INTERCOM_CUB_X",
+            "I_ESL_SET_NOISE_LEVEL",
+            "RIGHTConference_Pos02",
+            "LEFTConference_Pos01",
+            "RIGHTConference_Pos01",
+            "LEFTConference_Pos02",
+            "RIGHTConference_Pos02"});
             this.cbxAccount.Location = new System.Drawing.Point(118, 22);
             this.cbxAccount.Name = "cbxAccount";
-            this.cbxAccount.Size = new System.Drawing.Size(139, 28);
+            this.cbxAccount.Size = new System.Drawing.Size(254, 28);
             this.cbxAccount.TabIndex = 4;
             // 
             // btnCall

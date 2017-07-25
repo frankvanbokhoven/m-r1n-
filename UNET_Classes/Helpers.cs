@@ -34,7 +34,7 @@ namespace UNET_Classes
                 int squareroot = Convert.ToInt16(Math.Sqrt(_numberOfButtons)) + 1; //rond dit getal naar beneden af
                 int squaresize = _panel.Width / squareroot;
                 int controlindex = 0;
-                int buttonstop = 22;
+                int buttonstop = 25;
                 int verttotal = 0;
                 int buttonleft = 0;
 
@@ -103,14 +103,14 @@ namespace UNET_Classes
 
                     }
                     //daarna bereken de beschikbare verticale ruimte; 
-                    int buttonheight = Convert.ToInt16((_panel.Height - 22) / _numberOfButtons);
+                    int buttonheight = Convert.ToInt16((_panel.Height - 25) / _numberOfButtons);
                     int buttonstop = 0;
 
                     //bouw dan de grid op..
                     foreach(var but in _panel.Controls.OfType<Button>().Where(t => t.Enabled).OrderBy(x => x.Name))
                     {
                         ((Button)(but)).Visible = true;
-                        ((Button)(but)).Top = buttonstop + 22;
+                        ((Button)(but)).Top = buttonstop + 25;
                         ((Button)(but)).Left = 2;
                         ((Button)(but)).Width = _panel.Width - 4;
                         ((Button)(but)).Height = buttonheight - 2;

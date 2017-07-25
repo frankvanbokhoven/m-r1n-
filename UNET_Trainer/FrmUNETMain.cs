@@ -162,21 +162,16 @@ namespace UNET_Trainer
                 var resultlist = service.GetExercises();
                 List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
 
-                btnExersise01.Enabled = lst.Count >= 1;
-                btnExersise02.Enabled = lst.Count >= 2;
-                btnExersise03.Enabled = lst.Count >= 3;
-                btnExersise04.Enabled = lst.Count >= 4;
-                btnExersise05.Enabled = lst.Count >= 5;
-                btnExersise06.Enabled = lst.Count >= 6;
-                btnExersise07.Enabled = lst.Count >= 7;
-                btnExersise08.Enabled = lst.Count >= 8;
-
+                foreach (UNET_Classes.Exercise exercise in lst)
+                {
+                   panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
+                }
+        
                 foreach(UNET_Classes.Exercise exercise in lst)
                 {
                    btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
   
-                }
-                 
+                }                 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 
@@ -184,27 +179,31 @@ namespace UNET_Trainer
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
-            
-                btnRole1.Enabled = lstrole.Count >= 1;
-                btnRole2.Enabled = lstrole.Count >= 2;
-                btnRole3.Enabled = lstrole.Count >= 3;
-                btnRole4.Enabled = lstrole.Count >= 4;
-                btnRole5.Enabled = lstrole.Count >= 5;
-                btnRole6.Enabled = lstrole.Count >= 6;
-                btnRole7.Enabled = lstrole.Count >= 7;
-                btnRole8.Enabled = lstrole.Count >= 8;
-                btnRole9.Enabled = lstrole.Count >= 9;
-                btnRole10.Enabled = lstrole.Count >= 10;
-                btnRole11.Enabled = lstrole.Count >= 11;
-                btnRole12.Enabled = lstrole.Count >= 12;
-                btnRole13.Enabled = lstrole.Count >= 13;
-                btnRole14.Enabled = lstrole.Count >= 14;
-                btnRole15.Enabled = lstrole.Count >= 15;
-                btnRole16.Enabled = lstrole.Count >= 16;
-                btnRole17.Enabled = lstrole.Count >= 17;
-                btnRole18.Enabled = lstrole.Count >= 18;
-                btnRole19.Enabled = lstrole.Count >= 19;
-                btnRole20.Enabled = lstrole.Count >= 20;
+                foreach (UNET_Classes.Role role in lstrole)
+                {
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                }
+
+                //btnRole1.Enabled = lstrole.Count >= 1;
+                //btnRole2.Enabled = lstrole.Count >= 2;
+                //btnRole3.Enabled = lstrole.Count >= 3;
+                //btnRole4.Enabled = lstrole.Count >= 4;
+                //btnRole5.Enabled = lstrole.Count >= 5;
+                //btnRole6.Enabled = lstrole.Count >= 6;
+                //btnRole7.Enabled = lstrole.Count >= 7;
+                //btnRole8.Enabled = lstrole.Count >= 8;
+                //btnRole9.Enabled = lstrole.Count >= 9;
+                //btnRole10.Enabled = lstrole.Count >= 10;
+                //btnRole11.Enabled = lstrole.Count >= 11;
+                //btnRole12.Enabled = lstrole.Count >= 12;
+                //btnRole13.Enabled = lstrole.Count >= 13;
+                //btnRole14.Enabled = lstrole.Count >= 14;
+                //btnRole15.Enabled = lstrole.Count >= 15;
+                //btnRole16.Enabled = lstrole.Count >= 16;
+                //btnRole17.Enabled = lstrole.Count >= 17;
+                //btnRole18.Enabled = lstrole.Count >= 18;
+                //btnRole19.Enabled = lstrole.Count >= 19;
+                //btnRole20.Enabled = lstrole.Count >= 20;
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
 
