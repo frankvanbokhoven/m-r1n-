@@ -53,7 +53,6 @@ namespace UNET_Classes
                         ((Button)(but)).Left = buttonleft;
                         ((Button)(but)).Width = squaresize;
                         ((Button)(but)).Height = squaresize;
-                        //  ((Button)(_panel.Controls[controlindex])).Enabled = true;
                         verttotal += ((Button)(but)).Height;
                         buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
 

@@ -170,11 +170,9 @@ namespace UNET_Trainer
                 foreach(UNET_Classes.Exercise exercise in lst)
                 {
                    btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
-  
                 }                 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
-
 
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
@@ -183,55 +181,18 @@ namespace UNET_Trainer
                 {
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                 }
-
-                //btnRole1.Enabled = lstrole.Count >= 1;
-                //btnRole2.Enabled = lstrole.Count >= 2;
-                //btnRole3.Enabled = lstrole.Count >= 3;
-                //btnRole4.Enabled = lstrole.Count >= 4;
-                //btnRole5.Enabled = lstrole.Count >= 5;
-                //btnRole6.Enabled = lstrole.Count >= 6;
-                //btnRole7.Enabled = lstrole.Count >= 7;
-                //btnRole8.Enabled = lstrole.Count >= 8;
-                //btnRole9.Enabled = lstrole.Count >= 9;
-                //btnRole10.Enabled = lstrole.Count >= 10;
-                //btnRole11.Enabled = lstrole.Count >= 11;
-                //btnRole12.Enabled = lstrole.Count >= 12;
-                //btnRole13.Enabled = lstrole.Count >= 13;
-                //btnRole14.Enabled = lstrole.Count >= 14;
-                //btnRole15.Enabled = lstrole.Count >= 15;
-                //btnRole16.Enabled = lstrole.Count >= 16;
-                //btnRole17.Enabled = lstrole.Count >= 17;
-                //btnRole18.Enabled = lstrole.Count >= 18;
-                //btnRole19.Enabled = lstrole.Count >= 19;
-                //btnRole20.Enabled = lstrole.Count >= 20;
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
 
                 //enable the Roles buttons
                 var radiolist = service.GetRadios();
                 List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                foreach (UNET_Classes.Radio radio in lstRadio)
+                {
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                }
 
-                btnRadio01.Enabled = lstRadio.Count >= 1;
-                btnRadio02.Enabled = lstRadio.Count >= 2;
-                btnRadio03.Enabled = lstRadio.Count >= 3;
-                btnRadio04.Enabled = lstRadio.Count >= 4;
-                btnRadio05.Enabled = lstRadio.Count >= 5;
-                btnRadio06.Enabled = lstRadio.Count >= 6;
-                btnRadio07.Enabled = lstRadio.Count >= 7;
-                btnRadio08.Enabled = lstRadio.Count >= 8;
-                btnRadio09.Enabled = lstRadio.Count >= 9;
-                btnRadio10.Enabled = lstRadio.Count >= 10;
-                btnRadio11.Enabled = lstRadio.Count >= 11;
-                btnRadio12.Enabled = lstRadio.Count >= 12;
-                btnRadio13.Enabled = lstRadio.Count >= 13;
-                btnRadio14.Enabled = lstRadio.Count >= 14;
-                btnRadio15.Enabled = lstRadio.Count >= 15;
-                btnRadio16.Enabled = lstRadio.Count >= 16;
-                btnRadio17.Enabled = lstRadio.Count >= 17;
-                btnRadio18.Enabled = lstRadio.Count >= 18;
-                btnRadio19.Enabled = lstRadio.Count >= 19;
-                btnRadio20.Enabled = lstRadio.Count >= 20;
-                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
+                 UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 //enable the Roles buttons
                 var traineelist = service.GetTrainees();

@@ -38,6 +38,8 @@
             this.timerSIPMessages = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCallstackCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +47,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblCallstackCount);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cbxAccount);
             this.panel1.Controls.Add(this.btnCall);
             this.panel1.Controls.Add(this.btnAnswer);
@@ -64,16 +68,13 @@
             "1001",
             "1003",
             "1013",
-            "1014",
-            "1015",
-            "1016",
             "INTERCOM_CUB_X",
             "I_ESL_SET_NOISE_LEVEL",
             "RIGHTConference_Pos02",
-            "LEFTConference_Pos01",
-            "RIGHTConference_Pos01",
-            "LEFTConference_Pos02",
-            "RIGHTConference_Pos02"});
+            "LEFTConference_Pos01001",
+            "RIGHTConference_Pos01001",
+            "LEFTConference_Pos01002",
+            "RIGHTConference_Pos01002"});
             this.cbxAccount.Location = new System.Drawing.Point(118, 22);
             this.cbxAccount.Name = "cbxAccount";
             this.cbxAccount.Size = new System.Drawing.Size(254, 28);
@@ -151,6 +152,26 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(494, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Callstack count:";
+            // 
+            // lblCallstackCount
+            // 
+            this.lblCallstackCount.AutoSize = true;
+            this.lblCallstackCount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCallstackCount.Location = new System.Drawing.Point(642, 139);
+            this.lblCallstackCount.Name = "lblCallstackCount";
+            this.lblCallstackCount.Size = new System.Drawing.Size(28, 22);
+            this.lblCallstackCount.TabIndex = 6;
+            this.lblCallstackCount.Text = "...";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -165,6 +186,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -182,6 +204,8 @@
         private System.Windows.Forms.Timer timerSIPMessages;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Label lblCallstackCount;
+        private System.Windows.Forms.Label label1;
     }
 }
 

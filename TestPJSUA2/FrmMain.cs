@@ -18,9 +18,12 @@ namespace TestPJSUA2Mark
 
         private Classes.ConsoleCatcher cc;
         private SIP.UserAgent useragent;
-         //  private Boolean Muted = false;
+        //  private Boolean Muted = false;
         //  private Boolean MonitorTrainee = false;
         //  private Boolean MonitorRadio = false;
+        private const string cOphangen = "Ophangen";
+        private const string cOpnemen = "Opnemen";
+        private List<SIP.SIPCall> CallStack = new List<SIP.SIPCall>();
         public int TraineeID = 1;
 
         public FrmMain()
@@ -77,19 +80,32 @@ namespace TestPJSUA2Mark
             {
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.LimeGreen;
-                btnAnswer.Text = "Opnemen";
+                btnAnswer.Text = cOpnemen;
             }
 
             if (_text.ToLower().Contains("answered"))
             {
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.Red;
-                btnAnswer.Text = "Ophangen";
+                btnAnswer.Text = cOphangen;
+            }
+
+            if (_text.ToLower().Contains("hangup"))
+            {
+                btnAnswer.Visible = false;
+                btnAnswer.BackColor = Color.LimeGreen;
+                btnAnswer.Text = cOpnemen;
             }
 
             if (_text.ToLower().Contains("account:"))
             {
                 toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf("Account:"));
+            }
+
+
+            if (_text.ToLower().Contains("register:"))
+            {
+                toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf(":"));
             }
 
         }
@@ -116,6 +132,9 @@ namespace TestPJSUA2Mark
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
+                    //if it is successfully made, we can add it to the callstack
+                    CallStack.Add(sc);
+                    lblCallstackCount.Text = CallStack.Count.ToString();
                     AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
                 }
                 catch (Exception ex)
@@ -138,6 +157,7 @@ namespace TestPJSUA2Mark
             ////     consoleWriter.WriteEvent += consoleWriter_WriteEvent;
             //     Console.SetOut(consoleWriter);
             // }
+            lblCallstackCount.Text = CallStack.Count.ToString();
 
             btnAnswer.Visible = false;
 
@@ -186,7 +206,31 @@ namespace TestPJSUA2Mark
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-                    AddToListbox("Answering call: " + cbxAccount.Text);
+            if(btnAnswer.Text.ToLower().Contains("ophangen"))
+            {
+                AddToListbox("Hanging up the call: " + cbxAccount.Text);
+                try
+                {
+                    string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    CallOpParam cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    sc.hangup(cop);
+                    CallStack.Remove(sc);
+                    lblCallstackCount.Text = CallStack.Count.ToString();
+                    AddToListbox(string.Format("Call hanged-up successfully: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
+                    btnAnswer.Text = cOpnemen;
+                }
+                catch (Exception ex)
+                {
+                    AddToListbox(("Error answering the call" + ex.Message));
+                    // throw;
+                }
+
+            }
+            else
+            {
+                   AddToListbox("Answering call: " + cbxAccount.Text);
                 try
                 {
                 string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
@@ -195,13 +239,20 @@ namespace TestPJSUA2Mark
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
+                    //if it is successfully made, we can add it to the callstack
+                    CallStack.Add(sc);
+                    lblCallstackCount.Text = CallStack.Count.ToString();
+
                     AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(),sipserver ));
+                    btnAnswer.Text = cOphangen;
                 }
                 catch (Exception ex)
                 {
                   AddToListbox(("Error answering the call" + ex.Message ));
                     // throw;
                 }
+            }
+ 
             }
     }
 }

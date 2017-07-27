@@ -102,7 +102,7 @@ namespace PJSUA2Implementation.SIP
             acfg.regConfig.registrarUri = sipserver;
             acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
             acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
+            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
             acfg.sipConfig.authCreds.Add(cred);
             acfg.regConfig.registerOnAdd = true;
             acfg.regConfig.dropCallsOnFail = true;
@@ -110,7 +110,7 @@ namespace PJSUA2Implementation.SIP
             StringVector proxy = acfg.sipConfig.proxies;
             proxy.Add(sipserver + ";transport=udp");
             acfg.sipConfig.proxies = proxy;
-            acfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, "1234")); //todo: was: push_back
+            acfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, ConfigurationManager.AppSettings["sipPassword"])); //todo: was: push_back
             // Create SIP account
             acc = new SipAccount();
             acc.create(acfg, true);

@@ -101,7 +101,7 @@ namespace TestPJSUA2Mark.SIP
             acfg.regConfig.registrarUri = sipserver;
             acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
             acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, "1234");
+            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
             cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
             acfg.regConfig.registerOnAdd = true;
             acfg.regConfig.timeoutSec = 180;

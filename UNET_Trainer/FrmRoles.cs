@@ -74,33 +74,16 @@ namespace UNET_Trainer
                     service.Open();
                 }
 
-                //enable the Roles buttons
+
                 var rolelist = service.GetRoles();
-                List<UNET_Classes.Role> lstTrainee = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
-
-                btnRole1.Enabled = lstTrainee.Count >= 1;
-                btnRole2.Enabled = lstTrainee.Count >= 2;
-                btnRole3.Enabled = lstTrainee.Count >= 3;
-                btnRole4.Enabled = lstTrainee.Count >= 4;
-                btnRole5.Enabled = lstTrainee.Count >= 5;
-                btnRole6.Enabled = lstTrainee.Count >= 6;
-                btnRole7.Enabled = lstTrainee.Count >= 7;
-                btnRole8.Enabled = lstTrainee.Count >= 8;
-                btnRole9.Enabled = lstTrainee.Count >= 9;
-                btnRole10.Enabled = lstTrainee.Count >= 10;
-                btnRole11.Enabled = lstTrainee.Count >= 11;
-                btnRole12.Enabled = lstTrainee.Count >= 12;
-                btnRole13.Enabled = lstTrainee.Count >= 13;
-                btnRole14.Enabled = lstTrainee.Count >= 14;
-                btnRole15.Enabled = lstTrainee.Count >= 15;
-                btnRole16.Enabled = lstTrainee.Count >= 16;
-                btnRole17.Enabled = lstTrainee.Count >= 17;
-                btnRole18.Enabled = lstTrainee.Count >= 18;
-                btnRole19.Enabled = lstTrainee.Count >= 19;
-                btnRole20.Enabled = lstTrainee.Count >= 20;
-
+                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                foreach (UNET_Classes.Role role in lstrole)
+                {
+                    pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                }
+            
                 //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtons(pnlRoles, lstTrainee.Count, "role");
+                UNET_Classes.Helpers.ResizeButtons(pnlRoles, lstrole.Count, "role");
             }
             catch (Exception ex)
             {
