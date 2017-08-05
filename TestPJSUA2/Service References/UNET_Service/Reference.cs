@@ -15,7 +15,7 @@ namespace TestPJSUA2Mark.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Exercise", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Exercise", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Exercise : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,10 +23,19 @@ namespace TestPJSUA2Mark.UNET_Service {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ExerciseNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestPJSUA2Mark.UNET_Service.Role[] RolesAssignedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SpecificationNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestPJSUA2Mark.UNET_Service.Trainee[] TraineesAssignedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -35,6 +44,19 @@ namespace TestPJSUA2Mark.UNET_Service {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ExerciseName {
+            get {
+                return this.ExerciseNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExerciseNameField, value) != true)) {
+                    this.ExerciseNameField = value;
+                    this.RaisePropertyChanged("ExerciseName");
+                }
             }
         }
         
@@ -52,6 +74,19 @@ namespace TestPJSUA2Mark.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestPJSUA2Mark.UNET_Service.Role[] RolesAssigned {
+            get {
+                return this.RolesAssignedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesAssignedField, value) != true)) {
+                    this.RolesAssignedField = value;
+                    this.RaisePropertyChanged("RolesAssigned");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string SpecificationName {
             get {
                 return this.SpecificationNameField;
@@ -60,6 +95,19 @@ namespace TestPJSUA2Mark.UNET_Service {
                 if ((object.ReferenceEquals(this.SpecificationNameField, value) != true)) {
                     this.SpecificationNameField = value;
                     this.RaisePropertyChanged("SpecificationName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestPJSUA2Mark.UNET_Service.Trainee[] TraineesAssigned {
+            get {
+                return this.TraineesAssignedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TraineesAssignedField, value) != true)) {
+                    this.TraineesAssignedField = value;
+                    this.RaisePropertyChanged("TraineesAssigned");
                 }
             }
         }
@@ -76,7 +124,7 @@ namespace TestPJSUA2Mark.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Role", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Role : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -137,145 +185,7 @@ namespace TestPJSUA2Mark.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Radio", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Radio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NoiseLevelField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NoiseLevel {
-            get {
-                return this.NoiseLevelField;
-            }
-            set {
-                if ((this.NoiseLevelField.Equals(value) != true)) {
-                    this.NoiseLevelField = value;
-                    this.RaisePropertyChanged("NoiseLevel");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Instructor", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
-    [System.SerializableAttribute()]
-    public partial class Instructor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Trainee", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Trainee", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Trainee : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -336,7 +246,191 @@ namespace TestPJSUA2Mark.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Platform", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Radio", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
+    [System.SerializableAttribute()]
+    public partial class Radio : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NoiseLevelField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestPJSUA2Mark.UNET_Service.UNETRadioState StateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NoiseLevel {
+            get {
+                return this.NoiseLevelField;
+            }
+            set {
+                if ((this.NoiseLevelField.Equals(value) != true)) {
+                    this.NoiseLevelField = value;
+                    this.RaisePropertyChanged("NoiseLevel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestPJSUA2Mark.UNET_Service.UNETRadioState State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UNETRadioState", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
+    public enum UNETRadioState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsOff = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsRx = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        rsTx = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Instructor", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
+    [System.SerializableAttribute()]
+    public partial class Instructor : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestPJSUA2Mark.UNET_Service.Exercise[] ExercisesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestPJSUA2Mark.UNET_Service.Exercise[] Exercises {
+            get {
+                return this.ExercisesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ExercisesField, value) != true)) {
+                    this.ExercisesField = value;
+                    this.RaisePropertyChanged("Exercises");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Platform", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class Platform : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -397,7 +491,7 @@ namespace TestPJSUA2Mark.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service.Classes")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CurrentInfo", Namespace="http://schemas.datacontract.org/2004/07/UNET_Classes")]
     [System.SerializableAttribute()]
     public partial class CurrentInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -418,12 +512,6 @@ namespace TestPJSUA2Mark.UNET_Service {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlatformField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.Radio[] RadiosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.Role[] RolesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -500,32 +588,6 @@ namespace TestPJSUA2Mark.UNET_Service {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.Radio[] Radios {
-            get {
-                return this.RadiosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RadiosField, value) != true)) {
-                    this.RadiosField = value;
-                    this.RaisePropertyChanged("Radios");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.Role[] Roles {
-            get {
-                return this.RolesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
-                    this.RolesField = value;
-                    this.RaisePropertyChanged("Roles");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -564,6 +626,12 @@ namespace TestPJSUA2Mark.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
         System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Instructor[]> GetInstructorsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructorsCount", ReplyAction="http://tempuri.org/IService1/SetInstructorsCountResponse")]
+        bool SetInstructorsCount(int _count);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructorsCount", ReplyAction="http://tempuri.org/IService1/SetInstructorsCountResponse")]
+        System.Threading.Tasks.Task<bool> SetInstructorsCountAsync(int _count);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
         TestPJSUA2Mark.UNET_Service.Trainee[] GetTrainees();
         
@@ -600,6 +668,36 @@ namespace TestPJSUA2Mark.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
+        bool SetNoiseLevelChanged(int _radioId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
+        System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        bool SetNoiseLevel(int _radioID, int _noiselevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelChangedResponse")]
+        bool GetNoiseLevelChanged();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelChangedResponse")]
+        System.Threading.Tasks.Task<bool> GetNoiseLevelChangedAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevel", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelResponse")]
+        int GetNoiseLevel(int _radioID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevel", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelResponse")]
+        System.Threading.Tasks.Task<int> GetNoiseLevelAsync(int _radioID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
         string GetSIPStatusMessage(string _id);
         
@@ -611,6 +709,12 @@ namespace TestPJSUA2Mark.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
         System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        bool ClearStatusMessages(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
+        System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
         bool RegisterTrainee(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo);
@@ -647,6 +751,12 @@ namespace TestPJSUA2Mark.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
         System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2Mark.UNET_Service.Radio[] _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        bool SetRadioStatus(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
@@ -738,6 +848,14 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.GetInstructorsAsync();
         }
         
+        public bool SetInstructorsCount(int _count) {
+            return base.Channel.SetInstructorsCount(_count);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetInstructorsCountAsync(int _count) {
+            return base.Channel.SetInstructorsCountAsync(_count);
+        }
+        
         public TestPJSUA2Mark.UNET_Service.Trainee[] GetTrainees() {
             return base.Channel.GetTrainees();
         }
@@ -786,6 +904,46 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
         }
         
+        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatus(_instructorID, _exersiseID, _traineeID, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatusAsync(_instructorID, _exersiseID, _traineeID, _add);
+        }
+        
+        public bool SetNoiseLevelChanged(int _radioId, bool _changed) {
+            return base.Channel.SetNoiseLevelChanged(_radioId, _changed);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed) {
+            return base.Channel.SetNoiseLevelChangedAsync(_radioId, _changed);
+        }
+        
+        public bool SetNoiseLevel(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevel(_radioID, _noiselevel);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevelAsync(_radioID, _noiselevel);
+        }
+        
+        public bool GetNoiseLevelChanged() {
+            return base.Channel.GetNoiseLevelChanged();
+        }
+        
+        public System.Threading.Tasks.Task<bool> GetNoiseLevelChangedAsync() {
+            return base.Channel.GetNoiseLevelChangedAsync();
+        }
+        
+        public int GetNoiseLevel(int _radioID) {
+            return base.Channel.GetNoiseLevel(_radioID);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetNoiseLevelAsync(int _radioID) {
+            return base.Channel.GetNoiseLevelAsync(_radioID);
+        }
+        
         public string GetSIPStatusMessage(string _id) {
             return base.Channel.GetSIPStatusMessage(_id);
         }
@@ -800,6 +958,14 @@ namespace TestPJSUA2Mark.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id) {
             return base.Channel.SetSIPStatusMessageAsync(_message, _id);
+        }
+        
+        public bool ClearStatusMessages(string _id) {
+            return base.Channel.ClearStatusMessages(_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id) {
+            return base.Channel.ClearStatusMessagesAsync(_id);
         }
         
         public bool RegisterTrainee(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo) {
@@ -848,6 +1014,14 @@ namespace TestPJSUA2Mark.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2Mark.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
+        }
+        
+        public bool SetRadioStatus(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state) {
+            return base.Channel.SetRadioStatus(_radioNumber, _state);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state) {
+            return base.Channel.SetRadioStatusAsync(_radioNumber, _state);
         }
         
         public bool SetRadiosCount(int _count) {

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UNET_Trainer</RootNamespace>
     <AssemblyName>UNET_Trainer</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -46,7 +46,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PJSUA2_NET">
-      <HintPath>..\TestPJSUA2\PJSUA2_NET\Debug\PJSUA2_NET.dll</HintPath>
+      <HintPath>..\Libraries\PJSUA2_NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
