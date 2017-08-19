@@ -1,4 +1,4 @@
-﻿namespace TestPJSUA2Mark
+﻿namespace TestPJSUA2
 {
     partial class FrmMain
     {
@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCallstackCount = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.cbxAccount = new System.Windows.Forms.ComboBox();
             this.btnCall = new System.Windows.Forms.Button();
             this.btnAnswer = new System.Windows.Forms.Button();
@@ -38,8 +41,6 @@
             this.timerSIPMessages = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCallstackCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(808, 181);
             this.panel1.TabIndex = 2;
+            // 
+            // lblCallstackCount
+            // 
+            this.lblCallstackCount.AutoSize = true;
+            this.lblCallstackCount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCallstackCount.Location = new System.Drawing.Point(642, 139);
+            this.lblCallstackCount.Name = "lblCallstackCount";
+            this.lblCallstackCount.Size = new System.Drawing.Size(28, 22);
+            this.lblCallstackCount.TabIndex = 6;
+            this.lblCallstackCount.Text = "...";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(494, 141);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Callstack count:";
             // 
             // cbxAccount
             // 
@@ -152,26 +173,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(494, 141);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Callstack count:";
-            // 
-            // lblCallstackCount
-            // 
-            this.lblCallstackCount.AutoSize = true;
-            this.lblCallstackCount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCallstackCount.Location = new System.Drawing.Point(642, 139);
-            this.lblCallstackCount.Name = "lblCallstackCount";
-            this.lblCallstackCount.Size = new System.Drawing.Size(28, 22);
-            this.lblCallstackCount.TabIndex = 6;
-            this.lblCallstackCount.Text = "...";
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -180,6 +181,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test PJSUA2";

@@ -12,6 +12,12 @@ namespace PJSUA2Implementation.SIP
     public class SIPCall : pjsua2.Call
     {
         private SipAccount UAacc;
+
+        /// <summary>
+        /// callid is used to keep track of the different conferences and calls the trainers make
+        /// </summary>
+        public int CallID { get; set; }
+
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
 
 
@@ -26,6 +32,7 @@ namespace PJSUA2Implementation.SIP
             //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
             //noot: hier staat in de c++ code een uitgesterde regel
+            CallID = callID;
         }
 
 

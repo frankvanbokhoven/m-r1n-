@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using pjsua2;
 
 
-namespace TestPJSUA2Mark.SIP
+namespace TestPJSUA2.SIP
 
 {
     public class SIPCall : pjsua2.Call

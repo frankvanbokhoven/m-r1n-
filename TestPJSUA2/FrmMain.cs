@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pjsua2;
 using System.Configuration;
-namespace TestPJSUA2Mark
+namespace TestPJSUA2
 {
     public partial class FrmMain : Form
     {

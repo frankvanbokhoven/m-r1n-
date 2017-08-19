@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestPJSUA2Mark.UNET_Service {
+namespace TestPJSUA2.UNET_Service {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,13 +29,13 @@ namespace TestPJSUA2Mark.UNET_Service {
         private int NumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.Role[] RolesAssignedField;
+        private TestPJSUA2.UNET_Service.Role[] RolesAssignedField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SpecificationNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.Trainee[] TraineesAssignedField;
+        private TestPJSUA2.UNET_Service.Trainee[] TraineesAssignedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -74,7 +74,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.Role[] RolesAssigned {
+        public TestPJSUA2.UNET_Service.Role[] RolesAssigned {
             get {
                 return this.RolesAssignedField;
             }
@@ -100,7 +100,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.Trainee[] TraineesAssigned {
+        public TestPJSUA2.UNET_Service.Trainee[] TraineesAssigned {
             get {
                 return this.TraineesAssignedField;
             }
@@ -263,7 +263,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         private int NoiseLevelField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.UNETRadioState StateField;
+        private TestPJSUA2.UNET_Service.UNETRadioState StateField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -315,7 +315,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.UNETRadioState State {
+        public TestPJSUA2.UNET_Service.UNETRadioState State {
             get {
                 return this.StateField;
             }
@@ -361,7 +361,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestPJSUA2Mark.UNET_Service.Exercise[] ExercisesField;
+        private TestPJSUA2.UNET_Service.Exercise[] ExercisesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
@@ -380,7 +380,7 @@ namespace TestPJSUA2Mark.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestPJSUA2Mark.UNET_Service.Exercise[] Exercises {
+        public TestPJSUA2.UNET_Service.Exercise[] Exercises {
             get {
                 return this.ExercisesField;
             }
@@ -603,28 +603,28 @@ namespace TestPJSUA2Mark.UNET_Service {
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        TestPJSUA2Mark.UNET_Service.Exercise[] GetExercises();
+        TestPJSUA2.UNET_Service.Exercise[] GetExercises();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Exercise[]> GetExercisesAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Exercise[]> GetExercisesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        TestPJSUA2Mark.UNET_Service.Role[] GetRoles();
+        TestPJSUA2.UNET_Service.Role[] GetRoles();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRoles", ReplyAction="http://tempuri.org/IService1/GetRolesResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Role[]> GetRolesAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Role[]> GetRolesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        TestPJSUA2Mark.UNET_Service.Radio[] GetRadios();
+        TestPJSUA2.UNET_Service.Radio[] GetRadios();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetRadios", ReplyAction="http://tempuri.org/IService1/GetRadiosResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Radio[]> GetRadiosAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Radio[]> GetRadiosAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        TestPJSUA2Mark.UNET_Service.Instructor[] GetInstructors();
+        TestPJSUA2.UNET_Service.Instructor[] GetInstructors();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetInstructors", ReplyAction="http://tempuri.org/IService1/GetInstructorsResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Instructor[]> GetInstructorsAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Instructor[]> GetInstructorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructorsCount", ReplyAction="http://tempuri.org/IService1/SetInstructorsCountResponse")]
         bool SetInstructorsCount(int _count);
@@ -633,22 +633,22 @@ namespace TestPJSUA2Mark.UNET_Service {
         System.Threading.Tasks.Task<bool> SetInstructorsCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        TestPJSUA2Mark.UNET_Service.Trainee[] GetTrainees();
+        TestPJSUA2.UNET_Service.Trainee[] GetTrainees();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Trainee[]> GetTraineesAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Trainee[]> GetTraineesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        TestPJSUA2Mark.UNET_Service.Platform[] GetPlatforms();
+        TestPJSUA2.UNET_Service.Platform[] GetPlatforms();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Platform[]> GetPlatformsAsync();
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Platform[]> GetPlatformsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        TestPJSUA2Mark.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
+        TestPJSUA2.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExerciseInfo", ReplyAction="http://tempuri.org/IService1/GetExerciseInfoResponse")]
-        System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
+        System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatus", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusResponse")]
         bool[] GetTraineeStatus();
@@ -717,10 +717,10 @@ namespace TestPJSUA2Mark.UNET_Service {
         System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        bool RegisterTrainee(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo);
+        bool RegisterTrainee(TestPJSUA2.UNET_Service.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo);
+        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(TestPJSUA2.UNET_Service.CurrentInfo _currentInfo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -729,16 +729,16 @@ namespace TestPJSUA2Mark.UNET_Service {
         System.Threading.Tasks.Task<bool> SetExerciseCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        bool SetExercises(TestPJSUA2Mark.UNET_Service.Exercise[] _exercises);
+        bool SetExercises(TestPJSUA2.UNET_Service.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
-        System.Threading.Tasks.Task<bool> SetExercisesAsync(TestPJSUA2Mark.UNET_Service.Exercise[] _exercises);
+        System.Threading.Tasks.Task<bool> SetExercisesAsync(TestPJSUA2.UNET_Service.Exercise[] _exercises);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        bool SetRoles(TestPJSUA2Mark.UNET_Service.Role[] _role);
+        bool SetRoles(TestPJSUA2.UNET_Service.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoles", ReplyAction="http://tempuri.org/IService1/SetRolesResponse")]
-        System.Threading.Tasks.Task<bool> SetRolesAsync(TestPJSUA2Mark.UNET_Service.Role[] _role);
+        System.Threading.Tasks.Task<bool> SetRolesAsync(TestPJSUA2.UNET_Service.Role[] _role);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRolesCount", ReplyAction="http://tempuri.org/IService1/SetRolesCountResponse")]
         bool SetRolesCount(int _count);
@@ -747,16 +747,16 @@ namespace TestPJSUA2Mark.UNET_Service {
         System.Threading.Tasks.Task<bool> SetRolesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        bool SetRadios(TestPJSUA2Mark.UNET_Service.Radio[] _radio);
+        bool SetRadios(TestPJSUA2.UNET_Service.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadios", ReplyAction="http://tempuri.org/IService1/SetRadiosResponse")]
-        System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2Mark.UNET_Service.Radio[] _radio);
+        System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2.UNET_Service.Radio[] _radio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
-        bool SetRadioStatus(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state);
+        bool SetRadioStatus(int _radioNumber, TestPJSUA2.UNET_Service.UNETRadioState _state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioStatus", ReplyAction="http://tempuri.org/IService1/SetRadioStatusResponse")]
-        System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state);
+        System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2.UNET_Service.UNETRadioState _state);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadiosCount", ReplyAction="http://tempuri.org/IService1/SetRadiosCountResponse")]
         bool SetRadiosCount(int _count);
@@ -771,31 +771,31 @@ namespace TestPJSUA2Mark.UNET_Service {
         System.Threading.Tasks.Task<bool> SetTraineesCountAsync(int _count);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        bool SetInstructors(TestPJSUA2Mark.UNET_Service.Instructor[] _instructor);
+        bool SetInstructors(TestPJSUA2.UNET_Service.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetInstructors", ReplyAction="http://tempuri.org/IService1/SetInstructorsResponse")]
-        System.Threading.Tasks.Task<bool> SetInstructorsAsync(TestPJSUA2Mark.UNET_Service.Instructor[] _instructor);
+        System.Threading.Tasks.Task<bool> SetInstructorsAsync(TestPJSUA2.UNET_Service.Instructor[] _instructor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        bool SetTrainees(TestPJSUA2Mark.UNET_Service.Trainee[] _trainee);
+        bool SetTrainees(TestPJSUA2.UNET_Service.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTrainees", ReplyAction="http://tempuri.org/IService1/SetTraineesResponse")]
-        System.Threading.Tasks.Task<bool> SetTraineesAsync(TestPJSUA2Mark.UNET_Service.Trainee[] _trainee);
+        System.Threading.Tasks.Task<bool> SetTraineesAsync(TestPJSUA2.UNET_Service.Trainee[] _trainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        bool SetPlatforms(TestPJSUA2Mark.UNET_Service.Platform[] _platform);
+        bool SetPlatforms(TestPJSUA2.UNET_Service.Platform[] _platform);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
-        System.Threading.Tasks.Task<bool> SetPlatformsAsync(TestPJSUA2Mark.UNET_Service.Platform[] _platform);
+        System.Threading.Tasks.Task<bool> SetPlatformsAsync(TestPJSUA2.UNET_Service.Platform[] _platform);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : TestPJSUA2Mark.UNET_Service.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : TestPJSUA2.UNET_Service.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<TestPJSUA2Mark.UNET_Service.IService1>, TestPJSUA2Mark.UNET_Service.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<TestPJSUA2.UNET_Service.IService1>, TestPJSUA2.UNET_Service.IService1 {
         
         public Service1Client() {
         }
@@ -816,35 +816,35 @@ namespace TestPJSUA2Mark.UNET_Service {
                 base(binding, remoteAddress) {
         }
         
-        public TestPJSUA2Mark.UNET_Service.Exercise[] GetExercises() {
+        public TestPJSUA2.UNET_Service.Exercise[] GetExercises() {
             return base.Channel.GetExercises();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Exercise[]> GetExercisesAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Exercise[]> GetExercisesAsync() {
             return base.Channel.GetExercisesAsync();
         }
         
-        public TestPJSUA2Mark.UNET_Service.Role[] GetRoles() {
+        public TestPJSUA2.UNET_Service.Role[] GetRoles() {
             return base.Channel.GetRoles();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Role[]> GetRolesAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Role[]> GetRolesAsync() {
             return base.Channel.GetRolesAsync();
         }
         
-        public TestPJSUA2Mark.UNET_Service.Radio[] GetRadios() {
+        public TestPJSUA2.UNET_Service.Radio[] GetRadios() {
             return base.Channel.GetRadios();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Radio[]> GetRadiosAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Radio[]> GetRadiosAsync() {
             return base.Channel.GetRadiosAsync();
         }
         
-        public TestPJSUA2Mark.UNET_Service.Instructor[] GetInstructors() {
+        public TestPJSUA2.UNET_Service.Instructor[] GetInstructors() {
             return base.Channel.GetInstructors();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Instructor[]> GetInstructorsAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Instructor[]> GetInstructorsAsync() {
             return base.Channel.GetInstructorsAsync();
         }
         
@@ -856,27 +856,27 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.SetInstructorsCountAsync(_count);
         }
         
-        public TestPJSUA2Mark.UNET_Service.Trainee[] GetTrainees() {
+        public TestPJSUA2.UNET_Service.Trainee[] GetTrainees() {
             return base.Channel.GetTrainees();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Trainee[]> GetTraineesAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Trainee[]> GetTraineesAsync() {
             return base.Channel.GetTraineesAsync();
         }
         
-        public TestPJSUA2Mark.UNET_Service.Platform[] GetPlatforms() {
+        public TestPJSUA2.UNET_Service.Platform[] GetPlatforms() {
             return base.Channel.GetPlatforms();
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.Platform[]> GetPlatformsAsync() {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.Platform[]> GetPlatformsAsync() {
             return base.Channel.GetPlatformsAsync();
         }
         
-        public TestPJSUA2Mark.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
+        public TestPJSUA2.UNET_Service.CurrentInfo GetExerciseInfo(int _traineeID) {
             return base.Channel.GetExerciseInfo(_traineeID);
         }
         
-        public System.Threading.Tasks.Task<TestPJSUA2Mark.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
+        public System.Threading.Tasks.Task<TestPJSUA2.UNET_Service.CurrentInfo> GetExerciseInfoAsync(int _traineeID) {
             return base.Channel.GetExerciseInfoAsync(_traineeID);
         }
         
@@ -968,11 +968,11 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.ClearStatusMessagesAsync(_id);
         }
         
-        public bool RegisterTrainee(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo) {
+        public bool RegisterTrainee(TestPJSUA2.UNET_Service.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTrainee(_currentInfo);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(TestPJSUA2Mark.UNET_Service.CurrentInfo _currentInfo) {
+        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(TestPJSUA2.UNET_Service.CurrentInfo _currentInfo) {
             return base.Channel.RegisterTraineeAsync(_currentInfo);
         }
         
@@ -984,19 +984,19 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.SetExerciseCountAsync(_count);
         }
         
-        public bool SetExercises(TestPJSUA2Mark.UNET_Service.Exercise[] _exercises) {
+        public bool SetExercises(TestPJSUA2.UNET_Service.Exercise[] _exercises) {
             return base.Channel.SetExercises(_exercises);
         }
         
-        public System.Threading.Tasks.Task<bool> SetExercisesAsync(TestPJSUA2Mark.UNET_Service.Exercise[] _exercises) {
+        public System.Threading.Tasks.Task<bool> SetExercisesAsync(TestPJSUA2.UNET_Service.Exercise[] _exercises) {
             return base.Channel.SetExercisesAsync(_exercises);
         }
         
-        public bool SetRoles(TestPJSUA2Mark.UNET_Service.Role[] _role) {
+        public bool SetRoles(TestPJSUA2.UNET_Service.Role[] _role) {
             return base.Channel.SetRoles(_role);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRolesAsync(TestPJSUA2Mark.UNET_Service.Role[] _role) {
+        public System.Threading.Tasks.Task<bool> SetRolesAsync(TestPJSUA2.UNET_Service.Role[] _role) {
             return base.Channel.SetRolesAsync(_role);
         }
         
@@ -1008,19 +1008,19 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.SetRolesCountAsync(_count);
         }
         
-        public bool SetRadios(TestPJSUA2Mark.UNET_Service.Radio[] _radio) {
+        public bool SetRadios(TestPJSUA2.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadios(_radio);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2Mark.UNET_Service.Radio[] _radio) {
+        public System.Threading.Tasks.Task<bool> SetRadiosAsync(TestPJSUA2.UNET_Service.Radio[] _radio) {
             return base.Channel.SetRadiosAsync(_radio);
         }
         
-        public bool SetRadioStatus(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state) {
+        public bool SetRadioStatus(int _radioNumber, TestPJSUA2.UNET_Service.UNETRadioState _state) {
             return base.Channel.SetRadioStatus(_radioNumber, _state);
         }
         
-        public System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2Mark.UNET_Service.UNETRadioState _state) {
+        public System.Threading.Tasks.Task<bool> SetRadioStatusAsync(int _radioNumber, TestPJSUA2.UNET_Service.UNETRadioState _state) {
             return base.Channel.SetRadioStatusAsync(_radioNumber, _state);
         }
         
@@ -1040,27 +1040,27 @@ namespace TestPJSUA2Mark.UNET_Service {
             return base.Channel.SetTraineesCountAsync(_count);
         }
         
-        public bool SetInstructors(TestPJSUA2Mark.UNET_Service.Instructor[] _instructor) {
+        public bool SetInstructors(TestPJSUA2.UNET_Service.Instructor[] _instructor) {
             return base.Channel.SetInstructors(_instructor);
         }
         
-        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(TestPJSUA2Mark.UNET_Service.Instructor[] _instructor) {
+        public System.Threading.Tasks.Task<bool> SetInstructorsAsync(TestPJSUA2.UNET_Service.Instructor[] _instructor) {
             return base.Channel.SetInstructorsAsync(_instructor);
         }
         
-        public bool SetTrainees(TestPJSUA2Mark.UNET_Service.Trainee[] _trainee) {
+        public bool SetTrainees(TestPJSUA2.UNET_Service.Trainee[] _trainee) {
             return base.Channel.SetTrainees(_trainee);
         }
         
-        public System.Threading.Tasks.Task<bool> SetTraineesAsync(TestPJSUA2Mark.UNET_Service.Trainee[] _trainee) {
+        public System.Threading.Tasks.Task<bool> SetTraineesAsync(TestPJSUA2.UNET_Service.Trainee[] _trainee) {
             return base.Channel.SetTraineesAsync(_trainee);
         }
         
-        public bool SetPlatforms(TestPJSUA2Mark.UNET_Service.Platform[] _platform) {
+        public bool SetPlatforms(TestPJSUA2.UNET_Service.Platform[] _platform) {
             return base.Channel.SetPlatforms(_platform);
         }
         
-        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(TestPJSUA2Mark.UNET_Service.Platform[] _platform) {
+        public System.Threading.Tasks.Task<bool> SetPlatformsAsync(TestPJSUA2.UNET_Service.Platform[] _platform) {
             return base.Channel.SetPlatformsAsync(_platform);
         }
     }

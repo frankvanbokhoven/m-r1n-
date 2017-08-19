@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace TestPJSUA2Mark.Classes
+namespace TestPJSUA2.Classes
 {
     /// <summary>
     /// This class shows whatever is written to the console into the listbox given as a parameter

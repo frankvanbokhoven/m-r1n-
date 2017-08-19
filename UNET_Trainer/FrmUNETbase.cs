@@ -146,8 +146,7 @@ namespace UNET_Trainer
         private void SetFormSizeAndPosition()
         {
             // StartPosition was set to FormStartPosition.Manual in the properties window.
-        //    Rectangle screen = Screen.PrimaryScreen.WorkingArea;
-
+  
             Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
             int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
             int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;

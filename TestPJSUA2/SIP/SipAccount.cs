@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestPJSUA2Mark.SIP
+namespace TestPJSUA2.SIP
 {
     public class SipAccount : pjsua2.Account
     {

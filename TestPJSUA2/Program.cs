@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestPJSUA2Mark
+namespace TestPJSUA2
 {
     static class Program
     {

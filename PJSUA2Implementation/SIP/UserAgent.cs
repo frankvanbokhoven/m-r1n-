@@ -48,6 +48,7 @@ namespace PJSUA2Implementation.SIP
                 {
                     ep = new Endpoint();
                     ep.libCreate();
+                    ep.
                     ep.libRegisterThread("UNETthread");
                 }
             }

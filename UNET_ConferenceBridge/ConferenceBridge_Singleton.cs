@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UNET_Classes;
+using PJSUA2Implementation;
 
 namespace UNET_ConferenceBridge
 {
@@ -23,7 +24,7 @@ namespace UNET_ConferenceBridge
         //public List<CurrentInfo> CurrentInfoList = new List<CurrentInfo>();
         //public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
 
-        public List<Object> ActiveCalls = new List<object>();
+        public List<PJSUA2Implementation.SIP.SIPCall> ActiveCalls = new List<PJSUA2Implementation.SIP.SIPCall>();
    
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;

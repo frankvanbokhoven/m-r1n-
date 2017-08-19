@@ -7,8 +7,8 @@
     <ProjectGuid>{FBF31DBD-966B-46DE-9A2D-5A7409141830}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestPJSUA2Mark</RootNamespace>
-    <AssemblyName>TestPJSUA2Mark</AssemblyName>
+    <RootNamespace>TestPJSUA2</RootNamespace>
+    <AssemblyName>TestPJSUA2</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MarineGrey.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -112,25 +115,25 @@
     <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.CurrentInfo.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.CurrentInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Exercise.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Exercise.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Instructor.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Instructor.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Platform.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Platform.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Radio.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Radio.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Role.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Role.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2Mark.UNET_Service.Trainee.datasource">
+    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Trainee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -159,6 +162,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MarineGrey.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

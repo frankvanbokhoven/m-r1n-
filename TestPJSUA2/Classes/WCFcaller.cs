@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestPJSUA2Mark.Classes
+namespace TestPJSUA2.Classes
 {
     /// <summary>
     /// this static class reports messages to the wcf service

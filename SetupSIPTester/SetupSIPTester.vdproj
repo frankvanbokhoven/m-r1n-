@@ -15,14 +15,26 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_5CC1D5E6C06796E74A37B14D75D502B7"
+        "MsmKey" = "8:_40501C6AA75BA8BFBE40A46F4E4F4F45"
+        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_40501C6AA75BA8BFBE40A46F4E4F4F45"
         "OwnerKey" = "8:_7D94D2A3439548F3BD91E8B46FF3DB3E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5CC1D5E6C06796E74A37B14D75D502B7"
+        "MsmKey" = "8:_40946F80E49E7A222317446F45D000E2"
         "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_40946F80E49E7A222317446F45D000E2"
+        "OwnerKey" = "8:_7D94D2A3439548F3BD91E8B46FF3DB3E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,50 +51,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F338E8BC04618624A64CF0ED96D70C89"
+        "MsmKey" = "8:_8C011768A9419E0EACEC8470281E72EC"
+        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8C011768A9419E0EACEC8470281E72EC"
         "OwnerKey" = "8:_7D94D2A3439548F3BD91E8B46FF3DB3E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F338E8BC04618624A64CF0ED96D70C89"
+        "MsmKey" = "8:_CA5BB79A5BFAB76E3CC399A5C5D44AE1"
         "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F814D0A33080F95FB574DE9A37559EC5"
+        "MsmKey" = "8:_CA5BB79A5BFAB76E3CC399A5C5D44AE1"
         "OwnerKey" = "8:_7D94D2A3439548F3BD91E8B46FF3DB3E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F814D0A33080F95FB574DE9A37559EC5"
-        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FA26097FD5E1DA9796A8307A8E8EF1EE"
-        "OwnerKey" = "8:_7D94D2A3439548F3BD91E8B46FF3DB3E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FA26097FD5E1DA9796A8307A8E8EF1EE"
-        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FA26097FD5E1DA9796A8307A8E8EF1EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,19 +82,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F814D0A33080F95FB574DE9A37559EC5"
+        "OwnerKey" = "8:_6D2C9A266ABE41A78F1C635C1E2C16F0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F338E8BC04618624A64CF0ED96D70C89"
+        "OwnerKey" = "8:_8C011768A9419E0EACEC8470281E72EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5CC1D5E6C06796E74A37B14D75D502B7"
+        "OwnerKey" = "8:_40501C6AA75BA8BFBE40A46F4E4F4F45"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_40946F80E49E7A222317446F45D000E2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CA5BB79A5BFAB76E3CC399A5C5D44AE1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -127,6 +127,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -143,6 +159,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -172,45 +196,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5CC1D5E6C06796E74A37B14D75D502B7"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:pjsipDll, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_5CC1D5E6C06796E74A37B14D75D502B7"
-                    {
-                    "Name" = "8:pjsipDll.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:pjsipDll.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_93025AA1604442D09EB88DB279F92717"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F338E8BC04618624A64CF0ED96D70C89"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_40501C6AA75BA8BFBE40A46F4E4F4F45"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:SipekSdk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F338E8BC04618624A64CF0ED96D70C89"
+                    "_40501C6AA75BA8BFBE40A46F4E4F4F45"
                     {
                     "Name" = "8:SipekSdk.dll"
                     "Attributes" = "3:512"
@@ -234,14 +227,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F814D0A33080F95FB574DE9A37559EC5"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_40946F80E49E7A222317446F45D000E2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:pjsipDll, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_40946F80E49E7A222317446F45D000E2"
+                    {
+                    "Name" = "8:pjsipDll.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:pjsipDll.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93025AA1604442D09EB88DB279F92717"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C011768A9419E0EACEC8470281E72EC"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:WaveLibMixer, Version=1.0.2927.30170, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F814D0A33080F95FB574DE9A37559EC5"
+                    "_8C011768A9419E0EACEC8470281E72EC"
                     {
                     "Name" = "8:WaveLibMixer.dll"
                     "Attributes" = "3:512"
@@ -265,14 +289,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA26097FD5E1DA9796A8307A8E8EF1EE"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA5BB79A5BFAB76E3CC399A5C5D44AE1"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_FA26097FD5E1DA9796A8307A8E8EF1EE"
+                    "_CA5BB79A5BFAB76E3CC399A5C5D44AE1"
                     {
                     "Name" = "8:log4net.dll"
                     "Attributes" = "3:512"
@@ -364,7 +388,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SetupSIPTester"
         "ProductCode" = "8:{9BE795CD-74FD-46FB-AD07-D53A3855DF67}"
-        "PackageCode" = "8:{1E84D1F3-EC3B-4CEE-9665-3AFD5F3CE9CE}"
+        "PackageCode" = "8:{505ED01F-C92E-4E0B-A805-71C9C5D1FAAA}"
         "UpgradeCode" = "8:{4B878F76-7280-434E-B0A2-18445E72B8B8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -377,7 +401,7 @@
         "ARPHELPLINK" = "8:"
         "Title" = "8:Setup SIP Tester"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Marine"
+        "ARPCONTACT" = "8:HSO"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Installer for SIP tester"
         "ARPURLINFOABOUT" = "8:"

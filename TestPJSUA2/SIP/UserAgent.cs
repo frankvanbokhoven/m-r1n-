@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using pjsua2;
 using System.Configuration;
 
-namespace TestPJSUA2Mark.SIP
+namespace TestPJSUA2.SIP
 {
     public class UserAgent
     {

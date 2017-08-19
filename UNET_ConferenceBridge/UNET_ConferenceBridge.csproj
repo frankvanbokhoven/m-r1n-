@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PJSUA2Implementation\PJSUA2Implementation.csproj">
+      <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>
+      <Name>PJSUA2Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>

@@ -16,10 +16,10 @@ namespace UNET_Trainer
   
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
-        public int TraineeID = 1;
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
 
+        UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
         /// WCF service
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
@@ -231,7 +231,7 @@ namespace UNET_Trainer
             this.Text = "UNET Instructor";
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-            TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+  
             try
             {
                 //the useragent holds everything needed for the sip communication
@@ -247,7 +247,7 @@ namespace UNET_Trainer
                 log.Error("Error creating accounts " + ex.Message);
                 this.Close();
             }
-        }
+         }
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
@@ -550,19 +550,36 @@ namespace UNET_Trainer
     //        SetButtonStatus(this);
         }
 
-        private void MakeCall(int traineeid)
+        private void MakeCall(string _sipAccount)
         {
-            try
+            //first try to find it in the list of active calls
+            bool found = false;
+
+
+            foreach(pjsua2.Call call in useragent.acc.Calls)
             {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
-                CallOpParam cop = new CallOpParam();
-                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+            //    if(call.)
             }
-            catch (Exception ex)
+            foreach (PJSUA2Implementation.SIP.SIPCall sipcall in ucb.ActiveCalls)
             {
-                log.Error("Error updating screen controls", ex);
-                // throw;
+              //  if(sipcall.CallID ==)
+            }
+            if (!found)
+            {
+                try
+                {
+                    PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                    CallOpParam cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+                    //voeg de call toe aan de activecall lijst
+                    ucb.ActiveCalls.Add(sc);
+                }
+                catch (Exception ex)
+                {
+                    log.Error("Error updating screen controls", ex);
+                    // throw;
+                }
             }
         }
     }
