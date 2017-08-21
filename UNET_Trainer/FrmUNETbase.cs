@@ -52,14 +52,15 @@ namespace UNET_Trainer
         /// <param name="_theme"></param>
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
-            switch (ConfigurationManager.AppSettings["Theme"].ToString())
-            {
-                case "dark": { Theme = UNETTheme.utDark; break; }
-                case "light": { Theme = UNETTheme.utLight; break; }
-                case "blue": { Theme = UNETTheme.utBlue; break; }
-                default: { Theme = UNETTheme.utDark; break; }
-            }
-            //todo: deze theme ook daadwerkelijk hieronder andere kleuren maken
+            //switch (ConfigurationManager.AppSettings["Theme"].ToString())
+            //{
+            //    case "dark": { Theme = UNETTheme.utDark; break; }
+            //    case "light": { Theme = UNETTheme.utLight; break; }
+            //    case "blue": { Theme = UNETTheme.utBlue; break; }
+            //    default: { Theme = UNETTheme.utDark; break; }
+            //}
+
+            //todo: mbv deze theme ook daadwerkelijk hieronder andere kleuren maken
 
             //we willen de parent ZELF ook themen als het een form is..
             if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))

@@ -45,7 +45,7 @@ namespace TestPJSUA2.SIP
             {
                 ep = new Endpoint();
                 ep.libCreate();
-                ep.libRegisterThread("UNETthread");
+                ep.libRegisterThread("TESTPJSUA2Thread");
             }
             catch (Exception ex)
             {

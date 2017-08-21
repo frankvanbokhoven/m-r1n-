@@ -13,7 +13,8 @@ namespace UNET_Trainer
          private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-  
+        public int TraineeID = 1;
+
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
@@ -582,5 +583,23 @@ namespace UNET_Trainer
                 }
             }
         }
+
+
+        private void MakeCall(int traineeid)
+        {
+            try
+            {
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                CallOpParam cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error updating screen controls", ex);
+                // throw;
+            }
+        }
+
     }
 }

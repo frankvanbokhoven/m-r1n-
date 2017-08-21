@@ -329,6 +329,8 @@ namespace UNET_Trainer_Trainee
 
         }
 
+
+        #region CALL
         private void MakeCall(int traineeid)
         {
             try
@@ -344,5 +346,6 @@ namespace UNET_Trainer_Trainee
                 // throw;
             }
         }
+        #endregion
     }
 }
