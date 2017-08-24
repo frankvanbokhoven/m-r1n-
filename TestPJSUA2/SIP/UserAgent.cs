@@ -33,6 +33,28 @@ namespace TestPJSUA2.SIP
         ////
         public UserAgent()
         {
+
+            log.Info("Agent started pjsua2implementation");
+        }
+
+
+        /// <summary>
+        /// Determine an always unique string
+        /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
+        //  app start, this name must still be unique
+
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private string RandomThreadString(string _namepart)
+        {
+            string result = _namepart + "_" + Guid.NewGuid()
+                .ToString()
+                .Replace("-", "")
+                .Substring(0, 10);
+
+            log.Info("Threadname for this session is: " + result);
+            return result;
         }
 
         public void UserAgentStart()
@@ -45,11 +67,13 @@ namespace TestPJSUA2.SIP
             {
                 ep = new Endpoint();
                 ep.libCreate();
-                ep.libRegisterThread("TESTPJSUA2Thread");
+
+                ep.libRegisterThread(RandomThreadString("PJSUA2"));
             }
             catch (Exception ex)
             {
                 log.Error("Exception on Agent Start " + ex.Message);
+                
             }
 
 

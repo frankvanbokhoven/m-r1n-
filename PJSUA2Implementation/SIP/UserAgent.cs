@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using pjsua2;
 using System.Configuration;
+using System.IO;
+using System.Reflection;
 
 namespace PJSUA2Implementation.SIP
 {
@@ -11,6 +13,8 @@ namespace PJSUA2Implementation.SIP
         public pjsua2.Endpoint ep;
         public SipAccount acc;
         public List<SipBuddy> buddies = new List<SipBuddy>();
+        //log4net
+       // private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
         // signals
@@ -32,24 +36,65 @@ namespace PJSUA2Implementation.SIP
         public UserAgent()
         {
 
+            //if (!log4net.LogManager.GetRepository().Configured)
+            //{
+            //    //configure the log4net, while it is in a dll
+            //    string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            //    var configFileDirectory = (new DirectoryInfo(assemblyFolder));//.Parent; 
+            //    var configFile = new FileInfo(configFileDirectory.FullName + "\\log4net.config");
+
+            //    if (!configFile.Exists)
+            //    {
+            //        throw new FileLoadException(String.Format("The configuration file {0} does not exist", configFile));
+            //    }
+
+            //    log4net.Config.XmlConfigurator.Configure(configFile);
+            //}
+
+
+
+
             //hoeft niet in c#  delete acc;
             //hoeft niet in c#  delete ep;
         }
 
+        /// <summary>
+        /// Determine an always unique string
+        /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
+        //  app start, this name must still be unique
+
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private string RandomThreadString(string _namepart)
+        {
+            string result = _namepart + "_" + Guid.NewGuid()
+                .ToString()
+                .Replace("-", "")
+                .Substring(0, 10);
+
+       //     log.Info("Threadname for this session is: " + result);
+            return result;
+        }
+
         public void UserAgentStart()
         {
-        //    Classes.WCFcaller.SetSIPStatusMessage("Starting User Agent");
+
+        //    log.Info("Starting User Agent");
 
             // Create endpoint
             try
             {
                 ep = new Endpoint();
                 ep.libCreate();
-                ep.libRegisterThread("TESTPJSUA2Thread");
+
+                ep.libRegisterThread(RandomThreadString("PJSUA2"));
             }
             catch (Exception ex)
             {
-               // log.Error("Exception on Agent Start " + ex.Message);
+              //  log.Error("Exception on Agent Start " + ex.Message);
+
             }
 
 
@@ -65,7 +110,7 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-              //  log.Error("Initialization error: " + ex.Message);
+        //        log.Error("Initialization error: " + ex.Message);
             }
 
 
@@ -78,7 +123,7 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-               // log.Error("Transport creation error: " + ex.Message);
+             //   log.Error("Transport creation error: " + ex.Message);
             }
 
 
@@ -89,7 +134,7 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-              //  log.Error("Startup error: " + ex.Message);
+          ///      log.Error("Startup error: " + ex.Message);
             }
 
 

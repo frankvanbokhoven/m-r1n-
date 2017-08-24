@@ -101,13 +101,17 @@ namespace UNET_Trainer_Trainee
 
             try
             {
-                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                //close the connection to the wcf service, if it is still opened
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
+                    service.Open();
+                }
+                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+ 
                     service.Open();
 
                     //enable the Exercise buttons
-                    var currentInfo = service.GetExerciseInfo(TraineeID);
+                    UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
                     if (currentInfo != null)
                     {
                         lblPlatform.Text = currentInfo.Platform;
@@ -120,9 +124,7 @@ namespace UNET_Trainer_Trainee
                         //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
                     }
 
-                    service.Close();
-                }
-            }
+                                          }
             catch (Exception ex)
             {
                 log.Error("Error updating screen controls", ex);

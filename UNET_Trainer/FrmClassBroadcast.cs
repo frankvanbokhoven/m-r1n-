@@ -60,15 +60,27 @@ namespace UNET_Trainer
             btnTraineeRR.BackColor = Constants.cExtinguised;
             btnTraineeSS.BackColor = Constants.cExtinguised;
 
-            btnBroadcast.BackColor = Constants.cExtinguised;
-            btnSelectAllInstructors.BackColor = Constants.cExtinguised;
-            btnSelectAllPositions.BackColor = Constants.cExtinguised;
-            btnSelectAllTrainees.BackColor = Constants.cExtinguised;
-
             btnInstructor01.BackColor = Constants.cExtinguised;
             btnInstructor02.BackColor = Constants.cExtinguised;
             btnInstructor03.BackColor = Constants.cExtinguised;
             btnInstructor04.BackColor = Constants.cExtinguised;
+
+
+
+            btnDeSelect.BackColor = Constants.cExtinguised;
+            btnDeSelect.ForeColor = Constants.cFontNotSelected;
+            btnBroadcast.BackColor = Constants.cExtinguised;
+            btnBroadcast.ForeColor = Constants.cFontNotSelected;
+            btnSelectAllInstructors.BackColor = Constants.cExtinguised;
+            btnSelectAllInstructors.ForeColor = Constants.cFontNotSelected;
+            btnSelectAllPositions.BackColor = Constants.cExtinguised;
+            btnSelectAllPositions.ForeColor = Constants.cFontNotSelected;
+            btnSelectAllTrainees.BackColor = Constants.cExtinguised;
+            btnSelectAllTrainees.ForeColor = Constants.cFontNotSelected;
+
+            
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -270,7 +282,13 @@ namespace UNET_Trainer
 
         private void btnDeSelect_Click(object sender, EventArgs e)
         {
+            //zet alles weer terug naar de beginwaarden
+            btnBroadcast.BackColor = Constants.cExtinguised;
+            btnBroadcast.ForeColor = Constants.cFontNotSelected;
+            btnBroadcast.Text = "Broadcast";
 
+            AllInstructors(false);
+            AllTrainees(false);
         }
     }
 }

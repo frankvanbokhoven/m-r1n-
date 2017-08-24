@@ -39,8 +39,12 @@ namespace UNET_Trainer_Trainee
             // Size the form to be 300 pixels in height and width.
             this.Size = new Size(800, 600);
             // Display the form in the center of the screen.
-            // this.StartPosition = FormStartPosition.Manual
+            // this.StartPosition = FormStartPosition.
             //   SetFormSizeAndPosition();
+            this.Top = 0;
+            this.Left = 0;
+            this.Height = 600;
+            this.Width = 800;
             SetTheme(Theme, this);
         }
 
@@ -52,95 +56,103 @@ namespace UNET_Trainer_Trainee
         /// <param name="_theme"></param>
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
-            ////we willen de parent ZELF ook themen als het een form is..
-            //if (_parent.GetType().BaseType.BaseType == typeof(System.Windows.Forms.Form))
-            //{
-            //    ((Form)_parent).ForeColor = Color.White;
-            //    ((Form)_parent).BackColor = Color.DimGray;
-            //}
+            //we willen de parent ZELF ook themen als het een form is..
+            if (_parent.GetType().BaseType.BaseType == typeof(System.Windows.Forms.Form))
+            {
+                ((Form)_parent).ForeColor = Color.White;
+                ((Form)_parent).BackColor = Color.DimGray;
+            }
 
-            ////loop thrue the controls of the parent
-            //foreach (Control ctrl in _parent.Controls)
-            //{
-            //    if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
-            //    {
-            //        ((Form)ctrl).ForeColor = Color.White;
-            //        ((Form)ctrl).BackColor = Color.DimGray;
-            //    }
-            //    if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
-            //    {
-            //        ((GroupBox)ctrl).ForeColor = Color.White;
-            //        ((GroupBox)ctrl).BackColor = Color.Gray;
-            //    }
+            //loop thrue the controls of the parent
+            foreach (Control ctrl in _parent.Controls)
+            {
+                if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
+                {
+                    ((Form)ctrl).ForeColor = Color.White;
+                    ((Form)ctrl).BackColor = Color.DimGray;
+                }
+                if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
+                {
+                    ((GroupBox)ctrl).ForeColor = Color.White;
+                    ((GroupBox)ctrl).BackColor = Color.Gray;
+                }
 
 
 
-            //    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
-            //    {
-            //        if (((Button)ctrl).Name.ToLower().Contains("radio"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.Black;
-            //            ((Button)ctrl).BackColor = Color.DarkKhaki;
-            //        }
-            //        else
-            //        if (((Button)ctrl).Name.ToLower().Contains("close"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.Black;
-            //            ((Button)ctrl).BackColor = Color.Red;
-            //        }
-            //        else
-            //        if (((Button)ctrl).Name.ToLower().Contains("trainee"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.Black;
-            //            ((Button)ctrl).BackColor = Color.Peru;
-            //        }
-            //        else
-            //        if (((Button)ctrl).Name.ToLower().Contains("exersise"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.Black;
-            //            ((Button)ctrl).BackColor = Color.LimeGreen;
-            //        }
-            //        else
-            //        if (((Button)ctrl).Name.ToLower().Contains("role"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.Black;
-            //            ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-            //        }
-            //        else
-            //        if (((Button)ctrl).Name.ToLower().Contains("noise"))
-            //        {
-            //            ((Button)ctrl).ForeColor = Color.White;
-            //            ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-            //        }
+                if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                {
+                    if (((Button)ctrl).Name.ToLower().Contains("radio"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.DarkKhaki;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("close"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Red;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("trainee"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Peru;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("exersise"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.LimeGreen;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("role"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("noise"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.White;
+                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+                    }
 
-            //        //   else
-            //        //   {
-            //        //       ((Button)ctrl).ForeColor = Color.White;
-            //        //       ((Button)ctrl).BackColor = Color.DimGray;
-            //        //   }
-            //    }
-            //    SetTheme(_theme, ctrl);
-            //}
+                    if (((Button)ctrl).Name.ToLower().Contains("audio") ||
+                         ((Button)ctrl).Name.ToLower().Contains("assist") ||
+                         ((Button)ctrl).Name.ToLower().Contains("intercom"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Gray;
+                    }
+
+                    //   else
+                    //   {
+                    //       ((Button)ctrl).ForeColor = Color.White;
+                    //       ((Button)ctrl).BackColor = Color.DimGray;
+                    //   }
+                }
+                SetTheme(_theme, ctrl);
+            }
         }
         #endregion
 
         #region dragformbypanel
-        /// <summary>
-        /// In testscenarios, we want to be able to drag the client to another position on the screen, but the unet is borderless
-        /// the code in this region causes the entire form to be draggable
-        /// https://stackoverflow.com/questions/1592876/make-a-borderless-form-movable
-        /// </summary>
-        private void SetFormSizeAndPosition()
-        {
-            // StartPosition was set to FormStartPosition.Manual in the properties window.
-           //    Rectangle screen = Screen.PrimaryScreen.WorkingArea;
+        ///// <summary>
+        ///// In testscenarios, we want to be able to drag the client to another position on the screen, but the unet is borderless
+        ///// the code in this region causes the entire form to be draggable
+        ///// https://stackoverflow.com/questions/1592876/make-a-borderless-form-movable
+        ///// </summary>
+        //private void SetFormSizeAndPosition()
+        //{
+        //    // StartPosition was set to FormStartPosition.Manual in the properties window.
+        //   //    Rectangle screen = Screen.PrimaryScreen.WorkingArea;
 
-            Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
-            int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
-            int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
-            this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
-            this.Size = new Size(w, h);
-        }
+        //    Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
+        //    int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
+        //    int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
+        //    this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
+        //    this.Size = new Size(w, h);
+        //}
 
 
         /// <summary>

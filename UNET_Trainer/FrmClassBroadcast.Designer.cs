@@ -48,6 +48,7 @@
             this.btnTraineeCC = new System.Windows.Forms.Button();
             this.btnTraineeAA = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDeSelect = new System.Windows.Forms.Button();
             this.btnBroadcast = new System.Windows.Forms.Button();
             this.btnSelectAllPositions = new System.Windows.Forms.Button();
             this.btnSelectAllInstructors = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.btnInstructor02 = new System.Windows.Forms.Button();
             this.btnInstructor01 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnDeSelect = new System.Windows.Forms.Button();
             this.pnlTrainees.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlInstructors.SuspendLayout();
@@ -95,7 +95,7 @@
             // btnTraineeSS
             // 
             this.btnTraineeSS.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeSS.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeSS.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeSS.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeSS.Location = new System.Drawing.Point(99, 569);
             this.btnTraineeSS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -109,7 +109,7 @@
             // btnTraineePP
             // 
             this.btnTraineePP.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineePP.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineePP.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineePP.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineePP.ImageIndex = 1;
             this.btnTraineePP.Location = new System.Drawing.Point(99, 491);
@@ -124,7 +124,7 @@
             // btnTraineeMM
             // 
             this.btnTraineeMM.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeMM.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeMM.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeMM.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeMM.Location = new System.Drawing.Point(99, 414);
             this.btnTraineeMM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -138,7 +138,7 @@
             // btnTraineeKK
             // 
             this.btnTraineeKK.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeKK.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeKK.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeKK.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeKK.Location = new System.Drawing.Point(99, 337);
             this.btnTraineeKK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -152,7 +152,7 @@
             // btnTraineeHH
             // 
             this.btnTraineeHH.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeHH.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeHH.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeHH.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeHH.ImageIndex = 1;
             this.btnTraineeHH.Location = new System.Drawing.Point(99, 260);
@@ -167,7 +167,7 @@
             // btnTraineeFF
             // 
             this.btnTraineeFF.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeFF.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeFF.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeFF.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeFF.Location = new System.Drawing.Point(99, 183);
             this.btnTraineeFF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -181,7 +181,7 @@
             // btnTraineeDD
             // 
             this.btnTraineeDD.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeDD.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeDD.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeDD.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeDD.Location = new System.Drawing.Point(99, 106);
             this.btnTraineeDD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -195,7 +195,7 @@
             // btnTraineeBB
             // 
             this.btnTraineeBB.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeBB.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeBB.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeBB.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeBB.Location = new System.Drawing.Point(99, 30);
             this.btnTraineeBB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -219,7 +219,7 @@
             // btnTraineeRR
             // 
             this.btnTraineeRR.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeRR.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeRR.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeRR.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeRR.Location = new System.Drawing.Point(3, 569);
             this.btnTraineeRR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -233,7 +233,7 @@
             // btnTraineeNN
             // 
             this.btnTraineeNN.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeNN.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeNN.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeNN.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeNN.Location = new System.Drawing.Point(3, 492);
             this.btnTraineeNN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -248,7 +248,7 @@
             // btnTraineeLL
             // 
             this.btnTraineeLL.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeLL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeLL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeLL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeLL.Location = new System.Drawing.Point(3, 415);
             this.btnTraineeLL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -262,7 +262,7 @@
             // btnTraineeJJ
             // 
             this.btnTraineeJJ.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeJJ.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeJJ.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeJJ.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeJJ.ImageIndex = 2;
             this.btnTraineeJJ.Location = new System.Drawing.Point(3, 338);
@@ -277,7 +277,7 @@
             // btnTraineeGG
             // 
             this.btnTraineeGG.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeGG.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeGG.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeGG.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeGG.ImageIndex = 1;
             this.btnTraineeGG.Location = new System.Drawing.Point(3, 261);
@@ -292,7 +292,7 @@
             // btnTraineeEE
             // 
             this.btnTraineeEE.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeEE.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeEE.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeEE.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeEE.Location = new System.Drawing.Point(3, 185);
             this.btnTraineeEE.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -306,7 +306,7 @@
             // btnTraineeCC
             // 
             this.btnTraineeCC.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeCC.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeCC.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeCC.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeCC.Location = new System.Drawing.Point(3, 107);
             this.btnTraineeCC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -320,7 +320,7 @@
             // btnTraineeAA
             // 
             this.btnTraineeAA.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnTraineeAA.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraineeAA.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTraineeAA.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnTraineeAA.Location = new System.Drawing.Point(3, 30);
             this.btnTraineeAA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -340,22 +340,37 @@
             this.panel2.Controls.Add(this.btnSelectAllPositions);
             this.panel2.Controls.Add(this.btnSelectAllInstructors);
             this.panel2.Controls.Add(this.btnSelectAllTrainees);
-            this.panel2.Location = new System.Drawing.Point(110, 123);
+            this.panel2.Location = new System.Drawing.Point(119, 91);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(158, 507);
+            this.panel2.Size = new System.Drawing.Size(239, 486);
             this.panel2.TabIndex = 11;
+            // 
+            // btnDeSelect
+            // 
+            this.btnDeSelect.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnDeSelect.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeSelect.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnDeSelect.Location = new System.Drawing.Point(3, 14);
+            this.btnDeSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeSelect.Name = "btnDeSelect";
+            this.btnDeSelect.Size = new System.Drawing.Size(231, 74);
+            this.btnDeSelect.TabIndex = 5;
+            this.btnDeSelect.Text = "Deselect all ";
+            this.btnDeSelect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDeSelect.UseVisualStyleBackColor = false;
+            this.btnDeSelect.Click += new System.EventHandler(this.btnDeSelect_Click);
             // 
             // btnBroadcast
             // 
             this.btnBroadcast.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBroadcast.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnBroadcast.ImageIndex = 1;
-            this.btnBroadcast.Location = new System.Drawing.Point(3, 421);
+            this.btnBroadcast.Location = new System.Drawing.Point(3, 378);
             this.btnBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBroadcast.Name = "btnBroadcast";
-            this.btnBroadcast.Size = new System.Drawing.Size(147, 74);
+            this.btnBroadcast.Size = new System.Drawing.Size(231, 74);
             this.btnBroadcast.TabIndex = 4;
             this.btnBroadcast.Text = "Broadcast";
             this.btnBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -366,12 +381,12 @@
             // btnSelectAllPositions
             // 
             this.btnSelectAllPositions.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnSelectAllPositions.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllPositions.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectAllPositions.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnSelectAllPositions.Location = new System.Drawing.Point(3, 321);
+            this.btnSelectAllPositions.Location = new System.Drawing.Point(3, 289);
             this.btnSelectAllPositions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectAllPositions.Name = "btnSelectAllPositions";
-            this.btnSelectAllPositions.Size = new System.Drawing.Size(147, 74);
+            this.btnSelectAllPositions.Size = new System.Drawing.Size(231, 74);
             this.btnSelectAllPositions.TabIndex = 3;
             this.btnSelectAllPositions.Text = "Select all positions";
             this.btnSelectAllPositions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -381,12 +396,12 @@
             // btnSelectAllInstructors
             // 
             this.btnSelectAllInstructors.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnSelectAllInstructors.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllInstructors.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectAllInstructors.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnSelectAllInstructors.Location = new System.Drawing.Point(3, 217);
+            this.btnSelectAllInstructors.Location = new System.Drawing.Point(3, 197);
             this.btnSelectAllInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectAllInstructors.Name = "btnSelectAllInstructors";
-            this.btnSelectAllInstructors.Size = new System.Drawing.Size(147, 74);
+            this.btnSelectAllInstructors.Size = new System.Drawing.Size(231, 74);
             this.btnSelectAllInstructors.TabIndex = 2;
             this.btnSelectAllInstructors.Text = "Select all instructors";
             this.btnSelectAllInstructors.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -396,12 +411,12 @@
             // btnSelectAllTrainees
             // 
             this.btnSelectAllTrainees.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnSelectAllTrainees.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAllTrainees.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectAllTrainees.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnSelectAllTrainees.Location = new System.Drawing.Point(3, 126);
+            this.btnSelectAllTrainees.Location = new System.Drawing.Point(3, 106);
             this.btnSelectAllTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectAllTrainees.Name = "btnSelectAllTrainees";
-            this.btnSelectAllTrainees.Size = new System.Drawing.Size(147, 74);
+            this.btnSelectAllTrainees.Size = new System.Drawing.Size(231, 74);
             this.btnSelectAllTrainees.TabIndex = 1;
             this.btnSelectAllTrainees.Text = "Select all trainees";
             this.btnSelectAllTrainees.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -436,7 +451,7 @@
             // btnInstructor04
             // 
             this.btnInstructor04.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnInstructor04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructor04.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnInstructor04.ImageIndex = 1;
             this.btnInstructor04.Location = new System.Drawing.Point(3, 334);
@@ -451,7 +466,7 @@
             // btnInstructor03
             // 
             this.btnInstructor03.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnInstructor03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructor03.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnInstructor03.Location = new System.Drawing.Point(3, 234);
             this.btnInstructor03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -465,7 +480,7 @@
             // btnInstructor02
             // 
             this.btnInstructor02.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnInstructor02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructor02.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnInstructor02.Location = new System.Drawing.Point(3, 130);
             this.btnInstructor02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -479,7 +494,7 @@
             // btnInstructor01
             // 
             this.btnInstructor01.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnInstructor01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructor01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInstructor01.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnInstructor01.Location = new System.Drawing.Point(3, 39);
             this.btnInstructor01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -494,21 +509,6 @@
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnDeSelect
-            // 
-            this.btnDeSelect.BackColor = System.Drawing.Color.GreenYellow;
-            this.btnDeSelect.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeSelect.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnDeSelect.Location = new System.Drawing.Point(3, 34);
-            this.btnDeSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDeSelect.Name = "btnDeSelect";
-            this.btnDeSelect.Size = new System.Drawing.Size(147, 74);
-            this.btnDeSelect.TabIndex = 5;
-            this.btnDeSelect.Text = "Deselect all ";
-            this.btnDeSelect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDeSelect.UseVisualStyleBackColor = false;
-            this.btnDeSelect.Click += new System.EventHandler(this.btnDeSelect_Click);
             // 
             // FrmClassBroadcast
             // 

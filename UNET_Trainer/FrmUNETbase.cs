@@ -128,16 +128,16 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Color.DeepSkyBlue;
                     }
 
-                    //if (((Button)ctrl).Name.ToLower().Contains("il") ||
-                    //    ((Button)ctrl).Name.ToLower().Contains("intercom") ||
-                    //    ((Button)ctrl).Name.ToLower().Contains("assist") ||
-                    //        ((Button)ctrl).Name.ToLower().Contains("main page") ||
-                    //        ((Button)ctrl).Name.ToLower().Contains("service request") ||
-                    //        ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
-                    //{
-                    //    ((Button)ctrl).ForeColor = Color.Black;
-                    //    ((Button)ctrl).BackColor = Color.Gray;
-                    //}
+                    if (((Button)ctrl).Name.ToLower().Contains("il") ||
+                        ((Button)ctrl).Name.ToLower().Contains("intercom") ||
+                        ((Button)ctrl).Name.ToLower().Contains("assist") ||
+                            ((Button)ctrl).Name.ToLower().Contains("main page") ||
+                            ((Button)ctrl).Name.ToLower().Contains("service request") ||
+                            ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Gray;
+                    }
 
                 }
                 SetTheme(_theme, ctrl);

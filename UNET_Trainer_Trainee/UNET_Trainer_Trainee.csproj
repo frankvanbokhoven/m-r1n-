@@ -80,7 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CurrentInfo.cs" />
     <Compile Include="FrmAudio.cs">
       <SubType>Form</SubType>
     </Compile>
