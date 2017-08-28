@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="CurrentInfo" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>UNET_Tester.UNET_Service.CurrentInfo, Service References.UNET_Service.Reference.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="Trainee" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>UNET_Classes.Trainee, UNET_Classes, Version=1.2017.8.1, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

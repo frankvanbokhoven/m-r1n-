@@ -517,6 +517,8 @@ namespace UNET_Trainer
             btnExersise08.ForeColor = System.Drawing.Color.Black;
             btnIL.ForeColor = System.Drawing.Color.Black;
 
+         
+      
         }
 
         private void SetStatusAndColorExerciseButtons(Button _btn)
@@ -524,13 +526,21 @@ namespace UNET_Trainer
             // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
             if (_btn.Name.ToLower() != "btnil")
             {
-                ExersiseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 3)));
+                ExersiseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 11)));
             }
             else
             {
                 ExersiseIndex = 8;
             }
+            //Set the selected exercise, start with the array, then send this to the service
             ExerciseArray[ExersiseIndex] = true;
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            service.SetExerciseSelected(ExersiseIndex, true); //now we have told the service that this instructor has selected this exercise
+
+
             _btn.BackColor = System.Drawing.Color.SaddleBrown;
             _btn.ForeColor = System.Drawing.Color.White;
         }

@@ -82,6 +82,12 @@
   <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetNoiseLevelChanged_InputMessage">
     <wsdl:part name="parameters" element="tns:SetNoiseLevelChanged" />
   </wsdl:message>
@@ -240,6 +246,10 @@
     <wsdl:operation name="SetTraineeStatusChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatus" message="tns:IService1_SetTraineeAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse" message="tns:IService1_SetTraineeAssignedStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetNoiseLevelChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChanged" message="tns:IService1_SetNoiseLevelChanged_InputMessage" />
@@ -413,6 +423,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetTraineeStatusChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeAssignedStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

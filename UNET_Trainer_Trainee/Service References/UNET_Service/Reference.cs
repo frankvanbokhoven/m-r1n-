@@ -81,6 +81,12 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
         bool SetNoiseLevelChanged(int _radioId, bool _changed);
         
@@ -309,6 +315,14 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
             return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
+        }
+        
+        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatus(_instructorID, _exersiseID, _traineeID, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatusAsync(_instructorID, _exersiseID, _traineeID, _add);
         }
         
         public bool SetNoiseLevelChanged(int _radioId, bool _changed) {

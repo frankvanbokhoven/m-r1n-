@@ -91,6 +91,9 @@ namespace UNET_Service
         bool SetExerciseCount(int _count);
 
         [OperationContract]
+        bool SetExerciseSelected(int _exerciseIndex, bool _select);
+
+        [OperationContract]
         bool SetExercises(List<UNET_Classes.Exercise> _exercises);
         
         [OperationContract]

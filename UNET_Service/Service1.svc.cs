@@ -643,6 +643,39 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// this function sets the selected parameter of an exercise. This way, we know which exercise is selected by the instructor
+        /// </summary>
+        /// <param name="_exerciseIndex"></param>
+        /// <param name="_select"></param>
+        /// <returns></returns>
+        public bool SetExerciseSelected(int _exerciseIndex, bool _select)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+               //try to find the exercise
+                foreach (UNET_Classes.Exercise exe in singleton.Exercises)
+                {
+                   if(exe.Number == _exerciseIndex)
+                    {
+                        exe.Selected = _select;
+                    }
+                }
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting exercise selected", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
         public bool SetRadioStatus(int _radioNumber, UNET_Classes.UNETRadioState _state)
         {
             bool result = true;
@@ -834,7 +867,7 @@ namespace UNET_Service
         }
 
         /// <summary>
-        /// with this method, a trainee can 'register' himself as
+        /// with this method, a trainee can 'register' himself
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -863,7 +896,7 @@ namespace UNET_Service
                     }                   
                 }
 
-                result = true;
+                            result = true;
             }
             catch (Exception ex)
             {
@@ -886,13 +919,31 @@ namespace UNET_Service
 
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
-                                                                                                                             
-                foreach (CurrentInfo cu in singleton.CurrentInfoList)
+
+                //foreach (CurrentInfo cu in singleton.CurrentInfoList)
+                //{
+                //    if (cu.ID == _traineeID)
+                //    {
+                //        result = cu;
+                //        break;
+                //    }
+                //}
+
+                //Loop thrue the exercises and try to find the trainee in the exercises. If so, return the info
+                foreach (Exercise ex in singleton.Exercises)
                 {
-                    if (cu.ID == _traineeID)
+                    //loop thrue the list of assigned trainees
+                    foreach (Trainee tr in ex.TraineesAssigned)
                     {
-                        result = cu;
-                        break;
+                        if (tr.ID == _traineeID)
+                        {
+                            result = new CurrentInfo();
+                            result.ID = ex.Number;
+                            result.ExerciseName = ex.ExerciseName;
+                            result.ConsoleRole = ex.RolesAssigned[0].Name;
+                            result.Platform = "todo: platform!";
+                            break;
+                        }
                     }
                 }
             }
@@ -904,6 +955,8 @@ namespace UNET_Service
             return result;
         }
         #endregion 
+
+        
 
         #region AppendToLog
 

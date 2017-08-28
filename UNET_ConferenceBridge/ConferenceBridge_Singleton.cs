@@ -18,14 +18,8 @@ namespace UNET_ConferenceBridge
         public List<Exercise> Exercises = new List<Exercise>();
         public List<Role> Roles = new List<Role>();
         public List<UNET_Classes.Radio> Radios = new List<UNET_Classes.Radio>();
-        //public List<Instructor> Instructors = new List<Instructor>();
-        //public List<Trainee> Trainees = new List<Trainee>();
-        //public List<Platform> Platforms = new List<Platform>();
-        //public List<CurrentInfo> CurrentInfoList = new List<CurrentInfo>();
-        //public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
-
         public List<PJSUA2Implementation.SIP.SIPCall> ActiveCalls = new List<PJSUA2Implementation.SIP.SIPCall>();
-   
+  
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
 

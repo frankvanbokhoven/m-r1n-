@@ -142,6 +142,12 @@
   <wsdl:message name="IService1_SetExerciseCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetExerciseCountResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseSelected_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseSelected" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseSelected_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseSelectedResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetExercises_InputMessage">
     <wsdl:part name="parameters" element="tns:SetExercises" />
   </wsdl:message>
@@ -286,6 +292,10 @@
     <wsdl:operation name="SetExerciseCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseCount" message="tns:IService1_SetExerciseCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExerciseCountResponse" message="tns:IService1_SetExerciseCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseSelected">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseSelected" message="tns:IService1_SetExerciseSelected_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExerciseSelectedResponse" message="tns:IService1_SetExerciseSelected_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExercises" message="tns:IService1_SetExercises_InputMessage" />
@@ -513,6 +523,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetExerciseCount">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetExerciseCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseSelected">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetExerciseSelected" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

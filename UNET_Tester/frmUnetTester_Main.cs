@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using UNET_Tester.UNET_Service;
 using ColorMine;
 using System.Configuration;
+using UNET_Classes;
 
 namespace UNET_Tester
 {
@@ -31,13 +32,11 @@ namespace UNET_Tester
             cbxExercise.Text = ConfigurationManager.AppSettings["Exersise"];
             cbxRadios.Text = ConfigurationManager.AppSettings["Radio"];
             cbxRole.Text = ConfigurationManager.AppSettings["Role"];
-            cbxTrainee.Text = ConfigurationManager.AppSettings["Trainee"];
+            tbxTraineeIDs.Text = ConfigurationManager.AppSettings["Trainee"];
             cbxInstructor.Text = ConfigurationManager.AppSettings["Instructor"];
             GetUNETStatus();
 
             timer1.Enabled = true;
-
-
         }
 
         /// <summary>
@@ -47,7 +46,6 @@ namespace UNET_Tester
         /// <param name="_color"></param>
         private void AddToListbox(string _item, [Optional] Color _color)
         {
-
             string additionDate = string.Format("{0}/{1}/{2}-{3}:{4}:{5}", DateTime.Now.Year.ToString("00"), DateTime.Now.Month.ToString("00"), DateTime.Now.Date.ToString("00"), DateTime.Now.Hour.ToString("00"), DateTime.Now.Minute.ToString("00"), DateTime.Now.Second.ToString("00"));
 
 
@@ -60,10 +58,7 @@ namespace UNET_Tester
             {
                 listBoxGetmethods.ForeColor = Color.White;
             }
-
         }
-
-
 
         private void GetUNETStatus()
         {
@@ -73,7 +68,6 @@ namespace UNET_Tester
                 {
                     service.Open();
                 }
-
 
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
                 //Exercises
@@ -100,11 +94,14 @@ namespace UNET_Tester
                 var traineelist = service.GetTrainees();
                 List<Trainee> lsttrainee = traineelist.ToList<Trainee>(); //C# v3 manier om een array in een list te krijgen
 
+                //bouw een csv lijstje op met de trainees
+                string idlist = string.Empty;
                 foreach (Trainee trainee in lsttrainee)
                 {
                     AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
+                    idlist += trainee.ID + ",";
                 }
-                cbxTrainee.Text = lsttrainee.Count.ToString();
+                tbxTraineeIDs.Text = idlist.Substring(0, idlist.Length-1);
 
                 //Radio
                 var radiolist = service.GetRadios();
@@ -171,17 +168,15 @@ namespace UNET_Tester
                     exe.ExerciseName = txtName.Text + i.ToString("00");
                     elist.Add(exe);
                 }
-         
+                //add the list of exercises to the service
                 service.SetExercises(elist.ToArray());
 
-                 //     GetUNETStatus();
-
+ 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
                 log.Error("Error using WCF method change exercise", ex);
-                // throw;
             }
         }
 
@@ -216,27 +211,7 @@ namespace UNET_Tester
 
         private void cbxTrainee_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                AddToListbox(string.Format("Set Trainees to: {0}", Convert.ToInt16(cbxTrainee.Text)), Color.LimeGreen);
-                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
 
-                if (service.State != System.ServiceModel.CommunicationState.Opened)
-                {
-                    service.Open();
-                }
-        
-                service.SetTraineesCount(Convert.ToInt16(cbxTrainee.Text));
-
-                 //      GetUNETStatus();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
-                log.Error("Error using WCF method change trainee", ex);
-                // throw;
-            }
         }
 
         private void cbxRole_SelectedValueChanged(object sender, EventArgs e)
@@ -394,6 +369,43 @@ namespace UNET_Tester
             cbxRole_SelectedValueChanged(sender, e);
             cbxTrainee_SelectedValueChanged(sender, e);
             
+        }
+
+        private void btnRefreshTrainees_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Voeg voor iedere trainee-id een trainee object toe
+                string[] traineeids = tbxTraineeIDs.Text.Split(',');
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
+
+                //maak nu een lijstje meet trainees, op basis van de id's en  stuur dat naar de service
+                Trainee[] listTrainee;// = new List<UNET_Classes.Trainee>();
+                List<Trainee> objlist = new List<Trainee>();
+                foreach(string tr in traineeids)
+                {
+                    UNET_Classes.Trainee trainee = new UNET_Classes.Trainee(Convert.ToInt16(tr), tr + "_trainee");
+                    objlist.Add(trainee);
+                }
+                listTrainee = (Trainee[])objlist.ToArray();
+               
+                service.SetTrainees((Trainee[])listTrainee);
+                AddToListbox(string.Format("Set Trainees to: {0}", traineeids.Length), Color.LimeGreen);
+ 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change trainee", ex);
+                // throw;
+            }
         }
     }
 }

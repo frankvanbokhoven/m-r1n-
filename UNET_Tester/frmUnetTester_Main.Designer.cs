@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRefreshTrainees = new System.Windows.Forms.Button();
+            this.tbxTraineeIDs = new System.Windows.Forms.TextBox();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,20 +47,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbxRole = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbxTrainee = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxExercise = new System.Windows.Forms.ComboBox();
             this.listBoxGetmethods = new System.Windows.Forms.ListBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClear = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
-            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRefreshTrainees);
+            this.groupBox1.Controls.Add(this.tbxTraineeIDs);
             this.groupBox1.Controls.Add(this.buttonRefresh);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtName);
@@ -71,7 +75,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbxRole);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cbxTrainee);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbxExercise);
             this.groupBox1.Location = new System.Drawing.Point(16, 14);
@@ -81,6 +84,37 @@
             this.groupBox1.Size = new System.Drawing.Size(707, 251);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // btnRefreshTrainees
+            // 
+            this.btnRefreshTrainees.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
+            this.btnRefreshTrainees.Location = new System.Drawing.Point(346, 80);
+            this.btnRefreshTrainees.Name = "btnRefreshTrainees";
+            this.btnRefreshTrainees.Size = new System.Drawing.Size(40, 40);
+            this.btnRefreshTrainees.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.btnRefreshTrainees, "Refresh trainees");
+            this.btnRefreshTrainees.UseVisualStyleBackColor = true;
+            this.btnRefreshTrainees.Click += new System.EventHandler(this.btnRefreshTrainees_Click);
+            // 
+            // tbxTraineeIDs
+            // 
+            this.tbxTraineeIDs.Location = new System.Drawing.Point(104, 85);
+            this.tbxTraineeIDs.Name = "tbxTraineeIDs";
+            this.tbxTraineeIDs.Size = new System.Drawing.Size(224, 22);
+            this.tbxTraineeIDs.TabIndex = 16;
+            this.tbxTraineeIDs.Text = "1013,1014,1015,1016";
+            this.toolTip1.SetToolTip(this.tbxTraineeIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
+            this.buttonRefresh.Location = new System.Drawing.Point(326, 172);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
+            this.buttonRefresh.TabIndex = 15;
+            this.buttonRefresh.Text = "Refresh";
+            this.buttonRefresh.UseVisualStyleBackColor = false;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // label7
             // 
@@ -119,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 165);
+            this.label5.Location = new System.Drawing.Point(10, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 10;
@@ -133,7 +167,7 @@
             "2",
             "3",
             "4"});
-            this.cbxInstructor.Location = new System.Drawing.Point(104, 162);
+            this.cbxInstructor.Location = new System.Drawing.Point(104, 185);
             this.cbxInstructor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxInstructor.Name = "cbxInstructor";
             this.cbxInstructor.Size = new System.Drawing.Size(55, 24);
@@ -175,7 +209,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 137);
+            this.label4.Location = new System.Drawing.Point(10, 160);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -205,7 +239,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(104, 134);
+            this.cbxRadios.Location = new System.Drawing.Point(104, 157);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(55, 24);
@@ -216,7 +250,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 109);
+            this.label3.Location = new System.Drawing.Point(10, 132);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 5;
@@ -246,7 +280,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(104, 106);
+            this.cbxRole.Location = new System.Drawing.Point(104, 129);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(55, 24);
@@ -257,39 +291,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 85);
+            this.label2.Location = new System.Drawing.Point(10, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Trainees";
-            // 
-            // cbxTrainee
-            // 
-            this.cbxTrainee.FormattingEnabled = true;
-            this.cbxTrainee.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16"});
-            this.cbxTrainee.Location = new System.Drawing.Point(104, 78);
-            this.cbxTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxTrainee.Name = "cbxTrainee";
-            this.cbxTrainee.Size = new System.Drawing.Size(55, 24);
-            this.cbxTrainee.TabIndex = 2;
-            this.cbxTrainee.Text = "4";
-            this.cbxTrainee.SelectedValueChanged += new System.EventHandler(this.cbxTrainee_SelectedValueChanged);
             // 
             // label1
             // 
@@ -371,16 +377,9 @@
             this.btnQuit.UseVisualStyleBackColor = false;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
-            // buttonRefresh
+            // toolTip1
             // 
-            this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
-            this.buttonRefresh.Location = new System.Drawing.Point(326, 149);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
-            this.buttonRefresh.TabIndex = 15;
-            this.buttonRefresh.Text = "Refresh";
-            this.buttonRefresh.UseVisualStyleBackColor = false;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            this.toolTip1.AutomaticDelay = 250;
             // 
             // frmUNETTester_Main
             // 
@@ -416,7 +415,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxRole;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbxTrainee;
         private System.Windows.Forms.ListBox listBoxGetmethods;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnClear;
@@ -430,6 +428,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSpecification;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.TextBox tbxTraineeIDs;
+        private System.Windows.Forms.Button btnRefreshTrainees;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

@@ -106,25 +106,21 @@ namespace UNET_Trainer_Trainee
                 {
                     service.Open();
                 }
-                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
- 
-                    service.Open();
-
-                    //enable the Exercise buttons
-                    UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
-                    if (currentInfo != null)
-                    {
-                        lblPlatform.Text = currentInfo.Platform;
-                        lblConsole.Text = currentInfo.ConsoleRole;
-                        lblExerciseMode.Text = currentInfo.ExerciseMode;
-                        lblExerciseName.Text = currentInfo.ExerciseName;
-                    }
-                    else
-                    {
-                        //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
-                    }
-
-                                          }
+        
+                //enable the Exercise buttons
+                UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
+                if (currentInfo != null)
+                {
+                    lblPlatform.Text = currentInfo.Platform;
+                    lblConsole.Text = currentInfo.ConsoleRole;
+                    lblExerciseMode.Text = currentInfo.ExerciseMode;
+                    lblExerciseName.Text = currentInfo.ExerciseName;
+                }
+                else
+                {
+                    //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
+                }
+            }
             catch (Exception ex)
             {
                 log.Error("Error updating screen controls", ex);

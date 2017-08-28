@@ -24,7 +24,13 @@ namespace UNET_Classes
         public List<Trainee> TraineesAssigned { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Role> RolesAssigned { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool Selected { get; set; }
 
+        public Exercise()
+        {
+            TraineesAssigned = new List<Trainee>();
+        }
 
     }
 }

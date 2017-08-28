@@ -11,6 +11,7 @@
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" type="xs:int" />
       <xs:element minOccurs="0" name="RolesAssigned" nillable="true" type="tns:ArrayOfRole" />
+      <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
       <xs:element minOccurs="0" name="SpecificationName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TraineesAssigned" nillable="true" type="tns:ArrayOfTrainee" />
     </xs:sequence>

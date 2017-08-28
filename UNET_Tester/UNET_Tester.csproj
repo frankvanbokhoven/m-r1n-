@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UNET_Tester</RootNamespace>
     <AssemblyName>UNET_Tester</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -84,8 +85,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\UNET_Classes.CurrentInfo.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Exercise1.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Platform.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Radio.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Role.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Trainee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -108,33 +118,13 @@
     <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.CurrentInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Exercise.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Instructor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Platform.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Radio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Tester.UNET_Service.Trainee.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MarinRed.ico" />
+    <None Include="Resources\Button-Refresh-icon.png" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
