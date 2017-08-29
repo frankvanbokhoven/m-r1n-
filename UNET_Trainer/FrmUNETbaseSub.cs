@@ -58,7 +58,7 @@ namespace UNET_Trainer
 
         private void FrmUNETbaseSub_Shown(object sender, EventArgs e)
         {
-            SetPositions();
+           SetPositions();
         }
 
         private void FrmUNETbaseSub_Load(object sender, EventArgs e)
