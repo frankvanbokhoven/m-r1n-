@@ -10,5 +10,25 @@ namespace UNET_Classes
         public int ID { get; set; }
         public string Name { get; set; }
         public List<Exercise> Exercises { get; set; }
+
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <param name="_name"></param>
+        public Instructor(int _id, string _name)
+        {
+            ID = _id;
+            Name = _name;
+
+        }
+
+        public Instructor()
+        {
+
+        }
+
     }
+
+
 }

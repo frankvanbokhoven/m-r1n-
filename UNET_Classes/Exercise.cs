@@ -32,5 +32,18 @@ namespace UNET_Classes
             TraineesAssigned = new List<Trainee>();
         }
 
+        /// <summary>
+        /// constructor Exercise
+        /// </summary>
+        /// <param name="_number"></param>
+        /// <param name="_name"></param>
+        public Exercise(int _number, string _name)
+        {
+            Number = _number;
+            ExerciseName = _name;
+            TraineesAssigned = new List<Trainee>();
+
+        }
+
     }
 }

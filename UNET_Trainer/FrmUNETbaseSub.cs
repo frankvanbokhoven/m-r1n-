@@ -16,7 +16,7 @@ namespace UNET_Trainer
         public string FormTitle
         {
             get
-            {
+            { 
                 return _formtitle;
             }
             set
@@ -37,7 +37,7 @@ namespace UNET_Trainer
             //      frm.Show();
             // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
             FrmUNETMain.GetForm.Show();
-            this.Close();
+          this.Close();
         }
 
         private void btnServiceRequest_Click(object sender, EventArgs e)

@@ -33,7 +33,7 @@ namespace UNET_Tester
             cbxRadios.Text = ConfigurationManager.AppSettings["Radio"];
             cbxRole.Text = ConfigurationManager.AppSettings["Role"];
             tbxTraineeIDs.Text = ConfigurationManager.AppSettings["Trainee"];
-            cbxInstructor.Text = ConfigurationManager.AppSettings["Instructor"];
+            tbxInstructorIDs.Text = ConfigurationManager.AppSettings["Instructor"];
             GetUNETStatus();
 
             timer1.Enabled = true;
@@ -118,12 +118,13 @@ namespace UNET_Tester
                 //Instructor
                 var instructorlist = service.GetInstructors();
                 List<Instructor> lstInstructor = instructorlist.ToList<Instructor>(); //C# v3 manier om een array in een list te krijgen
-
+                string idinstructorlist = string.Empty;
                 foreach (Instructor instructor in lstInstructor)
                 {
                     AddToListbox(string.Format("Instructor: {0}, Name: {1}", instructor.ID, instructor.Name));
+                    idinstructorlist += instructor.ID + ",";
                 }
-                cbxInstructor.Text = lstInstructor.Count.ToString();
+                tbxInstructorIDs.Text  = idinstructorlist.Substring(0, idinstructorlist.Length - 1);// cbxInstructor.Text = lstInstructor.Count.ToString();
 
 
                 ///updaten noiselevel
@@ -336,29 +337,7 @@ namespace UNET_Tester
 
         private void cbxInstructor_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(cbxInstructor.Text)), Color.LimeGreen);
-                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
-
-                using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
-                {
-                    service.Open();
-
-                    service.SetInstructorsCount(Convert.ToInt16(cbxInstructor.Text));
-
-                    service.Close();
-                }
-
-                //      GetUNETStatus();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
-                log.Error("Error using WCF method change role", ex);
-                // throw;
-            }
+          
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -384,7 +363,7 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-                service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
+             //   service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
 
                 //maak nu een lijstje meet trainees, op basis van de id's en  stuur dat naar de service
                 Trainee[] listTrainee;// = new List<UNET_Classes.Trainee>();
@@ -404,6 +383,59 @@ namespace UNET_Tester
             {
                 MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
                 log.Error("Error using WCF method change trainee", ex);
+                // throw;
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRefreshInstructors_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(tbxInstructorIDs.Text)), Color.LimeGreen);
+                //Voeg voor iedere trainee-id een trainee object toe
+                string[] instructorids = tbxInstructorIDs.Text.Split(',');
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                //maak nu een lijstje met instructors, op basis van de id's en  stuur dat naar de service
+                Instructor[] listInstructors;
+                List<Instructor> objlist = new List<Instructor>();
+                foreach (string inst in instructorids)
+                {
+                    UNET_Classes.Instructor instructor = new UNET_Classes.Instructor(Convert.ToInt16(inst), inst + "_instructor");
+                    objlist.Add(instructor);
+                }
+                listInstructors = (Instructor[])objlist.ToArray();
+
+                service.SetInstructors((Instructor[])listInstructors);
+          
+                //// we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                //using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
+                //{
+                //    service.Open();
+
+                //    service.SetInstructorsCount(tbxInstructorIDs));  //IMPORTANT: MUST BE A COMMA SEPARATED STRING
+
+                //    service.Close();
+                //}
+
+                ////      GetUNETStatus();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change role", ex);
                 // throw;
             }
         }

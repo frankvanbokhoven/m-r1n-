@@ -160,101 +160,7 @@ namespace PJSUA2Implementation.SIP
             setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
 
 
-            UserBuddyStart();
-
-            // Connect signals & slots            
-            //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
-            //Console.Write("Starting User Agent");
-
-            //// Create endpoint
-            //try
-            //{
-            //    if (ep == null)
-            //    {
-            //        ep = new Endpoint();
-            //        ep.libCreate();
-
-            //        ep.libRegisterThread("UNETthread");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write("Exception on Agent Start " + ex.Message);
-            //}
-
-            //// Init library
-            //try
-            //{
-            //    EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-            //    ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-            //    ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
-            //    ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
-
-            //    ep.libInit(ep_cfg);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write("Initialization error: " + ex.Message);
-            //}
-
-            //// Create transport
-            //try
-            //{
-            //    TransportConfig tcfg = new TransportConfig();//frank: hier is de new erbij gezet
-            //    tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
-            //    ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write("Transport creation error: " + ex.Message);
-            //}
-
-            //// Start library
-            //try
-            //{
-            //    ep.libStart();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write("Startup error: " + ex.Message);
-            //}
-
-            //try
-            //{ 
-            //// Create & set presence
-            //// Create account configuration
-            //AccountConfig acfg = new AccountConfig();
-            //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            //acfg.regConfig.registrarUri = sipserver;
-            //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]); //conf.getSipTimeOut();
-            //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
-            //acfg.sipConfig.authCreds.Add(cred);
-            //acfg.regConfig.registerOnAdd = true;
-            //acfg.regConfig.dropCallsOnFail = true;
-            ////// Set server proxy
-            //StringVector proxy = acfg.sipConfig.proxies;
-            //proxy.Add(sipserver + ";transport=udp");
-            //acfg.sipConfig.proxies = proxy;
-            //acfg.sipConfig.authCreds.Add(new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"].ToString(), 0, ConfigurationManager.AppSettings["sipPassword"])); //todo: was: push_back
-            //// Create SIP account
-            //acc = new SipAccount();
-            //acc.create(acfg, true);
-            //setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-
-            //UserBuddyStart();
-            //    // Connect signals & slots            
-            //    //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            //    //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            //    //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write("Error configuring account: " + ex.Message);
-            //}
+            UserBuddyStart();     
         }
 
         /// <summary>
@@ -319,11 +225,6 @@ namespace PJSUA2Implementation.SIP
             try
             {
                 //dispose all sip objects, so they can be garbage collected
-                ///  if (!object.ReferenceEquals(acc, null))
-                //  {
-                //     acc.Dispose();
-                // }
-
                 ep.libDestroy();
                 ep.Dispose();
 

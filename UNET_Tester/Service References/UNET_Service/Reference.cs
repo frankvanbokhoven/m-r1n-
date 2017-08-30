@@ -141,6 +141,12 @@ namespace UNET_Tester.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         System.Threading.Tasks.Task<bool> SetExerciseCountAsync(int _count);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseSelected", ReplyAction="http://tempuri.org/IService1/SetExerciseSelectedResponse")]
+        bool SetExerciseSelected(int _exerciseIndex, bool _select);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseSelected", ReplyAction="http://tempuri.org/IService1/SetExerciseSelectedResponse")]
+        System.Threading.Tasks.Task<bool> SetExerciseSelectedAsync(int _exerciseIndex, bool _select);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExercises", ReplyAction="http://tempuri.org/IService1/SetExercisesResponse")]
         bool SetExercises(UNET_Classes.Exercise[] _exercises);
         
@@ -395,6 +401,14 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetExerciseCountAsync(int _count) {
             return base.Channel.SetExerciseCountAsync(_count);
+        }
+        
+        public bool SetExerciseSelected(int _exerciseIndex, bool _select) {
+            return base.Channel.SetExerciseSelected(_exerciseIndex, _select);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetExerciseSelectedAsync(int _exerciseIndex, bool _select) {
+            return base.Channel.SetExerciseSelectedAsync(_exerciseIndex, _select);
         }
         
         public bool SetExercises(UNET_Classes.Exercise[] _exercises) {

@@ -13,13 +13,13 @@ namespace UNET_Trainer
          private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        public int TraineeID = 1;
+        public int InstructorID = Convert.ToInt16( ConfigurationManager.AppSettings["InstructorID"].ToString().Trim());
 
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
-
+  
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
         /// WCF service
@@ -345,29 +345,41 @@ namespace UNET_Trainer
 
         }
 
-        /// <summary>
-        /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
-        /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
-        /// this generic code covers this for all all buttons at once
-        /// </summary>
-        /// <param name="_btn"></param>
-        private void SetStatusAndColorTraineeButtons(Button _btn)
-        {
-            if (MonitorTrainee)
-            {
-                // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
-                int traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), _btn.Name.Remove(0, 3)));
-                MonitorTraineeArray[traineeIndex] = true;
-                _btn.BackColor = System.Drawing.Color.SaddleBrown;
-                _btn.ForeColor = System.Drawing.Color.White;
-            }
-        }
+
+        ///// <param name="_btn"></param>
+        //private void SetStatusAndColorTraineeButtons(Button _btn)
+        //{
+
+        //}
 
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
             SetTraineeStatus();
+            int traineeIndex = -1;
+            //    SetStatusAndColorTraineeButtons((Button)sender);
+            /// <summary>
+            /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
+            /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
+            /// this generic code covers this for all all buttons at once
+            /// </summary>
+            if (MonitorTrainee)
+            {
+                // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
+                traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+                MonitorTraineeArray[traineeIndex] = true;
+                ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
+                ((Button)sender).ForeColor = System.Drawing.Color.White;
+            }
 
-            SetStatusAndColorTraineeButtons((Button)sender);
+
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+            service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
+
         }
         #endregion
 
@@ -549,10 +561,18 @@ namespace UNET_Trainer
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //close the connection to the wcf service, if it is still opened
-            if (service.State == System.ServiceModel.CommunicationState.Opened)
+            try
             {
-                service.Close();
+                //close the connection to the wcf service, if it is still opened
+                if (service.State == System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error Closing UNET_Trainer", ex);
+                // throw;
             }
         }
 
@@ -599,7 +619,7 @@ namespace UNET_Trainer
         {
             try
             {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, InstructorID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                 sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);

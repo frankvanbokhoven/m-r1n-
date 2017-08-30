@@ -39,7 +39,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtSpecification = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbxInstructor = new System.Windows.Forms.ComboBox();
             this.grbxNoiseLevel = new System.Windows.Forms.GroupBox();
             this.lbxNoiseLevel = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,12 +53,16 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnRefreshInstructors = new System.Windows.Forms.Button();
+            this.tbxInstructorIDs = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRefreshInstructors);
+            this.groupBox1.Controls.Add(this.tbxInstructorIDs);
             this.groupBox1.Controls.Add(this.btnRefreshTrainees);
             this.groupBox1.Controls.Add(this.tbxTraineeIDs);
             this.groupBox1.Controls.Add(this.buttonRefresh);
@@ -68,7 +71,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtSpecification);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.cbxInstructor);
             this.groupBox1.Controls.Add(this.grbxNoiseLevel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cbxRadios);
@@ -81,9 +83,10 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(707, 251);
+            this.groupBox1.Size = new System.Drawing.Size(707, 269);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnRefreshTrainees
             // 
@@ -108,7 +111,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
-            this.buttonRefresh.Location = new System.Drawing.Point(326, 172);
+            this.buttonRefresh.Location = new System.Drawing.Point(326, 231);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
             this.buttonRefresh.TabIndex = 15;
@@ -159,22 +162,6 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Instructor";
             // 
-            // cbxInstructor
-            // 
-            this.cbxInstructor.FormattingEnabled = true;
-            this.cbxInstructor.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.cbxInstructor.Location = new System.Drawing.Point(104, 185);
-            this.cbxInstructor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxInstructor.Name = "cbxInstructor";
-            this.cbxInstructor.Size = new System.Drawing.Size(55, 24);
-            this.cbxInstructor.TabIndex = 9;
-            this.cbxInstructor.Text = "4";
-            this.cbxInstructor.SelectedValueChanged += new System.EventHandler(this.cbxInstructor_SelectedValueChanged);
-            // 
             // grbxNoiseLevel
             // 
             this.grbxNoiseLevel.Controls.Add(this.lbxNoiseLevel);
@@ -183,7 +170,7 @@
             this.grbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbxNoiseLevel.Name = "grbxNoiseLevel";
             this.grbxNoiseLevel.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 232);
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 250);
             this.grbxNoiseLevel.TabIndex = 8;
             this.grbxNoiseLevel.TabStop = false;
             this.grbxNoiseLevel.Text = "Noise level";
@@ -203,7 +190,7 @@
             this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 17);
             this.lbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxNoiseLevel.Name = "lbxNoiseLevel";
-            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 213);
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 231);
             this.lbxNoiseLevel.TabIndex = 0;
             // 
             // label4
@@ -336,10 +323,10 @@
             this.listBoxGetmethods.ForeColor = System.Drawing.SystemColors.Window;
             this.listBoxGetmethods.FormattingEnabled = true;
             this.listBoxGetmethods.ItemHeight = 18;
-            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 271);
+            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 289);
             this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 598);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 580);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -380,6 +367,26 @@
             // toolTip1
             // 
             this.toolTip1.AutomaticDelay = 250;
+            // 
+            // btnRefreshInstructors
+            // 
+            this.btnRefreshInstructors.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
+            this.btnRefreshInstructors.Location = new System.Drawing.Point(346, 183);
+            this.btnRefreshInstructors.Name = "btnRefreshInstructors";
+            this.btnRefreshInstructors.Size = new System.Drawing.Size(40, 40);
+            this.btnRefreshInstructors.TabIndex = 19;
+            this.toolTip1.SetToolTip(this.btnRefreshInstructors, "Refresh trainees");
+            this.btnRefreshInstructors.UseVisualStyleBackColor = true;
+            this.btnRefreshInstructors.Click += new System.EventHandler(this.btnRefreshInstructors_Click);
+            // 
+            // tbxInstructorIDs
+            // 
+            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 188);
+            this.tbxInstructorIDs.Name = "tbxInstructorIDs";
+            this.tbxInstructorIDs.Size = new System.Drawing.Size(224, 22);
+            this.tbxInstructorIDs.TabIndex = 18;
+            this.tbxInstructorIDs.Text = "1015,1016";
+            this.toolTip1.SetToolTip(this.tbxInstructorIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
             // 
             // frmUNETTester_Main
             // 
@@ -422,7 +429,6 @@
         private System.Windows.Forms.GroupBox grbxNoiseLevel;
         private System.Windows.Forms.ListBox lbxNoiseLevel;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbxInstructor;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label6;
@@ -431,6 +437,8 @@
         private System.Windows.Forms.TextBox tbxTraineeIDs;
         private System.Windows.Forms.Button btnRefreshTrainees;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnRefreshInstructors;
+        private System.Windows.Forms.TextBox tbxInstructorIDs;
     }
 }
 
