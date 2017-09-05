@@ -29,7 +29,6 @@ namespace UNET_Trainer_Trainee
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
-     //   private object rolelist;
 
         public static FrmUNETMain GetForm
         {
@@ -370,12 +369,14 @@ namespace UNET_Trainer_Trainee
         protected void SetTheme(UNETTheme _theme, Control _parent)
         {
             //we willen de parent ZELF ook themen als het een form is..
-            if (_parent.GetType().BaseType.BaseType == typeof(System.Windows.Forms.Form))
+            if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
             {
                 ((Form)_parent).ForeColor = Color.White;
                 ((Form)_parent).BackColor = Color.DimGray;
             }
 
+            this.ForeColor = Color.White;
+            this.BackColor = Color.DimGray;
             //loop thrue the controls of the parent
             foreach (Control ctrl in _parent.Controls)
             {
@@ -384,12 +385,17 @@ namespace UNET_Trainer_Trainee
                     ((Form)ctrl).ForeColor = Color.White;
                     ((Form)ctrl).BackColor = Color.DimGray;
                 }
+                if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
+                {
+                    ((Panel)ctrl).ForeColor = Color.White;
+                    ((Panel)ctrl).BackColor = Color.Gray;
+                }
+
                 if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
                 {
                     ((GroupBox)ctrl).ForeColor = Color.White;
                     ((GroupBox)ctrl).BackColor = Color.Gray;
                 }
-
 
 
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
@@ -430,22 +436,21 @@ namespace UNET_Trainer_Trainee
                         ((Button)ctrl).BackColor = Color.DeepSkyBlue;
                     }
 
-                    if (((Button)ctrl).Name.ToLower().Contains("audio") ||
-                         ((Button)ctrl).Name.ToLower().Contains("assist") ||
-                         ((Button)ctrl).Name.ToLower().Contains("intercom"))
+                    if (((Button)ctrl).Name.ToLower().Contains("il") ||
+                        ((Button)ctrl).Name.ToLower().Contains("intercom") ||
+                        ((Button)ctrl).Name.ToLower().Contains("assist") ||
+                            ((Button)ctrl).Name.ToLower().Contains("main page") ||
+                            ((Button)ctrl).Name.ToLower().Contains("service request") ||
+                            ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
                     {
                         ((Button)ctrl).ForeColor = Color.Black;
                         ((Button)ctrl).BackColor = Color.Gray;
                     }
 
-                    //   else
-                    //   {
-                    //       ((Button)ctrl).ForeColor = Color.White;
-                    //       ((Button)ctrl).BackColor = Color.DimGray;
-                    //   }
                 }
                 SetTheme(_theme, ctrl);
             }
+
         }
         #endregion
     }

@@ -396,7 +396,7 @@ namespace UNET_Tester
         {
             try
             {
-                AddToListbox(string.Format("Set Instructors to: {0}", Convert.ToInt16(tbxInstructorIDs.Text)), Color.LimeGreen);
+                AddToListbox(string.Format("Set Instructors to: {0}", tbxInstructorIDs.Text), Color.LimeGreen);
                 //Voeg voor iedere trainee-id een trainee object toe
                 string[] instructorids = tbxInstructorIDs.Text.Split(',');
                 // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
@@ -418,19 +418,6 @@ namespace UNET_Tester
 
                 service.SetInstructors((Instructor[])listInstructors);
           
-                //// we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
-
-                //using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
-                //{
-                //    service.Open();
-
-                //    service.SetInstructorsCount(tbxInstructorIDs));  //IMPORTANT: MUST BE A COMMA SEPARATED STRING
-
-                //    service.Close();
-                //}
-
-                ////      GetUNETStatus();
-
             }
             catch (Exception ex)
             {

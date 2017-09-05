@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +14,11 @@ namespace UNET_Trainer
 {
     public partial class FrmClassBroadcast : FrmUNETbaseSub
     {
+        //log4net
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        [DllImport("user32.dll")]
+        protected static extern IntPtr GetForegroundWindow();
 
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
@@ -21,6 +27,20 @@ namespace UNET_Trainer
             InitializeComponent();
             pnlInstructors.Paint += UC_Paint;
             pnlTrainees.Paint += UC_Paint;
+        }
+
+        /// <summary>
+        /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
+        /// https://stackoverflow.com/questions/76455/how-do-you-change-the-color-of-the-border-on-a-group-box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void UC_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
+
+            //   ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid);
+
         }
 
         private void FrmClassBroadcast_Load(object sender, EventArgs e)

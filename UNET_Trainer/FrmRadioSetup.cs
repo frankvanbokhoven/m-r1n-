@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,6 +14,12 @@ namespace UNET_Trainer
 {
     public partial class FrmRadioSetup : FrmUNETbaseSub
     {
+        //log4net
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        [DllImport("user32.dll")]
+        protected static extern IntPtr GetForegroundWindow();
+
         private int SelectedNoiseButtonIndex = -1; //this property is set after the click of a radio button
         private int SelectedRadioButtonIndex = -1; // index of one of the radio buttons
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
@@ -34,9 +41,21 @@ namespace UNET_Trainer
      
         }
 
+        /// <summary>
+        /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
+        /// https://stackoverflow.com/questions/76455/how-do-you-change-the-color-of-the-border-on-a-group-box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void UC_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
 
+            //   ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid);
+
+        }
         #region NoiseLevel
-        
+
 
         /// <summary>
         /// after a radio is selected, the appropriate noiselevel is loaded from wcf and set into the noise buttons
