@@ -48,6 +48,7 @@
             this.btnTraineeCC = new System.Windows.Forms.Button();
             this.btnTraineeAA = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnMainPage = new System.Windows.Forms.Button();
             this.pnlTrainees.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -336,20 +337,33 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnMainPage
+            // 
+            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Location = new System.Drawing.Point(72, 642);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.TabIndex = 26;
+            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.UseVisualStyleBackColor = false;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
+            // 
             // FrmTrainees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 706);
+            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.pnlTrainees);
-            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmTrainees";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmTrainees";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTrainees_FormClosing);
             this.Load += new System.EventHandler(this.FrmTrainees_Load);
-            this.Controls.SetChildIndex(this.pnlTrainees, 0);
             this.pnlTrainees.ResumeLayout(false);
             this.pnlTrainees.PerformLayout();
             this.ResumeLayout(false);
@@ -377,5 +391,6 @@
         private System.Windows.Forms.Button btnTraineeAA;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnMainPage;
     }
 }

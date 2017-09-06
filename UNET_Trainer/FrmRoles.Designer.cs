@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlRoles = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnRole20 = new System.Windows.Forms.Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
@@ -50,8 +51,8 @@
             this.btnRole11 = new System.Windows.Forms.Button();
             this.btnRole06 = new System.Windows.Forms.Button();
             this.btnRole01 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnMainPage = new System.Windows.Forms.Button();
             this.pnlRoles.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,16 @@
             this.pnlRoles.Name = "pnlRoles";
             this.pnlRoles.Size = new System.Drawing.Size(718, 512);
             this.pnlRoles.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 28);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Roles";
             // 
             // btnRole20
             // 
@@ -130,7 +141,7 @@
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
             // 
-            // btnRole5
+            // btnRole05
             // 
             this.btnRole05.BackColor = System.Drawing.Color.Gold;
             this.btnRole05.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -175,7 +186,7 @@
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
             // 
-            // btnRole9
+            // btnRole09
             // 
             this.btnRole09.BackColor = System.Drawing.Color.Gold;
             this.btnRole09.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -190,7 +201,7 @@
             this.btnRole09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole09.UseVisualStyleBackColor = false;
             // 
-            // btnRole4
+            // btnRole04
             // 
             this.btnRole04.BackColor = System.Drawing.Color.Gold;
             this.btnRole04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -235,7 +246,7 @@
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
             // 
-            // btnRole7
+            // btnRole07
             // 
             this.btnRole07.BackColor = System.Drawing.Color.Gold;
             this.btnRole07.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -250,7 +261,7 @@
             this.btnRole07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole07.UseVisualStyleBackColor = false;
             // 
-            // btnRole2
+            // btnRole02
             // 
             this.btnRole02.BackColor = System.Drawing.Color.Gold;
             this.btnRole02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -295,7 +306,7 @@
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
             // 
-            // btnRole8
+            // btnRole08
             // 
             this.btnRole08.BackColor = System.Drawing.Color.Gold;
             this.btnRole08.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -310,7 +321,7 @@
             this.btnRole08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole08.UseVisualStyleBackColor = false;
             // 
-            // btnRole3
+            // btnRole03
             // 
             this.btnRole03.BackColor = System.Drawing.Color.Gold;
             this.btnRole03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,7 +366,7 @@
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
             // 
-            // btnRole6
+            // btnRole06
             // 
             this.btnRole06.BackColor = System.Drawing.Color.Gold;
             this.btnRole06.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -370,7 +381,7 @@
             this.btnRole06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole06.UseVisualStyleBackColor = false;
             // 
-            // btnRole1
+            // btnRole01
             // 
             this.btnRole01.BackColor = System.Drawing.Color.Gold;
             this.btnRole01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -385,35 +396,39 @@
             this.btnRole01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole01.UseVisualStyleBackColor = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 28);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Roles";
-            // 
             // timer1
             // 
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnMainPage
+            // 
+            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Location = new System.Drawing.Point(53, 622);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.TabIndex = 22;
+            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.UseVisualStyleBackColor = false;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // FrmRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 706);
+            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.pnlRoles);
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "FrmRoles";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmRoles";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRoles_FormClosing);
             this.Load += new System.EventHandler(this.FrmRoles_Load);
-            this.Controls.SetChildIndex(this.pnlRoles, 0);
             this.pnlRoles.ResumeLayout(false);
             this.pnlRoles.PerformLayout();
             this.ResumeLayout(false);
@@ -445,5 +460,6 @@
         private System.Windows.Forms.Button btnRole01;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnMainPage;
     }
 }

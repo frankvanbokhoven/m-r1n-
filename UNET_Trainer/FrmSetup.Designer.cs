@@ -42,13 +42,9 @@
             this.btnBlue = new System.Windows.Forms.Button();
             this.btnLight = new System.Windows.Forms.Button();
             this.btnDark = new System.Windows.Forms.Button();
+            this.btnMainPage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.Location = new System.Drawing.Point(7, 16);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             // 
             // lblTestFont
             // 
@@ -105,9 +101,8 @@
             // 
             // btnApplyColors
             // 
-            this.btnApplyColors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnApplyColors.BackColor = System.Drawing.Color.Aqua;
-            this.btnApplyColors.Location = new System.Drawing.Point(67, 517);
+            this.btnApplyColors.Location = new System.Drawing.Point(479, 494);
             this.btnApplyColors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnApplyColors.Name = "btnApplyColors";
             this.btnApplyColors.Size = new System.Drawing.Size(152, 50);
@@ -203,11 +198,25 @@
             this.btnDark.Text = "Dark";
             this.btnDark.UseVisualStyleBackColor = false;
             // 
+            // btnMainPage
+            // 
+            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Location = new System.Drawing.Point(75, 491);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.TabIndex = 25;
+            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.UseVisualStyleBackColor = false;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
+            // 
             // FrmSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 747);
+            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnApplyColors);
             this.Controls.Add(this.lblTestFont);
@@ -217,19 +226,11 @@
             this.Controls.Add(this.pnlColorExample);
             this.Controls.Add(this.ddlColorButton);
             this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "FrmSetup";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Setup";
-            this.Controls.SetChildIndex(this.ddlColorButton, 0);
-            this.Controls.SetChildIndex(this.pnlColorExample, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.ddlFont, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.lblTestFont, 0);
-            this.Controls.SetChildIndex(this.btnApplyColors, 0);
-            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Load += new System.EventHandler(this.FrmSetup_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -253,5 +254,6 @@
         private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.Button btnLight;
         private System.Windows.Forms.Button btnDark;
+        private System.Windows.Forms.Button btnMainPage;
     }
 }

@@ -60,6 +60,7 @@
             this.btnNoise4 = new System.Windows.Forms.Button();
             this.btnNoise5 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnMainPage = new System.Windows.Forms.Button();
             this.pnlRadios.SuspendLayout();
             this.panelNoise.SuspendLayout();
             this.SuspendLayout();
@@ -487,21 +488,34 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnMainPage
+            // 
+            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Location = new System.Drawing.Point(13, 645);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.TabIndex = 21;
+            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.UseVisualStyleBackColor = false;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
+            // 
             // FrmRadioSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 709);
+            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.panelNoise);
             this.Controls.Add(this.pnlRadios);
             this.Name = "FrmRadioSetup";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmRadioSetup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRadioSetup_FormClosing);
             this.Load += new System.EventHandler(this.FrmRadioSetup_Load);
-            this.Controls.SetChildIndex(this.pnlRadios, 0);
-            this.Controls.SetChildIndex(this.panelNoise, 0);
             this.pnlRadios.ResumeLayout(false);
             this.pnlRadios.PerformLayout();
             this.panelNoise.ResumeLayout(false);
@@ -543,5 +557,6 @@
         private System.Windows.Forms.Button btnNoise4;
         private System.Windows.Forms.Button btnNoise5;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnMainPage;
     }
 }

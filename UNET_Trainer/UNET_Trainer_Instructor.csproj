@@ -133,6 +133,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Theming.cs" />
     <Compile Include="usercontrolConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>

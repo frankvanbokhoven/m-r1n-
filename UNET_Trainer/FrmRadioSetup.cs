@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace UNET_Trainer
 {
-    public partial class FrmRadioSetup : FrmUNETbaseSub
+    public partial class FrmRadioSetup : Form// FrmUNETbaseSub
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -33,12 +33,12 @@ namespace UNET_Trainer
         }
         public FrmRadioSetup(int _exersise)
         {
-            FormTitle = String.Format( "Radio Setup                                   Selected exersise: Exersise{0}", _exersise.ToString("00"));
+            this.Text = String.Format("Radio Setup                                   Selected exersise: Exersise{0}", _exersise.ToString("00"));
 
             InitializeComponent();
             pnlRadios.Paint += UC_Paint;
             panelNoise.Paint += UC_Paint;
-     
+
         }
 
         /// <summary>
@@ -196,7 +196,13 @@ namespace UNET_Trainer
 
         private void FrmRadioSetup_Load(object sender, EventArgs e)
         {
-             timer1.Enabled = true;
+            timer1.Enabled = true;
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -352,15 +358,24 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")) -1; //haal het indexnummer op van de button maar -1 want de index start bij  0
+            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")) - 1; //haal het indexnummer op van de button maar -1 want de index start bij  0
             int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
             SetNoiseLevel();
 
             //enable the Roles buttons
-        //    var radiolist = service.GetRadios();
-         //   List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+            //    var radiolist = service.GetRadios();
+            //   List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
         }
-        #endregion        
+        #endregion
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            FrmUNETMain.GetForm.Show();
+            this.Close();
+        }
     }
 }

@@ -12,7 +12,7 @@ using UNET_Classes;
 
 namespace UNET_Trainer
 {
-    public partial class FrmClassBroadcast : FrmUNETbaseSub
+    public partial class FrmClassBroadcast : Form// FrmUNETbaseSub
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -45,9 +45,15 @@ namespace UNET_Trainer
 
         private void FrmClassBroadcast_Load(object sender, EventArgs e)
         {
-            FormTitle = "Class broadcast";
+            this.Text = "Class broadcast";
             timer1.Enabled = true;
             InitState();
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
+
         }
 
 
@@ -309,6 +315,15 @@ namespace UNET_Trainer
 
             AllInstructors(false);
             AllTrainees(false);
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            FrmUNETMain.GetForm.Show();
+            this.Close();
         }
     }
 }

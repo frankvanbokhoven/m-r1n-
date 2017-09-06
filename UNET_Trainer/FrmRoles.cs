@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace UNET_Trainer
 {
-    public partial class FrmRoles : FrmUNETbaseSub
+    public partial class FrmRoles : Form
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -42,9 +42,14 @@ namespace UNET_Trainer
 
         private void FrmRoles_Load(object sender, EventArgs e)
         {
-            FormTitle = "Role Assignment";
+            this.Text = "Role Assignment";
 
             timer1.Enabled = true;
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
 
 
         }
@@ -102,7 +107,7 @@ namespace UNET_Trainer
                 {
                     pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                 }
-            
+
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlRoles, lstrole.Count, "role");
             }
@@ -145,9 +150,18 @@ namespace UNET_Trainer
             //     SetNoiseLevel();
 
             //enable the Roles buttons
-          //  var radiolist = service.GetRoles();
-           // List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+            //  var radiolist = service.GetRoles();
+            // List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
         }
 
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            FrmUNETMain.GetForm.Show();
+            this.Close();
+
+        }
     }
 }

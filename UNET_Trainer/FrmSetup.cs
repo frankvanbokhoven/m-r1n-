@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace UNET_Trainer
 {
-    public partial class FrmSetup : FrmUNETbaseSub
+    public partial class FrmSetup :Form// FrmUNETbaseSub
     {
         public FrmSetup()
         {
             InitializeComponent();
-            FormTitle = "Setup";
+            this.Text = "Setup";
 
 
             //basic fill of drowdownlists
@@ -72,6 +72,27 @@ namespace UNET_Trainer
         {
         //    FontFamily newfont = new FontFamily(ddlFont.SelectedItem.ToString());
             lblTestFont.Font = new Font(ddlFont.SelectedItem.ToString(), lblTestFont.Font.Size);
+        }
+
+        private void FrmSetup_Load(object sender, EventArgs e)
+        {
+            this.Text = "UNET - Setup";
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
+
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            FrmUNETMain.GetForm.Show();
+            this.Close();
+
         }
     }
 }

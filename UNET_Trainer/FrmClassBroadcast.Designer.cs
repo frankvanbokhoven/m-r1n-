@@ -60,6 +60,7 @@
             this.btnInstructor02 = new System.Windows.Forms.Button();
             this.btnInstructor01 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnMainPage = new System.Windows.Forms.Button();
             this.pnlTrainees.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlInstructors.SuspendLayout();
@@ -86,10 +87,10 @@
             this.pnlTrainees.Controls.Add(this.btnTraineeCC);
             this.pnlTrainees.Controls.Add(this.btnTraineeAA);
             this.pnlTrainees.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTrainees.Location = new System.Drawing.Point(813, 51);
+            this.pnlTrainees.Location = new System.Drawing.Point(813, 0);
             this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTrainees.Name = "pnlTrainees";
-            this.pnlTrainees.Size = new System.Drawing.Size(307, 695);
+            this.pnlTrainees.Size = new System.Drawing.Size(307, 746);
             this.pnlTrainees.TabIndex = 10;
             // 
             // btnTraineeSS
@@ -432,10 +433,10 @@
             this.pnlInstructors.Controls.Add(this.btnInstructor02);
             this.pnlInstructors.Controls.Add(this.btnInstructor01);
             this.pnlInstructors.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlInstructors.Location = new System.Drawing.Point(512, 51);
+            this.pnlInstructors.Location = new System.Drawing.Point(512, 0);
             this.pnlInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlInstructors.Name = "pnlInstructors";
-            this.pnlInstructors.Size = new System.Drawing.Size(301, 695);
+            this.pnlInstructors.Size = new System.Drawing.Size(301, 746);
             this.pnlInstructors.TabIndex = 12;
             // 
             // label3
@@ -510,11 +511,25 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnMainPage
+            // 
+            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Location = new System.Drawing.Point(12, 682);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMainPage.Name = "btnMainPage";
+            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.TabIndex = 20;
+            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.UseVisualStyleBackColor = false;
+            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
+            // 
             // FrmClassBroadcast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 746);
+            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.pnlInstructors);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlTrainees);
@@ -522,12 +537,10 @@
             this.Name = "FrmClassBroadcast";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmClassBroadcast";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmClassBroadcast_FormClosing);
             this.Load += new System.EventHandler(this.FrmClassBroadcast_Load);
-            this.Controls.SetChildIndex(this.pnlTrainees, 0);
-            this.Controls.SetChildIndex(this.panel2, 0);
-            this.Controls.SetChildIndex(this.pnlInstructors, 0);
             this.pnlTrainees.ResumeLayout(false);
             this.pnlTrainees.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -570,5 +583,6 @@
         private System.Windows.Forms.Button btnInstructor01;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnDeSelect;
+        private System.Windows.Forms.Button btnMainPage;
     }
 }

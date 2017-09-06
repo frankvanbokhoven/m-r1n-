@@ -267,10 +267,14 @@ namespace UNET_Trainer
             this.Size = new Size(800, 600);
             // Display the form in the center of the screen.
             // this.StartPosition = FormStartPosition.Manual
-            SetFormSizeAndPosition();
-            SetTheme(Theme, this);
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+   
             ShowIcon = false;
             ShowInTaskbar = false;
+
+ 
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
 
@@ -292,118 +296,118 @@ namespace UNET_Trainer
          }
 
 
-        /// <summary>
-        /// Set the general colors of the unettrainer          
-        /// </summary>
-        /// <param name="_theme"></param>
-        protected void SetTheme(UNETTheme _theme, Control _parent)
-        {
-            //switch (ConfigurationManager.AppSettings["Theme"].ToString())
-            //{
-            //    case "dark": { Theme = UNETTheme.utDark; break; }
-            //    case "light": { Theme = UNETTheme.utLight; break; }
-            //    case "blue": { Theme = UNETTheme.utBlue; break; }
-            //    default: { Theme = UNETTheme.utDark; break; }
-            //}
+        ///// <summary>
+        ///// Set the general colors of the unettrainer          
+        ///// </summary>
+        ///// <param name="_theme"></param>
+        //protected void SetTheme(UNETTheme _theme, Control _parent)
+        //{
+        //    //switch (ConfigurationManager.AppSettings["Theme"].ToString())
+        //    //{
+        //    //    case "dark": { Theme = UNETTheme.utDark; break; }
+        //    //    case "light": { Theme = UNETTheme.utLight; break; }
+        //    //    case "blue": { Theme = UNETTheme.utBlue; break; }
+        //    //    default: { Theme = UNETTheme.utDark; break; }
+        //    //}
 
-            //todo: mbv deze theme ook daadwerkelijk hieronder andere kleuren maken
+        //    //todo: mbv deze theme ook daadwerkelijk hieronder andere kleuren maken
 
-            //we willen de parent ZELF ook themen als het een form is..
-            if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
-            {
-                ((Form)_parent).ForeColor = Color.White;
-                ((Form)_parent).BackColor = Color.DimGray;
-            }
+        //    //we willen de parent ZELF ook themen als het een form is..
+        //    if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
+        //    {
+        //        ((Form)_parent).ForeColor = Color.White;
+        //        ((Form)_parent).BackColor = Color.DimGray;
+        //    }
 
-            this.ForeColor = Color.White;
-            this.BackColor = Color.DimGray;
-
-
-            //loop thrue the controls of the parent
-            foreach (Control ctrl in _parent.Controls)
-            {
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
-                {
-                    ((Form)ctrl).ForeColor = Color.White;
-                    ((Form)ctrl).BackColor = Color.DimGray;
-                }
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
-                {
-                    ((Panel)ctrl).ForeColor = Color.White;
-                    ((Panel)ctrl).BackColor = Color.Gray;
-                }
-
-                if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
-                {
-                    ((GroupBox)ctrl).ForeColor = Color.White;
-                    ((GroupBox)ctrl).BackColor = Color.Gray;
-                }
+        //    this.ForeColor = Color.White;
+        //    this.BackColor = Color.DimGray;
 
 
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
-                {
-                    if (((Button)ctrl).Name.ToLower().Contains("radio"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.DarkKhaki;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("close"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Red;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("trainee"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Peru;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("exersise"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.LimeGreen;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("role"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("noise"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.White;
-                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-                    }
+        //    //loop thrue the controls of the parent
+        //    foreach (Control ctrl in _parent.Controls)
+        //    {
+        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
+        //        {
+        //            ((Form)ctrl).ForeColor = Color.White;
+        //            ((Form)ctrl).BackColor = Color.DimGray;
+        //        }
+        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
+        //        {
+        //            ((Panel)ctrl).ForeColor = Color.White;
+        //            ((Panel)ctrl).BackColor = Color.Gray;
+        //        }
 
-                    if (((Button)ctrl).Name.ToLower().Contains("il") ||
-                        ((Button)ctrl).Name.ToLower().Contains("intercom") ||
-                        ((Button)ctrl).Name.ToLower().Contains("assist") ||
-                            ((Button)ctrl).Name.ToLower().Contains("main page") ||
-                            ((Button)ctrl).Name.ToLower().Contains("service request") ||
-                            ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Gray;
-                    }
+        //        if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
+        //        {
+        //            ((GroupBox)ctrl).ForeColor = Color.White;
+        //            ((GroupBox)ctrl).BackColor = Color.Gray;
+        //        }
 
-                }
-                SetTheme(_theme, ctrl);
-            }
-        }
 
-        private void SetFormSizeAndPosition()
-        {
-            // StartPosition was set to FormStartPosition.Manual in the properties window.
+        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+        //        {
+        //            if (((Button)ctrl).Name.ToLower().Contains("radio"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.DarkKhaki;
+        //            }
+        //            else
+        //            if (((Button)ctrl).Name.ToLower().Contains("close"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.Red;
+        //            }
+        //            else
+        //            if (((Button)ctrl).Name.ToLower().Contains("trainee"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.Peru;
+        //            }
+        //            else
+        //            if (((Button)ctrl).Name.ToLower().Contains("exersise"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.LimeGreen;
+        //            }
+        //            else
+        //            if (((Button)ctrl).Name.ToLower().Contains("role"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+        //            }
+        //            else
+        //            if (((Button)ctrl).Name.ToLower().Contains("noise"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.White;
+        //                ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+        //            }
 
-            Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
-            int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
-            int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
-            this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
-            this.Size = new Size(w, h);
-        }
+        //            if (((Button)ctrl).Name.ToLower().Contains("il") ||
+        //                ((Button)ctrl).Name.ToLower().Contains("intercom") ||
+        //                ((Button)ctrl).Name.ToLower().Contains("assist") ||
+        //                    ((Button)ctrl).Name.ToLower().Contains("main page") ||
+        //                    ((Button)ctrl).Name.ToLower().Contains("service request") ||
+        //                    ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
+        //            {
+        //                ((Button)ctrl).ForeColor = Color.Black;
+        //                ((Button)ctrl).BackColor = Color.Gray;
+        //            }
+
+        //        }
+        //        SetTheme(_theme, ctrl);
+        //    }
+        //}
+
+        //private void SetFormSizeAndPosition()
+        //{
+        //    // StartPosition was set to FormStartPosition.Manual in the properties window.
+
+        //    Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
+        //    int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
+        //    int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
+        //    this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
+        //    this.Size = new Size(w, h);
+        //}
 
 
 

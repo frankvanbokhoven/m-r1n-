@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace UNET_Trainer
 {
-    public partial class FrmTrainees : FrmUNETbaseSub
+    public partial class FrmTrainees : Form // FrmUNETbaseSub
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -31,11 +31,11 @@ namespace UNET_Trainer
         public FrmTrainees(int _exersise)
         {
             SelectedExercise = _exersise;
-             FormTitle = String.Format("Trainee Assignment                              Selected exersise: Exersise{0}", _exersise.ToString("00"));
-             InitializeComponent();
-       
+            this.Text = String.Format("Trainee Assignment                              Selected exersise: Exersise{0}", _exersise.ToString("00"));
+            InitializeComponent();
+
             pnlTrainees.Paint += UC_Paint;
-          }
+        }
 
         /// <summary>
         /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
@@ -53,7 +53,13 @@ namespace UNET_Trainer
 
         private void FrmTrainees_Load(object sender, EventArgs e)
         {
-             timer1.Enabled = true;
+            timer1.Enabled = true;
+
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
 
         }
 
@@ -122,7 +128,7 @@ namespace UNET_Trainer
                 btnTraineePP.Enabled = lstTrainee.Count >= 14;
                 btnTraineeRR.Enabled = lstTrainee.Count >= 15;
                 btnTraineeSS.Enabled = lstTrainee.Count >= 16;
-       
+
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
 
@@ -178,14 +184,23 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-          //  SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
-          //  int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
+            //  SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            //  int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
-       //     SetNoiseLevel();
+            //     SetNoiseLevel();
 
             //enable the Roles buttons
-         // var radiolist = service.GetRadios();
-          //  List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+            // var radiolist = service.GetRadios();
+            //  List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            FrmUNETMain.GetForm.Show();
+            this.Close();
         }
     }
 }

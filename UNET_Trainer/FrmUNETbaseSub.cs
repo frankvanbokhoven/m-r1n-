@@ -33,11 +33,6 @@ namespace UNET_Trainer
 
         private void btnMainPage_Click(object sender, EventArgs e)
         {
-            //  FrmUNETMain frm = new FrmUNETMain();
-            //      frm.Show();
-            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
-            FrmUNETMain.GetForm.Show();
-          this.Close();
         }
 
         private void btnServiceRequest_Click(object sender, EventArgs e)
