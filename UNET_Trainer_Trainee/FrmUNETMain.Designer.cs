@@ -626,6 +626,9 @@
             this.btnMonitorTrainee.TabIndex = 2;
             this.btnMonitorTrainee.Text = "Intercom";
             this.btnMonitorTrainee.UseVisualStyleBackColor = false;
+            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
+            this.btnMonitorTrainee.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseDown);
+            this.btnMonitorTrainee.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseUp);
             // 
             // btnClassBroadcast
             // 
@@ -638,6 +641,7 @@
             this.btnClassBroadcast.TabIndex = 1;
             this.btnClassBroadcast.Text = "Assist";
             this.btnClassBroadcast.UseVisualStyleBackColor = false;
+            this.btnClassBroadcast.Click += new System.EventHandler(this.btnClassBroadcast_Click);
             // 
             // groupBox1
             // 

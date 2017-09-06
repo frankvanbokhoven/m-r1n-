@@ -7,11 +7,18 @@ using System.Configuration;
 using pjsua2;
 using UNET_Classes;
 using System.Drawing;
+using UNET_Theming;
+using System.Runtime.InteropServices;
+using System.Media;
+using System.IO;
 
 namespace UNET_Trainer_Trainee
 {
-    public partial class FrmUNETMain :  Form//FrmUNETbase
+    public partial class FrmUNETMain : Form //FrmUNETbase
     {
+        [DllImport("user32.dll")]
+        protected static extern IntPtr GetForegroundWindow();
+
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -23,7 +30,7 @@ namespace UNET_Trainer_Trainee
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
-
+        private SoundPlayer simpleSound;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
@@ -63,7 +70,7 @@ namespace UNET_Trainer_Trainee
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-          //  this.Close();
+            //  this.Close();
             Application.Exit();
         }
 
@@ -76,6 +83,7 @@ namespace UNET_Trainer_Trainee
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
+            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             try
             {
                 //the useragent holds everything needed for the sip communication
@@ -100,49 +108,54 @@ namespace UNET_Trainer_Trainee
             // Size the form to be 300 pixels in height and width.
             this.Size = new Size(800, 600);
             // Display the form in the center of the screen.
-            // this.StartPosition = FormStartPosition.
-            //   SetFormSizeAndPosition();
             this.Top = 0;
             this.Left = 0;
             this.Height = 600;
             this.Width = 800;
-            SetTheme(Theme, this);
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            SetButtonStatus(this);
-
-            try
+            if (GetForegroundWindow() == this.Handle)
             {
-                //close the connection to the wcf service, if it is still opened
-                if (service.State != System.ServiceModel.CommunicationState.Opened)
+
+                SetButtonStatus(this);
+
+                try
                 {
-                    service.Open();
+                    //close the connection to the wcf service, if it is still opened
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+                    //enable the Exercise buttons
+                    UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
+                    if (currentInfo != null)
+                    {
+                        lblPlatform.Text = currentInfo.Platform;
+                        lblConsole.Text = currentInfo.ConsoleRole;
+                        lblExerciseMode.Text = currentInfo.ExerciseMode;
+                        lblExerciseName.Text = currentInfo.ExerciseName;
+                    }
+                    else
+                    {
+                        //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
+                    }
                 }
-        
-                //enable the Exercise buttons
-                UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
-                if (currentInfo != null)
+                catch (Exception ex)
                 {
-                    lblPlatform.Text = currentInfo.Platform;
-                    lblConsole.Text = currentInfo.ConsoleRole;
-                    lblExerciseMode.Text = currentInfo.ExerciseMode;
-                    lblExerciseName.Text = currentInfo.ExerciseName;
+                    log.Error("Error updating screen controls", ex);
+                    // throw;
                 }
-                else
-                {
-                    //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error updating screen controls", ex);
-                // throw;
+
+                SetButtonStatus(pnlPointToPoint);
+                SetButtonStatus(pnlRadios);
             }
 
-            SetButtonStatus(pnlPointToPoint);
-            SetButtonStatus(pnlRadios);
         }
 
         /// <summary>
@@ -184,14 +197,11 @@ namespace UNET_Trainer_Trainee
                     { ((Button)c).ImageIndex = 1; }
                 }
                 Application.DoEvents();
-
             }
 
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
-                // visible/invisible and also set the statusled
-                //  {
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -205,10 +215,7 @@ namespace UNET_Trainer_Trainee
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                //  List<UNET_Classes.Role> lstrole = rolelist.Cast<UNET_Classes.Role>().ToList(); //C# v3 manier om een array in een list te krijgen
                 conference.Roles = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
-
-                //  List<Role> lstrole = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
 
                 btnRole1.Enabled = conference.Roles.Count >= 1;
                 btnRole2.Enabled = conference.Roles.Count >= 2;
@@ -236,7 +243,7 @@ namespace UNET_Trainer_Trainee
                 //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
                 //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
                 //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                conference.Radios  = radiolist.Cast<UNET_Classes.Radio>().ToList(); 
+                conference.Radios = radiolist.Cast<UNET_Classes.Radio>().ToList();
                 btnRadio01.Enabled = conference.Radios.Count >= 1;
                 btnRadio02.Enabled = conference.Radios.Count >= 2;
                 btnRadio03.Enabled = conference.Radios.Count >= 3;
@@ -245,7 +252,7 @@ namespace UNET_Trainer_Trainee
 
 
                 //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical (pnlRadios, conference.Radios.Count, "radio");
+                UNET_Classes.Helpers.ResizeButtonsVertical(pnlRadios, conference.Radios.Count, "radio");
                 UNET_Classes.Helpers.ResizeButtonsVertical(pnlPointToPoint, conference.Roles.Count, "role");
             }
             catch (Exception ex)
@@ -254,6 +261,18 @@ namespace UNET_Trainer_Trainee
                 // throw;
             }
         }
+
+
+        private void PlayBeep()
+        {
+            if (File.Exists(Path.Combine(Application.StartupPath, @"Sounds\beep-01a.wav")))
+                {
+                simpleSound = new SoundPlayer(Path.Combine(Application.StartupPath, @"Sounds\beep-01a.wav"));
+                simpleSound.PlayLooping();
+                //           simpleSound.PlaySync();
+            }
+        }
+
 
         private void btnAudio_Click(object sender, EventArgs e)
         {
@@ -292,11 +311,9 @@ namespace UNET_Trainer_Trainee
                     state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
                 }
                 //2 zoek die op in de radios lijst in de conferencebridge
-                //  switch(ucb.Radios[radioid].State)
                 switch (state)
                 {
                     //3 zet de status   
-                    // case UNETRadioState.rsRx.ToString():
                     case "Rx":
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
@@ -304,7 +321,6 @@ namespace UNET_Trainer_Trainee
                             MakeCall(TraineeID);
                             break;
                         }
-                    //    case UNETRadioState.rsOff:
                     case "Off":
                     default:
                         {
@@ -312,8 +328,6 @@ namespace UNET_Trainer_Trainee
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
                             break;
                         }
-
-                    //   case UNETRadioState.rsTx:
                     case "Tx":
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
@@ -335,12 +349,10 @@ namespace UNET_Trainer_Trainee
             }
             catch (Exception ex)
             {
-                log.Error("Error setting the status:" + radioNumber , ex);
+                log.Error("Error setting the status:" + radioNumber, ex);
                 // throw;
             }
-
         }
-
 
         #region CALL
         private void MakeCall(int traineeid)
@@ -358,100 +370,33 @@ namespace UNET_Trainer_Trainee
                 // throw;
             }
         }
+
         #endregion
 
-        #region theme
-
-        /// <summary>
-        /// Set the colors of the
-        /// </summary>
-        /// <param name="_theme"></param>
-        protected void SetTheme(UNETTheme _theme, Control _parent)
+        private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
-            //we willen de parent ZELF ook themen als het een form is..
-            if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
+            log.Info("Clicked ClassBroadcast");
+            
+        }
+
+        private void btnMonitorTrainee_Click(object sender, EventArgs e)
+        {
+         }
+
+        private void btnMonitorTrainee_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (File.Exists(Path.Combine(Application.StartupPath, @"Sounds\beep-01a.wav")))
             {
-                ((Form)_parent).ForeColor = Color.White;
-                ((Form)_parent).BackColor = Color.DimGray;
+
+                simpleSound.Stop();
             }
+        }
 
-            this.ForeColor = Color.White;
-            this.BackColor = Color.DimGray;
-            //loop thrue the controls of the parent
-            foreach (Control ctrl in _parent.Controls)
-            {
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
-                {
-                    ((Form)ctrl).ForeColor = Color.White;
-                    ((Form)ctrl).BackColor = Color.DimGray;
-                }
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
-                {
-                    ((Panel)ctrl).ForeColor = Color.White;
-                    ((Panel)ctrl).BackColor = Color.Gray;
-                }
-
-                if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
-                {
-                    ((GroupBox)ctrl).ForeColor = Color.White;
-                    ((GroupBox)ctrl).BackColor = Color.Gray;
-                }
-
-
-                if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
-                {
-                    if (((Button)ctrl).Name.ToLower().Contains("radio"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.DarkKhaki;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("close"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Red;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("trainee"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Peru;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("exersise"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.LimeGreen;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("role"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-                    }
-                    else
-                    if (((Button)ctrl).Name.ToLower().Contains("noise"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.White;
-                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-                    }
-
-                    if (((Button)ctrl).Name.ToLower().Contains("il") ||
-                        ((Button)ctrl).Name.ToLower().Contains("intercom") ||
-                        ((Button)ctrl).Name.ToLower().Contains("assist") ||
-                            ((Button)ctrl).Name.ToLower().Contains("main page") ||
-                            ((Button)ctrl).Name.ToLower().Contains("service request") ||
-                            ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
-                    {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Gray;
-                    }
-
-                }
-                SetTheme(_theme, ctrl);
-            }
+        private void btnMonitorTrainee_MouseDown(object sender, MouseEventArgs e)
+        {
+            log.Info("Clicked Intercom");
+            PlayBeep();
 
         }
-        #endregion
     }
 }

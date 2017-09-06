@@ -86,6 +86,12 @@
     <Compile Include="FrmAudio.Designer.cs">
       <DependentUpon>FrmAudio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSetup.Designer.cs">
+      <DependentUpon>FrmSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUNETbase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </Compile>
     <EmbeddedResource Include="FrmAudio.resx">
       <DependentUpon>FrmAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSetup.resx">
+      <DependentUpon>FrmSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUNETbase.resx">
       <DependentUpon>FrmUNETbase.cs</DependentUpon>
@@ -182,6 +191,7 @@
   <ItemGroup>
     <Content Include="MarineGreen.ico" />
     <Content Include="MarineGrey.ico" />
+    <Content Include="Sounds\beep-01a.wav" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -202,6 +212,10 @@
     <ProjectReference Include="..\UNET_ConferenceBridge\UNET_ConferenceBridge.csproj">
       <Project>{d7f73f50-13cf-4555-8d9a-8ab4cc5122c9}</Project>
       <Name>UNET_ConferenceBridge</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNET_Theming\UNET_Theming.csproj">
+      <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
+      <Name>UNET_Theming</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

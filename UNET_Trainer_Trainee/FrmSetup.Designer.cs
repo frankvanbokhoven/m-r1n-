@@ -1,4 +1,4 @@
-﻿namespace UNET_Trainer
+﻿namespace UNET_Trainer_Trainee
 {
     partial class FrmSetup
     {
@@ -28,13 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTestFont = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ddlFont = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlColorExample = new System.Windows.Forms.Panel();
-            this.ddlColorButton = new System.Windows.Forms.ComboBox();
-            this.btnApplyColors = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -42,74 +35,16 @@
             this.btnBlue = new System.Windows.Forms.Button();
             this.btnLight = new System.Windows.Forms.Button();
             this.btnDark = new System.Windows.Forms.Button();
+            this.btnApplyColors = new System.Windows.Forms.Button();
+            this.lblTestFont = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ddlFont = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnlColorExample = new System.Windows.Forms.Panel();
+            this.ddlColorButton = new System.Windows.Forms.ComboBox();
             this.btnMainPage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblTestFont
-            // 
-            this.lblTestFont.AutoSize = true;
-            this.lblTestFont.Location = new System.Drawing.Point(380, 201);
-            this.lblTestFont.Name = "lblTestFont";
-            this.lblTestFont.Size = new System.Drawing.Size(81, 20);
-            this.lblTestFont.TabIndex = 22;
-            this.lblTestFont.Text = "Test font";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 174);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 20);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Font";
-            // 
-            // ddlFont
-            // 
-            this.ddlFont.FormattingEnabled = true;
-            this.ddlFont.Location = new System.Drawing.Point(67, 196);
-            this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ddlFont.Name = "ddlFont";
-            this.ddlFont.Size = new System.Drawing.Size(296, 26);
-            this.ddlFont.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 100);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 20);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Color of buttons";
-            // 
-            // pnlColorExample
-            // 
-            this.pnlColorExample.Location = new System.Drawing.Point(377, 122);
-            this.pnlColorExample.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlColorExample.Name = "pnlColorExample";
-            this.pnlColorExample.Size = new System.Drawing.Size(35, 25);
-            this.pnlColorExample.TabIndex = 18;
-            // 
-            // ddlColorButton
-            // 
-            this.ddlColorButton.FormattingEnabled = true;
-            this.ddlColorButton.Location = new System.Drawing.Point(67, 122);
-            this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ddlColorButton.Name = "ddlColorButton";
-            this.ddlColorButton.Size = new System.Drawing.Size(296, 26);
-            this.ddlColorButton.TabIndex = 17;
-            // 
-            // btnApplyColors
-            // 
-            this.btnApplyColors.BackColor = System.Drawing.Color.Aqua;
-            this.btnApplyColors.Location = new System.Drawing.Point(479, 494);
-            this.btnApplyColors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnApplyColors.Name = "btnApplyColors";
-            this.btnApplyColors.Size = new System.Drawing.Size(152, 50);
-            this.btnApplyColors.TabIndex = 23;
-            this.btnApplyColors.Text = "Apply changes";
-            this.btnApplyColors.UseVisualStyleBackColor = false;
-            this.btnApplyColors.Click += new System.EventHandler(this.btnApplyColors_Click);
             // 
             // groupBox1
             // 
@@ -119,12 +54,12 @@
             this.groupBox1.Controls.Add(this.btnBlue);
             this.groupBox1.Controls.Add(this.btnLight);
             this.groupBox1.Controls.Add(this.btnDark);
-            this.groupBox1.Location = new System.Drawing.Point(67, 257);
+            this.groupBox1.Location = new System.Drawing.Point(46, 198);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Size = new System.Drawing.Size(400, 167);
-            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Color theme";
             // 
@@ -199,25 +134,90 @@
             this.btnDark.Text = "Dark";
             this.btnDark.UseVisualStyleBackColor = false;
             // 
+            // btnApplyColors
+            // 
+            this.btnApplyColors.BackColor = System.Drawing.Color.Aqua;
+            this.btnApplyColors.Location = new System.Drawing.Point(458, 435);
+            this.btnApplyColors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnApplyColors.Name = "btnApplyColors";
+            this.btnApplyColors.Size = new System.Drawing.Size(152, 50);
+            this.btnApplyColors.TabIndex = 32;
+            this.btnApplyColors.Text = "Apply changes";
+            this.btnApplyColors.UseVisualStyleBackColor = false;
+            // 
+            // lblTestFont
+            // 
+            this.lblTestFont.AutoSize = true;
+            this.lblTestFont.Location = new System.Drawing.Point(359, 142);
+            this.lblTestFont.Name = "lblTestFont";
+            this.lblTestFont.Size = new System.Drawing.Size(64, 17);
+            this.lblTestFont.TabIndex = 31;
+            this.lblTestFont.Text = "Test font";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 115);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 17);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Font";
+            // 
+            // ddlFont
+            // 
+            this.ddlFont.FormattingEnabled = true;
+            this.ddlFont.Location = new System.Drawing.Point(46, 137);
+            this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ddlFont.Name = "ddlFont";
+            this.ddlFont.Size = new System.Drawing.Size(296, 24);
+            this.ddlFont.TabIndex = 29;
+            this.ddlFont.SelectedIndexChanged += new System.EventHandler(this.ddlFont_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 17);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Color of buttons";
+            // 
+            // pnlColorExample
+            // 
+            this.pnlColorExample.Location = new System.Drawing.Point(356, 63);
+            this.pnlColorExample.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlColorExample.Name = "pnlColorExample";
+            this.pnlColorExample.Size = new System.Drawing.Size(35, 25);
+            this.pnlColorExample.TabIndex = 27;
+            // 
+            // ddlColorButton
+            // 
+            this.ddlColorButton.FormattingEnabled = true;
+            this.ddlColorButton.Location = new System.Drawing.Point(46, 63);
+            this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ddlColorButton.Name = "ddlColorButton";
+            this.ddlColorButton.Size = new System.Drawing.Size(296, 24);
+            this.ddlColorButton.TabIndex = 26;
+            this.ddlColorButton.SelectedIndexChanged += new System.EventHandler(this.ddlColorButton_SelectedIndexChanged);
+            // 
             // btnMainPage
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
             this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainPage.Location = new System.Drawing.Point(75, 491);
+            this.btnMainPage.Location = new System.Drawing.Point(54, 432);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 53);
-            this.btnMainPage.TabIndex = 25;
+            this.btnMainPage.TabIndex = 34;
             this.btnMainPage.Text = "Main page";
             this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 747);
-            this.Controls.Add(this.btnMainPage);
+            this.ClientSize = new System.Drawing.Size(996, 696);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnApplyColors);
             this.Controls.Add(this.lblTestFont);
@@ -226,11 +226,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pnlColorExample);
             this.Controls.Add(this.ddlColorButton);
-            this.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.btnMainPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmSetup";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Text = "Setup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "FrmSetup";
             this.Load += new System.EventHandler(this.FrmSetup_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -241,13 +241,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTestFont;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox ddlFont;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel pnlColorExample;
-        private System.Windows.Forms.ComboBox ddlColorButton;
-        private System.Windows.Forms.Button btnApplyColors;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -255,6 +248,13 @@
         private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.Button btnLight;
         private System.Windows.Forms.Button btnDark;
+        private System.Windows.Forms.Button btnApplyColors;
+        private System.Windows.Forms.Label lblTestFont;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox ddlFont;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlColorExample;
+        private System.Windows.Forms.ComboBox ddlColorButton;
         private System.Windows.Forms.Button btnMainPage;
     }
 }

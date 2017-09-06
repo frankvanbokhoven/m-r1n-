@@ -210,11 +210,6 @@ namespace UNET_Tester
             }
         }
 
-        private void cbxTrainee_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbxRole_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -346,8 +341,8 @@ namespace UNET_Tester
             cbxInstructor_SelectedValueChanged(sender, e);
             cbxRadios_SelectedValueChanged(sender, e);
             cbxRole_SelectedValueChanged(sender, e);
-            cbxTrainee_SelectedValueChanged(sender, e);
-            
+            btnRefreshInstructors_Click(sender, e);
+            btnRefreshTrainees_Click(sender, e);
         }
 
         private void btnRefreshTrainees_Click(object sender, EventArgs e)

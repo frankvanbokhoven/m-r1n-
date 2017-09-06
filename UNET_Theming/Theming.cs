@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNET_Classes;
 
-namespace UNET_Trainer
+namespace UNET_Theming
 {
     public class Theming
     {
+   
         /// <summary>
         /// Set the general colors of the unettrainer          
         /// </summary>
@@ -134,12 +135,12 @@ namespace UNET_Trainer
 
             Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
             int w = _control.Width >= screen.Width ? screen.Width : (screen.Width + _control.Width) / 2;
-            int h =_control. Height >= screen.Height ? screen.Height : (screen.Height + _control.Height) / 2;
-        //    _control.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
-        //    _control.Size = new Size(w, h);
+            int h = _control.Height >= screen.Height ? screen.Height : (screen.Height + _control.Height) / 2;
+            //    _control.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
+            //    _control.Size = new Size(w, h);
 
-            _control.Location = new Point(0,0);
-            _control.Size = new Size(800,600);
+            _control.Location = new Point(0, 0);
+            _control.Size = new Size(800, 600);
 
         }
 

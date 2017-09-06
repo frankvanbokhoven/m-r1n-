@@ -133,7 +133,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Theming.cs" />
     <Compile Include="usercontrolConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +257,10 @@
     <ProjectReference Include="..\PJSUA2Implementation\PJSUA2Implementation.csproj">
       <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>
       <Name>PJSUA2Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNET_Theming\UNET_Theming.csproj">
+      <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
+      <Name>UNET_Theming</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

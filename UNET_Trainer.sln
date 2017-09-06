@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Trainer_Instructor", "UNET_Trainer\UNET_Trainer_Instructor.csproj", "{A1EE7471-9FFF-4C2A-A49B-F2C07F4E1238}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -47,6 +47,8 @@ EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupTestPJSUA2", "SetupTestPJSUA2\SetupTestPJSUA2.vdproj", "{3DB2ECDD-31EF-44E9-92F0-9B281E78CB06}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupUNET_Instructor", "SetupUNET_Instructor\Setup_UNET_Instructor.vdproj", "{60222816-9103-468D-A2CB-FE4E2849B799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNET_Theming", "UNET_Theming\UNET_Theming.csproj", "{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -250,6 +252,18 @@ Global
 		{60222816-9103-468D-A2CB-FE4E2849B799}.Release|x64.Build.0 = Release
 		{60222816-9103-468D-A2CB-FE4E2849B799}.Release|x86.ActiveCfg = Release
 		{60222816-9103-468D-A2CB-FE4E2849B799}.Release|x86.Build.0 = Release
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|x64.Build.0 = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|x64.ActiveCfg = Release|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|x64.Build.0 = Release|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{A5B4E6EA-E04C-4B32-BA1F-FB3FEA67EDB3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

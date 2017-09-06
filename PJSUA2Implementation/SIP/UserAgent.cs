@@ -63,9 +63,7 @@ namespace PJSUA2Implementation.SIP
         /// Determine an always unique string
         /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
         //  app start, this name must still be unique
-
-        /// </summary>
-        /// <param name="size"></param>
+        /// <param name="_namepart"></param>
         /// <returns></returns>
         private string RandomThreadString(string _namepart)
         {
@@ -86,12 +84,15 @@ namespace PJSUA2Implementation.SIP
             // Create endpoint
             try
             {
-                ep = new Endpoint();
-                ep.libCreate();
+                if (ep == null)
+                {
+                    ep = new Endpoint();
+                    ep.libCreate();
 
-                ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                    ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
               //  log.Error("Exception on Agent Start " + ex.Message);
 

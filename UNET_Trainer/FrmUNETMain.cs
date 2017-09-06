@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Drawing;
 using UNET_Classes;
 using System.Runtime.InteropServices;
+using UNET_Theming;
+using System.Media;
 
 namespace UNET_Trainer
 {
@@ -295,6 +297,7 @@ namespace UNET_Trainer
             }
          }
 
+     
 
         ///// <summary>
         ///// Set the general colors of the unettrainer          

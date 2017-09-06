@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Theming;
 
 namespace UNET_Trainer_Trainee
 {
-    public partial class FrmAudio : FrmUNETbaseSub
+    public partial class FrmAudio : Form
     {
         public FrmAudio()
         {
@@ -20,7 +21,7 @@ namespace UNET_Trainer_Trainee
 
         private void FrmAudio_Load(object sender, EventArgs e)
         {
-            FormTitle = "Audio setup";
+           this.Text = "Audio setup";
 
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
@@ -31,6 +32,11 @@ namespace UNET_Trainer_Trainee
             tbRightESMMM.Value = conference.RightESM;
             tbRightShadow.Value = conference.RightShadow;
             tbRightVolume.Value = conference.RightVolume;
+
+            Theming the = new Theming();
+            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.SetFormSizeAndPosition(this);
+
 
         }
 
@@ -87,6 +93,22 @@ namespace UNET_Trainer_Trainee
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.MicGain = tbMicGain.Value;
+
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+         //   FrmUNETMain.GetForm.Show();
+            this.Close();
+        }
+
+        private void btnOptions_Click(object sender, EventArgs e)
+        {
+            FrmSetup frm = new FrmSetup();
+            frm.Show();
 
         }
     }

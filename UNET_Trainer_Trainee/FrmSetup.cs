@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNET_Theming;
 
-namespace UNET_Trainer
+namespace UNET_Trainer_Trainee
 {
-    public partial class FrmSetup :Form// FrmUNETbaseSub
+    public partial class FrmSetup : Form
     {
         public FrmSetup()
         {
+    
             InitializeComponent();
             this.Text = "Setup";
 
@@ -51,10 +52,26 @@ namespace UNET_Trainer
         {
             foreach (FontFamily oneFontFamily in FontFamily.Families)
             {
-               ddlFont.Items.Add(oneFontFamily.Name);
+                ddlFont.Items.Add(oneFontFamily.Name);
             }
 
             ddlFont.Text = "";
+        }
+
+        private void btnMainPage_Click(object sender, EventArgs e)
+        {
+            //  FrmUNETMain frm = new FrmUNETMain();
+            //      frm.Show();
+            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+            // FrmUNETMain.GetForm.Show();
+            this.Close();
+
+        }
+
+        private void ddlFont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblTestFont.Font = new Font(ddlFont.SelectedItem.ToString(), lblTestFont.Font.Size);
+
         }
 
         private void ddlColorButton_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,41 +80,17 @@ namespace UNET_Trainer
             {
                 pnlColorExample.BackColor = Color.FromName(ddlColorButton.SelectedItem.ToString());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error changing index: " + ex.Message);
             }
         }
 
-        private void ddlFont_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        //    FontFamily newfont = new FontFamily(ddlFont.SelectedItem.ToString());
-            lblTestFont.Font = new Font(ddlFont.SelectedItem.ToString(), lblTestFont.Font.Size);
-        }
-
         private void FrmSetup_Load(object sender, EventArgs e)
         {
-            this.Text = "UNET - Setup";
-
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.SetFormSizeAndPosition(this);
-
-
-        }
-
-        private void btnMainPage_Click(object sender, EventArgs e)
-        {
-            //  FrmUNETMain frm = new FrmUNETMain();
-            //      frm.Show();
-            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
-            FrmUNETMain.GetForm.Show();
-            this.Close();
-
-        }
-
-        private void btnApplyColors_Click(object sender, EventArgs e)
-        {
 
         }
     }
