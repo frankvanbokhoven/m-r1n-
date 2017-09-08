@@ -191,6 +191,7 @@
   <ItemGroup>
     <Content Include="MarineGreen.ico" />
     <Content Include="MarineGrey.ico" />
+    <None Include="Resources\open-icon.png" />
     <Content Include="Sounds\beep-01a.wav" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>

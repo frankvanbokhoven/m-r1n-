@@ -43,48 +43,51 @@
             this.btnLight = new System.Windows.Forms.Button();
             this.btnDark = new System.Windows.Forms.Button();
             this.btnMainPage = new System.Windows.Forms.Button();
+            this.btnSelectLogDir = new System.Windows.Forms.Button();
+            this.txtLogDirectory = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTestFont
             // 
             this.lblTestFont.AutoSize = true;
-            this.lblTestFont.Location = new System.Drawing.Point(380, 201);
+            this.lblTestFont.Location = new System.Drawing.Point(381, 150);
             this.lblTestFont.Name = "lblTestFont";
-            this.lblTestFont.Size = new System.Drawing.Size(81, 20);
+            this.lblTestFont.Size = new System.Drawing.Size(63, 15);
             this.lblTestFont.TabIndex = 22;
             this.lblTestFont.Text = "Test font";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 174);
+            this.label2.Location = new System.Drawing.Point(64, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.Size = new System.Drawing.Size(36, 15);
             this.label2.TabIndex = 21;
             this.label2.Text = "Font";
             // 
             // ddlFont
             // 
             this.ddlFont.FormattingEnabled = true;
-            this.ddlFont.Location = new System.Drawing.Point(67, 196);
+            this.ddlFont.Location = new System.Drawing.Point(68, 145);
             this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlFont.Name = "ddlFont";
-            this.ddlFont.Size = new System.Drawing.Size(296, 26);
+            this.ddlFont.Size = new System.Drawing.Size(296, 23);
             this.ddlFont.TabIndex = 20;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 100);
+            this.label1.Location = new System.Drawing.Point(64, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 20);
+            this.label1.Size = new System.Drawing.Size(110, 15);
             this.label1.TabIndex = 19;
             this.label1.Text = "Color of buttons";
             // 
             // pnlColorExample
             // 
-            this.pnlColorExample.Location = new System.Drawing.Point(377, 122);
+            this.pnlColorExample.Location = new System.Drawing.Point(378, 71);
             this.pnlColorExample.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlColorExample.Name = "pnlColorExample";
             this.pnlColorExample.Size = new System.Drawing.Size(35, 25);
@@ -93,10 +96,10 @@
             // ddlColorButton
             // 
             this.ddlColorButton.FormattingEnabled = true;
-            this.ddlColorButton.Location = new System.Drawing.Point(67, 122);
+            this.ddlColorButton.Location = new System.Drawing.Point(68, 71);
             this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlColorButton.Name = "ddlColorButton";
-            this.ddlColorButton.Size = new System.Drawing.Size(296, 26);
+            this.ddlColorButton.Size = new System.Drawing.Size(296, 23);
             this.ddlColorButton.TabIndex = 17;
             // 
             // btnApplyColors
@@ -119,7 +122,7 @@
             this.groupBox1.Controls.Add(this.btnBlue);
             this.groupBox1.Controls.Add(this.btnLight);
             this.groupBox1.Controls.Add(this.btnDark);
-            this.groupBox1.Location = new System.Drawing.Point(67, 257);
+            this.groupBox1.Location = new System.Drawing.Point(66, 283);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -134,7 +137,7 @@
             this.radioButton2.Location = new System.Drawing.Point(311, 134);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(17, 16);
+            this.radioButton2.Size = new System.Drawing.Size(14, 13);
             this.radioButton2.TabIndex = 5;
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -144,7 +147,7 @@
             this.radioButton1.Location = new System.Drawing.Point(184, 134);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(17, 16);
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
             this.radioButton1.TabIndex = 4;
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -155,7 +158,7 @@
             this.rbDark.Location = new System.Drawing.Point(64, 134);
             this.rbDark.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbDark.Name = "rbDark";
-            this.rbDark.Size = new System.Drawing.Size(17, 16);
+            this.rbDark.Size = new System.Drawing.Size(14, 13);
             this.rbDark.TabIndex = 3;
             this.rbDark.TabStop = true;
             this.rbDark.UseVisualStyleBackColor = true;
@@ -203,7 +206,7 @@
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
             this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainPage.Location = new System.Drawing.Point(75, 491);
+            this.btnMainPage.Location = new System.Drawing.Point(68, 491);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 53);
@@ -212,11 +215,46 @@
             this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
+            // btnSelectLogDir
+            // 
+            this.btnSelectLogDir.Image = global::UNET_Trainer.Properties.Resources.open_icon;
+            this.btnSelectLogDir.Location = new System.Drawing.Point(603, 211);
+            this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSelectLogDir.Name = "btnSelectLogDir";
+            this.btnSelectLogDir.Size = new System.Drawing.Size(48, 50);
+            this.btnSelectLogDir.TabIndex = 40;
+            this.btnSelectLogDir.UseVisualStyleBackColor = true;
+            this.btnSelectLogDir.Click += new System.EventHandler(this.btnSelectLogDir_Click);
+            // 
+            // txtLogDirectory
+            // 
+            this.txtLogDirectory.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.txtLogDirectory.Location = new System.Drawing.Point(68, 226);
+            this.txtLogDirectory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtLogDirectory.Name = "txtLogDirectory";
+            this.txtLogDirectory.ReadOnly = true;
+            this.txtLogDirectory.Size = new System.Drawing.Size(502, 23);
+            this.txtLogDirectory.TabIndex = 39;
+            this.txtLogDirectory.Text = "c:\\Marine\\GitSources\\Log\\UNET_Trainer_Trainee.log";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(63, 195);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 15);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Log Directory";
+            // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 747);
+            this.Controls.Add(this.btnSelectLogDir);
+            this.Controls.Add(this.txtLogDirectory);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnApplyColors);
@@ -256,5 +294,8 @@
         private System.Windows.Forms.Button btnLight;
         private System.Windows.Forms.Button btnDark;
         private System.Windows.Forms.Button btnMainPage;
+        private System.Windows.Forms.Button btnSelectLogDir;
+        private System.Windows.Forms.TextBox txtLogDirectory;
+        private System.Windows.Forms.Label label3;
     }
 }

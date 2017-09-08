@@ -20,6 +20,7 @@ namespace UNET_Tester
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+        private int KeepAliveCounter = 0;
 
         public frmUNETTester_Main()
         {
@@ -305,6 +306,18 @@ namespace UNET_Tester
                         i++;
                     }
                 }
+
+                //keep alive
+                if (KeepAliveCounter == Convert.ToInt16(cbxKeepAlive.Text))
+                {
+                    if(cbxKeepAlive.Checked)
+                        {
+                            buttonRefresh_Click(sender, e);//klik eenvoudigweg de button, dan zorgt dat event voor de keepalive
+                            KeepAliveCounter = 0;
+                        }
+                }
+                else
+                    KeepAliveCounter++;
             }
 
             catch (Exception ex)
@@ -420,6 +433,11 @@ namespace UNET_Tester
                 log.Error("Error using WCF method change role", ex);
                 // throw;
             }
+        }
+
+        private void cbxKeepAlive_CheckedChanged(object sender, EventArgs e)
+        {
+            KeepAliveCounter = 0;
         }
     }
 }

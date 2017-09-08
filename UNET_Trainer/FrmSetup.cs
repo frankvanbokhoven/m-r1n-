@@ -1,4 +1,7 @@
-﻿using System;
+﻿using log4net;
+using log4net.Appender;
+using log4net.Repository.Hierarchy;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -83,6 +86,19 @@ namespace UNET_Trainer
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.SetFormSizeAndPosition(this);
 
+            //pick a font
+            ddlFont.SelectedText = "Arial Rounded MT";
+            Font ft = new Font("Arial Rounded MT", 12);
+            lblTestFont.Font = ft;
+            //pick a color
+            ddlColorButton.SelectedText = "darkgrey";
+
+        
+
+            string file = ((Hierarchy)LogManager.GetRepository())
+         .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
+            txtLogDirectory.Text = file;
+            btnMainPage.Focus();
 
         }
 
@@ -99,6 +115,20 @@ namespace UNET_Trainer
         private void btnApplyColors_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSelectLogDir_Click(object sender, EventArgs e)
+        {
+            //    string dirtobeprocessed = System.Configuration. conf  ini.IniReadValue("appsettings", "XMLDirectoryToBeProcessed");
+
+            FolderBrowserDialog theDialog = new FolderBrowserDialog();
+
+            theDialog.Description = "Select the Log4Net logging directory";
+            theDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtLogDirectory.Text = theDialog.SelectedPath;
+            }
         }
     }
 }

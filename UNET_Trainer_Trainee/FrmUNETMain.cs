@@ -76,45 +76,53 @@ namespace UNET_Trainer_Trainee
 
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            this.Text = "UNET Trainee";
-            //todo: terugzetten   timer1.Enabled = true;
-
-            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-            TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
-
-            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             try
             {
-                //the useragent holds everything needed for the sip communication
-                useragent = new PJSUA2Implementation.SIP.UserAgent();
-                useragent.UserAgentStart();
+                timer1.Enabled = true;
+                this.Text = "UNET Trainee";
+                //todo: terugzetten   timer1.Enabled = true;
 
+                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+                TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+
+                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+                try
+                {
+                    //the useragent holds everything needed for the sip communication
+                    useragent = new PJSUA2Implementation.SIP.UserAgent();
+                    useragent.UserAgentStart();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine +
+                        "Contact your system administrator");
+                    log.Error("Error creating accounts " + ex.Message);
+                    this.Close();
+                }
+
+                // Set the text displayed in the caption.
+                this.Text = "UNET";
+                this.BackColor = Color.White;
+                // Set the opacity to 75%.
+                this.Opacity = 1;
+                // Size the form to be 300 pixels in height and width.
+                this.Size = new Size(800, 600);
+                // Display the form in the center of the screen.
+                this.Top = 0;
+                this.Left = 0;
+                this.Height = 600;
+                this.Width = 800;
+                Theming the = new Theming();
+                the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+                the.SetFormSizeAndPosition(this);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                    ex.InnerException + Environment.NewLine +
-                    "Contact your system administrator");
-                log.Error("Error creating accounts " + ex.Message);
-                this.Close();
+                log.Error("Problem starting trainee!" + ex.Message + ex.InnerException);
             }
 
-            // Set the text displayed in the caption.
-            this.Text = "UNET";
-            this.BackColor = Color.White;
-            // Set the opacity to 75%.
-            this.Opacity = 1;
-            // Size the form to be 300 pixels in height and width.
-            this.Size = new Size(800, 600);
-            // Display the form in the center of the screen.
-            this.Top = 0;
-            this.Left = 0;
-            this.Height = 600;
-            this.Width = 800;
-            Theming the = new Theming();
-            the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
-            the.SetFormSizeAndPosition(this);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UNET_Theming;
+using System.Configuration;
+using log4net.Repository.Hierarchy;
+using log4net;
+using log4net.Appender;
 
 namespace UNET_Trainer_Trainee
 {
@@ -91,6 +95,33 @@ namespace UNET_Trainer_Trainee
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.SetFormSizeAndPosition(this);
+
+            //pick a font
+            ddlFont.SelectedText = "Arial Rounded MT";
+            Font ft = new Font("Arial Rounded MT", 12);
+            lblTestFont.Font = ft;
+            //pick a color
+            ddlColorButton.SelectedText = "darkgrey";
+            btnMainPage.Focus();
+
+            string file = ((Hierarchy)LogManager.GetRepository())
+         .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
+            txtLogDirectory.Text = file;
+            btnMainPage.Focus();
+        }
+
+        private void btnSelectLogDir_Click(object sender, EventArgs e)
+        {
+        //    string dirtobeprocessed = System.Configuration. conf  ini.IniReadValue("appsettings", "XMLDirectoryToBeProcessed");
+
+            FolderBrowserDialog  theDialog = new FolderBrowserDialog();
+
+            theDialog.Description = "Select the Log4Net logging directory";
+            theDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            if(theDialog.ShowDialog() == DialogResult.OK)
+            {
+                txtLogDirectory.Text = theDialog.SelectedPath;
+            }
 
         }
     }

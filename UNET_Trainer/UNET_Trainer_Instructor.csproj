@@ -232,6 +232,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\open-icon.png" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
