@@ -130,6 +130,8 @@ namespace UNET_Trainer
         private void SetButtonStatus(Control parent)
         {
           //  first the trainees, we assume the name of the button component is the key for the function
+
+            //this loop sets the color of the status led
             foreach (Control c in parent.Controls)
                 {
                     if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
@@ -199,7 +201,8 @@ namespace UNET_Trainer
         
                 foreach(UNET_Classes.Exercise exercise in lst)
                 {
-                   btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+                  // btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
                 }                 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
@@ -224,7 +227,7 @@ namespace UNET_Trainer
 
                  UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
-                //enable the Roles buttons
+                //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
 
@@ -295,124 +298,7 @@ namespace UNET_Trainer
                 log.Error("Error creating accounts " + ex.Message);
                 this.Close();
             }
-         }
-
-     
-
-        ///// <summary>
-        ///// Set the general colors of the unettrainer          
-        ///// </summary>
-        ///// <param name="_theme"></param>
-        //protected void SetTheme(UNETTheme _theme, Control _parent)
-        //{
-        //    //switch (ConfigurationManager.AppSettings["Theme"].ToString())
-        //    //{
-        //    //    case "dark": { Theme = UNETTheme.utDark; break; }
-        //    //    case "light": { Theme = UNETTheme.utLight; break; }
-        //    //    case "blue": { Theme = UNETTheme.utBlue; break; }
-        //    //    default: { Theme = UNETTheme.utDark; break; }
-        //    //}
-
-        //    //todo: mbv deze theme ook daadwerkelijk hieronder andere kleuren maken
-
-        //    //we willen de parent ZELF ook themen als het een form is..
-        //    if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
-        //    {
-        //        ((Form)_parent).ForeColor = Color.White;
-        //        ((Form)_parent).BackColor = Color.DimGray;
-        //    }
-
-        //    this.ForeColor = Color.White;
-        //    this.BackColor = Color.DimGray;
-
-
-        //    //loop thrue the controls of the parent
-        //    foreach (Control ctrl in _parent.Controls)
-        //    {
-        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
-        //        {
-        //            ((Form)ctrl).ForeColor = Color.White;
-        //            ((Form)ctrl).BackColor = Color.DimGray;
-        //        }
-        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
-        //        {
-        //            ((Panel)ctrl).ForeColor = Color.White;
-        //            ((Panel)ctrl).BackColor = Color.Gray;
-        //        }
-
-        //        if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
-        //        {
-        //            ((GroupBox)ctrl).ForeColor = Color.White;
-        //            ((GroupBox)ctrl).BackColor = Color.Gray;
-        //        }
-
-
-        //        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
-        //        {
-        //            if (((Button)ctrl).Name.ToLower().Contains("radio"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.DarkKhaki;
-        //            }
-        //            else
-        //            if (((Button)ctrl).Name.ToLower().Contains("close"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.Red;
-        //            }
-        //            else
-        //            if (((Button)ctrl).Name.ToLower().Contains("trainee"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.Peru;
-        //            }
-        //            else
-        //            if (((Button)ctrl).Name.ToLower().Contains("exersise"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.LimeGreen;
-        //            }
-        //            else
-        //            if (((Button)ctrl).Name.ToLower().Contains("role"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-        //            }
-        //            else
-        //            if (((Button)ctrl).Name.ToLower().Contains("noise"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.White;
-        //                ((Button)ctrl).BackColor = Color.DeepSkyBlue;
-        //            }
-
-        //            if (((Button)ctrl).Name.ToLower().Contains("il") ||
-        //                ((Button)ctrl).Name.ToLower().Contains("intercom") ||
-        //                ((Button)ctrl).Name.ToLower().Contains("assist") ||
-        //                    ((Button)ctrl).Name.ToLower().Contains("main page") ||
-        //                    ((Button)ctrl).Name.ToLower().Contains("service request") ||
-        //                    ((Button)ctrl).Name.ToLower().Contains("mic level 0"))
-        //            {
-        //                ((Button)ctrl).ForeColor = Color.Black;
-        //                ((Button)ctrl).BackColor = Color.Gray;
-        //            }
-
-        //        }
-        //        SetTheme(_theme, ctrl);
-        //    }
-        //}
-
-        //private void SetFormSizeAndPosition()
-        //{
-        //    // StartPosition was set to FormStartPosition.Manual in the properties window.
-
-        //    Rectangle screen = new Rectangle(new Point(500, 500), new Size(800, 600));
-        //    int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
-        //    int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
-        //    this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
-        //    this.Size = new Size(w, h);
-        //}
-
-
+         }     
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
@@ -509,19 +395,13 @@ namespace UNET_Trainer
 
         }
 
-
-        ///// <param name="_btn"></param>
-        //private void SetStatusAndColorTraineeButtons(Button _btn)
-        //{
-
-        //}
-
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
             SetTraineeStatus();
             int traineeIndex = -1;
             //    SetStatusAndColorTraineeButtons((Button)sender);
-            /// <summary>
+           traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+           /// <summary>
             /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
             /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
             /// this generic code covers this for all all buttons at once
@@ -529,7 +409,6 @@ namespace UNET_Trainer
             if (MonitorTrainee)
             {
                 // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
-                traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
                 MonitorTraineeArray[traineeIndex] = true;
                 ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
                 ((Button)sender).ForeColor = System.Drawing.Color.White;
@@ -543,7 +422,6 @@ namespace UNET_Trainer
 
             //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
             service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
-
         }
         #endregion
 
@@ -691,10 +569,7 @@ namespace UNET_Trainer
             btnExersise06.ForeColor = System.Drawing.Color.Black;
             btnExersise07.ForeColor = System.Drawing.Color.Black;
             btnExersise08.ForeColor = System.Drawing.Color.Black;
-            btnIL.ForeColor = System.Drawing.Color.Black;
-
-         
-      
+            btnIL.ForeColor = System.Drawing.Color.Black;        
         }
 
         private void SetStatusAndColorExerciseButtons(Button _btn)
@@ -714,7 +589,7 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            service.SetExerciseSelected(ExersiseIndex, true); //now we have told the service that this instructor has selected this exercise
+            service.SetExerciseSelected(InstructorID, ExersiseIndex, true); //now we have told the service that this instructor has selected this exercise
 
 
             _btn.BackColor = System.Drawing.Color.SaddleBrown;

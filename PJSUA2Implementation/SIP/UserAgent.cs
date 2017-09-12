@@ -90,6 +90,7 @@ namespace PJSUA2Implementation.SIP
                     ep.libCreate();
 
                     ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                    
                 }
             }
             catch (Exception)

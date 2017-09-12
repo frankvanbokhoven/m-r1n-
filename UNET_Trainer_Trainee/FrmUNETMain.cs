@@ -11,6 +11,7 @@ using UNET_Theming;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.IO;
+using HardwareInterface;
 
 namespace UNET_Trainer_Trainee
 {
@@ -32,6 +33,11 @@ namespace UNET_Trainer_Trainee
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
         private SoundPlayer simpleSound;
 
+        private bool HeadsetPlugged = false;
+        private bool SoundPlaying = false;
+
+        private UsbInterface hardwareInterface;
+
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -52,6 +58,48 @@ namespace UNET_Trainer_Trainee
             log4net.Config.BasicConfigurator.Configure();
 
         }
+
+        #region PTT
+
+        /// <summary>
+        /// Initialiseer de PTT.
+        /// Dit hoeft maar 1x per applicatie
+        /// </summary>
+        private void InitHardwareInterface()
+        {
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseHardwarePtt"]))
+            {
+                hardwareInterface = new UsbInterface();
+                hardwareInterface.PttChangedEvent += HardwareInterface_PttChangedEvent;
+                hardwareInterface.HeadsetPluggedChangedEvent += HardwareInterface_HeadsetPluggedChangedEvent;
+                hardwareInterface.Initialize();
+            }
+        }
+
+
+        private void HardwareInterface_PttChangedEvent(object sender, EventArgs e)
+        {
+
+            ///play a sound when the user presses the ptt button
+            if (!SoundPlaying)
+            {
+                PlayBeep();
+                lblPtt.Text = "PTT";
+            }
+            else
+            {
+                simpleSound.Stop();
+                SoundPlaying = false;
+                lblPtt.Text = "";
+            }
+
+        }
+        private void HardwareInterface_HeadsetPluggedChangedEvent(object sender, EventArgs e)
+        {
+      //    if(hardwareInterface.e)
+        }
+
+       #endregion
 
         /// <summary>
         /// this sets the information about the exercise in the panel right above
@@ -278,6 +326,8 @@ namespace UNET_Trainer_Trainee
                 simpleSound = new SoundPlayer(Path.Combine(Application.StartupPath, @"Sounds\beep-01a.wav"));
                 simpleSound.PlayLooping();
                 //           simpleSound.PlaySync();
+
+                SoundPlaying = true;
             }
         }
 

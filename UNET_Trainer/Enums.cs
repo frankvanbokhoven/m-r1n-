@@ -14,22 +14,22 @@ namespace UNET_Trainer
         /// </summary>
         public enum Trainees
         {
-            TraineeAA = 0,
-            TraineeBB = 1,
-            TraineeCC = 2,
-            TraineeDD = 3,
-            TraineeEE = 4,
-            TraineeFF = 5,
-            TraineeGG = 6,
-            TraineeHH = 7,
-            TraineeJJ = 8,
-            TraineeKK = 9,
-            TraineeLL = 10,
-            TraineeMM = 11,
-            TraineeNN = 12,
-            TraineePP = 13,
-            TraineeRR = 14,
-            TraineeSS = 15
+            TraineeAA = 1,
+            TraineeBB = 2,
+            TraineeCC = 3,
+            TraineeDD = 4,
+            TraineeEE = 5,
+            TraineeFF = 6,
+            TraineeGG = 7,
+            TraineeHH = 8,
+            TraineeJJ = 9,
+            TraineeKK = 10,
+            TraineeLL = 11,
+            TraineeMM = 12,
+            TraineeNN = 13,
+            TraineePP = 14,
+            TraineeRR = 15,
+            TraineeSS = 16
         }
 
         public enum Radios

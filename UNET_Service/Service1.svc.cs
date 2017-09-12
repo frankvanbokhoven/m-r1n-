@@ -649,7 +649,7 @@ namespace UNET_Service
         /// <param name="_exerciseIndex"></param>
         /// <param name="_select"></param>
         /// <returns></returns>
-        public bool SetExerciseSelected(int _exerciseIndex, bool _select)
+        public bool SetExerciseSelected(int _instructor, int _exerciseIndex, bool _select)
         {
             bool result = true;
             try
@@ -661,6 +661,10 @@ namespace UNET_Service
                    if(exe.Number == _exerciseIndex)
                     {
                         exe.Selected = _select;
+
+                        //voeg de exercise nu toe aan de instructeur
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
+               //         singleton.Instructors[_instructor].Exercises.Add(exe);
                     }
                 }
 

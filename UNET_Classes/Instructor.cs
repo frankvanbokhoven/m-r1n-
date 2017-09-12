@@ -18,6 +18,7 @@ namespace UNET_Classes
         /// <param name="_name"></param>
         public Instructor(int _id, string _name)
         {
+            Exercises = new List<Exercise>();
             ID = _id;
             Name = _name;
 

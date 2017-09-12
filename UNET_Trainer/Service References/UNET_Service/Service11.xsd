@@ -288,6 +288,7 @@
   <xs:element name="SetExerciseSelected">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="_instructor" type="xs:int" />
         <xs:element minOccurs="0" name="_exerciseIndex" type="xs:int" />
         <xs:element minOccurs="0" name="_select" type="xs:boolean" />
       </xs:sequence>

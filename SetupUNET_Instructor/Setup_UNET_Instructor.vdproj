@@ -64,13 +64,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C0DCB3CEDA8C6AE19BF3150FC7E130BA"
+        "OwnerKey" = "8:_4C8B76C6B9414FF15496C95D16FF2CBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4C8B76C6B9414FF15496C95D16FF2CBD"
+        "OwnerKey" = "8:_C0DCB3CEDA8C6AE19BF3150FC7E130BA"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -357,15 +357,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
-        "ProductCode" = "8:{ACA3DBDC-2B70-42EF-8D69-0373D3FD026A}"
-        "PackageCode" = "8:{6217AECE-6816-4603-8081-03C638E94D22}"
+        "ProductCode" = "8:{501DD81A-268F-4209-8DC0-4BDCDAA5CB8B}"
+        "PackageCode" = "8:{0E3300DD-C528-4D88-9079-243215BA85F0}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.13"
+        "ProductVersion" = "8:0.0.14"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:www.yggdra.nl"

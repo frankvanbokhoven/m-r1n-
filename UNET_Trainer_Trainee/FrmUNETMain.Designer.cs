@@ -78,6 +78,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblPtt = new System.Windows.Forms.Label();
+            this.lblHeadset = new System.Windows.Forms.Label();
             this.pnlPointToPoint.SuspendLayout();
             this.pnlRadios.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -748,11 +750,32 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lblPtt
+            // 
+            this.lblPtt.AutoSize = true;
+            this.lblPtt.Location = new System.Drawing.Point(701, 698);
+            this.lblPtt.Name = "lblPtt";
+            this.lblPtt.Size = new System.Drawing.Size(20, 17);
+            this.lblPtt.TabIndex = 30;
+            this.lblPtt.Text = "...";
+            // 
+            // lblHeadset
+            // 
+            this.lblHeadset.AutoSize = true;
+            this.lblHeadset.Location = new System.Drawing.Point(991, 698);
+            this.lblHeadset.Name = "lblHeadset";
+            this.lblHeadset.Size = new System.Drawing.Size(20, 17);
+            this.lblHeadset.TabIndex = 31;
+            this.lblHeadset.Text = "...";
+            this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 737);
+            this.Controls.Add(this.lblHeadset);
+            this.Controls.Add(this.lblPtt);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -777,6 +800,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -830,6 +854,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblPtt;
+        private System.Windows.Forms.Label lblHeadset;
     }
 }
 
