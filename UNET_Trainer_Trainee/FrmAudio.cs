@@ -21,7 +21,7 @@ namespace UNET_Trainer_Trainee
 
         private void FrmAudio_Load(object sender, EventArgs e)
         {
-           this.Text = "Audio setup";
+            this.Text = "Audio setup";
 
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
@@ -45,7 +45,6 @@ namespace UNET_Trainer_Trainee
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.LeftShadow = tbLeftShadow.Value;
-
         }
 
         private void tbRightShadow_ValueChanged(object sender, decimal value)
@@ -101,7 +100,7 @@ namespace UNET_Trainer_Trainee
             //  FrmUNETMain frm = new FrmUNETMain();
             //      frm.Show();
             // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
-         //   FrmUNETMain.GetForm.Show();
+            //   FrmUNETMain.GetForm.Show();
             this.Close();
         }
 
@@ -109,6 +108,22 @@ namespace UNET_Trainer_Trainee
         {
             FrmSetup frm = new FrmSetup();
             frm.Show();
+
+        }
+
+        private void FrmAudio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //sla de wijzigingen op naar de app.config van deze trainer
+            UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
+
+            ///haal de settings op uit de registry. Dit mislukt de allereerste keer
+            RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
 
         }
     }

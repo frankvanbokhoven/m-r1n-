@@ -883,6 +883,7 @@ namespace UNET_Service
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 bool existing = false;
                 //try to find the given traineeclient in the list. If found, update the information, otherwise add the traineeclient
+                //TODO: DIT ZOU OOK MET LYNC KUNNEN..
                 for (int i = 0; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
                 {
                     //try to find a currentinfo object in the list with the same id
@@ -898,6 +899,12 @@ namespace UNET_Service
                     {
                         singleton.CurrentInfoList.Add(_currentInfo);
                     }                   
+                }
+                //now add it to the trainees list
+                if((singleton.Trainees.SingleOrDefault(x => x.ID == _currentInfo.ID) == null))
+                {
+                    Trainee trn = new Trainee(_currentInfo.ID, _currentInfo.ExerciseName);
+                    singleton.Trainees.Add(trn);
                 }
 
                             result = true;

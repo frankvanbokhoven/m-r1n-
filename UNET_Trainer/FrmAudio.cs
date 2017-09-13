@@ -43,7 +43,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.LeftShadow = tbLeftShadow.Value;
-
+    
         }
 
         private void tbRightShadow_ValueChanged(object sender, decimal value)
@@ -51,6 +51,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.RightShadow = tbRightShadow.Value;
+    
         }
 
         private void tbLeftVolume_ValueChanged(object sender, decimal value)
@@ -58,7 +59,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.LeftVolume = tbLeftVolume.Value;
-
+   
         }
 
         private void tbRightVolume_ValueChanged(object sender, decimal value)
@@ -66,7 +67,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.RightVolume = tbRightVolume.Value;
-
+    
         }
 
         private void tbLeftESMMM_ValueChanged(object sender, decimal value)
@@ -74,7 +75,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.LeftESM = tbLeftESMMM.Value;
-
+   
         }
 
         private void tbRightESMMM_ValueChanged(object sender, decimal value)
@@ -82,7 +83,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.RightESM = tbRightESMMM.Value;
-
+ 
         }
 
         private void tbMicGain_ValueChanged(object sender, decimal value)
@@ -90,7 +91,7 @@ namespace UNET_Trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
             conference.MicGain = tbMicGain.Value;
-
+   
         }
 
         private void btnMainPage_Click(object sender, EventArgs e)
@@ -107,6 +108,22 @@ namespace UNET_Trainer
         {
             FrmSetup frm = new FrmSetup();
             frm.Show();
+
+        }
+
+        private void FrmAudio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //sla de wijzigingen op naar de app.config van deze trainer
+            UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
+
+            ///haal de settings op uit de registry. Dit mislukt de allereerste keer
+            RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
+            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
 
         }
     }

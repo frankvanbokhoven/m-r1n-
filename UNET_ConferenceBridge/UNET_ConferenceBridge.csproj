@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNET_Theming\UNET_Theming.csproj">
+      <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
+      <Name>UNET_Theming</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

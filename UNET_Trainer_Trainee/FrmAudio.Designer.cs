@@ -620,11 +620,12 @@
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAudio";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "FrmAudio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAudio_FormClosing);
             this.Load += new System.EventHandler(this.FrmAudio_Load);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();

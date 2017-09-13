@@ -69,6 +69,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8CE02A8B4329EDD36B78B5D47D236083"
+        "OwnerKey" = "8:_F7219B742B56A9679B2F020879912AE8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8CE02A8B4329EDD36B78B5D47D236083"
+        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A259D4DFC3410BEAECA448C9A591C1CB"
         "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
         "MsmSig" = "8:_UNDEFINED"
@@ -112,6 +124,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F7219B742B56A9679B2F020879912AE8"
         "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -197,6 +215,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F7219B742B56A9679B2F020879912AE8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8CE02A8B4329EDD36B78B5D47D236083"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -489,6 +519,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8CE02A8B4329EDD36B78B5D47D236083"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:HidLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8CE02A8B4329EDD36B78B5D47D236083"
+                    {
+                    "Name" = "8:HidLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:HidLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A259D4DFC3410BEAECA448C9A591C1CB"
             {
             "AssemblyRegister" = "3:1"
@@ -613,6 +674,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F7219B742B56A9679B2F020879912AE8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:HardwareInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F7219B742B56A9679B2F020879912AE8"
+                    {
+                    "Name" = "8:HardwareInterface.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:HardwareInterface.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8B6352B128BD10B9BA18CAB31207913"
             {
             "AssemblyRegister" = "3:1"
@@ -700,15 +792,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Trainee"
-        "ProductCode" = "8:{83BDDEB0-3C31-4C48-8C87-C9E435516AB2}"
-        "PackageCode" = "8:{C5A844CF-4FD4-4826-9ACE-A9AE2C0C85C3}"
+        "ProductCode" = "8:{22C0137A-D3DC-44CF-9713-B0526AD3D510}"
+        "PackageCode" = "8:{D3E9ABFB-0455-442E-BDF9-90817499B822}"
         "UpgradeCode" = "8:{12E5EDE4-3839-4A13-8E0C-423C4F3C47B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.12"
+        "ProductVersion" = "8:0.0.14"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.yggdra.nl"

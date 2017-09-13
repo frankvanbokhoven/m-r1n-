@@ -66,8 +66,8 @@
             this.btnAudio = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnMonitorTrainee = new System.Windows.Forms.Button();
-            this.btnClassBroadcast = new System.Windows.Forms.Button();
+            this.btnIntercom = new System.Windows.Forms.Button();
+            this.btnAssist = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblPlatform = new System.Windows.Forms.Label();
             this.lblConsole = new System.Windows.Forms.Label();
@@ -80,6 +80,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblPtt = new System.Windows.Forms.Label();
             this.lblHeadset = new System.Windows.Forms.Label();
+            this.lblRegInfo = new System.Windows.Forms.Label();
+            this.lblInstructor = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.pnlPointToPoint.SuspendLayout();
             this.pnlRadios.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -599,8 +602,8 @@
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.btnMonitorTrainee);
-            this.panel3.Controls.Add(this.btnClassBroadcast);
+            this.panel3.Controls.Add(this.btnIntercom);
+            this.panel3.Controls.Add(this.btnAssist);
             this.panel3.Location = new System.Drawing.Point(773, 415);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
@@ -617,36 +620,38 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Functions";
             // 
-            // btnMonitorTrainee
+            // btnIntercom
             // 
-            this.btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
-            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMonitorTrainee.Location = new System.Drawing.Point(-1, 119);
-            this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnMonitorTrainee.Name = "btnMonitorTrainee";
-            this.btnMonitorTrainee.Size = new System.Drawing.Size(127, 101);
-            this.btnMonitorTrainee.TabIndex = 2;
-            this.btnMonitorTrainee.Text = "Intercom";
-            this.btnMonitorTrainee.UseVisualStyleBackColor = false;
-            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
-            this.btnMonitorTrainee.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseDown);
-            this.btnMonitorTrainee.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseUp);
+            this.btnIntercom.BackColor = System.Drawing.Color.Aqua;
+            this.btnIntercom.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIntercom.Location = new System.Drawing.Point(-1, 119);
+            this.btnIntercom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIntercom.Name = "btnIntercom";
+            this.btnIntercom.Size = new System.Drawing.Size(127, 101);
+            this.btnIntercom.TabIndex = 2;
+            this.btnIntercom.Text = "Intercom";
+            this.btnIntercom.UseVisualStyleBackColor = false;
+            this.btnIntercom.Click += new System.EventHandler(this.btnIntercom_Click);
+            this.btnIntercom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseDown);
+            this.btnIntercom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMonitorTrainee_MouseUp);
             // 
-            // btnClassBroadcast
+            // btnAssist
             // 
-            this.btnClassBroadcast.BackColor = System.Drawing.Color.Aqua;
-            this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
-            this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClassBroadcast.Name = "btnClassBroadcast";
-            this.btnClassBroadcast.Size = new System.Drawing.Size(123, 92);
-            this.btnClassBroadcast.TabIndex = 1;
-            this.btnClassBroadcast.Text = "Assist";
-            this.btnClassBroadcast.UseVisualStyleBackColor = false;
-            this.btnClassBroadcast.Click += new System.EventHandler(this.btnClassBroadcast_Click);
+            this.btnAssist.BackColor = System.Drawing.Color.Aqua;
+            this.btnAssist.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssist.Location = new System.Drawing.Point(3, 22);
+            this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAssist.Name = "btnAssist";
+            this.btnAssist.Size = new System.Drawing.Size(123, 92);
+            this.btnAssist.TabIndex = 1;
+            this.btnAssist.Text = "Assist";
+            this.btnAssist.UseVisualStyleBackColor = false;
+            this.btnAssist.Click += new System.EventHandler(this.btnAssist_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblInstructor);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.lblPlatform);
             this.groupBox1.Controls.Add(this.lblConsole);
             this.groupBox1.Controls.Add(this.lblExerciseMode);
@@ -669,7 +674,7 @@
             // 
             this.lblPlatform.AutoSize = true;
             this.lblPlatform.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlatform.Location = new System.Drawing.Point(145, 161);
+            this.lblPlatform.Location = new System.Drawing.Point(142, 131);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(64, 28);
             this.lblPlatform.TabIndex = 19;
@@ -679,7 +684,7 @@
             // 
             this.lblConsole.AutoSize = true;
             this.lblConsole.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsole.Location = new System.Drawing.Point(145, 122);
+            this.lblConsole.Location = new System.Drawing.Point(142, 99);
             this.lblConsole.Name = "lblConsole";
             this.lblConsole.Size = new System.Drawing.Size(64, 28);
             this.lblConsole.TabIndex = 18;
@@ -689,7 +694,7 @@
             // 
             this.lblExerciseMode.AutoSize = true;
             this.lblExerciseMode.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExerciseMode.Location = new System.Drawing.Point(145, 85);
+            this.lblExerciseMode.Location = new System.Drawing.Point(142, 62);
             this.lblExerciseMode.Name = "lblExerciseMode";
             this.lblExerciseMode.Size = new System.Drawing.Size(64, 28);
             this.lblExerciseMode.TabIndex = 17;
@@ -699,7 +704,7 @@
             // 
             this.lblExerciseName.AutoSize = true;
             this.lblExerciseName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExerciseName.Location = new System.Drawing.Point(145, 53);
+            this.lblExerciseName.Location = new System.Drawing.Point(142, 30);
             this.lblExerciseName.Name = "lblExerciseName";
             this.lblExerciseName.Size = new System.Drawing.Size(64, 28);
             this.lblExerciseName.TabIndex = 16;
@@ -709,17 +714,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 170);
+            this.label7.Location = new System.Drawing.Point(6, 140);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 17);
+            this.label7.Size = new System.Drawing.Size(75, 17);
             this.label7.TabIndex = 15;
-            this.label7.Text = "Platform";
+            this.label7.Text = "Platform:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 130);
+            this.label6.Location = new System.Drawing.Point(6, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 17);
             this.label6.TabIndex = 14;
@@ -729,7 +734,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 94);
+            this.label5.Location = new System.Drawing.Point(6, 71);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 17);
             this.label5.TabIndex = 13;
@@ -739,7 +744,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 60);
+            this.label1.Location = new System.Drawing.Point(6, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 17);
             this.label1.TabIndex = 12;
@@ -769,11 +774,42 @@
             this.lblHeadset.Text = "...";
             this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblRegInfo
+            // 
+            this.lblRegInfo.AutoSize = true;
+            this.lblRegInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegInfo.Location = new System.Drawing.Point(701, 16);
+            this.lblRegInfo.Name = "lblRegInfo";
+            this.lblRegInfo.Size = new System.Drawing.Size(23, 17);
+            this.lblRegInfo.TabIndex = 32;
+            this.lblRegInfo.Text = "...";
+            // 
+            // lblInstructor
+            // 
+            this.lblInstructor.AutoSize = true;
+            this.lblInstructor.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInstructor.Location = new System.Drawing.Point(142, 160);
+            this.lblInstructor.Name = "lblInstructor";
+            this.lblInstructor.Size = new System.Drawing.Size(64, 28);
+            this.lblInstructor.TabIndex = 21;
+            this.lblInstructor.Text = "xxxx";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(6, 169);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 17);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Instructor:";
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 737);
+            this.Controls.Add(this.lblRegInfo);
             this.Controls.Add(this.lblHeadset);
             this.Controls.Add(this.lblPtt);
             this.Controls.Add(this.groupBox1);
@@ -789,6 +825,7 @@
             this.Text = "---";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUNETMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
+            this.Shown += new System.EventHandler(this.FrmUNETMain_Shown);
             this.pnlPointToPoint.ResumeLayout(false);
             this.pnlPointToPoint.PerformLayout();
             this.pnlRadios.ResumeLayout(false);
@@ -842,8 +879,8 @@
         private System.Windows.Forms.Button btnAudio;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnMonitorTrainee;
-        private System.Windows.Forms.Button btnClassBroadcast;
+        private System.Windows.Forms.Button btnIntercom;
+        private System.Windows.Forms.Button btnAssist;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.Label lblConsole;
@@ -856,6 +893,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblPtt;
         private System.Windows.Forms.Label lblHeadset;
+        private System.Windows.Forms.Label lblRegInfo;
+        private System.Windows.Forms.Label lblInstructor;
+        private System.Windows.Forms.Label label9;
     }
 }
 

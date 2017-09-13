@@ -127,30 +127,13 @@ namespace UNET_Trainer_Trainee
             try
             {
                 timer1.Enabled = true;
-                this.Text = "UNET Trainee";
+                 this.Text = "UNET Trainee";
                 //todo: terugzetten   timer1.Enabled = true;
 
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
                 TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
-                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-                try
-                {
-                    //the useragent holds everything needed for the sip communication
-                    useragent = new PJSUA2Implementation.SIP.UserAgent();
-                    useragent.UserAgentStart();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                        ex.InnerException + Environment.NewLine +
-                        "Contact your system administrator");
-                    log.Error("Error creating accounts " + ex.Message);
-                    this.Close();
-                }
-
-                // Set the text displayed in the caption.
+                 // Set the text displayed in the caption.
                 this.Text = "UNET";
                 this.BackColor = Color.White;
                 // Set the opacity to 75%.
@@ -165,6 +148,48 @@ namespace UNET_Trainer_Trainee
                 Theming the = new Theming();
                 the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
                 the.SetFormSizeAndPosition(this);
+
+               ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+                try
+                {
+                    //the useragent holds everything needed for the sip communication
+                    useragent = new PJSUA2Implementation.SIP.UserAgent();
+                    useragent.UserAgentStart();
+                    lblRegInfo.Text = "Registered: " + TraineeID;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine +
+                        "Contact your system administrator");
+                    log.Error("Error creating accounts " + ex.Message);
+                    lblRegInfo.Text = "Failed to reg " + TraineeID;
+                    this.Close();
+                }
+
+                try
+                {
+                    //close the connection to the wcf service, if it is still opened
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+                 
+                    service.RegisterTrainee(new CurrentInfo(TraineeID, null, null, null, null,null));
+                    lblRegInfo.Text += " WCF regOK";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine +
+                        "Contact your system administrator");
+                    log.Error("Error creating accounts " + ex.Message);
+                    lblRegInfo.Text += " WCF regFail";
+                    this.Close();
+                }
+
+                InitHardwareInterface();
+
             }
             catch (Exception ex)
             {
@@ -376,7 +401,7 @@ namespace UNET_Trainer_Trainee
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
-                            MakeCall(TraineeID);
+                            MakeCall(TraineeID, "1015");
                             break;
                         }
                     case "Off":
@@ -403,7 +428,7 @@ namespace UNET_Trainer_Trainee
 
 
 
-                MakeCall(Convert.ToInt16(radioNumber));
+                MakeCall(Convert.ToInt16(radioNumber), "1015");
             }
             catch (Exception ex)
             {
@@ -413,14 +438,14 @@ namespace UNET_Trainer_Trainee
         }
 
         #region CALL
-        private void MakeCall(int traineeid)
+        private void MakeCall(int traineeid, string _destination)
         {
             try
             {
                 PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
             }
             catch (Exception ex)
             {
@@ -434,12 +459,10 @@ namespace UNET_Trainer_Trainee
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             log.Info("Clicked ClassBroadcast");
-            
-        }
+            MakeCall(TraineeID, "");
 
-        private void btnMonitorTrainee_Click(object sender, EventArgs e)
-        {
-         }
+
+        }
 
         private void btnMonitorTrainee_MouseUp(object sender, MouseEventArgs e)
         {
@@ -452,8 +475,26 @@ namespace UNET_Trainer_Trainee
 
         private void btnMonitorTrainee_MouseDown(object sender, MouseEventArgs e)
         {
+           
+
+        }
+
+        private void FrmUNETMain_Shown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIntercom_Click(object sender, EventArgs e)
+        {
             log.Info("Clicked Intercom");
             PlayBeep();
+            MakeCall(TraineeID,@"INTERCOM_CUB_X\" + TraineeID);
+        }
+
+        private void btnAssist_Click(object sender, EventArgs e)
+        {
+            MakeCall(TraineeID, @"MIC_Conference_Pos01\" + TraineeID);
+            log.Info("Clicked assist by:" + TraineeID);
 
         }
     }

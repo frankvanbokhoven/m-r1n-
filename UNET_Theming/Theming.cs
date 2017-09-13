@@ -114,13 +114,20 @@ namespace UNET_Theming
                     }
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("mainpage") ||
-                       ((Button)ctrl).Name.ToLower().Contains("il") ||
-                       ((Button)ctrl).Name.ToLower().Contains("intercom") ||
-                       ((Button)ctrl).Name.ToLower().Contains("assist")
+                       ((Button)ctrl).Name.ToLower().Contains("il") 
                         )
                     {
                         ((Button)ctrl).ForeColor = Color.White;
                         ((Button)ctrl).BackColor = Color.Gray;
+                    }
+                    else
+                    if (((Button)ctrl).Name.ToLower().Contains("assist") ||
+                       ((Button)ctrl).Name.ToLower().Contains("intercom") ||
+                       ((Button)ctrl).Name.ToLower().Contains("audio")
+                        )
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                        ((Button)ctrl).BackColor = Color.Aqua;
                     }
 
 

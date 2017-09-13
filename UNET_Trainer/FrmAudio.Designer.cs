@@ -646,6 +646,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmAudio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAudio_FormClosing);
             this.Load += new System.EventHandler(this.FrmAudio_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

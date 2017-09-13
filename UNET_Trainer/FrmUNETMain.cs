@@ -227,6 +227,7 @@ namespace UNET_Trainer
 
                  UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
+                Application.DoEvents();
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen

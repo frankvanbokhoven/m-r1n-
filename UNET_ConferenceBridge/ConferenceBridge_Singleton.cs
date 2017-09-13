@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UNET_Classes;
 using PJSUA2Implementation;
+using UNET_Theming;
 
 namespace UNET_ConferenceBridge
 {
@@ -43,11 +44,24 @@ namespace UNET_ConferenceBridge
                         if (instance == null)
                         {
                             instance = new ConferenceBridge_Singleton();
+
+
+                            ///haal de settings op uit de registry. Dit mislukt de allereerste keer
+                            instance.LeftShadow = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftShadow", "5"));
+                            instance.RightShadow = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", "5"));
+                            instance.LeftESM = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftESM", "5"));
+                            instance.RightESM = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"RightESM", "5"));
+                            instance.MicGain = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", "5"));
+                            instance.LeftVolume = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", "5"));
+                            instance.RightVolume = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", "5"));
+
                         }
                     }
                 }
                 return instance;
             }
         }
-    }
+
+
+     }
 }
