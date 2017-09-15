@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Media;
 using System.IO;
 using HardwareInterface;
+using System.Reflection;
 
 namespace UNET_Trainer_Trainee
 {
@@ -69,18 +70,19 @@ namespace UNET_Trainer_Trainee
         {
             if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseHardwarePtt"]))
             {
-                hardwareInterface = new UsbInterface();
-                hardwareInterface.PttChangedEvent += HardwareInterface_PttChangedEvent;
-                hardwareInterface.HeadsetPluggedChangedEvent += HardwareInterface_HeadsetPluggedChangedEvent;
-                hardwareInterface.Initialize();
+                IHardwareInterface hardware = new UsbInterface();
+                hardware.Initialize();
+                hardware.HeadsetPluggedChangedEvent += Hardware_HeadsetPluggedChangedEvent;
+                hardware.PttChangedEvent += Hardware_PttChangedEvent;
+                hardware.Start();
+
             }
         }
 
-
-        private void HardwareInterface_PttChangedEvent(object sender, EventArgs e)
+        private  void Hardware_PttChangedEvent(object sender, PttChangedEventArgs e)
         {
-
-            ///play a sound when the user presses the ptt button
+            Console.WriteLine("PTT value: {0}", e.PttActive);
+          ///play a sound when the user presses the ptt button
             if (!SoundPlaying)
             {
                 PlayBeep();
@@ -92,13 +94,19 @@ namespace UNET_Trainer_Trainee
                 SoundPlaying = false;
                 lblPtt.Text = "";
             }
+    }
 
-        }
-        private void HardwareInterface_HeadsetPluggedChangedEvent(object sender, EventArgs e)
+        private  void Hardware_HeadsetPluggedChangedEvent(object sender, HeadsetPluggedChangedEventArgs e)
         {
-      //    if(hardwareInterface.e)
-        }
+            Console.WriteLine("Headset value: {0}", e.HeadsetPlugged);
+            //    if(hardwareInterface.e)
+            if (lblHeadset.Text.Length == 0)
+                lblHeadset.Text = "Headset plugged";
+            else
+                lblHeadset.Text = "";
+    }
 
+     
        #endregion
 
         /// <summary>
@@ -155,7 +163,7 @@ namespace UNET_Trainer_Trainee
                     //the useragent holds everything needed for the sip communication
                     useragent = new PJSUA2Implementation.SIP.UserAgent();
                     useragent.UserAgentStart();
-                    lblRegInfo.Text = "Registered: " + TraineeID;
+                    lblRegInfo.Text = "Registered: " + TraineeID +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -438,6 +446,11 @@ namespace UNET_Trainer_Trainee
         }
 
         #region CALL
+        /// <summary>
+        /// Make a call to Freeswich using PJSUA2
+        /// </summary>
+        /// <param name="traineeid"></param>
+        /// <param name="_destination"></param>
         private void MakeCall(int traineeid, string _destination)
         {
             try

@@ -201,7 +201,6 @@ namespace UNET_Trainer
         
                 foreach(UNET_Classes.Exercise exercise in lst)
                 {
-                  // btnExersise01.Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine,  exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
                 }                 
                 //now resize all buttons to make optimal use of the available room
@@ -231,24 +230,36 @@ namespace UNET_Trainer
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                int listindex = 1;
+                foreach (UNET_Classes.Trainee trainee in lstTrainee)
+                {
+                 //   panelTrainees.Controls["btnTrainee" + trainee.ID.ToString("00")].Enabled = true;
+                 //   panelTrainees.Controls["btnTrainee" + trainee.ID.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name,Environment.NewLine, "TraineeRole");
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+                    listindex++;
+                }
 
-                btnTraineeAA.Enabled = lstTrainee.Count >= 1;
-                btnTraineeBB.Enabled = lstTrainee.Count >= 2;
-                btnTraineeCC.Enabled = lstTrainee.Count >= 3;
-                btnTraineeDD.Enabled = lstTrainee.Count >= 4;
-                btnTraineeEE.Enabled = lstTrainee.Count >= 5;
-                btnTraineeFF.Enabled = lstTrainee.Count >= 6;
-                btnTraineeGG.Enabled = lstTrainee.Count >= 7;
-                btnTraineeHH.Enabled = lstTrainee.Count >= 8;
-                btnTraineeJJ.Enabled = lstTrainee.Count >= 9;
-                btnTraineeKK.Enabled = lstTrainee.Count >= 10;
-                btnTraineeLL.Enabled = lstTrainee.Count >= 11;
-                btnTraineeMM.Enabled = lstTrainee.Count >= 12;
-                btnTraineeNN.Enabled = lstTrainee.Count >= 13;
-                btnTraineePP.Enabled = lstTrainee.Count >= 14;
-                btnTraineeRR.Enabled = lstTrainee.Count >= 15;
-                btnTraineeSS.Enabled = lstTrainee.Count >= 16;
-                UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+             UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+
+                //btnTrainee01.Enabled = lstTrainee.Count >= 1;
+                //btnTrainee02.Enabled = lstTrainee.Count >= 2;
+                //btnTrainee03.Enabled = lstTrainee.Count >= 3;
+                //btnTrainee04.Enabled = lstTrainee.Count >= 4;
+                //btnTrainee05.Enabled = lstTrainee.Count >= 5;
+                //btnTrainee06.Enabled = lstTrainee.Count >= 6;
+                //btnTrainee07.Enabled = lstTrainee.Count >= 7;
+                //btnTrainee08.Enabled = lstTrainee.Count >= 8;
+                //btnTrainee09.Enabled = lstTrainee.Count >= 9;
+                //btnTrainee10.Enabled = lstTrainee.Count >= 10;
+                //btnTrainee11.Enabled = lstTrainee.Count >= 11;
+                //btnTrainee12.Enabled = lstTrainee.Count >= 12;
+                //btnTrainee13.Enabled = lstTrainee.Count >= 13;
+                //btnTrainee14.Enabled = lstTrainee.Count >= 14;
+                //btnTrainee15.Enabled = lstTrainee.Count >= 15;
+                //btnTrainee16.Enabled = lstTrainee.Count >= 16;
+   
+  
             }
             catch (Exception ex)
             {
@@ -360,39 +371,39 @@ namespace UNET_Trainer
             }
 
             // A little amateur.. but it just is the fastest manner
-            btnTraineeAA.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeBB.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeCC.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeDD.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeEE.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeFF.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeGG.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeHH.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeJJ.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeKK.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeLL.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeMM.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeNN.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineePP.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeRR.BackColor = System.Drawing.Color.LightGreen;
-            btnTraineeSS.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee01.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee02.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee03.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee04.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee05.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee06.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee07.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee08.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee09.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee10.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee11.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee12.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee13.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee14.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee15.BackColor = System.Drawing.Color.LightGreen;
+            btnTrainee16.BackColor = System.Drawing.Color.LightGreen;
 
-            btnTraineeAA.ForeColor = System.Drawing.Color.Black;
-            btnTraineeBB.ForeColor = System.Drawing.Color.Black;
-            btnTraineeCC.ForeColor = System.Drawing.Color.Black;
-            btnTraineeDD.ForeColor = System.Drawing.Color.Black;
-            btnTraineeEE.ForeColor = System.Drawing.Color.Black;
-            btnTraineeFF.ForeColor = System.Drawing.Color.Black;
-            btnTraineeGG.ForeColor = System.Drawing.Color.Black;
-            btnTraineeHH.ForeColor = System.Drawing.Color.Black;
-            btnTraineeJJ.ForeColor = System.Drawing.Color.Black;
-            btnTraineeKK.ForeColor = System.Drawing.Color.Black;
-            btnTraineeLL.ForeColor = System.Drawing.Color.Black;
-            btnTraineeMM.ForeColor = System.Drawing.Color.Black;
-            btnTraineeNN.ForeColor = System.Drawing.Color.Black;
-            btnTraineePP.ForeColor = System.Drawing.Color.Black;
-            btnTraineeRR.ForeColor = System.Drawing.Color.Black;
-            btnTraineeSS.ForeColor = System.Drawing.Color.Black;
+            btnTrainee01.ForeColor = System.Drawing.Color.Black;
+            btnTrainee02.ForeColor = System.Drawing.Color.Black;
+            btnTrainee03.ForeColor = System.Drawing.Color.Black;
+            btnTrainee04.ForeColor = System.Drawing.Color.Black;
+            btnTrainee05.ForeColor = System.Drawing.Color.Black;
+            btnTrainee06.ForeColor = System.Drawing.Color.Black;
+            btnTrainee07.ForeColor = System.Drawing.Color.Black;
+            btnTrainee08.ForeColor = System.Drawing.Color.Black;
+            btnTrainee09.ForeColor = System.Drawing.Color.Black;
+            btnTrainee10.ForeColor = System.Drawing.Color.Black;
+            btnTrainee11.ForeColor = System.Drawing.Color.Black;
+            btnTrainee12.ForeColor = System.Drawing.Color.Black;
+            btnTrainee13.ForeColor = System.Drawing.Color.Black;
+            btnTrainee14.ForeColor = System.Drawing.Color.Black;
+            btnTrainee15.ForeColor = System.Drawing.Color.Black;
+            btnTrainee16.ForeColor = System.Drawing.Color.Black;
 
         }
 
@@ -401,8 +412,10 @@ namespace UNET_Trainer
             SetTraineeStatus();
             int traineeIndex = -1;
             //    SetStatusAndColorTraineeButtons((Button)sender);
-           traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
-           /// <summary>
+
+            traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+       
+            /// <summary>
             /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
             /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
             /// this generic code covers this for all all buttons at once
@@ -655,21 +668,42 @@ namespace UNET_Trainer
         }
 
 
-        private void MakeCall(int traineeid)
+        #region CALL
+        /// <summary>
+        /// Make a call to PJSUA2 / Freeswitch
+        /// </summary>
+        /// <param name="_traineeid"></param>
+        /// <param name="_destination"></param>
+        private void MakeCall(int _traineeid, string _destination, string _whatthecallisabout)
         {
             try
             {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, InstructorID);
+                log.Info("Making call about: " + _whatthecallisabout + ", from: " + _traineeid + ", to: " + _destination);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, _traineeid);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
+                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
+
             }
             catch (Exception ex)
             {
-                log.Error("Error updating screen controls", ex);
+                log.Error("Error making call", ex);
                 // throw;
             }
         }
 
+        #endregion
+
+        private void btnIntercom_Click(object sender, EventArgs e)
+        {
+            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, "Intercom");
+
+        }
+
+        private void btnAssist_Click(object sender, EventArgs e)
+        {
+            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, "Assist");
+
+        }
     }
 }

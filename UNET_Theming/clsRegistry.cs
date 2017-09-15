@@ -39,8 +39,7 @@ namespace UNET_Theming
             try
             {
                 RegistryKey rk =
-                    Registry.CurrentUser.OpenSubKey(SOFTWARE_KEY, true).OpenSubKey(APPLICATION_NAME, true).OpenSubKey(
-                        key, true);
+                    Registry.CurrentUser.OpenSubKey(SOFTWARE_KEY, true).OpenSubKey(APPLICATION_NAME, true);
                 //     RegistryKey rk = Registry.LocalMachine.OpenSubKey(SOFTWARE_KEY, false).OpenSubKey(APPLICATION_NAME, false).OpenSubKey(key, false);
                 if (rk != null)
                 {
@@ -49,6 +48,7 @@ namespace UNET_Theming
                         if (sKey == subkey)
                         {
                             result = (string)rk.GetValue(sKey);
+                            break;
                         }
                     }
                 }
@@ -64,13 +64,7 @@ namespace UNET_Theming
                 //// create a custom exception instance
                 //var e = new ESSaverRegistryException(
                 //    "ESSaver made an error reading the registry. Maybe the key wasn't there??");
-                //e.HelpLink =
-                //    "http://www.essaver.net";
-                ////               throw e;
-                //var err2 = new ErrorLogger.ErrorLogger();
-                //err2.WriteToErrorLog(e.Message, e.StackTrace,
-                //                     e.InnerException +
-                //                     " ESSaver made an error reading the registry. Maybe the key wasn't there??");
+                //            " ESSaver made an error reading the registry. Maybe the key wasn't there??");
 
                 return defaultValue;
             }
@@ -81,20 +75,21 @@ namespace UNET_Theming
         /// </summary>
         /// <param name="key"></param>
         /// <param name="stringValue"></param>
-        public static void SetStringRegistryValue(string key, string subkey, string stringValue)
+        public static void SetStringRegistryValue(string _key, string _subkey, string _stringValue)
         {
-            RegistryKey rkWrite;
             RegistryKey rk;
             try
             {
                 rk = Registry.CurrentUser.OpenSubKey(SOFTWARE_KEY, true).OpenSubKey(APPLICATION_NAME, true);
-                //    rk = Registry.LocalMachine.OpenSubKey(SOFTWARE_KEY, true).OpenSubKey(APPLICATION_NAME, true);
                 if (rk != null)
                 {
-                    rkWrite = rk.OpenSubKey(key, true);
-                    if (rkWrite != null)
+                              foreach (string sKey in rk.GetValueNames())
                     {
-                        rkWrite.SetValue(subkey, stringValue);
+                        if (sKey == _subkey)
+                        {
+                            rk.SetValue(_subkey, _stringValue);
+                            break;
+                        }
                     }
                 }
             }

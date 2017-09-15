@@ -116,6 +116,7 @@ namespace UNET_Trainer_Trainee
             //sla de wijzigingen op naar de app.config van deze trainer
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
+            try { 
             ///haal de settings op uit de registry. Dit mislukt de allereerste keer
             RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
             RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
@@ -124,7 +125,11 @@ namespace UNET_Trainer_Trainee
             RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
             RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
             RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
-
+            }
+            catch (Exception ex)
+            {
+                string messages = ex.Message;
+            }
         }
     }
 }

@@ -8,17 +8,15 @@ namespace UNET_Service
 {
     using System.Collections.Generic;
     using System.IO;
+    using System.ServiceModel;
     using System.ServiceModel.Activation;
 
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    [AspNetCompatibilityRequirements
-        (RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    // NOTE:we only want one single instance of the wcf service to run all UNET instructor and trainee clients, thatswhy the concurrencymode is set to single
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,  ConcurrencyMode = ConcurrencyMode.Single)]
+    [AspNetCompatibilityRequirements  (RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService1
     {
     
-        //private readonly string cUploadFileDirectory = ConfigurationManager.AppSettings["UploadFileDirectory"];
-        //private readonly string cFileDownloadDirectory = ConfigurationManager.AppSettings["FileDownloadDirectory"];
-        //private readonly string cFileSourceDirectory = ConfigurationManager.AppSettings["FileSourceDirectory"];
         private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
