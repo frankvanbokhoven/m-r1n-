@@ -189,7 +189,10 @@ namespace UNET_Trainer
                 }
                 SelectedNoiseButtonIndex = _noiselevel;
 
+                //set the noise level in the singleton
                 var radiolist = service.SetNoiseLevel(SelectedRadioButtonIndex, SelectedNoiseButtonIndex);
+                //and set the noiselevel as a conference
+          //todo      (FrmUNETMain)(FrmUNETMain.GetForm).SetNoiseLevel(SelectedRadioButtonIndex, SelectedNoiseButtonIndex);
                 service.SetNoiseLevelChanged(SelectedRadioButtonIndex, true);
             }
         }

@@ -8,6 +8,7 @@ using System.Drawing;
 using UNET_Classes;
 using System.Runtime.InteropServices;
 using UNET_Theming;
+using UNET_SignalGenerator;
 using System.Media;
 
 namespace UNET_Trainer
@@ -120,6 +121,42 @@ namespace UNET_Trainer
                 SetButtonStatus(this);
             }
         }
+
+        #region Noise
+
+        private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
+        
+
+        private void InitNoiseLevel()
+        {
+            int SelectedRadioButtonIndex = 1;// Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
+            signal.NoiseLevel = noiselevel;
+            signal.Start();
+        }
+
+        /// <summary>
+        /// Make a conference for the selected radio and selected noise level
+        /// </summary>
+        /// <param name="_SelectedRadioButtonIndex"></param>
+        /// <param name="_SelectedNoiseButtonIndex"></param>
+        public void SetNoiseLevel(int _SelectedRadioButtonIndex, int _SelectedNoiseButtonIndex)
+        {
+
+            MakeCall(InstructorID, @"NOISE_RADIO_X\" + GetTraineeAtRadio(_SelectedRadioButtonIndex), _SelectedNoiseButtonIndex, "Noise for radio: " + _SelectedRadioButtonIndex);
+        }
+
+        /// <summary>
+        /// determine which trainee is connected to a given radio
+        /// </summary>
+        /// <param name="_radioindex"></param>
+        /// <returns></returns>
+        private int GetTraineeAtRadio(int _radioindex)
+        {
+            //todo: determine the radio
+            return 1013;
+        }
+        #endregion
 
         #region Status setters
 
@@ -633,6 +670,7 @@ namespace UNET_Trainer
         {
     //        SetButtonStatus(this);
         }
+        #region CALL
 
         private void MakeCall(string _sipAccount)
         {
@@ -668,18 +706,19 @@ namespace UNET_Trainer
         }
 
 
-        #region CALL
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
         /// </summary>
-        /// <param name="_traineeid"></param>
+        /// <param name="_IntructorID"></param>
         /// <param name="_destination"></param>
-        private void MakeCall(int _traineeid, string _destination, string _whatthecallisabout)
+        /// <param name="_noiseLevel">The noiselevel. this can be edited on the RadioSetup screen</param>
+        /// <param name="_whatthecallisabout">Description of the call, for logging purposes</param>
+        private void MakeCall(int _instructorID, string _destination, int ?_noiseLevel, string _whatthecallisabout)
         {
             try
             {
-                log.Info("Making call about: " + _whatthecallisabout + ", from: " + _traineeid + ", to: " + _destination);
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, _traineeid);
+                log.Info("Making call about: " + _whatthecallisabout + ", from: " + _instructorID + ", to: " + _destination);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, _instructorID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                 sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
@@ -696,13 +735,13 @@ namespace UNET_Trainer
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, "Intercom");
+            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, -1, "Intercom");
 
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, "Assist");
+            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, -1, "Assist");
 
         }
     }

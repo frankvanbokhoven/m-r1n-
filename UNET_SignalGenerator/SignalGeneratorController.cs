@@ -25,6 +25,23 @@ namespace UNET_SignalGenerator
             driverOut.Init(wg);
          }
 
+        /// <summary>
+        /// noiselevel controlse the volume of the signal;
+        /// </summary>
+        private int _noiselevel;
+        public int NoiseLevel
+        {
+            get { return _noiselevel; }
+            set
+            {
+                wg.Gain = value;
+                _noiselevel = value;
+                Stop(); //restart the noise
+                Start();
+            }
+        }
+
+
         public void Start()
         {
             if (driverOut != null)

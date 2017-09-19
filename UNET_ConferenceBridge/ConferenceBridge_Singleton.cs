@@ -24,6 +24,10 @@ namespace UNET_ConferenceBridge
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
 
+        //needed to keep track of weather the headphone is attached or the ptt is pressed
+        public bool PTTPressed = false;
+        public bool HeadphoneAttached = false;
+
         //Local sound settings
         public int LeftShadow = 5;
         public int RightShadow = 5;

@@ -17,6 +17,9 @@ namespace UNET_Trainer
 {
     public partial class FrmSetup :Form// FrmUNETbaseSub
     {
+        //log4net
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public FrmSetup()
         {
             InitializeComponent();
@@ -80,26 +83,51 @@ namespace UNET_Trainer
 
         private void FrmSetup_Load(object sender, EventArgs e)
         {
-            this.Text = "UNET - Setup";
+            ///Haal de settings op uit de registry. Dit mislukt de allereerste keer
+            UNET_Classes.UNETTheme theme;
+            switch (RegistryAccess.GetStringRegistryValue(@"UNET", @"theme", "dark"))
+            {
+                case "dark":
+                    {
+                        theme = UNET_Classes.UNETTheme.utDark;
+                        break;
+                    }
+                case "light":
+                    {
+                        theme = UNET_Classes.UNETTheme.utLight;
+                        break;
+                    }
+                case "blue":
+                    {
+                        theme = UNET_Classes.UNETTheme.utBlue;
+                        break;
+                    }
+                default:
+                    {
+                        theme = UNET_Classes.UNETTheme.utDark;
+                        break;
+                    }
 
+            }
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.SetFormSizeAndPosition(this);
 
             //pick a font
-            ddlFont.SelectedText = "Arial Rounded MT";
+            ddlFont.SelectedText = RegistryAccess.GetStringRegistryValue(@"UNET", @"font", "Arial Rounded MT");
             Font ft = new Font("Arial Rounded MT", 12);
             lblTestFont.Font = ft;
             //pick a color
-            ddlColorButton.SelectedText = "darkgrey";
+            ddlColorButton.SelectedText = RegistryAccess.GetStringRegistryValue(@"UNET", @"colorbutton", "darkgrey");
+            btnMainPage.Focus();
+            //account
+            tbxAccount.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
 
-        
-
+            //log dir
             string file = ((Hierarchy)LogManager.GetRepository())
          .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
             txtLogDirectory.Text = file;
             btnMainPage.Focus();
-
         }
 
         private void btnMainPage_Click(object sender, EventArgs e)
@@ -129,6 +157,32 @@ namespace UNET_Trainer
             {
                 txtLogDirectory.Text = theDialog.SelectedPath;
             }
+        }
+
+        private void FrmSetup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //sla de wijzigingen op naar de app.config van deze trainer
+            try
+            {
+                ///sla de settings op uit in registry. Dit mislukt de allereerste keer
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"colorbutton", ddlColorButton.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"font", ddlFont.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"logdir", txtLogDirectory.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"account", tbxAccount.Text.ToString());
+                if (rbDark.Checked)
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"theme", "dark");
+                if (rbLight.Checked)
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"theme", "light");
+                if (rbBlue.Checked)
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"theme", "blue");
+
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error saving to registry: " + ex.Message);
+            }
+
         }
     }
 }

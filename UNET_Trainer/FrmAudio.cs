@@ -120,12 +120,12 @@ namespace UNET_Trainer
             {
                 ///haal de settings op uit de registry. Dit mislukt de allereerste keer
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
-                RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
             }
             catch (Exception ex)
             {

@@ -19,7 +19,7 @@ namespace GenericHid
         public const Int32 INVALID_HANDLE_VALUE = -1;
         public const Int32 OPEN_EXISTING = 3;
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern SafeFileHandle CreateFile(String lpFileName, UInt32 dwDesiredAccess, Int32 dwShareMode, IntPtr lpSecurityAttributes, Int32 dwCreationDisposition, Int32 dwFlagsAndAttributes, Int32 hTemplateFile);
     }
 }

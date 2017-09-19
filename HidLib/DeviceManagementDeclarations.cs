@@ -85,25 +85,25 @@ namespace GenericHid
 			internal Int32 Reserved;
 		}
 
-		[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
 		internal static extern IntPtr RegisterDeviceNotification(IntPtr hRecipient, IntPtr NotificationFilter, Int32 Flags);
 
-		[DllImport("setupapi.dll", SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\setupapi.dll", SetLastError = true)]
 		internal static extern Int32 SetupDiCreateDeviceInfoList(ref System.Guid ClassGuid, Int32 hwndParent);
 
-		[DllImport("setupapi.dll", SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\setupapi.dll", SetLastError = true)]
 		internal static extern Int32 SetupDiDestroyDeviceInfoList(IntPtr DeviceInfoSet);
 
-		[DllImport("setupapi.dll", SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\setupapi.dll", SetLastError = true)]
 		internal static extern Boolean SetupDiEnumDeviceInterfaces(IntPtr DeviceInfoSet, IntPtr DeviceInfoData, ref System.Guid InterfaceClassGuid, Int32 MemberIndex, ref SP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
 
-		[DllImport("setupapi.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport(@"c:\windows\syswow64\setupapi.dll", SetLastError = true, CharSet = CharSet.Auto)]
 		internal static extern IntPtr SetupDiGetClassDevs(ref System.Guid ClassGuid, IntPtr Enumerator, IntPtr hwndParent, Int32 Flags);
 
-		[DllImport("setupapi.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [DllImport(@"c:\windows\syswow64\setupapi.dll", SetLastError = true, CharSet = CharSet.Auto)]
 		internal static extern Boolean SetupDiGetDeviceInterfaceDetail(IntPtr DeviceInfoSet, ref SP_DEVICE_INTERFACE_DATA DeviceInterfaceData, IntPtr DeviceInterfaceDetailData, Int32 DeviceInterfaceDetailDataSize, ref Int32 RequiredSize, IntPtr DeviceInfoData);
 
-		[DllImport("user32.dll", SetLastError = true)]
+        [DllImport(@"c:\windows\syswow64\user32.dll", SetLastError = true)]
 		internal static extern Boolean UnregisterDeviceNotification(IntPtr Handle);
 	}
 }

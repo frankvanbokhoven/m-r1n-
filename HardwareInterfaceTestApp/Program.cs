@@ -22,6 +22,7 @@ namespace HardwareInterfaceTestApp
             hardware.PttChangedEvent += Hardware_PttChangedEvent;
             hardware.Start();
             Console.ReadLine();
+
             hardware.Stop();
         }
 

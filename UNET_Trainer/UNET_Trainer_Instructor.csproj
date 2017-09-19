@@ -259,6 +259,10 @@
       <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>
       <Name>PJSUA2Implementation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UNET_SignalGenerator\UNET_SignalGenerator.csproj">
+      <Project>{360517a6-76cb-4fb5-a347-fe18dadd9f2e}</Project>
+      <Name>UNET_SignalGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UNET_Theming\UNET_Theming.csproj">
       <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
       <Name>UNET_Theming</Name>

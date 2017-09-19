@@ -34,10 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlColorExample = new System.Windows.Forms.Panel();
             this.ddlColorButton = new System.Windows.Forms.ComboBox();
-            this.btnApplyColors = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbBlue = new System.Windows.Forms.RadioButton();
+            this.rbLight = new System.Windows.Forms.RadioButton();
             this.rbDark = new System.Windows.Forms.RadioButton();
             this.btnBlue = new System.Windows.Forms.Button();
             this.btnLight = new System.Windows.Forms.Button();
@@ -46,6 +45,8 @@
             this.btnSelectLogDir = new System.Windows.Forms.Button();
             this.txtLogDirectory = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbxAccount = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.lblTestFont.AutoSize = true;
             this.lblTestFont.Location = new System.Drawing.Point(381, 150);
             this.lblTestFont.Name = "lblTestFont";
-            this.lblTestFont.Size = new System.Drawing.Size(63, 15);
+            this.lblTestFont.Size = new System.Drawing.Size(81, 20);
             this.lblTestFont.TabIndex = 22;
             this.lblTestFont.Text = "Test font";
             // 
@@ -63,7 +64,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(64, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 15);
+            this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 21;
             this.label2.Text = "Font";
             // 
@@ -73,7 +74,7 @@
             this.ddlFont.Location = new System.Drawing.Point(68, 145);
             this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlFont.Name = "ddlFont";
-            this.ddlFont.Size = new System.Drawing.Size(296, 23);
+            this.ddlFont.Size = new System.Drawing.Size(296, 26);
             this.ddlFont.TabIndex = 20;
             // 
             // label1
@@ -81,7 +82,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(64, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 15);
+            this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 19;
             this.label1.Text = "Color of buttons";
             // 
@@ -99,30 +100,18 @@
             this.ddlColorButton.Location = new System.Drawing.Point(68, 71);
             this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlColorButton.Name = "ddlColorButton";
-            this.ddlColorButton.Size = new System.Drawing.Size(296, 23);
+            this.ddlColorButton.Size = new System.Drawing.Size(296, 26);
             this.ddlColorButton.TabIndex = 17;
-            // 
-            // btnApplyColors
-            // 
-            this.btnApplyColors.BackColor = System.Drawing.Color.Aqua;
-            this.btnApplyColors.Location = new System.Drawing.Point(479, 494);
-            this.btnApplyColors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnApplyColors.Name = "btnApplyColors";
-            this.btnApplyColors.Size = new System.Drawing.Size(152, 50);
-            this.btnApplyColors.TabIndex = 23;
-            this.btnApplyColors.Text = "Apply changes";
-            this.btnApplyColors.UseVisualStyleBackColor = false;
-            this.btnApplyColors.Click += new System.EventHandler(this.btnApplyColors_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rbBlue);
+            this.groupBox1.Controls.Add(this.rbLight);
             this.groupBox1.Controls.Add(this.rbDark);
             this.groupBox1.Controls.Add(this.btnBlue);
             this.groupBox1.Controls.Add(this.btnLight);
             this.groupBox1.Controls.Add(this.btnDark);
-            this.groupBox1.Location = new System.Drawing.Point(66, 283);
+            this.groupBox1.Location = new System.Drawing.Point(67, 360);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -131,25 +120,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Color theme";
             // 
-            // radioButton2
+            // rbBlue
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(311, 134);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbBlue.AutoSize = true;
+            this.rbBlue.Location = new System.Drawing.Point(311, 134);
+            this.rbBlue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.rbBlue.Name = "rbBlue";
+            this.rbBlue.Size = new System.Drawing.Size(17, 16);
+            this.rbBlue.TabIndex = 5;
+            this.rbBlue.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbLight
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(184, 134);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbLight.AutoSize = true;
+            this.rbLight.Location = new System.Drawing.Point(184, 134);
+            this.rbLight.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.rbLight.Name = "rbLight";
+            this.rbLight.Size = new System.Drawing.Size(17, 16);
+            this.rbLight.TabIndex = 4;
+            this.rbLight.UseVisualStyleBackColor = true;
             // 
             // rbDark
             // 
@@ -158,7 +147,7 @@
             this.rbDark.Location = new System.Drawing.Point(64, 134);
             this.rbDark.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rbDark.Name = "rbDark";
-            this.rbDark.Size = new System.Drawing.Size(14, 13);
+            this.rbDark.Size = new System.Drawing.Size(17, 16);
             this.rbDark.TabIndex = 3;
             this.rbDark.TabStop = true;
             this.rbDark.UseVisualStyleBackColor = true;
@@ -206,7 +195,7 @@
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
             this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainPage.Location = new System.Drawing.Point(68, 491);
+            this.btnMainPage.Location = new System.Drawing.Point(68, 563);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 53);
@@ -221,7 +210,7 @@
             this.btnSelectLogDir.Location = new System.Drawing.Point(603, 211);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
-            this.btnSelectLogDir.Size = new System.Drawing.Size(48, 50);
+            this.btnSelectLogDir.Size = new System.Drawing.Size(50, 50);
             this.btnSelectLogDir.TabIndex = 40;
             this.btnSelectLogDir.UseVisualStyleBackColor = true;
             this.btnSelectLogDir.Click += new System.EventHandler(this.btnSelectLogDir_Click);
@@ -233,7 +222,7 @@
             this.txtLogDirectory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLogDirectory.Name = "txtLogDirectory";
             this.txtLogDirectory.ReadOnly = true;
-            this.txtLogDirectory.Size = new System.Drawing.Size(502, 23);
+            this.txtLogDirectory.Size = new System.Drawing.Size(502, 26);
             this.txtLogDirectory.TabIndex = 39;
             this.txtLogDirectory.Text = "c:\\Marine\\GitSources\\Log\\UNET_Trainer_Trainee.log";
             // 
@@ -243,21 +232,39 @@
             this.label3.Location = new System.Drawing.Point(63, 195);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 15);
+            this.label3.Size = new System.Drawing.Size(121, 20);
             this.label3.TabIndex = 38;
             this.label3.Text = "Log Directory";
             // 
+            // tbxAccount
+            // 
+            this.tbxAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxAccount.Location = new System.Drawing.Point(67, 298);
+            this.tbxAccount.Name = "tbxAccount";
+            this.tbxAccount.Size = new System.Drawing.Size(296, 24);
+            this.tbxAccount.TabIndex = 42;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(64, 278);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 20);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Account";
+            // 
             // FrmSetup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 747);
+            this.Controls.Add(this.tbxAccount);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSelectLogDir);
             this.Controls.Add(this.txtLogDirectory);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnApplyColors);
             this.Controls.Add(this.lblTestFont);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ddlFont);
@@ -269,6 +276,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Setup";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSetup_FormClosing);
             this.Load += new System.EventHandler(this.FrmSetup_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -285,10 +293,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlColorExample;
         private System.Windows.Forms.ComboBox ddlColorButton;
-        private System.Windows.Forms.Button btnApplyColors;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbBlue;
+        private System.Windows.Forms.RadioButton rbLight;
         private System.Windows.Forms.RadioButton rbDark;
         private System.Windows.Forms.Button btnBlue;
         private System.Windows.Forms.Button btnLight;
@@ -297,5 +304,7 @@
         private System.Windows.Forms.Button btnSelectLogDir;
         private System.Windows.Forms.TextBox txtLogDirectory;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbxAccount;
+        private System.Windows.Forms.Label label4;
     }
 }

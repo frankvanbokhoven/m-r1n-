@@ -11,8 +11,11 @@ using UNET_Theming;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.IO;
-using HardwareInterface;
+//using HardwareInterface;
 using System.Reflection;
+using System.Net.Sockets;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace UNET_Trainer_Trainee
 {
@@ -37,7 +40,7 @@ namespace UNET_Trainer_Trainee
         private bool HeadsetPlugged = false;
         private bool SoundPlaying = false;
 
-        private UsbInterface hardwareInterface;
+  //      private UsbInterface hardwareInterface;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
@@ -62,49 +65,65 @@ namespace UNET_Trainer_Trainee
 
         #region PTT
 
-        /// <summary>
-        /// Initialiseer de PTT.
-        /// Dit hoeft maar 1x per applicatie
-        /// </summary>
-        private void InitHardwareInterface()
-        {
-            if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseHardwarePtt"]))
-            {
-                IHardwareInterface hardware = new UsbInterface();
-                hardware.Initialize();
-                hardware.HeadsetPluggedChangedEvent += Hardware_HeadsetPluggedChangedEvent;
-                hardware.PttChangedEvent += Hardware_PttChangedEvent;
-                hardware.Start();
+    //    /// <summary>
+    //    /// Initialiseer de PTT.
+    //    /// Dit hoeft maar 1x per applicatie
+    //    /// </summary>
+    //    private void InitHardwareInterface()
+    //    {
+    //        try
+    //        {
+    //            if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseHardwarePtt"]))
+    //            {
+    //                IHardwareInterface hardware = new UsbInterface();
+    //                hardware.Initialize();
+    //                hardware.HeadsetPluggedChangedEvent += Hardware_HeadsetPluggedChangedEvent;
+    //                hardware.PttChangedEvent += Hardware_PttChangedEvent;
+    //                hardware.Start();
 
-            }
-        }
+    //            }
+    //        }
+    //        catch(Exception ex)
+    //        {
+    //            log.Error("Hardwareinterface error: " + ex.Message);
+    //        }
+    //    }
 
-        private  void Hardware_PttChangedEvent(object sender, PttChangedEventArgs e)
-        {
-            Console.WriteLine("PTT value: {0}", e.PttActive);
-          ///play a sound when the user presses the ptt button
-            if (!SoundPlaying)
-            {
-                PlayBeep();
-                lblPtt.Text = "PTT";
-            }
-            else
-            {
-                simpleSound.Stop();
-                SoundPlaying = false;
-                lblPtt.Text = "";
-            }
-    }
+    //    private  void Hardware_PttChangedEvent(object sender, PttChangedEventArgs e)
+    //    {
+    //        Console.WriteLine("PTT value: {0}", e.PttActive);
+    //      ///play a sound when the user presses the ptt button
+    //        if (e.PttActive)
+    //        {
+    //            PlayBeep();
+    //            lblPtt.Text = "PTT";
+    //            ucb.PTTPressed = true;
+    //        }
+    //        else
+    //        {
+    //            simpleSound.Stop();
+    //            SoundPlaying = false;
+    //            lblPtt.Text = "";
+    //            ucb.PTTPressed = false;
+    //        }
+    //}
 
-        private  void Hardware_HeadsetPluggedChangedEvent(object sender, HeadsetPluggedChangedEventArgs e)
-        {
-            Console.WriteLine("Headset value: {0}", e.HeadsetPlugged);
-            //    if(hardwareInterface.e)
-            if (lblHeadset.Text.Length == 0)
-                lblHeadset.Text = "Headset plugged";
-            else
-                lblHeadset.Text = "";
-    }
+    //    private  void Hardware_HeadsetPluggedChangedEvent(object sender, HeadsetPluggedChangedEventArgs e)
+    //    {
+    //        Console.WriteLine("Headset value: {0}", e.HeadsetPlugged);
+    //        //    if(hardwareInterface.e)
+    //        if (e.HeadsetPlugged)
+    //        {
+    //            lblHeadset.Text = "Headset plugged";
+    //            ucb.HeadphoneAttached = true;
+    //        }
+
+    //        else
+    //        {
+    //            lblHeadset.Text = "";
+    //            ucb.HeadphoneAttached = false;
+    //        }
+    //}
 
      
        #endregion
@@ -139,10 +158,9 @@ namespace UNET_Trainer_Trainee
                 //todo: terugzetten   timer1.Enabled = true;
 
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-                TraineeID = Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+                TraineeID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"));//Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
 
-                 // Set the text displayed in the caption.
-                this.Text = "UNET";
+                // Set the text displayed in the caption.
                 this.BackColor = Color.White;
                 // Set the opacity to 75%.
                 this.Opacity = 1;
@@ -156,7 +174,7 @@ namespace UNET_Trainer_Trainee
                 Theming the = new Theming();
                 the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
                 the.SetFormSizeAndPosition(this);
-
+             //   InitHardwareInterface();
                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
                 try
                 {
@@ -196,7 +214,19 @@ namespace UNET_Trainer_Trainee
                     this.Close();
                 }
 
-                InitHardwareInterface();
+                try
+                {
+
+                    //StartServer();
+                 //   StartListinging();
+                    Task.Factory.StartNew(() => { StartListinging (); });
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
+                }
+
+              
 
             }
             catch (Exception ex)
@@ -246,6 +276,8 @@ namespace UNET_Trainer_Trainee
             }
 
         }
+
+
 
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
@@ -383,6 +415,37 @@ namespace UNET_Trainer_Trainee
             {
                 service.Close();
             }
+
+
+            //try to find and kill the TCPSocketClient process and kill it
+            FindAndKillProcess("TCPSocketClient.exe");
+        }
+
+        /// <summary>
+        /// Try to find the process in the processlist and if so, try to kill it.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private bool FindAndKillProcess(string _name)
+        {
+            try
+            {
+                string searchName = Path.GetFileNameWithoutExtension(_name);
+                Process[] processes = Process.GetProcessesByName(searchName);
+
+                foreach (Process process in processes)
+                {
+                    process.Kill();
+                }
+            }
+
+            catch (Exception ex)
+            {
+              log.Error("Kill process " + _name + ex.Message + ex.StackTrace + ex.InnerException);
+            }
+
+            //process not found, return false
+            return false;
         }
 
         private void btnRadio01_Click(object sender, EventArgs e)
@@ -510,5 +573,104 @@ namespace UNET_Trainer_Trainee
             log.Info("Clicked assist by:" + TraineeID);
 
         }
+        #region HID COMserver
+
+        private StreamWriter serverStreamWriter;
+        private StreamReader serverStreamReader;
+        /// <summary>
+        /// Start Server
+        /// </summary>
+        /// <returns></returns>
+        private bool StartServer()
+        {
+            //1: create server's tcp listener for incoming connection
+            TcpListener tcpServerListener = new TcpListener(4444);
+            tcpServerListener.Start();      //start server
+            Console.WriteLine("Server Started");
+            //block tcplistener to accept incoming connection
+            Socket serverSocket = tcpServerListener.AcceptSocket();
+
+
+            //2: start the server that listens to the events
+            try
+            {
+                if (serverSocket.Connected)
+                {
+                    Console.WriteLine("tcpClient for PTT and headset event capture connected");
+                    //open network stream on accepted socket
+                    NetworkStream serverSockStream = new NetworkStream(serverSocket);
+                    serverStreamWriter = new StreamWriter(serverSockStream);
+                    serverStreamReader = new StreamReader(serverSockStream);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+
+            //3: start the win32 client that captures the PTT and headset events
+            try
+            {
+                if (File.Exists(Path.Combine(Application.StartupPath, "TCPSocketClient.exe")))
+                {
+                    var pr = new Process();
+                    pr.StartInfo.FileName = Path.Combine(Application.StartupPath, "TCPSocketClient.exe");
+                    pr.Start();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot find tcpclient " +ex.Message + ex.StackTrace);
+
+            }
+            return true;
+        }
+        //////////////////////////////////////////////////////////////////////////////
+        ///Event handlers
+        //////////////////////////////////////////////////////////////////////////////
+        private void StartListinging()
+        {
+            //start server
+            if (!StartServer())
+                Console.WriteLine("Unable to start server");
+
+            //sending n receiving msgs
+            while (true)
+            {
+                // Application.DoEvents();
+                string received = serverStreamReader.ReadLine();
+                if (received.Length > 0)
+                {
+                    string[] splitstr = received.Split('|');
+                    if (splitstr[0].ToString().Trim().ToLower() == "ptt")
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblPtt.Text = "PTT ";
+
+                        }
+                        else
+                            lblPtt.Text = "";
+                    }
+                    else
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblHeadset.Text = "HEADSET";
+
+                        }
+                        else
+                            lblHeadset.Text = "";
+                    }
+                }
+              //  Application.DoEvents();
+            //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
+            //    serverStreamWriter.WriteLine("Hi!");
+            //    serverStreamWriter.Flush();
+            }//while
+        }
+        #endregion
     }
 }

@@ -13,6 +13,9 @@ namespace UNET_Trainer_Trainee
 {
     public partial class FrmAudio : Form
     {
+        //log4net
+        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public FrmAudio()
         {
             InitializeComponent();
@@ -25,7 +28,8 @@ namespace UNET_Trainer_Trainee
 
             UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
-            tbLeftESMMM.Value = conference.LeftESM;
+ 
+        tbLeftESMMM.Value = conference.LeftESM;
             tbLeftShadow.Value = conference.LeftShadow;
             tbLeftVolume.Value = conference.LeftVolume;
             tbMicGain.Value = conference.MicGain;
@@ -114,21 +118,20 @@ namespace UNET_Trainer_Trainee
         private void FrmAudio_FormClosing(object sender, FormClosingEventArgs e)
         {
             //sla de wijzigingen op naar de app.config van deze trainer
-            UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
-
-            try { 
-            ///haal de settings op uit de registry. Dit mislukt de allereerste keer
-            RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
-            RegistryAccess.GetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
+            try
+            {
+                ///haal de settings op uit de registry. Dit mislukt de allereerste keer
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftShadow", tbLeftShadow.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightShadow", tbRightShadow.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftESM", tbLeftESMMM.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightESM", tbRightESMMM.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"MicGain", tbMicGain.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"LeftVolume", tbLeftVolume.Value.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"RightVolume", tbRightVolume.Value.ToString());
             }
             catch (Exception ex)
             {
-                string messages = ex.Message;
+               log.Error("Error saving to registry: " + ex.Message);
             }
         }
     }
