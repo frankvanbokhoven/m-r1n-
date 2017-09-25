@@ -26,15 +26,16 @@ namespace UNET_Trainer
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        public int InstructorID = Convert.ToInt16( ConfigurationManager.AppSettings["InstructorID"].ToString().Trim());
+        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1015"));
+        
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
 
 
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
-        public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
-        public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
-  
+        public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); // ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
         /// WCF service
@@ -46,6 +47,8 @@ namespace UNET_Trainer
         private static FrmUNETMain inst;
         public UNET_Classes.Exercise SelectedExercise;
         private int ExersiseIndex = -1;
+        private int RoleClicked = -1;
+        private int RadioClicked = -1;
 
 
         public static FrmUNETMain GetForm
@@ -136,7 +139,7 @@ namespace UNET_Trainer
         }
 
         /// <summary>
-        /// Make a conference for the selected radio and selected noise level
+        /// Make a conference for the selected radio and start a conference and then add the selected noise level
         /// </summary>
         /// <param name="_SelectedRadioButtonIndex"></param>
         /// <param name="_SelectedNoiseButtonIndex"></param>
@@ -166,56 +169,56 @@ namespace UNET_Trainer
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-          //  first the trainees, we assume the name of the button component is the key for the function
+            //  first the trainees, we assume the name of the button component is the key for the function
 
             //this loop sets the color of the status led
             foreach (Control c in parent.Controls)
+            {
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
                 {
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                    if (((Button)c).ImageIndex == 1)
                     {
-                        if (((Button)c).ImageIndex == 1)
-                        {
-                            ((Button)c).ImageIndex = 2;
-                        }
-                        else
-                        { ((Button)c).ImageIndex = 1; }
-                    }
-
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
-                    {
-                        if (((Button)c).ImageIndex == 1)
-                        {
-                            ((Button)c).ImageIndex = 2;
-                        }
-                        else
-                        { ((Button)c).ImageIndex = 1; }
-                    }
-
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
-                    {
-                        if (((Button)c).ImageIndex == 1)
-                        {
-                            ((Button)c).ImageIndex = 2;
-                        }
-                        else
-                        { ((Button)c).ImageIndex = 1; }
-                    }
-
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
-                    {
-                        if (((Button)c).ImageIndex == 1)
-                        {
-                            ((Button)c).ImageIndex = 2;
-                        }
-                        else
-                        { ((Button)c).ImageIndex = 1; }
+                        ((Button)c).ImageIndex = 2;
                     }
                     else
-                    {
-                        //  SetButtonStatus(c);
-                    }
-                    Application.DoEvents();
+                    { ((Button)c).ImageIndex = 1; }
                 }
+
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
+                {
+                    if (((Button)c).ImageIndex == 1)
+                    {
+                        ((Button)c).ImageIndex = 2;
+                    }
+                    else
+                    { ((Button)c).ImageIndex = 1; }
+                }
+
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
+                {
+                    if (((Button)c).ImageIndex == 1)
+                    {
+                        ((Button)c).ImageIndex = 2;
+                    }
+                    else
+                    { ((Button)c).ImageIndex = 1; }
+                }
+
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
+                {
+                    if (((Button)c).ImageIndex == 1)
+                    {
+                        ((Button)c).ImageIndex = 2;
+                    }
+                    else
+                    { ((Button)c).ImageIndex = 1; }
+                }
+                else
+                {
+                    //  SetButtonStatus(c);
+                }
+                Application.DoEvents();
+            }
 
             try
             {
@@ -230,73 +233,82 @@ namespace UNET_Trainer
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
                 List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
-
+                foreach (Control ctrl in panelExercises.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
                 foreach (UNET_Classes.Exercise exercise in lst)
                 {
-                   panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
-                }
-        
-                foreach(UNET_Classes.Exercise exercise in lst)
-                {
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
-                }                 
+                }
+
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in panelRoles.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
                 }
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
 
                 //enable the Roles buttons
                 var radiolist = service.GetRadios();
+
                 List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in panelRadios.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
                 foreach (UNET_Classes.Radio radio in lstRadio)
                 {
                     panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
+
                 }
 
-                 UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
+                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 Application.DoEvents();
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
                 int listindex = 1;
+                foreach (Control ctrl in panelTrainees.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
                 {
-                 //   panelTrainees.Controls["btnTrainee" + trainee.ID.ToString("00")].Enabled = true;
-                 //   panelTrainees.Controls["btnTrainee" + trainee.ID.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name,Environment.NewLine, "TraineeRole");
                     panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
                     panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
                     listindex++;
                 }
 
-             UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
 
-                //btnTrainee01.Enabled = lstTrainee.Count >= 1;
-                //btnTrainee02.Enabled = lstTrainee.Count >= 2;
-                //btnTrainee03.Enabled = lstTrainee.Count >= 3;
-                //btnTrainee04.Enabled = lstTrainee.Count >= 4;
-                //btnTrainee05.Enabled = lstTrainee.Count >= 5;
-                //btnTrainee06.Enabled = lstTrainee.Count >= 6;
-                //btnTrainee07.Enabled = lstTrainee.Count >= 7;
-                //btnTrainee08.Enabled = lstTrainee.Count >= 8;
-                //btnTrainee09.Enabled = lstTrainee.Count >= 9;
-                //btnTrainee10.Enabled = lstTrainee.Count >= 10;
-                //btnTrainee11.Enabled = lstTrainee.Count >= 11;
-                //btnTrainee12.Enabled = lstTrainee.Count >= 12;
-                //btnTrainee13.Enabled = lstTrainee.Count >= 13;
-                //btnTrainee14.Enabled = lstTrainee.Count >= 14;
-                //btnTrainee15.Enabled = lstTrainee.Count >= 15;
-                //btnTrainee16.Enabled = lstTrainee.Count >= 16;
-   
-  
+
             }
             catch (Exception ex)
             {
@@ -334,8 +346,17 @@ namespace UNET_Trainer
 
             try
             {
+              string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                //sipserver
+               string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                //account
+               string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                //account
+                UInt16 port= Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
+                string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
+
                 //the useragent holds everything needed for the sip communication
-                useragent = new PJSUA2Implementation.SIP.UserAgent();
+                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                 useragent.UserAgentStart();
 
             }
@@ -450,7 +471,7 @@ namespace UNET_Trainer
             int traineeIndex = -1;
             //    SetStatusAndColorTraineeButtons((Button)sender);
 
-            traineeIndex = (int)(Enum.Parse(typeof(Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+            traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
        
             /// <summary>
             /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
@@ -466,13 +487,13 @@ namespace UNET_Trainer
             }
 
 
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
-            {
-                service.Open();
-            }
+        //    if (service.State != System.ServiceModel.CommunicationState.Opened)
+        //    {
+        //        service.Open();
+        //    }
 
             //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
-            service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
+      //      service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
         }
         #endregion
 
@@ -560,6 +581,11 @@ namespace UNET_Trainer
             SetRadioStatus();
 
             SetStatusAndColorRadioButtons((Button)sender);
+
+            RadioClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Radios), ((Button)sender).Name.Remove(0, 3)));
+            ((Button)sender).BackColor = Color.Black;
+            ((Button)sender).ForeColor = Color.White;
+
         }
 
         /// <summary>
@@ -573,7 +599,7 @@ namespace UNET_Trainer
             if (MonitorRadio)
             {
                 // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
-                int radioIndex = (int)(Enum.Parse(typeof(Enums.Radios), _btn.Name.Remove(0, 3)));
+                int radioIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Radios), _btn.Name.Remove(0, 3)));
                 MonitorRadioArray[radioIndex] = true;
                 _btn.BackColor = System.Drawing.Color.SaddleBrown;
                 _btn.ForeColor = System.Drawing.Color.White;
@@ -628,7 +654,7 @@ namespace UNET_Trainer
             // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
             if (_btn.Name.ToLower() != "btnil")
             {
-                ExersiseIndex = (int)(Enum.Parse(typeof(Enums.Exercises), _btn.Name.Remove(0, 11)));
+                ExersiseIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Exercises), _btn.Name.Remove(0, 11)));
             }
             else
             {
@@ -735,13 +761,21 @@ namespace UNET_Trainer
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, -1, "Intercom");
+            MakeCall(InstructorID, @"INTERCOM_Instructor_X\" + InstructorID, -1, "Intercom");
 
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
             MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, -1, "Assist");
+
+        }
+
+        private void btnRole09_Click(object sender, EventArgs e)
+        {
+            RoleClicked =  (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
+            ((Button)sender).BackColor = Color.Black;
+            ((Button)sender).ForeColor = Color.White;
 
         }
     }

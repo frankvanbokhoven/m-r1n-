@@ -653,18 +653,40 @@ namespace UNET_Service
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-               //try to find the exercise
-                foreach (UNET_Classes.Exercise exe in singleton.Exercises)
-                {
-                   if(exe.Number == _exerciseIndex)
-                    {
-                        exe.Selected = _select;
 
-                        //voeg de exercise nu toe aan de instructeur
-                        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
-               //         singleton.Instructors[_instructor].Exercises.Add(exe);
+
+                Exercise exe;
+                //try to find the exercise in the excercise list
+                if (singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex) != null)
+                {
+                    exe = singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex);
+                    if (exe != null)
+                    {
+                        singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex).Selected = true;
+                        
                     }
+                    //todo: hier UNselecten!!
                 }
+             
+
+                ////zet eerst de selected alle op false
+                //foreach(UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
+                //{
+                //    ex.Selected = false;
+                //}
+                  
+                ////try to find the exercise and set selected to true
+                //    foreach (UNET_Classes.Exercise exe in singleton.Exercises)
+                //{
+                //   if(exe.Number == _exerciseIndex)
+                //    {
+                //        exe.Selected = _select;
+
+                //        //voeg de exercise nu toe aan de instructeur
+                //        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
+                //    }
+               
+                //}
 
 
                 result = true;
@@ -917,7 +939,7 @@ namespace UNET_Service
         }
 
         /// <summary>
-        /// Given the id of the trainee, retrieve the current info for this trainee
+        /// Given the id of the trainee, retrieve the current assigned exercise for this trainee
         /// </summary>
         /// <param name="_traineeID"></param>
         /// <returns></returns>
@@ -929,29 +951,25 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                //foreach (CurrentInfo cu in singleton.CurrentInfoList)
-                //{
-                //    if (cu.ID == _traineeID)
-                //    {
-                //        result = cu;
-                //        break;
-                //    }
-                //}
-
                 //Loop thrue the exercises and try to find the trainee in the exercises. If so, return the info
-                foreach (Exercise ex in singleton.Exercises)
+                foreach (Instructor instr in singleton.Instructors)
                 {
-                    //loop thrue the list of assigned trainees
-                    foreach (Trainee tr in ex.TraineesAssigned)
+                    
+                    foreach (Exercise ex in instr.Exercises )
                     {
-                        if (tr.ID == _traineeID)
+                        //loop thrue the list of assigned trainees
+                        foreach (Trainee tr in ex.TraineesAssigned)
                         {
-                            result = new CurrentInfo();
-                            result.ID = ex.Number;
-                            result.ExerciseName = ex.ExerciseName;
-                            result.ConsoleRole = ex.RolesAssigned[0].Name;
-                            result.Platform = "todo: platform!";
-                            break;
+                            if (tr.ID == _traineeID)
+                            {
+                                result = new CurrentInfo();
+                                result.ID = ex.Number;
+                                result.ExerciseName = ex.ExerciseName;
+                                result.ConsoleRole = ex.RolesAssigned[0].Name;
+                                result.Platform = "todo: platform!";
+                                result.InstructorName = instr.Name;
+                                break;
+                            }
                         }
                     }
                 }

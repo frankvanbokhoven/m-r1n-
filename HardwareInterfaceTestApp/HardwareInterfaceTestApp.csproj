@@ -35,12 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HardwareInterface, Version=1.2017.9.64, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="HardwareInterface">
       <HintPath>..\HardwareInterface\bin\Debug\HardwareInterface.dll</HintPath>
     </Reference>
-    <Reference Include="HidLib, Version=1.2017.9.64, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="HidLib">
       <HintPath>..\HardwareInterface\bin\Debug\HidLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">

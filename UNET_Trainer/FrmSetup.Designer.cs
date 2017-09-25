@@ -45,15 +45,23 @@
             this.btnSelectLogDir = new System.Windows.Forms.Button();
             this.txtLogDirectory = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtDomain = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSipServer = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tbxAccount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTestFont
             // 
             this.lblTestFont.AutoSize = true;
-            this.lblTestFont.Location = new System.Drawing.Point(381, 150);
+            this.lblTestFont.Location = new System.Drawing.Point(344, 151);
             this.lblTestFont.Name = "lblTestFont";
             this.lblTestFont.Size = new System.Drawing.Size(81, 20);
             this.lblTestFont.TabIndex = 22;
@@ -62,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(64, 123);
+            this.label2.Location = new System.Drawing.Point(27, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 21;
@@ -71,7 +79,7 @@
             // ddlFont
             // 
             this.ddlFont.FormattingEnabled = true;
-            this.ddlFont.Location = new System.Drawing.Point(68, 145);
+            this.ddlFont.Location = new System.Drawing.Point(31, 146);
             this.ddlFont.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlFont.Name = "ddlFont";
             this.ddlFont.Size = new System.Drawing.Size(296, 26);
@@ -80,7 +88,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 49);
+            this.label1.Location = new System.Drawing.Point(27, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 19;
@@ -88,7 +96,7 @@
             // 
             // pnlColorExample
             // 
-            this.pnlColorExample.Location = new System.Drawing.Point(378, 71);
+            this.pnlColorExample.Location = new System.Drawing.Point(341, 72);
             this.pnlColorExample.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlColorExample.Name = "pnlColorExample";
             this.pnlColorExample.Size = new System.Drawing.Size(35, 25);
@@ -97,7 +105,7 @@
             // ddlColorButton
             // 
             this.ddlColorButton.FormattingEnabled = true;
-            this.ddlColorButton.Location = new System.Drawing.Point(68, 71);
+            this.ddlColorButton.Location = new System.Drawing.Point(31, 72);
             this.ddlColorButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ddlColorButton.Name = "ddlColorButton";
             this.ddlColorButton.Size = new System.Drawing.Size(296, 26);
@@ -111,7 +119,7 @@
             this.groupBox1.Controls.Add(this.btnBlue);
             this.groupBox1.Controls.Add(this.btnLight);
             this.groupBox1.Controls.Add(this.btnDark);
-            this.groupBox1.Location = new System.Drawing.Point(67, 360);
+            this.groupBox1.Location = new System.Drawing.Point(31, 337);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -195,7 +203,7 @@
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
             this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMainPage.Location = new System.Drawing.Point(68, 563);
+            this.btnMainPage.Location = new System.Drawing.Point(31, 564);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 53);
@@ -207,7 +215,7 @@
             // btnSelectLogDir
             // 
             this.btnSelectLogDir.Image = global::UNET_Trainer.Properties.Resources.open_icon;
-            this.btnSelectLogDir.Location = new System.Drawing.Point(603, 211);
+            this.btnSelectLogDir.Location = new System.Drawing.Point(439, 214);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
             this.btnSelectLogDir.Size = new System.Drawing.Size(50, 50);
@@ -218,39 +226,105 @@
             // txtLogDirectory
             // 
             this.txtLogDirectory.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.txtLogDirectory.Location = new System.Drawing.Point(68, 226);
+            this.txtLogDirectory.Location = new System.Drawing.Point(31, 227);
             this.txtLogDirectory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLogDirectory.Name = "txtLogDirectory";
             this.txtLogDirectory.ReadOnly = true;
-            this.txtLogDirectory.Size = new System.Drawing.Size(502, 26);
+            this.txtLogDirectory.Size = new System.Drawing.Size(400, 26);
             this.txtLogDirectory.TabIndex = 39;
             this.txtLogDirectory.Text = "c:\\Marine\\GitSources\\Log\\UNET_Trainer_Trainee.log";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(63, 195);
+            this.label3.Location = new System.Drawing.Point(26, 196);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(121, 20);
             this.label3.TabIndex = 38;
             this.label3.Text = "Log Directory";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtDomain);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.txtPort);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.txtSipServer);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.tbxAccount);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(513, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(337, 435);
+            this.panel1.TabIndex = 41;
+            // 
+            // txtDomain
+            // 
+            this.txtDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDomain.Location = new System.Drawing.Point(27, 231);
+            this.txtDomain.Name = "txtDomain";
+            this.txtDomain.Size = new System.Drawing.Size(296, 24);
+            this.txtDomain.TabIndex = 47;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(24, 211);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 20);
+            this.label7.TabIndex = 46;
+            this.label7.Text = "Domain";
+            // 
+            // txtPort
+            // 
+            this.txtPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPort.Location = new System.Drawing.Point(27, 168);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(296, 24);
+            this.txtPort.TabIndex = 45;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 148);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 20);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Port";
+            // 
+            // txtSipServer
+            // 
+            this.txtSipServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSipServer.Location = new System.Drawing.Point(27, 106);
+            this.txtSipServer.Name = "txtSipServer";
+            this.txtSipServer.Size = new System.Drawing.Size(296, 24);
+            this.txtSipServer.TabIndex = 43;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 86);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Sip server";
+            // 
             // tbxAccount
             // 
             this.tbxAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxAccount.Location = new System.Drawing.Point(67, 298);
+            this.tbxAccount.Location = new System.Drawing.Point(27, 42);
             this.tbxAccount.Name = "tbxAccount";
             this.tbxAccount.Size = new System.Drawing.Size(296, 24);
-            this.tbxAccount.TabIndex = 42;
+            this.tbxAccount.TabIndex = 41;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(64, 278);
+            this.label4.Location = new System.Drawing.Point(24, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 20);
-            this.label4.TabIndex = 41;
+            this.label4.TabIndex = 40;
             this.label4.Text = "Account";
             // 
             // FrmSetup
@@ -258,8 +332,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 747);
-            this.Controls.Add(this.tbxAccount);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSelectLogDir);
             this.Controls.Add(this.txtLogDirectory);
             this.Controls.Add(this.label3);
@@ -280,6 +353,8 @@
             this.Load += new System.EventHandler(this.FrmSetup_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,6 +379,13 @@
         private System.Windows.Forms.Button btnSelectLogDir;
         private System.Windows.Forms.TextBox txtLogDirectory;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtDomain;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtSipServer;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbxAccount;
         private System.Windows.Forms.Label label4;
     }

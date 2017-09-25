@@ -32,35 +32,35 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.btnClose = new System.Windows.Forms.Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
-            this.pnlPointToPoint = new System.Windows.Forms.Panel();
+            this.panelRoles = new System.Windows.Forms.Panel();
             this.btnRole20 = new System.Windows.Forms.Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
-            this.btnRole5 = new System.Windows.Forms.Button();
+            this.btnRole05 = new System.Windows.Forms.Button();
             this.btnRole19 = new System.Windows.Forms.Button();
             this.btnRole14 = new System.Windows.Forms.Button();
-            this.btnRole9 = new System.Windows.Forms.Button();
-            this.btnRole4 = new System.Windows.Forms.Button();
+            this.btnRole09 = new System.Windows.Forms.Button();
+            this.btnRole04 = new System.Windows.Forms.Button();
             this.btnRole17 = new System.Windows.Forms.Button();
             this.btnRole12 = new System.Windows.Forms.Button();
-            this.btnRole7 = new System.Windows.Forms.Button();
-            this.btnRole2 = new System.Windows.Forms.Button();
+            this.btnRole07 = new System.Windows.Forms.Button();
+            this.btnRole02 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnRole18 = new System.Windows.Forms.Button();
             this.btnRole13 = new System.Windows.Forms.Button();
-            this.btnRole8 = new System.Windows.Forms.Button();
-            this.btnRole3 = new System.Windows.Forms.Button();
+            this.btnRole08 = new System.Windows.Forms.Button();
+            this.btnRole03 = new System.Windows.Forms.Button();
             this.btnRole16 = new System.Windows.Forms.Button();
             this.btnRole11 = new System.Windows.Forms.Button();
-            this.btnRole6 = new System.Windows.Forms.Button();
-            this.btnRole1 = new System.Windows.Forms.Button();
+            this.btnRole06 = new System.Windows.Forms.Button();
+            this.btnRole01 = new System.Windows.Forms.Button();
             this.btnRadio01 = new System.Windows.Forms.Button();
             this.btnRadio03 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRadio02 = new System.Windows.Forms.Button();
             this.btnRadio04 = new System.Windows.Forms.Button();
             this.btnRadio05 = new System.Windows.Forms.Button();
-            this.pnlRadios = new System.Windows.Forms.Panel();
+            this.panelRadios = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblSetup = new System.Windows.Forms.Label();
             this.btnAudio = new System.Windows.Forms.Button();
@@ -83,8 +83,8 @@
             this.lblPtt = new System.Windows.Forms.Label();
             this.lblHeadset = new System.Windows.Forms.Label();
             this.lblRegInfo = new System.Windows.Forms.Label();
-            this.pnlPointToPoint.SuspendLayout();
-            this.pnlRadios.SuspendLayout();
+            this.panelRoles.SuspendLayout();
+            this.panelRadios.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,35 +112,35 @@
             this.imageListStatus.Images.SetKeyName(1, "Red24.png");
             this.imageListStatus.Images.SetKeyName(2, "Green24.png");
             // 
-            // pnlPointToPoint
+            // panelRoles
             // 
-            this.pnlPointToPoint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlPointToPoint.Controls.Add(this.btnRole20);
-            this.pnlPointToPoint.Controls.Add(this.btnRole15);
-            this.pnlPointToPoint.Controls.Add(this.btnRole10);
-            this.pnlPointToPoint.Controls.Add(this.btnRole5);
-            this.pnlPointToPoint.Controls.Add(this.btnRole19);
-            this.pnlPointToPoint.Controls.Add(this.btnRole14);
-            this.pnlPointToPoint.Controls.Add(this.btnRole9);
-            this.pnlPointToPoint.Controls.Add(this.btnRole4);
-            this.pnlPointToPoint.Controls.Add(this.btnRole17);
-            this.pnlPointToPoint.Controls.Add(this.btnRole12);
-            this.pnlPointToPoint.Controls.Add(this.btnRole7);
-            this.pnlPointToPoint.Controls.Add(this.btnRole2);
-            this.pnlPointToPoint.Controls.Add(this.label4);
-            this.pnlPointToPoint.Controls.Add(this.btnRole18);
-            this.pnlPointToPoint.Controls.Add(this.btnRole13);
-            this.pnlPointToPoint.Controls.Add(this.btnRole8);
-            this.pnlPointToPoint.Controls.Add(this.btnRole3);
-            this.pnlPointToPoint.Controls.Add(this.btnRole16);
-            this.pnlPointToPoint.Controls.Add(this.btnRole11);
-            this.pnlPointToPoint.Controls.Add(this.btnRole6);
-            this.pnlPointToPoint.Controls.Add(this.btnRole1);
-            this.pnlPointToPoint.Location = new System.Drawing.Point(352, 14);
-            this.pnlPointToPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlPointToPoint.Name = "pnlPointToPoint";
-            this.pnlPointToPoint.Size = new System.Drawing.Size(334, 710);
-            this.pnlPointToPoint.TabIndex = 25;
+            this.panelRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRoles.Controls.Add(this.btnRole20);
+            this.panelRoles.Controls.Add(this.btnRole15);
+            this.panelRoles.Controls.Add(this.btnRole10);
+            this.panelRoles.Controls.Add(this.btnRole05);
+            this.panelRoles.Controls.Add(this.btnRole19);
+            this.panelRoles.Controls.Add(this.btnRole14);
+            this.panelRoles.Controls.Add(this.btnRole09);
+            this.panelRoles.Controls.Add(this.btnRole04);
+            this.panelRoles.Controls.Add(this.btnRole17);
+            this.panelRoles.Controls.Add(this.btnRole12);
+            this.panelRoles.Controls.Add(this.btnRole07);
+            this.panelRoles.Controls.Add(this.btnRole02);
+            this.panelRoles.Controls.Add(this.label4);
+            this.panelRoles.Controls.Add(this.btnRole18);
+            this.panelRoles.Controls.Add(this.btnRole13);
+            this.panelRoles.Controls.Add(this.btnRole08);
+            this.panelRoles.Controls.Add(this.btnRole03);
+            this.panelRoles.Controls.Add(this.btnRole16);
+            this.panelRoles.Controls.Add(this.btnRole11);
+            this.panelRoles.Controls.Add(this.btnRole06);
+            this.panelRoles.Controls.Add(this.btnRole01);
+            this.panelRoles.Location = new System.Drawing.Point(352, 14);
+            this.panelRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRoles.Name = "panelRoles";
+            this.panelRoles.Size = new System.Drawing.Size(334, 710);
+            this.panelRoles.TabIndex = 25;
             // 
             // btnRole20
             // 
@@ -190,21 +190,21 @@
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
             // 
-            // btnRole5
+            // btnRole05
             // 
-            this.btnRole5.BackColor = System.Drawing.Color.Gold;
-            this.btnRole5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole5.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole5.ImageIndex = 1;
-            this.btnRole5.ImageList = this.imageListStatus;
-            this.btnRole5.Location = new System.Drawing.Point(112, 356);
-            this.btnRole5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole5.Name = "btnRole5";
-            this.btnRole5.Size = new System.Drawing.Size(91, 74);
-            this.btnRole5.TabIndex = 19;
-            this.btnRole5.Text = "Platform Role 5";
-            this.btnRole5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole5.UseVisualStyleBackColor = false;
+            this.btnRole05.BackColor = System.Drawing.Color.Gold;
+            this.btnRole05.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole05.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole05.ImageIndex = 1;
+            this.btnRole05.ImageList = this.imageListStatus;
+            this.btnRole05.Location = new System.Drawing.Point(112, 356);
+            this.btnRole05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole05.Name = "btnRole05";
+            this.btnRole05.Size = new System.Drawing.Size(91, 74);
+            this.btnRole05.TabIndex = 19;
+            this.btnRole05.Text = "Platform Role 5";
+            this.btnRole05.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole05.UseVisualStyleBackColor = false;
             // 
             // btnRole19
             // 
@@ -213,7 +213,7 @@
             this.btnRole19.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole19.ImageIndex = 1;
             this.btnRole19.ImageList = this.imageListStatus;
-            this.btnRole19.Location = new System.Drawing.Point(8, 603);
+            this.btnRole19.Location = new System.Drawing.Point(8, 599);
             this.btnRole19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole19.Name = "btnRole19";
             this.btnRole19.Size = new System.Drawing.Size(91, 74);
@@ -238,37 +238,37 @@
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
             // 
-            // btnRole9
+            // btnRole09
             // 
-            this.btnRole9.BackColor = System.Drawing.Color.Gold;
-            this.btnRole9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole9.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole9.ImageIndex = 0;
-            this.btnRole9.ImageList = this.imageListStatus;
-            this.btnRole9.Location = new System.Drawing.Point(8, 438);
-            this.btnRole9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole9.Name = "btnRole9";
-            this.btnRole9.Size = new System.Drawing.Size(91, 74);
-            this.btnRole9.TabIndex = 16;
-            this.btnRole9.Text = "Platform Role 9";
-            this.btnRole9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole9.UseVisualStyleBackColor = false;
+            this.btnRole09.BackColor = System.Drawing.Color.Gold;
+            this.btnRole09.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole09.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole09.ImageIndex = 0;
+            this.btnRole09.ImageList = this.imageListStatus;
+            this.btnRole09.Location = new System.Drawing.Point(8, 438);
+            this.btnRole09.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole09.Name = "btnRole09";
+            this.btnRole09.Size = new System.Drawing.Size(91, 74);
+            this.btnRole09.TabIndex = 16;
+            this.btnRole09.Text = "Platform Role 9";
+            this.btnRole09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole09.UseVisualStyleBackColor = false;
             // 
-            // btnRole4
+            // btnRole04
             // 
-            this.btnRole4.BackColor = System.Drawing.Color.Gold;
-            this.btnRole4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole4.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole4.ImageIndex = 2;
-            this.btnRole4.ImageList = this.imageListStatus;
-            this.btnRole4.Location = new System.Drawing.Point(8, 356);
-            this.btnRole4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole4.Name = "btnRole4";
-            this.btnRole4.Size = new System.Drawing.Size(91, 74);
-            this.btnRole4.TabIndex = 15;
-            this.btnRole4.Text = "Platform Role 4";
-            this.btnRole4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole4.UseVisualStyleBackColor = false;
+            this.btnRole04.BackColor = System.Drawing.Color.Gold;
+            this.btnRole04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole04.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole04.ImageIndex = 2;
+            this.btnRole04.ImageList = this.imageListStatus;
+            this.btnRole04.Location = new System.Drawing.Point(8, 356);
+            this.btnRole04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole04.Name = "btnRole04";
+            this.btnRole04.Size = new System.Drawing.Size(91, 74);
+            this.btnRole04.TabIndex = 15;
+            this.btnRole04.Text = "Platform Role 4";
+            this.btnRole04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole04.UseVisualStyleBackColor = false;
             // 
             // btnRole17
             // 
@@ -302,38 +302,38 @@
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
             // 
-            // btnRole7
+            // btnRole07
             // 
-            this.btnRole7.BackColor = System.Drawing.Color.Gold;
-            this.btnRole7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole7.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole7.ImageIndex = 1;
-            this.btnRole7.ImageList = this.imageListStatus;
-            this.btnRole7.Location = new System.Drawing.Point(108, 112);
-            this.btnRole7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole7.Name = "btnRole7";
-            this.btnRole7.Size = new System.Drawing.Size(91, 74);
-            this.btnRole7.TabIndex = 12;
-            this.btnRole7.Text = "Platform Role 7";
-            this.btnRole7.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnRole7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole7.UseVisualStyleBackColor = false;
+            this.btnRole07.BackColor = System.Drawing.Color.Gold;
+            this.btnRole07.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole07.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole07.ImageIndex = 1;
+            this.btnRole07.ImageList = this.imageListStatus;
+            this.btnRole07.Location = new System.Drawing.Point(108, 112);
+            this.btnRole07.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole07.Name = "btnRole07";
+            this.btnRole07.Size = new System.Drawing.Size(91, 74);
+            this.btnRole07.TabIndex = 12;
+            this.btnRole07.Text = "Platform Role 7";
+            this.btnRole07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnRole07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole07.UseVisualStyleBackColor = false;
             // 
-            // btnRole2
+            // btnRole02
             // 
-            this.btnRole2.BackColor = System.Drawing.Color.Gold;
-            this.btnRole2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole2.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole2.ImageIndex = 2;
-            this.btnRole2.ImageList = this.imageListStatus;
-            this.btnRole2.Location = new System.Drawing.Point(108, 30);
-            this.btnRole2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole2.Name = "btnRole2";
-            this.btnRole2.Size = new System.Drawing.Size(91, 74);
-            this.btnRole2.TabIndex = 11;
-            this.btnRole2.Text = "Platform Role 2";
-            this.btnRole2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole2.UseVisualStyleBackColor = false;
+            this.btnRole02.BackColor = System.Drawing.Color.Gold;
+            this.btnRole02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole02.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole02.ImageIndex = 2;
+            this.btnRole02.ImageList = this.imageListStatus;
+            this.btnRole02.Location = new System.Drawing.Point(108, 30);
+            this.btnRole02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole02.Name = "btnRole02";
+            this.btnRole02.Size = new System.Drawing.Size(91, 74);
+            this.btnRole02.TabIndex = 11;
+            this.btnRole02.Text = "Platform Role 2";
+            this.btnRole02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole02.UseVisualStyleBackColor = false;
             // 
             // label4
             // 
@@ -377,37 +377,37 @@
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
             // 
-            // btnRole8
+            // btnRole08
             // 
-            this.btnRole8.BackColor = System.Drawing.Color.Gold;
-            this.btnRole8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole8.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole8.ImageIndex = 1;
-            this.btnRole8.ImageList = this.imageListStatus;
-            this.btnRole8.Location = new System.Drawing.Point(212, 112);
-            this.btnRole8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole8.Name = "btnRole8";
-            this.btnRole8.Size = new System.Drawing.Size(91, 74);
-            this.btnRole8.TabIndex = 6;
-            this.btnRole8.Text = "Platform Role 8";
-            this.btnRole8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole8.UseVisualStyleBackColor = false;
+            this.btnRole08.BackColor = System.Drawing.Color.Gold;
+            this.btnRole08.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole08.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole08.ImageIndex = 1;
+            this.btnRole08.ImageList = this.imageListStatus;
+            this.btnRole08.Location = new System.Drawing.Point(212, 112);
+            this.btnRole08.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole08.Name = "btnRole08";
+            this.btnRole08.Size = new System.Drawing.Size(91, 74);
+            this.btnRole08.TabIndex = 6;
+            this.btnRole08.Text = "Platform Role 8";
+            this.btnRole08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole08.UseVisualStyleBackColor = false;
             // 
-            // btnRole3
+            // btnRole03
             // 
-            this.btnRole3.BackColor = System.Drawing.Color.Gold;
-            this.btnRole3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole3.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole3.ImageIndex = 2;
-            this.btnRole3.ImageList = this.imageListStatus;
-            this.btnRole3.Location = new System.Drawing.Point(212, 30);
-            this.btnRole3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole3.Name = "btnRole3";
-            this.btnRole3.Size = new System.Drawing.Size(91, 74);
-            this.btnRole3.TabIndex = 5;
-            this.btnRole3.Text = "Platform Role 3";
-            this.btnRole3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole3.UseVisualStyleBackColor = false;
+            this.btnRole03.BackColor = System.Drawing.Color.Gold;
+            this.btnRole03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole03.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole03.ImageIndex = 2;
+            this.btnRole03.ImageList = this.imageListStatus;
+            this.btnRole03.Location = new System.Drawing.Point(212, 30);
+            this.btnRole03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole03.Name = "btnRole03";
+            this.btnRole03.Size = new System.Drawing.Size(91, 74);
+            this.btnRole03.TabIndex = 5;
+            this.btnRole03.Text = "Platform Role 3";
+            this.btnRole03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole03.UseVisualStyleBackColor = false;
             // 
             // btnRole16
             // 
@@ -441,37 +441,38 @@
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
             // 
-            // btnRole6
+            // btnRole06
             // 
-            this.btnRole6.BackColor = System.Drawing.Color.Gold;
-            this.btnRole6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole6.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole6.ImageIndex = 1;
-            this.btnRole6.ImageList = this.imageListStatus;
-            this.btnRole6.Location = new System.Drawing.Point(3, 112);
-            this.btnRole6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole6.Name = "btnRole6";
-            this.btnRole6.Size = new System.Drawing.Size(91, 74);
-            this.btnRole6.TabIndex = 2;
-            this.btnRole6.Text = "Platform Role 6";
-            this.btnRole6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole6.UseVisualStyleBackColor = false;
+            this.btnRole06.BackColor = System.Drawing.Color.Gold;
+            this.btnRole06.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole06.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole06.ImageIndex = 1;
+            this.btnRole06.ImageList = this.imageListStatus;
+            this.btnRole06.Location = new System.Drawing.Point(3, 112);
+            this.btnRole06.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole06.Name = "btnRole06";
+            this.btnRole06.Size = new System.Drawing.Size(91, 74);
+            this.btnRole06.TabIndex = 2;
+            this.btnRole06.Text = "Platform Role 6";
+            this.btnRole06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole06.UseVisualStyleBackColor = false;
             // 
-            // btnRole1
+            // btnRole01
             // 
-            this.btnRole1.BackColor = System.Drawing.Color.Gold;
-            this.btnRole1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRole1.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btnRole1.ImageIndex = 1;
-            this.btnRole1.ImageList = this.imageListStatus;
-            this.btnRole1.Location = new System.Drawing.Point(3, 30);
-            this.btnRole1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRole1.Name = "btnRole1";
-            this.btnRole1.Size = new System.Drawing.Size(91, 74);
-            this.btnRole1.TabIndex = 1;
-            this.btnRole1.Text = "Platform Role 1";
-            this.btnRole1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRole1.UseVisualStyleBackColor = false;
+            this.btnRole01.BackColor = System.Drawing.Color.Gold;
+            this.btnRole01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole01.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnRole01.ImageIndex = 1;
+            this.btnRole01.ImageList = this.imageListStatus;
+            this.btnRole01.Location = new System.Drawing.Point(3, 30);
+            this.btnRole01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRole01.Name = "btnRole01";
+            this.btnRole01.Size = new System.Drawing.Size(91, 74);
+            this.btnRole01.TabIndex = 1;
+            this.btnRole01.Text = "Platform Role 1";
+            this.btnRole01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRole01.UseVisualStyleBackColor = false;
+            this.btnRole01.Click += new System.EventHandler(this.btnRole1_Click);
             // 
             // btnRadio01
             // 
@@ -549,20 +550,20 @@
             this.btnRadio05.UseVisualStyleBackColor = false;
             this.btnRadio05.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
-            // pnlRadios
+            // panelRadios
             // 
-            this.pnlRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlRadios.Controls.Add(this.btnRadio05);
-            this.pnlRadios.Controls.Add(this.btnRadio04);
-            this.pnlRadios.Controls.Add(this.btnRadio02);
-            this.pnlRadios.Controls.Add(this.label3);
-            this.pnlRadios.Controls.Add(this.btnRadio03);
-            this.pnlRadios.Controls.Add(this.btnRadio01);
-            this.pnlRadios.Location = new System.Drawing.Point(15, 14);
-            this.pnlRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlRadios.Name = "pnlRadios";
-            this.pnlRadios.Size = new System.Drawing.Size(331, 710);
-            this.pnlRadios.TabIndex = 26;
+            this.panelRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRadios.Controls.Add(this.btnRadio05);
+            this.panelRadios.Controls.Add(this.btnRadio04);
+            this.panelRadios.Controls.Add(this.btnRadio02);
+            this.panelRadios.Controls.Add(this.label3);
+            this.panelRadios.Controls.Add(this.btnRadio03);
+            this.panelRadios.Controls.Add(this.btnRadio01);
+            this.panelRadios.Location = new System.Drawing.Point(15, 14);
+            this.panelRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRadios.Name = "panelRadios";
+            this.panelRadios.Size = new System.Drawing.Size(331, 710);
+            this.panelRadios.TabIndex = 26;
             // 
             // panel1
             // 
@@ -815,8 +816,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlRadios);
-            this.Controls.Add(this.pnlPointToPoint);
+            this.Controls.Add(this.panelRadios);
+            this.Controls.Add(this.panelRoles);
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -826,10 +827,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUNETMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
             this.Shown += new System.EventHandler(this.FrmUNETMain_Shown);
-            this.pnlPointToPoint.ResumeLayout(false);
-            this.pnlPointToPoint.PerformLayout();
-            this.pnlRadios.ResumeLayout(false);
-            this.pnlRadios.PerformLayout();
+            this.panelRoles.ResumeLayout(false);
+            this.panelRoles.PerformLayout();
+            this.panelRadios.ResumeLayout(false);
+            this.panelRadios.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -845,35 +846,35 @@
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ImageList imageListStatus;
-        private System.Windows.Forms.Panel pnlPointToPoint;
+        private System.Windows.Forms.Panel panelRoles;
         private System.Windows.Forms.Button btnRole20;
         private System.Windows.Forms.Button btnRole15;
         private System.Windows.Forms.Button btnRole10;
-        private System.Windows.Forms.Button btnRole5;
+        private System.Windows.Forms.Button btnRole05;
         private System.Windows.Forms.Button btnRole19;
         private System.Windows.Forms.Button btnRole14;
-        private System.Windows.Forms.Button btnRole9;
-        private System.Windows.Forms.Button btnRole4;
+        private System.Windows.Forms.Button btnRole09;
+        private System.Windows.Forms.Button btnRole04;
         private System.Windows.Forms.Button btnRole17;
         private System.Windows.Forms.Button btnRole12;
-        private System.Windows.Forms.Button btnRole7;
-        private System.Windows.Forms.Button btnRole2;
+        private System.Windows.Forms.Button btnRole07;
+        private System.Windows.Forms.Button btnRole02;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRole18;
         private System.Windows.Forms.Button btnRole13;
-        private System.Windows.Forms.Button btnRole8;
-        private System.Windows.Forms.Button btnRole3;
+        private System.Windows.Forms.Button btnRole08;
+        private System.Windows.Forms.Button btnRole03;
         private System.Windows.Forms.Button btnRole16;
         private System.Windows.Forms.Button btnRole11;
-        private System.Windows.Forms.Button btnRole6;
-        private System.Windows.Forms.Button btnRole1;
+        private System.Windows.Forms.Button btnRole06;
+        private System.Windows.Forms.Button btnRole01;
         private System.Windows.Forms.Button btnRadio01;
         private System.Windows.Forms.Button btnRadio03;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRadio02;
         private System.Windows.Forms.Button btnRadio04;
         private System.Windows.Forms.Button btnRadio05;
-        private System.Windows.Forms.Panel pnlRadios;
+        private System.Windows.Forms.Panel panelRadios;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSetup;
         private System.Windows.Forms.Button btnAudio;

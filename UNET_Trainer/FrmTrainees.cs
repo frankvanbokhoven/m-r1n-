@@ -113,22 +113,22 @@ namespace UNET_Trainer
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
 
-                btnTraineeAA.Enabled = lstTrainee.Count >= 1;
-                btnTraineeBB.Enabled = lstTrainee.Count >= 2;
-                btnTraineeCC.Enabled = lstTrainee.Count >= 3;
-                btnTraineeDD.Enabled = lstTrainee.Count >= 4;
-                btnTraineeEE.Enabled = lstTrainee.Count >= 5;
-                btnTraineeFF.Enabled = lstTrainee.Count >= 6;
-                btnTraineeGG.Enabled = lstTrainee.Count >= 7;
-                btnTraineeHH.Enabled = lstTrainee.Count >= 8;
-                btnTraineeJJ.Enabled = lstTrainee.Count >= 9;
-                btnTraineeKK.Enabled = lstTrainee.Count >= 10;
-                btnTraineeLL.Enabled = lstTrainee.Count >= 11;
-                btnTraineeMM.Enabled = lstTrainee.Count >= 12;
-                btnTraineeNN.Enabled = lstTrainee.Count >= 13;
-                btnTraineePP.Enabled = lstTrainee.Count >= 14;
-                btnTraineeRR.Enabled = lstTrainee.Count >= 15;
-                btnTraineeSS.Enabled = lstTrainee.Count >= 16;
+                btnTrainee01.Enabled = lstTrainee.Count >= 1;
+                btnTrainee02.Enabled = lstTrainee.Count >= 2;
+                btnTrainee03.Enabled = lstTrainee.Count >= 3;
+                btnTrainee04.Enabled = lstTrainee.Count >= 4;
+                btnTrainee05.Enabled = lstTrainee.Count >= 5;
+                btnTrainee06.Enabled = lstTrainee.Count >= 6;
+                btnTrainee07.Enabled = lstTrainee.Count >= 7;
+                btnTrainee08.Enabled = lstTrainee.Count >= 8;
+                btnTrainee09.Enabled = lstTrainee.Count >= 9;
+                btnTrainee10.Enabled = lstTrainee.Count >= 10;
+                btnTrainee11.Enabled = lstTrainee.Count >= 11;
+                btnTrainee12.Enabled = lstTrainee.Count >= 12;
+                btnTrainee15.Enabled = lstTrainee.Count >= 13;
+                btnTrainee16.Enabled = lstTrainee.Count >= 14;
+                btnTrainee13.Enabled = lstTrainee.Count >= 15;
+                btnTrainee14.Enabled = lstTrainee.Count >= 16;
 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
@@ -157,6 +157,23 @@ namespace UNET_Trainer
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
             SetStatusAndColorTraineeButtons((Button)sender);
+
+
+
+            int traineeIndex = -1;
+            //    SetStatusAndColorTraineeButtons((Button)sender);
+
+            traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+
+     
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+            service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true);
+
         }
 
         /// <summary>

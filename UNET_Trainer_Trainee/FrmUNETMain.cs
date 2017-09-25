@@ -30,8 +30,8 @@ namespace UNET_Trainer_Trainee
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public int TraineeID = 1;
-        public string SIPServer = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
-        public string SIPAccountname = ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+        public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); // ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
@@ -39,8 +39,10 @@ namespace UNET_Trainer_Trainee
 
         private bool HeadsetPlugged = false;
         private bool SoundPlaying = false;
+        private int RoleClicked = -1;
 
-  //      private UsbInterface hardwareInterface;
+
+        //      private UsbInterface hardwareInterface;
 
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
@@ -63,72 +65,7 @@ namespace UNET_Trainer_Trainee
 
         }
 
-        #region PTT
-
-    //    /// <summary>
-    //    /// Initialiseer de PTT.
-    //    /// Dit hoeft maar 1x per applicatie
-    //    /// </summary>
-    //    private void InitHardwareInterface()
-    //    {
-    //        try
-    //        {
-    //            if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseHardwarePtt"]))
-    //            {
-    //                IHardwareInterface hardware = new UsbInterface();
-    //                hardware.Initialize();
-    //                hardware.HeadsetPluggedChangedEvent += Hardware_HeadsetPluggedChangedEvent;
-    //                hardware.PttChangedEvent += Hardware_PttChangedEvent;
-    //                hardware.Start();
-
-    //            }
-    //        }
-    //        catch(Exception ex)
-    //        {
-    //            log.Error("Hardwareinterface error: " + ex.Message);
-    //        }
-    //    }
-
-    //    private  void Hardware_PttChangedEvent(object sender, PttChangedEventArgs e)
-    //    {
-    //        Console.WriteLine("PTT value: {0}", e.PttActive);
-    //      ///play a sound when the user presses the ptt button
-    //        if (e.PttActive)
-    //        {
-    //            PlayBeep();
-    //            lblPtt.Text = "PTT";
-    //            ucb.PTTPressed = true;
-    //        }
-    //        else
-    //        {
-    //            simpleSound.Stop();
-    //            SoundPlaying = false;
-    //            lblPtt.Text = "";
-    //            ucb.PTTPressed = false;
-    //        }
-    //}
-
-    //    private  void Hardware_HeadsetPluggedChangedEvent(object sender, HeadsetPluggedChangedEventArgs e)
-    //    {
-    //        Console.WriteLine("Headset value: {0}", e.HeadsetPlugged);
-    //        //    if(hardwareInterface.e)
-    //        if (e.HeadsetPlugged)
-    //        {
-    //            lblHeadset.Text = "Headset plugged";
-    //            ucb.HeadphoneAttached = true;
-    //        }
-
-    //        else
-    //        {
-    //            lblHeadset.Text = "";
-    //            ucb.HeadphoneAttached = false;
-    //        }
-    //}
-
-     
-       #endregion
-
-        /// <summary>
+          /// <summary>
         /// this sets the information about the exercise in the panel right above
         /// </summary>
         /// <param name="_exersicename"></param>
@@ -179,9 +116,19 @@ namespace UNET_Trainer_Trainee
                 try
                 {
                     //the useragent holds everything needed for the sip communication
-                    useragent = new PJSUA2Implementation.SIP.UserAgent();
+                    string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                    //sipserver
+                    string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                    //account
+                    string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                    //account
+                    UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
+                    string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
+
+                    //the useragent holds everything needed for the sip communication
+                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                     useragent.UserAgentStart();
-                    lblRegInfo.Text = "Registered: " + TraineeID +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                    lblRegInfo.Text = "Registered: " + TraineeID + " " +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -271,8 +218,8 @@ namespace UNET_Trainer_Trainee
                     // throw;
                 }
 
-                SetButtonStatus(pnlPointToPoint);
-                SetButtonStatus(pnlRadios);
+                SetButtonStatus(panelRoles);
+                SetButtonStatus(panelRadios);
             }
 
         }
@@ -333,48 +280,46 @@ namespace UNET_Trainer_Trainee
 
                 UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
-                //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
-                //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
-                //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                conference.Roles = rolelist.ToList<Role>(); //C# v3 manier om een array in een list te krijgen
 
-                btnRole1.Enabled = conference.Roles.Count >= 1;
-                btnRole2.Enabled = conference.Roles.Count >= 2;
-                btnRole3.Enabled = conference.Roles.Count >= 3;
-                btnRole4.Enabled = conference.Roles.Count >= 4;
-                btnRole5.Enabled = conference.Roles.Count >= 5;
-                btnRole6.Enabled = conference.Roles.Count >= 6;
-                btnRole7.Enabled = conference.Roles.Count >= 7;
-                btnRole8.Enabled = conference.Roles.Count >= 8;
-                btnRole9.Enabled = conference.Roles.Count >= 9;
-                btnRole10.Enabled = conference.Roles.Count >= 10;
-                btnRole11.Enabled = conference.Roles.Count >= 11;
-                btnRole12.Enabled = conference.Roles.Count >= 12;
-                btnRole13.Enabled = conference.Roles.Count >= 13;
-                btnRole14.Enabled = conference.Roles.Count >= 14;
-                btnRole15.Enabled = conference.Roles.Count >= 15;
-                btnRole16.Enabled = conference.Roles.Count >= 16;
-                btnRole17.Enabled = conference.Roles.Count >= 17;
-                btnRole18.Enabled = conference.Roles.Count >= 18;
-                btnRole19.Enabled = conference.Roles.Count >= 19;
-                btnRole20.Enabled = conference.Roles.Count >= 20;
 
-                ////enable the Roles buttons
+
+                //enable the Roles buttons
+          //      var rolelist = service.GetRoles();
+                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in panelRoles.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                foreach (UNET_Classes.Role role in lstrole)
+                {
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
+                }
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelRoles, lstrole.Count, "role");
+
+
+                //enable the Roles buttons
                 var radiolist = service.GetRadios();
-                //todo!!! er zit een groot verschil tussen de instructor en trainee client; de eerste gebruikt de classes van de SERVICE
-                //in plaats van de classes in de eigen classes directory. In deze trainee, de .tolist werkt niet. daarom is deze linq cast gebruikt
-                //zie: https://stackoverflow.com/questions/4922129/how-do-i-convert-an-array-to-a-listobject-in-c
-                conference.Radios = radiolist.Cast<UNET_Classes.Radio>().ToList();
-                btnRadio01.Enabled = conference.Radios.Count >= 1;
-                btnRadio02.Enabled = conference.Radios.Count >= 2;
-                btnRadio03.Enabled = conference.Radios.Count >= 3;
-                btnRadio04.Enabled = conference.Radios.Count >= 4;
-                btnRadio05.Enabled = conference.Radios.Count >= 5;
 
+                List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in panelRadios.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                foreach (UNET_Classes.Radio radio in lstRadio)
+                {
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
 
-                //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical(pnlRadios, conference.Radios.Count, "radio");
-                UNET_Classes.Helpers.ResizeButtonsVertical(pnlPointToPoint, conference.Roles.Count, "role");
+                }
+
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelRadios, lstRadio.Count, "radio");
             }
             catch (Exception ex)
             {
@@ -672,5 +617,14 @@ namespace UNET_Trainer_Trainee
             }//while
         }
         #endregion
+
+        private void btnRole1_Click(object sender, EventArgs e)
+        {
+            RoleClicked = (int)(Enum.Parse(typeof(Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
+            ((Button)sender).BackColor = Color.Black;
+            ((Button)sender).ForeColor = Color.White;
+
+
+        }
     }
 }

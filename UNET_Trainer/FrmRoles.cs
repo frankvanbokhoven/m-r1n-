@@ -104,9 +104,18 @@ namespace UNET_Trainer
 
                 var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in pnlRoles.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
                     pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                    pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
+
                 }
 
                 //now resize all buttons to make optimal use of the available room

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pnlRadios = new System.Windows.Forms.Panel();
+            this.panelRadios = new System.Windows.Forms.Panel();
             this.btnRadio20 = new System.Windows.Forms.Button();
             this.btnRadio15 = new System.Windows.Forms.Button();
             this.btnRadio10 = new System.Windows.Forms.Button();
@@ -61,39 +61,39 @@
             this.btnNoise5 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnMainPage = new System.Windows.Forms.Button();
-            this.pnlRadios.SuspendLayout();
+            this.panelRadios.SuspendLayout();
             this.panelNoise.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlRadios
+            // panelRadios
             // 
-            this.pnlRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlRadios.Controls.Add(this.btnRadio20);
-            this.pnlRadios.Controls.Add(this.btnRadio15);
-            this.pnlRadios.Controls.Add(this.btnRadio10);
-            this.pnlRadios.Controls.Add(this.btnRadio05);
-            this.pnlRadios.Controls.Add(this.btnRadio19);
-            this.pnlRadios.Controls.Add(this.btnRadio14);
-            this.pnlRadios.Controls.Add(this.btnRadio09);
-            this.pnlRadios.Controls.Add(this.btnRadio04);
-            this.pnlRadios.Controls.Add(this.btnRadio17);
-            this.pnlRadios.Controls.Add(this.btnRadio12);
-            this.pnlRadios.Controls.Add(this.btnRadio07);
-            this.pnlRadios.Controls.Add(this.btnRadio02);
-            this.pnlRadios.Controls.Add(this.label3);
-            this.pnlRadios.Controls.Add(this.btnRadio18);
-            this.pnlRadios.Controls.Add(this.btnRadio13);
-            this.pnlRadios.Controls.Add(this.btnRadio08);
-            this.pnlRadios.Controls.Add(this.btnRadio03);
-            this.pnlRadios.Controls.Add(this.btnRadio16);
-            this.pnlRadios.Controls.Add(this.btnRadio11);
-            this.pnlRadios.Controls.Add(this.btnRadio06);
-            this.pnlRadios.Controls.Add(this.btnRadio01);
-            this.pnlRadios.Location = new System.Drawing.Point(13, 73);
-            this.pnlRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlRadios.Name = "pnlRadios";
-            this.pnlRadios.Size = new System.Drawing.Size(661, 523);
-            this.pnlRadios.TabIndex = 10;
+            this.panelRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRadios.Controls.Add(this.btnRadio20);
+            this.panelRadios.Controls.Add(this.btnRadio15);
+            this.panelRadios.Controls.Add(this.btnRadio10);
+            this.panelRadios.Controls.Add(this.btnRadio05);
+            this.panelRadios.Controls.Add(this.btnRadio19);
+            this.panelRadios.Controls.Add(this.btnRadio14);
+            this.panelRadios.Controls.Add(this.btnRadio09);
+            this.panelRadios.Controls.Add(this.btnRadio04);
+            this.panelRadios.Controls.Add(this.btnRadio17);
+            this.panelRadios.Controls.Add(this.btnRadio12);
+            this.panelRadios.Controls.Add(this.btnRadio07);
+            this.panelRadios.Controls.Add(this.btnRadio02);
+            this.panelRadios.Controls.Add(this.label3);
+            this.panelRadios.Controls.Add(this.btnRadio18);
+            this.panelRadios.Controls.Add(this.btnRadio13);
+            this.panelRadios.Controls.Add(this.btnRadio08);
+            this.panelRadios.Controls.Add(this.btnRadio03);
+            this.panelRadios.Controls.Add(this.btnRadio16);
+            this.panelRadios.Controls.Add(this.btnRadio11);
+            this.panelRadios.Controls.Add(this.btnRadio06);
+            this.panelRadios.Controls.Add(this.btnRadio01);
+            this.panelRadios.Location = new System.Drawing.Point(13, 73);
+            this.panelRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelRadios.Name = "panelRadios";
+            this.panelRadios.Size = new System.Drawing.Size(661, 523);
+            this.panelRadios.TabIndex = 10;
             // 
             // btnRadio20
             // 
@@ -508,7 +508,7 @@
             this.ClientSize = new System.Drawing.Size(940, 709);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.panelNoise);
-            this.Controls.Add(this.pnlRadios);
+            this.Controls.Add(this.panelRadios);
             this.Name = "FrmRadioSetup";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -516,8 +516,8 @@
             this.Text = "FrmRadioSetup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRadioSetup_FormClosing);
             this.Load += new System.EventHandler(this.FrmRadioSetup_Load);
-            this.pnlRadios.ResumeLayout(false);
-            this.pnlRadios.PerformLayout();
+            this.panelRadios.ResumeLayout(false);
+            this.panelRadios.PerformLayout();
             this.panelNoise.ResumeLayout(false);
             this.panelNoise.PerformLayout();
             this.ResumeLayout(false);
@@ -526,7 +526,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlRadios;
+        private System.Windows.Forms.Panel panelRadios;
         private System.Windows.Forms.Button btnRadio20;
         private System.Windows.Forms.Button btnRadio15;
         private System.Windows.Forms.Button btnRadio10;

@@ -134,6 +134,12 @@ namespace UNET_Trainer_Trainee
             btnMainPage.Focus();
             //account
             tbxAccount.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+            //sipserver
+            txtSipServer.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+            //account
+            txtDomain.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+            //account
+            txtPort.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060");
 
             //log dir
             string file = ((Hierarchy)LogManager.GetRepository())
@@ -167,6 +173,9 @@ namespace UNET_Trainer_Trainee
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"font", ddlFont.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"logdir", txtLogDirectory.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"account", tbxAccount.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"sipserver", txtSipServer.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"domain", txtDomain.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"port", txtPort.Text.ToString());
                 if (rbDark.Checked)
                     RegistryAccess.SetStringRegistryValue(@"UNET", @"theme", "dark");
                 if (rbLight.Checked)

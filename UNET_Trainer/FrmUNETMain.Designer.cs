@@ -495,6 +495,7 @@
             this.btnRole20.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole20.UseVisualStyleBackColor = false;
+            this.btnRole20.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // imageListStatus
             // 
@@ -520,6 +521,7 @@
             this.btnRole15.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole15.UseVisualStyleBackColor = false;
+            this.btnRole15.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole10
             // 
@@ -537,6 +539,7 @@
             this.btnRole10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
+            this.btnRole10.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole14
             // 
@@ -554,6 +557,7 @@
             this.btnRole14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
+            this.btnRole14.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole09
             // 
@@ -571,6 +575,7 @@
             this.btnRole09.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole09.UseVisualStyleBackColor = false;
+            this.btnRole09.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole04
             // 
@@ -588,6 +593,7 @@
             this.btnRole04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole04.UseVisualStyleBackColor = false;
+            this.btnRole04.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole17
             // 
@@ -605,6 +611,7 @@
             this.btnRole17.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole17.UseVisualStyleBackColor = false;
+            this.btnRole17.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole12
             // 
@@ -622,6 +629,7 @@
             this.btnRole12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
+            this.btnRole12.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole07
             // 
@@ -656,6 +664,7 @@
             this.btnRole02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole02.UseVisualStyleBackColor = false;
+            this.btnRole02.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // label4
             // 
@@ -683,6 +692,7 @@
             this.btnRole18.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole18.UseVisualStyleBackColor = false;
+            this.btnRole18.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole13
             // 
@@ -700,6 +710,7 @@
             this.btnRole13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
+            this.btnRole13.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole08
             // 
@@ -717,6 +728,7 @@
             this.btnRole08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole08.UseVisualStyleBackColor = false;
+            this.btnRole08.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole03
             // 
@@ -734,6 +746,7 @@
             this.btnRole03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole03.UseVisualStyleBackColor = false;
+            this.btnRole03.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole16
             // 
@@ -751,6 +764,7 @@
             this.btnRole16.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole16.UseVisualStyleBackColor = false;
+            this.btnRole16.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole11
             // 
@@ -768,6 +782,7 @@
             this.btnRole11.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
+            this.btnRole11.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole06
             // 
@@ -785,6 +800,7 @@
             this.btnRole06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole06.UseVisualStyleBackColor = false;
+            this.btnRole06.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole01
             // 
@@ -802,6 +818,7 @@
             this.btnRole01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole01.UseVisualStyleBackColor = false;
+            this.btnRole01.Click += new System.EventHandler(this.btnRole09_Click);
             // 
             // btnRole05
             // 

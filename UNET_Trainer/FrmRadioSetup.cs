@@ -28,7 +28,7 @@ namespace UNET_Trainer
         public FrmRadioSetup()
         {
             InitializeComponent();
-            pnlRadios.Paint += UC_Paint;
+            panelRadios.Paint += UC_Paint;
             panelNoise.Paint += UC_Paint;
 
         }
@@ -37,7 +37,7 @@ namespace UNET_Trainer
             this.Text = String.Format("Radio Setup                                   Selected exersise: Exersise{0}", _exersise.ToString("00"));
 
             InitializeComponent();
-            pnlRadios.Paint += UC_Paint;
+            panelRadios.Paint += UC_Paint;
             panelNoise.Paint += UC_Paint;
 
         }
@@ -301,33 +301,54 @@ namespace UNET_Trainer
                     service.Open();
                 }
 
+               
                 //enable the Roles buttons
                 var radiolist = service.GetRadios();
                 List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in panelRadios.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
 
-                btnRadio01.Enabled = lstRadio.Count >= 1;
-                btnRadio02.Enabled = lstRadio.Count >= 2;
-                btnRadio03.Enabled = lstRadio.Count >= 3;
-                btnRadio04.Enabled = lstRadio.Count >= 4;
-                btnRadio05.Enabled = lstRadio.Count >= 5;
-                btnRadio06.Enabled = lstRadio.Count >= 6;
-                btnRadio07.Enabled = lstRadio.Count >= 7;
-                btnRadio08.Enabled = lstRadio.Count >= 8;
-                btnRadio09.Enabled = lstRadio.Count >= 9;
-                btnRadio10.Enabled = lstRadio.Count >= 10;
-                btnRadio11.Enabled = lstRadio.Count >= 11;
-                btnRadio12.Enabled = lstRadio.Count >= 12;
-                btnRadio13.Enabled = lstRadio.Count >= 13;
-                btnRadio14.Enabled = lstRadio.Count >= 14;
-                btnRadio15.Enabled = lstRadio.Count >= 15;
-                btnRadio16.Enabled = lstRadio.Count >= 16;
-                btnRadio17.Enabled = lstRadio.Count >= 17;
-                btnRadio18.Enabled = lstRadio.Count >= 18;
-                btnRadio19.Enabled = lstRadio.Count >= 19;
-                btnRadio20.Enabled = lstRadio.Count >= 20;
+                foreach (UNET_Classes.Radio radio in lstRadio)
+                {
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
 
-                //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtons(pnlRadios, lstRadio.Count, "radio");
+                }
+
+                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
+
+                Application.DoEvents();
+                //           var radiolist = service.GetRadios();
+                //           List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                //btnRadio01.Enabled = lstRadio.Count >= 1;
+                //btnRadio02.Enabled = lstRadio.Count >= 2;
+                //btnRadio03.Enabled = lstRadio.Count >= 3;
+                //btnRadio04.Enabled = lstRadio.Count >= 4;
+                //btnRadio05.Enabled = lstRadio.Count >= 5;
+                //btnRadio06.Enabled = lstRadio.Count >= 6;
+                //btnRadio07.Enabled = lstRadio.Count >= 7;
+                //btnRadio08.Enabled = lstRadio.Count >= 8;
+                //btnRadio09.Enabled = lstRadio.Count >= 9;
+                //btnRadio10.Enabled = lstRadio.Count >= 10;
+                //btnRadio11.Enabled = lstRadio.Count >= 11;
+                //btnRadio12.Enabled = lstRadio.Count >= 12;
+                //btnRadio13.Enabled = lstRadio.Count >= 13;
+                //btnRadio14.Enabled = lstRadio.Count >= 14;
+                //btnRadio15.Enabled = lstRadio.Count >= 15;
+                //btnRadio16.Enabled = lstRadio.Count >= 16;
+                //btnRadio17.Enabled = lstRadio.Count >= 17;
+                //btnRadio18.Enabled = lstRadio.Count >= 18;
+                //btnRadio19.Enabled = lstRadio.Count >= 19;
+                //btnRadio20.Enabled = lstRadio.Count >= 20;
+
+                ////now resize all buttons to make optimal use of the available room
+                //UNET_Classes.Helpers.ResizeButtons(pnlRadios, lstRadio.Count, "radio");
             }
             catch (Exception ex)
             {
@@ -345,7 +366,7 @@ namespace UNET_Trainer
         private void SetStatusAndColorRadioButtons(Button _btn)
         {
             //zet eerst alles weer op de oude kleur
-            foreach (Control c in pnlRadios.Controls)
+            foreach (Control c in panelRadios.Controls)
             {
                 if ((c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio"))) && c.Enabled)
                 {

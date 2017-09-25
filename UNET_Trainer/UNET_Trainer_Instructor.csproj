@@ -225,6 +225,7 @@
     <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Trainee.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="UNET_Trainer_Instructor_ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -251,9 +252,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\UNET_Service\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SIP\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PJSUA2Implementation\PJSUA2Implementation.csproj">
       <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>

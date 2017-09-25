@@ -13,10 +13,7 @@ namespace PJSUA2Implementation.SIP
         public pjsua2.Endpoint ep;
         public SipAccount acc;
         public List<SipBuddy> buddies = new List<SipBuddy>();
-        //log4net
-       // private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-
+ 
         // signals
         public void forwardNewCallState(int state)
         { //todo: implementern
@@ -29,34 +26,40 @@ namespace PJSUA2Implementation.SIP
         {
             //todo: implementeren
         }
+        public string Account { get; set; }
+        public string SipServer { get; set; }
+        public int Port { get; set; }
+        public string Domain { get; set; }
+        public string Password { get; set; }
+
+
 
         ///
         /// brief UserAgent::~UserAgent
         ////
         public UserAgent()
         {
+            Account = ConfigurationManager.AppSettings["SIPAccount"].ToString();
+            Domain = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            SipServer = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            Password = ConfigurationManager.AppSettings["sipPassword"];
+            Port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+        }
 
-            //if (!log4net.LogManager.GetRepository().Configured)
-            //{
-            //    //configure the log4net, while it is in a dll
-            //    string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            //    var configFileDirectory = (new DirectoryInfo(assemblyFolder));//.Parent; 
-            //    var configFile = new FileInfo(configFileDirectory.FullName + "\\log4net.config");
-
-            //    if (!configFile.Exists)
-            //    {
-            //        throw new FileLoadException(String.Format("The configuration file {0} does not exist", configFile));
-            //    }
-
-            //    log4net.Config.XmlConfigurator.Configure(configFile);
-            //}
-
-
-
-
-            //hoeft niet in c#  delete acc;
-            //hoeft niet in c#  delete ep;
+        /// <summary>
+        /// Constructor that fills the most important parameters
+        /// </summary>
+        /// <param name="_account"></param>
+        /// <param name="_sipserver"></param>
+        /// <param name="_port"></param>
+        /// <param name="_domain"></param>
+        public UserAgent(string _account, string _sipserver, int _port, string _domain, string _password)
+        {
+            Account = _account;
+            SipServer = _sipserver;
+            Port = _port;
+            Domain = _domain;
+            Password = _password;
         }
 
         /// <summary>
@@ -71,16 +74,13 @@ namespace PJSUA2Implementation.SIP
                 .ToString()
                 .Replace("-", "")
                 .Substring(0, 10);
-
-       //     log.Info("Threadname for this session is: " + result);
             return result;
         }
 
         public void UserAgentStart()
         {
 
-        //    log.Info("Starting User Agent");
-
+  
             // Create endpoint
             try
             {
@@ -120,7 +120,7 @@ namespace PJSUA2Implementation.SIP
             try
             {
                 TransportConfig tcfg = new TransportConfig();
-                tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+                tcfg.port = Convert.ToUInt16( Port);
                 ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
             }
             catch (Exception ex)
@@ -143,13 +143,22 @@ namespace PJSUA2Implementation.SIP
             // Create & set presence
             // Create account configuration
             AccountConfig acfg = new AccountConfig();
-            acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            acfg.idUri = "sip:" + Account + "@" + Domain;
+            string sipserver = string.Format("sip:{0}",SipServer);
             acfg.regConfig.registrarUri = sipserver;
             acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
             acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
-            cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            AuthCredInfo cred = new AuthCredInfo("digest",SipServer, Account, 0, Password);
+            cred.realm = Domain;
+            //orginele code
+            //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            //acfg.regConfig.registrarUri = sipserver;
+            //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+            //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+            //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
+            //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+
             acfg.regConfig.registerOnAdd = true;
             acfg.regConfig.timeoutSec = 180;
             acfg.sipConfig.authCreds.Add(cred);
@@ -227,8 +236,11 @@ namespace PJSUA2Implementation.SIP
             try
             {
                 //dispose all sip objects, so they can be garbage collected
+                ep.libStopWorkerThreads();
                 ep.libDestroy();
                 ep.Dispose();
+                //// Send new state
+                forwardNewRegState(-2);
 
                 //force garbage collection of all disposed objects
                 GC.Collect();
