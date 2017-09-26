@@ -43,7 +43,6 @@ namespace UNET_Trainer_Trainee
 
 
         //      private UsbInterface hardwareInterface;
-
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -110,6 +109,10 @@ namespace UNET_Trainer_Trainee
                 this.Width = 800;
                 Theming the = new Theming();
                 the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+                the.InitPanels(panelRadios);
+                the.InitPanels(panelRoles);
+
+
                 the.SetFormSizeAndPosition(this);
              //   InitHardwareInterface();
                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
@@ -163,10 +166,9 @@ namespace UNET_Trainer_Trainee
 
                 try
                 {
-
-                    //StartServer();
-                 //   StartListinging();
-                    Task.Factory.StartNew(() => { StartListinging (); });
+                   //this is specially for the COMservice that listens to the PTT and Headset events, generated
+                   //by the TCPSocketClient 
+                   Task.Factory.StartNew(() => { StartListinging (); });
                 }
                 catch(Exception ex)
                 {
@@ -206,6 +208,7 @@ namespace UNET_Trainer_Trainee
                         lblConsole.Text = currentInfo.ConsoleRole;
                         lblExerciseMode.Text = currentInfo.ExerciseMode;
                         lblExerciseName.Text = currentInfo.ExerciseName;
+                        lblInstructor.Text = currentInfo.InstructorName;
                     }
                     else
                     {
@@ -353,6 +356,8 @@ namespace UNET_Trainer_Trainee
             //close the useragent en with that the sip connection
             if (!object.ReferenceEquals(useragent, null))
             {
+                 //stop the sip connection in a nice manner before closing
+                useragent.ep.hangupAllCalls();
                 useragent.UserAgentStop();
             }
             //close the connection to the wcf service, if it is still opened

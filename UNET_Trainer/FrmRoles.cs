@@ -20,12 +20,29 @@ namespace UNET_Trainer
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();
 
+
+        private int SelectedExercise;
+        private int InstructorID;
+
+
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         public FrmRoles()
         {
             InitializeComponent();
             pnlRoles.Paint += UC_Paint;
         }
+
+
+        public FrmRoles(int _exersise, int _instructorID)
+        {
+            SelectedExercise = _exersise;
+            InstructorID = _instructorID;
+            InitializeComponent();
+
+            pnlRoles.Paint += UC_Paint;
+        }
+
+
 
         /// <summary>
         /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
@@ -43,12 +60,15 @@ namespace UNET_Trainer
 
         private void FrmRoles_Load(object sender, EventArgs e)
         {
-            this.Text = "Role Assignment";
+            lblRoleTitle.Text = "Role assignment    Selected excercise: " + SelectedExercise + "   Instructor: " + InstructorID;
+        
 
-            timer1.Enabled = true;
+        timer1.Enabled = true;
 
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.InitPanels(pnlRoles);
+
             the.SetFormSizeAndPosition(this);
 
 
@@ -172,6 +192,27 @@ namespace UNET_Trainer
             FrmUNETMain.GetForm.Show();
             this.Close();
 
+        }
+
+        private void btnRole01_Click(object sender, EventArgs e)
+        {
+            SetStatusAndColorRoleButtons((Button)sender);
+
+
+
+            string name = ((Button)sender).Text.Substring(0, ((Button)sender).Text.IndexOf("\r\n"));
+
+            string[] splitstring = name.Split(' ');
+            int roleIndex = Convert.ToInt16(splitstring[1].ToString());
+
+
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+            service.SetRoleAssignedStatus(InstructorID, SelectedExercise, roleIndex, true);
         }
     }
 }

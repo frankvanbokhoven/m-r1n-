@@ -11,27 +11,45 @@ namespace UNET_Theming
 {
     public class Theming
     {
-   
+
+        public UNETTheme Theme;
+        //colors
+        private Color Whiteforecolor;
         /// <summary>
         /// Set the general colors of the unettrainer          
         /// </summary>
         /// <param name="_theme"></param>
         public void SetTheme(UNETTheme _theme, Control _parent)
         {
-            //switch (ConfigurationManager.AppSettings["Theme"].ToString())
-            //{
-            //    case "dark": { Theme = UNETTheme.utDark; break; }
-            //    case "light": { Theme = UNETTheme.utLight; break; }
-            //    case "blue": { Theme = UNETTheme.utBlue; break; }
-            //    default: { Theme = UNETTheme.utDark; break; }
-            //}
+            switch (RegistryAccess.GetStringRegistryValue(@"UNET", @"theme", "dark"))
+            {
+                case "dark":
+                default:
+                    {
+                        Theme = UNETTheme.utDark;
+                        Whiteforecolor = Color.White;
+                        break;
+                    }
+                case "light":
+                    {
+                        Theme = UNETTheme.utLight;
+                        Whiteforecolor = Color.White;
+                        break;
+                    }
+                case "blue":
+                    {
+                        Theme = UNETTheme.utBlue;
+                        Whiteforecolor = Color.White;
+                        break;
+                    }
+            }
 
             //todo: mbv deze theme ook daadwerkelijk hieronder andere kleuren maken
 
             //we willen de parent ZELF ook themen als het een form is..
             if (_parent.GetType().BaseType == typeof(System.Windows.Forms.Form))
             {
-                ((Form)_parent).ForeColor = Color.White;
+                ((Form)_parent).ForeColor = Whiteforecolor;
                 ((Form)_parent).BackColor = Color.DimGray;
                 SetFormSizeAndPosition((Form)_parent);
                 ((Form)_parent).FormBorderStyle = FormBorderStyle.None;
@@ -40,7 +58,7 @@ namespace UNET_Theming
 
             if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))
             {
-                ((Form)_parent).ForeColor = Color.White;
+                ((Form)_parent).ForeColor = Whiteforecolor;
                 ((Form)_parent).BackColor = Color.DimGray;
             }
 
@@ -53,24 +71,24 @@ namespace UNET_Theming
             {
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
                 {
-                    ((Form)ctrl).ForeColor = Color.White;
+                    ((Form)ctrl).ForeColor = Whiteforecolor;
                     ((Form)ctrl).BackColor = Color.DimGray;
                 }
 
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Form))
                 {
-                    ((Form)ctrl).ForeColor = Color.White;
+                    ((Form)ctrl).ForeColor = Whiteforecolor;
                     ((Form)ctrl).BackColor = Color.DimGray;
                 }
                 if (ctrl.GetType() == typeof(System.Windows.Forms.Panel))
                 {
-                    ((Panel)ctrl).ForeColor = Color.White;
+                    ((Panel)ctrl).ForeColor = Whiteforecolor;
                     ((Panel)ctrl).BackColor = Color.Gray;
                 }
 
                 if (ctrl.GetType() == typeof(System.Windows.Forms.GroupBox))
                 {
-                    ((GroupBox)ctrl).ForeColor = Color.White;
+                    ((GroupBox)ctrl).ForeColor = Whiteforecolor;
                     ((GroupBox)ctrl).BackColor = Color.Gray;
                 }
 
@@ -109,15 +127,15 @@ namespace UNET_Theming
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("noise"))
                     {
-                        ((Button)ctrl).ForeColor = Color.White;
+                        ((Button)ctrl).ForeColor = Whiteforecolor;
                         ((Button)ctrl).BackColor = Color.DeepSkyBlue;
                     }
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("mainpage") ||
-                       ((Button)ctrl).Name.ToLower().Contains("il") 
+                       ((Button)ctrl).Name.ToLower().Contains("il")
                         )
                     {
-                        ((Button)ctrl).ForeColor = Color.White;
+                        ((Button)ctrl).ForeColor = Whiteforecolor;
                         ((Button)ctrl).BackColor = Color.Gray;
                     }
                     else
@@ -148,6 +166,25 @@ namespace UNET_Theming
 
             _control.Location = new Point(0, 0);
             _control.Size = new Size(800, 600);
+
+        }
+
+
+        /// <summary>
+        /// at the start of the screen, all buttons should be invisible
+        /// </summary>
+        /// <param name="_panel"></param>
+        public void InitPanels(Panel _panel)
+        {
+            foreach (Control c in _panel.Controls)
+            {
+                if (c.GetType() == typeof(Button))
+                {
+                    if (((Button)c).Name != "btnClose")
+                        ((Button)c).Visible = false;
+
+                }
+            }
 
         }
 

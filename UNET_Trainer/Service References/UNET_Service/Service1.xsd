@@ -99,6 +99,7 @@
       <xs:element minOccurs="0" name="ExerciseMode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="InstructorName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

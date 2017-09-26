@@ -56,6 +56,9 @@ namespace UNET_Service
         bool SetTraineeStatusChanged(int _traineeId, bool _changed);
 
         [OperationContract]
+        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
+
+        [OperationContract]
         bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
 
 

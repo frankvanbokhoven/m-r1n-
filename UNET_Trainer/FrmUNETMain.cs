@@ -10,6 +10,10 @@ using System.Runtime.InteropServices;
 using UNET_Theming;
 using UNET_SignalGenerator;
 using System.Media;
+using System.IO;
+using System.Diagnostics;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace UNET_Trainer
 {
@@ -27,7 +31,7 @@ namespace UNET_Trainer
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
         public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1015"));
-        
+
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
 
 
@@ -95,13 +99,13 @@ namespace UNET_Trainer
 
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            FrmRoles frm = new FrmRoles();
+            FrmRoles frm = new FrmRoles(ExersiseIndex, InstructorID);
             frm.Show();
         }
 
         private void btnTrainees_Click(object sender, EventArgs e)
         {
-            FrmTrainees frm = new FrmTrainees(ExersiseIndex + 1);
+            FrmTrainees frm = new FrmTrainees(ExersiseIndex, InstructorID);
             frm.Show();
         }
 
@@ -128,7 +132,7 @@ namespace UNET_Trainer
         #region Noise
 
         private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
-        
+
 
         private void InitNoiseLevel()
         {
@@ -254,7 +258,7 @@ namespace UNET_Trainer
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRoles.Controls)
                 {
-                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
                     {
                         ctrl.Enabled = false;
                     }
@@ -335,24 +339,31 @@ namespace UNET_Trainer
             // this.StartPosition = FormStartPosition.Manual
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            //initally, all buttons must be hidden
+            the.InitPanels(panelExercises);
+            the.InitPanels(panelRadios);
+            the.InitPanels(panelRoles);
+            the.InitPanels(panelTrainees);
+
             the.SetFormSizeAndPosition(this);
-   
+
             ShowIcon = false;
             ShowInTaskbar = false;
 
- 
+            ///
+
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
 
             try
             {
-              string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
                 //sipserver
-               string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
                 //account
-               string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
                 //account
-                UInt16 port= Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
+                UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
                 string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
 
                 //the useragent holds everything needed for the sip communication
@@ -368,7 +379,18 @@ namespace UNET_Trainer
                 log.Error("Error creating accounts " + ex.Message);
                 this.Close();
             }
-         }     
+
+            try
+            {
+                //this is specially for the COMservice that listens to the PTT and Headset events, generated
+                //by the TCPSocketClient 
+                Task.Factory.StartNew(() => { StartListinging(); });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
+            }
+        }
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
@@ -378,10 +400,15 @@ namespace UNET_Trainer
 
         private void btnRadios_Click(object sender, EventArgs e)
         {
-            FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex +1);
+            FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex + 1);
             frm.Show();
         }
 
+        /// <summary>
+        /// 2.1.6 when mute is clicked, the monitoring of all sessions is canceled
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMute_Click(object sender, EventArgs e)
         {
             if (!Muted)
@@ -389,6 +416,10 @@ namespace UNET_Trainer
                 Muted = true;
                 btnMute.BackColor = System.Drawing.Color.Red;
                 btnMute.Text = "Muted";
+                MonitorRadio = false;
+                MonitorTrainee = false;
+
+                //todo: really stop monitoring!!
             }
             else
             {
@@ -472,7 +503,7 @@ namespace UNET_Trainer
             //    SetStatusAndColorTraineeButtons((Button)sender);
 
             traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
-       
+
             /// <summary>
             /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
             /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
@@ -487,13 +518,13 @@ namespace UNET_Trainer
             }
 
 
-        //    if (service.State != System.ServiceModel.CommunicationState.Opened)
-        //    {
-        //        service.Open();
-        //    }
+            //    if (service.State != System.ServiceModel.CommunicationState.Opened)
+            //    {
+            //        service.Open();
+            //    }
 
             //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
-      //      service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
+            //      service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
         }
         #endregion
 
@@ -616,7 +647,7 @@ namespace UNET_Trainer
         private void btnExersise01_Click(object sender, EventArgs e)
         {
             SetExerciseStatus();
-            SetStatusAndColorExerciseButtons((Button)sender);     
+            SetStatusAndColorExerciseButtons((Button)sender);
         }
 
         private void SetExerciseStatus()
@@ -646,7 +677,7 @@ namespace UNET_Trainer
             btnExersise06.ForeColor = System.Drawing.Color.Black;
             btnExersise07.ForeColor = System.Drawing.Color.Black;
             btnExersise08.ForeColor = System.Drawing.Color.Black;
-            btnIL.ForeColor = System.Drawing.Color.Black;        
+            btnIL.ForeColor = System.Drawing.Color.Black;
         }
 
         private void SetStatusAndColorExerciseButtons(Button _btn)
@@ -684,6 +715,9 @@ namespace UNET_Trainer
                 {
                     service.Close();
                 }
+                //stop the sip connection in a nice manner before closing
+                useragent.ep.hangupAllCalls();
+                useragent.UserAgentStop();
             }
             catch (Exception ex)
             {
@@ -694,7 +728,7 @@ namespace UNET_Trainer
 
         private void FrmUNETMain_Activated(object sender, EventArgs e)
         {
-    //        SetButtonStatus(this);
+            //        SetButtonStatus(this);
         }
         #region CALL
 
@@ -704,13 +738,13 @@ namespace UNET_Trainer
             bool found = false;
 
 
-            foreach(pjsua2.Call call in useragent.acc.Calls)
+            foreach (pjsua2.Call call in useragent.acc.Calls)
             {
-            //    if(call.)
+                //    if(call.)
             }
             foreach (PJSUA2Implementation.SIP.SIPCall sipcall in ucb.ActiveCalls)
             {
-              //  if(sipcall.CallID ==)
+                //  if(sipcall.CallID ==)
             }
             if (!found)
             {
@@ -739,7 +773,7 @@ namespace UNET_Trainer
         /// <param name="_destination"></param>
         /// <param name="_noiseLevel">The noiselevel. this can be edited on the RadioSetup screen</param>
         /// <param name="_whatthecallisabout">Description of the call, for logging purposes</param>
-        private void MakeCall(int _instructorID, string _destination, int ?_noiseLevel, string _whatthecallisabout)
+        private void MakeCall(int _instructorID, string _destination, int? _noiseLevel, string _whatthecallisabout)
         {
             try
             {
@@ -773,10 +807,111 @@ namespace UNET_Trainer
 
         private void btnRole09_Click(object sender, EventArgs e)
         {
-            RoleClicked =  (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
+            RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
             ((Button)sender).BackColor = Color.Black;
             ((Button)sender).ForeColor = Color.White;
 
         }
+
+        #region HID COMserver
+
+        private StreamWriter serverStreamWriter;
+        private StreamReader serverStreamReader;
+        /// <summary>
+        /// Start Server
+        /// </summary>
+        /// <returns></returns>
+        private bool StartServer()
+        {
+            //1: create server's tcp listener for incoming connection
+            TcpListener tcpServerListener = new TcpListener(4444);
+            tcpServerListener.Start();      //start server
+            Console.WriteLine("Server Started");
+            //block tcplistener to accept incoming connection
+            Socket serverSocket = tcpServerListener.AcceptSocket();
+
+
+            //2: start the server that listens to the events
+            try
+            {
+                if (serverSocket.Connected)
+                {
+                    Console.WriteLine("tcpClient for PTT and headset event capture connected");
+                    //open network stream on accepted socket
+                    NetworkStream serverSockStream = new NetworkStream(serverSocket);
+                    serverStreamWriter = new StreamWriter(serverSockStream);
+                    serverStreamReader = new StreamReader(serverSockStream);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+
+            //3: start the win32 client that captures the PTT and headset events
+            try
+            {
+                if (File.Exists(Path.Combine(Application.StartupPath, "TCPSocketClient.exe")))
+                {
+                    var pr = new Process();
+                    pr.StartInfo.FileName = Path.Combine(Application.StartupPath, "TCPSocketClient.exe");
+                    pr.Start();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot find tcpclient " + ex.Message + ex.StackTrace);
+
+            }
+            return true;
+        }
+        //////////////////////////////////////////////////////////////////////////////
+        ///Event handlers
+        //////////////////////////////////////////////////////////////////////////////
+        private void StartListinging()
+        {
+            //start server
+            if (!StartServer())
+                Console.WriteLine("Unable to start server");
+
+            //sending n receiving msgs
+            while (true)
+            {
+                // Application.DoEvents();
+                string received = serverStreamReader.ReadLine();
+                if (received.Length > 0)
+                {
+                    string[] splitstr = received.Split('|');
+                    if (splitstr[0].ToString().Trim().ToLower() == "ptt")
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblPtt.Text = "PTT ";
+
+                        }
+                        else
+                            lblPtt.Text = "";
+                    }
+                    else
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblHeadset.Text = "HEADSET";
+
+                        }
+                        else
+                            lblHeadset.Text = "";
+                    }
+                }
+                //  Application.DoEvents();
+                //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
+                //    serverStreamWriter.WriteLine("Hi!");
+                //    serverStreamWriter.Flush();
+            }//while
+        }
+        #endregion
+
     }
 }

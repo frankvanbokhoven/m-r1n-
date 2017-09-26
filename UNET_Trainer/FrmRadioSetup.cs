@@ -204,6 +204,8 @@ namespace UNET_Trainer
 
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.InitPanels(panelRadios);
+
             the.SetFormSizeAndPosition(this);
 
 

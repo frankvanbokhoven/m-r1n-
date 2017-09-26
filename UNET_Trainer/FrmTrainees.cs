@@ -22,21 +22,23 @@ namespace UNET_Trainer
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         private int SelectedExercise;
-
+        private int InstructorID;
+        #region constructors
         public FrmTrainees()
         {
             InitializeComponent();
             pnlTrainees.Paint += UC_Paint;
         }
 
-        public FrmTrainees(int _exersise)
+        public FrmTrainees(int _exersise, int _instructorID)
         {
             SelectedExercise = _exersise;
-            this.Text = String.Format("Trainee Assignment                              Selected exersise: Exersise{0}", _exersise.ToString("00"));
+            InstructorID = _instructorID;
             InitializeComponent();
-
+            
             pnlTrainees.Paint += UC_Paint;
         }
+        #endregion
 
         /// <summary>
         /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
@@ -47,26 +49,25 @@ namespace UNET_Trainer
         protected void UC_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
-
-            //   ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid);
-
         }
 
         private void FrmTrainees_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
 
 
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
+            the.InitPanels(pnlTrainees);
+
             the.SetFormSizeAndPosition(this);
 
-
-        }
+            lblTraineeTitle.Text = "Trainee assignment    Selected excercise: " + SelectedExercise + "   Instructor: " + InstructorID;
+            timer1.Enabled = true;
+     }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (GetForegroundWindow() == this.Handle)
+            if (GetForegroundWindow() == this.Handle) //only if the form is actually visible to the user
             {
                 SetButtonStatus(this);
             }
@@ -103,68 +104,51 @@ namespace UNET_Trainer
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
                 // visible/invisible and also set the statusled
-                //  {
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
                 }
-
-                //enable the Trainee buttons. All available trainees
+                  
+                ////now resize all buttons to make optimal use of the available room
+                Application.DoEvents();
+                //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                int listindex = 1;
+                foreach (Control ctrl in pnlTrainees.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                foreach (UNET_Classes.Trainee trainee in lstTrainee)
+                {
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+                    listindex++;
+                }
 
-                btnTrainee01.Enabled = lstTrainee.Count >= 1;
-                btnTrainee02.Enabled = lstTrainee.Count >= 2;
-                btnTrainee03.Enabled = lstTrainee.Count >= 3;
-                btnTrainee04.Enabled = lstTrainee.Count >= 4;
-                btnTrainee05.Enabled = lstTrainee.Count >= 5;
-                btnTrainee06.Enabled = lstTrainee.Count >= 6;
-                btnTrainee07.Enabled = lstTrainee.Count >= 7;
-                btnTrainee08.Enabled = lstTrainee.Count >= 8;
-                btnTrainee09.Enabled = lstTrainee.Count >= 9;
-                btnTrainee10.Enabled = lstTrainee.Count >= 10;
-                btnTrainee11.Enabled = lstTrainee.Count >= 11;
-                btnTrainee12.Enabled = lstTrainee.Count >= 12;
-                btnTrainee15.Enabled = lstTrainee.Count >= 13;
-                btnTrainee16.Enabled = lstTrainee.Count >= 14;
-                btnTrainee13.Enabled = lstTrainee.Count >= 15;
-                btnTrainee14.Enabled = lstTrainee.Count >= 16;
-
-                //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
-
-                //now retrieve which trainees are assigned to this exercise
-                //and color these darkblue
-                //List<UNET_Classes.Trainee> lstTraineeAssigned = service.GetTraineesAssigned(SelectedExercise);
-                //foreach(UNET_Classes.Trainee trainee in lstTraineeAssigned)
-                //{
-                //   Control ctrl =  this.Controls.Find("btnTrainee" + trainee.ID, false).First<Control>();
-                //  if(ctrl != null)
-                //  {
-                //        ((Button)ctrl).BackColor = Color.DarkBlue;
-                //        ((Button)ctrl).ForeColor = Color.White;
-                //  }
-                //}
-
             }
             catch (Exception ex)
             {
-                log.Error("Error using WCF SetButtonStatus", ex);
+                log.Error("Error using WCF Set trainee button status", ex);
                 // throw;
             }
+
         }
 
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
             SetStatusAndColorTraineeButtons((Button)sender);
 
+            string name = ((Button)sender).Text.Substring(0, ((Button)sender).Text.IndexOf("\r\n"));
 
+            string[] splitstring = name.Split(' ');
 
-            int traineeIndex = -1;
-            //    SetStatusAndColorTraineeButtons((Button)sender);
-
-            traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
-
+            int traineeIndex = Convert.ToInt16( splitstring[1].ToString());
+    
      
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
@@ -172,7 +156,7 @@ namespace UNET_Trainer
             }
 
             //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
-            service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true);
+            service.SetTraineeAssignedStatus(InstructorID, SelectedExercise,traineeIndex , true);
 
         }
 

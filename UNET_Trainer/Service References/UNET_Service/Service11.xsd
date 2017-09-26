@@ -141,6 +141,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetRoleAssignedStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
+        <xs:element minOccurs="0" name="_role" type="xs:int" />
+        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRoleAssignedStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRoleAssignedStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SetTraineeAssignedStatus">
     <xs:complexType>
       <xs:sequence>

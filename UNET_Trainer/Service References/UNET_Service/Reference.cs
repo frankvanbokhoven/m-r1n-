@@ -81,6 +81,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
+        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
         bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
         
@@ -321,6 +327,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
             return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
+        }
+        
+        public bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add) {
+            return base.Channel.SetRoleAssignedStatus(_instructorID, _exersiseID, _role, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add) {
+            return base.Channel.SetRoleAssignedStatusAsync(_instructorID, _exersiseID, _role, _add);
         }
         
         public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add) {

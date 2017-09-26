@@ -82,6 +82,12 @@
   <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetTraineeAssignedStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatus" />
   </wsdl:message>
@@ -252,6 +258,10 @@
     <wsdl:operation name="SetTraineeStatusChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatus" message="tns:IService1_SetRoleAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatusResponse" message="tns:IService1_SetRoleAssignedStatus_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetTraineeAssignedStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatus" message="tns:IService1_SetTraineeAssignedStatus_InputMessage" />
@@ -433,6 +443,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetTraineeStatusChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRoleAssignedStatus" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

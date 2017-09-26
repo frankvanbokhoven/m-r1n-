@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlTrainees = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTraineeTitle = new System.Windows.Forms.Label();
             this.btnTrainee14 = new System.Windows.Forms.Button();
             this.btnTrainee16 = new System.Windows.Forms.Button();
             this.btnTrainee12 = new System.Windows.Forms.Button();
@@ -55,7 +55,7 @@
             // pnlTrainees
             // 
             this.pnlTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlTrainees.Controls.Add(this.label3);
+            this.pnlTrainees.Controls.Add(this.lblTraineeTitle);
             this.pnlTrainees.Controls.Add(this.btnTrainee14);
             this.pnlTrainees.Controls.Add(this.btnTrainee16);
             this.pnlTrainees.Controls.Add(this.btnTrainee12);
@@ -72,21 +72,21 @@
             this.pnlTrainees.Controls.Add(this.btnTrainee05);
             this.pnlTrainees.Controls.Add(this.btnTrainee03);
             this.pnlTrainees.Controls.Add(this.btnTrainee01);
-            this.pnlTrainees.Location = new System.Drawing.Point(72, 97);
+            this.pnlTrainees.Location = new System.Drawing.Point(33, 40);
             this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlTrainees.Name = "pnlTrainees";
-            this.pnlTrainees.Size = new System.Drawing.Size(696, 498);
+            this.pnlTrainees.Size = new System.Drawing.Size(845, 567);
             this.pnlTrainees.TabIndex = 10;
             // 
-            // label3
+            // lblTraineeTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 28);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Trainees";
+            this.lblTraineeTitle.AutoSize = true;
+            this.lblTraineeTitle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTraineeTitle.Location = new System.Drawing.Point(3, 3);
+            this.lblTraineeTitle.Name = "lblTraineeTitle";
+            this.lblTraineeTitle.Size = new System.Drawing.Size(114, 28);
+            this.lblTraineeTitle.TabIndex = 19;
+            this.lblTraineeTitle.Text = "Trainees";
             // 
             // btnTrainee14
             // 
@@ -390,7 +390,7 @@
         private System.Windows.Forms.Button btnTrainee03;
         private System.Windows.Forms.Button btnTrainee01;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTraineeTitle;
         private System.Windows.Forms.Button btnMainPage;
     }
 }

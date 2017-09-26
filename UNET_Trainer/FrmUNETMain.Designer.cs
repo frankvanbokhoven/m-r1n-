@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.panelRadios = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnRadio20 = new System.Windows.Forms.Button();
             this.btnRadio15 = new System.Windows.Forms.Button();
             this.btnRadio10 = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.btnRadio11 = new System.Windows.Forms.Button();
             this.btnRadio06 = new System.Windows.Forms.Button();
             this.btnRadio01 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panelRoles = new System.Windows.Forms.Panel();
             this.btnRole20 = new System.Windows.Forms.Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
@@ -123,6 +123,8 @@
             this.btnRadios = new System.Windows.Forms.Button();
             this.btnTrainees = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
+            this.lblPtt = new System.Windows.Forms.Label();
+            this.lblHeadset = new System.Windows.Forms.Label();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -138,7 +140,8 @@
             // 
             this.panelRadios.BackColor = System.Drawing.Color.DimGray;
             this.panelRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRadios.Controls.Add(this.btnClose);
+            this.panelRadios.Controls.Add(this.lblHeadset);
+            this.panelRadios.Controls.Add(this.lblPtt);
             this.panelRadios.Controls.Add(this.btnRadio20);
             this.panelRadios.Controls.Add(this.btnRadio15);
             this.panelRadios.Controls.Add(this.btnRadio10);
@@ -165,20 +168,6 @@
             this.panelRadios.Name = "panelRadios";
             this.panelRadios.Size = new System.Drawing.Size(541, 358);
             this.panelRadios.TabIndex = 6;
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.Red;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(478, 28);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(61, 34);
-            this.btnClose.TabIndex = 25;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnRadio20
             // 
@@ -450,10 +439,25 @@
             this.btnRadio01.UseVisualStyleBackColor = false;
             this.btnRadio01.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Red;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Location = new System.Drawing.Point(332, 292);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 56);
+            this.btnClose.TabIndex = 25;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // panelRoles
             // 
             this.panelRoles.BackColor = System.Drawing.Color.DimGray;
             this.panelRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRoles.Controls.Add(this.btnClose);
             this.panelRoles.Controls.Add(this.btnRole20);
             this.panelRoles.Controls.Add(this.btnRole15);
             this.panelRoles.Controls.Add(this.btnRole10);
@@ -476,7 +480,7 @@
             this.panelRoles.Location = new System.Drawing.Point(413, 367);
             this.panelRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRoles.Name = "panelRoles";
-            this.panelRoles.Size = new System.Drawing.Size(541, 369);
+            this.panelRoles.Size = new System.Drawing.Size(541, 365);
             this.panelRoles.TabIndex = 7;
             // 
             // btnRole20
@@ -875,7 +879,7 @@
             this.panelTrainees.Controls.Add(this.btnTrainee05);
             this.panelTrainees.Controls.Add(this.btnTrainee03);
             this.panelTrainees.Controls.Add(this.btnTrainee01);
-            this.panelTrainees.Location = new System.Drawing.Point(175, 2);
+            this.panelTrainees.Location = new System.Drawing.Point(175, 3);
             this.panelTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelTrainees.Name = "panelTrainees";
             this.panelTrainees.Size = new System.Drawing.Size(231, 652);
@@ -1354,7 +1358,7 @@
             this.btnIL.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIL.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnIL.ImageList = this.imageListStatus;
-            this.btnIL.Location = new System.Drawing.Point(8, 0);
+            this.btnIL.Location = new System.Drawing.Point(4, 0);
             this.btnIL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIL.Name = "btnIL";
             this.btnIL.Size = new System.Drawing.Size(155, 74);
@@ -1369,10 +1373,10 @@
             this.panelAssist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelAssist.Controls.Add(this.btnAssist);
             this.panelAssist.Controls.Add(this.btnIntercom);
-            this.panelAssist.Location = new System.Drawing.Point(175, 660);
+            this.panelAssist.Location = new System.Drawing.Point(170, 660);
             this.panelAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelAssist.Name = "panelAssist";
-            this.panelAssist.Size = new System.Drawing.Size(231, 75);
+            this.panelAssist.Size = new System.Drawing.Size(236, 75);
             this.panelAssist.TabIndex = 9;
             // 
             // btnAssist
@@ -1385,10 +1389,10 @@
             this.btnAssist.Location = new System.Drawing.Point(123, -1);
             this.btnAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAssist.Name = "btnAssist";
-            this.btnAssist.Size = new System.Drawing.Size(105, 74);
+            this.btnAssist.Size = new System.Drawing.Size(110, 74);
             this.btnAssist.TabIndex = 20;
             this.btnAssist.Text = "Assist";
-            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnAssist.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAssist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAssist.UseVisualStyleBackColor = false;
             this.btnAssist.Click += new System.EventHandler(this.btnAssist_Click);
@@ -1430,7 +1434,7 @@
             this.panelSetup.Location = new System.Drawing.Point(0, 0);
             this.panelSetup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelSetup.Name = "panelSetup";
-            this.panelSetup.Size = new System.Drawing.Size(106, 720);
+            this.panelSetup.Size = new System.Drawing.Size(106, 724);
             this.panelSetup.TabIndex = 3;
             // 
             // panelFunctions
@@ -1442,10 +1446,10 @@
             this.panelFunctions.Controls.Add(this.btnMonitorTrainee);
             this.panelFunctions.Controls.Add(this.btnClassBroadcast);
             this.panelFunctions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFunctions.Location = new System.Drawing.Point(0, 366);
+            this.panelFunctions.Location = new System.Drawing.Point(0, 367);
             this.panelFunctions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelFunctions.Name = "panelFunctions";
-            this.panelFunctions.Size = new System.Drawing.Size(104, 352);
+            this.panelFunctions.Size = new System.Drawing.Size(104, 355);
             this.panelFunctions.TabIndex = 5;
             // 
             // label2
@@ -1463,7 +1467,7 @@
             this.btnMute.BackColor = System.Drawing.Color.DimGray;
             this.btnMute.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMute.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMute.Location = new System.Drawing.Point(3, 272);
+            this.btnMute.Location = new System.Drawing.Point(3, 274);
             this.btnMute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMute.Name = "btnMute";
             this.btnMute.Size = new System.Drawing.Size(96, 80);
@@ -1477,7 +1481,7 @@
             this.btnMonitorRadio.BackColor = System.Drawing.Color.DimGray;
             this.btnMonitorRadio.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitorRadio.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMonitorRadio.Location = new System.Drawing.Point(3, 190);
+            this.btnMonitorRadio.Location = new System.Drawing.Point(3, 192);
             this.btnMonitorRadio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMonitorRadio.Name = "btnMonitorRadio";
             this.btnMonitorRadio.Size = new System.Drawing.Size(96, 80);
@@ -1491,7 +1495,7 @@
             this.btnMonitorTrainee.BackColor = System.Drawing.Color.DimGray;
             this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMonitorTrainee.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 106);
+            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 108);
             this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMonitorTrainee.Name = "btnMonitorTrainee";
             this.btnMonitorTrainee.Size = new System.Drawing.Size(96, 80);
@@ -1505,7 +1509,7 @@
             this.btnClassBroadcast.BackColor = System.Drawing.Color.DimGray;
             this.btnClassBroadcast.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClassBroadcast.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnClassBroadcast.Location = new System.Drawing.Point(3, 22);
+            this.btnClassBroadcast.Location = new System.Drawing.Point(3, 24);
             this.btnClassBroadcast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClassBroadcast.Name = "btnClassBroadcast";
             this.btnClassBroadcast.Size = new System.Drawing.Size(96, 80);
@@ -1580,6 +1584,25 @@
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = false;
             this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
+            // 
+            // lblPtt
+            // 
+            this.lblPtt.AutoSize = true;
+            this.lblPtt.Location = new System.Drawing.Point(209, 6);
+            this.lblPtt.Name = "lblPtt";
+            this.lblPtt.Size = new System.Drawing.Size(20, 17);
+            this.lblPtt.TabIndex = 31;
+            this.lblPtt.Text = "...";
+            // 
+            // lblHeadset
+            // 
+            this.lblHeadset.AutoSize = true;
+            this.lblHeadset.Location = new System.Drawing.Point(369, 9);
+            this.lblHeadset.Name = "lblHeadset";
+            this.lblHeadset.Size = new System.Drawing.Size(20, 17);
+            this.lblHeadset.TabIndex = 32;
+            this.lblHeadset.Text = "...";
+            this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FrmUNETMain
             // 
@@ -1717,5 +1740,7 @@
         private System.Windows.Forms.Button btnRadios;
         private System.Windows.Forms.Button btnTrainees;
         private System.Windows.Forms.Button btnRoles;
+        private System.Windows.Forms.Label lblPtt;
+        private System.Windows.Forms.Label lblHeadset;
     }
 }

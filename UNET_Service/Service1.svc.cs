@@ -508,6 +508,70 @@ namespace UNET_Service
         }
 
         /// <summary>
+        /// This method assigns a role to an exercise and instructor, OR removes it
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <param name="_exersiseID"></param>
+        /// <param name="_traineeID"></param>
+        /// <param name="_add"></param>
+        /// <returns></returns>
+        public bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                                                                   //find the richt instructor, exercise and trainee
+
+
+                foreach (Instructor inst in singleton.Instructors)  //find the given instructor
+                {
+                    if (inst.ID == _instructorID)
+                    {
+                        foreach (Exercise exe in inst.Exercises) //find the given exercise
+                        {
+                            if (exe.Number == _exersiseID)
+                            {
+                                bool found = false;
+                                foreach (Role rol in exe.RolesAssigned) //find the given trainee
+                                {
+                                    if (rol.ID == _role)
+                                    {
+                                        found = true;
+                                        if (!_add)
+                                        {
+                                            exe.RolesAssigned.Remove(rol);
+                                        }
+                                        break;
+                                    }
+
+
+                                }
+                                if (!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
+                                {
+                                    exe.RolesAssigned.Add(new Role(_role, "rolename"));
+                                }
+                                break;
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error assigning/deassigning trainee", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
         /// add mock trainees to the singleton
         /// </summary>
         /// <param name="_count"></param>
@@ -663,12 +727,13 @@ namespace UNET_Service
                     if (exe != null)
                     {
                         singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex).Selected = true;
-                        
+                        if(singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Any(y => y.Number == _exerciseIndex) == false)
+                           singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
+                  
                     }
                     //todo: hier UNselecten!!
                 }
-             
-
+   
                 ////zet eerst de selected alle op false
                 //foreach(UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
                 //{
@@ -965,8 +1030,10 @@ namespace UNET_Service
                                 result = new CurrentInfo();
                                 result.ID = ex.Number;
                                 result.ExerciseName = ex.ExerciseName;
-                                result.ConsoleRole = ex.RolesAssigned[0].Name;
-                                result.Platform = "todo: platform!";
+                                //   result.ConsoleRole = ex.RolesAssigned[0].Name;
+                                result.ExerciseMode = "todo: mode";
+                                result.ConsoleRole = "todo: console";
+                                result.Platform = "todo: platform";
                                 result.InstructorName = instr.Name;
                                 break;
                             }
