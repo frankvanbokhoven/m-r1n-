@@ -237,17 +237,19 @@ namespace UNET_Trainer
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
                 List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
-                foreach (Control ctrl in panelExercises.Controls)
+                foreach (Control ctrl in panelExercises.Controls) //first DISABLE them
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
                     }
                 }
-                foreach (UNET_Classes.Exercise exercise in lst)
+                foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever comes from the service
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+              //      panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
                 }
 
                 //now resize all buttons to make optimal use of the available room
@@ -261,12 +263,15 @@ namespace UNET_Trainer
                     if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
                     {
                         ctrl.Enabled = false;
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
+
                     }
                 }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
+                  //  panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.TraineeSelectedButton;
                 }
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
@@ -280,6 +285,8 @@ namespace UNET_Trainer
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
+
                     }
                 }
                 foreach (UNET_Classes.Radio radio in lstRadio)
@@ -301,6 +308,8 @@ namespace UNET_Trainer
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
+
                     }
                 }
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
@@ -327,6 +336,7 @@ namespace UNET_Trainer
         {
             timer1.Enabled = true;
             this.Text = "UNET Instructor";
+            log.Info("Started UNET_Instructor");
 
             // Set the text displayed in the caption.
             this.Text = "UNET";
@@ -351,6 +361,11 @@ namespace UNET_Trainer
             ShowInTaskbar = false;
 
             ///
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            service.StartService();
 
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
@@ -724,7 +739,41 @@ namespace UNET_Trainer
                 log.Error("Error Closing UNET_Trainer", ex);
                 // throw;
             }
+            //try to find and kill the TCPSocketClient process and kill it
+            FindAndKillProcess("TCPSocketClient.exe");
+            log.Info("Terminated UNET_Instructor");
+
         }
+
+        /// <summary>
+        /// Try to find the process in the processlist and if so, try to kill it.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        private bool FindAndKillProcess(string _name)
+        {
+            try
+            {
+                string searchName = Path.GetFileNameWithoutExtension(_name);
+                Process[] processes = Process.GetProcessesByName(searchName);
+
+                foreach (Process process in processes)
+                {
+                    process.Kill();
+                    log.Info("Successfully killed TCPSocketClient.exe");
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                log.Error("Kill process " + _name + ex.Message + ex.StackTrace + ex.InnerException);
+            }
+
+            //process not found, return false
+            return false;
+        }
+
 
         private void FrmUNETMain_Activated(object sender, EventArgs e)
         {
@@ -879,7 +928,7 @@ namespace UNET_Trainer
             //sending n receiving msgs
             while (true)
             {
-                // Application.DoEvents();
+
                 string received = serverStreamReader.ReadLine();
                 if (received.Length > 0)
                 {
@@ -905,11 +954,7 @@ namespace UNET_Trainer
                             lblHeadset.Text = "";
                     }
                 }
-                //  Application.DoEvents();
-                //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
-                //    serverStreamWriter.WriteLine("Hi!");
-                //    serverStreamWriter.Flush();
-            }//while
+             }
         }
         #endregion
 

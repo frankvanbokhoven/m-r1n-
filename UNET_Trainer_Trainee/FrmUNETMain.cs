@@ -91,6 +91,8 @@ namespace UNET_Trainer_Trainee
             {
                 timer1.Enabled = true;
                  this.Text = "UNET Trainee";
+                log.Info("Started UNET_Instructor");
+
                 //todo: terugzetten   timer1.Enabled = true;
 
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
@@ -369,6 +371,8 @@ namespace UNET_Trainer_Trainee
 
             //try to find and kill the TCPSocketClient process and kill it
             FindAndKillProcess("TCPSocketClient.exe");
+            log.Info("Terminated UNET_Instructor");
+
         }
 
         /// <summary>
@@ -386,6 +390,8 @@ namespace UNET_Trainer_Trainee
                 foreach (Process process in processes)
                 {
                     process.Kill();
+                    log.Info("Successfully killed TCPSocketClient.exe");
+
                 }
             }
 

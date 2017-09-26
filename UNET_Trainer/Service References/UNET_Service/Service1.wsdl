@@ -16,6 +16,12 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_StartService_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartService" />
+  </wsdl:message>
+  <wsdl:message name="IService1_StartService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartServiceResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetExercises_InputMessage">
     <wsdl:part name="parameters" element="tns:GetExercises" />
   </wsdl:message>
@@ -215,6 +221,10 @@
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="StartService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExercises" message="tns:IService1_GetExercises_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExercisesResponse" message="tns:IService1_GetExercises_OutputMessage" />
@@ -351,6 +361,15 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StartService">
+      <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetExercises">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetExercises" style="document" />
       <wsdl:input>

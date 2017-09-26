@@ -15,6 +15,12 @@ namespace UNET_Trainer.UNET_Service {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
+        bool StartService();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
+        System.Threading.Tasks.Task<bool> StartServiceAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
         UNET_Classes.Exercise[] GetExercises();
         
@@ -239,6 +245,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public bool StartService() {
+            return base.Channel.StartService();
+        }
+        
+        public System.Threading.Tasks.Task<bool> StartServiceAsync() {
+            return base.Channel.StartServiceAsync();
         }
         
         public UNET_Classes.Exercise[] GetExercises() {

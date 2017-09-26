@@ -12,19 +12,32 @@ namespace UNET_Service
     using System.ServiceModel.Activation;
 
     // NOTE:we only want one single instance of the wcf service to run all UNET instructor and trainee clients, thatswhy the concurrencymode is set to single
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,  ConcurrencyMode = ConcurrencyMode.Single)]
-    [AspNetCompatibilityRequirements  (RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
     public class Service1 : IService1
     {
-    
-        private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
+
+        //     private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public Service1()
         {
-         }
+
+
+        }
+
+
         #region Getters
+
+        public bool StartService()
+        {
+            log4net.Config.BasicConfigurator.Configure();
+            log.Info("Successfully started UNET_Service");
+          //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
+
+            return true;
+        }
         /// <summary>
         /// Get the exercises from the inline memory
         /// </summary>
@@ -33,9 +46,7 @@ namespace UNET_Service
         {
             //todo!!! deze staat in een methode die toevallig snel wordt aangeroepen na de start, maar moet op een betere plaats
             //constructor werkt niet
-            log4net.Config.BasicConfigurator.Configure();
-            log.Info("Successfully started UNET_Service");
-
+   
             List<UNET_Classes.Exercise> result = new List<UNET_Classes.Exercise>();
             try
             {
@@ -457,6 +468,8 @@ namespace UNET_Service
             bool result = true;
             try
             {
+                log.Info(string.Format("SetTraineeAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _traineeID, _add));
+
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                                                                    //find the richt instructor, exercise and trainee
 
@@ -523,7 +536,7 @@ namespace UNET_Service
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                                                                    //find the richt instructor, exercise and trainee
 
-
+                log.Info(string.Format("SetRoleAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _role, _add)) ;
                 foreach (Instructor inst in singleton.Instructors)  //find the given instructor
                 {
                     if (inst.ID == _instructorID)
@@ -997,6 +1010,8 @@ namespace UNET_Service
             catch (Exception ex)
             {
                 log.Error("Error setting Registering Trainees", ex);
+            //    AppendToLog(string.Format("Error setting Registering Trainees  at: {0}", DateTime.Now.ToString("G")));
+
                 result = false;
 
             }
@@ -1043,31 +1058,36 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-                log.Error("Error getting the exercise info " + ex.Message);
+               log.Error("Error getting the exercise info " + ex.Message);
+            //    AppendToLog(string.Format("Error getting the exercise info  at: {0}", DateTime.Now.ToString("G")));
+
                 result = null;
             }
             return result;
         }
-        #endregion 
-
-        
-
-        #region AppendToLog
-
-        /// <summary>
-        /// supersimple method to add a logging row to a log file
-        /// </summary>
-        /// <param name="_rowToBeAppended"></param>
-        private void AppendToLog(string _rowToBeAppended)
-        {
-            using (StreamWriter w = File.AppendText(clogfile))
-            {
-                w.WriteLine(string.Format("Servicelog: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
-                w.Flush();
-                w.Close();
-            }
-        }
         #endregion
+
+
+
+
+        //#region AppendToLog
+        //private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"]; 
+
+        ///// <summary>
+        ///// supersimple method to add a logging row to a log file
+        ///// </summary>
+        ///// <param name="_rowToBeAppended"></param>
+        //private void AppendToLog(string _rowToBeAppended)
+        //{
+        //    using (StreamWriter w = File.AppendText(clogfile))
+        //    {
+        //        w.WriteLine(string.Format("Servicelog: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
+        //        w.Flush();
+        //        w.Close();
+        //    }
+        //}
+
+        //#endregion
     }
 }
 

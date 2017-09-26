@@ -20,6 +20,10 @@ namespace UNET_Service
     [ServiceContract]
     public interface IService1
     {
+        //start service
+        [OperationContract]
+        bool StartService();
+
         //Getters
         [OperationContract]
         List<UNET_Classes.Exercise> GetExercises();

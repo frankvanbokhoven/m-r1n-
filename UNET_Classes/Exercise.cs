@@ -30,7 +30,7 @@ namespace UNET_Classes
         public Exercise()
         {
             TraineesAssigned = new List<Trainee>();
-        }
+            RolesAssigned = new List<Role>();        }
 
         /// <summary>
         /// constructor Exercise
@@ -42,6 +42,7 @@ namespace UNET_Classes
             Number = _number;
             ExerciseName = _name;
             TraineesAssigned = new List<Trainee>();
+            RolesAssigned = new List<Role>();
 
         }
 

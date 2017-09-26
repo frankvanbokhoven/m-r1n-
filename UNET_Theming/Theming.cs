@@ -14,7 +14,11 @@ namespace UNET_Theming
 
         public UNETTheme Theme;
         //colors
-        private Color Whiteforecolor;
+        public static Color Whiteforecolor;
+        public static Color Extinguished;
+        public static Color ExerciseSelectedButton;
+        public static Color TraineeSelectedButton;
+
         /// <summary>
         /// Set the general colors of the unettrainer          
         /// </summary>
@@ -28,18 +32,28 @@ namespace UNET_Theming
                     {
                         Theme = UNETTheme.utDark;
                         Whiteforecolor = Color.White;
+                        Extinguished = Color.DimGray;
+                        ExerciseSelectedButton = Color.CadetBlue;
+                        TraineeSelectedButton = Color.BlanchedAlmond;
                         break;
                     }
                 case "light":
                     {
                         Theme = UNETTheme.utLight;
                         Whiteforecolor = Color.White;
+                       Extinguished= Color.LightGray;
+                        ExerciseSelectedButton = Color.LightBlue;
+                        TraineeSelectedButton = Color.BlanchedAlmond;
                         break;
                     }
                 case "blue":
                     {
                         Theme = UNETTheme.utBlue;
                         Whiteforecolor = Color.White;
+                        Extinguished = Color.LightBlue;
+                        ExerciseSelectedButton = Color.Blue;
+                        TraineeSelectedButton = Color.BlanchedAlmond;
+
                         break;
                     }
             }
@@ -50,7 +64,7 @@ namespace UNET_Theming
             if (_parent.GetType().BaseType == typeof(System.Windows.Forms.Form))
             {
                 ((Form)_parent).ForeColor = Whiteforecolor;
-                ((Form)_parent).BackColor = Color.DimGray;
+                ((Form)_parent).BackColor = Extinguished;
                 SetFormSizeAndPosition((Form)_parent);
                 ((Form)_parent).FormBorderStyle = FormBorderStyle.None;
                 //    ((Form)_parent).
