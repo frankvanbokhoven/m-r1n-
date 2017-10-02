@@ -245,6 +245,27 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// this function deliveres all data about an instructor.
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <returns></returns>
+        public Instructor GetAllInstructorData(int _instructorID)
+        {
+            UNET_Classes.Instructor result;// = new List<UNET_Classes.Instructor>();
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                result = singleton.Instructors.FirstOrDefault(x => x.ID == _instructorID);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the Instructors: " + ex.Message);
+
+                throw;
+            }
+            return result;
+        }
         public List<UNET_Classes.Trainee> GetTrainees()
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();

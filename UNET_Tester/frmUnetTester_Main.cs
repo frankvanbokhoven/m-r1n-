@@ -168,6 +168,7 @@ namespace UNET_Tester
                     exe.Number = i;
                     exe.SpecificationName = txtSpecification.Text + i.ToString("00");
                     exe.ExerciseName = txtName.Text + i.ToString("00");
+                    exe.TraineesAssigned.Add(new Trainee(1016, "Trainee-1016"));
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service
@@ -350,7 +351,19 @@ namespace UNET_Tester
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            List<Instructor> instructorlist = new List<Instructor>();
+            Instructor inst = new Instructor(1012, "Instructor on spectre 1012");
+            inst.Exercises.Add(new Exercise(1, "Exercise 1"));
+            instructorlist.Add(inst);
+            service.SetInstructors(instructorlist.ToArray());
             comboBox1_SelectedValueChanged(sender, e);
+            AddToListbox(string.Format("Added instructor: {0}",  1012 ));
+
+
             cbxInstructor_SelectedValueChanged(sender, e);
             cbxRadios_SelectedValueChanged(sender, e);
             cbxRole_SelectedValueChanged(sender, e);

@@ -233,6 +233,12 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
+                //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
+                //en hiermee de knoppen de juiste kleur geven
+                Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
+
+       
+
 
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
@@ -249,12 +255,50 @@ namespace UNET_Trainer
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
-              //      panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+
+                    //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
+                    //zoja, vul de informatie in en enable de knop
+                    if (currentInstructor.Exercises != null)
+                    {
+                        foreach (Exercise exerciseAssigned in currentInstructor.Exercises)
+                        {
+                            if (exerciseAssigned.Number == exercise.Number)
+                            {
+                                panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
+                                panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+
+                            }
+                        }
+                    }
+
                 }
 
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 
+                //enable the Trainees buttons, for the number of trainees that are in
+                var traineelist = service.GetTrainees();
+                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                int listindex = 1;
+                foreach (Control ctrl in panelTrainees.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
+
+                    }
+                }
+                foreach (UNET_Classes.Trainee trainee in lstTrainee)
+                {
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+                    listindex++;
+                }
+
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
+
+                Application.DoEvents();
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
@@ -271,7 +315,6 @@ namespace UNET_Trainer
                 {
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
-                  //  panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.TraineeSelectedButton;
                 }
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
@@ -299,30 +342,7 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 Application.DoEvents();
-                //enable the Trainees buttons, for the number of trainees that are in
-                var traineelist = service.GetTrainees();
-                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
-                int listindex = 1;
-                foreach (Control ctrl in panelTrainees.Controls)
-                {
-                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
-                    {
-                        ctrl.Enabled = false;
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
-
-                    }
-                }
-                foreach (UNET_Classes.Trainee trainee in lstTrainee)
-                {
-                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
-                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
-                    listindex++;
-                }
-
-                UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
-
-
-            }
+                           }
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
@@ -532,15 +552,7 @@ namespace UNET_Trainer
                 ((Button)sender).ForeColor = System.Drawing.Color.White;
             }
 
-
-            //    if (service.State != System.ServiceModel.CommunicationState.Opened)
-            //    {
-            //        service.Open();
-            //    }
-
-            //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
-            //      service.SetTraineeAssignedStatus(InstructorID, ExersiseIndex, traineeIndex, true );
-        }
+          }
         #endregion
 
 

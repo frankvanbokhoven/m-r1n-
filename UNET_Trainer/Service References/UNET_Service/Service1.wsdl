@@ -22,6 +22,12 @@
   <wsdl:message name="IService1_StartService_OutputMessage">
     <wsdl:part name="parameters" element="tns:StartServiceResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetAllInstructorData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInstructorData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllInstructorData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInstructorDataResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetExercises_InputMessage">
     <wsdl:part name="parameters" element="tns:GetExercises" />
   </wsdl:message>
@@ -225,6 +231,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllInstructorData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllInstructorData" message="tns:IService1_GetAllInstructorData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllInstructorDataResponse" message="tns:IService1_GetAllInstructorData_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExercises" message="tns:IService1_GetExercises_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExercisesResponse" message="tns:IService1_GetExercises_OutputMessage" />
@@ -363,6 +373,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="StartService">
       <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstructorData">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetAllInstructorData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

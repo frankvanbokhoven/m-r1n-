@@ -21,6 +21,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
         System.Threading.Tasks.Task<bool> StartServiceAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllInstructorData", ReplyAction="http://tempuri.org/IService1/GetAllInstructorDataResponse")]
+        UNET_Classes.Instructor GetAllInstructorData(int _instructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllInstructorData", ReplyAction="http://tempuri.org/IService1/GetAllInstructorDataResponse")]
+        System.Threading.Tasks.Task<UNET_Classes.Instructor> GetAllInstructorDataAsync(int _instructorID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetExercises", ReplyAction="http://tempuri.org/IService1/GetExercisesResponse")]
         UNET_Classes.Exercise[] GetExercises();
         
@@ -253,6 +259,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> StartServiceAsync() {
             return base.Channel.StartServiceAsync();
+        }
+        
+        public UNET_Classes.Instructor GetAllInstructorData(int _instructorID) {
+            return base.Channel.GetAllInstructorData(_instructorID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Classes.Instructor> GetAllInstructorDataAsync(int _instructorID) {
+            return base.Channel.GetAllInstructorDataAsync(_instructorID);
         }
         
         public UNET_Classes.Exercise[] GetExercises() {

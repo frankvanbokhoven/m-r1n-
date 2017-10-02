@@ -25,6 +25,11 @@ namespace UNET_Service
         bool StartService();
 
         //Getters
+
+        [OperationContract]
+        Instructor GetAllInstructorData(int _instructorID);
+
+
         [OperationContract]
         List<UNET_Classes.Exercise> GetExercises();
 

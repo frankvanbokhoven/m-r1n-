@@ -26,7 +26,7 @@ namespace UNET_Classes
 
         public Instructor()
         {
-
+            Exercises = new List<Exercise>();
         }
 
     }
