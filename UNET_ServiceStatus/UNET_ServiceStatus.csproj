@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UNET_ServiceStatus</RootNamespace>
     <AssemblyName>UNET_ServiceStatus</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MarineGrey.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -57,6 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\UNET_Classes.CurrentInfo.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Platform.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Radio.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Role.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Trainee.datasource" />
     <None Include="Service References\UNET_Service\Service1.wsdl" />
     <None Include="Service References\UNET_Service\Service1.xsd">
       <SubType>Designer</SubType>
@@ -69,27 +80,6 @@
     </None>
     <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.CurrentInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Exercise.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Instructor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Platform.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Radio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.Trainee.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +108,9 @@
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MarineGrey.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

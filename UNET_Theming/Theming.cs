@@ -18,6 +18,8 @@ namespace UNET_Theming
         public static Color Extinguished;
         public static Color ExerciseSelectedButton;
         public static Color TraineeSelectedButton;
+        public static Color RoleSelectedButton;
+        public static Color RadioSelectedButton;
 
         /// <summary>
         /// Set the general colors of the unettrainer          
@@ -35,6 +37,8 @@ namespace UNET_Theming
                         Extinguished = Color.DimGray;
                         ExerciseSelectedButton = Color.CadetBlue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
+                        RoleSelectedButton = Color.BlanchedAlmond;
+                        RadioSelectedButton = Color.BlanchedAlmond;
                         break;
                     }
                 case "light":
@@ -44,6 +48,8 @@ namespace UNET_Theming
                        Extinguished= Color.LightGray;
                         ExerciseSelectedButton = Color.LightBlue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
+                        RoleSelectedButton = Color.BlanchedAlmond;
+                        RadioSelectedButton = Color.BlanchedAlmond;
                         break;
                     }
                 case "blue":
@@ -53,7 +59,8 @@ namespace UNET_Theming
                         Extinguished = Color.LightBlue;
                         ExerciseSelectedButton = Color.Blue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
-
+                        RoleSelectedButton = Color.BlanchedAlmond;
+                        RadioSelectedButton = Color.BlanchedAlmond;
                         break;
                     }
             }
@@ -67,7 +74,6 @@ namespace UNET_Theming
                 ((Form)_parent).BackColor = Extinguished;
                 SetFormSizeAndPosition((Form)_parent);
                 ((Form)_parent).FormBorderStyle = FormBorderStyle.None;
-                //    ((Form)_parent).
             }
 
             if (_parent.GetType().BaseType.BaseType.BaseType == typeof(System.Windows.Forms.Form))

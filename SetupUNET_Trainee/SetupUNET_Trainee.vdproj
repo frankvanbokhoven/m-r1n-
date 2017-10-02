@@ -346,7 +346,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.5"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.7"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=395269"
                 }
@@ -823,7 +823,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Trainee"
         "ProductCode" = "8:{374D3C6D-A65C-4C7C-A831-E8E57FC551CC}"
-        "PackageCode" = "8:{343D966F-BF31-49FD-9E83-A96874BA4B90}"
+        "PackageCode" = "8:{2D32B2B8-0ED1-4120-9031-C1C4E488A359}"
         "UpgradeCode" = "8:{12E5EDE4-3839-4A13-8E0C-423C4F3C47B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

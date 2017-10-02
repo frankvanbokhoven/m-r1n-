@@ -9,26 +9,26 @@ namespace UNET_ServiceStatus
 {
     class Program
     {
-         static void Main(string[] args)
+       static void Main(string[] args)
         {
-          Timer timerhart = new System.Timers.Timer(1000);
-          Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 21 oktober 2017");
+          getData gd = new getData();
+        Timer timerhart = new System.Timers.Timer(3000);
+          Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 2 oktober 2017");
             Console.Write(Environment.NewLine);
             Console.Write("UNET Status weergever van de UNET_Service");
             Console.Write(Environment.NewLine);
             timerhart.Enabled = false;
             timerhart.Elapsed += Timerhart_Elapsed;
-            getData getData = new getData();
             if (args.Length > 0)
             {
                 Console.Write("Init...");
-                getData.InitSettings();
+                gd.InitSettings();
 
                 Console.Write("Connectie gemaakt!");
                 Console.Write(Environment.NewLine);
                 Console.Write("Exact importer downloading Artikelen");
                 Console.Write(Environment.NewLine);
-                getData.GetAndReportStatus();
+                gd.GetAndReportStatus();
                 Console.Write(Environment.NewLine);
 
                 Console.Write(Environment.NewLine);
@@ -53,7 +53,9 @@ namespace UNET_ServiceStatus
 
         private static void Timerhart_Elapsed(object sender, ElapsedEventArgs e)
         {
-            getData getData = new getData();
+            //  getData getData = new getData();
+            getData gd = new getData();
+            gd.GetAndReportStatus();
 
         }
     }

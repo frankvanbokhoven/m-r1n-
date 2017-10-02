@@ -25,12 +25,16 @@ namespace UNET_Classes
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Role> RolesAssigned { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Radio> RadiosAssigned { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Selected { get; set; }
 
         public Exercise()
         {
             TraineesAssigned = new List<Trainee>();
-            RolesAssigned = new List<Role>();        }
+            RolesAssigned = new List<Role>();
+            RadiosAssigned = new List<Radio>();
+        }
 
         /// <summary>
         /// constructor Exercise
@@ -43,6 +47,7 @@ namespace UNET_Classes
             ExerciseName = _name;
             TraineesAssigned = new List<Trainee>();
             RolesAssigned = new List<Role>();
+            RadiosAssigned = new List<Radio>();
 
         }
 

@@ -237,7 +237,7 @@ namespace UNET_Trainer
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
 
-       
+
 
 
                 //enable the Exercise buttons
@@ -251,6 +251,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Theming.Extinguished;
                     }
                 }
+                int exerciseselected = -1;
                 foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever comes from the service
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
@@ -258,23 +259,26 @@ namespace UNET_Trainer
 
                     //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
                     //zoja, vul de informatie in en enable de knop
-                    if (currentInstructor.Exercises != null)
+                    if (currentInstructor != null)
                     {
-                        foreach (Exercise exerciseAssigned in currentInstructor.Exercises)
+                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
                         {
-                            if (exerciseAssigned.Number == exercise.Number)
+                            foreach (Exercise exerciseAssigned in currentInstructor.Exercises)
                             {
-                                panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
-                                panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
-
+                                if (exerciseAssigned.Number == exercise.Number)
+                                {
+                                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
+                                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+                                    exerciseselected = exercise.Number;
+                                }
                             }
                         }
                     }
-
                 }
-
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
+
+
 
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
@@ -291,8 +295,30 @@ namespace UNET_Trainer
                 }
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
                 {
-                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    //  panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
                     panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+
+
+                    //loop nu door de lijst van toegewezen trainees heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                    //zoja, vul de informatie in en enable de knop
+                    if (currentInstructor != null)
+                    {
+                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
+                        {
+                            if (exerciseselected != -1)
+                            {
+                                foreach (Trainee assignedTrainee in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).TraineesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                {
+                                    if (assignedTrainee.ID == trainee.ID)
+                                    {
+                                        panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                                        panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeSelectedButton;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                     listindex++;
                 }
 
@@ -313,8 +339,29 @@ namespace UNET_Trainer
                 }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
-                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                    //     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
+
+                    //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                    //zoja, vul de informatie in en enable de knop
+                    if (currentInstructor != null)
+                    {
+                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
+                        {
+                            if (exerciseselected != -1)
+                            {
+                                foreach (Role assignedRole in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                {
+                                    if (assignedRole.ID == role.ID)
+                                    {
+                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
 
@@ -342,7 +389,7 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 Application.DoEvents();
-                           }
+            }
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
