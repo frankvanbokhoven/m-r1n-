@@ -62,12 +62,14 @@ namespace PJSUA2Implementation.SIP
             Password = _password;
         }
 
+
+
         /// <summary>
         /// Determine an always unique string
         /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
-        //  app start, this name must still be unique
-        /// <param name="_namepart"></param>
-        /// <returns></returns>
+            //  app start, this name must still be unique
+            /// <param name="_namepart"></param>
+            /// <returns></returns>
         private string RandomThreadString(string _namepart)
         {
             string result = _namepart + "_" + Guid.NewGuid()
@@ -77,10 +79,12 @@ namespace PJSUA2Implementation.SIP
             return result;
         }
 
+
+        /// <summary>
+        /// Init the pjsua2 and start it
+        /// </summary>
         public void UserAgentStart()
         {
-
-  
             // Create endpoint
             try
             {
@@ -88,46 +92,41 @@ namespace PJSUA2Implementation.SIP
                 {
                     ep = new Endpoint();
                     ep.libCreate();
-
                     ep.libRegisterThread(RandomThreadString("PJSUA2"));
-                    
                 }
-            }
-            catch (Exception)
-            {
-              //  log.Error("Exception on Agent Start " + ex.Message);
-
-            }
-
-
-            // Init library
-            try
-            {
-                EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-                ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-                ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
-                ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
-
-                ep.libInit(ep_cfg);
             }
             catch (Exception ex)
             {
-        //        log.Error("Initialization error: " + ex.Message);
+                Console.Write("Useragent libcreate Exception: " + ex.Message, ex);
             }
-
-
+            // Init library
+            EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+            ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+            ep_cfg.logConfig.filename = "pjsip_" + DateTime.Today.Date.ToString("yyMMdd") + ".log";
+            ep.libInit(ep_cfg);
+            // Configure Audio Interface
+            try
+            {
+                ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Useragent AudioInterface start Exception: " + ex.Message, ex);
+            }
             // Create transport
             try
             {
                 TransportConfig tcfg = new TransportConfig();
-                tcfg.port = Convert.ToUInt16( Port);
+                tcfg.port = Convert.ToUInt16(Port);
                 ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+                
             }
             catch (Exception ex)
             {
-             //   log.Error("Transport creation error: " + ex.Message);
+                Console.Write("Useragent Transport start Exception: " + ex.Message, ex);
             }
-
 
             // Start library
             try
@@ -136,42 +135,45 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-          ///      log.Error("Startup error: " + ex.Message);
+                Console.Write("Useragent libstart Exception: " + ex.Message, ex);
             }
 
+            try
+            {
+                // Create & set presence
+                // Create account configuration
+                AccountConfig acfg = new AccountConfig();
+                acfg.idUri = "sip:" + Account + "@" + Domain;
+                string sipserver = string.Format("sip:{0}", SipServer);
+                acfg.regConfig.registrarUri = sipserver;
+                acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                AuthCredInfo cred = new AuthCredInfo("digest", SipServer, Account, 0, Password);
+                cred.realm = Domain;
+                //orginele code
+                //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+                //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+                //acfg.regConfig.registrarUri = sipserver;
+                //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
+                //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+                acfg.regConfig.registerOnAdd = true;
+                acfg.regConfig.timeoutSec = 180;
+                
+                acfg.sipConfig.authCreds.Add(cred);
+                acfg.regConfig.dropCallsOnFail = true;
+                // Create SIP account
+                acc = new SipAccount();
+                acc.create(acfg, true);
+                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
 
-            // Create & set presence
-            // Create account configuration
-            AccountConfig acfg = new AccountConfig();
-            acfg.idUri = "sip:" + Account + "@" + Domain;
-            string sipserver = string.Format("sip:{0}",SipServer);
-            acfg.regConfig.registrarUri = sipserver;
-            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-            acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest",SipServer, Account, 0, Password);
-            cred.realm = Domain;
-            //orginele code
-            //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            //acfg.regConfig.registrarUri = sipserver;
-            //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-            //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
-            //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
-
-            acfg.regConfig.registerOnAdd = true;
-            acfg.regConfig.timeoutSec = 180;
-            acfg.sipConfig.authCreds.Add(cred);
-            acfg.regConfig.dropCallsOnFail = true;
-
-
-            // Create SIP account
-            acc = new SipAccount();
-            acc.create(acfg, true);
-            setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-
-
-            UserBuddyStart();     
+                UserBuddyStart();
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Useragent start Exception: " + ex.Message, ex);
+            }
         }
 
         /// <summary>

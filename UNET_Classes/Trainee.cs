@@ -12,6 +12,8 @@ namespace UNET_Classes
         public int ID { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Name { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public DateTime RegisteredSince { get; set; }
 
 
         public Trainee()
@@ -27,6 +29,7 @@ namespace UNET_Classes
         {
             ID = _id;
             Name = _name;
+            RegisteredSince = DateTime.Now;
         }
     }
 }

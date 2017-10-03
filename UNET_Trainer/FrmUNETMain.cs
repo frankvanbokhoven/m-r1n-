@@ -237,24 +237,22 @@ namespace UNET_Trainer
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
 
-
-
-
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
                 List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
-                foreach (Control ctrl in panelExercises.Controls) //first DISABLE them
+                foreach (Control ctrl in panelExercises.Controls) //first DISABLE all buttons
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.Extinguished;
                     }
                 }
                 int exerciseselected = -1;
                 foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever comes from the service
                 {
-                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden, vooral initieel
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
 
                     //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
@@ -269,6 +267,7 @@ namespace UNET_Trainer
                                 {
                                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
                                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+                                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Tag = "enable";
                                     exerciseselected = exercise.Number;
                                 }
                             }
@@ -289,6 +288,7 @@ namespace UNET_Trainer
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.Extinguished;
 
                     }
@@ -313,6 +313,7 @@ namespace UNET_Trainer
                                     {
                                         panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
                                         panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeSelectedButton;
+                                        panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Tag = "enable";
 
                                     }
                                 }
@@ -333,6 +334,7 @@ namespace UNET_Trainer
                     if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
                     {
                         ctrl.Enabled = false;
+                        ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.Extinguished;
 
                     }
@@ -356,6 +358,7 @@ namespace UNET_Trainer
                                     {
                                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
 
                                     }
                                 }
@@ -375,14 +378,40 @@ namespace UNET_Trainer
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.Extinguished;
 
                     }
                 }
                 foreach (UNET_Classes.Radio radio in lstRadio)
                 {
-                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                 //   panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
                     panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
+
+                    //loop nu door de lijst van toegewezen radios heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                    //zoja, vul de informatie in en enable de knop
+                    if (currentInstructor != null)
+                    {
+                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
+                        {
+                            if (exerciseselected != -1)
+                            {
+                                foreach (Radio assignedRadio in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RadiosAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                {
+                                    if (assignedRadio.ID == radio.ID)
+                                    {
+                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].BackColor = Theming.RadioSelectedButton;
+                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Tag = "enable";
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+
 
                 }
 

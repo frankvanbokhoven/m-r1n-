@@ -79,48 +79,104 @@ namespace TestPJSUA2.SIP
                     Classes.WCFcaller.SetSIPStatusMessage("*** Disconnected: " + ci.remoteUri );
 
                     break;
+                //case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
+                //    {
+                //        Classes.WCFcaller.SetSIPStatusMessage(ci.remoteUri + " Has answered the call!!");
+
+                //        AudioMedia aud_med = null;
+
+                //        //// Find Audio in call
+                //        //for (int i = 0; i < ci.media.Count; i++)
+                //        //{
+                //        //    if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                //        //    {
+                //        //        aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
+                //        //        StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
+                //        //        log.Info("*** Media codec: " + si.codecName);
+                //        //        Classes.WCFcaller.SetSIPStatusMessage("*** Media codec: " + si.codecName);
+
+                //        //        break;
+                //        //    }
+                //        //}
+
+                //        if (aud_med != null)
+                //        {
+                //            // Get playback & capture devices
+                //            AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                //            AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+
+                //            // Start audio transmissions
+                //            aud_med.startTransmit(play_med);
+                //            cap_med.startTransmit(aud_med);
+                //            Classes.WCFcaller.SetSIPStatusMessage("Audio media ");
+
+                //        }
+                //        else {
+                //            log.Info("******\t NO AUDIO FOUND IN CALL \t******");
+                //            Classes.WCFcaller.SetSIPStatusMessage("******\t NO AUDIO FOUND IN CALL \t******");
+
+                //        }
+
+                //        // Show we are connected
+                //        UAacc.newCallState(1);
+                //        break;
+                //    }
                 case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
                     {
-                        Classes.WCFcaller.SetSIPStatusMessage(ci.remoteUri + " Has answered the call!!");
 
-                        AudioMedia aud_med = null;
+                        Console.Write(ci.remoteUri + " Has answered the call!!");
+                        //    MessageSink.Instance.Publish(new ErrorMessage(SeverityLevel.Info, "SIPCall", str)); // Show info
+                        AudioMedia aud_med_call = null;
+                        Media med = null;
 
-                        //// Find Audio in call
-                        //for (int i = 0; i < ci.media.Count; i++)
-                        //{
-                        //    if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
-                        //    {
-                        //        aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
-                        //        StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
-                        //        log.Info("*** Media codec: " + si.codecName);
-                        //        Classes.WCFcaller.SetSIPStatusMessage("*** Media codec: " + si.codecName);
+                        // Find Audio in call
+                        for (int i = 0; i < ci.media.Count; i++)
+                        {
+                            if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                            {
+                                med = this.getMedia(Convert.ToUInt16(i));
+                                // aud_med = med as AudioMedia;
+                                aud_med_call = AudioMedia.typecastFromMedia(med);
+                                StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
 
-                        //        break;
-                        //    }
-                        //}
+                                break;
+                            }
+                        }
 
-                        if (aud_med != null)
+                        if (aud_med_call != null)
                         {
                             // Get playback & capture devices
-                            AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                            AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
-
+                            //  AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                            //  AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
                             // Start audio transmissions
-                            aud_med.startTransmit(play_med);
-                            cap_med.startTransmit(aud_med);
-                            Classes.WCFcaller.SetSIPStatusMessage("Audio media ");
+                            //  aud_med.startTransmit(play_med);
+                            //  cap_med.startTransmit(aud_med);
+                            AudioMediaVector audioMediaVectorDevices = Endpoint.instance().mediaEnumPorts();
 
+                            foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
+                            {
+                                // if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.SEND)
+                                //  {
+                                if (audiomediadevice.getPortId() == 0)
+                                {
+                                    //MIC sends
+                                    audiomediadevice.startTransmit(aud_med_call);
+                                }
+
+                                //     }
+                                //if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.REC)
+                                //{
+                                //    if (audiomediadevice.getPortId() >= 0 && audiomediadevice.getPortId() <= 2)
+                                //    {
+                                //        //send call media to speakers
+                                //        aud_med_call.startTransmit(audiomediadevice);
+                                //     }
+                                // }
+                            }
                         }
-                        else {
-                            log.Info("******\t NO AUDIO FOUND IN CALL \t******");
-                            Classes.WCFcaller.SetSIPStatusMessage("******\t NO AUDIO FOUND IN CALL \t******");
-
-                        }
-
-                        // Show we are connected
-                        UAacc.newCallState(1);
                         break;
                     }
+
                 case pjsip_inv_state.PJSIP_INV_STATE_NULL:
                     break;
                 case pjsip_inv_state.PJSIP_INV_STATE_EARLY:

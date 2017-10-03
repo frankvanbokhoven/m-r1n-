@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.panelRadios = new System.Windows.Forms.Panel();
+            this.lblHeadset = new System.Windows.Forms.Label();
+            this.lblPtt = new System.Windows.Forms.Label();
             this.btnRadio20 = new System.Windows.Forms.Button();
             this.btnRadio15 = new System.Windows.Forms.Button();
             this.btnRadio10 = new System.Windows.Forms.Button();
@@ -123,8 +125,6 @@
             this.btnRadios = new System.Windows.Forms.Button();
             this.btnTrainees = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
-            this.lblPtt = new System.Windows.Forms.Label();
-            this.lblHeadset = new System.Windows.Forms.Label();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -163,11 +163,30 @@
             this.panelRadios.Controls.Add(this.btnRadio11);
             this.panelRadios.Controls.Add(this.btnRadio06);
             this.panelRadios.Controls.Add(this.btnRadio01);
-            this.panelRadios.Location = new System.Drawing.Point(413, 2);
+            this.panelRadios.Location = new System.Drawing.Point(413, 3);
             this.panelRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelRadios.Name = "panelRadios";
             this.panelRadios.Size = new System.Drawing.Size(541, 358);
             this.panelRadios.TabIndex = 6;
+            // 
+            // lblHeadset
+            // 
+            this.lblHeadset.AutoSize = true;
+            this.lblHeadset.Location = new System.Drawing.Point(369, 9);
+            this.lblHeadset.Name = "lblHeadset";
+            this.lblHeadset.Size = new System.Drawing.Size(20, 17);
+            this.lblHeadset.TabIndex = 32;
+            this.lblHeadset.Text = "...";
+            this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPtt
+            // 
+            this.lblPtt.AutoSize = true;
+            this.lblPtt.Location = new System.Drawing.Point(209, 6);
+            this.lblPtt.Name = "lblPtt";
+            this.lblPtt.Size = new System.Drawing.Size(20, 17);
+            this.lblPtt.TabIndex = 31;
+            this.lblPtt.Text = "...";
             // 
             // btnRadio20
             // 
@@ -860,7 +879,7 @@
             // 
             // panelTrainees
             // 
-            this.panelTrainees.BackColor = System.Drawing.Color.Gray;
+            this.panelTrainees.BackColor = System.Drawing.Color.DimGray;
             this.panelTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTrainees.Controls.Add(this.btnTrainee16);
             this.panelTrainees.Controls.Add(this.btnTrainee14);
@@ -1584,25 +1603,6 @@
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = false;
             this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
-            // 
-            // lblPtt
-            // 
-            this.lblPtt.AutoSize = true;
-            this.lblPtt.Location = new System.Drawing.Point(209, 6);
-            this.lblPtt.Name = "lblPtt";
-            this.lblPtt.Size = new System.Drawing.Size(20, 17);
-            this.lblPtt.TabIndex = 31;
-            this.lblPtt.Text = "...";
-            // 
-            // lblHeadset
-            // 
-            this.lblHeadset.AutoSize = true;
-            this.lblHeadset.Location = new System.Drawing.Point(369, 9);
-            this.lblHeadset.Name = "lblHeadset";
-            this.lblHeadset.Size = new System.Drawing.Size(20, 17);
-            this.lblHeadset.TabIndex = 32;
-            this.lblHeadset.Text = "...";
-            this.lblHeadset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FrmUNETMain
             // 

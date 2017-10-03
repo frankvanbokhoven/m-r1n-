@@ -21,6 +21,9 @@ namespace UNET_Theming
         public static Color RoleSelectedButton;
         public static Color RadioSelectedButton;
 
+        public static Color IntercomPressed;
+        public static Color IntercomNotPressed;
+
         /// <summary>
         /// Set the general colors of the unettrainer          
         /// </summary>
@@ -39,6 +42,8 @@ namespace UNET_Theming
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         RoleSelectedButton = Color.BlanchedAlmond;
                         RadioSelectedButton = Color.BlanchedAlmond;
+                        IntercomNotPressed = Color.DimGray;
+                        IntercomPressed = Color.LightGreen;
                         break;
                     }
                 case "light":
@@ -50,6 +55,8 @@ namespace UNET_Theming
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         RoleSelectedButton = Color.BlanchedAlmond;
                         RadioSelectedButton = Color.BlanchedAlmond;
+                        IntercomNotPressed = Color.DimGray;
+                        IntercomPressed = Color.LightGreen;
                         break;
                     }
                 case "blue":
@@ -61,6 +68,8 @@ namespace UNET_Theming
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         RoleSelectedButton = Color.BlanchedAlmond;
                         RadioSelectedButton = Color.BlanchedAlmond;
+                        IntercomNotPressed = Color.DimGray;
+                        IntercomPressed = Color.LightGreen;
                         break;
                     }
             }

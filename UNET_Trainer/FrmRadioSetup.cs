@@ -385,7 +385,7 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")) - 1; //haal het indexnummer op van de button maar -1 want de index start bij  0
+            SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")) ; //haal het indexnummer op van de button maar -1 want de index start bij  0
             int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
 
             SetNoiseLevel();

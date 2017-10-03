@@ -149,9 +149,39 @@ namespace UNET_ServiceStatus
 
                     }
                 }
+                //trainees
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+                Console.Write(DateTime.Now.ToString() + " Aangemelde trainees");
+                Console.Write(Environment.NewLine);
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
 
 
-              //  Console.Write(Environment.NewLine);
+                var resultlisttrainees = service.GetTrainees();
+                List<UNET_Classes.Trainee> lstTrainee = resultlisttrainees.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                if (lst.Count == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("No data in UNET_Service for trainees");
+                    Console.Write(Environment.NewLine);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    foreach (UNET_Classes.Trainee trainee in lstTrainee) //then ENABLE them, based on whatever comes from the service
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("Trainee::  " + trainee.ID + " Name: " + trainee.Name + "  Aangemeld sinds: " + trainee.RegisteredSince.ToString());
+                        Console.Write(Environment.NewLine);               
+
+                    }
+                }
+
+
+
+                //  Console.Write(Environment.NewLine);
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);

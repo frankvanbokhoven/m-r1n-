@@ -27,16 +27,40 @@ namespace TestPJSUA2.SIP
         {
             //todo: implementeren
         }
+        public string Account { get; set; }
+        public string SipServer { get; set; }
+        public int Port { get; set; }
+        public string Domain { get; set; }
+        public string Password { get; set; }
 
         ///
         /// brief UserAgent::~UserAgent
         ////
         public UserAgent()
         {
-
-            log.Info("Agent started pjsua2implementation");
+            Account = ConfigurationManager.AppSettings["SIPAccount"].ToString();
+            Domain = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            SipServer = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            Password = ConfigurationManager.AppSettings["sipPassword"];
+            Port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+           log.Info("Agent started pjsua2implementation");
         }
 
+        /// <summary>
+        /// Constructor that fills the most important parameters
+        /// </summary>
+        /// <param name="_account"></param>
+        /// <param name="_sipserver"></param>
+        /// <param name="_port"></param>
+        /// <param name="_domain"></param>
+        public UserAgent(string _account, string _sipserver, int _port, string _domain, string _password)
+        {
+            Account = _account;
+            SipServer = _sipserver;
+            Port = _port;
+            Domain = _domain;
+            Password = _password;
+        }
 
         /// <summary>
         /// Determine an always unique string
@@ -59,52 +83,47 @@ namespace TestPJSUA2.SIP
 
         public void UserAgentStart()
         {
-
-            Classes.WCFcaller.SetSIPStatusMessage("Starting User Agent");
-        
             // Create endpoint
             try
             {
-                ep = new Endpoint();
-                ep.libCreate();
-
-                ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                if (ep == null)
+                {
+                    ep = new Endpoint();
+                    ep.libCreate();
+                    ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                }
             }
             catch (Exception ex)
             {
-                log.Error("Exception on Agent Start " + ex.Message);
-                
+                Console.Write("Useragent libcreate Exception: " + ex.Message, ex);
             }
-
-
             // Init library
+            EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+            ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+            ep_cfg.logConfig.filename = "pjsip_" + DateTime.Today.Date.ToString("yyMMdd") + ".log";
+            ep.libInit(ep_cfg);
+            // Configure Audio Interface
             try
             {
-                EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-                ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-                ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
-                ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
-
-                ep.libInit(ep_cfg);
+                // ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
             }
             catch (Exception ex)
             {
-                log.Error("Initialization error: " + ex.Message);
+                Console.Write("Useragent AudioInterface start Exception: " + ex.Message, ex);
             }
-
-
             // Create transport
             try
             {
                 TransportConfig tcfg = new TransportConfig();
-                tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+                tcfg.port = Convert.ToUInt16(Port);
                 ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
             }
             catch (Exception ex)
             {
-                log.Error("Transport creation error: " + ex.Message);
+                Console.Write("Useragent Transport start Exception: " + ex.Message, ex);
             }
-
 
             // Start library
             try
@@ -113,38 +132,130 @@ namespace TestPJSUA2.SIP
             }
             catch (Exception ex)
             {
-                log.Error("Startup error: " + ex.Message);
+                Console.Write("Useragent libstart Exception: " + ex.Message, ex);
             }
 
+            try
+            {
+                // Create & set presence
+                // Create account configuration
+                AccountConfig acfg = new AccountConfig();
+                acfg.idUri = "sip:" + Account + "@" + Domain;
+                string sipserver = string.Format("sip:{0}", SipServer);
+                acfg.regConfig.registrarUri = sipserver;
+                acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                AuthCredInfo cred = new AuthCredInfo("digest", SipServer, Account, 0, Password);
+                cred.realm = Domain;
+                //orginele code
+                //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+                //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+                //acfg.regConfig.registrarUri = sipserver;
+                //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
+                //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+                acfg.regConfig.registerOnAdd = true;
+                acfg.regConfig.timeoutSec = 180;
+                acfg.sipConfig.authCreds.Add(cred);
+                acfg.regConfig.dropCallsOnFail = true;
+                // Create SIP account
+                acc = new SipAccount();
+                acc.create(acfg, true);
+                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
 
-            // Create & set presence
-            // Create account configuration
-            AccountConfig acfg = new AccountConfig();
-            acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            acfg.regConfig.registrarUri = sipserver;
-            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-            acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
-            cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            acfg.regConfig.registerOnAdd = true;
-            acfg.regConfig.timeoutSec = 180;
-            acfg.sipConfig.authCreds.Add(cred);
-            acfg.regConfig.dropCallsOnFail = true;
+                UserBuddyStart();
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Useragent start Exception: " + ex.Message, ex);
+            }
+
+            //Classes.WCFcaller.SetSIPStatusMessage("Starting User Agent");
+
+            //// Create endpoint
+            //try
+            //{
+            //    ep = new Endpoint();
+            //    ep.libCreate();
+
+            //    ep.libRegisterThread(RandomThreadString("PJSUA2"));
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Exception on Agent Start " + ex.Message);
+
+            //}
 
 
-            // Create SIP account
-            acc = new SipAccount();
-            acc.create(acfg, true);
-            setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+            //// Init library
+            //try
+            //{
+            //    EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+            //    ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+            //    ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            //    ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+
+            //    ep.libInit(ep_cfg);
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Initialization error: " + ex.Message);
+            //}
 
 
-            UserBuddyStart();
+            //// Create transport
+            //try
+            //{
+            //    TransportConfig tcfg = new TransportConfig();
+            //    tcfg.port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+            //    ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Transport creation error: " + ex.Message);
+            //}
 
-            // Connect signals & slots            
-            //connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
-            //connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
-            //connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
+
+            //// Start library
+            //try
+            //{
+            //    ep.libStart();
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Startup error: " + ex.Message);
+            //}
+
+
+            //// Create & set presence
+            //// Create account configuration
+            //AccountConfig acfg = new AccountConfig();
+            //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            //acfg.regConfig.registrarUri = sipserver;
+            //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+            //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+            //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
+            //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //acfg.regConfig.registerOnAdd = true;
+            //acfg.regConfig.timeoutSec = 180;
+            //acfg.sipConfig.authCreds.Add(cred);
+            //acfg.regConfig.dropCallsOnFail = true;
+
+
+            //// Create SIP account
+            //acc = new SipAccount();
+            //acc.create(acfg, true);
+            //setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+
+
+            //UserBuddyStart();
+
+            //// Connect signals & slots            
+            ////connect(acc, SIGNAL(sendNewCallState(int)), this, SLOT(receiveNewCallState(int)));
+            ////connect(acc, SIGNAL(sendNewRegState(int)), this, SLOT(receiveNewRegState(int)));
+            ////connect(acc, SIGNAL(sendNewIM(String)), this, SLOT(receiveNewIM(String)));
         }
 
         /// <summary>
@@ -190,20 +301,38 @@ namespace TestPJSUA2.SIP
         {
             Classes.WCFcaller.SetSIPStatusMessage("Stopping endpoint");
            
+            Console.Write("Stopping endpoint");
+            //  Register thread if necessary
+            // if (!ep.libIsThreadRegistered()) //todo: die 'if' moet terug anders wordt te vaak geregistreerd
+            //ep.libStopThreads();// ("program thread");// .libRegisterThread("program thread");
+
+            //// Disconnect account;
+            //acc.Dispose();
+
+            ////  Stop endpoint
+            //ep.libDestroy();
+
+            //// Send new state
+            //forwardNewRegState(-2);
+
+
+
             ///this code destroys the SIP connection and clears the relevant objects
             try
             {
                 //dispose all sip objects, so they can be garbage collected
-                
+                ep.libStopWorkerThreads();
                 ep.libDestroy();
-                
                 ep.Dispose();
+                //// Send new state
+                forwardNewRegState(-2);
+
                 //force garbage collection of all disposed objects
                 GC.Collect();
             }
             catch (Exception ex)
             {
-                log.Error("Error UN-registering SIP connection", ex);
+                Console.Write("Error UN-registering SIP connection", ex);
             }
         }
 

@@ -20,14 +20,27 @@ namespace UNET_Classes
                 //begin met alle controls op invisible te zetten.
                 foreach (Control c in _panel.Controls)
                 {
-                    if ((c is Button) && (((Button)c).Enabled == false))
-                    {
-                        if (!c.Name.Contains("Close"))
-                        {
+                    //  if ((c is Button) && (((Button)c).Enabled == false))
+                    //  {
+                    //      c.Visible = false;
+                    //  }
 
-                            c.Visible = false;
+                    if (c is Button)
+                    {
+                        if (((Button)c).Tag != "enable")
+                        {
+                            if (!c.Name.Contains("Close"))
+                            {
+
+                                c.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            c.Visible = true;
                         }
                     }
+
                 }
 
                 //daarna bereken de beschikbare ruimte; er zijn twee situaties: een vierkant panel of een verticaal panel
@@ -63,9 +76,9 @@ namespace UNET_Classes
                     Application.DoEvents();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //log.Error("Error SetPanels", ex);
+                string errormessage = ex.Message;
                 // throw;
             }
         }
@@ -95,9 +108,21 @@ namespace UNET_Classes
                     //begin met alle controls op invisible te zetten.
                     foreach (Control c in _panel.Controls)
                     {
-                        if ((c is Button) && (((Button)c).Enabled == false))
+                        //  if ((c is Button) && (((Button)c).Enabled == false))
+                        //  {
+                        //      c.Visible = false;
+                        //  }
+
+                        if (c is Button)
                         {
-                            c.Visible = false;
+                            if (((Button)c).Tag != "enable")
+                            {
+                                c.Visible = false;
+                            }
+                            else
+                            {
+                                c.Visible = true;
+                            }
                         }
 
                     }

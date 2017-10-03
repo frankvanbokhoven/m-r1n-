@@ -41,7 +41,8 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PJSUA2_NET">
+    <Reference Include="PJSUA2_NET, Version=2.6.0.686, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\PJSUA2_NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />

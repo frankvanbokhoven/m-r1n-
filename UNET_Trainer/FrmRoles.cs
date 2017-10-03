@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Classes;
 using UNET_Theming;
 
 namespace UNET_Trainer
@@ -22,7 +23,8 @@ namespace UNET_Trainer
 
 
         private int SelectedExercise;
-        private int InstructorID;
+        private int InstructorID = -1;
+        private Instructor CurrentInstructor;
 
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
@@ -37,6 +39,11 @@ namespace UNET_Trainer
         {
             SelectedExercise = _exersise;
             InstructorID = _instructorID;
+                         //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
+                                            //en hiermee de knoppen de juiste kleur geven
+             CurrentInstructor =   service.GetAllInstructorData(InstructorID);
+
+            ;
             InitializeComponent();
 
             pnlRoles.Paint += UC_Paint;
@@ -133,9 +140,29 @@ namespace UNET_Trainer
                 }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
-                    pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                //    pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
 
+                    //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                    //zoja, vul de informatie in en enable de knop
+                    if (InstructorID != -1)
+                    {
+                        if (!Object.ReferenceEquals(CurrentInstructor.Exercises, null))
+                        {
+                            if (SelectedExercise != -1)
+                            {
+                                foreach (Role assignedRole in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                {
+                                    if (assignedRole.ID == role.ID)
+                                    {
+                                        pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                                        pnlRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 //now resize all buttons to make optimal use of the available room

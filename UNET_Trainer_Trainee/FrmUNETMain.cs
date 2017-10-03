@@ -474,14 +474,15 @@ namespace UNET_Trainer_Trainee
         {
             try
             {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, TraineeID);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);//, 23);// TraineeID);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+               
                 sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
             }
             catch (Exception ex)
             {
-                log.Error("Error updating screen controls", ex);
+                log.Error("Error making call to: " + _destination, ex);
                 // throw;
             }
         }
@@ -518,10 +519,16 @@ namespace UNET_Trainer_Trainee
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
+            if (btnIntercom.BackColor == Theming.IntercomPressed)
+                btnIntercom.BackColor = Theming.IntercomPressed;
+            else
+                btnIntercom.BackColor = Theming.IntercomNotPressed;
+
+
             log.Info("Clicked Intercom");
-            PlayBeep();
-            MakeCall(TraineeID,@"INTERCOM_CUB_X\" + TraineeID);
-        }
+             MakeCall(TraineeID,@"INTERCOM_CUB_X" + TraineeID);
+             PlayBeep();
+      }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
