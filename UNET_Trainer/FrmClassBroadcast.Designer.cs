@@ -376,6 +376,7 @@
             this.btnBroadcast.Text = "Broadcast";
             this.btnBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBroadcast.UseVisualStyleBackColor = false;
+            this.btnBroadcast.Click += new System.EventHandler(this.btnBroadcast_Click);
             this.btnBroadcast.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBroadcast_MouseDown);
             this.btnBroadcast.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnBroadcast_MouseUp);
             // 

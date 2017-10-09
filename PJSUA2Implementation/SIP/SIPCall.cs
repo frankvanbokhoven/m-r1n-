@@ -9,6 +9,7 @@ using pjsua2;
 
 namespace PJSUA2Implementation.SIP
 {
+    public enum aud_med_call_Channel { amcRight = 0, amcLeft = 1, amcSpeaker = 2, amcReverse = 3 };//frank: bepaalt waar de audio heen gaat
     public class SIPCall : pjsua2.Call
     {
         private SipAccount UAacc;
@@ -36,7 +37,7 @@ namespace PJSUA2Implementation.SIP
         }
 
 
-        private void sendCallState(int state)
+        private  void sendCallState(int state)
         {
             CallInfo ci = getInfo();
             if (ci.state == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
@@ -47,138 +48,157 @@ namespace PJSUA2Implementation.SIP
         }
 
 
+        public override void onStreamCreated(OnStreamCreatedParam prm)
+        {
+            base.onStreamCreated(prm);
+        }
+
+
+        /// <summary>
+        /// hier moeten we de toegewezen poorten opruimen.
+        /// </summary>
+        /// <param name="prm"></param>
+        public override void onStreamDestroyed(OnStreamDestroyedParam prm)
+        {
+            base.onStreamDestroyed(prm);
+        }
+
         /// <summary>
         /// brief SipCall::onCallState
         /// </summary>
         /// <param name="_oncallstateparam"></param>
-        public void onCallState(pjsua2.OnCallStateParam _prm)
+        //public void onCallState(pjsua2.OnCallStateParam _prm)
+        //   {
+        public override void onCallState(pjsua2.OnCallStateParam _prm)
         {
-
-            // Print the new call state
-            pjsua2.CallInfo ci = new CallInfo();
-
-            ci = getInfo(); //hier wordt de getInfo methode van de Call baseclass gebruikt!!
-
-             Console.Write("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
-
-            // Execute commands according to the new state
-            switch (ci.state)
+            try
             {
-                case pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
+                base.onCallState(_prm);
 
-                    // Remove the call from the account
-                    //todo: moet verwijderen!!!!! UAacc.removeCall();
 
-                    // Show we are now disconnected
-                    UAacc.newCallState(0);
+                // Print the new call state
+                pjsua2.CallInfo ci = new CallInfo();
 
-                    // Delete the call object
-                    GC.Collect();//  delete this;
+                ci = getInfo(); //hier wordt de getInfo methode van de Call baseclass gebruikt!!
 
-                    break;
-                //case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
-                //    {
+                Console.Write("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
-                //        AudioMedia aud_med = null;
-                //        Media med = null;
+                // Execute commands according to the new state
+                switch (ci.state)
+                {
+                    case pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED:
 
-                //        // Find Audio in call
-                //        for (int i = 0; i < ci.media.Count; i++)
-                //        {
-                //            if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
-                //            {
-                //                aud_med = (pjsua2.AudioMedia)this.getMedia(Convert.ToUInt16(i));
-                //                StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
-                //                Console.Write("*** Media codec: " + si.codecName);
-                //                break;
-                //            }
-                //        }
+                        // Remove the call from the account
+                        //todo: moet verwijderen!!!!! UAacc.removeCall();
 
-                //        if (aud_med != null)
-                //        {
-                //            // Get playback & capture devices
-                //            AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                //            AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                        // Show we are now disconnected
+                        UAacc.newCallState(0);
 
-                //            // Start audio transmissions
-                //            aud_med.startTransmit(play_med);
-                //            cap_med.startTransmit(aud_med);
-                //        }
-                //        else
-                //        {
-                //            Console.Write("****** NO AUDIO FOUND IN CALL ******");
-                //        }
+                        // Delete the call object
+                        GC.Collect();//  delete this;
 
-                //        // Show we are connected
-                //        UAacc.newCallState(1);
-                //        break;
-                //    }
-                case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
-                    {
+                        break;
 
-                        Console.Write(ci.remoteUri + " Has answered the call!!");
-                        //    MessageSink.Instance.Publish(new ErrorMessage(SeverityLevel.Info, "SIPCall", str)); // Show info
-                        AudioMedia aud_med_call = null;
-                        Media med = null;
-
-                        // Find Audio in call
-                        for (int i = 0; i < ci.media.Count; i++)
+                    case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
                         {
-                            if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
-                            {
-                                med = this.getMedia(Convert.ToUInt16(i));
-                                // aud_med = med as AudioMedia;
-                                aud_med_call = AudioMedia.typecastFromMedia(med);
-                                StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
 
-                                break;
+                            Console.Write(ci.remoteUri + " Has answered the call!!");
+                            //    MessageSink.Instance.Publish(new ErrorMessage(SeverityLevel.Info, "SIPCall", str)); // Show info
+                            AudioMedia aud_med_call = null;
+                            Media med = null;
+
+                            // Find Audio in call
+                            for (int i = 0; i < ci.media.Count; i++)
+                            {
+                                if (ci.media[i].type == pjsua2.pjmedia_type.PJMEDIA_TYPE_AUDIO)
+                                {
+                                    med = this.getMedia(Convert.ToUInt16(i));
+                                    // aud_med = med as AudioMedia;
+                                    aud_med_call = AudioMedia.typecastFromMedia(med);
+                                    StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
+
+                                    break;
+                                }
                             }
-                        }
 
-                        if (aud_med_call != null)
-                        {
-                            // Get playback & capture devices
-                          //  AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                          //  AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
-                            // Start audio transmissions
-                          //  aud_med.startTransmit(play_med);
-                          //  cap_med.startTransmit(aud_med);
-                            AudioMediaVector audioMediaVectorDevices = Endpoint.instance().mediaEnumPorts();
-//todo: hier de 4 relevante regels voor de conferencebridge programmeren.
-                            foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
+                            if (aud_med_call != null)
                             {
-                               // if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.SEND)
-                              //  {
-                                    if (audiomediadevice.getPortId() == 0)
+                                // Get playback & capture devices
+                                //  AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                                //  AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                                // Start audio transmissions
+                                //  aud_med.startTransmit(play_med);
+                                //  cap_med.startTransmit(aud_med);
+                                AudioMediaVector audioMediaVectorDevices = Endpoint.instance().mediaEnumPorts();
+                                //   SWIGTYPE_p_void port = new SWIGTYPE_p_void();
+
+                                //todo: hier de 4 relevante regels voor de conferencebridge programmeren.
+                                foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
+                                {
+
+
+                                    // if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.SEND)
+                                    //  {
+                                    //       if (audiomediadevice.getPortId() == 0)
+                                    //      {
+                                    //           audiomediadevice.startTransmit(aud_med_call);
+                                    //      }
+
+                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcRight)
                                     {
-                                        //MIC sends
+
+                                        //        audiomediadevice. ..registerMediaPort(port);
                                         audiomediadevice.startTransmit(aud_med_call);
                                     }
-                                    
-                           //     }
-                                //if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.REC)
-                                //{
-                                //    if (audiomediadevice.getPortId() >= 0 && audiomediadevice.getPortId() <= 2)
-                                //    {
-                                //        //send call media to speakers
-                                //        aud_med_call.startTransmit(audiomediadevice);
-                               //     }
-                               // }
-                            }
-                        }
-                        break;
-                    }
 
-                case pjsip_inv_state.PJSIP_INV_STATE_NULL:
-                    break;
-                case pjsip_inv_state.PJSIP_INV_STATE_EARLY:
-                    break;
-                case pjsip_inv_state.PJSIP_INV_STATE_INCOMING:
-                    break;
-                case pjsip_inv_state.PJSIP_INV_STATE_CALLING:
-                    break;
-                default:
-                    break;
+                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcLeft)
+                                    {
+                                        //     audiomediadevice.registerMediaPort();
+                                        audiomediadevice.startTransmit(aud_med_call);
+
+                                    }
+
+                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcSpeaker)
+                                    {
+                                        //      audiomediadevice.registerMediaPort(port);
+                                        audiomediadevice.startTransmit(aud_med_call);
+
+                                    }
+                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcReverse)
+                                    {
+                                        //   audiomediadevice.registerMediaPort(port);
+                                        audiomediadevice.startTransmit(aud_med_call);
+                                    }
+
+                                    //     }
+                                    //if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.REC)
+                                    //{
+                                    //    if (audiomediadevice.getPortId() >= 0 && audiomediadevice.getPortId() <= 2)
+                                    //    {
+                                    //        //send call media to speakers
+                                    //        aud_med_call.startTransmit(audiomediadevice);
+                                    //     }
+                                    // }
+                                }
+                            }
+                            break;
+                        }
+
+                    case pjsip_inv_state.PJSIP_INV_STATE_NULL:
+                        break;
+                    case pjsip_inv_state.PJSIP_INV_STATE_EARLY:
+                        break;
+                    case pjsip_inv_state.PJSIP_INV_STATE_INCOMING:
+                        break;
+                    case pjsip_inv_state.PJSIP_INV_STATE_CALLING:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                string fout = ex.Message;
             }
 
         }

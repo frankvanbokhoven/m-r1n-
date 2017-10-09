@@ -83,6 +83,7 @@
             this.lblPtt = new System.Windows.Forms.Label();
             this.lblHeadset = new System.Windows.Forms.Label();
             this.lblRegInfo = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelRoles.SuspendLayout();
             this.panelRadios.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,10 +96,10 @@
             this.btnClose.BackColor = System.Drawing.Color.Red;
             this.btnClose.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(787, 657);
+            this.btnClose.Location = new System.Drawing.Point(735, 658);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(95, 34);
+            this.btnClose.Size = new System.Drawing.Size(123, 34);
             this.btnClose.TabIndex = 24;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -570,7 +571,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.lblSetup);
             this.panel1.Controls.Add(this.btnAudio);
-            this.panel1.Location = new System.Drawing.Point(773, 246);
+            this.panel1.Location = new System.Drawing.Point(731, 254);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(130, 136);
@@ -605,7 +606,7 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.btnIntercom);
             this.panel3.Controls.Add(this.btnAssist);
-            this.panel3.Location = new System.Drawing.Point(773, 415);
+            this.panel3.Location = new System.Drawing.Point(731, 418);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(130, 225);
@@ -805,11 +806,22 @@
             this.lblRegInfo.TabIndex = 32;
             this.lblRegInfo.Text = "...";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(937, 464);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(77, 71);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 737);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblRegInfo);
             this.Controls.Add(this.lblHeadset);
             this.Controls.Add(this.lblPtt);
@@ -897,6 +909,7 @@
         private System.Windows.Forms.Label lblRegInfo;
         private System.Windows.Forms.Label lblInstructor;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
     }
 }
 

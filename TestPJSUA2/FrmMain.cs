@@ -71,10 +71,12 @@ namespace TestPJSUA2
         //    }
         //}
 
-        private void AddToListbox(string _text)
+        public void AddToListbox(string _text)
         {
-            listBox1.AppendText(Environment.NewLine);
-            listBox1.AppendText(DateTime.Now.ToShortDateString() + " : " + _text);
+
+
+this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
+            this.Invoke((MethodInvoker)(() => listBox1.AppendText(DateTime.Now.ToShortDateString() + " : " + _text)));
 
             if(_text.ToLower().Contains("incoming"))
             {
@@ -82,31 +84,32 @@ namespace TestPJSUA2
                 btnAnswer.BackColor = Color.LimeGreen;
                 btnAnswer.Text = cOpnemen;
             }
-
+            else
             if (_text.ToLower().Contains("answered"))
             {
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.Red;
                 btnAnswer.Text = cOphangen;
             }
-
+            else
             if (_text.ToLower().Contains("hangup"))
             {
                 btnAnswer.Visible = false;
                 btnAnswer.BackColor = Color.LimeGreen;
                 btnAnswer.Text = cOpnemen;
             }
-
+            else
             if (_text.ToLower().Contains("account:"))
             {
-                toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf("Account:"));
+                this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf("Account:"))));
             }
+            else
 
-
-            if (_text.ToLower().Contains("register:"))
+            if (_text.ToLower().Contains("success:"))
             {
-                toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf(":"));
+                this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text));
             }
+            
 
         }
 
@@ -128,8 +131,9 @@ namespace TestPJSUA2
                 {
                     string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc); //let op! deze constructor mag uitsluidend met het useragent.account aangesproken worden, NIET met traineeid
                     CallOpParam cop = new CallOpParam();
+                    sc.frmm = this;
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
                     //if it is successfully made, we can add it to the callstack
@@ -165,6 +169,7 @@ namespace TestPJSUA2
             {
                 //the useragent holds everything needed for the sip communication
                 useragent = new SIP.UserAgent();
+                useragent.frmm = this;
                 useragent.UserAgentStart();
 
             }
@@ -194,14 +199,14 @@ namespace TestPJSUA2
 
         private void timerSIPMessages_Tick(object sender, EventArgs e)
         {
-            string messages = Classes.WCFcaller.GetSIPStatusMessages();
+          //  string messages = Classes.WCFcaller.GetSIPStatusMessages();
 
-          string[]  messagelist = messages.Split('|');
-            foreach (string str in messagelist )
-            {
-                if(str.Length >0)
-                  AddToListbox(str);
-            }
+          //string[]  messagelist = messages.Split('|');
+          //  foreach (string str in messagelist )
+          //  {
+          //      if(str.Length >0)
+          //        AddToListbox(str);
+          //  }
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
@@ -212,7 +217,9 @@ namespace TestPJSUA2
                 try
                 {
                     string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc);
+                    sc.frmm = this;
+
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.hangup(cop);
@@ -235,7 +242,9 @@ namespace TestPJSUA2
                 {
                 string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc);
+                    sc.frmm = this;
+
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);

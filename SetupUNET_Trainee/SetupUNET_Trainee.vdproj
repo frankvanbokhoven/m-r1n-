@@ -111,36 +111,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
-        "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
-        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
-        "OwnerKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
-        "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
-        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D4E7D95E4A70434B838BA8D99CD00A93"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -233,18 +203,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -409,7 +367,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PJSUA2_NET, Version=2.6.0.686, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_230F528EEB17474A42DB16E6DD5780BF"
@@ -642,68 +600,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD205E1EB6934F5FA89400513613F29E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-                "ScatterAssemblies"
-                {
-                    "_BD205E1EB6934F5FA89400513613F29E"
-                    {
-                    "Name" = "8:System.IO.Compression.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.IO.Compression.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA486150736BDA8939BA7EE3BF935946"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
-                "ScatterAssemblies"
-                {
-                    "_CA486150736BDA8939BA7EE3BF935946"
-                    {
-                    "Name" = "8:System.IO.Compression.FileSystem.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.IO.Compression.FileSystem.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F7219B742B56A9679B2F020879912AE8"
             {
             "AssemblyRegister" = "3:1"
@@ -822,15 +718,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Trainee"
-        "ProductCode" = "8:{374D3C6D-A65C-4C7C-A831-E8E57FC551CC}"
-        "PackageCode" = "8:{2D32B2B8-0ED1-4120-9031-C1C4E488A359}"
+        "ProductCode" = "8:{FB69507A-B4AD-49D0-B8C1-31A7D9B356DB}"
+        "PackageCode" = "8:{C5DEA0BD-1FE6-41E9-9488-1F1EDD244F9D}"
         "UpgradeCode" = "8:{12E5EDE4-3839-4A13-8E0C-423C4F3C47B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.16"
+        "ProductVersion" = "8:0.0.17"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.yggdra.nl"

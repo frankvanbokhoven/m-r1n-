@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pjsua2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,7 @@ namespace UNET_Trainer
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();
 
-
+        public FrmUNETMain frmmain = null;
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         public FrmClassBroadcast()
         {
@@ -293,6 +294,10 @@ namespace UNET_Trainer
             btnBroadcast.BackColor = Constants.cBroadcasting;
             btnBroadcast.ForeColor = Constants.cFontBroadcasting;
             btnBroadcast.Text = "Broadcast" + Environment.NewLine + "BROADCASTING";
+            log.Info("Mousedown ClassBroadcast");
+            if (frmmain != null)
+                frmmain.MakeCall("20000"); //20000 is de code voor de class broadcast conferentie
+
         }
 
         private void btnBroadcast_MouseUp(object sender, MouseEventArgs e)
@@ -304,6 +309,10 @@ namespace UNET_Trainer
 
             AllInstructors(false);
             AllTrainees(false);
+
+            log.Info("Mouseup ClassBroadcast");
+            if (frmmain != null)
+                frmmain.HangupCall("20000"); //20000 is de code voor de class broadcast conferentie
 
         }
 
@@ -326,5 +335,12 @@ namespace UNET_Trainer
             FrmUNETMain.GetForm.Show();
             this.Close();
         }
+
+        private void btnBroadcast_Click(object sender, EventArgs e)
+        {
+       
+        }
+
+
     }
 }

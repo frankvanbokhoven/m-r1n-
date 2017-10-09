@@ -131,7 +131,7 @@ namespace PJSUA2Implementation.SIP
 
             String message = _prm.msgBody;
 
-            Console.WriteLine("*** Incomming IM: " + _prm.msgBody);
+            Console.WriteLine("*** Incoming IM: " + _prm.msgBody);
 
             sendNewIM(message);
         }

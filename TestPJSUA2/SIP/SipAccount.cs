@@ -11,25 +11,12 @@ namespace TestPJSUA2.SIP
 {
     public class SipAccount : pjsua2.Account
     {
-
-        //log4net
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+       public FrmMain frmm;
         public SipAccount()
         {
             Calls = new List<Call>();
         }
         public List<pjsua2.Call> Calls;
-
-        // signals:
-        public void sendNewCallState(int state)
-        {
-        }
-
-        public void sendNewRegState(int state)
-        {
-
-        }
 
         /// <summary>
         /// Stuur een melding naar de console
@@ -37,9 +24,8 @@ namespace TestPJSUA2.SIP
         /// <param name="_im"></param>
         public void sendNewIM(String _im)
         {
-            Classes.WCFcaller.SetSIPStatusMessage(string.Format("IM message: {0}", _im));
+            Console.WriteLine(string.Format("IM message: {0}", _im));
         }
-
 
         /// <summary>
         /// brief SipAccount::removeCall Removes the selected call param call
@@ -52,7 +38,8 @@ namespace TestPJSUA2.SIP
 
                 //    callitr.Remove();
 
-                Classes.WCFcaller.SetSIPStatusMessage("*** removed Call: " + callitr.ToString());
+                Console.WriteLine("*** removed Call: " + callitr.ToString());
+                frmm.AddToListbox("*** removed Call: " + callitr.ToString());
                 callitr.Dispose();
             }
 
@@ -74,9 +61,8 @@ namespace TestPJSUA2.SIP
         public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-         //   log.Info(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri );
-        //    Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.id + " " + ai.uri);
-            Classes.WCFcaller.SetSIPStatusMessage(ai.regIsActive ? "*** Register: " + ai.uri : "*** Unregister: code=" + _prm.code  + ai.uri  + " " + _prm.status + " " + _prm.reason);
+            Console.WriteLine(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
+            frmm.AddToListbox (ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
 
             switch (_prm.code)
             {
@@ -97,7 +83,7 @@ namespace TestPJSUA2.SIP
 
         {
             base.onIncomingSubscribe(_prm);
-            Classes.WCFcaller.SetSIPStatusMessage("*** Incoming subscription:" + _prm.code);
+            Console.WriteLine("*** Incoming subscription:" + _prm.code);
         }
 
         public override void onRegStarted(OnRegStartedParam prm)
@@ -123,23 +109,20 @@ namespace TestPJSUA2.SIP
                 CallInfo ci = call.getInfo();
                 CallOpParam prm = new CallOpParam();
 
-                Classes.WCFcaller.SetSIPStatusMessage("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                Console.WriteLine("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                frmm.AddToListbox("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
                 // Store this call
                 Calls.Add(call);
                 prm.statusCode = (pjsua2.pjsip_status_code)200;
-
-             
-                Thread.Sleep(1000);
                 // Answer the call
                 call.answer(prm);
-                Console.WriteLine("*** Answered Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
 
             }
             catch (Exception ex)
             {
-                Classes.WCFcaller.SetSIPStatusMessage("*** Error on incoming call: " + ex.Message + ex.InnerException);
+                Console.WriteLine("*** Error on incoming call: " + ex.Message + ex.InnerException);
             }
         }
 
@@ -154,7 +137,8 @@ namespace TestPJSUA2.SIP
 
             String message = _prm.msgBody;
 
-            Classes.WCFcaller.SetSIPStatusMessage("*** Incomming IM: " + _prm.msgBody);
+            Console.WriteLine("*** Incomming IM: " + _prm.msgBody);
+            frmm.AddToListbox("*** Incomming IM: " + _prm.msgBody);
 
             sendNewIM(message);
         }
@@ -167,6 +151,21 @@ namespace TestPJSUA2.SIP
         {
 
             sendNewCallState(state);
+        }
+
+        // signals:
+        public void sendNewCallState(int state)
+        {
+            Console.Write("sendNewCallState");
+            frmm.AddToListbox("*** New call state:: " + state);
+
+        }
+
+        public void sendNewRegState(int state)
+        {
+            Console.Write("sendNewCallState");
+            frmm.AddToListbox("*** New reg state:: " + state);
+
         }
 
     }

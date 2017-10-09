@@ -41,9 +41,9 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PJSUA2_NET, Version=2.6.0.686, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\PJSUA2_NET.dll</HintPath>
+      <HintPath>..\Libraries\OudeDlls(debug door mark)\PJSUA2_NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ConsoleCatcher.cs" />
-    <Compile Include="Classes\WCFcaller.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,11 +70,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UNET_Service\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="SIP\SipAccount.cs" />
     <Compile Include="SIP\SipBuddy.cs" />
     <Compile Include="SIP\SIPCall.cs" />
@@ -103,40 +97,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\UNET_Service\Service1.wsdl" />
-    <None Include="Service References\UNET_Service\Service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\Service11.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\Service12.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\Service13.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.CurrentInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Exercise.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Instructor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Platform.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Radio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\TestPJSUA2.UNET_Service.Trainee.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -145,24 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UNET_Service\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\Service1.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\UNET_Service\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MarineGrey.ico" />

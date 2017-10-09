@@ -41,7 +41,8 @@ namespace UNET_Trainer
         public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); // ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
 
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
-
+        private PJSUA2Implementation.SIP.SIPCall sc;
+        private CallOpParam cop;
         /// WCF service
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         //arrays that hold the statusses of the some
@@ -481,7 +482,12 @@ namespace UNET_Trainer
                 useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                 useragent.UserAgentStart();
 
-            }
+                sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+
+
+    }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
@@ -506,6 +512,7 @@ namespace UNET_Trainer
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             FrmClassBroadcast frm = new FrmClassBroadcast();
+            frm.frmmain = this; //we need the formmain because it holds the SIP connection
             frm.Show();
         }
 
@@ -869,39 +876,29 @@ namespace UNET_Trainer
         }
         #region CALL
 
-        private void MakeCall(string _sipAccount)
+ 
+        /// <summary>
+        /// Make a call to Freeswich using PJSUA2
+        /// </summary>
+        /// <param name="traineeid"></param>
+        /// <param name="_destination"></param>
+        public void MakeCall(string _destination)
         {
-            //first try to find it in the list of active calls
-            bool found = false;
+            try
+            {
+                log.Info("Making call to: " + _destination);
+          //      PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+          //      CallOpParam cop = new CallOpParam();
+          //      cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
-
-            foreach (pjsua2.Call call in useragent.acc.Calls)
-            {
-                //    if(call.)
+                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
             }
-            foreach (PJSUA2Implementation.SIP.SIPCall sipcall in ucb.ActiveCalls)
+            catch (Exception ex)
             {
-                //  if(sipcall.CallID ==)
-            }
-            if (!found)
-            {
-                try
-                {
-                    PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-                    CallOpParam cop = new CallOpParam();
-                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    sc.makeCall(string.Format("sip:{0}@{1}", SIPAccountname, SIPServer), cop);
-                    //voeg de call toe aan de activecall lijst
-                    ucb.ActiveCalls.Add(sc);
-                }
-                catch (Exception ex)
-                {
-                    log.Error("Error updating screen controls", ex);
-                    // throw;
-                }
+                log.Error("Error making call to: " + _destination, ex);
+                // throw;
             }
         }
-
 
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
@@ -910,12 +907,12 @@ namespace UNET_Trainer
         /// <param name="_destination"></param>
         /// <param name="_noiseLevel">The noiselevel. this can be edited on the RadioSetup screen</param>
         /// <param name="_whatthecallisabout">Description of the call, for logging purposes</param>
-        private void MakeCall(int _instructorID, string _destination, int? _noiseLevel, string _whatthecallisabout)
+        public void MakeCall(int _instructorID, string _destination, int? _noiseLevel, string _whatthecallisabout)
         {
             try
             {
                 log.Info("Making call about: " + _whatthecallisabout + ", from: " + _instructorID + ", to: " + _destination);
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, _instructorID);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                 sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
@@ -928,17 +925,46 @@ namespace UNET_Trainer
             }
         }
 
+        /// <summary>
+        /// hang up a given call
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <param name="_destination"></param>
+        public void HangupCall(string _destination)
+        {
+
+            try
+            {
+                log.Info("Hanging up call to: " + _destination);
+
+                useragent.acc.removeCall(sc);
+
+              //  PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+             //   CallOpParam cop = new CallOpParam();
+             //   cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+
+             //   sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error making call to: " + _destination, ex);
+                // throw;
+            }
+
+        }
+
+
         #endregion
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_Instructor_X\" + InstructorID, -1, "Intercom");
+            MakeCall(InstructorID, @"INTERCOM_CUB_" + InstructorID, -1, "Intercom");
 
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_X\" + InstructorID, -1, "Assist");
+            MakeCall(InstructorID, @"INTERCOM_CUB_" + InstructorID, -1, "Assist");
 
         }
 

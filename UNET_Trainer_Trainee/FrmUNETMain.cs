@@ -421,14 +421,16 @@ namespace UNET_Trainer_Trainee
                     state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
                 }
                 //2 zoek die op in de radios lijst in de conferencebridge
-                switch (state)
+                string btnstate = ((Button)sender).Tag.ToString();
+                switch (btnstate) //todo: weer werkend maken
                 {
                     //3 zet de status   
                     case "Rx":
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
-                            MakeCall(TraineeID, "1015");
+                            ((Button)sender).Tag = "Tx";
+                            MakeCall("1016");
                             break;
                         }
                     case "Off":
@@ -436,12 +438,14 @@ namespace UNET_Trainer_Trainee
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
+                            ((Button)sender).Tag = "Rx";
                             break;
                         }
                     case "Tx":
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
+                            ((Button)sender).Tag = "Off";
                             break;
                         }
                 }
@@ -455,7 +459,7 @@ namespace UNET_Trainer_Trainee
 
 
 
-                MakeCall(Convert.ToInt16(radioNumber), "1015");
+                MakeCall("1015" +(Convert.ToInt16(radioNumber)));
             }
             catch (Exception ex)
             {
@@ -470,11 +474,11 @@ namespace UNET_Trainer_Trainee
         /// </summary>
         /// <param name="traineeid"></param>
         /// <param name="_destination"></param>
-        private void MakeCall(int traineeid, string _destination)
+        private void MakeCall(string _destination)
         {
             try
             {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);//, 23);// TraineeID);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                
@@ -487,12 +491,22 @@ namespace UNET_Trainer_Trainee
             }
         }
 
+        /// <summary>
+        /// hang up a given call
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <param name="_destination"></param>
+        private void HangupCall(string _destination)
+        {
+
+        }
+
         #endregion
 
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             log.Info("Clicked ClassBroadcast");
-            MakeCall(TraineeID, "");
+            MakeCall("20000"); //20000 is de code voor de class broadcast conferentie
 
 
         }
@@ -526,13 +540,14 @@ namespace UNET_Trainer_Trainee
 
 
             log.Info("Clicked Intercom");
-             MakeCall(TraineeID,@"INTERCOM_CUB_X" + TraineeID);
+       //      MakeCall(TraineeID,@"INTERCOM_CUB_" + TraineeID);
+            MakeCall("12345"); //12345 is de code voor de intercom
              PlayBeep();
       }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(TraineeID, @"MIC_Conference_Pos01\" + TraineeID);
+            MakeCall(@"MIC_Conference_Pos01\" + TraineeID);
             log.Info("Clicked assist by:" + TraineeID);
 
         }
@@ -643,6 +658,11 @@ namespace UNET_Trainer_Trainee
             ((Button)sender).ForeColor = Color.White;
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MakeCall("1016");
         }
     }
 }
