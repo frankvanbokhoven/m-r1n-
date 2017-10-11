@@ -174,7 +174,14 @@ namespace UNET_ServiceStatus
                     {
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("Trainee::  " + trainee.ID + " Name: " + trainee.Name + "  Aangemeld sinds: " + trainee.RegisteredSince.ToString());
-                        Console.Write(Environment.NewLine);               
+                        Console.Write(Environment.NewLine);   
+                        foreach(Radio rn in trainee.Radios)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.Write(string.Format("                              Assigned radio: {0} Trainee: {0} Descr: {1} Noise: {2}", rn.ID, rn.Description, rn.NoiseLevel));
+                            Console.Write(Environment.NewLine);
+
+                        }
 
                     }
                 }

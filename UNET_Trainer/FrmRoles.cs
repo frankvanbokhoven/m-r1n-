@@ -39,11 +39,11 @@ namespace UNET_Trainer
         {
             SelectedExercise = _exersise;
             InstructorID = _instructorID;
-                         //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
-                                            //en hiermee de knoppen de juiste kleur geven
+            //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
+             //en hiermee de knoppen de juiste kleur geven
              CurrentInstructor =   service.GetAllInstructorData(InstructorID);
 
-            ;
+            
             InitializeComponent();
 
             pnlRoles.Paint += UC_Paint;
@@ -60,9 +60,7 @@ namespace UNET_Trainer
         protected void UC_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
-
-            //   ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 2, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid, Color.White, 4, ButtonBorderStyle.Solid);
-
+ 
         }
 
         private void FrmRoles_Load(object sender, EventArgs e)
@@ -70,16 +68,13 @@ namespace UNET_Trainer
             lblRoleTitle.Text = "Role assignment    Selected excercise: " + SelectedExercise + "   Instructor: " + InstructorID;
         
 
-        timer1.Enabled = true;
+           timer1.Enabled = true;
 
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.InitPanels(pnlRoles);
 
             the.SetFormSizeAndPosition(this);
-
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -88,7 +83,6 @@ namespace UNET_Trainer
             {
                 SetButtonStatus(this);
             }
-
         }
 
         private void FrmRoles_FormClosing(object sender, FormClosingEventArgs e)
@@ -140,24 +134,26 @@ namespace UNET_Trainer
                 }
                 foreach (UNET_Classes.Role role in lstrole)
                 {
-                //    pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
 
                     //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
                     //zoja, vul de informatie in en enable de knop
                     if (InstructorID != -1)
                     {
+                        if(!Object.ReferenceEquals(CurrentInstructor, null))
+                        { 
                         if (!Object.ReferenceEquals(CurrentInstructor.Exercises, null))
                         {
-                            if (SelectedExercise != -1)
-                            {
-                                foreach (Role assignedRole in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                if (SelectedExercise != -1)
                                 {
-                                    if (assignedRole.ID == role.ID)
+                                    foreach (Role assignedRole in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
                                     {
-                                        pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                                        pnlRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                        if (assignedRole.ID == role.ID)
+                                        {
+                                            pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                                            pnlRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
 
+                                        }
                                     }
                                 }
                             }
@@ -171,6 +167,7 @@ namespace UNET_Trainer
             catch (Exception ex)
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
+                Console.Write("Error SetButtonStatus: " + ex.Message);
                 // throw;
             }
         }

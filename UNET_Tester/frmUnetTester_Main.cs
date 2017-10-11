@@ -430,10 +430,32 @@ namespace UNET_Tester
                 //maak nu een lijstje met instructors, op basis van de id's en  stuur dat naar de service
                 Instructor[] listInstructors;
                 List<Instructor> objlist = new List<Instructor>();
+                bool first = true;
                 foreach (string inst in instructorids)
                 {
+
                     UNET_Classes.Instructor instructor = new UNET_Classes.Instructor(Convert.ToInt16(inst), inst + "_instructor");
                     objlist.Add(instructor);
+
+                    if (cbxAssignRoles.Checked)
+                    {
+                        //if the loop is in the first run, add the roles to the first instructor (hopefully the only one) as specified in 2.4.3
+                        if (first)
+                        {
+                                 AddToListbox(string.Format("Adding roles to instructor: {0}", inst, Color.LimeGreen));
+                                // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
+                                Application.DoEvents();
+                                //enable the Roles buttons
+                                var rolelist = service.GetRoles();
+                                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                                foreach (UNET_Classes.Role role in lstrole)
+                                {
+                                    instructor.AssignedRoles.Add(role);
+                                }                         
+          
+                            first = false;
+                        }
+                    }
                 }
                 listInstructors = (Instructor[])objlist.ToArray();
 

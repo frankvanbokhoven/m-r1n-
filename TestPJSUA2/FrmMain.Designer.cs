@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnHangup = new System.Windows.Forms.Button();
             this.lblCallstackCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxAccount = new System.Windows.Forms.ComboBox();
@@ -41,6 +42,8 @@
             this.timerSIPMessages = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHeadset = new System.Windows.Forms.Label();
+            this.lblPtt = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +51,9 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblHeadset);
+            this.panel1.Controls.Add(this.lblPtt);
+            this.panel1.Controls.Add(this.btnHangup);
             this.panel1.Controls.Add(this.lblCallstackCount);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cbxAccount);
@@ -56,18 +62,34 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.MinimumSize = new System.Drawing.Size(2, 181);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.MinimumSize = new System.Drawing.Size(2, 147);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(808, 181);
+            this.panel1.Size = new System.Drawing.Size(606, 147);
             this.panel1.TabIndex = 2;
+            // 
+            // btnHangup
+            // 
+            this.btnHangup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnHangup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHangup.ForeColor = System.Drawing.Color.White;
+            this.btnHangup.Location = new System.Drawing.Point(179, 72);
+            this.btnHangup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHangup.Name = "btnHangup";
+            this.btnHangup.Size = new System.Drawing.Size(74, 57);
+            this.btnHangup.TabIndex = 7;
+            this.btnHangup.Text = "Op hangen";
+            this.btnHangup.UseVisualStyleBackColor = false;
+            this.btnHangup.Visible = false;
             // 
             // lblCallstackCount
             // 
             this.lblCallstackCount.AutoSize = true;
             this.lblCallstackCount.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCallstackCount.Location = new System.Drawing.Point(642, 139);
+            this.lblCallstackCount.Location = new System.Drawing.Point(482, 113);
+            this.lblCallstackCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCallstackCount.Name = "lblCallstackCount";
-            this.lblCallstackCount.Size = new System.Drawing.Size(28, 22);
+            this.lblCallstackCount.Size = new System.Drawing.Size(23, 17);
             this.lblCallstackCount.TabIndex = 6;
             this.lblCallstackCount.Text = "...";
             // 
@@ -75,9 +97,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(494, 141);
+            this.label1.Location = new System.Drawing.Point(370, 115);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 20);
+            this.label1.Size = new System.Drawing.Size(116, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Callstack count:";
             // 
@@ -96,9 +119,10 @@
             "RIGHTConference_Pos01001",
             "LEFTConference_Pos01002",
             "RIGHTConference_Pos01002"});
-            this.cbxAccount.Location = new System.Drawing.Point(118, 22);
+            this.cbxAccount.Location = new System.Drawing.Point(88, 18);
+            this.cbxAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxAccount.Name = "cbxAccount";
-            this.cbxAccount.Size = new System.Drawing.Size(254, 28);
+            this.cbxAccount.Size = new System.Drawing.Size(222, 24);
             this.cbxAccount.TabIndex = 4;
             // 
             // btnCall
@@ -106,9 +130,10 @@
             this.btnCall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCall.ForeColor = System.Drawing.Color.White;
-            this.btnCall.Location = new System.Drawing.Point(11, 22);
+            this.btnCall.Location = new System.Drawing.Point(8, 18);
+            this.btnCall.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCall.Name = "btnCall";
-            this.btnCall.Size = new System.Drawing.Size(88, 70);
+            this.btnCall.Size = new System.Drawing.Size(66, 57);
             this.btnCall.TabIndex = 3;
             this.btnCall.Text = "Call";
             this.btnCall.UseVisualStyleBackColor = false;
@@ -119,9 +144,10 @@
             this.btnAnswer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnswer.ForeColor = System.Drawing.Color.White;
-            this.btnAnswer.Location = new System.Drawing.Point(118, 88);
+            this.btnAnswer.Location = new System.Drawing.Point(88, 72);
+            this.btnAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAnswer.Name = "btnAnswer";
-            this.btnAnswer.Size = new System.Drawing.Size(98, 70);
+            this.btnAnswer.Size = new System.Drawing.Size(74, 57);
             this.btnAnswer.TabIndex = 2;
             this.btnAnswer.Text = "Opnemen";
             this.btnAnswer.UseVisualStyleBackColor = false;
@@ -134,9 +160,10 @@
             this.button1.BackColor = System.Drawing.Color.DarkRed;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(705, 22);
+            this.button1.Location = new System.Drawing.Point(529, 18);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 70);
+            this.button1.Size = new System.Drawing.Size(63, 57);
             this.button1.TabIndex = 1;
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
@@ -145,10 +172,11 @@
             // listBox1
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listBox1.Location = new System.Drawing.Point(0, 181);
+            this.listBox1.Location = new System.Drawing.Point(0, 147);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listBox1.Multiline = true;
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(808, 414);
+            this.listBox1.Size = new System.Drawing.Size(606, 337);
             this.listBox1.TabIndex = 3;
             // 
             // timerSIPMessages
@@ -161,27 +189,47 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 595);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 482);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(808, 25);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(606, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // lblHeadset
+            // 
+            this.lblHeadset.AutoSize = true;
+            this.lblHeadset.Location = new System.Drawing.Point(294, 72);
+            this.lblHeadset.Name = "lblHeadset";
+            this.lblHeadset.Size = new System.Drawing.Size(16, 13);
+            this.lblHeadset.TabIndex = 10;
+            this.lblHeadset.Text = "---";
+            // 
+            // lblPtt
+            // 
+            this.lblPtt.AutoSize = true;
+            this.lblPtt.Location = new System.Drawing.Point(294, 59);
+            this.lblPtt.Name = "lblPtt";
+            this.lblPtt.Size = new System.Drawing.Size(16, 13);
+            this.lblPtt.TabIndex = 9;
+            this.lblPtt.Text = "---";
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 620);
+            this.ClientSize = new System.Drawing.Size(606, 504);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test PJSUA2";
@@ -208,6 +256,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Label lblCallstackCount;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnHangup;
+        private System.Windows.Forms.Label lblHeadset;
+        private System.Windows.Forms.Label lblPtt;
     }
 }
 

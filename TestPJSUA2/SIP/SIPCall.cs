@@ -104,7 +104,7 @@ namespace TestPJSUA2.SIP
                         {
 
                             Console.Write(ci.remoteUri + " Has answered the call!!");
-                            frmm.AddToListbox(("*** Call: " + ci.remoteUri + "  has answered the call!!"));
+                          //  frmm.AddToListbox(("*** Call: " + ci.remoteUri + "  has answered the call!!"));
 
                             //    MessageSink.Instance.Publish(new ErrorMessage(SeverityLevel.Info, "SIPCall", str)); // Show info
                             AudioMedia aud_med_call = null;
@@ -135,55 +135,35 @@ namespace TestPJSUA2.SIP
                                 AudioMediaVector audioMediaVectorDevices = Endpoint.instance().mediaEnumPorts();
                                 //   SWIGTYPE_p_void port = new SWIGTYPE_p_void();
 
+
+                                AudioMedia left = null;
+                                AudioMedia right = null;
+                                AudioMedia speaker = null;
+
                                 //todo: hier de 4 relevante regels voor de conferencebridge programmeren.
                                 foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                 {
 
                                     frmm.AddToListbox((">> audiomediadevice: " + audiomediadevice.getPortId()));
+                                    int id = audiomediadevice.getPortId();
 
-                                    // if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.SEND)
-                                    //  {
-                                    //       if (audiomediadevice.getPortId() == 0)
-                                    //      {
-                                    //           audiomediadevice.startTransmit(aud_med_call);
-                                    //      }
-
-                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcRight)
+                                    if (audiomediadevice.getPortId() == 0)
                                     {
-
-                                        //        audiomediadevice. ..registerMediaPort(port);
-                                        audiomediadevice.startTransmit(aud_med_call);
+                                        left = audiomediadevice;
                                     }
 
-                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcLeft)
+                                    if (audiomediadevice.getPortId() == 1)
                                     {
-                                        //     audiomediadevice.registerMediaPort();
-                                        audiomediadevice.startTransmit(aud_med_call);
-
+                                        right = audiomediadevice;
                                     }
 
-                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcSpeaker)
+                                    if (audiomediadevice.getPortId() == 2)
                                     {
-                                        //      audiomediadevice.registerMediaPort(port);
-                                        audiomediadevice.startTransmit(aud_med_call);
-
+                                        speaker = audiomediadevice;
                                     }
-                                    if (audiomediadevice.getPortId() == (int)aud_med_call_Channel.amcReverse)
-                                    {
-                                        //   audiomediadevice.registerMediaPort(port);
-                                        audiomediadevice.startTransmit(aud_med_call);
-                                    }
-
-                                    //     }
-                                    //if (_Direction == DIRECTION.RECSEND || _Direction == DIRECTION.REC)
-                                    //{
-                                    //    if (audiomediadevice.getPortId() >= 0 && audiomediadevice.getPortId() <= 2)
-                                    //    {
-                                    //        //send call media to speakers
-                                    //        aud_med_call.startTransmit(audiomediadevice);
-                                    //     }
-                                    // }
                                 }
+                                left.startTransmit(right);
+                                left.startTransmit(left);
                             }
                             break;
                         }

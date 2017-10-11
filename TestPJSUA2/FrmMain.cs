@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pjsua2;
 using System.Configuration;
+using System.IO;
+using System.Net.Sockets;
+using System.Diagnostics;
+
 namespace TestPJSUA2
 {
     public partial class FrmMain : Form
@@ -36,7 +40,7 @@ namespace TestPJSUA2
             this.Close();
         }
 
-    
+
         #region threadsafecalls
         //private void setTextUnsafe(object sender, EventArgs e)
         //{
@@ -55,7 +59,7 @@ namespace TestPJSUA2
 
         //public void AddItemThreadSafe(string item)
         //{
-            
+
         //    if (listbox1.InvokeRequired)
         //    {
         //        tb.Invoke(new MethodInvoker(delegate
@@ -75,10 +79,10 @@ namespace TestPJSUA2
         {
 
 
-this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
+            this.Invoke((MethodInvoker)(() => listBox1.AppendText(Environment.NewLine)));
             this.Invoke((MethodInvoker)(() => listBox1.AppendText(DateTime.Now.ToShortDateString() + " : " + _text)));
 
-            if(_text.ToLower().Contains("incoming"))
+            if (_text.ToLower().Contains("incoming"))
             {
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.LimeGreen;
@@ -90,6 +94,8 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.Red;
                 btnAnswer.Text = cOphangen;
+
+                btnHangup.Visible = true;
             }
             else
             if (_text.ToLower().Contains("hangup"))
@@ -108,8 +114,9 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
             if (_text.ToLower().Contains("success:"))
             {
                 this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text));
+                btnHangup.Visible = true;
             }
-            
+
 
         }
 
@@ -178,6 +185,17 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
                 MessageBox.Show(ex.Message);
                 log.Error("Error creating accounts " + ex.Message);
             }
+
+            try
+            {
+                //this is specially for the COMservice that listens to the PTT and Headset events, generated
+                //by the TCPSocketClient 
+                Task.Factory.StartNew(() => { StartListinging(); });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
+            }
         }
 
         /// <summary>
@@ -199,19 +217,19 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
 
         private void timerSIPMessages_Tick(object sender, EventArgs e)
         {
-          //  string messages = Classes.WCFcaller.GetSIPStatusMessages();
+            //  string messages = Classes.WCFcaller.GetSIPStatusMessages();
 
-          //string[]  messagelist = messages.Split('|');
-          //  foreach (string str in messagelist )
-          //  {
-          //      if(str.Length >0)
-          //        AddToListbox(str);
-          //  }
+            //string[]  messagelist = messages.Split('|');
+            //  foreach (string str in messagelist )
+            //  {
+            //      if(str.Length >0)
+            //        AddToListbox(str);
+            //  }
         }
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-            if(btnAnswer.Text.ToLower().Contains("ophangen"))
+            if (btnAnswer.Text.ToLower().Contains("ophangen"))
             {
                 AddToListbox("Hanging up the call: " + cbxAccount.Text);
                 try
@@ -237,10 +255,10 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
             }
             else
             {
-                   AddToListbox("Answering call: " + cbxAccount.Text);
+                AddToListbox("Answering call: " + cbxAccount.Text);
                 try
                 {
-                string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
+                    string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc);
                     sc.frmm = this;
@@ -252,16 +270,118 @@ this.Invoke((MethodInvoker)(() =>  listBox1.AppendText(Environment.NewLine)));
                     CallStack.Add(sc);
                     lblCallstackCount.Text = CallStack.Count.ToString();
 
-                    AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(),sipserver ));
+                    AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
                     btnAnswer.Text = cOphangen;
                 }
                 catch (Exception ex)
                 {
-                  AddToListbox(("Error answering the call" + ex.Message ));
+                    AddToListbox(("Error answering the call" + ex.Message));
                     // throw;
                 }
             }
- 
+
+        }
+
+
+        #region HID COMserver
+
+        private StreamWriter serverStreamWriter;
+        private StreamReader serverStreamReader;
+        /// <summary>
+        /// Start Server
+        /// </summary>
+        /// <returns></returns>
+        private bool StartServer()
+        {
+            //1: create server's tcp listener for incoming connection
+            TcpListener tcpServerListener = new TcpListener(4444);
+            tcpServerListener.Start();      //start server
+            Console.WriteLine("Server Started");
+            //block tcplistener to accept incoming connection
+            Socket serverSocket = tcpServerListener.AcceptSocket();
+
+
+            //2: start the server that listens to the events
+            try
+            {
+                if (serverSocket.Connected)
+                {
+                    Console.WriteLine("tcpClient for PTT and headset event capture connected");
+                    //open network stream on accepted socket
+                    NetworkStream serverSockStream = new NetworkStream(serverSocket);
+                    serverStreamWriter = new StreamWriter(serverSockStream);
+                    serverStreamReader = new StreamReader(serverSockStream);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+
+            //3: start the win32 client that captures the PTT and headset events
+            try
+            {
+                if (File.Exists(Path.Combine(Application.StartupPath, "TCPSocketClient.exe")))
+                {
+                    var pr = new Process();
+                    pr.StartInfo.FileName = Path.Combine(Application.StartupPath, "TCPSocketClient.exe");
+                    pr.Start();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot find tcpclient " + ex.Message + ex.StackTrace);
+
+            }
+            return true;
+        }
+        //////////////////////////////////////////////////////////////////////////////
+        ///Event handlers
+        //////////////////////////////////////////////////////////////////////////////
+        private void StartListinging()
+        {
+            //start server
+            if (!StartServer())
+                Console.WriteLine("Unable to start server");
+
+            //sending n receiving msgs
+            while (true)
+            {
+                // Application.DoEvents();
+                string received = serverStreamReader.ReadLine();
+                if (received.Length > 0)
+                {
+                    string[] splitstr = received.Split('|');
+                    if (splitstr[0].ToString().Trim().ToLower() == "ptt")
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblPtt.Text = "PTT ";
+
+                        }
+                        else
+                            lblPtt.Text = "";
+                    }
+                    else
+                    {
+                        if (splitstr[1].ToString().Trim().ToLower() == "true")
+                        {
+                            lblHeadset.Text = "HEADSET";
+
+                        }
+                        else
+                            lblHeadset.Text = "";
+                    }
+                }
+                //  Application.DoEvents();
+                //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
+                //    serverStreamWriter.WriteLine("Hi!");
+                //    serverStreamWriter.Flush();
+            }//while
+        }
+        #endregion
+
     }
 }

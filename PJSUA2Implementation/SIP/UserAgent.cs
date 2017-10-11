@@ -109,8 +109,11 @@ namespace PJSUA2Implementation.SIP
             // Configure Audio Interface
             try
             {
-            //    ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
-                
+                ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
+                AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+
+
             }
             catch (Exception ex)
             {

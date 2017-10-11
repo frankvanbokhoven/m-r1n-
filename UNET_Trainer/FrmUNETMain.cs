@@ -538,6 +538,7 @@ namespace UNET_Trainer
                 MonitorTrainee = false;
 
                 //todo: really stop monitoring!!
+                useragent.receiveInputMute(true);
             }
             else
             {

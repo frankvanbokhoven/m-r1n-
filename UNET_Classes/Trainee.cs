@@ -14,10 +14,13 @@ namespace UNET_Classes
         public string Name { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DateTime RegisteredSince { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Radio> Radios { get; set; }
 
 
         public Trainee()
         {
+            Radios = new List<Radio>();
 
         }
         /// <summary>
@@ -30,6 +33,7 @@ namespace UNET_Classes
             ID = _id;
             Name = _name;
             RegisteredSince = DateTime.Now;
+            Radios = new List<Radio>();
         }
     }
 }

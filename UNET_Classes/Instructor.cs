@@ -10,6 +10,7 @@ namespace UNET_Classes
         public int ID { get; set; }
         public string Name { get; set; }
         public List<Exercise> Exercises { get; set; }
+        public List<Role> AssignedRoles { get; set; }
 
         /// <summary>
         /// constructor
@@ -19,6 +20,7 @@ namespace UNET_Classes
         public Instructor(int _id, string _name)
         {
             Exercises = new List<Exercise>();
+            AssignedRoles = new List<Role>();
             ID = _id;
             Name = _name;
 
@@ -27,6 +29,7 @@ namespace UNET_Classes
         public Instructor()
         {
             Exercises = new List<Exercise>();
+            AssignedRoles = new List<Role>();
         }
 
     }
