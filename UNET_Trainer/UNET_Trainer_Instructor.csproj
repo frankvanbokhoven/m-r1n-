@@ -45,7 +45,7 @@
       <HintPath>..\UNET_TrainerClient\packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PJSUA2_NET, Version=2.6.0.686, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\PJSUA2_NET.dll</HintPath>
     </Reference>

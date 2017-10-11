@@ -148,13 +148,15 @@ namespace PJSUA2Implementation.SIP
                 // Create account configuration
                 AccountConfig acfg = new AccountConfig();
                 acfg.idUri = "sip:" + Account + "@" + Domain;
-                string sipserver = string.Format("{0}", SipServer);
+              //  string sipserver = string.Format("{0}", SipServer);
+                string sipserver = string.Format("sip:{0}",SipServer);
+
                 acfg.regConfig.registrarUri = sipserver;
                 acfg.regConfig.registerOnAdd = true;
               
                 acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
                 acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-                AuthCredInfo cred = new AuthCredInfo("digest", SipServer, Account, 0, Password);
+                AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
                 cred.realm = Domain;
                 //orginele code
                 //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
