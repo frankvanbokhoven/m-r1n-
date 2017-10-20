@@ -141,7 +141,7 @@ namespace PJSUA2Implementation.SIP
                                 foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                 {
 
-                                    Console.Write(">> audiomediadevice: " + audiomediadevice.getPortId());
+                                    Console.Write(">> audiomediadevice: " + audiomediadevice.getPortId() );
 
                                     int id = audiomediadevice.getPortId();
 

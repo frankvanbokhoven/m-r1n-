@@ -37,6 +37,9 @@ namespace UNET_Trainer_Trainee
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
         private SoundPlayer simpleSound;
 
+        private PJSUA2Implementation.SIP.SIPCall sc;
+        private CallOpParam cop;
+
         private bool HeadsetPlugged = false;
         private bool SoundPlaying = false;
         private int RoleClicked = -1;
@@ -133,6 +136,10 @@ namespace UNET_Trainer_Trainee
                     //the useragent holds everything needed for the sip communication
                     useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                     useragent.UserAgentStart();
+
+                    sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                    cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     lblRegInfo.Text = "Registered: " + TraineeID + " " +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 }
                 catch (Exception ex)
@@ -498,7 +505,18 @@ namespace UNET_Trainer_Trainee
         /// <param name="_destination"></param>
         private void HangupCall(string _destination)
         {
+            try
+            {
+                log.Info("Hanging up call to: " + _destination);
 
+                useragent.acc.removeCall(sc);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error making call to: " + _destination, ex);
+                // throw;
+            }
         }
 
         #endregion

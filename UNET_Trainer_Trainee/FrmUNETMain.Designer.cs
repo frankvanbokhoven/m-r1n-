@@ -716,7 +716,7 @@
             // 
             this.lblExerciseMode.AutoSize = true;
             this.lblExerciseMode.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExerciseMode.Location = new System.Drawing.Point(142, 62);
+            this.lblExerciseMode.Location = new System.Drawing.Point(142, 64);
             this.lblExerciseMode.Name = "lblExerciseMode";
             this.lblExerciseMode.Size = new System.Drawing.Size(64, 28);
             this.lblExerciseMode.TabIndex = 17;

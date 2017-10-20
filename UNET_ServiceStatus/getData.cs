@@ -38,7 +38,7 @@ namespace UNET_ServiceStatus
             }
             //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
             //en hiermee de knoppen de juiste kleur geven
-   
+
             try
             {
                 Console.Clear();
@@ -46,7 +46,7 @@ namespace UNET_ServiceStatus
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
 
-                Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 2 oktober 2017");
+                Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 11 oktober 2017");
                 Console.Write(Environment.NewLine);
                 Console.Write("UNET Status weergever van de UNET_Service");
                 Console.Write(Environment.NewLine);
@@ -56,10 +56,9 @@ namespace UNET_ServiceStatus
 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(DateTime.Now.ToString() + " Get instructor data");
-                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
+                Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
                 Console.Write(Environment.NewLine);
 
-                Console.Write("*");
 
 
                 //Instructors
@@ -78,8 +77,8 @@ namespace UNET_ServiceStatus
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("Instructor::  " + instr.ID + " Name: " + instr.Name);
-                        Console.Write(Environment.NewLine);     
-                        foreach(UNET_Classes.Exercise exe in instr.Exercises)
+                        Console.Write(Environment.NewLine);
+                        foreach (UNET_Classes.Exercise exe in instr.Exercises)
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("         Instructor::  " + instr.ID + " Exerciseid: " + exe.Number + " ExerciseName: " + exe.ExerciseName + "  Specificationname: " + exe.SpecificationName);
@@ -88,13 +87,6 @@ namespace UNET_ServiceStatus
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
                                 Console.Write("                  Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
-                                Console.Write(Environment.NewLine);
-
-                            }
-                            foreach (UNET_Classes.Role rol in exe.RolesAssigned)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                  Role:  Roleid:: " + rol.ID + "  Trainee name: " + rol.Name);
                                 Console.Write(Environment.NewLine);
 
                             }
@@ -109,7 +101,16 @@ namespace UNET_ServiceStatus
 
                         }
 
+                        foreach (UNET_Classes.Role rol in instr.AssignedRoles)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("                  Assigned instructor role:  Roleid:: " + rol.ID + "  Trainee name: " + rol.Name);
+                            Console.Write(Environment.NewLine);
+
+                        }
+
                     }
+
                 }
 
                 Console.ForegroundColor = ConsoleColor.White;
@@ -174,8 +175,8 @@ namespace UNET_ServiceStatus
                     {
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("Trainee::  " + trainee.ID + " Name: " + trainee.Name + "  Aangemeld sinds: " + trainee.RegisteredSince.ToString());
-                        Console.Write(Environment.NewLine);   
-                        foreach(Radio rn in trainee.Radios)
+                        Console.Write(Environment.NewLine);
+                        foreach (Radio rn in trainee.Radios)
                         {
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.Write(string.Format("                              Assigned radio: {0} Trainee: {0} Descr: {1} Noise: {2}", rn.ID, rn.Description, rn.NoiseLevel));

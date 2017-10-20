@@ -9,10 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pjsua2;
 using System.Configuration;
-using System.IO;
-using System.Net.Sockets;
-using System.Diagnostics;
-
 namespace TestPJSUA2
 {
     public partial class FrmMain : Form
@@ -94,8 +90,6 @@ namespace TestPJSUA2
                 btnAnswer.Visible = true;
                 btnAnswer.BackColor = Color.Red;
                 btnAnswer.Text = cOphangen;
-
-                btnHangup.Visible = true;
             }
             else
             if (_text.ToLower().Contains("hangup"))
@@ -111,10 +105,9 @@ namespace TestPJSUA2
             }
             else
 
-            if (_text.ToLower().Contains("success:"))
+            if (_text.ToLower().Contains("register:"))
             {
-                this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text));
-                btnHangup.Visible = true;
+                this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf(":"))));
             }
 
 
@@ -138,9 +131,29 @@ namespace TestPJSUA2
                 {
                     string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc); //let op! deze constructor mag uitsluidend met het useragent.account aangesproken worden, NIET met traineeid
+
+
+                    //hier worden de channels gekoppeld aan de call die wordt opgezet
+                    List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
+                    if(cbxLeft.Checked)
+                       lstinputchannels.Add(SIP.InputChannels.ichLeft);
+                    if (cbxRight.Checked)
+                        lstinputchannels.Add(SIP.InputChannels.ichRight);
+                    if (cbxSpeaker.Checked)
+                        lstinputchannels.Add(SIP.InputChannels.ichSpeaker);
+
+
+                    List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
+                    if(cbxLeft.Checked)
+                      lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
+                    if (cbxLeft.Checked)
+                        lstoutputchannels.Add(SIP.OutputChannels.ochRight);
+                    if (cbxSpeaker.Checked)
+                        lstoutputchannels.Add(SIP.OutputChannels.ochSpeaker);
+
+                    //Hier wordt de sipcall daadwerkelijk gestart
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
                     CallOpParam cop = new CallOpParam();
-                    sc.frmm = this;
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
                     //if it is successfully made, we can add it to the callstack
@@ -185,17 +198,6 @@ namespace TestPJSUA2
                 MessageBox.Show(ex.Message);
                 log.Error("Error creating accounts " + ex.Message);
             }
-
-            try
-            {
-                //this is specially for the COMservice that listens to the PTT and Headset events, generated
-                //by the TCPSocketClient 
-                Task.Factory.StartNew(() => { StartListinging(); });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
-            }
         }
 
         /// <summary>
@@ -235,8 +237,12 @@ namespace TestPJSUA2
                 try
                 {
                     string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc);
-                    sc.frmm = this;
+                    //  SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, "Testcall");
+                    List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
+                    lstinputchannels.Add(SIP.InputChannels.ichLeft);
+                    List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
+                    lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
 
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
@@ -260,8 +266,12 @@ namespace TestPJSUA2
                 {
                     string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc);
-                    sc.frmm = this;
+                    //  SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
+                    lstinputchannels.Add(SIP.InputChannels.ichLeft);
+                    List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
+                    lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
 
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
@@ -282,106 +292,24 @@ namespace TestPJSUA2
 
         }
 
-
-        #region HID COMserver
-
-        private StreamWriter serverStreamWriter;
-        private StreamReader serverStreamReader;
-        /// <summary>
-        /// Start Server
-        /// </summary>
-        /// <returns></returns>
-        private bool StartServer()
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            //1: create server's tcp listener for incoming connection
-            TcpListener tcpServerListener = new TcpListener(4444);
-            tcpServerListener.Start();      //start server
-            Console.WriteLine("Server Started");
-            //block tcplistener to accept incoming connection
-            Socket serverSocket = tcpServerListener.AcceptSocket();
 
-
-            //2: start the server that listens to the events
-            try
-            {
-                if (serverSocket.Connected)
-                {
-                    Console.WriteLine("tcpClient for PTT and headset event capture connected");
-                    //open network stream on accepted socket
-                    NetworkStream serverSockStream = new NetworkStream(serverSocket);
-                    serverStreamWriter = new StreamWriter(serverSockStream);
-                    serverStreamReader = new StreamReader(serverSockStream);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                return false;
-            }
-
-            //3: start the win32 client that captures the PTT and headset events
-            try
-            {
-                if (File.Exists(Path.Combine(Application.StartupPath, "TCPSocketClient.exe")))
-                {
-                    var pr = new Process();
-                    pr.StartInfo.FileName = Path.Combine(Application.StartupPath, "TCPSocketClient.exe");
-                    pr.Start();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Cannot find tcpclient " + ex.Message + ex.StackTrace);
-
-            }
-            return true;
         }
-        //////////////////////////////////////////////////////////////////////////////
-        ///Event handlers
-        //////////////////////////////////////////////////////////////////////////////
-        private void StartListinging()
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            //start server
-            if (!StartServer())
-                Console.WriteLine("Unable to start server");
 
-            //sending n receiving msgs
-            while (true)
-            {
-                // Application.DoEvents();
-                string received = serverStreamReader.ReadLine();
-                if (received.Length > 0)
-                {
-                    string[] splitstr = received.Split('|');
-                    if (splitstr[0].ToString().Trim().ToLower() == "ptt")
-                    {
-                        if (splitstr[1].ToString().Trim().ToLower() == "true")
-                        {
-                            lblPtt.Text = "PTT ";
-
-                        }
-                        else
-                            lblPtt.Text = "";
-                    }
-                    else
-                    {
-                        if (splitstr[1].ToString().Trim().ToLower() == "true")
-                        {
-                            lblHeadset.Text = "HEADSET";
-
-                        }
-                        else
-                            lblHeadset.Text = "";
-                    }
-                }
-                //  Application.DoEvents();
-                //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
-                //    serverStreamWriter.WriteLine("Hi!");
-                //    serverStreamWriter.Flush();
-            }//while
         }
-        #endregion
 
+        private void cbxLeft_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
