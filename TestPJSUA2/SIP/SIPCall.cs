@@ -56,6 +56,25 @@ namespace TestPJSUA2.SIP
             UAacc = (SipAccount)acc;
             CallID = callID;
 
+            if (channelinputcollection == null)
+            {
+                throw new NotImplementedException("The channelinputcolletion is not initialized!!. Please create a list, fill it and add it to the constructor");
+            }
+
+            if (channeloutputcollectin == null)
+            {
+                throw new NotImplementedException("The channeloutputcolletion is not initialized!!. Please create a list, fill it and add it to the constructor");
+            }
+
+            if (channelinputcollection.Count == 0)
+            {
+                throw new NotImplementedException("The channelinputcollection cannot be empty!");
+            }
+
+            if (channeloutputcollectin.Count == 0)
+            {
+                throw new NotImplementedException("The channeloutputcollection cannot be empty!");
+            }
             //deze collections geven aan welke input poort aan welke outputpoort geknoopt wordt
             //mocht er ooit een nieuwe poort bijkomen, dan moet die in de enum worden toegevoegd.
             ChannelInputCollection = channelinputcollection;
@@ -150,9 +169,6 @@ namespace TestPJSUA2.SIP
                     case pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED:
                         {
 
-                            //  frmm.AddToListbox(("*** Call: " + ci.remoteUri + "  has answered the call!!"));
-
-                            //    MessageSink.Instance.Publish(new ErrorMessage(SeverityLevel.Info, "SIPCall", str)); // Show info
                             AudioMedia aud_med_call = null;
                             Media med = null;
 
