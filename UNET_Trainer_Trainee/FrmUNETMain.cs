@@ -16,6 +16,7 @@ using System.Reflection;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using PJSUA2Implementation.SIP;
 
 namespace UNET_Trainer_Trainee
 {
@@ -137,7 +138,7 @@ namespace UNET_Trainer_Trainee
                     useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                     useragent.UserAgentStart();
 
-                    sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                  //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                     cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     lblRegInfo.Text = "Registered: " + TraineeID + " " +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -287,16 +288,12 @@ namespace UNET_Trainer_Trainee
                     service.Open();
                 }
 
-                //enable the Roles buttons
-                List<UNET_Classes.Role> rolelist = service.GetRoles().ToList<UNET_Classes.Role>();// service.GetRoles().Cast<Role>();
+               //enable the Roles buttons
+               List<UNET_Classes.Role> rolelist = service.GetRoles().ToList<UNET_Classes.Role>();// service.GetRoles().Cast<Role>();
 
                 UNET_ConferenceBridge.ConferenceBridge_Singleton conference = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
 
-
-
-
-                //enable the Roles buttons
-          //      var rolelist = service.GetRoles();
+                //     var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRoles.Controls)
                 {
@@ -313,7 +310,7 @@ namespace UNET_Trainer_Trainee
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelRoles, lstrole.Count, "role");
 
 
-                //enable the Roles buttons
+                //enable the Radio buttons
                 var radiolist = service.GetRadios();
 
                 List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
@@ -437,7 +434,7 @@ namespace UNET_Trainer_Trainee
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
                             ((Button)sender).Tag = "Tx";
-                            MakeCall("1016");
+                            MakeCall("1016", true, true, false, true, true, false);
                             break;
                         }
                     case "Off":
@@ -466,7 +463,7 @@ namespace UNET_Trainer_Trainee
 
 
 
-                MakeCall("1015" +(Convert.ToInt16(radioNumber)));
+                MakeCall("1015" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
             }
             catch (Exception ex)
             {
@@ -481,11 +478,29 @@ namespace UNET_Trainer_Trainee
         /// </summary>
         /// <param name="traineeid"></param>
         /// <param name="_destination"></param>
-        private void MakeCall(string _destination)
+        private void MakeCall(string _destination, bool _inLeft, bool _inRight, bool _inSpeaker, bool _outLeft, bool _outRight, bool _outSpeaker)
         {
             try
-            {
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+            { 
+                //hier worden de channels gekoppeld aan de call die wordt opgezet
+                List<InputChannels> lstinputchannels = new List<InputChannels>();
+                if (_inLeft)
+                    lstinputchannels.Add(InputChannels.ichLeft);
+                if (_inRight)
+                    lstinputchannels.Add(InputChannels.ichRight);
+                if (_inSpeaker)
+                    lstinputchannels.Add(InputChannels.ichSpeaker);
+
+
+                List<OutputChannels> lstoutputchannels = new List<OutputChannels>();
+                if (_outLeft)
+                    lstoutputchannels.Add(OutputChannels.ochLeft);
+                if (_outRight)
+                    lstoutputchannels.Add(OutputChannels.ochRight);
+                if (_outSpeaker)
+                    lstoutputchannels.Add(OutputChannels.ochSpeaker);
+
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, -1);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                
@@ -524,7 +539,7 @@ namespace UNET_Trainer_Trainee
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             log.Info("Clicked ClassBroadcast");
-            MakeCall("20000"); //20000 is de code voor de class broadcast conferentie
+            MakeCall("20000", true, true, false, false, true, false); //20000 is de code voor de class broadcast conferentie, en gaat van stereo IN naar Right OUT
 
 
         }
@@ -558,14 +573,13 @@ namespace UNET_Trainer_Trainee
 
 
             log.Info("Clicked Intercom");
-       //      MakeCall(TraineeID,@"INTERCOM_CUB_" + TraineeID);
-            MakeCall("12345"); //12345 is de code voor de intercom
+            MakeCall("12345",true, true,false,false,true,false); //12345 is de code voor de intercom
              PlayBeep();
       }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(@"MIC_Conference_Pos01\" + TraineeID);
+            MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
             log.Info("Clicked assist by:" + TraineeID);
 
         }
@@ -681,7 +695,7 @@ namespace UNET_Trainer_Trainee
         private void button1_Click(object sender, EventArgs e)
         {
         //    MakeCall("LEFTConference_Pos01001");
-            MakeCall("12345");
+            MakeCall("12345", true, true, false, true, false, false);
 
         }
     }

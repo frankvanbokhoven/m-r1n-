@@ -14,6 +14,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using PJSUA2Implementation.SIP;
 
 namespace UNET_Trainer
 {
@@ -151,7 +152,7 @@ namespace UNET_Trainer
         public void SetNoiseLevel(int _SelectedRadioButtonIndex, int _SelectedNoiseButtonIndex)
         {
 
-            MakeCall(InstructorID, @"NOISE_RADIO_X\" + GetTraineeAtRadio(_SelectedRadioButtonIndex), _SelectedNoiseButtonIndex, "Noise for radio: " + _SelectedRadioButtonIndex);
+         //todo   MakeCall( @"NOISE_RADIO_X\" + GetTraineeAtRadio(_SelectedRadioButtonIndex), _SelectedNoiseButtonIndex, "Noise for radio: " + _SelectedRadioButtonIndex, true, true, false, true, true, false);
         }
 
         /// <summary>
@@ -279,7 +280,6 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
 
 
-
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
@@ -327,6 +327,10 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelTrainees, lstTrainee.Count, "trainee");
 
                 Application.DoEvents();
+
+
+
+
                 //enable the Roles buttons
                 var rolelist = service.GetRoles();
                 List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
@@ -410,12 +414,7 @@ namespace UNET_Trainer
                             }
                         }
                     }
-
-
-
-
                 }
-
                 UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
 
                 Application.DoEvents();
@@ -482,7 +481,7 @@ namespace UNET_Trainer
                 useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                 useragent.UserAgentStart();
 
-                sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+              //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
@@ -903,25 +902,44 @@ namespace UNET_Trainer
 
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
-        /// </summary>
-        /// <param name="_IntructorID"></param>
         /// <param name="_destination"></param>
-        /// <param name="_noiseLevel">The noiselevel. this can be edited on the RadioSetup screen</param>
-        /// <param name="_whatthecallisabout">Description of the call, for logging purposes</param>
-        public void MakeCall(int _instructorID, string _destination, int? _noiseLevel, string _whatthecallisabout)
+        /// <param name="_inLeft"></param>
+        /// <param name="_inRight"></param>
+        /// <param name="_inSpeaker"></param>
+        /// <param name="_outLeft"></param>
+        /// <param name="_outRight"></param>
+        /// <param name="_outSpeaker"></param>
+        private void MakeCall(string _destination, bool _inLeft, bool _inRight, bool _inSpeaker, bool _outLeft, bool _outRight, bool _outSpeaker)
         {
             try
             {
-                log.Info("Making call about: " + _whatthecallisabout + ", from: " + _instructorID + ", to: " + _destination);
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                //hier worden de channels gekoppeld aan de call die wordt opgezet
+                List<InputChannels> lstinputchannels = new List<InputChannels>();
+                if (_inLeft)
+                    lstinputchannels.Add(InputChannels.ichLeft);
+                if (_inRight)
+                    lstinputchannels.Add(InputChannels.ichRight);
+                if (_inSpeaker)
+                    lstinputchannels.Add(InputChannels.ichSpeaker);
+
+
+                List<OutputChannels> lstoutputchannels = new List<OutputChannels>();
+                if (_outLeft)
+                    lstoutputchannels.Add(OutputChannels.ochLeft);
+                if (_outRight)
+                    lstoutputchannels.Add(OutputChannels.ochRight);
+                if (_outSpeaker)
+                    lstoutputchannels.Add(OutputChannels.ochSpeaker);
+
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, -1);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
 
+                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
             }
             catch (Exception ex)
             {
-                log.Error("Error making call", ex);
+                log.Error("Error making call to: " + _destination, ex);
                 // throw;
             }
         }
@@ -959,13 +977,13 @@ namespace UNET_Trainer
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_" + InstructorID, -1, "Intercom");
+            MakeCall( @"INTERCOM_CUB_" + InstructorID, true, true, false, false, true, false);//intercom must go left
 
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(InstructorID, @"INTERCOM_CUB_" + InstructorID, -1, "Assist");
+            MakeCall( @"INTERCOM_CUB_" + InstructorID,  true, true, false, false, true, false);// interom must go left
 
         }
 
