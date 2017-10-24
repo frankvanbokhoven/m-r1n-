@@ -146,9 +146,9 @@ namespace UNET_Trainer_Trainee
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                        ex.InnerException + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() +
                         "Contact your system administrator");
-                    log.Error("Error creating accounts " + ex.Message);
+                    log.Error("Error creating accounts " + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace);
                     lblRegInfo.Text = "Failed to reg " + TraineeID;
                     this.Close();
                 }
@@ -375,7 +375,7 @@ namespace UNET_Trainer_Trainee
 
             //try to find and kill the TCPSocketClient process and kill it
             FindAndKillProcess("TCPSocketClient.exe");
-            log.Info("Terminated UNET_Instructor");
+            log.Info("Terminated UNET_Trainee");
 
         }
 
@@ -505,6 +505,7 @@ namespace UNET_Trainer_Trainee
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                
                 sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
+                useragent.acc.Calls.Add(sc); //kennelijk worden die calls niet vanzelf in deze list geplaatst.
             }
             catch (Exception ex)
             {
@@ -522,16 +523,29 @@ namespace UNET_Trainer_Trainee
         {
             try
             {
-                log.Info("Hanging up call to: " + _destination);
 
-                useragent.acc.removeCall(sc);
+
+
+                foreach (Call call in useragent.acc.Calls)
+                {
+                    CallInfo ci = call.getInfo();
+
+                    if (ci.localUri.Contains(_destination))
+                    {
+                        CallOpParam cop = new CallOpParam();
+                        cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                        call.hangup(cop);
+                        Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                    }
+
+                }
 
             }
             catch (Exception ex)
             {
-                log.Error("Error making call to: " + _destination, ex);
-                // throw;
+                Console.Write("Exception hanging up calls: " + ex.Message);
             }
+
         }
 
         #endregion
@@ -694,8 +708,46 @@ namespace UNET_Trainer_Trainee
 
         private void button1_Click(object sender, EventArgs e)
         {
-        //    MakeCall("LEFTConference_Pos01001");
             MakeCall("12345", true, true, false, true, false, false);
+
+        }
+
+
+        /// <summary>
+        /// Hangup all active calls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                foreach (Call call in useragent.acc.Calls)
+                {
+                    CallInfo ci = call.getInfo();
+                    CallOpParam cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    call.hangup(cop);
+                    Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.Write("Exception hanging up calls: " + ex.Message);
+            }
+         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MakeCall("12345", true, false, false, false, true, false);
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            MakeCall("12345", true, false, false, false, false, true);
 
         }
     }

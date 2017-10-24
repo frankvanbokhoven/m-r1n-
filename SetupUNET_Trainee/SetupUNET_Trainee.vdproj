@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_071644E61F1E4D288EF250F2472C69AE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_22459939FB41465AA632408D568CFB43"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -99,6 +105,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A259D4DFC3410BEAECA448C9A591C1CB"
+        "OwnerKey" = "8:_6F3B57E8FD3042655ED2E274A3A7E037"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A433FD4097D30406CDE02551B61F0644"
         "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
         "MsmSig" = "8:_UNDEFINED"
@@ -111,7 +123,55 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
+        "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
+        "OwnerKey" = "8:_071644E61F1E4D288EF250F2472C69AE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
+        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
+        "OwnerKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "OwnerKey" = "8:_071644E61F1E4D288EF250F2472C69AE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D4E7D95E4A70434B838BA8D99CD00A93"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F15668DEBD4D4E8098A4A6D243D529DF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -155,6 +215,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D4E7D95E4A70434B838BA8D99CD00A93"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_071644E61F1E4D288EF250F2472C69AE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -203,6 +269,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_230F528EEB17474A42DB16E6DD5780BF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CA486150736BDA8939BA7EE3BF935946"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BD205E1EB6934F5FA89400513613F29E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -343,6 +421,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_071644E61F1E4D288EF250F2472C69AE"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_071644E61F1E4D288EF250F2472C69AE"
+                    {
+                    "Name" = "8:PJSUA2_NET.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Libraries\\PJSUA2_NET.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_22459939FB41465AA632408D568CFB43"
             {
             "SourcePath" = "8:..\\UNET_Trainer_Trainee\\bin\\Debug\\pjsua2.dll"
@@ -359,7 +468,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -418,7 +527,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PJSUA2Implementation, Version=1.2017.1.8, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:PJSUA2Implementation, Version=1.2017.1.8, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
                     "_6F3B57E8FD3042655ED2E274A3A7E037"
@@ -600,6 +709,88 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD205E1EB6934F5FA89400513613F29E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_BD205E1EB6934F5FA89400513613F29E"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA486150736BDA8939BA7EE3BF935946"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+                "ScatterAssemblies"
+                {
+                    "_CA486150736BDA8939BA7EE3BF935946"
+                    {
+                    "Name" = "8:System.IO.Compression.FileSystem.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.FileSystem.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F15668DEBD4D4E8098A4A6D243D529DF"
+            {
+            "SourcePath" = "8:..\\Libraries\\PJSUA2.DLL"
+            "TargetName" = "8:PJSUA2.DLL"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F7219B742B56A9679B2F020879912AE8"
             {
             "AssemblyRegister" = "3:1"
@@ -718,15 +909,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Trainee"
-        "ProductCode" = "8:{FB69507A-B4AD-49D0-B8C1-31A7D9B356DB}"
-        "PackageCode" = "8:{C5DEA0BD-1FE6-41E9-9488-1F1EDD244F9D}"
+        "ProductCode" = "8:{5C465D3A-F804-42A1-99BA-C71E529B298B}"
+        "PackageCode" = "8:{9386AB7E-446F-494C-AF2A-71A2D1EA5024}"
         "UpgradeCode" = "8:{12E5EDE4-3839-4A13-8E0C-423C4F3C47B3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.17"
+        "ProductVersion" = "8:0.0.18"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.yggdra.nl"
@@ -836,7 +1027,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:TRUE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1013"
+                                    "Value" = "8:1011"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_4DC6EDDC27EC45C6BD4FA33A3C903228"
                                     {

@@ -41,18 +41,20 @@ namespace TestPJSUA2.SIP
         /// </summary>
         public int CallID { get; set; }
         public const int PJSUA_INVALID_ID = -1; //zie: http://www.pjsip.org/docs/book-latest/html/reference.html)
-        private Direction _direction;
-        private List<InputChannels> ChannelInputCollection;
-        private List<OutputChannels> ChannelOutputCollection;
+        public List<InputChannels> ChannelInputCollection;
+        public List<OutputChannels> ChannelOutputCollection;
+
         /// <summary>
         /// constructor
         /// We explicitly reroute to the constructor of the Call baseclass
-        /// </summary>
         /// <param name="acc"></param>
         /// <param name="callID"></param>
-        public SIPCall(pjsua2.Account acc, ref List<InputChannels> channelinputcollection, ref List<OutputChannels> channeloutputcollectin, int callID) : base(acc, callID)
+        /// <param name="acc"></param>
+        /// <param name="channelinputcollection"></param>
+        /// <param name="channeloutputcollectin"></param>
+        /// <param name="callID"></param>
+        public SIPCall(pjsua2.Account acc, ref List<InputChannels> channelinputcollection, ref List<OutputChannels> channeloutputcollectin, int callID = PJSUA_INVALID_ID) : base(acc, callID)
         {
-            //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
             CallID = callID;
 
@@ -171,7 +173,7 @@ namespace TestPJSUA2.SIP
 
                             AudioMedia aud_med_call = null;
                             Media med = null;
-
+                            frmm.SetHangupVisible();
                             // Find Audio in call
                             for (int i = 0; i < ci.media.Count; i++)
                             {
@@ -207,18 +209,21 @@ namespace TestPJSUA2.SIP
                                     //Nu gaan we alle mogelijke combinaties langs en koppelen de poorten zoals opgegeven
                                     if ((ChannelInputCollection.Contains(InputChannels.ichLeft)) && (ChannelOutputCollection.Contains(OutputChannels.ochLeft)))
                                     {
-                                        foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
-                                        { 
-                                            int id = audiomediadevice.getPortId();
+                                        left = aud_med_call;
+                                        left.startTransmit(left);
 
-                                            if (audiomediadevice.getPortId() == 0)
-                                            {
-                                                frmm.AddToListbox(("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Left out"));
+                                        //foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
+                                        //{ 
+                                        //    int id = audiomediadevice.getPortId();
 
-                                                left = audiomediadevice;
-                                                left.startTransmit(left);
-                                            }
-                                        }
+                                        //    if (audiomediadevice.getPortId() == 0)
+                                        //    {
+                                        //        frmm.AddToListbox(("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Left out"));
+
+                                        //        left = audiomediadevice;
+                                        //        left.startTransmit(left);
+                                        //    }
+                                        //}
                                     }
                                     if ((ChannelInputCollection.Contains(InputChannels.ichLeft)) && (ChannelOutputCollection.Contains(OutputChannels.ochRight)))
                                     {
@@ -407,7 +412,7 @@ namespace TestPJSUA2.SIP
             }
             catch (Exception ex)
             {
-                string fout = ex.Message;
+                Console.Write("Exception answering the call: " + ex.Message + Environment.NewLine + "Inner: " + ex.InnerException); 
             }
 
         }

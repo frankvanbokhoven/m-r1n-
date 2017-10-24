@@ -50,9 +50,8 @@ namespace PJSUA2Implementation.SIP
         /// </summary>
         /// <param name="acc"></param>
         /// <param name="callID"></param>
-        public SIPCall(pjsua2.Account acc, ref List<InputChannels> channelinputcollection, ref List<OutputChannels> channeloutputcollectin, int callID) : base(acc, callID)
+        public SIPCall(pjsua2.Account acc, ref List<InputChannels> channelinputcollection, ref List<OutputChannels> channeloutputcollectin, int callID = PJSUA_INVALID_ID) : base(acc, callID)
         {
-            //    SIPCall(Account acc, int callID = PJSUA_INVALID_ID);
             UAacc = (SipAccount)acc;
             CallID = callID;
 
@@ -181,7 +180,7 @@ namespace PJSUA2Implementation.SIP
                                 {
                                     med = this.getMedia(Convert.ToUInt16(i));
                                     // aud_med = med as AudioMedia;
-                                    aud_med_call = AudioMedia.typecastFromMedia(med);
+                                    aud_med_call = AudioMedia.typecastFromMedia(med); //dit is de stream
                                     StreamInfo si = this.getStreamInfo(Convert.ToUInt16(i));
 
                                     break;
@@ -209,49 +208,55 @@ namespace PJSUA2Implementation.SIP
                                     //Nu gaan we alle mogelijke combinaties langs en koppelen de poorten zoals opgegeven
                                     if ((ChannelInputCollection.Contains(InputChannels.ichLeft)) && (ChannelOutputCollection.Contains(OutputChannels.ochLeft)))
                                     {
-                                        foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
-                                        {
-                                            int id = audiomediadevice.getPortId();
+                                        left = aud_med_call;
+                                        left.startTransmit(left);
+                                        //foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
+                                        //{
+                                        //    int id = audiomediadevice.getPortId();
 
-                                            if (audiomediadevice.getPortId() == 0)
-                                            {
-                                               Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Left out");
+                                        //    if (audiomediadevice.getPortId() == 0)
+                                        //    {
+                                        //       Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Left out");
 
-                                                left = audiomediadevice;
-                                                left.startTransmit(left);
-                                            }
-                                        }
+                                        //        left = audiomediadevice;
+                                        //        left.startTransmit(left);
+                                        //    }
+                                        //}
                                     }
                                     if ((ChannelInputCollection.Contains(InputChannels.ichLeft)) && (ChannelOutputCollection.Contains(OutputChannels.ochRight)))
                                     {
-                                        foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
-                                        {
-                                            int id = audiomediadevice.getPortId();
+                                        right = aud_med_call;
+                                        right.startTransmit(right);
+                                        //foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
+                                        //{
+                                        //    int id = audiomediadevice.getPortId();
 
-                                            if (audiomediadevice.getPortId() == 1)
-                                            {
-                                                Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Right out");
+                                        //    if (audiomediadevice.getPortId() == 1)
+                                        //    {
+                                        //        Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Right out");
 
-                                                right = audiomediadevice;
-                                                left.startTransmit(right);
-                                            }
-                                        }
+                                        //        right = audiomediadevice;
+                                        //        right.startTransmit(right);
+                                        //    }
+                                        //}
                                     }
 
                                     if ((ChannelInputCollection.Contains(InputChannels.ichLeft)) && (ChannelOutputCollection.Contains(OutputChannels.ochSpeaker)))
                                     {
-                                        foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
-                                        {
-                                            int id = audiomediadevice.getPortId();
+                                        //foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)//nu loopen we door de mediadevices enumeratie
+                                        //{
+                                        //    int id = audiomediadevice.getPortId();
 
-                                            if (audiomediadevice.getPortId() == 3)
-                                            {
-                                                Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Speaker out");
+                                        //    if (audiomediadevice.getPortId() == 3)
+                                        //    {
+                                        //        Console.Write("audiomediadevice: " + audiomediadevice.getPortId() + "Left in and Speaker out");
 
-                                                left = audiomediadevice;
-                                                left.startTransmit(speaker);
-                                            }
-                                        }
+                                        //        left = audiomediadevice;
+                                        //        left.startTransmit(speaker);
+                                        //    }
+                                        //}
+                                        speaker = aud_med_call;
+                                        speaker.startTransmit(speaker);
                                     }
 
                                     if ((ChannelInputCollection.Contains(InputChannels.ichRight)) && (ChannelOutputCollection.Contains(OutputChannels.ochLeft)))

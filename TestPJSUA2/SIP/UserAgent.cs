@@ -110,7 +110,7 @@ namespace TestPJSUA2.SIP
                  ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
 
                 AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+               AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
             }
             catch (Exception ex)

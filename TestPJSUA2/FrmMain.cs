@@ -103,12 +103,13 @@ namespace TestPJSUA2
             {
                 this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf("Account:"))));
             }
-            else
+            //   else
 
-            if (_text.ToLower().Contains("register:"))
-            {
-                this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf(":"))));
-            }
+            //  if (_text.ToLower().Contains("register"))
+            //  {
+            ///      this.Invoke((MethodInvoker)(() => toolStripStatusLabel1.Text = "Registered: " + _text.Substring(_text.IndexOf(":"))));
+            //  }
+
 
 
         }
@@ -135,8 +136,8 @@ namespace TestPJSUA2
 
                     //hier worden de channels gekoppeld aan de call die wordt opgezet
                     List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
-                    if(cbxLeft.Checked)
-                       lstinputchannels.Add(SIP.InputChannels.ichLeft);
+                    if (cbxLeft.Checked)
+                        lstinputchannels.Add(SIP.InputChannels.ichLeft);
                     if (cbxRight.Checked)
                         lstinputchannels.Add(SIP.InputChannels.ichRight);
                     if (cbxSpeaker.Checked)
@@ -144,20 +145,26 @@ namespace TestPJSUA2
 
 
                     List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
-                    if(cbxLeft.Checked)
-                      lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
+                    if (cbxLeft.Checked)
+                        lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
                     if (cbxLeft.Checked)
                         lstoutputchannels.Add(SIP.OutputChannels.ochRight);
                     if (cbxSpeaker.Checked)
                         lstoutputchannels.Add(SIP.OutputChannels.ochSpeaker);
 
                     //Hier wordt de sipcall daadwerkelijk gestart
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels);
+                    //    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc,1);
+                    //    sc.ChannelInputCollection = lstinputchannels;
+                    //     sc.ChannelOutputCollection = lstoutputchannels;
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    sc.frmm = this;
                     sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
                     //if it is successfully made, we can add it to the callstack
                     CallStack.Add(sc);
+                    useragent.acc.Calls.Add(sc);
+                    btnHangup.Visible = true;
                     lblCallstackCount.Text = CallStack.Count.ToString();
                     AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
                 }
@@ -168,6 +175,11 @@ namespace TestPJSUA2
                 }
             }
 
+        }
+
+        public void SetHangupVisible()
+        {
+            btnHangup.Visible = true;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -242,7 +254,11 @@ namespace TestPJSUA2
                     lstinputchannels.Add(SIP.InputChannels.ichLeft);
                     List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
                     lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels);
+                    sc.frmm = this;
+                    //  SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    //  sc.ChannelInputCollection = lstinputchannels;
+                    //  sc.ChannelOutputCollection = lstoutputchannels;
 
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
@@ -271,11 +287,14 @@ namespace TestPJSUA2
                     lstinputchannels.Add(SIP.InputChannels.ichLeft);
                     List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
                     lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
-                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, TraineeID);
 
                     CallOpParam cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    sc.makeCall(string.Format("sip:{0}@{1}", cbxAccount.Text.Trim(), sipserver), cop);
+                    SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels);
+                    sc.frmm = this;
+                    // SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
+                    // sc.ChannelInputCollection = lstinputchannels;
+                    // sc.ChannelOutputCollection = lstoutputchannels;
                     //if it is successfully made, we can add it to the callstack
                     CallStack.Add(sc);
                     lblCallstackCount.Text = CallStack.Count.ToString();
@@ -311,5 +330,31 @@ namespace TestPJSUA2
         {
 
         }
+
+        private void btnHangup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                foreach (Call call in useragent.acc.Calls)
+                {
+                    CallInfo ci = call.getInfo();
+                    CallOpParam cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    call.hangup(cop);
+                    Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                    AddToListbox("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+
+                }
+                btnHangup.Visible = false;
+               
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Exception hanging up calls: " + ex.Message);
+            }
+        }
     }
+
 }

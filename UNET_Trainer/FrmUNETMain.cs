@@ -465,7 +465,6 @@ namespace UNET_Trainer
 
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-
             try
             {
                 string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
@@ -490,9 +489,11 @@ namespace UNET_Trainer
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                    ex.InnerException + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
                     "Contact your system administrator");
-                log.Error("Error creating accounts " + ex.Message);
+                log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+                    "Contact your system administrator");
                 this.Close();
             }
 
@@ -931,7 +932,7 @@ namespace UNET_Trainer
                 if (_outSpeaker)
                     lstoutputchannels.Add(OutputChannels.ochSpeaker);
 
-                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, -1);
+                PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
