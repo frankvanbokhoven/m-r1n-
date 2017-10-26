@@ -94,8 +94,9 @@ namespace TestPJSUA2.SIP
             }
             catch (Exception ex)
             {
+                Logging.LogAppender.AppendToLog("Useragent libcreate Exception: " + ex.Message + ex.InnerException);
+
                 Console.Write("Useragent libcreate Exception: " + ex.Message, ex);
-                frmm.AddToListbox("Useragent libcreate execption " + ex.Message);
             }
             // Init library
             EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
@@ -107,14 +108,16 @@ namespace TestPJSUA2.SIP
             // Configure Audio Interface
             try
             {
-                 ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
+                ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
 
                 AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-               AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
             }
             catch (Exception ex)
             {
+                Logging.LogAppender.AppendToLog("Useragent audiointerface start Exception: " + ex.Message + ex.InnerException);
+
                 Console.Write("Useragent AudioInterface start Exception: " + ex.Message, ex);
             }
             // Create transport
@@ -127,6 +130,8 @@ namespace TestPJSUA2.SIP
             }
             catch (Exception ex)
             {
+                Logging.LogAppender.AppendToLog("Useragent transport start Exception: " + ex.Message + ex.InnerException);
+
                 Console.Write("Useragent Transport start Exception: " + ex.Message, ex);
             }
 
@@ -134,9 +139,13 @@ namespace TestPJSUA2.SIP
             try
             {
                 ep.libStart();
+                Logging.LogAppender.AppendToLog("libstart successfull");
+
             }
             catch (Exception ex)
             {
+                Logging.LogAppender.AppendToLog("Useragent libstart Exception: " + ex.Message + ex.InnerException);
+
                 Console.Write("Useragent libstart Exception: " + ex.Message, ex);
             }
 
@@ -146,67 +155,39 @@ namespace TestPJSUA2.SIP
                 // Create account configuration
                 AccountConfig acfg = new AccountConfig();
                 acfg.idUri = "sip:" + Account + "@" + Domain;
+                Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri + "  SipServer:  " + SipServer);
+
                 string sipserver = string.Format("{0}", SipServer);
                 acfg.regConfig.registrarUri = sipserver;
+                acfg.regConfig.registerOnAdd = true;
+
                 acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
                 acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-                AuthCredInfo cred = new AuthCredInfo("digest", SipServer, Account, 0, Password);
+                AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
                 cred.realm = Domain;
                 acfg.regConfig.registerOnAdd = true;
                 acfg.regConfig.timeoutSec = 180;
 
+
                 acfg.sipConfig.authCreds.Add(cred);
                 acfg.regConfig.dropCallsOnFail = true;
+                Logging.LogAppender.AppendToLog("Account ready to be added: " + acfg.idUri);
+
                 // Create SIP account
                 acc = new SipAccount();
                 acc.frmm = frmm;
                 acc.create(acfg, true);
                 setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-           //     frmm.AddToListbox("Registered: " + sipserver);
-                frmm.AddToListbox("register success: " + sipserver + " Account: " + Account);
-                UserBuddyStart();
+                Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
+
             }
             catch (Exception ex)
             {
+                Logging.LogAppender.AppendToLog("Useragent start Exception: " + ex.Message + ex.InnerException + Environment.NewLine + ex.StackTrace.ToString());
+
                 Console.Write("Useragent start Exception: " + ex.Message, ex);
+
             }
-        }
-
-        /// <summary>
-        /// Create buddies
-        /// </summary>
-        public void UserBuddyStart()
-        {
-            //// 
-            //BuddyConfig pCfg = new BuddyConfig();
-            //BuddyConfig sCfg = new BuddyConfig();
-            //SipBuddy platformBuddy = new SipBuddy("Platform", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
-            //SipBuddy serverBuddy = new SipBuddy("Server", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
-            //pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //Console.Write("Platform buddy: " + pCfg.uri + " Serverbuddy: " + sCfg.uri);
-            //try
-            //{
-            //    //  platformBuddy = new SipBuddy("Naam van de platform buddy", pCfg.uri.ToString(), acc);
-            //    Console.Write("Subscribing platform buddy...");
-            //    platformBuddy.create(acc, pCfg);
-            //    platformBuddy.subscribePresence(true);
-
-            //    //  serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
-            //    Console.Write("Subscribing server buddy....");
-            //    serverBuddy.create(acc, sCfg);
-            //    serverBuddy.subscribePresence(true);
-
-            //    buddies.Add(platformBuddy);
-            //    buddies.Add(serverBuddy);
-
-            //    acc.addBuddy(platformBuddy);
-            //    acc.addBuddy(serverBuddy);
-            //}
-            //catch (Exception ex)
-            //{
-            //    log.Error(ex.Message);
-            //}
         }
 
         /// <summary>

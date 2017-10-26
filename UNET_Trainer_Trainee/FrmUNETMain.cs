@@ -95,7 +95,7 @@ namespace UNET_Trainer_Trainee
             {
                 timer1.Enabled = true;
                  this.Text = "UNET Trainee";
-                log.Info("Started UNET_Instructor");
+                log.Info("Started UNET_Trainee");
 
                 //todo: terugzetten   timer1.Enabled = true;
 

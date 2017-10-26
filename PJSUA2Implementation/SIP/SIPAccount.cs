@@ -5,16 +5,27 @@ using System.Threading;
 using System.Configuration;
 using UNET_Classes;
 
+
 namespace PJSUA2Implementation.SIP
 {
     public class SipAccount : pjsua2.Account
     {
 
         public UNET_Classes.SyncList<pjsua2.Call> Calls;
-      //  public List<pjsua2.Call> Calls;
+  //     public List<pjsua2.Call> Calls;
+
+
          public SipAccount()
         {
-            Calls = new SyncList<Call>();
+            
+            try
+            {
+                Calls = new SyncList<Call>();
+            }
+            catch(Exception ex)
+            {
+                Logging.LogAppender.AppendToLog("Error constructor Sipaccount: " + ex.Message);
+            }
         }
  
         /// <summary>
