@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace PJSUA2Implementation.SIP
 {
-    public class UserAgent
+    public  class UserAgent //: pjsua2.UserEvent
     {
  
         public pjsua2.Endpoint ep;
@@ -89,17 +89,22 @@ namespace PJSUA2Implementation.SIP
         /// </summary>
         public void UserAgentStart()
         {
-
-            //note:  no exception handling here, because we want to see the exception in the form
-
-
             // Create endpoint
-            if (ep == null)
+            try
             {
-                ep = new Endpoint();
-                ep.libCreate();
-                ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                if (ep == null)
+                {
+                    ep = new Endpoint();
+                    ep.libCreate();
+                    ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                }
             }
+            catch (Exception ex)
+            {
+                AppendToLog("Useragent libcreate Exception: " + ex.Message + ex.InnerException);
+
+                Console.Write("Useragent libcreate Exception: " + ex.Message, ex);
+             }
             // Init library
             EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
             ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
@@ -108,56 +113,153 @@ namespace PJSUA2Implementation.SIP
             ep_cfg.logConfig.filename = "pjsip_" + DateTime.Today.Date.ToString("yyMMdd") + ".log";
             ep.libInit(ep_cfg);
             // Configure Audio Interface
-            log.Info("Start init ASIO4ALL");
-            ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
-            AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-            AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+            try
+            {
+                ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
 
-            log.Info("Finished init ASIO 4 All");
+                AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+
+            }
+            catch (Exception ex)
+            {
+                AppendToLog("Useragent audiointerface start Exception: " + ex.Message + ex.InnerException);
+
+                Console.Write("Useragent AudioInterface start Exception: " + ex.Message, ex);
+            }
             // Create transport
-            TransportConfig tcfg = new TransportConfig();
-            tcfg.port = Convert.ToUInt16(Port);
-            ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
+            try
+            {
+                TransportConfig tcfg = new TransportConfig();
+                tcfg.port = Convert.ToUInt16(Port);
+                ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
 
+            }
+            catch (Exception ex)
+            {
+                AppendToLog("Useragent transport start Exception: " + ex.Message + ex.InnerException);
+
+                Console.Write("Useragent Transport start Exception: " + ex.Message, ex);
+            }
 
             // Start library
-            ep.libStart();
-            // Create & set presence
-            // Create account configuration
-            AccountConfig acfg = new AccountConfig();
-            acfg.idUri = "sip:" + Account + "@" + Domain;
-            log.Info("URI: " + acfg.idUri);
+            try
+            {
+                ep.libStart();
+            }
+            catch (Exception ex)
+            {
+                AppendToLog("Useragent libstart Exception: " + ex.Message + ex.InnerException);
+
+                Console.Write("Useragent libstart Exception: " + ex.Message, ex);
+            }
+
+            try
+            {
+                // Create & set presence
+                // Create account configuration
+                AccountConfig acfg = new AccountConfig();
+                acfg.idUri = "sip:" + Account + "@" + Domain;
+                AppendToLog("Account info: " + acfg.idUri  +  "  SipServer:  " + SipServer);
+                string sipserver = string.Format("{0}", SipServer);
+                acfg.regConfig.registrarUri = sipserver;
+                acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                AuthCredInfo cred = new AuthCredInfo("digest", SipServer, Account, 0, Password);
+                cred.realm = Domain;
+                acfg.regConfig.registerOnAdd = true;
+                acfg.regConfig.timeoutSec = 180;
+               
+
+                acfg.sipConfig.authCreds.Add(cred);
+                acfg.regConfig.dropCallsOnFail = true;
+                // Create SIP account
+                acc = new SipAccount();
+                acc.create(acfg, true);
+                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+                //     frmm.AddToListbox("Registered: " + sipserver);
+            }
+            catch (Exception ex)
+            {
+                AppendToLog("Useragent start Exception: " + ex.Message + ex.InnerException + Environment.NewLine + ex.StackTrace.ToString());
+
+                Console.Write("Useragent start Exception: " + ex.Message, ex);
+
+            }
+            //    //note:  no exception handling here, because we want to see the exception in the form
+
+            //    try
+            //    { 
+            //    // Create endpoint
+            //    if (ep == null)
+            //    {
+            //        ep = new Endpoint();
+            //        ep.libCreate();
+            //        ep.libRegisterThread(RandomThreadString("PJSUA2"));
+            //    }
+            //    // Init library
+            //    EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
+            //    ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+            //    ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            //    ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+            //    ep_cfg.logConfig.filename = "pjsip_" + DateTime.Today.Date.ToString("yyMMdd") + ".log";
+            //    ep.libInit(ep_cfg);
+            //    // Configure Audio Interface
+            //    log.Info("Start init ASIO4ALL");
+            //    ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
+            //    AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+            //    AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+
+            //    log.Info("Finished init ASIO 4 All");
+            //    // Create transport
+            //    TransportConfig tcfg = new TransportConfig();
+            //    tcfg.port = Convert.ToUInt16(Port);
+            //    ep.transportCreate(pjsip_transport_type_e.PJSIP_TRANSPORT_UDP, tcfg);
 
 
-            //  string sipserver = string.Format("{0}", SipServer);
-            string sipserver = string.Format("sip:{0}", SipServer);
+            //    // Start library
+            //    ep.libStart();
+            //    // Create & set presence
+            //    // Create account configuration
+            //    AccountConfig acfg = new AccountConfig();
+            //    acfg.idUri = "sip:" + Account + "@" + Domain;
+            //    log.Info("URI: " + acfg.idUri);
 
-            acfg.regConfig.registrarUri = sipserver;
-            acfg.regConfig.registerOnAdd = true;
 
-            acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-            acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
-            cred.realm = Domain;
-            //orginele code
-            //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            //acfg.regConfig.registrarUri = sipserver;
-            //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-            //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-            //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
-            //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            acfg.regConfig.registerOnAdd = true;
-            acfg.regConfig.timeoutSec = 180;
+            //    //  string sipserver = string.Format("{0}", SipServer);
+            //    string sipserver = string.Format("sip:{0}", SipServer);
 
-            acfg.sipConfig.authCreds.Add(cred);
-            acfg.regConfig.dropCallsOnFail = true;
-            // Create SIP account
-            acc = new SipAccount();
-            acc.create(acfg, true);
-            setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-            log.Info("Successfully logged on!");
-            //  UserBuddyStart();
+            //    acfg.regConfig.registrarUri = sipserver;
+            //    acfg.regConfig.registerOnAdd = true;
+
+            //    acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+            //    acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+            //    AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
+            //    cred.realm = Domain;
+            //    //orginele code
+            //    //acfg.idUri = "sip:" + ConfigurationManager.AppSettings["SIPAccount"].ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //    //string sipserver = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            //    //acfg.regConfig.registrarUri = sipserver;
+            //    //acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+            //    //acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+            //    //AuthCredInfo cred = new AuthCredInfo("digest", ConfigurationManager.AppSettings["sipServer"].ToString(), ConfigurationManager.AppSettings["sipAccount"], 0, ConfigurationManager.AppSettings["sipPassword"]);
+            //    //cred.realm = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //    acfg.regConfig.registerOnAdd = true;
+            //    acfg.regConfig.timeoutSec = 180;
+
+            //    acfg.sipConfig.authCreds.Add(cred);
+            //    acfg.regConfig.dropCallsOnFail = true;
+            //    // Create SIP account
+            //    acc = new SipAccount();
+            //    acc.create(acfg, true);
+            //    setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+            //    log.Info("Successfully logged on!");
+            //    //  UserBuddyStart();
+            //}
+            //    catch (Exception ex)
+            //    {
+            //        log.Error("Error in useragentstart: " + ex.Message);
+            //    }
 
         }
         #region SIPBuddy
@@ -220,8 +322,10 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-                log.Error("Error UN-registering SIP connection", ex);
-            }
+                AppendToLog("Error UN-registering SIP connection: " + ex.Message);
+
+
+             }
         }
 
         /*!
@@ -244,7 +348,7 @@ namespace PJSUA2Implementation.SIP
             }
             catch (Exception ex)
             {
-                log.Error("*** Presence Error: " + ex.Message + ex.InnerException);
+                AppendToLog("*** Presence Error: " + ex.Message + ex.InnerException);
             }
         }
 
@@ -370,6 +474,24 @@ namespace PJSUA2Implementation.SIP
 
             ep.audDevManager().getCaptureDevMedia().adjustTxLevel(volume);
         }
+
+        #region AppendToLog
+        private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"]; //@"c:\temp\ServiceLog.txt";
+        /// <summary>
+        /// supersimple method to add a logging row to a log file
+        /// </summary>
+        /// <param name="_rowToBeAppended"></param>
+        private void AppendToLog(string _rowToBeAppended)
+        {
+            using (StreamWriter w = File.AppendText(clogfile))
+            {
+                w.WriteLine(string.Format("Pjsua2: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
+                w.Flush();
+                w.Close();
+            }
+        }
+
+        #endregion
 
     }
 }

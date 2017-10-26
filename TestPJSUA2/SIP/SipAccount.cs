@@ -61,12 +61,12 @@ namespace TestPJSUA2.SIP
         public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-            Console.WriteLine(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
-            frmm.AddToListbox (ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
-
+    
             switch (_prm.code)
             {
                 case pjsip_status_code.PJSIP_SC_OK:
+                  Console.WriteLine(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
+                  frmm.AddToListbox (ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
 
                     break;
                 case pjsip_status_code.PJSIP_SC_REQUEST_TIMEOUT:

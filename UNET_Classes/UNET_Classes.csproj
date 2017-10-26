@@ -53,6 +53,7 @@
     <Compile Include="Radio.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SIPStatusMessage.cs" />
+    <Compile Include="SyncList.cs" />
     <Compile Include="Trainee.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

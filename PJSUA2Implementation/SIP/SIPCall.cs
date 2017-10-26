@@ -131,8 +131,6 @@ namespace PJSUA2Implementation.SIP
         /// brief SipCall::onCallState
         /// </summary>
         /// <param name="_oncallstateparam"></param>
-        //public void onCallState(pjsua2.OnCallStateParam _prm)
-        //   {
         public override void onCallState(pjsua2.OnCallStateParam _prm)
         {
             try
@@ -148,8 +146,6 @@ namespace PJSUA2Implementation.SIP
 
                 Console.Write("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]");
 
-              //  frmm.AddToListbox(("*** Call: " + ci.remoteUri + " [" + ci.stateText + "]"));
-
                 // Execute commands according to the new state
                 switch (ci.state)
                 {
@@ -157,7 +153,7 @@ namespace PJSUA2Implementation.SIP
 
                         // Remove the call from the account
                         //todo: moet verwijderen!!!!! UAacc.removeCall();
-
+                        
                         // Show we are now disconnected
                         UAacc.newCallState(0);
                        Console.Write(("*** Call: " + ci.remoteUri + " disconnected"));

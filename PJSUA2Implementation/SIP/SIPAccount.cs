@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using pjsua2;
 using System.Threading;
 using System.Configuration;
+using UNET_Classes;
 
 namespace PJSUA2Implementation.SIP
 {
     public class SipAccount : pjsua2.Account
     {
 
-           public SipAccount()
+        public UNET_Classes.SyncList<pjsua2.Call> Calls;
+      //  public List<pjsua2.Call> Calls;
+         public SipAccount()
         {
-            Calls = new List<Call>();
+            Calls = new SyncList<Call>();
         }
-        public List<pjsua2.Call> Calls;
-
+ 
         /// <summary>
         /// Stuur een melding naar de console
         /// </summary>
@@ -51,18 +53,17 @@ namespace PJSUA2Implementation.SIP
 
         /// <summary>
         /// SipAccount::onRegState
+        /// Event komt binnen zodra de gebruiker zich registreert
         /// </summary>
-        /// TODO: LET OP: de override is door Frank bijgevoegd omdat VS dit voorstelde
-        /// <param name="_prm"></param>
+       /// <param name="_prm"></param>
         public override void onRegState(pjsua2.OnRegStateParam _prm)
         {
             pjsua2.AccountInfo ai = getInfo();
-            Console.WriteLine(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
 
             switch (_prm.code)
             {
                 case pjsip_status_code.PJSIP_SC_OK:
-
+                    Console.WriteLine(ai.regIsActive ? "*** Register: code=" : "*** Unregister: code=" + ai.uri + " " + _prm.status + " " + _prm.reason);
                     break;
                 case pjsip_status_code.PJSIP_SC_REQUEST_TIMEOUT:
                     break;
@@ -72,6 +73,7 @@ namespace PJSUA2Implementation.SIP
 
             // Emit the new registration state
             sendNewRegState(Convert.ToInt16(_prm.code));
+
         }
 
         public override void onIncomingSubscribe(OnIncomingSubscribeParam _prm)
@@ -81,9 +83,11 @@ namespace PJSUA2Implementation.SIP
             Console.WriteLine("*** Incoming subscription:" + _prm.code);
         }
 
-        public override void onRegStarted(OnRegStartedParam prm)
+        public override void onRegStarted(OnRegStartedParam _prm)
         {
-            base.onRegStarted(prm);
+            base.onRegStarted(_prm);
+            Console.WriteLine("*** Started registration: " + _prm.ToString());
+
         }
 
         public override void onMwiInfo(OnMwiInfoParam prm)
@@ -93,14 +97,14 @@ namespace PJSUA2Implementation.SIP
 
         /// <summary>
         ///  SipAccount::onIncomingCall
-        /// TODO: LET OP: de override is door Frank bijgevoegd omdat VS dit voorstelde
-        /// </summary> 
+        ///  Hier 
+         /// </summary> 
         public override void onIncomingCall(OnIncomingCallParam _prm)
         {
             try
             {
                 Call call = new Call(this, _prm.callId);
-
+            //    SIPCall call = new SIPCall(this, _prm.callId);
                 CallInfo ci = call.getInfo();
                 CallOpParam prm = new CallOpParam();
 
@@ -110,8 +114,7 @@ namespace PJSUA2Implementation.SIP
                 Calls.Add(call);
                 prm.statusCode = (pjsua2.pjsip_status_code)200;
                 // Answer the call
-                call.answer(prm);
-             
+                call.answer(prm);             
 
             }
             catch (Exception ex)
