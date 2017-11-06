@@ -25,14 +25,13 @@ namespace UNET_Trainer
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         [DllImport("user32.dll")]
-        protected static extern IntPtr GetForegroundWindow();
+        protected static extern IntPtr GetForegroundWindow(); //wordt gebruikt om te detecteren of een scherm wel op de voorgrond zit en het dus zin heeft om de schermcomponenten te updaten
 
 
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
         public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1015"));
-
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
 
 
@@ -428,6 +427,18 @@ namespace UNET_Trainer
 
         #endregion
 
+        /// <summary>
+        /// Dit event gaat af zodra in de Sip>sipaccount>onIncomingCall een call binnenkomt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trigger_CallAlert(object sender, AlertEventArgs e)
+        {
+            this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
+
+            Application.DoEvents();
+        }
+
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
@@ -479,13 +490,16 @@ namespace UNET_Trainer
                 //the useragent holds everything needed for the sip communication
                 useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                 useragent.UserAgentStart();
+                
 
               //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
+                  //koppel het onIncomingCall event aan de frmmain schemupdate
+                  useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
 
-    }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
@@ -509,6 +523,9 @@ namespace UNET_Trainer
             }
         }
 
+
+
+
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             FrmClassBroadcast frm = new FrmClassBroadcast();
@@ -521,6 +538,8 @@ namespace UNET_Trainer
             FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex + 1);
             frm.Show();
         }
+
+ 
 
         /// <summary>
         /// 2.1.6 when mute is clicked, the monitoring of all sessions is canceled
@@ -1093,4 +1112,19 @@ namespace UNET_Trainer
         #endregion
 
     }
+
+    //public class AlertEventArgs : EventArgs
+    //{
+    //    #region AlertEventArgs Properties
+    //    private string _uui = null;
+    //    #endregion
+
+    //    #region Get/Set Properties
+    //    public string uuiData
+    //    {
+    //        get { return _uui; }
+    //        set { _uui = value; }
+    //    }
+    //    #endregion
+    //}
 }

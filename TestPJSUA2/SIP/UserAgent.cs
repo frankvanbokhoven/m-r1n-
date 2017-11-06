@@ -12,6 +12,10 @@ namespace TestPJSUA2.SIP
         public SipAccount acc;
         public List<SipBuddy> buddies = new List<SipBuddy>();
 
+        private AudioMedia play_med;
+        private AudioMedia cap_med;
+
+
         // signals
         public void forwardNewCallState(int state)
         { //todo: implementern
@@ -109,9 +113,10 @@ namespace TestPJSUA2.SIP
             try
             {
                 ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
+              
 
-                AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                 play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                 cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
             }
             catch (Exception ex)
@@ -201,6 +206,8 @@ namespace TestPJSUA2.SIP
             {
                 //dispose all sip objects, so they can be garbage collected
                 ep.libStopWorkerThreads();
+                ep.mediaRemove(play_med);
+                ep.mediaRemove(cap_med);
                 ep.libDestroy();
                 ep.Dispose();
                 //// Send new state

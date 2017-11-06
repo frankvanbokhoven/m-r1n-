@@ -142,9 +142,11 @@ namespace UNET_Trainer_Trainee
             txtPort.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060");
 
             //log dir
-            string file = ((Hierarchy)LogManager.GetRepository())
-         .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
-            txtLogDirectory.Text = file;
+            //string file = ((Hierarchy)LogManager.GetRepository())
+            // .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
+            tbxLog4NetDirectory.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"log4netdir", @"c:\Marine\Log");
+            tbxLogDirectory.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"logdir", @"c:\Marine\Log");
+
             btnMainPage.Focus();
         }
 
@@ -158,7 +160,7 @@ namespace UNET_Trainer_Trainee
             theDialog.RootFolder = Environment.SpecialFolder.Desktop;
             if(theDialog.ShowDialog() == DialogResult.OK)
             {
-                txtLogDirectory.Text = theDialog.SelectedPath;
+                tbxLog4NetDirectory.Text = theDialog.SelectedPath;
             }
 
         }
@@ -171,11 +173,13 @@ namespace UNET_Trainer_Trainee
                 ///sla de settings op uit in registry. Dit mislukt de allereerste keer
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"colorbutton", ddlColorButton.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"font", ddlFont.Text.ToString());
-                RegistryAccess.SetStringRegistryValue(@"UNET", @"logdir", txtLogDirectory.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"logdir", tbxLogDirectory.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"log4netdir", tbxLog4NetDirectory.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"account", tbxAccount.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"sipserver", txtSipServer.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"domain", txtDomain.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"port", txtPort.Text.ToString());
+        
                 if (rbDark.Checked)
                     RegistryAccess.SetStringRegistryValue(@"UNET", @"theme", "dark");
                 if (rbLight.Checked)
@@ -193,6 +197,19 @@ namespace UNET_Trainer_Trainee
 
         private void btnApplyColors_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog theDialog = new FolderBrowserDialog();
+
+            theDialog.Description = "Select the directory logging directory";
+            theDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbxLogDirectory.Text = theDialog.SelectedPath;
+            }
 
         }
     }

@@ -12,7 +12,11 @@ namespace PJSUA2Implementation.SIP
  
         public pjsua2.Endpoint ep;
         public SipAccount acc;
-  
+
+
+        private AudioMedia play_med;
+        private AudioMedia cap_med;
+
         // signals
         public void forwardNewCallState(int state)
         { //todo: implementern
@@ -112,8 +116,8 @@ namespace PJSUA2Implementation.SIP
             {
                 ep.Media_Configure_Audio_Interface("ASIO4ALL v2");
 
-                AudioMedia play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
-                AudioMedia cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
+                play_med = Endpoint.instance().audDevManager().getPlaybackDevMedia();
+                cap_med = Endpoint.instance().audDevManager().getCaptureDevMedia();
 
             }
             catch (Exception ex)
@@ -239,6 +243,8 @@ namespace PJSUA2Implementation.SIP
             ///this code destroys the SIP connection and clears the relevant objects
             try
             {
+                ep.mediaRemove(play_med);
+                ep.mediaRemove(cap_med);
                 //dispose all sip objects, so they can be garbage collected
                 ep.libStopWorkerThreads();
                 ep.libDestroy();

@@ -89,6 +89,30 @@ namespace UNET_Trainer_Trainee
             Application.Exit();
         }
 
+        /// <summary>
+        /// Dit event gaat af zodra in de Sip>sipaccount>onIncomingCall een call binnenkomt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trigger_CallAlert(object sender, AlertEventArgs e)
+        {
+            this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
+
+
+     
+
+            this.Invoke((MethodInvoker)(() => MessageBox.Show("Het is " + e.Caller_AccountName + " die belt!")));
+
+            Application.DoEvents();
+
+            //als een call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
+            if(e.Caller_AccountName.Contains("12345")) //intercom
+            {
+                btnIntercom.BackColor = Color.Red;
+            }
+
+        }
+
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
             try
@@ -138,7 +162,11 @@ namespace UNET_Trainer_Trainee
                     useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
                     useragent.UserAgentStart();
 
-                  //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+
+                    //koppel het onIncomingCall event aan de frmmain schemupdate
+                    useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+
+                    //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                     cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     lblRegInfo.Text = "Registered: " + TraineeID + " " +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -230,14 +258,11 @@ namespace UNET_Trainer_Trainee
                     log.Error("Error updating screen controls", ex);
                     // throw;
                 }
-
                 SetButtonStatus(panelRoles);
                 SetButtonStatus(panelRadios);
             }
 
         }
-
-
 
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
@@ -726,11 +751,14 @@ namespace UNET_Trainer_Trainee
 
                 foreach (Call call in useragent.acc.Calls)
                 {
-                    CallInfo ci = call.getInfo();
-                    CallOpParam cop = new CallOpParam();
-                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    call.hangup(cop);
-                    Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                    if (call != null)
+                    {
+                        CallInfo ci = call.getInfo();
+                        CallOpParam cop = new CallOpParam();
+                        cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                        call.hangup(cop);
+                        Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                    }
                 }
             }
             catch(Exception ex)

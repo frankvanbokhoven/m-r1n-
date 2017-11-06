@@ -44,6 +44,8 @@ namespace PJSUA2Implementation.SIP
         private Direction _direction;
         private List<InputChannels> ChannelInputCollection;
         private List<OutputChannels> ChannelOutputCollection;
+
+        public string Caller_AccountName = "Unknown!";
         /// <summary>
         /// constructor
         /// We explicitly reroute to the constructor of the Call baseclass

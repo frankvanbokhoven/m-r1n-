@@ -56,6 +56,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="SIP\AlertEventArgs.cs" />
     <Compile Include="SIP\SIPAccount.cs" />
     <Compile Include="SIP\SipBuddy.cs" />
     <Compile Include="SIP\SIPCall.cs" />

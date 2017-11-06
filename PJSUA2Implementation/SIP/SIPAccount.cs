@@ -6,16 +6,17 @@ using System.Configuration;
 using UNET_Classes;
 
 
+
+
 namespace PJSUA2Implementation.SIP
 {
     public class SipAccount : pjsua2.Account
     {
-
-        public UNET_Classes.SyncList<pjsua2.Call> Calls;
-  //     public List<pjsua2.Call> Calls;
-
-
-         public SipAccount()
+         public UNET_Classes.SyncList<pjsua2.Call> Calls;
+        //     public List<pjsua2.Call> Calls;
+        public delegate void AlertEventHandler(Object sender, AlertEventArgs e);
+        public event AlertEventHandler  CallAlert;
+        public SipAccount()
         {
             
             try
@@ -54,9 +55,12 @@ namespace PJSUA2Implementation.SIP
 
             foreach (Call indcall in Calls)
             {
-                CallOpParam cop = new CallOpParam();
-                cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
-                indcall.hangup(cop);
+                if (indcall.getId() == call.getId()) //hang de call op met de meegegeven id
+                {
+                    CallOpParam cop = new CallOpParam();
+                    cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
+                    indcall.hangup(cop);
+                }
             }
         }
 
@@ -108,24 +112,43 @@ namespace PJSUA2Implementation.SIP
 
         /// <summary>
         ///  SipAccount::onIncomingCall
-        ///  Hier 
-         /// </summary> 
+        ///  Hier wordt een inkommende call afgehandeld.
+        ///  We gaan ervan uit dat dezelfde call niet twee keer kan binnenkomen
+        /// </summary>
+        /// <param name="_prm"></param>
         public override void onIncomingCall(OnIncomingCallParam _prm)
         {
             try
             {
-                Call call = new Call(this, _prm.callId);
-            //    SIPCall call = new SIPCall(this, _prm.callId);
+                //hier worden de channels gekoppeld aan de call die wordt opgezet (op deze plaats staan ze er alleen omdat de consturcor anders niet werkt)
+                List<InputChannels> lstinputchannels = new List<InputChannels>();
+                lstinputchannels.Add(InputChannels.ichLeft);
+                lstinputchannels.Add(InputChannels.ichRight);
+                lstinputchannels.Add(InputChannels.ichSpeaker);
+
+
+                List<OutputChannels> lstoutputchannels = new List<OutputChannels>();
+                lstoutputchannels.Add(OutputChannels.ochLeft);
+                lstoutputchannels.Add(OutputChannels.ochRight);
+                lstoutputchannels.Add(OutputChannels.ochSpeaker);
+                SIPCall call = new SIPCall(this, ref lstinputchannels, ref lstoutputchannels, _prm.callId);
                 CallInfo ci = call.getInfo();
                 CallOpParam prm = new CallOpParam();
-
                 Console.WriteLine("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                call.Caller_AccountName = ci.remoteUri;
 
-                // Store this call
                 Calls.Add(call);
                 prm.statusCode = (pjsua2.pjsip_status_code)200;
                 // Answer the call
-                call.answer(prm);             
+                call.answer(prm);
+
+                AlertEventArgs alertEventArgs = new AlertEventArgs();
+                alertEventArgs.ID = call.getId();
+                alertEventArgs.Caller_AccountName = ci.remoteUri;
+                alertEventArgs.CallInfo_Of_Call = call.getInfo();
+                //  alertEventArgs.Media_Of_Call = call.getMedia();
+
+                CallAlert(new object(), alertEventArgs); //Dit raised een event dat wordt opgepikt in het FrmMain
 
             }
             catch (Exception ex)
@@ -133,6 +156,8 @@ namespace PJSUA2Implementation.SIP
                 Console.WriteLine("*** Error on incoming call: " + ex.Message + ex.InnerException);
             }
         }
+   
+
 
 
         /// <summary>
