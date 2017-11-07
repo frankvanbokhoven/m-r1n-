@@ -144,6 +144,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagramUNETTrainee.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.CurrentInfo.datasource" />
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.Exercise.datasource" />

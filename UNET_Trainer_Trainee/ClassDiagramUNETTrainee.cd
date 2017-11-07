@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical">
+  <Class Name="UNET_Trainer_Trainee.FrmUNETMain">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>TRTmMQEKACAiAFkyAECYGUBiFUI4YJKA0fABAQgkARs=</HashCode>
+      <FileName>FrmUNETMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UNET_Trainer_Trainee.FrmUNETbase" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAiAAAAAAACCAAAACAgAAAAAAAAAAAAAQBAA=</HashCode>
+      <FileName>FrmUNETbase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UNET_Trainer_Trainee.FrmUNETbaseSub" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACBAAAAABFCMAAACAAAAAgAQAAAAAQAJAAA=</HashCode>
+      <FileName>FrmUNETbaseSub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UNET_Trainer_Trainee.FrmAudio" Collapsed="true">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wFAAQAOEDBAIBAAACKISAACAIAAAAAQQAAAQQAIAhg=</HashCode>
+      <FileName>FrmAudio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UNET_Trainer_Trainee.FrmSetup" Collapsed="true">
+    <Position X="7.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAIACAASlAAAA6IKAACAAAIACARAuCGgQlAAAE=</HashCode>
+      <FileName>FrmSetup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PJSUA2Implementation.SIP.UserAgent" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="PJSUA2Implementation.SIP.SIPCall" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HardwareInterface.HeadsetPluggedChangedEventArgs" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HardwareInterface.PttChangedEventArgs" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HardwareInterface.FtdiInterface" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HardwareInterface.UsbInterface" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HardwareInterface.FTDI.D2xxAccess" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Theming.Theming" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_ConferenceBridge.ConferenceBridge_Singleton" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Trainee" Collapsed="true">
+    <Position X="12.5" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.CheckFormVisible" Collapsed="true">
+    <Position X="7.25" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.CurrentInfo" Collapsed="true">
+    <Position X="9" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Enums" Collapsed="true">
+    <Position X="10.75" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Exercise" Collapsed="true">
+    <Position X="12.5" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Helpers" Collapsed="true">
+    <Position X="7.25" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Instructor" Collapsed="true">
+    <Position X="9" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Platform" Collapsed="true">
+    <Position X="10.75" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Radio" Collapsed="true">
+    <Position X="12.5" Y="8" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.Role" Collapsed="true">
+    <Position X="7.25" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.SIPStatusMessage" Collapsed="true">
+    <Position X="9" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UNET_Classes.SyncList&lt;T&gt;" Collapsed="true">
+    <Position X="10.75" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="HardwareInterface.IHardwareInterface" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="PJSUA2Implementation.SIP.aud_med_call_Channel" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="PJSUA2Implementation.SIP.Direction" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="PJSUA2Implementation.SIP.InputChannels" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="PJSUA2Implementation.SIP.OutputChannels" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="UNET_Classes.UNETTheme" Collapsed="true">
+    <Position X="9" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="UNET_Classes.UNETRadioState" Collapsed="true">
+    <Position X="7.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

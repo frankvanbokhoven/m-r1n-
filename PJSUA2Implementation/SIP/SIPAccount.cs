@@ -122,9 +122,9 @@ namespace PJSUA2Implementation.SIP
             {
                 //hier worden de channels gekoppeld aan de call die wordt opgezet (op deze plaats staan ze er alleen omdat de consturcor anders niet werkt)
                 List<InputChannels> lstinputchannels = new List<InputChannels>();
-                lstinputchannels.Add(InputChannels.ichLeft);
-                lstinputchannels.Add(InputChannels.ichRight);
-                lstinputchannels.Add(InputChannels.ichSpeaker);
+                lstinputchannels.Add(InputChannels.ichMic);
+                lstinputchannels.Add(InputChannels.ichSecondMic);
+                lstinputchannels.Add(InputChannels.ichThirdMic);
 
 
                 List<OutputChannels> lstoutputchannels = new List<OutputChannels>();

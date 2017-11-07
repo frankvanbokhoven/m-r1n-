@@ -936,11 +936,11 @@ namespace UNET_Trainer
                 //hier worden de channels gekoppeld aan de call die wordt opgezet
                 List<InputChannels> lstinputchannels = new List<InputChannels>();
                 if (_inLeft)
-                    lstinputchannels.Add(InputChannels.ichLeft);
+                    lstinputchannels.Add(InputChannels.ichMic);
                 if (_inRight)
-                    lstinputchannels.Add(InputChannels.ichRight);
+                    lstinputchannels.Add(InputChannels.ichSecondMic);
                 if (_inSpeaker)
-                    lstinputchannels.Add(InputChannels.ichSpeaker);
+                    lstinputchannels.Add(InputChannels.ichThirdMic);
 
 
                 List<OutputChannels> lstoutputchannels = new List<OutputChannels>();
@@ -1112,19 +1112,4 @@ namespace UNET_Trainer
         #endregion
 
     }
-
-    //public class AlertEventArgs : EventArgs
-    //{
-    //    #region AlertEventArgs Properties
-    //    private string _uui = null;
-    //    #endregion
-
-    //    #region Get/Set Properties
-    //    public string uuiData
-    //    {
-    //        get { return _uui; }
-    //        set { _uui = value; }
-    //    }
-    //    #endregion
-    //}
 }

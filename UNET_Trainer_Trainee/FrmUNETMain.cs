@@ -510,11 +510,11 @@ namespace UNET_Trainer_Trainee
                 //hier worden de channels gekoppeld aan de call die wordt opgezet
                 List<InputChannels> lstinputchannels = new List<InputChannels>();
                 if (_inLeft)
-                    lstinputchannels.Add(InputChannels.ichLeft);
+                    lstinputchannels.Add(InputChannels.ichMic);
                 if (_inRight)
-                    lstinputchannels.Add(InputChannels.ichRight);
+                    lstinputchannels.Add(InputChannels.ichSecondMic);
                 if (_inSpeaker)
-                    lstinputchannels.Add(InputChannels.ichSpeaker);
+                    lstinputchannels.Add(InputChannels.ichThirdMic);
 
 
                 List<OutputChannels> lstoutputchannels = new List<OutputChannels>();
@@ -592,16 +592,6 @@ namespace UNET_Trainer_Trainee
             }
         }
 
-        private void btnMonitorTrainee_MouseDown(object sender, MouseEventArgs e)
-        {
-           
-
-        }
-
-        private void FrmUNETMain_Shown(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnIntercom_Click(object sender, EventArgs e)
         {
@@ -757,6 +747,7 @@ namespace UNET_Trainer_Trainee
                         CallOpParam cop = new CallOpParam();
                         cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                         call.hangup(cop);
+                        lblPtt.Text = "...";
                         Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
                     }
                 }
@@ -769,13 +760,13 @@ namespace UNET_Trainer_Trainee
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MakeCall("12345", true, false, false, false, true, false);
+            MakeCall("1016", true, true, false, false, false, true);
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            MakeCall("12345", true, false, false, false, false, true);
+            MakeCall("1016", true, false, false, true, true, true);
 
         }
     }
