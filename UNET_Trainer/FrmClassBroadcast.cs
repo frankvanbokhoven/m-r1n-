@@ -16,6 +16,9 @@ namespace UNET_Trainer
 {
     public partial class FrmClassBroadcast : Form// FrmUNETbaseSub
     {
+        private bool AllTraineesSelected = false;
+        private bool AllInstructorsSelected = false;
+        private bool EveryoneSelected = false;
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -236,7 +239,9 @@ namespace UNET_Trainer
                         ((Button)ctrl).ForeColor = Constants.cFontSelected;
                         ((Button)ctrl).BackColor = Constants.cControlSelected;
                     }
+                
                 }
+                AllTraineesSelected = true;
             }
             else
             {
@@ -248,6 +253,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Constants.cExtinguised;
                     }
                 }
+                AllTraineesSelected = false;
             }
         }
 
@@ -264,6 +270,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Constants.cControlSelected;
                     }
                 }
+                AllInstructorsSelected = true;
             }
             else
             {
@@ -275,6 +282,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Constants.cExtinguised;
                     }
                 }
+                AllInstructorsSelected = false;
             }
         }
 
@@ -296,7 +304,7 @@ namespace UNET_Trainer
             btnBroadcast.Text = "Broadcast" + Environment.NewLine + "BROADCASTING";
             log.Info("Mousedown ClassBroadcast");
             if (frmmain != null)
-                frmmain.MakeCall("20000"); //20000 is de code voor de class broadcast conferentie
+                frmmain.MakeCall(Constants.cClassBroadcast, true, false, false, false, false, true); //20000 is de code voor de class broadcast conferentie
 
         }
 
@@ -312,7 +320,7 @@ namespace UNET_Trainer
 
             log.Info("Mouseup ClassBroadcast");
             if (frmmain != null)
-                frmmain.HangupCall("20000"); //20000 is de code voor de class broadcast conferentie
+                frmmain.HangupCall(Constants.cClassBroadcast); //20000 is de code voor de class broadcast conferentie
 
         }
 
@@ -338,7 +346,32 @@ namespace UNET_Trainer
 
         private void btnBroadcast_Click(object sender, EventArgs e)
         {
-       
+            try
+            {
+                if(AllTraineesSelected && !AllInstructorsSelected)
+                {
+                    frmmain.MakeCall("10000", true, false, false, true, false, false);
+                    log.Info(" Started class broadcast to all trainees (10000");
+                }
+                if(!AllTraineesSelected && AllInstructorsSelected)
+                {
+                    frmmain.MakeCall("11000", true, false, false, true, false, false);
+                    log.Info(" Started class broadcast to all Instructors (11000");
+
+                }
+                if (AllTraineesSelected && AllInstructorsSelected)
+                {
+                    frmmain.MakeCall("12000", true, false, false, true, false, false);
+                    log.Info(" Started class broadcast to all trainees and all Instructors (12000");
+                 //   Todo: creeer in  freeswitch unet.xml de 11000 en 12000 conferentie
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(" Something went wrong during class broadcast: " + ex.Message);
+
+                //throw
+            }
         }
 
 

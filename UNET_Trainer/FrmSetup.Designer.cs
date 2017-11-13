@@ -57,6 +57,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tbxLogDirectory = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.tbxDisplayName = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -249,6 +251,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tbxDisplayName);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtDomain);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtPort);
@@ -265,7 +269,7 @@
             // txtDomain
             // 
             this.txtDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDomain.Location = new System.Drawing.Point(27, 231);
+            this.txtDomain.Location = new System.Drawing.Point(27, 276);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(259, 21);
             this.txtDomain.TabIndex = 47;
@@ -273,7 +277,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 211);
+            this.label7.Location = new System.Drawing.Point(24, 256);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 15);
             this.label7.TabIndex = 46;
@@ -282,7 +286,7 @@
             // txtPort
             // 
             this.txtPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPort.Location = new System.Drawing.Point(27, 168);
+            this.txtPort.Location = new System.Drawing.Point(27, 213);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(259, 21);
             this.txtPort.TabIndex = 45;
@@ -290,7 +294,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 148);
+            this.label6.Location = new System.Drawing.Point(24, 193);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 15);
             this.label6.TabIndex = 44;
@@ -299,7 +303,7 @@
             // txtSipServer
             // 
             this.txtSipServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSipServer.Location = new System.Drawing.Point(27, 106);
+            this.txtSipServer.Location = new System.Drawing.Point(27, 151);
             this.txtSipServer.Name = "txtSipServer";
             this.txtSipServer.Size = new System.Drawing.Size(259, 21);
             this.txtSipServer.TabIndex = 43;
@@ -307,7 +311,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 86);
+            this.label5.Location = new System.Drawing.Point(24, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 15);
             this.label5.TabIndex = 42;
@@ -361,6 +365,25 @@
             this.label8.Size = new System.Drawing.Size(179, 15);
             this.label8.TabIndex = 44;
             this.label8.Text = "Other directory for logging";
+            // 
+            // tbxDisplayName
+            // 
+            this.tbxDisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxDisplayName.Location = new System.Drawing.Point(26, 90);
+            this.tbxDisplayName.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxDisplayName.Name = "tbxDisplayName";
+            this.tbxDisplayName.Size = new System.Drawing.Size(223, 21);
+            this.tbxDisplayName.TabIndex = 51;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(24, 74);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(91, 15);
+            this.label9.TabIndex = 50;
+            this.label9.Text = "Displayname";
             // 
             // FrmSetup
             // 
@@ -429,5 +452,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbxLogDirectory;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbxDisplayName;
+        private System.Windows.Forms.Label label9;
     }
 }

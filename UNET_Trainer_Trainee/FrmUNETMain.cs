@@ -151,6 +151,7 @@ namespace UNET_Trainer_Trainee
                     //the useragent holds everything needed for the sip communication
                     string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
                     //sipserver
+                    string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
                     string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
                     //account
                     string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
@@ -159,8 +160,8 @@ namespace UNET_Trainer_Trainee
                     string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
 
                     //the useragent holds everything needed for the sip communication
-                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
-                    useragent.UserAgentStart();
+                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                    useragent.UserAgentStart("UNETTrainee");
 
 
                     //koppel het onIncomingCall event aan de frmmain schemupdate
@@ -384,23 +385,31 @@ namespace UNET_Trainer_Trainee
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //close the useragent en with that the sip connection
-            if (!object.ReferenceEquals(useragent, null))
+
+            try
             {
-                 //stop the sip connection in a nice manner before closing
-                useragent.ep.hangupAllCalls();
-                useragent.UserAgentStop();
-            }
-            //close the connection to the wcf service, if it is still opened
-            if (service.State == System.ServiceModel.CommunicationState.Opened)
-            {
-                service.Close();
-            }
+                //close the useragent en with that the sip connection
+                if (!object.ReferenceEquals(useragent, null))
+                {
+                    //stop the sip connection in a nice manner before closing
+                    HangupAllCalls();
+                    useragent.UserAgentStop();
+                }
+                //close the connection to the wcf service, if it is still opened
+                if (service.State == System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Close();
+                }
 
 
-            //try to find and kill the TCPSocketClient process and kill it
-            FindAndKillProcess("TCPSocketClient.exe");
-            log.Info("Terminated UNET_Trainee");
+                //try to find and kill the TCPSocketClient process and kill it
+                FindAndKillProcess("TCPSocketClient.exe");
+                log.Info("Terminated UNET_Trainee");
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error shutting down: " + ex.Message + Environment.NewLine + ex.InnerException + Environment.NewLine + ex.StackTrace.ToString());
+            }
 
         }
 
@@ -727,13 +736,20 @@ namespace UNET_Trainer_Trainee
 
         }
 
-
         /// <summary>
-        /// Hangup all active calls
+        /// Hangup
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
+         private void button2_Click(object sender, EventArgs e)
+        {
+            HangupAllCalls();
+        }
+
+       /// <summary>
+        /// Hangup all active calls
+        /// </summary>
+        private void HangupAllCalls()
         {
             try
             {

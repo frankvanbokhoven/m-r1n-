@@ -126,6 +126,9 @@ namespace UNET_Trainer
             txtSipServer.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
             //account
             txtDomain.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+            //displayname
+            tbxDisplayName.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "Trainee 1013");
+
             //account
             txtPort.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060");
 
@@ -180,6 +183,7 @@ namespace UNET_Trainer
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"logdir", tbxLogDirectory.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"log4netdir", tbxLog4netDirectory.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"account", tbxAccount.Text.ToString());
+                RegistryAccess.SetStringRegistryValue(@"UNET", @"displayname", tbxDisplayName.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"sipserver", txtSipServer.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"domain", txtDomain.Text.ToString());
                 RegistryAccess.SetStringRegistryValue(@"UNET", @"port", txtPort.Text.ToString());

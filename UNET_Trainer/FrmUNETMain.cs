@@ -467,18 +467,15 @@ namespace UNET_Trainer
             ShowIcon = false;
             ShowInTaskbar = false;
 
-            ///
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
-            {
-                service.Open();
-            }
-            service.StartService();
-
+     
 
             ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             try
             {
+                //the useragent holds everything needed for the sip communication
                 string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                //displayname
+                string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
                 //sipserver
                 string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
                 //account
@@ -488,17 +485,20 @@ namespace UNET_Trainer
                 string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
 
                 //the useragent holds everything needed for the sip communication
-                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password);
-                useragent.UserAgentStart();
-                
+                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                useragent.UserAgentStart("UNETTrainer");
 
-              //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+
+                //koppel het onIncomingCall event aan de frmmain schemupdate
+                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+
+
+                //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
-                  //koppel het onIncomingCall event aan de frmmain schemupdate
-                  useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
-
+                //koppel het onIncomingCall event aan de frmmain schemupdate
+                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
             }
             catch (Exception ex)
             {
@@ -510,6 +510,12 @@ namespace UNET_Trainer
                     "Contact your system administrator");
                 this.Close();
             }
+            ///
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            service.StartService();
 
             try
             {
@@ -524,8 +530,6 @@ namespace UNET_Trainer
         }
 
 
-
-
         private void btnClassBroadcast_Click(object sender, EventArgs e)
         {
             FrmClassBroadcast frm = new FrmClassBroadcast();
@@ -538,7 +542,6 @@ namespace UNET_Trainer
             FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex + 1);
             frm.Show();
         }
-
  
 
         /// <summary>
@@ -846,7 +849,7 @@ namespace UNET_Trainer
                     service.Close();
                 }
                 //stop the sip connection in a nice manner before closing
-                useragent.ep.hangupAllCalls();
+                HangupAllCalls();
                 useragent.UserAgentStop();
             }
             catch (Exception ex)
@@ -902,23 +905,23 @@ namespace UNET_Trainer
         /// </summary>
         /// <param name="traineeid"></param>
         /// <param name="_destination"></param>
-        public void MakeCall(string _destination)
-        {
-            try
-            {
-                log.Info("Making call to: " + _destination);
-          //      PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-          //      CallOpParam cop = new CallOpParam();
-          //      cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+        //public void MakeCall(string _destination)
+        //{
+        //    try
+        //    {
+        //        log.Info("Making call to: " + _destination);
+        //  //      PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+        //  //      CallOpParam cop = new CallOpParam();
+        //  //      cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
-                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error making call to: " + _destination, ex);
-                // throw;
-            }
-        }
+        //        sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error making call to: " + _destination, ex);
+        //        // throw;
+        //    }
+        //}
 
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
@@ -929,17 +932,17 @@ namespace UNET_Trainer
         /// <param name="_outLeft"></param>
         /// <param name="_outRight"></param>
         /// <param name="_outSpeaker"></param>
-        private void MakeCall(string _destination, bool _inLeft, bool _inRight, bool _inSpeaker, bool _outLeft, bool _outRight, bool _outSpeaker)
+        public void MakeCall(string _destination, bool _inMic, bool _inSecondMic, bool _inThirdMic, bool _outLeft, bool _outRight, bool _outSpeaker)
         {
             try
             {
                 //hier worden de channels gekoppeld aan de call die wordt opgezet
                 List<InputChannels> lstinputchannels = new List<InputChannels>();
-                if (_inLeft)
+                if (_inMic)
                     lstinputchannels.Add(InputChannels.ichMic);
-                if (_inRight)
+                if (_inSecondMic)
                     lstinputchannels.Add(InputChannels.ichSecondMic);
-                if (_inSpeaker)
+                if (_inThirdMic)
                     lstinputchannels.Add(InputChannels.ichThirdMic);
 
 
@@ -995,10 +998,68 @@ namespace UNET_Trainer
 
         #endregion
 
+        /// <summary>
+        /// Intercom. The intercom sound must be on the left ear on the receiver's end
+        /// zie usecase 3.1.3.4 in SRS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIntercom_Click(object sender, EventArgs e)
         {
-            MakeCall( @"INTERCOM_CUB_" + InstructorID, true, true, false, false, true, false);//intercom must go left
+            try
+            {
+                //1 zoek uit welke radio geklikt heeft
+                string state = ((Button)sender).Text.Trim();
 
+                 if (((Button)sender).Text.Trim().Length > 8)
+                {
+                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                }
+                else
+                {
+                    state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
+                }
+                //2 zoek die op in de radios lijst in de conferencebridge
+                if (((Button)sender).Tag == null)
+                {
+                    ((Button)sender).Tag = "Tx";
+                }
+                string btnstate = ((Button)sender).Tag.ToString();
+                switch (btnstate) 
+                {
+                    //3 zet de status   
+                    case "Rx":
+                        {
+                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Tx");
+                            ((Button)sender).Tag = "Tx";
+                            MakeCall("10000", true, false, false, true, false, false);
+                            break;
+                        }
+                    case "Off":
+                    default:
+                        {
+                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Rx");
+                            ((Button)sender).Tag = "Rx";
+                            break;
+                        }
+                    case "Tx":
+                        {
+                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "OFF");
+                            ((Button)sender).Tag = "Off";
+                            break;
+                        }
+                }
+                log.Info("Have set the status of the Intercom to: " + state);
+
+
+
+    //            MakeCall("10000", true, false, false, true, false, false);//intercom must go left
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting the intercom status", ex);
+                // throw;
+            } 
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
@@ -1013,6 +1074,34 @@ namespace UNET_Trainer
             ((Button)sender).BackColor = Color.Black;
             ((Button)sender).ForeColor = Color.White;
 
+        }
+
+        /// <summary>
+        /// Hangup all active calls
+        /// </summary>
+        private void HangupAllCalls()
+        {
+            try
+            {
+
+
+                foreach (Call call in useragent.acc.Calls)
+                {
+                    if (call != null)
+                    {
+                        CallInfo ci = call.getInfo();
+                        CallOpParam cop = new CallOpParam();
+                        cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                        call.hangup(cop);
+                        lblPtt.Text = "...";
+                        Console.Write("Successfully hanged up call: " + ci.id + " Totalduration: " + ci.totalDuration);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Exception hanging up calls: " + ex.Message);
+            }
         }
 
         #region HID COMserver

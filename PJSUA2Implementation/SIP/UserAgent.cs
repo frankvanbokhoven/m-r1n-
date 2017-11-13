@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace PJSUA2Implementation.SIP
 {
-    public  class UserAgent //: pjsua2.UserEvent
+    public  class UserAgent
     {
  
         public pjsua2.Endpoint ep;
@@ -30,6 +30,7 @@ namespace PJSUA2Implementation.SIP
             //todo: implementeren
         }
         public string Account { get; set; }
+        public string DisplayName { get; set; }
         public string SipServer { get; set; }
         public int Port { get; set; }
         public string Domain { get; set; }
@@ -43,6 +44,7 @@ namespace PJSUA2Implementation.SIP
         public UserAgent()
         {
             Account = ConfigurationManager.AppSettings["SIPAccount"].ToString();
+            DisplayName = ConfigurationManager.AppSettings["displayname"].ToString();
             Domain = ConfigurationManager.AppSettings["SIPDomain"].ToString();
             SipServer = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
             Password = ConfigurationManager.AppSettings["sipPassword"];
@@ -56,9 +58,10 @@ namespace PJSUA2Implementation.SIP
         /// <param name="_sipserver"></param>
         /// <param name="_port"></param>
         /// <param name="_domain"></param>
-        public UserAgent(string _account, string _sipserver, int _port, string _domain, string _password)
+        public UserAgent(string _account, string _sipserver, int _port, string _domain, string _password, string _displayname)
         {
             Account = _account;
+            DisplayName = _displayname;
             SipServer = _sipserver;
             Port = _port;
             Domain = _domain;
@@ -86,7 +89,7 @@ namespace PJSUA2Implementation.SIP
         /// <summary>
         /// Init the pjsua2 and start it
         /// </summary>
-        public void UserAgentStart()
+        public void UserAgentStart(string _threadName)
         {
             // Create endpoint
             try
@@ -95,7 +98,7 @@ namespace PJSUA2Implementation.SIP
                 {
                     ep = new Endpoint();
                     ep.libCreate();
-                    ep.libRegisterThread(RandomThreadString("PJSUA2"));
+                    ep.libRegisterThread(RandomThreadString("PJSUA2" + _threadName));
                 }
             }
             catch (Exception ex)
@@ -160,8 +163,8 @@ namespace PJSUA2Implementation.SIP
                 // Create & set presence
                 // Create account configuration
                 AccountConfig acfg = new AccountConfig();
-                acfg.idUri = "sip:" + Account + "@" + Domain;
-                Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri  +  "  SipServer:  " + SipServer);
+                acfg.idUri = DisplayName + " <sip:" + Account + "@" + Domain + ">";
+                  Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri  +  "  SipServer:  " + SipServer);
 
                 string sipserver = string.Format("sip:{0}", SipServer);
                 acfg.regConfig.registrarUri = sipserver;
