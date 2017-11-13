@@ -113,7 +113,7 @@
             this.tbxInstructorIDs.Name = "tbxInstructorIDs";
             this.tbxInstructorIDs.Size = new System.Drawing.Size(169, 20);
             this.tbxInstructorIDs.TabIndex = 18;
-            this.tbxInstructorIDs.Text = "1015,1016";
+            this.tbxInstructorIDs.Text = "1016";
             this.toolTip1.SetToolTip(this.tbxInstructorIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
             // 
             // btnRefreshTrainees
@@ -135,7 +135,7 @@
             this.tbxTraineeIDs.Name = "tbxTraineeIDs";
             this.tbxTraineeIDs.Size = new System.Drawing.Size(169, 20);
             this.tbxTraineeIDs.TabIndex = 16;
-            this.tbxTraineeIDs.Text = "1013,1014,1015,1016";
+            this.tbxTraineeIDs.Text = "1000,1001,1002,1003";
             this.toolTip1.SetToolTip(this.tbxTraineeIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
             // 
             // buttonRefresh

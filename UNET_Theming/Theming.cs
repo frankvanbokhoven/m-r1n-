@@ -136,6 +136,12 @@ namespace UNET_Theming
                         ((Button)ctrl).BackColor = Color.Red;
                     }
                     else
+                    if (((Button)ctrl).Name.ToLower().Contains("options") || ((Button)ctrl).Name.ToLower().Contains("mic"))
+                    {
+                        ((Button)ctrl).ForeColor = Color.Black;
+                      //  ((Button)ctrl).BackColor = Color.Peru;
+                    }
+                    else
                     if (((Button)ctrl).Name.ToLower().Contains("trainee"))
                     {
                         ((Button)ctrl).ForeColor = Color.Black;

@@ -51,13 +51,13 @@ namespace UNET_Trainer
         private void FrmClassBroadcast_Load(object sender, EventArgs e)
         {
             this.Text = "Class broadcast";
-            timer1.Enabled = true;
-            InitState();
 
             Theming the = new Theming();
             the.SetTheme(UNET_Classes.UNETTheme.utDark, this);
             the.SetFormSizeAndPosition(this);
 
+            timer1.Enabled = true;
+            InitState();
 
         }
 
@@ -67,12 +67,6 @@ namespace UNET_Trainer
         /// </summary>
         private void InitState()
         {
-            //loop thrue the Monitortraineearray to set the proper status
-            //  for (int i = 0; i <= 15; i++)
-            //  {
-            //      MonitorTraineeArray[i] = false;
-            //  }
-
             // A little amateur.. but it just is the fastest manner
             btnTraineeAA.BackColor = Constants.cExtinguised;
             btnTraineeBB.BackColor = Constants.cExtinguised;
@@ -96,8 +90,6 @@ namespace UNET_Trainer
             btnInstructor03.BackColor = Constants.cExtinguised;
             btnInstructor04.BackColor = Constants.cExtinguised;
 
-
-
             btnDeSelect.BackColor = Constants.cExtinguised;
             btnDeSelect.ForeColor = Constants.cFontNotSelected;
             btnBroadcast.BackColor = Constants.cExtinguised;
@@ -108,10 +100,6 @@ namespace UNET_Trainer
             btnSelectAllPositions.ForeColor = Constants.cFontNotSelected;
             btnSelectAllTrainees.BackColor = Constants.cExtinguised;
             btnSelectAllTrainees.ForeColor = Constants.cFontNotSelected;
-
-            
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -137,34 +125,34 @@ namespace UNET_Trainer
         private void SetButtonStatus(Control parent)
         {
             // first the trainees, we assume the name of the button component is the key for the function
-            foreach (Control c in parent.Controls)
-            {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-                Application.DoEvents();
-            }
+            //foreach (Control c in parent.Controls)
+            //{
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+            //    Application.DoEvents();
+            //}
 
-            // first the trainees, we assume the name of the button component is the key for the function
-            foreach (Control c in parent.Controls)
-            {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("instructor")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-                Application.DoEvents();
-            }
+            //// first the trainees, we assume the name of the button component is the key for the function
+            //foreach (Control c in parent.Controls)
+            //{
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("instructor")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+            //    Application.DoEvents();
+            //}
 
             try
             {
@@ -210,6 +198,18 @@ namespace UNET_Trainer
                 btnInstructor04.Enabled = lstInstructor.Count >= 4;
 
 
+                if(!AllInstructorsSelected && !AllTraineesSelected)
+                {
+                    btnBroadcast.Enabled = false;
+                    btnBroadcast.BackColor = Constants.cInActive;
+                }
+                else
+                {
+                    btnBroadcast.Enabled = true;
+                    btnBroadcast.BackColor = Constants.cExtinguised;
+                }
+
+
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(pnlInstructors, lstInstructor.Count, "instructor");
 
@@ -239,7 +239,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).ForeColor = Constants.cFontSelected;
                         ((Button)ctrl).BackColor = Constants.cControlSelected;
                     }
-                
+
                 }
                 AllTraineesSelected = true;
             }
@@ -296,31 +296,16 @@ namespace UNET_Trainer
             AllInstructors(true);
         }
 
-  
+
         private void btnBroadcast_MouseDown(object sender, MouseEventArgs e)
         {
-            btnBroadcast.BackColor = Constants.cBroadcasting;
-            btnBroadcast.ForeColor = Constants.cFontBroadcasting;
-            btnBroadcast.Text = "Broadcast" + Environment.NewLine + "BROADCASTING";
-            log.Info("Mousedown ClassBroadcast");
-            if (frmmain != null)
-                frmmain.MakeCall(Constants.cClassBroadcast, true, false, false, false, false, true); //20000 is de code voor de class broadcast conferentie
+            //        if (frmmain != null)
+            //           frmmain.MakeCall(Constants.cClassBroadcast, true, false, false, false, false, true); //20000 is de code voor de class broadcast conferentie
 
         }
 
         private void btnBroadcast_MouseUp(object sender, MouseEventArgs e)
         {
-            //zet alles weer terug naar de beginwaarden
-            btnBroadcast.BackColor = Constants.cExtinguised;
-            btnBroadcast.ForeColor = Constants.cFontNotSelected;
-            btnBroadcast.Text = "Broadcast";
-
-            AllInstructors(false);
-            AllTrainees(false);
-
-            log.Info("Mouseup ClassBroadcast");
-            if (frmmain != null)
-                frmmain.HangupCall(Constants.cClassBroadcast); //20000 is de code voor de class broadcast conferentie
 
         }
 
@@ -333,6 +318,7 @@ namespace UNET_Trainer
 
             AllInstructors(false);
             AllTrainees(false);
+            SetButtonStatus(this);
         }
 
         private void btnMainPage_Click(object sender, EventArgs e)
@@ -348,25 +334,51 @@ namespace UNET_Trainer
         {
             try
             {
-                if(AllTraineesSelected && !AllInstructorsSelected)
+
+                if (btnBroadcast.BackColor == Constants.cExtinguised) //if the buttons is NOT in a broadcasting state
                 {
-                    frmmain.MakeCall("10000", true, false, false, true, false, false);
-                    log.Info(" Started class broadcast to all trainees (10000");
-                }
-                if(!AllTraineesSelected && AllInstructorsSelected)
-                {
-                    frmmain.MakeCall("11000", true, false, false, true, false, false);
-                    log.Info(" Started class broadcast to all Instructors (11000");
+                    btnBroadcast.BackColor = Constants.cBroadcasting;
+                    btnBroadcast.ForeColor = Constants.cFontBroadcasting;
+                    btnBroadcast.Text = "Broadcast" + Environment.NewLine + "BROADCASTING";
+                    log.Info("Start ClassBroadcast");
+
+
+                    //only when there is no class broadcast in progress, we can start a class broadcast
+                    if (AllTraineesSelected && !AllInstructorsSelected)
+                    {
+                        frmmain.MakeCall(Constants.cClassBroadcastAllTrainees, true, false, false, true, false, false);
+                        log.Info(" Started class broadcast to all trainees (10000");
+                    }
+                    if (!AllTraineesSelected && AllInstructorsSelected)
+                    {
+                        frmmain.MakeCall(Constants.cClassBroadcastAllInstructors, true, false, false, true, false, false);
+                        log.Info(" Started class broadcast to all Instructors (11000");
+
+                    }
+                    if (AllTraineesSelected && AllInstructorsSelected)
+                    {
+                        frmmain.MakeCall(Constants.cClassBroadcastAll, true, false, false, true, false, false);
+                        log.Info(" Started class broadcast to all trainees and all Instructors (12000");
+                    }
 
                 }
-                if (AllTraineesSelected && AllInstructorsSelected)
+                else
                 {
-                    frmmain.MakeCall("12000", true, false, false, true, false, false);
-                    log.Info(" Started class broadcast to all trainees and all Instructors (12000");
-                 //   Todo: creeer in  freeswitch unet.xml de 11000 en 12000 conferentie
+                    //zet alles weer terug naar de beginwaarden
+                    btnBroadcast.BackColor = Constants.cExtinguised;
+                    btnBroadcast.ForeColor = Constants.cFontNotSelected;
+                    btnBroadcast.Text = "Broadcast";
+
+                    AllInstructors(false);
+                    AllTrainees(false);
+
+                    log.Info("Mouseup ClassBroadcast");
+                    if (frmmain != null)
+                        frmmain.HangupCall(Constants.cClassBroadcastAll); //20000 is de code voor de class broadcast conferentie
                 }
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(" Something went wrong during class broadcast: " + ex.Message);
 

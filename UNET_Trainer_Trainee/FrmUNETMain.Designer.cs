@@ -682,7 +682,7 @@
             // 
             this.lblInstructor.AutoSize = true;
             this.lblInstructor.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInstructor.Location = new System.Drawing.Point(106, 130);
+            this.lblInstructor.Location = new System.Drawing.Point(96, 130);
             this.lblInstructor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblInstructor.Name = "lblInstructor";
             this.lblInstructor.Size = new System.Drawing.Size(50, 22);
@@ -704,7 +704,7 @@
             // 
             this.lblPlatform.AutoSize = true;
             this.lblPlatform.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlatform.Location = new System.Drawing.Point(106, 106);
+            this.lblPlatform.Location = new System.Drawing.Point(96, 106);
             this.lblPlatform.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(50, 22);
@@ -715,7 +715,7 @@
             // 
             this.lblConsole.AutoSize = true;
             this.lblConsole.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsole.Location = new System.Drawing.Point(106, 80);
+            this.lblConsole.Location = new System.Drawing.Point(96, 80);
             this.lblConsole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblConsole.Name = "lblConsole";
             this.lblConsole.Size = new System.Drawing.Size(50, 22);
@@ -726,7 +726,7 @@
             // 
             this.lblExerciseMode.AutoSize = true;
             this.lblExerciseMode.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExerciseMode.Location = new System.Drawing.Point(106, 52);
+            this.lblExerciseMode.Location = new System.Drawing.Point(96, 52);
             this.lblExerciseMode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExerciseMode.Name = "lblExerciseMode";
             this.lblExerciseMode.Size = new System.Drawing.Size(50, 22);
@@ -737,7 +737,7 @@
             // 
             this.lblExerciseName.AutoSize = true;
             this.lblExerciseName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExerciseName.Location = new System.Drawing.Point(106, 24);
+            this.lblExerciseName.Location = new System.Drawing.Point(96, 24);
             this.lblExerciseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblExerciseName.Name = "lblExerciseName";
             this.lblExerciseName.Size = new System.Drawing.Size(50, 22);

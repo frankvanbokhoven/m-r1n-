@@ -75,13 +75,13 @@ namespace UNET_Trainer_Trainee
         /// <param name="_exercisemode"></param>
         /// <param name="_consolerole"></param>
         /// <param name="_platform"></param>
-        private void SetExersiceInformation(string _exersicename, string _exercisemode, string _consolerole, string _platform)
-        {
-            lblConsole.Text = _consolerole;
-            lblExerciseName.Text = _exersicename;
-            lblExerciseMode.Text = _exercisemode;
-            lblPlatform.Text = _platform;
-        }
+        //private void SetExersiceInformation(string _exersicename, string _exercisemode, string _consolerole, string _platform)
+        //{
+        //    lblConsole.Text = _consolerole;
+        //    lblExerciseName.Text = _exersicename;
+        //    lblExerciseMode.Text = _exercisemode;
+        //    lblPlatform.Text = _platform;
+        //}
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -248,6 +248,13 @@ namespace UNET_Trainer_Trainee
                         lblExerciseMode.Text = currentInfo.ExerciseMode;
                         lblExerciseName.Text = currentInfo.ExerciseName;
                         lblInstructor.Text = currentInfo.InstructorName;
+
+                        lblPlatform.ForeColor = Color.Yellow;
+                        lblConsole.ForeColor = Color.Yellow;
+                        lblExerciseMode.ForeColor = Color.Yellow;
+                        lblExerciseName.ForeColor = Color.Yellow;
+                        lblInstructor.ForeColor = Color.Yellow;
+
                     }
                     else
                     {
@@ -497,7 +504,7 @@ namespace UNET_Trainer_Trainee
 
 
 
-                MakeCall("1015" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
+                MakeCall("1016" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
             }
             catch (Exception ex)
             {

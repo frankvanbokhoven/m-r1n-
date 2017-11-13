@@ -4,6 +4,7 @@ namespace UNET_Trainer
 {
     static class Constants
     {
+        public static Color cInActive = Color.Gray;
         public static Color cExtinguised = Color.DarkSeaGreen;
         public static Color cControlSelected = Color.DarkRed;
         public static Color cFontSelected = Color.White;
@@ -11,7 +12,11 @@ namespace UNET_Trainer
         public static Color cBroadcasting = Color.Red;
         public static Color cFontBroadcasting = Color.White;
 
-        public static string cClassBroadcast = "20000";
+        public static string cClassBroadcastAllTrainees = "10000"; //ONLY ALL TRAINEES
+        public static string cClassBroadcastAllInstructors = "11000"; //ONLY ALL INSTRUCTORS
+        public static string cClassBroadcastAll = "12000"; //ALL TRAINEES, ALL INSTRUCTORS
+
+
         public static string cIntercom = "12345";
 
         // all trainee ID's
@@ -34,10 +39,10 @@ namespace UNET_Trainer
         public static string cTrainee1016 = "1016";
 
         // all instructor ID's
-        public static string cInstructor1020 = "1020";
-        public static string cInstructor1021 = "1021";
-        public static string cInstructor1022 = "1022";
-        public static string cInstructor1023 = "1023";
+        public static string cInstructor1020 = "1016";
+        public static string cInstructor1021 = "1017";
+        public static string cInstructor1022 = "1018";
+        public static string cInstructor1023 = "1019";
 
     }
 }

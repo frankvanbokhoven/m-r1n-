@@ -31,7 +31,7 @@ namespace UNET_Trainer
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1015"));
+        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1016"));
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
 
 
@@ -166,7 +166,7 @@ namespace UNET_Trainer
         }
         #endregion
 
-        #region Status setters
+        #region  Button Status setters
 
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
@@ -331,8 +331,8 @@ namespace UNET_Trainer
 
 
                 //enable the Roles buttons
-                var rolelist = service.GetRoles();
-                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+              //  var rolelist = service.GetRoles();
+              //  List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRoles.Controls)
                 {
                     if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
@@ -343,7 +343,7 @@ namespace UNET_Trainer
 
                     }
                 }
-                foreach (UNET_Classes.Role role in lstrole)
+                foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned) //currentInstructor.Exercises[0].)
                 {
                     //     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
@@ -370,13 +370,13 @@ namespace UNET_Trainer
                         }
                     }
                 }
-                UNET_Classes.Helpers.ResizeButtons(panelRoles, lstrole.Count, "role");
+                UNET_Classes.Helpers.ResizeButtons(panelRoles, SelectedExercise.RolesAssigned.Count, "role");
 
 
                 //enable the Roles buttons
-                var radiolist = service.GetRadios();
+               // var radiolist = service.GetRadios();
 
-                List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+              //  List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRadios.Controls)
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
@@ -387,7 +387,7 @@ namespace UNET_Trainer
 
                     }
                 }
-                foreach (UNET_Classes.Radio radio in lstRadio)
+                foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
                 {
                  //   panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
                     panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
@@ -414,7 +414,7 @@ namespace UNET_Trainer
                         }
                     }
                 }
-                UNET_Classes.Helpers.ResizeButtons(panelRadios, lstRadio.Count, "radio");
+                UNET_Classes.Helpers.ResizeButtons(panelRadios, SelectedExercise.RadiosAssigned.Count, "radio");
 
                 Application.DoEvents();
             }
@@ -898,31 +898,7 @@ namespace UNET_Trainer
             //        SetButtonStatus(this);
         }
         #region CALL
-
  
-        /// <summary>
-        /// Make a call to Freeswich using PJSUA2
-        /// </summary>
-        /// <param name="traineeid"></param>
-        /// <param name="_destination"></param>
-        //public void MakeCall(string _destination)
-        //{
-        //    try
-        //    {
-        //        log.Info("Making call to: " + _destination);
-        //  //      PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-        //  //      CallOpParam cop = new CallOpParam();
-        //  //      cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-
-        //        sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        log.Error("Error making call to: " + _destination, ex);
-        //        // throw;
-        //    }
-        //}
-
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
         /// <param name="_destination"></param>
@@ -981,12 +957,7 @@ namespace UNET_Trainer
 
                 useragent.acc.removeCall(sc);
 
-              //  PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-             //   CallOpParam cop = new CallOpParam();
-             //   cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-
-             //   sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
-            }
+             }
             catch (Exception ex)
             {
                 log.Error("Error making call to: " + _destination, ex);
