@@ -271,7 +271,7 @@ namespace UNET_Trainer_Trainee
             }
 
         }
-
+        #region buttonstatus
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
         /// It also enables/disables buttons based on the number of exercises given bij the service
@@ -369,7 +369,7 @@ namespace UNET_Trainer_Trainee
                 // throw;
             }
         }
-
+        #endregion
 
         private void PlayBeep()
         {
@@ -412,6 +412,7 @@ namespace UNET_Trainer_Trainee
                 //try to find and kill the TCPSocketClient process and kill it
                 FindAndKillProcess("TCPSocketClient.exe");
                 log.Info("Terminated UNET_Trainee");
+
             }
             catch (Exception ex)
             {

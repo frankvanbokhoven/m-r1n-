@@ -51,7 +51,7 @@ namespace UNET_Trainer
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
         public UNET_Classes.Exercise SelectedExercise;
-        private int ExersiseIndex = -1;
+        private int ExersiseNumber = -1;
         private int RoleClicked = -1;
         private int RadioClicked = -1;
 
@@ -100,13 +100,13 @@ namespace UNET_Trainer
 
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            FrmRoles frm = new FrmRoles(ExersiseIndex, InstructorID);
+            FrmRoles frm = new FrmRoles(ExersiseNumber, InstructorID);
             frm.Show();
         }
 
         private void btnTrainees_Click(object sender, EventArgs e)
         {
-            FrmTrainees frm = new FrmTrainees(ExersiseIndex, InstructorID);
+            FrmTrainees frm = new FrmTrainees(ExersiseNumber, InstructorID);
             frm.Show();
         }
 
@@ -234,9 +234,16 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
+
+                if(SelectedExercise == null)
+                {
+                    //bij de start van de instructor moet er al een exercise geselecteerd zijn, zoniet, dan zetten we die hier alsnog..
+                    service.SetExerciseSelected(InstructorID, 1, true);
+                }
                 //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
+                SelectedExercise = currentInstructor.Exercises.SingleOrDefault(x => x.Selected == true); //neem de geselecteerde exercise
 
                 //enable the Exercise buttons
                 var resultlist = service.GetExercises();
@@ -343,7 +350,7 @@ namespace UNET_Trainer
 
                     }
                 }
-                foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned) //currentInstructor.Exercises[0].)
+                 foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned) 
                 {
                     //     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
@@ -516,7 +523,7 @@ namespace UNET_Trainer
                 service.Open();
             }
             service.StartService();
-
+    
             try
             {
                 //this is specially for the COMservice that listens to the PTT and Headset events, generated
@@ -539,7 +546,7 @@ namespace UNET_Trainer
 
         private void btnRadios_Click(object sender, EventArgs e)
         {
-            FrmRadioSetup frm = new FrmRadioSetup(ExersiseIndex + 1);
+            FrmRadioSetup frm = new FrmRadioSetup(ExersiseNumber + 1);
             frm.Show();
         }
  
@@ -818,19 +825,19 @@ namespace UNET_Trainer
             // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
             if (_btn.Name.ToLower() != "btnil")
             {
-                ExersiseIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Exercises), _btn.Name.Remove(0, 11)));
+                ExersiseNumber = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Exercises), _btn.Name.Remove(0, 11)));
             }
             else
             {
-                ExersiseIndex = 8;
+                ExersiseNumber = 8;
             }
             //Set the selected exercise, start with the array, then send this to the service
-            ExerciseArray[ExersiseIndex] = true;
+            ExerciseArray[ExersiseNumber] = true;
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
             }
-            service.SetExerciseSelected(InstructorID, ExersiseIndex, true); //now we have told the service that this instructor has selected this exercise
+            service.SetExerciseSelected(InstructorID, ExersiseNumber, true); //now we have told the service that this instructor has selected this exercise
 
 
             _btn.BackColor = System.Drawing.Color.SaddleBrown;
@@ -848,9 +855,12 @@ namespace UNET_Trainer
                 {
                     service.Close();
                 }
-                //stop the sip connection in a nice manner before closing
-                HangupAllCalls();
-                useragent.UserAgentStop();
+                //close the useragent en with that the sip connection
+                if (!object.ReferenceEquals(useragent, null))
+                {
+                    HangupAllCalls();
+                    useragent.UserAgentStop();
+                }
             }
             catch (Exception ex)
             {

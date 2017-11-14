@@ -489,40 +489,38 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                log.Info(string.Format("SetTraineeAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _traineeID, _add));
-
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                                                                    //find the richt instructor, exercise and trainee
 
-
+                log.Info(string.Format("SetRoleAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _traineeID, _add));
                 foreach (Instructor inst in singleton.Instructors)  //find the given instructor
                 {
                     if (inst.ID == _instructorID)
                     {
                         foreach (Exercise exe in inst.Exercises) //find the given exercise
                         {
-                            if(exe.Number == _exersiseID)
+                            if (exe.Number == _exersiseID)
                             {
                                 bool found = false;
-                                foreach(Trainee  tr in exe.TraineesAssigned) //find the given trainee
+                                foreach (Trainee trn in exe.TraineesAssigned) //find the given role
                                 {
-                                    if(tr.ID == _traineeID)
+                                    if (trn.ID == _traineeID)
                                     {
                                         found = true;
-                                        if(!_add)
+                                        if (!_add)
                                         {
-                                            exe.TraineesAssigned.Remove(tr);
+                                            exe.TraineesAssigned.Remove(trn);
                                         }
-                                       break;
+                                        break;
                                     }
 
-                                   
+
                                 }
-                                if(!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
+                                if (!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
                                 {
-                                    exe.TraineesAssigned.Add(new Trainee(_traineeID, "traineename_nogverzinnen"));
+                                    exe.TraineesAssigned.Add(new Trainee(_traineeID, "trainee name"));
                                 }
-                                break; 
+                                break;
                             }
                             break;
                         }
@@ -539,6 +537,7 @@ namespace UNET_Service
 
             }
             return result;
+
         }
 
         /// <summary>
@@ -567,7 +566,7 @@ namespace UNET_Service
                             if (exe.Number == _exersiseID)
                             {
                                 bool found = false;
-                                foreach (Role rol in exe.RolesAssigned) //find the given trainee
+                                foreach (Role rol in exe.RolesAssigned) //find the given role
                                 {
                                     if (rol.ID == _role)
                                     {
@@ -745,49 +744,41 @@ namespace UNET_Service
         /// <param name="_exerciseIndex"></param>
         /// <param name="_select"></param>
         /// <returns></returns>
-        public bool SetExerciseSelected(int _instructor, int _exerciseIndex, bool _select)
+        public bool SetExerciseSelected(int _instructor, int _exerciseNumber, bool _select)
         {
             bool result = true;
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
 
-
-                Exercise exe;
-                //try to find the exercise in the excercise list
-                if (singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex) != null)
-                {
-                    exe = singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex);
-                    if (exe != null)
-                    {
-                        singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseIndex).Selected = true;
-                        if(singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Any(y => y.Number == _exerciseIndex) == false)
-                           singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
-                  
-                    }
-                    //todo: hier UNselecten!!
-                }
-   
                 ////zet eerst de selected alle op false
-                //foreach(UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
-                //{
-                //    ex.Selected = false;
-                //}
-                  
-                ////try to find the exercise and set selected to true
-                //    foreach (UNET_Classes.Exercise exe in singleton.Exercises)
-                //{
-                //   if(exe.Number == _exerciseIndex)
-                //    {
-                //        exe.Selected = _select;
+                foreach (UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
+                {
+                    ex.Selected = false;
+                }
 
-                //        //voeg de exercise nu toe aan de instructeur
-                //        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
-                //    }
-               
-                //}
+                if (singleton.Instructors.Any(x => x.ID == _instructor))
+                {
+                    if (singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Any(y => y.Number == _exerciseNumber))
+                    {
+                        //de exercise bestaat, dus we kunnen hem op selected zetten.
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).Selected = _select;
 
+                    }
+                    else
+                    {
+                        //de exercise bestaat NIET, dan voegen we hem toe en zetten hem op selected
+                        Exercise exe = singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseNumber); //find the exercise
+                        if (exe != null)
+                        {
+                            singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseNumber).Selected = true;
 
+                            singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
+
+                        }
+
+                    }
+                }
                 result = true;
             }
             catch (Exception ex)

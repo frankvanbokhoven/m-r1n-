@@ -572,7 +572,7 @@
             this.btnMIC.Location = new System.Drawing.Point(744, 603);
             this.btnMIC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMIC.Name = "btnMIC";
-            this.btnMIC.Size = new System.Drawing.Size(152, 53);
+            this.btnMIC.Size = new System.Drawing.Size(152, 91);
             this.btnMIC.TabIndex = 25;
             this.btnMIC.Text = "MIC Level 0";
             this.btnMIC.UseVisualStyleBackColor = false;
@@ -584,7 +584,7 @@
             this.btnOptions.Location = new System.Drawing.Point(586, 604);
             this.btnOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOptions.Name = "btnOptions";
-            this.btnOptions.Size = new System.Drawing.Size(152, 53);
+            this.btnOptions.Size = new System.Drawing.Size(152, 91);
             this.btnOptions.TabIndex = 27;
             this.btnOptions.Text = "Options..";
             this.btnOptions.UseVisualStyleBackColor = false;
@@ -597,7 +597,7 @@
             this.btnMainPage.Location = new System.Drawing.Point(24, 603);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
+            this.btnMainPage.Size = new System.Drawing.Size(152, 91);
             this.btnMainPage.TabIndex = 26;
             this.btnMainPage.Text = "Main page";
             this.btnMainPage.UseVisualStyleBackColor = false;

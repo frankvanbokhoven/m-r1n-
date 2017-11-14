@@ -12,18 +12,35 @@ namespace TestPJSUA2.Logging
     {
 
         #region AppendToLog
-        private static readonly string clogfile = ConfigurationManager.AppSettings["LogFile"]; //@"c:\temp\ServiceLog.txt";
+        private static readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
+        private static readonly bool clogactive = Convert.ToBoolean(ConfigurationManager.AppSettings["LogActive"]);
+
         /// <summary>
         /// supersimple method to add a logging row to a log file
         /// </summary>
         /// <param name="_rowToBeAppended"></param>
         public static void AppendToLog(string _rowToBeAppended)
         {
-            using (StreamWriter w = File.AppendText(clogfile))
+            if (clogactive) //only add to the log when this flag is active
             {
-                w.WriteLine(string.Format("Pjsua2: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
-                w.Flush();
-                w.Close();
+                ///check the size of the existing log and if bigger than 5 MB, create a new one
+                if (File.Exists(clogfile))
+                {
+                    Int64 fileSizeInBytes = new FileInfo(clogfile).Length;
+                    if (fileSizeInBytes > 1000000)
+                    {
+                        string path = Path.GetFullPath(clogfile);
+                        string filename = Path.GetFileNameWithoutExtension(clogfile);
+                        System.IO.File.Move(clogfile, Path.Combine(path, string.Format("{0}{1}.log", filename, DateTime.Now.ToString("yyyyMMdd_HHmmss"))));
+                    }
+                }
+                ///
+                using (StreamWriter w = File.AppendText(clogfile))
+                {
+                    w.WriteLine(string.Format("Pjsua2: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
+                    w.Flush();
+                    w.Close();
+                }
             }
         }
 

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UNET_Classes;
 using UNET_Theming;
 
 namespace UNET_Trainer
@@ -19,6 +20,8 @@ namespace UNET_Trainer
 
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();
+
+        private Instructor CurrentInstructor;
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         private int SelectedExercise;
@@ -85,21 +88,7 @@ namespace UNET_Trainer
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-            // first the trainees, we assume the name of the button component is the key for the function
-            foreach (Control c in parent.Controls)
-            {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-                Application.DoEvents();
-            }
-
+     
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -108,13 +97,13 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
-                  
+                CurrentInstructor = service.GetAllInstructorData(InstructorID);
+                
                 ////now resize all buttons to make optimal use of the available room
-                Application.DoEvents();
+           //     Application.DoEvents();
                 //enable the Trainees buttons, for the number of trainees that are in
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
-                int listindex = 1;
                 foreach (Control ctrl in pnlTrainees.Controls)
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
@@ -122,11 +111,43 @@ namespace UNET_Trainer
                         ctrl.Enabled = false;
                     }
                 }
+                int listindex = 1;
+
+                //now we make visible a button for every existing role
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
                 {
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}", trainee.ID, Environment.NewLine, trainee.Name);
+
                     pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
-                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeNotSelectedButton;
                     listindex++;
+                }
+
+                //loop nu door de lijst van toegewezen trainees heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                //zoja, vul de informatie in en enable de knop met de trainee-toegewezen-kleur
+                if (InstructorID != -1)
+                {
+                    if (!Object.ReferenceEquals(CurrentInstructor, null))
+                    {
+                        if (!Object.ReferenceEquals(CurrentInstructor.Exercises, null))
+                        {
+                            if (SelectedExercise != -1)
+                            {
+                                listindex = 1;
+                                foreach (Trainee assignedTrainee in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).TraineesAssigned)
+                                {
+                                    //    if (assignedRole.ID == role.ID)
+                                    //    {
+                                    //   pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeSelectedButton;
+                                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text += string.Format("{0}Instructor: {1}", Environment.NewLine, CurrentInstructor.ID + " " + CurrentInstructor.Name);
+                                    listindex++;
+
+                                    //    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
@@ -141,61 +162,40 @@ namespace UNET_Trainer
 
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
-            SetStatusAndColorTraineeButtons((Button)sender);
-
-            string name = ((Button)sender).Text.Substring(0, ((Button)sender).Text.IndexOf("\r\n"));
-
-            string[] splitstring = name.Split(' ');
-
-            int traineeIndex = Convert.ToInt16( splitstring[1].ToString());
-    
-     
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            try
             {
-                service.Open();
-            }
+   
 
-            //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
-            service.SetTraineeAssignedStatus(InstructorID, SelectedExercise,traineeIndex , true);
 
-        }
+                string name = ((Button)sender).Text.Substring(0, ((Button)sender).Text.IndexOf("\r\n"));
 
-        /// <summary>
-        /// When the button  'monitor radio' is clicked and thereafter one of the radio buttons,
-        /// this radio button must be set to brown, and a possible other trainee button must be set to the default color
-        /// this generic code covers this for all all buttons at once
-        /// </summary>
-        /// <param name="_btn"></param>
-        private void SetStatusAndColorTraineeButtons(Button _btn)
-        {
-            //zet eerst alles weer op de oude kleur
-            foreach (Control c in pnlTrainees.Controls)
-            {
-                if ((c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee"))) && c.Enabled)
+                string[] splitstring = name.Split(' ');
+                int traineeIndex = Convert.ToInt16(splitstring[1].ToString());
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
-                    ((Button)c).BackColor = System.Drawing.Color.DarkKhaki;
-                    ((Button)c).ForeColor = System.Drawing.Color.White;
+                    service.Open();
                 }
+
+                //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+                if (((Button)sender).BackColor == Theming.TraineeSelectedButton)
+                    //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+                    service.SetTraineeAssignedStatus(InstructorID, SelectedExercise, traineeIndex, false);
+                else
+                    //voeg de trainee toe (of verwijder hem juist) aan de lijst van toegewezen trainees per exercise
+                    service.SetTraineeAssignedStatus(InstructorID, SelectedExercise, traineeIndex, true);
+
+
             }
-            //daarna de button in de param op de gewenste kleur
-            _btn.BackColor = System.Drawing.Color.DarkBlue;
-            _btn.ForeColor = System.Drawing.Color.White;
-            // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
-            // visible/invisible and also set the statusled
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            catch (Exception ex)
             {
-                service.Open();
+                log.Error("Error setting role", ex);
+                Console.Write("Error setting role: " + ex.Message);
+                // throw;
             }
-            //  SelectedRadioButtonIndex = Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
-            //  int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
-
-            //     SetNoiseLevel();
-
-            //enable the Roles buttons
-            // var radiolist = service.GetRadios();
-            //  List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
         }
 
+  
         private void btnMainPage_Click(object sender, EventArgs e)
         {
             //  FrmUNETMain frm = new FrmUNETMain();

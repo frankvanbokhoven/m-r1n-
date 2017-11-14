@@ -18,11 +18,14 @@ namespace UNET_Theming
         public static Color Extinguished;
         public static Color ExerciseSelectedButton;
         public static Color TraineeSelectedButton;
+        public static Color TraineeNotSelectedButton;
         public static Color RoleSelectedButton;
+        public static Color RoleNotSelectedButton;
         public static Color RadioSelectedButton;
 
         public static Color IntercomPressed;
         public static Color IntercomNotPressed;
+        public static Color ButtonText;
 
         /// <summary>
         /// Set the general colors of the unettrainer          
@@ -40,23 +43,29 @@ namespace UNET_Theming
                         Extinguished = Color.DimGray;
                         ExerciseSelectedButton = Color.CadetBlue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
-                        RoleSelectedButton = Color.BlanchedAlmond;
-                        RadioSelectedButton = Color.BlanchedAlmond;
+                        TraineeNotSelectedButton = Color.LightGray;
+                        RoleSelectedButton = Color.SandyBrown;
+                        RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
+                        RadioSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
+                        ButtonText = Color.Black;
                         break;
                     }
                 case "light":
                     {
                         Theme = UNETTheme.utLight;
                         Whiteforecolor = Color.White;
-                       Extinguished= Color.LightGray;
+                        Extinguished= Color.LightGray;
                         ExerciseSelectedButton = Color.LightBlue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
-                        RoleSelectedButton = Color.BlanchedAlmond;
+                        TraineeNotSelectedButton = Color.LightGray;
+                        RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
+                        RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         RadioSelectedButton = Color.BlanchedAlmond;
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
+                        ButtonText = Color.Black;
                         break;
                     }
                 case "blue":
@@ -66,10 +75,13 @@ namespace UNET_Theming
                         Extinguished = Color.LightBlue;
                         ExerciseSelectedButton = Color.Blue;
                         TraineeSelectedButton = Color.BlanchedAlmond;
-                        RoleSelectedButton = Color.BlanchedAlmond;
+                        TraineeNotSelectedButton = Color.LightGray;
+                        RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
+                        RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         RadioSelectedButton = Color.BlanchedAlmond;
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
+                        ButtonText = Color.Black;
                         break;
                     }
             }
@@ -144,8 +156,8 @@ namespace UNET_Theming
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("trainee"))
                     {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.Peru;
+                        ((Button)ctrl).ForeColor = ButtonText;
+                    //    ((Button)ctrl).BackColor = Color.Peru;
                     }
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("exersise"))
@@ -156,8 +168,8 @@ namespace UNET_Theming
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("role"))
                     {
-                        ((Button)ctrl).ForeColor = Color.Black;
-                        ((Button)ctrl).BackColor = Color.DeepSkyBlue;
+                        ((Button)ctrl).ForeColor = ButtonText;
+                 //       ((Button)ctrl).BackColor = Color.DeepSkyBlue;
                     }
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("noise"))
