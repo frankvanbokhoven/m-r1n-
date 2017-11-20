@@ -16,6 +16,36 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_StartService_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartService" />
+  </wsdl:message>
+  <wsdl:message name="IService1_StartService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeAssist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAssists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssists" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAssists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllInstructorData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInstructorData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAllInstructorData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllInstructorDataResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetExercises_InputMessage">
     <wsdl:part name="parameters" element="tns:GetExercises" />
   </wsdl:message>
@@ -82,6 +112,12 @@
   <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_SetTraineeAssignedStatus_InputMessage">
     <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatus" />
   </wsdl:message>
@@ -141,6 +177,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_SetExerciseCount_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetExerciseCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseSelected_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseSelected" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetExerciseSelected_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetExerciseSelectedResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_SetExercises_InputMessage">
     <wsdl:part name="parameters" element="tns:SetExercises" />
@@ -203,6 +245,26 @@
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="StartService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AcknowledgeAssist" message="tns:IService1_AcknowledgeAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AcknowledgeAssistResponse" message="tns:IService1_AcknowledgeAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAssists" message="tns:IService1_GetAssists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAssistsResponse" message="tns:IService1_GetAssists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstructorData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllInstructorData" message="tns:IService1_GetAllInstructorData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllInstructorDataResponse" message="tns:IService1_GetAllInstructorData_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExercises" message="tns:IService1_GetExercises_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExercisesResponse" message="tns:IService1_GetExercises_OutputMessage" />
@@ -247,6 +309,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatus" message="tns:IService1_SetRoleAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatusResponse" message="tns:IService1_SetRoleAssignedStatus_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SetTraineeAssignedStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatus" message="tns:IService1_SetTraineeAssignedStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse" message="tns:IService1_SetTraineeAssignedStatus_OutputMessage" />
@@ -286,6 +352,10 @@
     <wsdl:operation name="SetExerciseCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseCount" message="tns:IService1_SetExerciseCount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExerciseCountResponse" message="tns:IService1_SetExerciseCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseSelected">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseSelected" message="tns:IService1_SetExerciseSelected_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetExerciseSelectedResponse" message="tns:IService1_SetExerciseSelected_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetExercises">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExercises" message="tns:IService1_SetExercises_InputMessage" />
@@ -331,6 +401,51 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="StartService">
+      <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssist">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeAssist">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AcknowledgeAssist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssists">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetAssists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllInstructorData">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetAllInstructorData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetExercises">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetExercises" style="document" />
       <wsdl:input>
@@ -430,6 +545,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRoleAssignedStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetTraineeAssignedStatus">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeAssignedStatus" style="document" />
       <wsdl:input>
@@ -513,6 +637,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetExerciseCount">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetExerciseCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetExerciseSelected">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetExerciseSelected" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

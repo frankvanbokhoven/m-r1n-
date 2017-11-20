@@ -24,8 +24,20 @@ namespace UNET_Service
         [OperationContract]
         bool StartService();
 
-        //Getters
+        #region Assist
+        [OperationContract]
+        bool CreateAssist(int _traineeId, string _traineeInfo);
 
+        [OperationContract]
+        bool AcknowledgeAssist(int _instructorID, int _traineeID);
+
+        [OperationContract]
+        List<UNET_Classes.Assist> GetAssists(int _instructorID);
+        #endregion
+
+
+
+        #region Getters
         [OperationContract]
         Instructor GetAllInstructorData(int _instructorID);
 
@@ -83,6 +95,8 @@ namespace UNET_Service
         [OperationContract]
         int GetNoiseLevel(int _radioID);
 
+        #endregion
+
         #region statusmessages
         [OperationContract]
         string GetSIPStatusMessage(string _id);
@@ -94,7 +108,7 @@ namespace UNET_Service
         bool ClearStatusMessages(string _id);
         #endregion
 
-        //Setters
+        #region Setters
         [OperationContract]
         bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo);
 
@@ -133,6 +147,7 @@ namespace UNET_Service
 
         [OperationContract]
         bool SetPlatforms(List<UNET_Classes.Platform> _platform);
+        #endregion
     }
 
  }

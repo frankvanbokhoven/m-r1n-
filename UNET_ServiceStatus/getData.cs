@@ -46,7 +46,7 @@ namespace UNET_ServiceStatus
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
 
-                Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 11 oktober 2017");
+                Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 17 november 2017");
                 Console.Write(Environment.NewLine);
                 Console.Write("UNET Status weergever van de UNET_Service");
                 Console.Write(Environment.NewLine);
@@ -89,6 +89,13 @@ namespace UNET_ServiceStatus
                                 Console.Write("                  Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
                                 Console.Write(Environment.NewLine);
 
+                                foreach (UNET_Classes.Role rol in trn.Roles)
+                                {
+                                   Console.ForegroundColor = ConsoleColor.Yellow;
+                                   Console.Write("                           Assigned role: " + rol.ID + "  Role name: " + rol.Name);
+                                   Console.Write(Environment.NewLine);
+
+                                }
                             }
 
                             foreach (UNET_Classes.Radio rad in exe.RadiosAssigned)
@@ -98,6 +105,7 @@ namespace UNET_ServiceStatus
                                 Console.Write(Environment.NewLine);
 
                             }
+                        
 
                         }
 
@@ -186,6 +194,37 @@ namespace UNET_ServiceStatus
 
                     }
                 }
+                //Assists
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+                Console.Write(DateTime.Now.ToString() + " Assists");
+                Console.Write(Environment.NewLine);
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+
+
+                var resultlistassists = service.GetAssists(-1);
+                List<UNET_Classes.Assist> lstAssist = resultlistassists.ToList<UNET_Classes.Assist>();
+                if (lst.Count == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("No data in UNET_Service for Assist");
+                    Console.Write(Environment.NewLine);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    foreach (UNET_Classes.Assist assist in lstAssist) //then ENABLE them, based on whatever comes from the service
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("Pending assist::  " + assist.ID + " Started by: " + assist.TraineeID + " " + assist.TraineeInfo + "  Requested: " + assist.RequestTime.ToString());
+                        Console.Write(Environment.NewLine);
+                       
+
+                    }
+                }
+
 
 
 

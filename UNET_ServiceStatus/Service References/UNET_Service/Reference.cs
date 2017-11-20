@@ -21,6 +21,24 @@ namespace UNET_ServiceStatus.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
         System.Threading.Tasks.Task<bool> StartServiceAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
+        bool CreateAssist(int _traineeId, string _traineeInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
+        System.Threading.Tasks.Task<bool> CreateAssistAsync(int _traineeId, string _traineeInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgeAssist", ReplyAction="http://tempuri.org/IService1/AcknowledgeAssistResponse")]
+        bool AcknowledgeAssist(int _instructorID, int _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgeAssist", ReplyAction="http://tempuri.org/IService1/AcknowledgeAssistResponse")]
+        System.Threading.Tasks.Task<bool> AcknowledgeAssistAsync(int _instructorID, int _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAssists", ReplyAction="http://tempuri.org/IService1/GetAssistsResponse")]
+        UNET_Classes.Assist[] GetAssists(int _instructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAssists", ReplyAction="http://tempuri.org/IService1/GetAssistsResponse")]
+        System.Threading.Tasks.Task<UNET_Classes.Assist[]> GetAssistsAsync(int _instructorID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllInstructorData", ReplyAction="http://tempuri.org/IService1/GetAllInstructorDataResponse")]
         UNET_Classes.Instructor GetAllInstructorData(int _instructorID);
         
@@ -259,6 +277,30 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> StartServiceAsync() {
             return base.Channel.StartServiceAsync();
+        }
+        
+        public bool CreateAssist(int _traineeId, string _traineeInfo) {
+            return base.Channel.CreateAssist(_traineeId, _traineeInfo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateAssistAsync(int _traineeId, string _traineeInfo) {
+            return base.Channel.CreateAssistAsync(_traineeId, _traineeInfo);
+        }
+        
+        public bool AcknowledgeAssist(int _instructorID, int _traineeID) {
+            return base.Channel.AcknowledgeAssist(_instructorID, _traineeID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AcknowledgeAssistAsync(int _instructorID, int _traineeID) {
+            return base.Channel.AcknowledgeAssistAsync(_instructorID, _traineeID);
+        }
+        
+        public UNET_Classes.Assist[] GetAssists(int _instructorID) {
+            return base.Channel.GetAssists(_instructorID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Classes.Assist[]> GetAssistsAsync(int _instructorID) {
+            return base.Channel.GetAssistsAsync(_instructorID);
         }
         
         public UNET_Classes.Instructor GetAllInstructorData(int _instructorID) {

@@ -16,6 +16,8 @@ namespace UNET_Classes
         public DateTime RegisteredSince { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Radio> Radios { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Role> Roles { get; set; }
 
 
         public Trainee()
@@ -34,6 +36,7 @@ namespace UNET_Classes
             Name = _name;
             RegisteredSince = DateTime.Now;
             Radios = new List<Radio>();
+            Roles = new List<Role>();
         }
     }
 }

@@ -26,6 +26,8 @@ namespace UNET_Theming
         public static Color IntercomPressed;
         public static Color IntercomNotPressed;
         public static Color ButtonText;
+        public static Color AssistRequestedColor;
+        public static Color AssistAcknowledgedColor;
 
         /// <summary>
         /// Set the general colors of the unettrainer          
@@ -50,6 +52,9 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        AssistAcknowledgedColor = Color.Green;
+                        AssistRequestedColor = Color.Gray;
+
                         break;
                     }
                 case "light":
@@ -66,6 +71,10 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        AssistAcknowledgedColor = Color.Green;
+                        AssistRequestedColor = Color.Gray;
+
+
                         break;
                     }
                 case "blue":
@@ -82,6 +91,10 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        AssistAcknowledgedColor = Color.Green;
+                        AssistRequestedColor = Color.Gray;
+
+
                         break;
                     }
             }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assist.cs" />
     <Compile Include="CheckFormVisible.cs" />
     <Compile Include="CurrentInfo.cs" />
     <Compile Include="Enums.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="SIPStatusMessage.cs" />
     <Compile Include="SyncList.cs" />
     <Compile Include="Trainee.cs" />
+    <Compile Include="TraineeStatus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

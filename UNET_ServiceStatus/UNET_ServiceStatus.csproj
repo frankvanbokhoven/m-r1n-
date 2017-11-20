@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\UNET_Classes.Assist.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.CurrentInfo.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />

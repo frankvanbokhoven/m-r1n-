@@ -22,6 +22,24 @@
   <wsdl:message name="IService1_StartService_OutputMessage">
     <wsdl:part name="parameters" element="tns:StartServiceResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CreateAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeAssist" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAssists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssists" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAssists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistsResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetAllInstructorData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllInstructorData" />
   </wsdl:message>
@@ -231,6 +249,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AcknowledgeAssist" message="tns:IService1_AcknowledgeAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AcknowledgeAssistResponse" message="tns:IService1_AcknowledgeAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAssists" message="tns:IService1_GetAssists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAssistsResponse" message="tns:IService1_GetAssists_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllInstructorData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllInstructorData" message="tns:IService1_GetAllInstructorData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllInstructorDataResponse" message="tns:IService1_GetAllInstructorData_OutputMessage" />
@@ -373,6 +403,33 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="StartService">
       <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssist">
+      <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeAssist">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AcknowledgeAssist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssists">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetAssists" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

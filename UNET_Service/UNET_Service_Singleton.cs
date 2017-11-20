@@ -22,6 +22,7 @@ namespace UNET_Service
         public List<Platform> Platforms = new List<Platform>();
         public List<CurrentInfo> CurrentInfoList = new List<CurrentInfo>();
         public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
+        public List<Assist> Assists = new List<Assist>();
    
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;

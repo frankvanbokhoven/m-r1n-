@@ -34,7 +34,7 @@ namespace UNET_Service
         {
             log4net.Config.BasicConfigurator.Configure();
             log.Info("Successfully started UNET_Service");
-          //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
+            //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
 
             return true;
         }
@@ -46,7 +46,7 @@ namespace UNET_Service
         {
             //todo!!! deze staat in een methode die toevallig snel wordt aangeroepen na de start, maar moet op een betere plaats
             //constructor werkt niet
-   
+
             List<UNET_Classes.Exercise> result = new List<UNET_Classes.Exercise>();
             try
             {
@@ -102,17 +102,17 @@ namespace UNET_Service
                 UNET_Singleton singleton = UNET_Singleton.Instance;
 
                 //use lync to select the messages for given sipclient
-                List<SIPStatusMessage> list =  singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<SIPStatusMessage>();
+                List<SIPStatusMessage> list = singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<SIPStatusMessage>();
 
                 //then build the pipe separated result string
-                foreach(SIPStatusMessage ssm in list)
+                foreach (SIPStatusMessage ssm in list)
                 {
                     result += ssm.Message + "|";
                 }
                 //remove last pipe, if it exists in the string
-                if(result.Length > 0) //if the string is NOT empty
+                if (result.Length > 0) //if the string is NOT empty
                 {
-                    if(result[result.Length-1] == '|') //if the last character is a pipe
+                    if (result[result.Length - 1] == '|') //if the last character is a pipe
                     {
                         result = result.Remove(result.Length - 1);//remove the last pipe
                     }
@@ -146,7 +146,7 @@ namespace UNET_Service
                 //throw;
                 result = false;
             }
-            return result; 
+            return result;
         }
         #endregion
 
@@ -161,7 +161,7 @@ namespace UNET_Service
             return singleton.TraineeStatusChanged;
         }
 
-       public bool GetNoiseLevelChanged()
+        public bool GetNoiseLevelChanged()
         {
             UNET_Singleton singleton = UNET_Singleton.Instance;
             return singleton.NoiseLevelChanged;
@@ -205,15 +205,15 @@ namespace UNET_Service
             catch (Exception ex)
             {
                 log.Error("Exception retrieving the available exercises: ", ex);
-             //   result.Add("Error retrieving exercices");
-              //  throw;
+                //   result.Add("Error retrieving exercices");
+                //  throw;
             }
             return result;
         }
 
         public List<UNET_Classes.Radio> GetRadios()
         {
-            List<UNET_Classes.Radio > result = new List<UNET_Classes.Radio>();
+            List<UNET_Classes.Radio> result = new List<UNET_Classes.Radio>();
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
@@ -223,7 +223,7 @@ namespace UNET_Service
             catch (Exception ex)
             {
                 log.Error("Exception retrieving the available Radios: ", ex);
-                 throw;
+                throw;
             }
             return result;
         }
@@ -266,6 +266,48 @@ namespace UNET_Service
             }
             return result;
         }
+
+
+        /// <summary>
+        /// this function returns the current data for the given trainee
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <returns></returns>
+        public TraineeStatus GetAllTraineeData(int _traineeID)
+        {
+            try
+            {
+                UNET_Classes.TraineeStatus result = null;// = new TraineeStatus();
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                //first, try to find the assigned trainee. We have to look in all the instructor/exercises
+                foreach (Instructor inst in singleton.Instructors)
+                {
+                    foreach (Exercise exe in inst.Exercises)
+                    {
+                        foreach (Trainee trn in exe.TraineesAssigned)
+                        {
+                            if (trn.ID == _traineeID) //we found the trainee
+                            {
+                                result = new TraineeStatus(trn.ID, exe.RolesAssigned, trn.Radios, exe);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the current Trainee data: " + ex.Message);
+                return null;
+                throw;
+            }
+        }
+
+
         public List<UNET_Classes.Trainee> GetTrainees()
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
@@ -285,13 +327,13 @@ namespace UNET_Service
             return result;
         }
 
-        public List<UNET_Classes.Trainee>GetTraineesAssigned(int _instructor, int _exercise)
+        public List<UNET_Classes.Trainee> GetTraineesAssigned(int _instructor, int _exercise)
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
-              //  result = new List<Trainee>(singleton.Instructors.Where(x => x.ID == _instructor).  .All<).Where(t => t.ID == _exercise);
+                //  result = new List<Trainee>(singleton.Instructors.Where(x => x.ID == _instructor).  .All<).Where(t => t.ID == _exercise);
 
             }
             catch (Exception ex)
@@ -377,7 +419,7 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                foreach (Radio  radio in singleton.Radios)
+                foreach (Radio radio in singleton.Radios)
                 {
                     if (radio.ID == _radioID)
                     {
@@ -395,7 +437,7 @@ namespace UNET_Service
         }
 
 
- 
+
 
         /// <summary>
         /// add mock exercises to the singleton
@@ -412,7 +454,7 @@ namespace UNET_Service
                 singleton.Exercises.Clear();
 
                 //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_count-1); i++)
+                for (int i = 0; i <= Convert.ToInt16(_count - 1); i++)
                 {
                     Exercise exercise = new Exercise();
                     exercise.Number = i;
@@ -421,7 +463,7 @@ namespace UNET_Service
                 }
 
 
-                 result = true;
+                result = true;
             }
             catch (Exception ex)
             {
@@ -458,9 +500,9 @@ namespace UNET_Service
                 //first clear the array
                 singleton.Exercises.Clear();
 
-                foreach(UNET_Classes.Exercise exercise in _exercises)
+                foreach (UNET_Classes.Exercise exercise in _exercises)
                 {
-                      singleton.Exercises.Add(exercise);
+                    singleton.Exercises.Add(exercise);
 
                 }
 
@@ -556,7 +598,7 @@ namespace UNET_Service
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                                                                    //find the richt instructor, exercise and trainee
 
-                log.Info(string.Format("SetRoleAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _role, _add)) ;
+                log.Info(string.Format("SetRoleAssignedStatus: Instructor: {0}  Exercise: {1} Role: {2}  Add: {3}", _instructorID, _exersiseID, _role, _add));
                 foreach (Instructor inst in singleton.Instructors)  //find the given instructor
                 {
                     if (inst.ID == _instructorID)
@@ -622,7 +664,7 @@ namespace UNET_Service
                 //and create a number of Trainees
                 for (int i = 1; i <= Convert.ToInt16(_count); i++)
                 {
-                    Trainee  trainee = new Trainee();
+                    Trainee trainee = new Trainee();
                     trainee.ID = i;
                     trainee.Name = string.Format("Trainee{0}", i);
                     singleton.Trainees.Add(trainee);
@@ -796,12 +838,12 @@ namespace UNET_Service
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                //first clear the array
-            
+                                                                   //first clear the array
 
-                foreach(Radio radio in singleton.Radios) //because we use the foreacht, we implicitly protect this function from ever setting the state with a non existant id
+
+                foreach (Radio radio in singleton.Radios) //because we use the foreacht, we implicitly protect this function from ever setting the state with a non existant id
                 {
-                    if(radio.ID == _radioNumber)
+                    if (radio.ID == _radioNumber)
                     {
                         radio.State = _state;
                         break;
@@ -823,7 +865,7 @@ namespace UNET_Service
         }
 
 
-        public bool SetRadios(List<Radio>  _radio)
+        public bool SetRadios(List<Radio> _radio)
         {
             bool result = true;
             try
@@ -916,7 +958,7 @@ namespace UNET_Service
         }
 
 
-        public bool SetTrainees(List<Trainee>  _trainee)
+        public bool SetTrainees(List<Trainee> _trainee)
         {
             bool result = true;
             try
@@ -949,7 +991,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_platform"></param>
         /// <returns></returns>
-        public bool SetPlatforms(List<Platform>  _platform)
+        public bool SetPlatforms(List<Platform> _platform)
         {
             bool result = true;
             try
@@ -997,7 +1039,7 @@ namespace UNET_Service
                 for (int i = 0; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
                 {
                     //try to find a currentinfo object in the list with the same id
-                    if(singleton.CurrentInfoList[i].ID == _currentInfo.ID)
+                    if (singleton.CurrentInfoList[i].ID == _currentInfo.ID)
                     {
 
                         singleton.CurrentInfoList[i] = _currentInfo; //overwrite the currentinfo object with the one from the client
@@ -1005,24 +1047,24 @@ namespace UNET_Service
                         break;
                     }
                     //if the currentinfo is not found, then create one and add it to the list
-                    if(!existing)
+                    if (!existing)
                     {
                         singleton.CurrentInfoList.Add(_currentInfo);
-                    }                   
+                    }
                 }
                 //now add it to the trainees list
-                if((singleton.Trainees.SingleOrDefault(x => x.ID == _currentInfo.ID) == null))
+                if ((singleton.Trainees.SingleOrDefault(x => x.ID == _currentInfo.ID) == null))
                 {
                     Trainee trn = new Trainee(_currentInfo.ID, _currentInfo.ExerciseName);
                     singleton.Trainees.Add(trn);
                 }
 
-                            result = true;
+                result = true;
             }
             catch (Exception ex)
             {
                 log.Error("Error setting Registering Trainees", ex);
-            //    AppendToLog(string.Format("Error setting Registering Trainees  at: {0}", DateTime.Now.ToString("G")));
+                //    AppendToLog(string.Format("Error setting Registering Trainees  at: {0}", DateTime.Now.ToString("G")));
 
                 result = false;
 
@@ -1046,8 +1088,8 @@ namespace UNET_Service
                 //Loop thrue the exercises and try to find the trainee in the exercises. If so, return the info
                 foreach (Instructor instr in singleton.Instructors)
                 {
-                    
-                    foreach (Exercise ex in instr.Exercises )
+
+                    foreach (Exercise ex in instr.Exercises)
                     {
                         //loop thrue the list of assigned trainees
                         foreach (Trainee tr in ex.TraineesAssigned)
@@ -1070,8 +1112,8 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-               log.Error("Error getting the exercise info " + ex.Message);
-            //    AppendToLog(string.Format("Error getting the exercise info  at: {0}", DateTime.Now.ToString("G")));
+                log.Error("Error getting the exercise info " + ex.Message);
+                //    AppendToLog(string.Format("Error getting the exercise info  at: {0}", DateTime.Now.ToString("G")));
 
                 result = null;
             }
@@ -1080,26 +1122,167 @@ namespace UNET_Service
         #endregion
 
 
+        #region Assist
+
+        /// <summary>
+        /// The create assist adds an assist to the Assits list. Other active assists for this trainee must be canceled
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <param name="_traineeInfo"></param>
+        /// <returns></returns>
+        public bool CreateAssist(int _traineeID, string _traineeInfo)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                //set all unacknowledge assist to true
+                //todo: ooit iets moois Lync van maken
+                foreach (Assist assist in singleton.Assists)
+                {
+                    if (assist.TraineeID == _traineeID && assist.Acknowledged == false)
+                    {
+                        assist.Acknowledged = true;
+                        assist.AcknowledgedBy = "The system";
+                        assist.AcknowledgeTime = DateTime.Now;
+                    }
+
+                }
+                //    singleton.Assists.Select(x => x.TraineeID == _traineeID).ToList().ForEach(c => c = true);
 
 
-        //#region AppendToLog
-        //private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"]; 
+                //create assist
+                Assist ass = new Assist(_traineeID, _traineeInfo);
+                singleton.Assists.Add(ass);
 
-        ///// <summary>
-        ///// supersimple method to add a logging row to a log file
-        ///// </summary>
-        ///// <param name="_rowToBeAppended"></param>
-        //private void AppendToLog(string _rowToBeAppended)
-        //{
-        //    using (StreamWriter w = File.AppendText(clogfile))
-        //    {
-        //        w.WriteLine(string.Format("Servicelog: {0} - {1}", DateTime.Now.ToString("u"), _rowToBeAppended));
-        //        w.Flush();
-        //        w.Close();
-        //    }
-        //}
 
-        //#endregion
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error creating assist for:" + _traineeInfo, ex);
+                result = false;
+
+            }
+            return result;
+
+        }
+
+
+        /// <summary>
+        /// Set an assist request to acknowledged
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <param name="_traineeID"></param>
+        /// <returns></returns>
+        public bool AcknowledgeAssist(int _instructorID, int _traineeID)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                //create assist
+                //    Assist ass = new Assist(_traineeID, _traineeInfo);
+                //    singleton.Assists.Add(ass);
+                //todo: ooit iets moois Lync van maken
+                foreach (Assist assist in singleton.Assists)
+                {
+                    if (assist.TraineeID == _traineeID && assist.Acknowledged == false)
+                    {
+                        assist.Acknowledged = true;
+                        assist.AcknowledgedBy = _instructorID.ToString();
+                        assist.AcknowledgeTime = DateTime.Now;
+                    }
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error creating assist for:" + _traineeID, ex);
+                result = false;
+
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// retrieve all unacknowledged assist requests for the given instructor.
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <returns></returns>
+        public List<UNET_Classes.Assist> GetAssists(int _instructorID)
+        {
+            List<Assist> result = new List<Assist>();
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+
+                //first retrieve the list of trainees that are assigned to this instructor
+                //then retrieve the unacknowledged requests for each of these assigned trainees
+                foreach (Instructor inst in singleton.Instructors)
+                {
+                    if (_instructorID != -1)
+                    {
+                        if (inst.ID == _instructorID)
+                        {
+                            foreach (Exercise exe in inst.Exercises)
+                            {
+                                foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
+                                {
+                                    foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
+                                    {
+                                        if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
+                                        {
+                                            result.Add(ass);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {// if _instructorid == -1, then we want ALL pending Assists
+                        foreach (Exercise exe in inst.Exercises)
+                        {
+                            foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
+                            {
+                                foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
+                                {
+                                    if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
+                                    {
+                                        result.Add(ass);
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+                //todo: make some nice linq of the above code
+                //  List<Assist> allAssists = singleton.Instructors.SelectMany(h => h.ID == _instructorID)
+                //  .GroupBy(rt => rt.Room.Id)
+                //  .Select(room => room.First())
+                //  .ToList();
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error retrieving assists for:" + _instructorID, ex);
+
+            }
+
+            return result;
+        }
+        #endregion
+
+
     }
 }
 

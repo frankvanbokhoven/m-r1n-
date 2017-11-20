@@ -68,22 +68,22 @@ namespace UNET_Trainer
         private void InitState()
         {
             // A little amateur.. but it just is the fastest manner
-            btnTraineeAA.BackColor = Constants.cExtinguised;
-            btnTraineeBB.BackColor = Constants.cExtinguised;
-            btnTraineeCC.BackColor = Constants.cExtinguised;
-            btnTraineeDD.BackColor = Constants.cExtinguised;
-            btnTraineeEE.BackColor = Constants.cExtinguised;
-            btnTraineeFF.BackColor = Constants.cExtinguised;
-            btnTraineeGG.BackColor = Constants.cExtinguised;
-            btnTraineeHH.BackColor = Constants.cExtinguised;
-            btnTraineeJJ.BackColor = Constants.cExtinguised;
-            btnTraineeKK.BackColor = Constants.cExtinguised;
-            btnTraineeLL.BackColor = Constants.cExtinguised;
-            btnTraineeMM.BackColor = Constants.cExtinguised;
-            btnTraineeNN.BackColor = Constants.cExtinguised;
-            btnTraineePP.BackColor = Constants.cExtinguised;
-            btnTraineeRR.BackColor = Constants.cExtinguised;
-            btnTraineeSS.BackColor = Constants.cExtinguised;
+            btnTrainee01.BackColor = Constants.cExtinguised;
+            btnTrainee02.BackColor = Constants.cExtinguised;
+            btnTrainee03.BackColor = Constants.cExtinguised;
+            btnTrainee04.BackColor = Constants.cExtinguised;
+            btnTrainee05.BackColor = Constants.cExtinguised;
+            btnTrainee06.BackColor = Constants.cExtinguised;
+            btnTrainee07.BackColor = Constants.cExtinguised;
+            btnTrainee08.BackColor = Constants.cExtinguised;
+            btnTrainee09.BackColor = Constants.cExtinguised;
+            btnTrainee10.BackColor = Constants.cExtinguised;
+            btnTrainee11.BackColor = Constants.cExtinguised;
+            btnTrainee12.BackColor = Constants.cExtinguised;
+            btnTrainee13.BackColor = Constants.cExtinguised;
+            btnTrainee14.BackColor = Constants.cExtinguised;
+            btnTrainee15.BackColor = Constants.cExtinguised;
+            btnTrainee16.BackColor = Constants.cExtinguised;
 
             btnInstructor01.BackColor = Constants.cExtinguised;
             btnInstructor02.BackColor = Constants.cExtinguised;
@@ -108,7 +108,6 @@ namespace UNET_Trainer
             {
                 SetButtonStatus(this);
             }
-            //      UNET_Classes.Helpers.ResizeButtons(pnlTrainees, 5,"trainee");
         }
 
         private void FrmClassBroadcast_FormClosing(object sender, FormClosingEventArgs e)
@@ -124,36 +123,7 @@ namespace UNET_Trainer
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-            // first the trainees, we assume the name of the button component is the key for the function
-            //foreach (Control c in parent.Controls)
-            //{
-            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-            //    {
-            //        if (((Button)c).ImageIndex == 1)
-            //        {
-            //            ((Button)c).ImageIndex = 2;
-            //        }
-            //        else
-            //        { ((Button)c).ImageIndex = 1; }
-            //    }
-            //    Application.DoEvents();
-            //}
-
-            //// first the trainees, we assume the name of the button component is the key for the function
-            //foreach (Control c in parent.Controls)
-            //{
-            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("instructor")))
-            //    {
-            //        if (((Button)c).ImageIndex == 1)
-            //        {
-            //            ((Button)c).ImageIndex = 2;
-            //        }
-            //        else
-            //        { ((Button)c).ImageIndex = 1; }
-            //    }
-            //    Application.DoEvents();
-            //}
-
+       
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -163,42 +133,56 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
-
-                //enable the Roles buttons
                 var traineelist = service.GetTrainees();
-                List<UNET_Classes.Trainee> lstRadio = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+                foreach (Control ctrl in pnlTrainees.Controls)
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                    }
+                }
+                int listindex = 1;
 
-                btnTraineeAA.Enabled = lstRadio.Count >= 1;
-                btnTraineeBB.Enabled = lstRadio.Count >= 2;
-                btnTraineeCC.Enabled = lstRadio.Count >= 3;
-                btnTraineeDD.Enabled = lstRadio.Count >= 4;
-                btnTraineeEE.Enabled = lstRadio.Count >= 5;
-                btnTraineeFF.Enabled = lstRadio.Count >= 6;
-                btnTraineeGG.Enabled = lstRadio.Count >= 7;
-                btnTraineeHH.Enabled = lstRadio.Count >= 8;
-                btnTraineeJJ.Enabled = lstRadio.Count >= 9;
-                btnTraineeKK.Enabled = lstRadio.Count >= 10;
-                btnTraineeLL.Enabled = lstRadio.Count >= 11;
-                btnTraineeMM.Enabled = lstRadio.Count >= 12;
-                btnTraineeNN.Enabled = lstRadio.Count >= 13;
-                btnTraineePP.Enabled = lstRadio.Count >= 14;
-                btnTraineeRR.Enabled = lstRadio.Count >= 15;
-                btnTraineeSS.Enabled = lstRadio.Count >= 16;
+                //now we make visible a button for every existing trainee
+                foreach (UNET_Classes.Trainee trainee in lstTrainee)
+                {
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}", trainee.ID, Environment.NewLine, trainee.Name);
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeNotSelectedButton;
+                    listindex++;
+                }
 
                 //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical(pnlTrainees, lstRadio.Count, "trainee");
+                UNET_Classes.Helpers.ResizeButtonsVertical(pnlTrainees, lstTrainee.Count, "trainee");
 
-                //enable the Roles buttons
                 var instructorlist = service.GetInstructors();
-                List<UNET_Classes.Instructor> lstInstructor = instructorlist.ToList<UNET_Classes.Instructor>(); //C# v3 manier om een array in een list te krijgen
+                var resultlist = service.GetInstructors();
+                List<UNET_Classes.Instructor> lstInstructor = instructorlist.ToList<UNET_Classes.Instructor>();
+                foreach (Control ctrl in pnlInstructors.Controls) //first DISABLE all buttons
+                {
+                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    {
+                        ctrl.Enabled = false;
+                        ctrl.Tag = "disable";
+                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                    }
+                }
 
-                btnInstructor01.Enabled = lstInstructor.Count >= 1;
-                btnInstructor02.Enabled = lstInstructor.Count >= 2;
-                btnInstructor03.Enabled = lstInstructor.Count >= 3;
-                btnInstructor04.Enabled = lstInstructor.Count >= 4;
 
+                listindex = 1;
 
-                if(!AllInstructorsSelected && !AllTraineesSelected)
+                //now we make visible a button for every existing role
+                foreach (UNET_Classes.Instructor inst in lstInstructor)
+                {
+                    pnlInstructors.Controls["btnInstructor" + listindex.ToString("00")].Text = string.Format("Instructor {0}{1}{2}", inst.ID, Environment.NewLine, inst.Name);
+                    pnlInstructors.Controls["btnInstructor" + listindex.ToString("00")].Enabled = true;
+                    listindex++;
+                }
+
+                //now resize all buttons to make optimal use of the available room
+                UNET_Classes.Helpers.ResizeButtonsVertical(pnlInstructors, lstInstructor.Count, "instructor");
+                if (!AllInstructorsSelected && !AllTraineesSelected)
                 {
                     btnBroadcast.Enabled = false;
                     btnBroadcast.BackColor = Constants.cInActive;
@@ -210,8 +194,6 @@ namespace UNET_Trainer
                 }
 
 
-                //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical(pnlInstructors, lstInstructor.Count, "instructor");
 
             }
             catch (Exception ex)
@@ -297,18 +279,6 @@ namespace UNET_Trainer
         }
 
 
-        private void btnBroadcast_MouseDown(object sender, MouseEventArgs e)
-        {
-            //        if (frmmain != null)
-            //           frmmain.MakeCall(Constants.cClassBroadcast, true, false, false, false, false, true); //20000 is de code voor de class broadcast conferentie
-
-        }
-
-        private void btnBroadcast_MouseUp(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void btnDeSelect_Click(object sender, EventArgs e)
         {
             //zet alles weer terug naar de beginwaarden
@@ -323,9 +293,7 @@ namespace UNET_Trainer
 
         private void btnMainPage_Click(object sender, EventArgs e)
         {
-            //  FrmUNETMain frm = new FrmUNETMain();
-            //      frm.Show();
-            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
+             // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
             FrmUNETMain.GetForm.Show();
             this.Close();
         }

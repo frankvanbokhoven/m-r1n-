@@ -392,6 +392,19 @@ namespace UNET_Tester
                 foreach(string tr in traineeids)
                 {
                     UNET_Classes.Trainee trainee = new UNET_Classes.Trainee(Convert.ToInt16(tr), tr + "_trainee");
+
+                    if(cbxAssignRolesToTrainees.Checked)
+                    {
+                        trainee.Roles.Clear();//eerst leeg gooien
+                        for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
+                        {
+                            Role exe = new Role();
+                            exe.ID = i;
+                            exe.Name = "Testrole-" + i.ToString("00") + Environment.NewLine + "Trainee: " + tr;
+                            AddToListbox("Added role to trainee: " + tr);
+                            trainee.Roles.Add(exe);
+                        }
+                    }
                     objlist.Add(trainee);
                 }
                 listTrainee = (Trainee[])objlist.ToArray();

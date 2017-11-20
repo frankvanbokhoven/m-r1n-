@@ -11,7 +11,6 @@ using UNET_Theming;
 using System.Runtime.InteropServices;
 using System.Media;
 using System.IO;
-//using HardwareInterface;
 using System.Reflection;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -27,16 +26,17 @@ namespace UNET_Trainer_Trainee
 
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public int TraineeID = 1;
-        public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
-        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); // ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
+        public string DisplayName;
+        public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); 
+        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); //
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
         private SoundPlayer simpleSound;
+        private bool AssistRequested = false;
 
         private PJSUA2Implementation.SIP.SIPCall sc;
         private CallOpParam cop;
@@ -125,7 +125,6 @@ namespace UNET_Trainer_Trainee
 
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
                 TraineeID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"));//Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
-
                 // Set the text displayed in the caption.
                 this.BackColor = Color.White;
                 // Set the opacity to 75%.
@@ -151,7 +150,7 @@ namespace UNET_Trainer_Trainee
                     //the useragent holds everything needed for the sip communication
                     string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
                     //sipserver
-                    string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
+                    DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
                     string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
                     //account
                     string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
@@ -160,7 +159,7 @@ namespace UNET_Trainer_Trainee
                     string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
 
                     //the useragent holds everything needed for the sip communication
-                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, DisplayName);
                     useragent.UserAgentStart("UNETTrainee");
 
 
@@ -367,6 +366,22 @@ namespace UNET_Trainer_Trainee
             {
                 log.Error("Error using WCF SetButtonStatus", ex);
                 // throw;
+            }
+
+            try
+            {
+                if (AssistRequested & btnAssist.BackColor == Theming.AssistRequestedColor)
+                {
+                    btnAssist.BackColor = Theming.AssistAcknowledgedColor;
+                }
+                else
+                {
+                    btnAssist.BackColor = Theming.AssistRequestedColor;
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error("Exception making assist: " + ex.Message);
             }
         }
         #endregion
@@ -625,8 +640,31 @@ namespace UNET_Trainer_Trainee
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
-            log.Info("Clicked assist by:" + TraineeID);
+            try
+            {
+                // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+                // visible/invisible and also set the statusled
+                //  {
+                if (!AssistRequested)
+                {
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+                    service.CreateAssist(TraineeID, DisplayName);
+                    AssistRequested = true;
+                }
+          
+                
+                //  MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
+                log.Info("Clicked assist by:" + TraineeID);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error requesting assist: " + ex.Message);
+            }
 
         }
         #region HID COMserver

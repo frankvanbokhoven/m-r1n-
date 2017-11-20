@@ -127,6 +127,8 @@ namespace UNET_Trainer
             if (GetForegroundWindow() == this.Handle)
             {
                 SetButtonStatus(this);
+
+                GetAssists(this);
             }
         }
 
@@ -169,25 +171,55 @@ namespace UNET_Trainer
         #region  Button Status setters
 
         /// <summary>
-        /// This routine sets the statusled of each button, depending on its status
-        /// It also enables/disables buttons based on the number of exercises given bij the service
+        /// gets the assistlist for this instructor and sets the status indicators accordingly
         /// </summary>
-        private void SetButtonStatus(Control parent)
+        /// <param name="parent"></param>
+        private void GetAssists(Control parent)
         {
-            //  first the trainees, we assume the name of the button component is the key for the function
+            foreach (Control c in parent.Controls)
+            {
+                //reset everything
+                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                {
+                    ((Button)c).ImageIndex = 0;
+                 
+                }
+            }
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+               service.Open();
+            }
+            //retrieve the pending assists for this instructor
+            var resultassists  = service.GetAssists(InstructorID);
+            List<Assist> pendingAssists = resultassists.ToList<Assist>();
+
+            foreach(Assist ass in pendingAssists)
+            {
+                if (((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex == 1)
+                {
+                    ((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex = 2;
+                }
+                else
+                {
+                    ((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex = 1;
+
+                }
+
+            }
 
             //this loop sets the color of the status led
             foreach (Control c in parent.Controls)
             {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
+                //if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                //{
+                //    if (((Button)c).ImageIndex == 1)
+                //    {
+                //        ((Button)c).ImageIndex = 2;
+                //    }
+                //    else
+                //    { ((Button)c).ImageIndex = 1; }
+                //}
 
                 if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
                 {
@@ -225,6 +257,16 @@ namespace UNET_Trainer
                 Application.DoEvents();
             }
 
+        }
+        /// <summary>
+        /// This routine sets the statusled of each button, depending on its status
+        /// It also enables/disables buttons based on the number of exercises given bij the service
+        /// </summary>
+        private void SetButtonStatus(Control parent)
+        {
+            //  first the trainees, we assume the name of the button component is the key for the function
+
+        
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -583,14 +625,14 @@ namespace UNET_Trainer
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
-                btnMonitorTrainee.BackColor = System.Drawing.Color.SaddleBrown;
-                btnMonitorTrainee.ForeColor = System.Drawing.Color.White;
+                btnMonitorTrain.BackColor = System.Drawing.Color.SaddleBrown;
+                btnMonitorTrain.ForeColor = System.Drawing.Color.White;
             }
             else
             {
                 MonitorTrainee = false;
-                btnMonitorTrainee.BackColor = System.Drawing.Color.Aqua;
-                btnMonitorTrainee.ForeColor = System.Drawing.Color.Black;
+                btnMonitorTrain.BackColor = System.Drawing.Color.Aqua;
+                btnMonitorTrain.ForeColor = System.Drawing.Color.Black;
             }
         }
 
@@ -665,7 +707,17 @@ namespace UNET_Trainer
                 ((Button)sender).ForeColor = System.Drawing.Color.White;
             }
 
-          }
+
+            //if assist is pending, acknowledge it
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+            //retrieve the pending assists for this instructor
+            service.AcknowledgeAssist(InstructorID, traineeIndex);
+
+
+        }
         #endregion
 
 

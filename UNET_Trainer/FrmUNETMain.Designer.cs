@@ -118,13 +118,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMute = new System.Windows.Forms.Button();
             this.btnMonitorRadio = new System.Windows.Forms.Button();
-            this.btnMonitorTrainee = new System.Windows.Forms.Button();
+            this.btnMonitorTrain = new System.Windows.Forms.Button();
             this.btnClassBroadcast = new System.Windows.Forms.Button();
             this.lblSetup = new System.Windows.Forms.Label();
             this.btnAudio = new System.Windows.Forms.Button();
             this.btnRadios = new System.Windows.Forms.Button();
-            this.btnTrainees = new System.Windows.Forms.Button();
-            this.btnRoles = new System.Windows.Forms.Button();
+            this.btnTrain = new System.Windows.Forms.Button();
+            this.btnRol = new System.Windows.Forms.Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -1447,8 +1447,8 @@
             this.panelSetup.Controls.Add(this.lblSetup);
             this.panelSetup.Controls.Add(this.btnAudio);
             this.panelSetup.Controls.Add(this.btnRadios);
-            this.panelSetup.Controls.Add(this.btnTrainees);
-            this.panelSetup.Controls.Add(this.btnRoles);
+            this.panelSetup.Controls.Add(this.btnTrain);
+            this.panelSetup.Controls.Add(this.btnRol);
             this.panelSetup.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSetup.Location = new System.Drawing.Point(0, 0);
             this.panelSetup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1462,7 +1462,7 @@
             this.panelFunctions.Controls.Add(this.label2);
             this.panelFunctions.Controls.Add(this.btnMute);
             this.panelFunctions.Controls.Add(this.btnMonitorRadio);
-            this.panelFunctions.Controls.Add(this.btnMonitorTrainee);
+            this.panelFunctions.Controls.Add(this.btnMonitorTrain);
             this.panelFunctions.Controls.Add(this.btnClassBroadcast);
             this.panelFunctions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelFunctions.Location = new System.Drawing.Point(0, 367);
@@ -1509,19 +1509,19 @@
             this.btnMonitorRadio.UseVisualStyleBackColor = false;
             this.btnMonitorRadio.Click += new System.EventHandler(this.btnMonitorRadio_Click);
             // 
-            // btnMonitorTrainee
+            // btnMonitorTrain
             // 
-            this.btnMonitorTrainee.BackColor = System.Drawing.Color.DimGray;
-            this.btnMonitorTrainee.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMonitorTrainee.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnMonitorTrainee.Location = new System.Drawing.Point(3, 108);
-            this.btnMonitorTrainee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnMonitorTrainee.Name = "btnMonitorTrainee";
-            this.btnMonitorTrainee.Size = new System.Drawing.Size(96, 80);
-            this.btnMonitorTrainee.TabIndex = 2;
-            this.btnMonitorTrainee.Text = "Monitor trainee";
-            this.btnMonitorTrainee.UseVisualStyleBackColor = false;
-            this.btnMonitorTrainee.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
+            this.btnMonitorTrain.BackColor = System.Drawing.Color.DimGray;
+            this.btnMonitorTrain.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMonitorTrain.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnMonitorTrain.Location = new System.Drawing.Point(3, 108);
+            this.btnMonitorTrain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnMonitorTrain.Name = "btnMonitorTrain";
+            this.btnMonitorTrain.Size = new System.Drawing.Size(96, 80);
+            this.btnMonitorTrain.TabIndex = 2;
+            this.btnMonitorTrain.Text = "Monitor trainee";
+            this.btnMonitorTrain.UseVisualStyleBackColor = false;
+            this.btnMonitorTrain.Click += new System.EventHandler(this.btnMonitorTrainee_Click);
             // 
             // btnClassBroadcast
             // 
@@ -1576,33 +1576,33 @@
             this.btnRadios.UseVisualStyleBackColor = false;
             this.btnRadios.Click += new System.EventHandler(this.btnRadios_Click);
             // 
-            // btnTrainees
+            // btnTrain
             // 
-            this.btnTrainees.BackColor = System.Drawing.Color.DimGray;
-            this.btnTrainees.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrainees.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTrainees.Location = new System.Drawing.Point(3, 114);
-            this.btnTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTrainees.Name = "btnTrainees";
-            this.btnTrainees.Size = new System.Drawing.Size(96, 80);
-            this.btnTrainees.TabIndex = 2;
-            this.btnTrainees.Text = "Trainee";
-            this.btnTrainees.UseVisualStyleBackColor = false;
-            this.btnTrainees.Click += new System.EventHandler(this.btnTrainees_Click);
+            this.btnTrain.BackColor = System.Drawing.Color.DimGray;
+            this.btnTrain.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTrain.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnTrain.Location = new System.Drawing.Point(3, 114);
+            this.btnTrain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTrain.Name = "btnTrain";
+            this.btnTrain.Size = new System.Drawing.Size(96, 80);
+            this.btnTrain.TabIndex = 2;
+            this.btnTrain.Text = "Trainee";
+            this.btnTrain.UseVisualStyleBackColor = false;
+            this.btnTrain.Click += new System.EventHandler(this.btnTrainees_Click);
             // 
-            // btnRoles
+            // btnRol
             // 
-            this.btnRoles.BackColor = System.Drawing.Color.DimGray;
-            this.btnRoles.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRoles.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnRoles.Location = new System.Drawing.Point(3, 30);
-            this.btnRoles.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRoles.Name = "btnRoles";
-            this.btnRoles.Size = new System.Drawing.Size(96, 80);
-            this.btnRoles.TabIndex = 1;
-            this.btnRoles.Text = "Roles";
-            this.btnRoles.UseVisualStyleBackColor = false;
-            this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
+            this.btnRol.BackColor = System.Drawing.Color.DimGray;
+            this.btnRol.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRol.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnRol.Location = new System.Drawing.Point(3, 30);
+            this.btnRol.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRol.Name = "btnRol";
+            this.btnRol.Size = new System.Drawing.Size(96, 80);
+            this.btnRol.TabIndex = 1;
+            this.btnRol.Text = "Roles";
+            this.btnRol.UseVisualStyleBackColor = false;
+            this.btnRol.Click += new System.EventHandler(this.btnRoles_Click);
             // 
             // FrmUNETMain
             // 
@@ -1733,13 +1733,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMute;
         private System.Windows.Forms.Button btnMonitorRadio;
-        private System.Windows.Forms.Button btnMonitorTrainee;
+        private System.Windows.Forms.Button btnMonitorTrain;
         private System.Windows.Forms.Button btnClassBroadcast;
         private System.Windows.Forms.Label lblSetup;
         private System.Windows.Forms.Button btnAudio;
         private System.Windows.Forms.Button btnRadios;
-        private System.Windows.Forms.Button btnTrainees;
-        private System.Windows.Forms.Button btnRoles;
+        private System.Windows.Forms.Button btnTrain;
+        private System.Windows.Forms.Button btnRol;
         private System.Windows.Forms.Label lblPtt;
         private System.Windows.Forms.Label lblHeadset;
     }
