@@ -32,6 +32,8 @@ namespace UNET_Trainer
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
         public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1016"));
+        public string  DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1017 instructor");
+             
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
 
 
@@ -565,7 +567,28 @@ namespace UNET_Trainer
                 service.Open();
             }
             service.StartService();
-    
+
+
+
+            try
+            {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                //Register the instructor to the wcf service
+                service.RegisterClient(InstructorID, DisplayName, false); //'false' means: this is an Instructor
+          //      lblRegInfo.Text += " WCF regOK";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine +
+                    "Contact your system administrator");
+                log.Error("Error creating accounts " + ex.Message);
+                this.Close();
+            }
             try
             {
                 //this is specially for the COMservice that listens to the PTT and Headset events, generated

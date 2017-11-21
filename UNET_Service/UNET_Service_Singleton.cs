@@ -23,7 +23,11 @@ namespace UNET_Service
         public List<CurrentInfo> CurrentInfoList = new List<CurrentInfo>();
         public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
         public List<Assist> Assists = new List<Assist>();
-   
+
+
+        public Dictionary<string, IBroadcastorCallBack> clients = new Dictionary<string, IBroadcastorCallBack>();
+
+
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
 

@@ -20,24 +20,27 @@ namespace UNET_Service
         //     private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static object locker = new object(); //tbv wcf broadcasting
 
         public Service1()
         {
 
+            log4net.Config.BasicConfigurator.Configure();
+            log.Info("Successfully started UNET_Service");
 
         }
 
 
         #region Getters
 
-        public bool StartService()
-        {
-            log4net.Config.BasicConfigurator.Configure();
-            log.Info("Successfully started UNET_Service");
-            //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
+        //public bool StartService()
+        //{
+        //    log4net.Config.BasicConfigurator.Configure();
+        //    log.Info("Successfully started UNET_Service");
+        //    //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
 
-            return true;
-        }
+        //    return true;
+        //}
         /// <summary>
         /// Get the exercises from the inline memory
         /// </summary>
@@ -1027,36 +1030,46 @@ namespace UNET_Service
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public bool RegisterTrainee(CurrentInfo _currentInfo)
+        public bool RegisterClient(int _clientID, string _displayName, bool _isTrainee)
         {
             bool result = true;
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                bool existing = false;
-                //try to find the given traineeclient in the list. If found, update the information, otherwise add the traineeclient
-                //TODO: DIT ZOU OOK MET LYNC KUNNEN..
-                for (int i = 0; i <= Convert.ToInt16(singleton.CurrentInfoList.Count - 1); i++)
+                string clientName = Convert.ToString(_clientID);
+                if (clientName != null && clientName != "")
                 {
-                    //try to find a currentinfo object in the list with the same id
-                    if (singleton.CurrentInfoList[i].ID == _currentInfo.ID)
+                    try
                     {
+                        IBroadcastorCallBack callback = OperationContext.Current.GetCallbackChannel<IBroadcastorCallBack>();
 
-                        singleton.CurrentInfoList[i] = _currentInfo; //overwrite the currentinfo object with the one from the client
-                        existing = true;
-                        break;
+                        lock (locker)
+                        {
+                            //remove the old client
+                            if (singleton.clients.Keys.Contains(clientName))
+                                singleton.clients.Remove(clientName);
+                            singleton.clients.Add(clientName, callback);
+                        }
                     }
-                    //if the currentinfo is not found, then create one and add it to the list
-                    if (!existing)
+                    catch (Exception ex)
                     {
-                        singleton.CurrentInfoList.Add(_currentInfo);
+                        log.Error("Error registering client: " + ex.Message);
                     }
                 }
-                //now add it to the trainees list
-                if ((singleton.Trainees.SingleOrDefault(x => x.ID == _currentInfo.ID) == null))
+
+                ////now add it to the trainees list
+                if ((singleton.Trainees.SingleOrDefault(x => x.ID == _clientID) == null))
                 {
-                    Trainee trn = new Trainee(_currentInfo.ID, _currentInfo.ExerciseName);
-                    singleton.Trainees.Add(trn);
+                    if (_isTrainee)
+                    {
+                        Trainee trn = new Trainee(_clientID, _displayName);
+                        singleton.Trainees.Add(trn);
+                    }
+                    else
+                    {
+                        Instructor inst = new Instructor(_clientID, _displayName);
+                        singleton.Instructors.Add(inst);
+                    }
                 }
 
                 result = true;
@@ -1064,12 +1077,48 @@ namespace UNET_Service
             catch (Exception ex)
             {
                 log.Error("Error setting Registering Trainees", ex);
-                //    AppendToLog(string.Format("Error setting Registering Trainees  at: {0}", DateTime.Now.ToString("G")));
 
                 result = false;
 
             }
             return result;
+        }
+
+       
+        /// <summary>
+        /// verwijder client
+        /// </summary>
+        /// <param name="eventData"></param>
+        public void NotifyServer(EventDataType eventData)
+        {
+            UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+            lock (locker)
+            {
+                var inactiveClients = new List<string>();
+                foreach (var client in singleton.clients)
+                {
+                    if (client.Key != eventData.ClientName)
+                    {
+                        try
+                        {
+                            client.Value.BroadcastToClient(eventData);
+                        }
+                        catch (Exception ex)
+                        {
+                            inactiveClients.Add(client.Key);
+                        }
+                    }
+                }
+
+                if (inactiveClients.Count > 0)
+                {
+                    foreach (var client in inactiveClients)
+                    {
+                       singleton.clients.Remove(client);
+                    }
+                }
+            }
         }
 
         /// <summary>

@@ -21,8 +21,8 @@ namespace UNET_Service
     public interface IService1
     {
         //start service
-        [OperationContract]
-        bool StartService();
+      //  [OperationContract]
+      //  bool StartService();
 
         #region Assist
         [OperationContract]
@@ -110,7 +110,12 @@ namespace UNET_Service
 
         #region Setters
         [OperationContract]
-        bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo);
+        bool RegisterClient(int _clientID, string _displayName, bool _isTrainee);
+
+
+        [OperationContract]
+        void NotifyServer(EventDataType eventData); 
+
 
         [OperationContract]
         bool SetExerciseCount(int _count);

@@ -183,13 +183,13 @@ namespace UNET_Trainer_Trainee
 
                 try
                 {
-                    //close the connection to the wcf service, if it is still opened
                     if (service.State != System.ServiceModel.CommunicationState.Opened)
                     {
                         service.Open();
                     }
                  
-                    service.RegisterTrainee(new CurrentInfo(TraineeID, null, null, null, null,null));
+                    //Register the trainee to the wcf service
+                    service.RegisterClient(TraineeID, DisplayName, true); //'true' means: this is a trainee
                     lblRegInfo.Text += " WCF regOK";
                 }
                 catch (Exception ex)

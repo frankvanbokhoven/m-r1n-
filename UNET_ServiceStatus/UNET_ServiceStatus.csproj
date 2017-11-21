@@ -82,6 +82,9 @@
     <None Include="Service References\UNET_Service\Service13.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UNET_Service\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

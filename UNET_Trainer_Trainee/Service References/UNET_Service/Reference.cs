@@ -9,7 +9,70 @@
 //------------------------------------------------------------------------------
 
 namespace UNET_Trainer_Trainee.UNET_Service {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EventDataType", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service")]
+    [System.SerializableAttribute()]
+    public partial class EventDataType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ClientNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EventMessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName {
+            get {
+                return this.ClientNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClientNameField, value) != true)) {
+                    this.ClientNameField = value;
+                    this.RaisePropertyChanged("ClientName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EventMessage {
+            get {
+                return this.EventMessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EventMessageField, value) != true)) {
+                    this.EventMessageField = value;
+                    this.RaisePropertyChanged("EventMessage");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
@@ -165,11 +228,17 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
         System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterClient", ReplyAction="http://tempuri.org/IService1/RegisterClientResponse")]
+        bool RegisterClient(int _clientID, string _displayName, bool _isTrainee);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterTrainee", ReplyAction="http://tempuri.org/IService1/RegisterTraineeResponse")]
-        System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Classes.CurrentInfo _currentInfo);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterClient", ReplyAction="http://tempuri.org/IService1/RegisterClientResponse")]
+        System.Threading.Tasks.Task<bool> RegisterClientAsync(int _clientID, string _displayName, bool _isTrainee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/NotifyServer", ReplyAction="http://tempuri.org/IService1/NotifyServerResponse")]
+        void NotifyServer(UNET_Trainer_Trainee.UNET_Service.EventDataType eventData);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/NotifyServer", ReplyAction="http://tempuri.org/IService1/NotifyServerResponse")]
+        System.Threading.Tasks.Task NotifyServerAsync(UNET_Trainer_Trainee.UNET_Service.EventDataType eventData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -471,12 +540,20 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.ClearStatusMessagesAsync(_id);
         }
         
-        public bool RegisterTrainee(UNET_Classes.CurrentInfo _currentInfo) {
-            return base.Channel.RegisterTrainee(_currentInfo);
+        public bool RegisterClient(int _clientID, string _displayName, bool _isTrainee) {
+            return base.Channel.RegisterClient(_clientID, _displayName, _isTrainee);
         }
         
-        public System.Threading.Tasks.Task<bool> RegisterTraineeAsync(UNET_Classes.CurrentInfo _currentInfo) {
-            return base.Channel.RegisterTraineeAsync(_currentInfo);
+        public System.Threading.Tasks.Task<bool> RegisterClientAsync(int _clientID, string _displayName, bool _isTrainee) {
+            return base.Channel.RegisterClientAsync(_clientID, _displayName, _isTrainee);
+        }
+        
+        public void NotifyServer(UNET_Trainer_Trainee.UNET_Service.EventDataType eventData) {
+            base.Channel.NotifyServer(eventData);
+        }
+        
+        public System.Threading.Tasks.Task NotifyServerAsync(UNET_Trainer_Trainee.UNET_Service.EventDataType eventData) {
+            return base.Channel.NotifyServerAsync(eventData);
         }
         
         public bool SetExerciseCount(int _count) {

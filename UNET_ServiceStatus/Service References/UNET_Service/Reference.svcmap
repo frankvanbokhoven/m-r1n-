@@ -24,6 +24,7 @@
   <Metadata>
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="69a16bd9-477c-436b-b761-f8a33f1bf3c0" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?disco" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="50093f7d-b7a4-450e-9968-76df5c3dc5b6" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" />
+    <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="b0446a93-be9f-4f5d-b419-587039090b6c" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" />
     <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="d3fb37f9-6404-4a5f-91fb-ea77a386164d" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" />
     <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="9061ae29-2d98-40db-92be-c6b4b30a2948" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" />
     <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="c96420d1-2b4d-40a0-b624-9713bcec0088" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?wsdl" />

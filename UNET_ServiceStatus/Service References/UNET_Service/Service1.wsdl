@@ -14,14 +14,9 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IService1_StartService_InputMessage">
-    <wsdl:part name="parameters" element="tns:StartService" />
-  </wsdl:message>
-  <wsdl:message name="IService1_StartService_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartServiceResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_CreateAssist_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateAssist" />
   </wsdl:message>
@@ -166,11 +161,17 @@
   <wsdl:message name="IService1_ClearStatusMessages_OutputMessage">
     <wsdl:part name="parameters" element="tns:ClearStatusMessagesResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_RegisterTrainee_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterTrainee" />
+  <wsdl:message name="IService1_RegisterClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterClient" />
   </wsdl:message>
-  <wsdl:message name="IService1_RegisterTrainee_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterTraineeResponse" />
+  <wsdl:message name="IService1_RegisterClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_NotifyServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyServer" />
+  </wsdl:message>
+  <wsdl:message name="IService1_NotifyServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyServerResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_SetExerciseCount_InputMessage">
     <wsdl:part name="parameters" element="tns:SetExerciseCount" />
@@ -245,10 +246,6 @@
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
-    <wsdl:operation name="StartService">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
@@ -345,9 +342,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/ClearStatusMessages" message="tns:IService1_ClearStatusMessages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/ClearStatusMessagesResponse" message="tns:IService1_ClearStatusMessages_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RegisterTrainee">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterTrainee" message="tns:IService1_RegisterTrainee_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegisterTraineeResponse" message="tns:IService1_RegisterTrainee_OutputMessage" />
+    <wsdl:operation name="RegisterClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterClient" message="tns:IService1_RegisterClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegisterClientResponse" message="tns:IService1_RegisterClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/NotifyServer" message="tns:IService1_NotifyServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/NotifyServerResponse" message="tns:IService1_NotifyServer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetExerciseCount">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetExerciseCount" message="tns:IService1_SetExerciseCount_InputMessage" />
@@ -401,15 +402,6 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="StartService">
-      <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
       <wsdl:input>
@@ -626,8 +618,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RegisterTrainee">
-      <soap12:operation soapAction="http://tempuri.org/IService1/RegisterTrainee" style="document" />
+    <wsdl:operation name="RegisterClient">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RegisterClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyServer">
+      <soap12:operation soapAction="http://tempuri.org/IService1/NotifyServer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
