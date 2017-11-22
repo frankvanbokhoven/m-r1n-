@@ -68,21 +68,6 @@ namespace UNET_Trainer_Trainee
 
         }
 
-          /// <summary>
-        /// this sets the information about the exercise in the panel right above
-        /// </summary>
-        /// <param name="_exersicename"></param>
-        /// <param name="_exercisemode"></param>
-        /// <param name="_consolerole"></param>
-        /// <param name="_platform"></param>
-        //private void SetExersiceInformation(string _exersicename, string _exercisemode, string _consolerole, string _platform)
-        //{
-        //    lblConsole.Text = _consolerole;
-        //    lblExerciseName.Text = _exersicename;
-        //    lblExerciseMode.Text = _exercisemode;
-        //    lblPlatform.Text = _platform;
-        //}
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             //  this.Close();
@@ -97,8 +82,6 @@ namespace UNET_Trainer_Trainee
         private void trigger_CallAlert(object sender, AlertEventArgs e)
         {
             this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
-
-
      
 
             this.Invoke((MethodInvoker)(() => MessageBox.Show("Het is " + e.Caller_AccountName + " die belt!")));

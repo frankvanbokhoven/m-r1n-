@@ -78,12 +78,6 @@ namespace UNET_Trainer.UNET_Service {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
-        bool StartService();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/StartService", ReplyAction="http://tempuri.org/IService1/StartServiceResponse")]
-        System.Threading.Tasks.Task<bool> StartServiceAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(int _traineeId, string _traineeInfo);
         
@@ -210,23 +204,11 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevel", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelResponse")]
         System.Threading.Tasks.Task<int> GetNoiseLevelAsync(int _radioID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
-        string GetSIPStatusMessage(string _id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPendingChanges", ReplyAction="http://tempuri.org/IService1/GetPendingChangesResponse")]
+        System.DateTime GetPendingChanges();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/GetSIPStatusMessageResponse")]
-        System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
-        bool SetSIPStatusMessage(string _message, string _id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetSIPStatusMessage", ReplyAction="http://tempuri.org/IService1/SetSIPStatusMessageResponse")]
-        System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
-        bool ClearStatusMessages(string _id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ClearStatusMessages", ReplyAction="http://tempuri.org/IService1/ClearStatusMessagesResponse")]
-        System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPendingChanges", ReplyAction="http://tempuri.org/IService1/GetPendingChangesResponse")]
+        System.Threading.Tasks.Task<System.DateTime> GetPendingChangesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterClient", ReplyAction="http://tempuri.org/IService1/RegisterClientResponse")]
         bool RegisterClient(int _clientID, string _displayName, bool _isTrainee);
@@ -338,14 +320,6 @@ namespace UNET_Trainer.UNET_Service {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
-        }
-        
-        public bool StartService() {
-            return base.Channel.StartService();
-        }
-        
-        public System.Threading.Tasks.Task<bool> StartServiceAsync() {
-            return base.Channel.StartServiceAsync();
         }
         
         public bool CreateAssist(int _traineeId, string _traineeInfo) {
@@ -516,28 +490,12 @@ namespace UNET_Trainer.UNET_Service {
             return base.Channel.GetNoiseLevelAsync(_radioID);
         }
         
-        public string GetSIPStatusMessage(string _id) {
-            return base.Channel.GetSIPStatusMessage(_id);
+        public System.DateTime GetPendingChanges() {
+            return base.Channel.GetPendingChanges();
         }
         
-        public System.Threading.Tasks.Task<string> GetSIPStatusMessageAsync(string _id) {
-            return base.Channel.GetSIPStatusMessageAsync(_id);
-        }
-        
-        public bool SetSIPStatusMessage(string _message, string _id) {
-            return base.Channel.SetSIPStatusMessage(_message, _id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetSIPStatusMessageAsync(string _message, string _id) {
-            return base.Channel.SetSIPStatusMessageAsync(_message, _id);
-        }
-        
-        public bool ClearStatusMessages(string _id) {
-            return base.Channel.ClearStatusMessages(_id);
-        }
-        
-        public System.Threading.Tasks.Task<bool> ClearStatusMessagesAsync(string _id) {
-            return base.Channel.ClearStatusMessagesAsync(_id);
+        public System.Threading.Tasks.Task<System.DateTime> GetPendingChangesAsync() {
+            return base.Channel.GetPendingChangesAsync();
         }
         
         public bool RegisterClient(int _clientID, string _displayName, bool _isTrainee) {

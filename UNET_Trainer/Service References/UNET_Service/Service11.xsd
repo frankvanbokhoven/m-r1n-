@@ -3,18 +3,6 @@
   <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
   <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
-  <xs:element name="StartService">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StartServiceResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="StartServiceResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="CreateAssist">
     <xs:complexType>
       <xs:sequence>
@@ -302,46 +290,15 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetSIPStatusMessage">
+  <xs:element name="GetPendingChanges">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetSIPStatusMessageResponse">
+  <xs:element name="GetPendingChangesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="GetSIPStatusMessageResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetSIPStatusMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_message" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetSIPStatusMessageResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetSIPStatusMessageResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ClearStatusMessages">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ClearStatusMessagesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ClearStatusMessagesResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="GetPendingChangesResult" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

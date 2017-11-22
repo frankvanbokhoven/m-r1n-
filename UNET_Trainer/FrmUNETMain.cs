@@ -56,7 +56,7 @@ namespace UNET_Trainer
         private int ExersiseNumber = -1;
         private int RoleClicked = -1;
         private int RadioClicked = -1;
-
+        private DateTime LastUpdate = DateTime.MinValue;
 
         public static FrmUNETMain GetForm
         {
@@ -128,9 +128,17 @@ namespace UNET_Trainer
         {
             if (GetForegroundWindow() == this.Handle)
             {
-                SetButtonStatus(this);
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                if (service.GetPendingChanges() > LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                {
 
-                GetAssists(this);
+                    SetButtonStatus(this);
+
+                    GetAssists(this);
+                }
             }
         }
 
@@ -566,7 +574,7 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-            service.StartService();
+       //     service.StartService();
 
 
 

@@ -17,12 +17,6 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IService1_StartService_InputMessage">
-    <wsdl:part name="parameters" element="tns:StartService" />
-  </wsdl:message>
-  <wsdl:message name="IService1_StartService_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartServiceResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_CreateAssist_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateAssist" />
   </wsdl:message>
@@ -149,23 +143,11 @@
   <wsdl:message name="IService1_GetNoiseLevel_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNoiseLevelResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetSIPStatusMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSIPStatusMessage" />
+  <wsdl:message name="IService1_GetPendingChanges_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingChanges" />
   </wsdl:message>
-  <wsdl:message name="IService1_GetSIPStatusMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSIPStatusMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetSIPStatusMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetSIPStatusMessage" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetSIPStatusMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetSIPStatusMessageResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_ClearStatusMessages_InputMessage">
-    <wsdl:part name="parameters" element="tns:ClearStatusMessages" />
-  </wsdl:message>
-  <wsdl:message name="IService1_ClearStatusMessages_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ClearStatusMessagesResponse" />
+  <wsdl:message name="IService1_GetPendingChanges_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingChangesResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_RegisterClient_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterClient" />
@@ -252,10 +234,6 @@
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
-    <wsdl:operation name="StartService">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/StartService" message="tns:IService1_StartService_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartServiceResponse" message="tns:IService1_StartService_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
@@ -340,17 +318,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevel" message="tns:IService1_GetNoiseLevel_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelResponse" message="tns:IService1_GetNoiseLevel_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSIPStatusMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetSIPStatusMessage" message="tns:IService1_GetSIPStatusMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetSIPStatusMessageResponse" message="tns:IService1_GetSIPStatusMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetSIPStatusMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetSIPStatusMessage" message="tns:IService1_SetSIPStatusMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetSIPStatusMessageResponse" message="tns:IService1_SetSIPStatusMessage_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="ClearStatusMessages">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ClearStatusMessages" message="tns:IService1_ClearStatusMessages_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ClearStatusMessagesResponse" message="tns:IService1_ClearStatusMessages_OutputMessage" />
+    <wsdl:operation name="GetPendingChanges">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPendingChanges" message="tns:IService1_GetPendingChanges_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPendingChangesResponse" message="tns:IService1_GetPendingChanges_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RegisterClient">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterClient" message="tns:IService1_RegisterClient_InputMessage" />
@@ -412,15 +382,6 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="StartService">
-      <soap12:operation soapAction="http://tempuri.org/IService1/StartService" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
       <wsdl:input>
@@ -610,26 +571,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetSIPStatusMessage">
-      <soap12:operation soapAction="http://tempuri.org/IService1/GetSIPStatusMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetSIPStatusMessage">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetSIPStatusMessage" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ClearStatusMessages">
-      <soap12:operation soapAction="http://tempuri.org/IService1/ClearStatusMessages" style="document" />
+    <wsdl:operation name="GetPendingChanges">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetPendingChanges" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

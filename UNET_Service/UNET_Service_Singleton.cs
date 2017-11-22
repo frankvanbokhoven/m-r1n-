@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using UNET_Classes;
+using System.Collections.ObjectModel;
 
 namespace UNET_Service
 {
@@ -12,24 +13,55 @@ namespace UNET_Service
         private static UNET_Singleton instance = null;
         // adding locking object
         private static readonly object syncRoot = new object();
-        private UNET_Singleton() { }
 
-        public List<Exercise> Exercises = new List<Exercise>();
-        public List<Role> Roles = new List<Role>();
-        public List<Radio> Radios = new List<Radio>();
-        public List<Instructor> Instructors = new List<Instructor>();
-        public List<Trainee> Trainees = new List<Trainee>();
-        public List<Platform> Platforms = new List<Platform>();
-        public List<CurrentInfo> CurrentInfoList = new List<CurrentInfo>();
-        public List<SIPStatusMessage> SIPStatusMessageList = new List<SIPStatusMessage>();
-        public List<Assist> Assists = new List<Assist>();
+        //all the ObservableCollections below are changed from ObservableCollections to observablecollections. this way, we can attach an event to them and know
+        //when something has changed in them.
+        public ObservableCollection<Exercise> Exercises = new ObservableCollection<Exercise>();
+        public ObservableCollection<Role> Roles = new ObservableCollection<Role>();
+        public ObservableCollection<Radio> Radios = new ObservableCollection<Radio>();
+        public ObservableCollection<Instructor> Instructors = new ObservableCollection<Instructor>();
+        public ObservableCollection<Trainee> Trainees = new ObservableCollection<Trainee>();
+        public ObservableCollection<Platform> Platforms = new ObservableCollection<Platform>();
+        public ObservableCollection<CurrentInfo> CurrentInfoList = new ObservableCollection<CurrentInfo>();
+        public ObservableCollection<SIPStatusMessage> SIPStatusMessageList = new ObservableCollection<SIPStatusMessage>();
+        public ObservableCollection<Assist> Assists = new ObservableCollection<Assist>();
 
+        public DateTime PendingChanges;
 
         public Dictionary<string, IBroadcastorCallBack> clients = new Dictionary<string, IBroadcastorCallBack>();
 
 
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
+
+        private UNET_Singleton()
+        {
+            //We attach the collectionchangedevent to the lists, to keep track of any changes
+            //we only need one change event for all lists
+            Exercises.CollectionChanged += Exercises_CollectionChanged;
+            Roles.CollectionChanged += Exercises_CollectionChanged;
+            Radios.CollectionChanged += Exercises_CollectionChanged;
+            Instructors.CollectionChanged += Exercises_CollectionChanged;
+            Trainees.CollectionChanged += Exercises_CollectionChanged;
+            Platforms.CollectionChanged += Exercises_CollectionChanged;
+            CurrentInfoList.CollectionChanged += Exercises_CollectionChanged;
+            SIPStatusMessageList.CollectionChanged += Exercises_CollectionChanged;
+            Assists.CollectionChanged += Exercises_CollectionChanged;
+
+        }
+
+        #region Singleton Change Events
+        /// <summary>
+        /// whenever this event is fired, then appearantly something has changed in one of the lists
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Exercises_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PendingChanges = DateTime.Now;
+        }
+
+        #endregion
 
         public static UNET_Singleton Instance
         {

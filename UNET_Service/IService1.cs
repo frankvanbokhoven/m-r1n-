@@ -11,6 +11,7 @@ using System.IO;
 
 namespace UNET_Service
 {
+    using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.ServiceModel;
@@ -97,15 +98,22 @@ namespace UNET_Service
 
         #endregion
 
+        #region PendingChanges
+        [OperationContract]
+        DateTime GetPendingChanges();
+
+        #endregion
+
+
         #region statusmessages
-        [OperationContract]
-        string GetSIPStatusMessage(string _id);
+        //   [OperationContract]
+        //   string GetSIPStatusMessage(string _id);
 
-        [OperationContract]
-        bool SetSIPStatusMessage(string _message, string _id);
+        //   [OperationContract]
+        //   bool SetSIPStatusMessage(string _message, string _id);
 
-        [OperationContract]
-        bool ClearStatusMessages(string _id);
+        //  [OperationContract]
+        //  bool ClearStatusMessages(string _id);
         #endregion
 
         #region Setters

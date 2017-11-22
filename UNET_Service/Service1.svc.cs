@@ -97,60 +97,60 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_id"></param>
         /// <returns></returns>
-        public string GetSIPStatusMessage(string _id)
-        {
-            string result = string.Empty;
-            try
-            {
-                UNET_Singleton singleton = UNET_Singleton.Instance;
+        //public string GetSIPStatusMessage(string _id)
+        //{
+        //    string result = string.Empty;
+        //    try
+        //    {
+        //        UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                //use lync to select the messages for given sipclient
-                List<SIPStatusMessage> list = singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<SIPStatusMessage>();
+        //        //use lync to select the messages for given sipclient
+        //        List<SIPStatusMessage> list = singleton.SIPStatusMessageList.Where(x => x.ID.ToLower() == _id.ToLower()).ToList<SIPStatusMessage>();
 
-                //then build the pipe separated result string
-                foreach (SIPStatusMessage ssm in list)
-                {
-                    result += ssm.Message + "|";
-                }
-                //remove last pipe, if it exists in the string
-                if (result.Length > 0) //if the string is NOT empty
-                {
-                    if (result[result.Length - 1] == '|') //if the last character is a pipe
-                    {
-                        result = result.Remove(result.Length - 1);//remove the last pipe
-                    }
-                }
-                //now remove all these items using lync
-                singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error adding to the SIPStatusMessage list: ", ex);
-                //throw;
-                result = ex.Message;
-            }
-            return result; //return the pipe separated messages string
-        }
+        //        //then build the pipe separated result string
+        //        foreach (SIPStatusMessage ssm in list)
+        //        {
+        //            result += ssm.Message + "|";
+        //        }
+        //        //remove last pipe, if it exists in the string
+        //        if (result.Length > 0) //if the string is NOT empty
+        //        {
+        //            if (result[result.Length - 1] == '|') //if the last character is a pipe
+        //            {
+        //                result = result.Remove(result.Length - 1);//remove the last pipe
+        //            }
+        //        }
+        //        //now remove all these items using lync
+        //        singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error adding to the SIPStatusMessage list: ", ex);
+        //        //throw;
+        //        result = ex.Message;
+        //    }
+        //    return result; //return the pipe separated messages string
+        //}
 
-        public bool ClearStatusMessages(string _id)
-        {
-            bool result = false;
-            try
-            {
-                UNET_Singleton singleton = UNET_Singleton.Instance;
+        //public bool ClearStatusMessages(string _id)
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                //now remove all these items using lync
-                singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error clearing the SIPStatusMessage list: ", ex);
-                //throw;
-                result = false;
-            }
-            return result;
-        }
+        //        //now remove all these items using lync
+        //        singleton.SIPStatusMessageList.RemoveAll(x => x.ID.ToLower() == _id.ToLower());
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error clearing the SIPStatusMessage list: ", ex);
+        //        //throw;
+        //        result = false;
+        //    }
+        //    return result;
+        //}
         #endregion
 
         /// <summary>
@@ -1084,7 +1084,7 @@ namespace UNET_Service
             return result;
         }
 
-       
+
         /// <summary>
         /// verwijder client
         /// </summary>
@@ -1115,7 +1115,7 @@ namespace UNET_Service
                 {
                     foreach (var client in inactiveClients)
                     {
-                       singleton.clients.Remove(client);
+                        singleton.clients.Remove(client);
                     }
                 }
             }
@@ -1331,6 +1331,31 @@ namespace UNET_Service
         }
         #endregion
 
+        #region PendingChanges
+        /// <summary>
+        /// this function returns the datetime of the last time something has changed in the singleton lists
+        /// </summary>
+        /// <returns></returns>
+        public DateTime GetPendingChanges()
+        {
+            DateTime result;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                result = singleton.PendingChanges;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error retrieving datetime of pendingchanges", ex);
+                result = DateTime.MinValue;
+
+            }
+
+            return result;
+
+        }
+
+        #endregion
 
     }
 }
