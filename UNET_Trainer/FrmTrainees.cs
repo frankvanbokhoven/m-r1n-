@@ -26,6 +26,8 @@ namespace UNET_Trainer
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         private int SelectedExercise;
         private int InstructorID;
+        private DateTime LastUpdate = DateTime.MinValue;
+
         #region constructors
         public FrmTrainees()
         {
@@ -72,8 +74,22 @@ namespace UNET_Trainer
         {
             if (GetForegroundWindow() == this.Handle) //only if the form is actually visible to the user
             {
-                SetButtonStatus(this);
+              //  SetButtonStatus(this);
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                if (service.GetPendingChanges() > LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                {
+
+                    SetButtonStatus(this);
+                    LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
+                }
+
             }
+
+
 
         }
 
@@ -100,11 +116,9 @@ namespace UNET_Trainer
                 CurrentInstructor = service.GetAllInstructorData(InstructorID);
                 
                 ////now resize all buttons to make optimal use of the available room
-           //     Application.DoEvents();
+                Application.DoEvents();
                 //enable the Trainees buttons, for the number of trainees that are in
-                var traineelist = service.GetTrainees();
-                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
-                foreach (Control ctrl in pnlTrainees.Controls)
+                 foreach (Control ctrl in pnlTrainees.Controls)
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
@@ -112,6 +126,10 @@ namespace UNET_Trainer
                     }
                 }
                 int listindex = 1;
+
+                var traineelist = service.GetTrainees(); //first get all logged on trainees
+                List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+        
 
                 //now we make visible a button for every existing role
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)

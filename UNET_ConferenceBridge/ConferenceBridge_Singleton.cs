@@ -23,6 +23,8 @@ namespace UNET_ConferenceBridge
   
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;
+        public DateTime LastUpdate = DateTime.MinValue;
+
 
         //needed to keep track of weather the headphone is attached or the ptt is pressed
         public bool PTTPressed = false;

@@ -826,7 +826,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(77, 71);
             this.button3.TabIndex = 35;
-            this.button3.Text = "test to right (1016)";
+            this.button3.Text = "test to right (1010)";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -837,7 +837,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(77, 71);
             this.button2.TabIndex = 36;
-            this.button2.Text = "test to speaker (1016)";
+            this.button2.Text = "test to speaker (1010)";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 

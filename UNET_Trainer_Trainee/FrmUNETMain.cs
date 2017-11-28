@@ -474,7 +474,7 @@ namespace UNET_Trainer_Trainee
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
                             ((Button)sender).Tag = "Tx";
-                            MakeCall("1016", true, true, false, true, true, false);
+                            MakeCall("1010", true, true, false, true, true, false);
                             break;
                         }
                     case "Off":
@@ -503,7 +503,7 @@ namespace UNET_Trainer_Trainee
 
 
 
-                MakeCall("1016" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
+                MakeCall("1010" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
             }
             catch (Exception ex)
             {
@@ -805,13 +805,13 @@ namespace UNET_Trainer_Trainee
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MakeCall("1016", true, true, false, false, false, true);
+            MakeCall("1010", true, true, false, false, false, true);
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            MakeCall("1016", true, false, false, true, true, true);
+            MakeCall("1010", true, false, false, true, true, true);
 
         }
     }

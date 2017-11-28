@@ -31,10 +31,11 @@ namespace UNET_Trainer
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1016"));
+        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1017"));
         public string  DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1017 instructor");
              
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
+     //   private DateTime LastUpdate = DateTime.MinValue;
 
 
         //the accounts
@@ -56,8 +57,7 @@ namespace UNET_Trainer
         private int ExersiseNumber = -1;
         private int RoleClicked = -1;
         private int RadioClicked = -1;
-        private DateTime LastUpdate = DateTime.MinValue;
-
+  
         public static FrmUNETMain GetForm
         {
             get
@@ -97,6 +97,29 @@ namespace UNET_Trainer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            try
+            {
+                //close the connection to the wcf service, if it is still opened
+                if (service.State == System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Close();
+                }
+                //close the useragent en with that the sip connection
+                if (!object.ReferenceEquals(useragent, null))
+                {
+                    HangupAllCalls();
+                    useragent.UserAgentStop();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error Closing UNET_Trainer", ex);
+                // throw;
+            }
+            //try to find and kill the TCPSocketClient process and kill it
+            FindAndKillProcess("TCPSocketClient.exe");
+            log.Info("Terminated UNET_Instructor");
+
             Application.Exit();
         }
 
@@ -132,12 +155,13 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
-                if (service.GetPendingChanges() > LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
                 {
 
                     SetButtonStatus(this);
 
                     GetAssists(this);
+                    ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
                 }
             }
         }
@@ -1264,5 +1288,10 @@ namespace UNET_Trainer
         }
         #endregion
 
+        private void FrmUNETMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+   
+
+        }
     }
 }

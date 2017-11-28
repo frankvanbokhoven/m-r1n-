@@ -128,7 +128,7 @@
             this.tbxInstructorIDs.Name = "tbxInstructorIDs";
             this.tbxInstructorIDs.Size = new System.Drawing.Size(224, 22);
             this.tbxInstructorIDs.TabIndex = 18;
-            this.tbxInstructorIDs.Text = "1016";
+            this.tbxInstructorIDs.Text = "1017";
             this.toolTip1.SetToolTip(this.tbxInstructorIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
             // 
             // btnRefreshTrainees

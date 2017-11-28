@@ -1626,6 +1626,7 @@
             this.Text = "FrmUNETMain";
             this.Activated += new System.EventHandler(this.FrmUNETMain_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmUNETMain_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmUNETMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmUNETMain_Load);
             this.panelRadios.ResumeLayout(false);
             this.panelRadios.PerformLayout();

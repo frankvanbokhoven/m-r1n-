@@ -24,6 +24,7 @@ namespace UNET_Trainer
         private int SelectedNoiseButtonIndex = -1; //this property is set after the click of a radio button
         private int SelectedRadioButtonIndex = -1; // index of one of the radio buttons
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+        private DateTime LastUpdate = DateTime.MinValue;
 
         public FrmRadioSetup()
         {
@@ -215,7 +216,18 @@ namespace UNET_Trainer
         {
             if (GetForegroundWindow() == this.Handle)
             {
-                SetButtonStatus(this);
+                // SetButtonStatus(this);
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                if (service.GetPendingChanges() > LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                {
+
+                    SetButtonStatus(this);
+                    LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
+                }
+
             }
         }
 

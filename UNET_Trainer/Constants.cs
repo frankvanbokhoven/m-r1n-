@@ -36,13 +36,12 @@ namespace UNET_Trainer
         public static string cTrainee1013 = "1013";
         public static string cTrainee1014 = "1014";
         public static string cTrainee1015 = "1015";
-        public static string cTrainee1016 = "1016";
-
+ 
         // all instructor ID's
-        public static string cInstructor1020 = "1016";
-        public static string cInstructor1021 = "1017";
-        public static string cInstructor1022 = "1018";
-        public static string cInstructor1023 = "1019";
+        public static string cInstructor1016 = "1016";
+        public static string cInstructor1017 = "1017";
+        public static string cInstructor1018 = "1018";
+        public static string cInstructor1019 = "1019";
 
     }
 }

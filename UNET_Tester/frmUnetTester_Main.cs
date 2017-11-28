@@ -168,7 +168,7 @@ namespace UNET_Tester
                     exe.Number = i;
                     exe.SpecificationName = txtSpecification.Text + i.ToString("00");
                     exe.ExerciseName = txtName.Text + i.ToString("00");
-                    exe.TraineesAssigned.Add(new Trainee(1016, "Trainee-1016"));
+                    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service

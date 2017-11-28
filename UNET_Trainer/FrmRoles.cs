@@ -25,7 +25,8 @@ namespace UNET_Trainer
         private int SelectedExercise;
         private int InstructorID = -1;
         private Instructor CurrentInstructor;
-
+        private DateTime LastUpdate = DateTime.MinValue;
+  
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         public FrmRoles()
@@ -80,7 +81,18 @@ namespace UNET_Trainer
         {
             if (GetForegroundWindow() == this.Handle)
             {
-                SetButtonStatus(this);
+                //  SetButtonStatus(this);
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                if (service.GetPendingChanges() > LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                {
+
+                    SetButtonStatus(this);
+                    LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
+                }
+
             }
         }
 
