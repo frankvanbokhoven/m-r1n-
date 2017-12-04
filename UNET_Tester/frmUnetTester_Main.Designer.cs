@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignRoles = new System.Windows.Forms.CheckBox();
             this.btnRefreshInstructors = new System.Windows.Forms.Button();
             this.tbxInstructorIDs = new System.Windows.Forms.TextBox();
@@ -59,7 +60,7 @@
             this.btnQuit = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.cbxKeepAlive = new System.Windows.Forms.CheckBox();
-            this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
+            this.cbxAssignRadiosToExercise = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbxAssignRadiosToExercise);
             this.groupBox1.Controls.Add(this.cbxAssignRolesToTrainees);
             this.groupBox1.Controls.Add(this.cbxAssignRoles);
             this.groupBox1.Controls.Add(this.btnRefreshInstructors);
@@ -91,18 +93,30 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(707, 270);
+            this.groupBox1.Size = new System.Drawing.Size(707, 321);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // cbxAssignRolesToTrainees
+            // 
+            this.cbxAssignRolesToTrainees.AutoSize = true;
+            this.cbxAssignRolesToTrainees.Checked = true;
+            this.cbxAssignRolesToTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 124);
+            this.cbxAssignRolesToTrainees.Name = "cbxAssignRolesToTrainees";
+            this.cbxAssignRolesToTrainees.Size = new System.Drawing.Size(178, 21);
+            this.cbxAssignRolesToTrainees.TabIndex = 21;
+            this.cbxAssignRolesToTrainees.Text = "Assign roles to trainees";
+            this.cbxAssignRolesToTrainees.UseVisualStyleBackColor = true;
             // 
             // cbxAssignRoles
             // 
             this.cbxAssignRoles.AutoSize = true;
             this.cbxAssignRoles.Checked = true;
             this.cbxAssignRoles.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 224);
-            this.cbxAssignRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 249);
+            this.cbxAssignRoles.Margin = new System.Windows.Forms.Padding(4);
             this.cbxAssignRoles.Name = "cbxAssignRoles";
             this.cbxAssignRoles.Size = new System.Drawing.Size(213, 21);
             this.cbxAssignRoles.TabIndex = 20;
@@ -112,7 +126,7 @@
             // btnRefreshInstructors
             // 
             this.btnRefreshInstructors.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
-            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 188);
+            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 213);
             this.btnRefreshInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshInstructors.Name = "btnRefreshInstructors";
             this.btnRefreshInstructors.Size = new System.Drawing.Size(40, 39);
@@ -123,7 +137,7 @@
             // 
             // tbxInstructorIDs
             // 
-            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 193);
+            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 218);
             this.tbxInstructorIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxInstructorIDs.Name = "tbxInstructorIDs";
             this.tbxInstructorIDs.Size = new System.Drawing.Size(224, 22);
@@ -134,7 +148,7 @@
             // btnRefreshTrainees
             // 
             this.btnRefreshTrainees.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
-            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 80);
+            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 96);
             this.btnRefreshTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshTrainees.Name = "btnRefreshTrainees";
             this.btnRefreshTrainees.Size = new System.Drawing.Size(40, 39);
@@ -145,7 +159,7 @@
             // 
             // tbxTraineeIDs
             // 
-            this.tbxTraineeIDs.Location = new System.Drawing.Point(104, 85);
+            this.tbxTraineeIDs.Location = new System.Drawing.Point(104, 101);
             this.tbxTraineeIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxTraineeIDs.Name = "tbxTraineeIDs";
             this.tbxTraineeIDs.Size = new System.Drawing.Size(224, 22);
@@ -156,7 +170,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
-            this.buttonRefresh.Location = new System.Drawing.Point(325, 230);
+            this.buttonRefresh.Location = new System.Drawing.Point(325, 255);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
@@ -204,7 +218,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 193);
+            this.label5.Location = new System.Drawing.Point(11, 218);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 10;
@@ -218,7 +232,7 @@
             this.grbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbxNoiseLevel.Name = "grbxNoiseLevel";
             this.grbxNoiseLevel.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 251);
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 302);
             this.grbxNoiseLevel.TabIndex = 8;
             this.grbxNoiseLevel.TabStop = false;
             this.grbxNoiseLevel.Text = "Noise level";
@@ -238,13 +252,13 @@
             this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 17);
             this.lbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxNoiseLevel.Name = "lbxNoiseLevel";
-            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 232);
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 283);
             this.lbxNoiseLevel.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 165);
+            this.label4.Location = new System.Drawing.Point(11, 190);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -274,7 +288,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(104, 163);
+            this.cbxRadios.Location = new System.Drawing.Point(104, 188);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(55, 24);
@@ -285,7 +299,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 137);
+            this.label3.Location = new System.Drawing.Point(11, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 5;
@@ -315,7 +329,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(104, 134);
+            this.cbxRole.Location = new System.Drawing.Point(104, 159);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(55, 24);
@@ -326,7 +340,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 90);
+            this.label2.Location = new System.Drawing.Point(11, 106);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 3;
@@ -371,10 +385,10 @@
             this.listBoxGetmethods.ForeColor = System.Drawing.SystemColors.Window;
             this.listBoxGetmethods.FormattingEnabled = true;
             this.listBoxGetmethods.ItemHeight = 18;
-            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 327);
-            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 381);
+            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 418);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 454);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -393,7 +407,7 @@
             this.panel1.Controls.Add(this.btnQuit);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.cbxKeepAlive);
-            this.panel1.Location = new System.Drawing.Point(16, 287);
+            this.panel1.Location = new System.Drawing.Point(16, 339);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(705, 36);
@@ -457,24 +471,24 @@
             this.cbxKeepAlive.UseVisualStyleBackColor = true;
             this.cbxKeepAlive.CheckedChanged += new System.EventHandler(this.cbxKeepAlive_CheckedChanged);
             // 
-            // cbxAssignRolesToTrainees
+            // cbxAssignRadiosToExercise
             // 
-            this.cbxAssignRolesToTrainees.AutoSize = true;
-            this.cbxAssignRolesToTrainees.Checked = true;
-            this.cbxAssignRolesToTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 108);
-            this.cbxAssignRolesToTrainees.Name = "cbxAssignRolesToTrainees";
-            this.cbxAssignRolesToTrainees.Size = new System.Drawing.Size(178, 21);
-            this.cbxAssignRolesToTrainees.TabIndex = 21;
-            this.cbxAssignRolesToTrainees.Text = "Assign roles to trainees";
-            this.cbxAssignRolesToTrainees.UseVisualStyleBackColor = true;
+            this.cbxAssignRadiosToExercise.AutoSize = true;
+            this.cbxAssignRadiosToExercise.Checked = true;
+            this.cbxAssignRadiosToExercise.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAssignRadiosToExercise.Location = new System.Drawing.Point(104, 77);
+            this.cbxAssignRadiosToExercise.Name = "cbxAssignRadiosToExercise";
+            this.cbxAssignRadiosToExercise.Size = new System.Drawing.Size(187, 21);
+            this.cbxAssignRadiosToExercise.TabIndex = 22;
+            this.cbxAssignRadiosToExercise.Text = "Assign radios to exersise";
+            this.cbxAssignRadiosToExercise.UseVisualStyleBackColor = true;
             // 
             // frmUNETTester_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(740, 789);
+            this.ClientSize = new System.Drawing.Size(740, 842);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listBoxGetmethods);
             this.Controls.Add(this.groupBox1);
@@ -526,6 +540,7 @@
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.CheckBox cbxAssignRoles;
         private System.Windows.Forms.CheckBox cbxAssignRolesToTrainees;
+        private System.Windows.Forms.CheckBox cbxAssignRadiosToExercise;
     }
 }
 

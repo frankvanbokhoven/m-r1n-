@@ -316,6 +316,9 @@ namespace UNET_Trainer
                     //bij de start van de instructor moet er al een exercise geselecteerd zijn, zoniet, dan zetten we die hier alsnog..
                     service.SetExerciseSelected(InstructorID, 1, true);
                 }
+
+
+
                 //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
@@ -330,13 +333,13 @@ namespace UNET_Trainer
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                        ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                     }
                 }
                 int exerciseselected = -1;
-                foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever comes from the service
+                foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever is retrieved from the service
                 {
-                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden, vooral initieel
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
 
                     //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
@@ -372,13 +375,13 @@ namespace UNET_Trainer
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                        ((Button)ctrl).BackColor = Theming.TraineeNotSelectedButton;
 
                     }
                 }
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
                 {
-                    //  panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
                     panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
 
 
@@ -414,21 +417,20 @@ namespace UNET_Trainer
 
 
                 //enable the Roles buttons
-              //  var rolelist = service.GetRoles();
-              //  List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRoles.Controls)
                 {
                     if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                        ((Button)ctrl).BackColor = Theming.Background;
 
                     }
                 }
+
                  foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned) 
                 {
-                    //     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
 
                     //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
@@ -456,23 +458,20 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtons(panelRoles, SelectedExercise.RolesAssigned.Count, "role");
 
 
-                //enable the Roles buttons
-               // var radiolist = service.GetRadios();
-
-              //  List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+                //enable the Radio buttons
                 foreach (Control ctrl in panelRadios.Controls)
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                        ((Button)ctrl).BackColor = Theming.RadioNotSelectedButton;
 
                     }
                 }
                 foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
                 {
-                 //   panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
                     panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
 
                     //loop nu door de lijst van toegewezen radios heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
@@ -674,9 +673,15 @@ namespace UNET_Trainer
             }
         }
 
+
+        /// <summary>
+        /// zie: 2.1.13
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMonitorTrainee_Click(object sender, EventArgs e)
         {
-            SetTraineeStatus();
+         //   SetTraineeStatus();
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
@@ -695,55 +700,55 @@ namespace UNET_Trainer
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
         /// </summary>
-        private void SetTraineeStatus()
-        {
+        //private void SetTraineeStatus()
+        //{
 
-            //loop thrue the Monitortraineearray to set the proper status
-            for (int i = 0; i <= 15; i++)
-            {
-                MonitorTraineeArray[i] = false;
-            }
+        //    //loop thrue the Monitortraineearray to set the proper status
+        //    for (int i = 0; i <= 15; i++)
+        //    {
+        //        MonitorTraineeArray[i] = false;
+        //    }
 
-            // A little amateur.. but it just is the fastest manner
-            btnTrainee01.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee02.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee03.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee04.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee05.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee06.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee07.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee08.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee09.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee10.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee11.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee12.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee13.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee14.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee15.BackColor = System.Drawing.Color.LightGreen;
-            btnTrainee16.BackColor = System.Drawing.Color.LightGreen;
+        //    // A little amateur.. but it just is the fastest manner
+        //    btnTrainee01.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee02.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee03.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee04.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee05.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee06.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee07.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee08.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee09.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee10.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee11.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee12.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee13.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee14.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee15.BackColor = System.Drawing.Color.LightGreen;
+        //    btnTrainee16.BackColor = System.Drawing.Color.LightGreen;
 
-            btnTrainee01.ForeColor = System.Drawing.Color.Black;
-            btnTrainee02.ForeColor = System.Drawing.Color.Black;
-            btnTrainee03.ForeColor = System.Drawing.Color.Black;
-            btnTrainee04.ForeColor = System.Drawing.Color.Black;
-            btnTrainee05.ForeColor = System.Drawing.Color.Black;
-            btnTrainee06.ForeColor = System.Drawing.Color.Black;
-            btnTrainee07.ForeColor = System.Drawing.Color.Black;
-            btnTrainee08.ForeColor = System.Drawing.Color.Black;
-            btnTrainee09.ForeColor = System.Drawing.Color.Black;
-            btnTrainee10.ForeColor = System.Drawing.Color.Black;
-            btnTrainee11.ForeColor = System.Drawing.Color.Black;
-            btnTrainee12.ForeColor = System.Drawing.Color.Black;
-            btnTrainee13.ForeColor = System.Drawing.Color.Black;
-            btnTrainee14.ForeColor = System.Drawing.Color.Black;
-            btnTrainee15.ForeColor = System.Drawing.Color.Black;
-            btnTrainee16.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee01.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee02.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee03.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee04.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee05.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee06.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee07.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee08.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee09.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee10.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee11.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee12.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee13.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee14.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee15.ForeColor = System.Drawing.Color.Black;
+        //    btnTrainee16.ForeColor = System.Drawing.Color.Black;
 
-        }
+        //}
 
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
-            SetTraineeStatus();
+        //    SetTraineeStatus();
             int traineeIndex = -1;
             //    SetStatusAndColorTraineeButtons((Button)sender);
 
@@ -791,47 +796,47 @@ namespace UNET_Trainer
             }
 
             // A little amateur.. but it just is the fastest manner
-            btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio14.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
-            btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio14.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
+            //btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
 
-            btnRadio01.ForeColor = System.Drawing.Color.Black;
-            btnRadio02.ForeColor = System.Drawing.Color.Black;
-            btnRadio03.ForeColor = System.Drawing.Color.Black;
-            btnRadio04.ForeColor = System.Drawing.Color.Black;
-            btnRadio05.ForeColor = System.Drawing.Color.Black;
-            btnRadio06.ForeColor = System.Drawing.Color.Black;
-            btnRadio07.ForeColor = System.Drawing.Color.Black;
-            btnRadio08.ForeColor = System.Drawing.Color.Black;
-            btnRadio09.ForeColor = System.Drawing.Color.Black;
-            btnRadio10.ForeColor = System.Drawing.Color.Black;
-            btnRadio11.ForeColor = System.Drawing.Color.Black;
-            btnRadio12.ForeColor = System.Drawing.Color.Black;
-            btnRadio13.ForeColor = System.Drawing.Color.Black;
-            btnRadio14.ForeColor = System.Drawing.Color.Black;
-            btnRadio15.ForeColor = System.Drawing.Color.Black;
-            btnRadio16.ForeColor = System.Drawing.Color.Black;
-            btnRadio17.ForeColor = System.Drawing.Color.Black;
-            btnRadio18.ForeColor = System.Drawing.Color.Black;
-            btnRadio19.ForeColor = System.Drawing.Color.Black;
-            btnRadio20.ForeColor = System.Drawing.Color.Black;
+            //btnRadio01.ForeColor = System.Drawing.Color.Black;
+            //btnRadio02.ForeColor = System.Drawing.Color.Black;
+            //btnRadio03.ForeColor = System.Drawing.Color.Black;
+            //btnRadio04.ForeColor = System.Drawing.Color.Black;
+            //btnRadio05.ForeColor = System.Drawing.Color.Black;
+            //btnRadio06.ForeColor = System.Drawing.Color.Black;
+            //btnRadio07.ForeColor = System.Drawing.Color.Black;
+            //btnRadio08.ForeColor = System.Drawing.Color.Black;
+            //btnRadio09.ForeColor = System.Drawing.Color.Black;
+            //btnRadio10.ForeColor = System.Drawing.Color.Black;
+            //btnRadio11.ForeColor = System.Drawing.Color.Black;
+            //btnRadio12.ForeColor = System.Drawing.Color.Black;
+            //btnRadio13.ForeColor = System.Drawing.Color.Black;
+            //btnRadio14.ForeColor = System.Drawing.Color.Black;
+            //btnRadio15.ForeColor = System.Drawing.Color.Black;
+            //btnRadio16.ForeColor = System.Drawing.Color.Black;
+            //btnRadio17.ForeColor = System.Drawing.Color.Black;
+            //btnRadio18.ForeColor = System.Drawing.Color.Black;
+            //btnRadio19.ForeColor = System.Drawing.Color.Black;
+            //btnRadio20.ForeColor = System.Drawing.Color.Black;
         }
 
 
@@ -893,50 +898,49 @@ namespace UNET_Trainer
 
         private void btnExersise01_Click(object sender, EventArgs e)
         {
-            SetExerciseStatus();
+         //   SetExerciseStatus();
             SetStatusAndColorExerciseButtons((Button)sender);
         }
 
-        private void SetExerciseStatus()
-        {
-            //loop thrue the Exersise array to set the proper status
-            for (int i = 0; i <= 8; i++)
-            {
-                ExerciseArray[i] = false;
-            }
+        //private void SetExerciseStatus()
+        //{
+        //    //loop thrue the Exersise array to set the proper status
+        //    for (int i = 0; i <= 8; i++)
+        //    {
+        //        ExerciseArray[i] = false;
+        //    }
 
-            //reset the colors of the exersise buttons
-            btnExersise01.BackColor = System.Drawing.Color.Aqua;
-            btnExersise02.BackColor = System.Drawing.Color.Aqua;
-            btnExersise03.BackColor = System.Drawing.Color.Aqua;
-            btnExersise04.BackColor = System.Drawing.Color.Aqua;
-            btnExersise05.BackColor = System.Drawing.Color.Aqua;
-            btnExersise06.BackColor = System.Drawing.Color.Aqua;
-            btnExersise07.BackColor = System.Drawing.Color.Aqua;
-            btnExersise08.BackColor = System.Drawing.Color.Aqua;
-            btnIL.BackColor = System.Drawing.Color.Aqua;
+        //    //reset the colors of the exersise buttons
+        //    btnExersise01.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise02.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise03.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise04.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise05.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise06.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise07.BackColor = System.Drawing.Color.Aqua;
+        //    btnExersise08.BackColor = System.Drawing.Color.Aqua;
+        //    btnIL.BackColor = System.Drawing.Color.Aqua;
 
-            btnExersise01.ForeColor = System.Drawing.Color.Black;
-            btnExersise02.ForeColor = System.Drawing.Color.Black;
-            btnExersise03.ForeColor = System.Drawing.Color.Black;
-            btnExersise04.ForeColor = System.Drawing.Color.Black;
-            btnExersise05.ForeColor = System.Drawing.Color.Black;
-            btnExersise06.ForeColor = System.Drawing.Color.Black;
-            btnExersise07.ForeColor = System.Drawing.Color.Black;
-            btnExersise08.ForeColor = System.Drawing.Color.Black;
-            btnIL.ForeColor = System.Drawing.Color.Black;
-        }
+        //    btnExersise01.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise02.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise03.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise04.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise05.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise06.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise07.ForeColor = System.Drawing.Color.Black;
+        //    btnExersise08.ForeColor = System.Drawing.Color.Black;
+        //    btnIL.ForeColor = System.Drawing.Color.Black;
+        //}
 
         private void SetStatusAndColorExerciseButtons(Button _btn)
         {
-            // the trainee buttons are named e.g.: btnRadioAA , we use this name, to find in the enum the index that is connected to this enum
             if (_btn.Name.ToLower() != "btnil")
             {
                 ExersiseNumber = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Exercises), _btn.Name.Remove(0, 11)));
             }
             else
             {
-                ExersiseNumber = 8;
+                ExersiseNumber = 8; //btn 8 is the IL button
             }
             //Set the selected exercise, start with the array, then send this to the service
             ExerciseArray[ExersiseNumber] = true;
@@ -947,8 +951,7 @@ namespace UNET_Trainer
             service.SetExerciseSelected(InstructorID, ExersiseNumber, true); //now we have told the service that this instructor has selected this exercise
 
 
-            _btn.BackColor = System.Drawing.Color.SaddleBrown;
-            _btn.ForeColor = System.Drawing.Color.White;
+            _btn.BackColor = Theming.ExerciseSelectedButton;
         }
 
 

@@ -8,8 +8,10 @@ namespace UNET_Service
 {
     using System.Collections.Generic;
     using System.IO;
+    using System.Security.Cryptography;
     using System.ServiceModel;
     using System.ServiceModel.Activation;
+    using System.Text;
 
     // NOTE:we only want one single instance of the wcf service to run all UNET instructor and trainee clients, thatswhy the concurrencymode is set to single
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
@@ -508,6 +510,7 @@ namespace UNET_Service
                     singleton.Exercises.Add(exercise);
 
                 }
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -565,6 +568,8 @@ namespace UNET_Service
                                 {
                                     exe.TraineesAssigned.Add(new Trainee(_traineeID, "trainee name"));
                                 }
+
+                                singleton.PendingChanges = DateTime.Now;
                                 break;
                             }
                             break;
@@ -572,6 +577,7 @@ namespace UNET_Service
                         break;
                     }
                 }
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -629,6 +635,9 @@ namespace UNET_Service
                                 {
                                     exe.RolesAssigned.Add(new Role(_role, "rolename"));
                                 }
+
+                                singleton.PendingChanges = DateTime.Now;
+
                                 break;
                             }
                             break;
@@ -636,6 +645,75 @@ namespace UNET_Service
                         break;
                     }
                 }
+                singleton.PendingChanges = DateTime.Now;
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error assigning/deassigning trainee", ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// This method assigns a radio to an exercise OR removes it
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <param name="_exersiseID"></param>
+        /// <param name="_traineeID"></param>
+        /// <param name="_add"></param>
+        /// <returns></returns>
+        public bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                                                                   //find the right instructor and exercise
+
+                log.Info(string.Format("SetRadioAssignedStatus: Instructor: {0}  Exercise: {1} Radio: {2}  Add: {3}", _instructorID, _exersiseID, _radio, _add));
+                foreach (Instructor inst in singleton.Instructors)  //find the given instructor
+                {
+                    if (inst.ID == _instructorID)
+                    {
+                        foreach (Exercise exe in inst.Exercises) //find the given exercise
+                        {
+                            if (exe.Number == _exersiseID)
+                            {
+                                bool found = false;
+                                foreach (Radio rad in exe.RadiosAssigned) //find the given role
+                                {
+                                    if (rad.ID == _radio)
+                                    {
+                                        found = true;
+                                        if (!_add)
+                                        {
+                                            exe.RadiosAssigned.Remove(rad);
+                                        }
+                                        break;
+                                    }
+
+
+                                }
+                                if (!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
+                                {
+                                    exe.RadiosAssigned.Add(new Radio(_radio, "ID: " + _radio, KeyGenerator.GetUniqueKey(4)));
+                                }
+
+                                singleton.PendingChanges = DateTime.Now;
+
+                                break;
+                            }
+                            break;
+                        }
+                        break;
+                    }
+                }
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -673,6 +751,8 @@ namespace UNET_Service
                     singleton.Trainees.Add(trainee);
                 }
 
+                singleton.PendingChanges = DateTime.Now;
+
 
                 result = true;
             }
@@ -684,6 +764,11 @@ namespace UNET_Service
             }
             return result;
         }
+
+
+
+       
+
 
         /// <summary>
         /// add mock radios to the singleton
@@ -706,9 +791,11 @@ namespace UNET_Service
                     Radio radio = new Radio();
                     radio.ID = i;
                     radio.Description = string.Format("Radio{0}", i);
+                    radio.Frequency = KeyGenerator.GetUniqueKey(4);
                     singleton.Radios.Add(radio);
                 }
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -745,6 +832,7 @@ namespace UNET_Service
                     singleton.Roles.Add(role);
                 }
 
+      singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -754,6 +842,7 @@ namespace UNET_Service
                 result = false;
 
             }
+      
             return result;
         }
 
@@ -771,6 +860,7 @@ namespace UNET_Service
                     singleton.Roles.Add(role);
                 }
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -824,6 +914,8 @@ namespace UNET_Service
 
                     }
                 }
+                singleton.PendingChanges = DateTime.Now;
+
                 result = true;
             }
             catch (Exception ex)
@@ -855,6 +947,7 @@ namespace UNET_Service
 
                 log.Error("Finised setting the Radio status. Radionummer: " + _radioNumber + " State: " + _state.ToString());
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -885,6 +978,7 @@ namespace UNET_Service
                 }
 
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -912,6 +1006,7 @@ namespace UNET_Service
                 {
                     singleton.Instructors.Add(instructor);
                 }
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -948,6 +1043,7 @@ namespace UNET_Service
                     singleton.Instructors.Add(instructor);
                 }
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -977,6 +1073,7 @@ namespace UNET_Service
                 }
 
 
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -1071,6 +1168,7 @@ namespace UNET_Service
                         singleton.Instructors.Add(inst);
                     }
                 }
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -1118,6 +1216,8 @@ namespace UNET_Service
                         singleton.clients.Remove(client);
                     }
                 }
+                singleton.PendingChanges = DateTime.Now;
+
             }
         }
 
@@ -1357,6 +1457,33 @@ namespace UNET_Service
 
         #endregion
 
+    }
+
+    /// <summary>
+    /// generate a random string
+    /// https://stackoverflow.com/questions/1344221/how-can-i-generate-random-alphanumeric-strings-in-c
+    /// </summary>
+    public class KeyGenerator
+    {
+        public static string GetUniqueKey(int maxSize)
+        {
+            char[] chars = new char[62];
+            chars =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".ToCharArray();
+            byte[] data = new byte[1];
+            using (RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider())
+            {
+                crypto.GetNonZeroBytes(data);
+                data = new byte[maxSize];
+                crypto.GetNonZeroBytes(data);
+            }
+            StringBuilder result = new StringBuilder(maxSize);
+            foreach (byte b in data)
+            {
+                result.Append(chars[b % (chars.Length)]);
+            }
+            return result.ToString();
+        }
     }
 }
 

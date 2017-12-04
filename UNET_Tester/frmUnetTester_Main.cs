@@ -12,6 +12,7 @@ using UNET_Tester.UNET_Service;
 using ColorMine;
 using System.Configuration;
 using UNET_Classes;
+using System.Security.Cryptography;
 
 namespace UNET_Tester
 {
@@ -168,7 +169,7 @@ namespace UNET_Tester
                     exe.Number = i;
                     exe.SpecificationName = txtSpecification.Text + i.ToString("00");
                     exe.ExerciseName = txtName.Text + i.ToString("00");
-                    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
+                //    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service
@@ -182,7 +183,6 @@ namespace UNET_Tester
                 log.Error("Error using WCF method change exercise", ex);
             }
         }
-
 
 
         private void cbxRadios_SelectedValueChanged(object sender, EventArgs e)
@@ -355,8 +355,11 @@ namespace UNET_Tester
             {
                 service.Open();
             }
+            //Voeg voor iedere trainee-id een trainee object toe
+            string[] instructorids = tbxInstructorIDs.Text.Split(',');
+
             List<Instructor> instructorlist = new List<Instructor>();
-            Instructor inst = new Instructor(1012, "Instructor on spectre 1012");
+            Instructor inst = new Instructor(Convert.ToInt16(instructorids[0]), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
             inst.Exercises.Add(new Exercise(1, "Exercise 1"));
             instructorlist.Add(inst);
             service.SetInstructors(instructorlist.ToArray());
@@ -369,6 +372,17 @@ namespace UNET_Tester
             cbxRole_SelectedValueChanged(sender, e);
             btnRefreshInstructors_Click(sender, e);
             btnRefreshTrainees_Click(sender, e);
+
+            //add existing radios to the exercise
+            if (cbxAssignRadiosToExercise.Checked)
+            {
+                for (int i = 1; i <= Convert.ToInt16(cbxRadios.Text); i++)
+                {
+                    service.SetRadioAssignedStatus(Convert.ToInt16(instructorids[0]), 1, i, true);
+                }
+            }
+
+
         }
 
         private void btnRefreshTrainees_Click(object sender, EventArgs e)

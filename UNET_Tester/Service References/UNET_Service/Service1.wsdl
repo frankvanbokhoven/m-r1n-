@@ -101,36 +101,6 @@
   <wsdl:message name="IService1_GetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTraineeStatusChangedResponse" />
   </wsdl:message>
-  <wsdl:message name="IService1_SetTraineeStatusChanged_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetTraineeStatusChanged" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetRoleAssignedStatus_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatus" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetRoleAssignedStatus_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatusResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetTraineeAssignedStatus_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatus" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetTraineeAssignedStatus_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatusResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetNoiseLevelChanged_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetNoiseLevelChanged" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetNoiseLevelChanged_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetNoiseLevelChangedResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetNoiseLevel_InputMessage">
-    <wsdl:part name="parameters" element="tns:SetNoiseLevel" />
-  </wsdl:message>
-  <wsdl:message name="IService1_SetNoiseLevel_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
-  </wsdl:message>
   <wsdl:message name="IService1_GetNoiseLevelChanged_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNoiseLevelChanged" />
   </wsdl:message>
@@ -233,6 +203,42 @@
   <wsdl:message name="IService1_SetPlatforms_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetPlatformsResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeStatusChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeStatusChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeStatusChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeStatusChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRoleAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRoleAssignedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetTraineeAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetTraineeAssignedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadioAssignedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioAssignedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetRadioAssignedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRadioAssignedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevelChanged_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevelChanged_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevel" />
+  </wsdl:message>
+  <wsdl:message name="IService1_SetNoiseLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
@@ -289,26 +295,6 @@
     <wsdl:operation name="GetTraineeStatusChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChanged" message="tns:IService1_GetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChangedResponse" message="tns:IService1_GetTraineeStatusChanged_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetTraineeStatusChanged">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetRoleAssignedStatus">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatus" message="tns:IService1_SetRoleAssignedStatus_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatusResponse" message="tns:IService1_SetRoleAssignedStatus_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetTraineeAssignedStatus">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatus" message="tns:IService1_SetTraineeAssignedStatus_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse" message="tns:IService1_SetTraineeAssignedStatus_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetNoiseLevelChanged">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChanged" message="tns:IService1_SetNoiseLevelChanged_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChangedResponse" message="tns:IService1_SetNoiseLevelChanged_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SetNoiseLevel">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevel" message="tns:IService1_SetNoiseLevel_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelResponse" message="tns:IService1_SetNoiseLevel_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNoiseLevelChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelChanged" message="tns:IService1_GetNoiseLevelChanged_InputMessage" />
@@ -377,6 +363,30 @@
     <wsdl:operation name="SetPlatforms">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetPlatforms" message="tns:IService1_SetPlatforms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetPlatformsResponse" message="tns:IService1_SetPlatforms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeStatusChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChanged" message="tns:IService1_SetTraineeStatusChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeStatusChangedResponse" message="tns:IService1_SetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatus" message="tns:IService1_SetRoleAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRoleAssignedStatusResponse" message="tns:IService1_SetRoleAssignedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatus" message="tns:IService1_SetTraineeAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse" message="tns:IService1_SetTraineeAssignedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRadioAssignedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetRadioAssignedStatus" message="tns:IService1_SetRadioAssignedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetRadioAssignedStatusResponse" message="tns:IService1_SetRadioAssignedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevelChanged">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChanged" message="tns:IService1_SetNoiseLevelChanged_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelChangedResponse" message="tns:IService1_SetNoiseLevelChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/SetNoiseLevel" message="tns:IService1_SetNoiseLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/SetNoiseLevelResponse" message="tns:IService1_SetNoiseLevel_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SecureHttp" type="tns:IService1">
@@ -501,51 +511,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetTraineeStatusChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineeStatusChanged" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetTraineeStatusChanged">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetRoleAssignedStatus">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetRoleAssignedStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetTraineeAssignedStatus">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeAssignedStatus" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetNoiseLevelChanged">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevelChanged" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SetNoiseLevel">
-      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -699,6 +664,60 @@
     </wsdl:operation>
     <wsdl:operation name="SetPlatforms">
       <soap12:operation soapAction="http://tempuri.org/IService1/SetPlatforms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeStatusChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRoleAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRoleAssignedStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTraineeAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetTraineeAssignedStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRadioAssignedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetRadioAssignedStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevelChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevelChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNoiseLevel">
+      <soap12:operation soapAction="http://tempuri.org/IService1/SetNoiseLevel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

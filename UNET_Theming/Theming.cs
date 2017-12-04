@@ -15,13 +15,15 @@ namespace UNET_Theming
         public UNETTheme Theme;
         //colors
         public static Color Whiteforecolor;
-        public static Color Extinguished;
+        public static Color Background;
+        public static Color ExerciseNotSelected;
         public static Color ExerciseSelectedButton;
         public static Color TraineeSelectedButton;
         public static Color TraineeNotSelectedButton;
         public static Color RoleSelectedButton;
         public static Color RoleNotSelectedButton;
         public static Color RadioSelectedButton;
+        public static Color RadioNotSelectedButton;
 
         public static Color IntercomPressed;
         public static Color IntercomNotPressed;
@@ -42,13 +44,15 @@ namespace UNET_Theming
                     {
                         Theme = UNETTheme.utDark;
                         Whiteforecolor = Color.White;
-                        Extinguished = Color.DimGray;
-                        ExerciseSelectedButton = Color.CadetBlue;
+                        Background = Color.DimGray;
+                        ExerciseNotSelected = Color.DimGray;
+                        ExerciseSelectedButton = Color.Brown;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleSelectedButton = Color.SandyBrown;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RadioSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
+                        RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
@@ -61,13 +65,15 @@ namespace UNET_Theming
                     {
                         Theme = UNETTheme.utLight;
                         Whiteforecolor = Color.White;
-                        Extinguished= Color.LightGray;
-                        ExerciseSelectedButton = Color.LightBlue;
+                        Background = Color.WhiteSmoke;
+                        ExerciseNotSelected= Color.LightGray;
+                        ExerciseSelectedButton = Color.Brown;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         RadioSelectedButton = Color.BlanchedAlmond;
+                        RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
@@ -81,13 +87,15 @@ namespace UNET_Theming
                     {
                         Theme = UNETTheme.utBlue;
                         Whiteforecolor = Color.White;
-                        Extinguished = Color.LightBlue;
-                        ExerciseSelectedButton = Color.Blue;
+                        Background = Color.WhiteSmoke;
+                        ExerciseNotSelected = Color.LightBlue;
+                        ExerciseSelectedButton = Color.Brown;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         RadioSelectedButton = Color.BlanchedAlmond;
+                        RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
@@ -105,7 +113,7 @@ namespace UNET_Theming
             if (_parent.GetType().BaseType == typeof(System.Windows.Forms.Form))
             {
                 ((Form)_parent).ForeColor = Whiteforecolor;
-                ((Form)_parent).BackColor = Extinguished;
+                ((Form)_parent).BackColor = Background;
                 SetFormSizeAndPosition((Form)_parent);
                 ((Form)_parent).FormBorderStyle = FormBorderStyle.None;
             }
@@ -192,8 +200,9 @@ namespace UNET_Theming
                     }
                     else
                     if (((Button)ctrl).Name.ToLower().Contains("mainpage") ||
-                       ((Button)ctrl).Name.ToLower().Contains("il")
-                        )
+                       ((Button)ctrl).Name.ToLower().Contains("il") ||
+                        ((Button)ctrl).Name.ToLower().Contains("service")
+                       )
                     {
                         ((Button)ctrl).ForeColor = Whiteforecolor;
                         ((Button)ctrl).BackColor = Color.Gray;

@@ -53,6 +53,7 @@
             this.btnRole01 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnMainPage = new System.Windows.Forms.Button();
+            this.btnServiceRequest = new System.Windows.Forms.Button();
             this.pnlRoles.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -424,21 +425,34 @@
             // btnMainPage
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
-            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainPage.Location = new System.Drawing.Point(35, 595);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 91);
             this.btnMainPage.TabIndex = 22;
-            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.Text = "Main \r\npage";
             this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
+            // 
+            // btnServiceRequest
+            // 
+            this.btnServiceRequest.BackColor = System.Drawing.Color.Aqua;
+            this.btnServiceRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceRequest.Location = new System.Drawing.Point(193, 594);
+            this.btnServiceRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnServiceRequest.Name = "btnServiceRequest";
+            this.btnServiceRequest.Size = new System.Drawing.Size(152, 91);
+            this.btnServiceRequest.TabIndex = 28;
+            this.btnServiceRequest.Text = "Service \r\nrequest";
+            this.btnServiceRequest.UseVisualStyleBackColor = false;
             // 
             // FrmRoles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 706);
+            this.Controls.Add(this.btnServiceRequest);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.pnlRoles);
             this.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
@@ -482,5 +496,6 @@
         private System.Windows.Forms.Label lblRoleTitle;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnMainPage;
+        private System.Windows.Forms.Button btnServiceRequest;
     }
 }

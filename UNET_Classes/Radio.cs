@@ -20,6 +20,8 @@ namespace UNET_Classes
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Description { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string Frequency { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int NoiseLevel { get; set; }
         public UNETRadioState State
         {
@@ -33,7 +35,22 @@ namespace UNET_Classes
             }
         }
 
+        public Radio()
+        {
 
-   
+        }
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <param name="_description"></param>
+        /// <param name="_frequency"></param>
+        public Radio(int _id, string _description, string _frequency)
+        {
+            ID = _id;
+            Description = _description;
+            Frequency = _frequency;
+        }
+
     }
 }

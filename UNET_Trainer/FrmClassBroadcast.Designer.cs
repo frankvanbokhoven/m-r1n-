@@ -62,6 +62,7 @@
             this.btnMainPage = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBroadcast = new System.Windows.Forms.Button();
+            this.btnServiceRequest = new System.Windows.Forms.Button();
             this.pnlTrainees.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlInstructors.SuspendLayout();
@@ -497,13 +498,13 @@
             // btnMainPage
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
-            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainPage.Location = new System.Drawing.Point(12, 644);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 91);
             this.btnMainPage.TabIndex = 20;
-            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.Text = "Main \r\npage";
             this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
@@ -531,11 +532,24 @@
             this.btnBroadcast.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBroadcast.UseVisualStyleBackColor = false;
             // 
+            // btnServiceRequest
+            // 
+            this.btnServiceRequest.BackColor = System.Drawing.Color.Aqua;
+            this.btnServiceRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceRequest.Location = new System.Drawing.Point(173, 643);
+            this.btnServiceRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnServiceRequest.Name = "btnServiceRequest";
+            this.btnServiceRequest.Size = new System.Drawing.Size(152, 91);
+            this.btnServiceRequest.TabIndex = 28;
+            this.btnServiceRequest.Text = "Service \r\nrequest";
+            this.btnServiceRequest.UseVisualStyleBackColor = false;
+            // 
             // FrmClassBroadcast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 746);
+            this.Controls.Add(this.btnServiceRequest);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.pnlInstructors);
@@ -594,5 +608,6 @@
         private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnBroadcast;
+        private System.Windows.Forms.Button btnServiceRequest;
     }
 }

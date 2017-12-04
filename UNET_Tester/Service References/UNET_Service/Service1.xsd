@@ -68,6 +68,7 @@
   <xs:complexType name="Radio">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Frequency" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="NoiseLevel" type="xs:int" />
       <xs:element minOccurs="0" name="State" type="tns:UNETRadioState" />

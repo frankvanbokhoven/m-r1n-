@@ -177,7 +177,7 @@ namespace UNET_Trainer
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Extinguished;
+                        ((Button)ctrl).BackColor = Theming.Background;
                     }
                 }
 

@@ -185,85 +185,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetTraineeStatusChanged">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
-        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetTraineeStatusChangedResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetTraineeStatusChangedResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetRoleAssignedStatus">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
-        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
-        <xs:element minOccurs="0" name="_role" type="xs:int" />
-        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetRoleAssignedStatusResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetRoleAssignedStatusResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetTraineeAssignedStatus">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
-        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
-        <xs:element minOccurs="0" name="_traineeID" type="xs:int" />
-        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetTraineeAssignedStatusResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetTraineeAssignedStatusResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetNoiseLevelChanged">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_radioId" type="xs:int" />
-        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetNoiseLevelChangedResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetNoiseLevelChangedResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetNoiseLevel">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_radioID" type="xs:int" />
-        <xs:element minOccurs="0" name="_noiselevel" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetNoiseLevelResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetNoiseLevelResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetNoiseLevelChanged">
     <xs:complexType>
       <xs:sequence />
@@ -498,6 +419,102 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SetPlatformsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeStatusChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
+        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeStatusChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTraineeStatusChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRoleAssignedStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
+        <xs:element minOccurs="0" name="_role" type="xs:int" />
+        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRoleAssignedStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRoleAssignedStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeAssignedStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeID" type="xs:int" />
+        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetTraineeAssignedStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetTraineeAssignedStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRadioAssignedStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
+        <xs:element minOccurs="0" name="_radio" type="xs:int" />
+        <xs:element minOccurs="0" name="_add" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRadioAssignedStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRadioAssignedStatusResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevelChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioId" type="xs:int" />
+        <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevelChangedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNoiseLevelChangedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_radioID" type="xs:int" />
+        <xs:element minOccurs="0" name="_noiselevel" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNoiseLevelResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNoiseLevelResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

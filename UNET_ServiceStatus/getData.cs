@@ -63,6 +63,7 @@ namespace UNET_ServiceStatus
 
                 //Instructors
                 var instrlist = service.GetInstructors();
+
                 List<UNET_Classes.Instructor> instructorlist = instrlist.ToList<UNET_Classes.Instructor>(); //C# v3 manier om een array in een list te krijgen
                 if (instructorlist.Count == 0)
                 {
@@ -81,31 +82,28 @@ namespace UNET_ServiceStatus
                         foreach (UNET_Classes.Exercise exe in instr.Exercises)
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write("         Instructor::  " + instr.ID + " Exerciseid: " + exe.Number + " ExerciseName: " + exe.ExerciseName + "  Specificationname: " + exe.SpecificationName);
+                            Console.Write("                 Exerciseid: " + exe.Number + " ExerciseName: " + exe.ExerciseName + "  Specificationname: " + exe.SpecificationName);
                             Console.Write(Environment.NewLine);
                             foreach (UNET_Classes.Trainee trn in exe.TraineesAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                  Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
+                                Console.Write("                    Assigned Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
                                 Console.Write(Environment.NewLine);
+                            }
 
-                                foreach (UNET_Classes.Role rol in trn.Roles)
-                                {
-                                   Console.ForegroundColor = ConsoleColor.Yellow;
-                                   Console.Write("                           Assigned role: " + rol.ID + "  Role name: " + rol.Name);
-                                   Console.Write(Environment.NewLine);
-
-                                }
+                            foreach (UNET_Classes.Role rol in exe.RolesAssigned)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.Write("                 Assigned role: " + rol.ID + "  Role name: " + rol.Name);
+                                Console.Write(Environment.NewLine);
                             }
 
                             foreach (UNET_Classes.Radio rad in exe.RadiosAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                  Radio:  RadioID:: " + rad.ID + "  Radio name: " + rad.Description + " NoiseLevel: " + rad.NoiseLevel);
+                                Console.Write("                 Assigned radio: " + rad.ID + "  Radio name: " + rad.Description + " NoiseLevel: " + rad.NoiseLevel + " Freq: " + rad.Frequency);
                                 Console.Write(Environment.NewLine);
-
                             }
-                        
 
                         }
 
@@ -114,7 +112,6 @@ namespace UNET_ServiceStatus
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("                  Assigned instructor role:  Roleid:: " + rol.ID + "  Trainee name: " + rol.Name);
                             Console.Write(Environment.NewLine);
-
                         }
 
                     }

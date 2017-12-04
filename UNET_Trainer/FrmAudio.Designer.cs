@@ -68,6 +68,7 @@
             this.btnMIC = new System.Windows.Forms.Button();
             this.btnMainPage = new System.Windows.Forms.Button();
             this.btnOptions = new System.Windows.Forms.Button();
+            this.btnServiceRequest = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -590,7 +591,7 @@
             // btnMIC
             // 
             this.btnMIC.BackColor = System.Drawing.Color.Aqua;
-            this.btnMIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMIC.Location = new System.Drawing.Point(731, 513);
             this.btnMIC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMIC.Name = "btnMIC";
@@ -602,20 +603,20 @@
             // btnMainPage
             // 
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
-            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainPage.Location = new System.Drawing.Point(11, 513);
             this.btnMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(152, 91);
             this.btnMainPage.TabIndex = 19;
-            this.btnMainPage.Text = "Main page";
+            this.btnMainPage.Text = "Main \r\npage";
             this.btnMainPage.UseVisualStyleBackColor = false;
             this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // btnOptions
             // 
             this.btnOptions.BackColor = System.Drawing.Color.Aqua;
-            this.btnOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOptions.Location = new System.Drawing.Point(573, 514);
             this.btnOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOptions.Name = "btnOptions";
@@ -625,11 +626,24 @@
             this.btnOptions.UseVisualStyleBackColor = false;
             this.btnOptions.Click += new System.EventHandler(this.btnOptions_Click);
             // 
+            // btnServiceRequest
+            // 
+            this.btnServiceRequest.BackColor = System.Drawing.Color.Aqua;
+            this.btnServiceRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceRequest.Location = new System.Drawing.Point(169, 512);
+            this.btnServiceRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnServiceRequest.Name = "btnServiceRequest";
+            this.btnServiceRequest.Size = new System.Drawing.Size(152, 91);
+            this.btnServiceRequest.TabIndex = 28;
+            this.btnServiceRequest.Text = "Service \r\nrequest";
+            this.btnServiceRequest.UseVisualStyleBackColor = false;
+            // 
             // FrmAudio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1213, 628);
+            this.Controls.Add(this.btnServiceRequest);
             this.Controls.Add(this.btnOptions);
             this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.btnMIC);
@@ -708,5 +722,6 @@
         private System.Windows.Forms.Button btnMIC;
         private System.Windows.Forms.Button btnMainPage;
         private System.Windows.Forms.Button btnOptions;
+        private System.Windows.Forms.Button btnServiceRequest;
     }
 }

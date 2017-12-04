@@ -74,21 +74,6 @@ namespace UNET_Service
         [OperationContract]
         bool GetTraineeStatusChanged();
 
-        [OperationContract]
-        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
-
-        [OperationContract]
-        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
-
-        [OperationContract]
-        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
-
-
-        [OperationContract]
-        bool SetNoiseLevelChanged(int _radioId, bool _changed);
-
-        [OperationContract]
-        bool SetNoiseLevel(int _radioID, int _noiselevel);
 
         [OperationContract]
         bool GetNoiseLevelChanged();
@@ -160,7 +145,27 @@ namespace UNET_Service
 
         [OperationContract]
         bool SetPlatforms(List<UNET_Classes.Platform> _platform);
+
+        [OperationContract]
+        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+
+        [OperationContract]
+        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
+
+        [OperationContract]
+        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+
+        [OperationContract]
+        bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add);
+
+
+        [OperationContract]
+        bool SetNoiseLevelChanged(int _radioId, bool _changed);
+
+        [OperationContract]
+        bool SetNoiseLevel(int _radioID, int _noiselevel);
+
         #endregion
     }
 
- }
+}
