@@ -18,7 +18,8 @@ namespace UNET_Classes
 
         public Assist()
         {
-
+  
+            ID = Guid.NewGuid();
         }
 
 
@@ -31,7 +32,7 @@ namespace UNET_Classes
             TraineeID = _traineeID;
             TraineeInfo = _traineeInfo;
             RequestTime = DateTime.Now;
-            ID = new Guid();
+            ID = Guid.NewGuid();
             Acknowledged = false;
         }
     }

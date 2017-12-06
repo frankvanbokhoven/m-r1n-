@@ -5,6 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 
+
 namespace PJSUA2Implementation.SIP
 {
     public  class UserAgent
@@ -66,6 +67,8 @@ namespace PJSUA2Implementation.SIP
             Port = _port;
             Domain = _domain;
             Password = _password;
+
+            
         }
 
 
@@ -98,7 +101,7 @@ namespace PJSUA2Implementation.SIP
                 {
                     ep = new Endpoint();
                     ep.libCreate();
-                    ep.libRegisterThread(RandomThreadString("PJSUA2" + _threadName));
+              //      ep.libRegisterThread(RandomThreadString("PJSUA2" + _threadName));
                 }
             }
             catch (Exception ex)
@@ -243,12 +246,14 @@ namespace PJSUA2Implementation.SIP
         public void UserAgentStop()
         {
             Console.Write("Stopping endpoint");
+
             ///this code destroys the SIP connection and clears the relevant objects
             try
             {
                 ep.mediaRemove(play_med);
                 ep.mediaRemove(cap_med);
                 //dispose all sip objects, so they can be garbage collected
+                
                 ep.libStopWorkerThreads();
                 ep.libDestroy();
                 ep.Dispose();

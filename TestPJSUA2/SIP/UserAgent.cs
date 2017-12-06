@@ -233,6 +233,7 @@ namespace TestPJSUA2.SIP
             {
                 pjsua2.PresenceStatus ps = new pjsua2.PresenceStatus();
                 ps.status = status;
+                ps.note = "Aangemeld sinds: " + DateTime.Now.ToString("yyyyMMMdd hh-mm-ss");
 
                 // Optional, set the activity and some note
                 //  ps.activity = pjrpid_activity.PJRPID_ACTIVITY_BUSY;

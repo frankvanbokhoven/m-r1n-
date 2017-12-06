@@ -46,7 +46,7 @@ namespace UNET_ServiceStatus
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
 
-                Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 17 november 2017");
+                Console.Write("HSO Marine 2017 - UNET Service Status Version 04 december 2017");
                 Console.Write(Environment.NewLine);
                 Console.Write("UNET Status weergever van de UNET_Service");
                 Console.Write(Environment.NewLine);
@@ -192,7 +192,7 @@ namespace UNET_ServiceStatus
                     }
                 }
                 //Assists
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
                 Console.Write(DateTime.Now.ToString() + " Assists");
@@ -214,7 +214,7 @@ namespace UNET_ServiceStatus
                 {
                     foreach (UNET_Classes.Assist assist in lstAssist) //then ENABLE them, based on whatever comes from the service
                     {
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Pending assist::  " + assist.ID + " Started by: " + assist.TraineeID + " " + assist.TraineeInfo + "  Requested: " + assist.RequestTime.ToString());
                         Console.Write(Environment.NewLine);
                        

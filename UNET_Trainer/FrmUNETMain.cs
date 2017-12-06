@@ -57,6 +57,7 @@ namespace UNET_Trainer
         private int ExersiseNumber = -1;
         private int RoleClicked = -1;
         private int RadioClicked = -1;
+        private bool ILMode = false;
   
         public static FrmUNETMain GetForm
         {
@@ -210,6 +211,8 @@ namespace UNET_Trainer
         /// <param name="parent"></param>
         private void GetAssists(Control parent)
         {
+            try
+            { 
             foreach (Control c in parent.Controls)
             {
                 //reset everything
@@ -228,67 +231,43 @@ namespace UNET_Trainer
             var resultassists  = service.GetAssists(InstructorID);
             List<Assist> pendingAssists = resultassists.ToList<Assist>();
 
-            foreach(Assist ass in pendingAssists)
-            {
-                if (((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex == 1)
+                //loop thrue the list of pending assists
+                foreach (Assist ass in pendingAssists)
                 {
-                    ((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex = 2;
-                }
-                else
-                {
-                    ((Button)panelTrainees.Controls["btnTrainee" + ass.TraineeID.ToString("00")]).ImageIndex = 1;
+                    //then loop thrue the list of btnTrainees
+                    foreach (Control ctrl in panelTrainees.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                        {
+                            string[] traineelabel = ((Button)ctrl).Text.Split(' ');
+                            string traineeid = traineelabel[1];
+                            if(traineeid.Trim() == ass.TraineeID.ToString())
+                            {
+                                if (((Button)ctrl).ImageIndex == 1)
+                                {
+                                    ((Button)ctrl).ImageIndex = 2;
+                                }
+                                else
+                                {
+                                    ((Button)ctrl).ImageIndex = 1;
+
+                                }
+                                break;
+                            }                         
+
+                        }
+                    }
+
+
+
+                    Application.DoEvents();
 
                 }
-
             }
-
-            //this loop sets the color of the status led
-            foreach (Control c in parent.Controls)
+            catch (Exception ex)
             {
-                //if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-                //{
-                //    if (((Button)c).ImageIndex == 1)
-                //    {
-                //        ((Button)c).ImageIndex = 2;
-                //    }
-                //    else
-                //    { ((Button)c).ImageIndex = 1; }
-                //}
-
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("radio")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-                else
-                {
-                    //  SetButtonStatus(c);
-                }
-                Application.DoEvents();
+                log.Error("Error getting assists", ex);
+                // throw;
             }
 
         }
@@ -300,7 +279,7 @@ namespace UNET_Trainer
         {
             //  first the trainees, we assume the name of the button component is the key for the function
 
-        
+
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -311,7 +290,7 @@ namespace UNET_Trainer
                     service.Open();
                 }
 
-                if(SelectedExercise == null)
+                if (SelectedExercise == null)
                 {
                     //bij de start van de instructor moet er al een exercise geselecteerd zijn, zoniet, dan zetten we die hier alsnog..
                     service.SetExerciseSelected(InstructorID, 1, true);
@@ -382,7 +361,8 @@ namespace UNET_Trainer
                 foreach (UNET_Classes.Trainee trainee in lstTrainee)
                 {
                     panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
-                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
+                    ///NOTE: THE SPACES IN THE FORMAT STRING ARE IMPORTANT BECAUSE WE NEED THEM IN THE ASSIST ACKNOWLEDGJEMENT!!
+                    panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0} {1}{2}{3}Role:{4}", trainee.ID, Environment.NewLine, trainee.Name, Environment.NewLine, "TraineeRole");
 
 
                     //loop nu door de lijst van toegewezen trainees heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
@@ -428,34 +408,47 @@ namespace UNET_Trainer
                     }
                 }
 
-                 foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned) 
+                if (SelectedExercise != null)
                 {
-                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
-
-                    //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
-                    //zoja, vul de informatie in en enable de knop
-                    if (currentInstructor != null)
+                    foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned)
                     {
-                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
-                        {
-                            if (exerciseselected != -1)
-                            {
-                                foreach (Role assignedRole in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
-                                {
-                                    if (assignedRole.ID == role.ID)
-                                    {
-                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
-                                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
+                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                        panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
 
+                        //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                        //zoja, vul de informatie in en enable de knop
+                        if (currentInstructor != null)
+                        {
+                            if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
+                            {
+                                if (exerciseselected != -1)
+                                {
+                                    foreach (Role assignedRole in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                    {
+                                        if (assignedRole.ID == role.ID)
+                                        {
+                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
+                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
+
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    UNET_Classes.Helpers.ResizeButtons(panelRoles, SelectedExercise.RolesAssigned.Count, "role");
+
+
+                    if(ILMode)
+                    {
+                        btnIL.BackColor = Theming.ILModeActive;
+                    }
+                    else
+                    {
+                        btnIL.BackColor = Theming.ILModeInactive;
+                    }
                 }
-                UNET_Classes.Helpers.ResizeButtons(panelRoles, SelectedExercise.RolesAssigned.Count, "role");
 
 
                 //enable the Radio buttons
@@ -469,40 +462,43 @@ namespace UNET_Trainer
 
                     }
                 }
-                foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
+                if (SelectedExercise != null)
                 {
-                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
-                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
-
-                    //loop nu door de lijst van toegewezen radios heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
-                    //zoja, vul de informatie in en enable de knop
-                    if (currentInstructor != null)
+                    foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
                     {
-                        if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
-                        {
-                            if (exerciseselected != -1)
-                            {
-                                foreach (Radio assignedRadio in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RadiosAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
-                                {
-                                    if (assignedRadio.ID == radio.ID)
-                                    {
-                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
-                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].BackColor = Theming.RadioSelectedButton;
-                                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Tag = "enable";
+                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
 
+                        //loop nu door de lijst van toegewezen radios heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
+                        //zoja, vul de informatie in en enable de knop
+                        if (currentInstructor != null)
+                        {
+                            if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
+                            {
+                                if (exerciseselected != -1)
+                                {
+                                    foreach (Radio assignedRadio in currentInstructor.Exercises.FirstOrDefault(x => x.Number == exerciseselected).RadiosAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
+                                    {
+                                        if (assignedRadio.ID == radio.ID)
+                                        {
+                                            panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
+                                            panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].BackColor = Theming.RadioSelectedButton;
+                                            panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Tag = "enable";
+
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    UNET_Classes.Helpers.ResizeButtons(panelRadios, SelectedExercise.RadiosAssigned.Count, "radio");
                 }
-                UNET_Classes.Helpers.ResizeButtons(panelRadios, SelectedExercise.RadiosAssigned.Count, "radio");
 
                 Application.DoEvents();
             }
             catch (Exception ex)
             {
-                log.Error("Error using WCF SetButtonStatus", ex);
+                log.Error("Error using WCF SetButtonStatus in Trainer", ex);
                 // throw;
             }
         }
@@ -549,50 +545,51 @@ namespace UNET_Trainer
             ShowIcon = false;
             ShowInTaskbar = false;
 
-     
-
-            ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-            try
-            {
-                //the useragent holds everything needed for the sip communication
-                string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
-                //displayname
-                string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
-                //sipserver
-                string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
-                //account
-                string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
-                //account
-                UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
-                string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
-
-                //the useragent holds everything needed for the sip communication
-                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
-                useragent.UserAgentStart("UNETTrainer");
 
 
-                //koppel het onIncomingCall event aan de frmmain schemupdate
-                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+
+            // check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+             try
+                {
+                    //the useragent holds everything needed for the sip communication
+                    string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                    //displayname
+                    string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
+                    //sipserver
+                    string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                    //account
+                    string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                    //account
+                    UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
+                    string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
+
+                    //the useragent holds everything needed for the sip communication
+                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                    useragent.UserAgentStart("UNETTrainer");
 
 
-                //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-                cop = new CallOpParam();
-                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                    //koppel het onIncomingCall event aan de frmmain schemupdate
+                    useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
 
-                //koppel het onIncomingCall event aan de frmmain schemupdate
-                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
-                    "Contact your system administrator");
-                log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
-                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
-                    "Contact your system administrator");
-                this.Close();
-            }
-            ///
+
+                    //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                    cop = new CallOpParam();
+                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+
+                    //koppel het onIncomingCall event aan de frmmain schemupdate
+                    useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+                        "Contact your system administrator");
+                    log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
+                        ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+                        "Contact your system administrator");
+                    this.Close();
+                }
+            
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
@@ -958,6 +955,9 @@ namespace UNET_Trainer
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+//#if (!DEBUG)
+      Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+//#endif
             try
             {
                 //close the connection to the wcf service, if it is still opened
@@ -970,17 +970,17 @@ namespace UNET_Trainer
                 {
                     HangupAllCalls();
                     useragent.UserAgentStop();
-                }
+            //try to find and kill the TCPSocketClient process and kill it
+            FindAndKillProcess("TCPSocketClient.exe");
+            log.Info("Terminated UNET_Instructor");
+          }
             }
             catch (Exception ex)
             {
                 log.Error("Error Closing UNET_Trainer", ex);
                 // throw;
             }
-            //try to find and kill the TCPSocketClient process and kill it
-            FindAndKillProcess("TCPSocketClient.exe");
-            log.Info("Terminated UNET_Instructor");
-
+      
         }
 
         /// <summary>
@@ -1289,12 +1289,15 @@ namespace UNET_Trainer
                 }
              }
         }
+
+
+
+
         #endregion
 
-        private void FrmUNETMain_FormClosed(object sender, FormClosedEventArgs e)
+        private void btnIL_Click(object sender, EventArgs e)
         {
-   
-
+            ILMode = !ILMode;
         }
     }
 }

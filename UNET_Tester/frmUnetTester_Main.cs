@@ -103,7 +103,7 @@ namespace UNET_Tester
                     AddToListbox(string.Format("Trainee: {0}, Name: {1}", trainee.ID, trainee.Name));
                     idlist += trainee.ID + ",";
                 }
-                tbxTraineeIDs.Text = idlist.Substring(0, idlist.Length-1);
+                tbxTraineeIDs.Text = idlist.Substring(0, idlist.Length - 1);
 
                 //Radio
                 var radiolist = service.GetRadios();
@@ -126,7 +126,7 @@ namespace UNET_Tester
                     AddToListbox(string.Format("Instructor: {0}, Name: {1}", instructor.ID, instructor.Name));
                     idinstructorlist += instructor.ID + ",";
                 }
-                tbxInstructorIDs.Text  = idinstructorlist.Substring(0, idinstructorlist.Length - 1);// cbxInstructor.Text = lstInstructor.Count.ToString();
+                tbxInstructorIDs.Text = idinstructorlist.Substring(0, idinstructorlist.Length - 1);// cbxInstructor.Text = lstInstructor.Count.ToString();
 
 
                 ///updaten noiselevel
@@ -159,23 +159,23 @@ namespace UNET_Tester
                 {
                     service.Open();
                 }
-        
+
                 service.SetExerciseCount(Convert.ToInt16(cbxExercise.Text));
 
                 List<Exercise> elist = new List<Exercise>();
-                 for(int i = 1; i<= Convert.ToInt16(cbxExercise.Text); i++)
+                for (int i = 1; i <= Convert.ToInt16(cbxExercise.Text); i++)
                 {
-                   Exercise  exe = new Exercise();
+                    Exercise exe = new Exercise();
                     exe.Number = i;
                     exe.SpecificationName = txtSpecification.Text + i.ToString("00");
                     exe.ExerciseName = txtName.Text + i.ToString("00");
-                //    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
+                    //    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service
                 service.SetExercises(elist.ToArray());
 
- 
+
             }
             catch (Exception ex)
             {
@@ -196,10 +196,10 @@ namespace UNET_Tester
                 {
                     service.Open();
                 }
-          
+
                 service.SetRadiosCount(Convert.ToInt16(cbxRadios.Text));
 
-           
+
 
                 //     GetUNETStatus();
 
@@ -311,11 +311,11 @@ namespace UNET_Tester
                 //keep alive
                 if (KeepAliveCounter == Convert.ToInt16(cbxKeepAlive.Text))
                 {
-                    if(cbxKeepAlive.Checked)
-                        {
-                            buttonRefresh_Click(sender, e);//klik eenvoudigweg de button, dan zorgt dat event voor de keepalive
-                            KeepAliveCounter = 0;
-                        }
+                    if (cbxKeepAlive.Checked)
+                    {
+                        buttonRefresh_Click(sender, e);//klik eenvoudigweg de button, dan zorgt dat event voor de keepalive
+                        KeepAliveCounter = 0;
+                    }
                 }
                 else
                     KeepAliveCounter++;
@@ -346,7 +346,7 @@ namespace UNET_Tester
 
         private void cbxInstructor_SelectedValueChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -364,7 +364,7 @@ namespace UNET_Tester
             instructorlist.Add(inst);
             service.SetInstructors(instructorlist.ToArray());
             comboBox1_SelectedValueChanged(sender, e);
-            AddToListbox(string.Format("Added instructor: {0}",  1012 ));
+            AddToListbox(string.Format("Added instructor: {0}", 1012));
 
 
             cbxInstructor_SelectedValueChanged(sender, e);
@@ -373,6 +373,7 @@ namespace UNET_Tester
             btnRefreshInstructors_Click(sender, e);
             btnRefreshTrainees_Click(sender, e);
 
+            RefillTraineeAssists();
             //add existing radios to the exercise
             if (cbxAssignRadiosToExercise.Checked)
             {
@@ -380,6 +381,26 @@ namespace UNET_Tester
                 {
                     service.SetRadioAssignedStatus(Convert.ToInt16(instructorids[0]), 1, i, true);
                 }
+            }
+
+
+        }
+
+        private void RefillTraineeAssists()
+        {
+            cbxAssistTrainee.Items.Clear();
+            var resultlisttrainees = service.GetTrainees();
+            List<UNET_Classes.Trainee> lstTrainee = resultlisttrainees.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+            foreach (UNET_Classes.Trainee trainee in lstTrainee) //then ENABLE them, based on whatever comes from the service
+            {
+
+                ComboboxItem item = new ComboboxItem();
+                item.Text = trainee.ID + "|" + trainee.Name;
+                item.Value = trainee.ID;
+
+                comboBox1.Items.Add(item);
+                cbxAssistTrainee.Items.Add(item);
+
             }
 
 
@@ -398,16 +419,16 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-             //   service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
+                //   service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
 
                 //maak nu een lijstje meet trainees, op basis van de id's en  stuur dat naar de service
                 Trainee[] listTrainee;// = new List<UNET_Classes.Trainee>();
                 List<Trainee> objlist = new List<Trainee>();
-                foreach(string tr in traineeids)
+                foreach (string tr in traineeids)
                 {
                     UNET_Classes.Trainee trainee = new UNET_Classes.Trainee(Convert.ToInt16(tr), tr + "_trainee");
 
-                    if(cbxAssignRolesToTrainees.Checked)
+                    if (cbxAssignRolesToTrainees.Checked)
                     {
                         trainee.Roles.Clear();//eerst leeg gooien
                         for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
@@ -422,10 +443,10 @@ namespace UNET_Tester
                     objlist.Add(trainee);
                 }
                 listTrainee = (Trainee[])objlist.ToArray();
-               
+
                 service.SetTrainees((Trainee[])listTrainee);
                 AddToListbox(string.Format("Set Trainees to: {0}", traineeids.Length), Color.LimeGreen);
- 
+
             }
             catch (Exception ex)
             {
@@ -469,17 +490,17 @@ namespace UNET_Tester
                         //if the loop is in the first run, add the roles to the first instructor (hopefully the only one) as specified in 2.4.3
                         if (first)
                         {
-                                 AddToListbox(string.Format("Adding roles to instructor: {0}", inst, Color.LimeGreen));
-                                // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
-                                Application.DoEvents();
-                                //enable the Roles buttons
-                                var rolelist = service.GetRoles();
-                                List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
-                                foreach (UNET_Classes.Role role in lstrole)
-                                {
-                                    instructor.AssignedRoles.Add(role);
-                                }                         
-          
+                            AddToListbox(string.Format("Adding roles to instructor: {0}", inst, Color.LimeGreen));
+                            // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
+                            Application.DoEvents();
+                            //enable the Roles buttons
+                            var rolelist = service.GetRoles();
+                            List<UNET_Classes.Role> lstrole = rolelist.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+                            foreach (UNET_Classes.Role role in lstrole)
+                            {
+                                instructor.AssignedRoles.Add(role);
+                            }
+
                             first = false;
                         }
                     }
@@ -487,7 +508,7 @@ namespace UNET_Tester
                 listInstructors = (Instructor[])objlist.ToArray();
 
                 service.SetInstructors((Instructor[])listInstructors);
-          
+
             }
             catch (Exception ex)
             {
@@ -500,6 +521,55 @@ namespace UNET_Tester
         private void cbxKeepAlive_CheckedChanged(object sender, EventArgs e)
         {
             KeepAliveCounter = 0;
+        }
+
+
+        /// <summary>
+        /// request an assist
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbxAssistTrainee.SelectedIndex >= 0)
+                {
+                    // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+                    string[] splitstr = cbxAssistTrainee.Text.Split('|');
+
+                    service.CreateAssist(Convert.ToInt16(splitstr[0].Trim()), splitstr[1].Trim());
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF method createassist>{0}", ex.Message));
+                log.Error("Error using WCF method change role", ex);
+                // throw;
+            }
+        }
+
+        private void cbxAssistTrainee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+    }
+
+    public class ComboboxItem
+    {
+        public string Text { get; set; }
+        public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }

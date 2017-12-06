@@ -347,7 +347,7 @@ namespace UNET_Trainer_Trainee
             }
             catch (Exception ex)
             {
-                log.Error("Error using WCF SetButtonStatus", ex);
+                log.Error("Error using WCF SetButtonStatus. Instructor mainform", ex);
                 // throw;
             }
 

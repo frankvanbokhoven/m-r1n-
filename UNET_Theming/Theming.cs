@@ -30,6 +30,8 @@ namespace UNET_Theming
         public static Color ButtonText;
         public static Color AssistRequestedColor;
         public static Color AssistAcknowledgedColor;
+        public static Color ILModeActive;
+        public static Color ILModeInactive;
 
         /// <summary>
         /// Set the general colors of the unettrainer          
@@ -58,6 +60,8 @@ namespace UNET_Theming
                         ButtonText = Color.Black;
                         AssistAcknowledgedColor = Color.Green;
                         AssistRequestedColor = Color.Gray;
+                        ILModeActive = Color.Brown;
+                        ILModeInactive = Color.DimGray;
 
                         break;
                     }

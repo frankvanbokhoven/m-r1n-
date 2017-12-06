@@ -170,7 +170,7 @@ namespace UNET_Trainer
             }
             catch (Exception ex)
             {
-                log.Error("Error using WCF SetButtonStatus", ex);
+                log.Error("Error using WCF SetButtonStatus Roles Instructor", ex);
                 Console.Write("Error SetButtonStatus: " + ex.Message);
                 // throw;
             }

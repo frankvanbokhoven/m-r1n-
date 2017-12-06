@@ -1372,53 +1372,58 @@ namespace UNET_Service
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
 
 
-                //first retrieve the list of trainees that are assigned to this instructor
-                //then retrieve the unacknowledged requests for each of these assigned trainees
-                foreach (Instructor inst in singleton.Instructors)
+                ////first retrieve the list of trainees that are assigned to this instructor
+                ////then retrieve the unacknowledged requests for each of these assigned trainees
+                //foreach (Instructor inst in singleton.Instructors)
+                //{
+                //    if (_instructorID != -1)
+                //    {
+                //        if (inst.ID == _instructorID)
+                //        {
+                //            foreach (Exercise exe in inst.Exercises)
+                //            {
+                //                foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
+                //                {
+                //                    foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
+                //                    {
+                //                        if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
+                //                        {
+                //                            result.Add(ass);
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //    else
+                //    {// if _instructorid == -1, then we want ALL pending Assists
+                //        foreach (Exercise exe in inst.Exercises)
+                //        {
+                //            foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
+                //            {
+                //                foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
+                //                {
+                //                    if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
+                //                    {
+                //                        result.Add(ass);
+                //                    }
+                //                }
+                //            }
+                //        }
+
+
+                //    }
+                //}
+
+                //just return all unacknowledged assists
+                foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
                 {
-                    if (_instructorID != -1)
+                    if (ass.Acknowledged == false) 
                     {
-                        if (inst.ID == _instructorID)
-                        {
-                            foreach (Exercise exe in inst.Exercises)
-                            {
-                                foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
-                                {
-                                    foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
-                                    {
-                                        if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
-                                        {
-                                            result.Add(ass);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {// if _instructorid == -1, then we want ALL pending Assists
-                        foreach (Exercise exe in inst.Exercises)
-                        {
-                            foreach (Trainee trn in exe.TraineesAssigned)  //here we have a list of assigned trainees to this particular instructor
-                            {
-                                foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
-                                {
-                                    if ((ass.TraineeID == trn.ID) && (ass.Acknowledged == false)) //if we found the trainee AND the assist is unacknowledged
-                                    {
-                                        result.Add(ass);
-                                    }
-                                }
-                            }
-                        }
-
-
+                        result.Add(ass);
                     }
                 }
-                //todo: make some nice linq of the above code
-                //  List<Assist> allAssists = singleton.Instructors.SelectMany(h => h.ID == _instructorID)
-                //  .GroupBy(rt => rt.Room.Id)
-                //  .Select(room => room.First())
-                //  .ToList();
+
 
             }
             catch (Exception ex)
@@ -1443,6 +1448,14 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 result = singleton.PendingChanges;
+
+
+
+                //if there is a pending assist, this must be known on the clients as well!
+                if(singleton.Assists.Count(x => x.Acknowledged == false) > 0)
+                {
+                    result = DateTime.Now;
+                }
             }
             catch (Exception ex)
             {
