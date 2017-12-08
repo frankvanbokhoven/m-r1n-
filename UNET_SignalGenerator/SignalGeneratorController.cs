@@ -18,8 +18,7 @@ namespace UNET_SignalGenerator
    
             // Init Audio
             driverOut = new WaveOutEvent();
-            //driverOut = new AsioOut(0);
-            wg = new SignalGenerator();
+             wg = new SignalGenerator();
 
                  // Init Driver Audio
             driverOut.Init(wg);

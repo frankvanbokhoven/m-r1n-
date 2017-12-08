@@ -35,9 +35,7 @@ namespace UNET_Trainer
         public string  DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1017 instructor");
              
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
-     //   private DateTime LastUpdate = DateTime.MinValue;
-
-
+ 
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
@@ -252,6 +250,8 @@ namespace UNET_Trainer
                                     ((Button)ctrl).ImageIndex = 1;
 
                                 }
+
+                                //and play a sound
                                 break;
                             }                         
 

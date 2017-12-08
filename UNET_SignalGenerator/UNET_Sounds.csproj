@@ -7,8 +7,8 @@
     <ProjectGuid>{360517A6-76CB-4FB5-A347-FE18DADD9F2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UNET_SignalGenerator</RootNamespace>
-    <AssemblyName>UNET_SignalGenerator</AssemblyName>
+    <RootNamespace>UNET_Sounds</RootNamespace>
+    <AssemblyName>UNET_Sounds</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -47,8 +47,10 @@
     <Compile Include="SignalGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalGeneratorController.cs" />
+    <Compile Include="UNETSoundsController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sounds\beep-01a.wav" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -63,6 +65,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
