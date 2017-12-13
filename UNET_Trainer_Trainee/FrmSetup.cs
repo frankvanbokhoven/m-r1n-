@@ -215,5 +215,10 @@ namespace UNET_Trainer_Trainee
             }
 
         }
+
+        private void tbxLog4NetDirectory_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
