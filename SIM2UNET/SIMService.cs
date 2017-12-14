@@ -7,6 +7,8 @@ namespace SIM2UNET
 {
     public class SIMService : IMicroService
     {
+
+      //  udpbinding
         public void Start()
         {
             Console.WriteLine("I started");

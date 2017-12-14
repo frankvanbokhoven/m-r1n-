@@ -11,12 +11,12 @@ namespace SIM2UNET
         void Stop();
     }
 
-    public class ExampleService : MicroService, IMicroService
+    public class ExampleService : IMicroService
     {
         public void Start()
         {
-            this.StartBase();
-            Timers.Start("Poller", 1000, () =>
+          //  this.StartBase();
+            Timer.Start("Poller", 1000, () =>
             {
                 Console.WriteLine("Polling at {0}\n", DateTime.Now.ToString("o"));
             },

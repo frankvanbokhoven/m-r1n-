@@ -30,11 +30,6 @@ namespace StubSIM2UNET
                 tbxLog4NetDirectory.Text = theDialog.FileName;
             }
 
-            //now, ingest the PCAP file
-            //   if(pcapPlayer != null)
-            ////   {
-            //       pcapPlayer.
-            //   }
             if (theDialog.FileName.Length == 0)
             {
                 MessageBox.Show("Select a PCAP file first");
@@ -50,6 +45,7 @@ namespace StubSIM2UNET
                 
                 lbxPCAP.Items.Clear();
                 lbxPCAP.Items.AddRange(pcapPlayer.Lines.ToArray());
+                tbPCap.Enabled = pcapPlayer.Count > 0;
               //  foreach(String line in pcapPlayer.Lines )
             }
 
@@ -58,7 +54,7 @@ namespace StubSIM2UNET
 
         private void FrmMainStub_Load(object sender, EventArgs e)
         {
-
+            tbPCap.Enabled = false;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -66,6 +62,7 @@ namespace StubSIM2UNET
             if (btnPlay.ImageIndex == 0)
             {
                 btnPlay.ImageIndex = 1;
+                pcapPlayer.Play();
             }
             else
             {
@@ -91,7 +88,6 @@ namespace StubSIM2UNET
                 tbPCap.Value = lbxPCAP.SelectedIndex;
                 toolStripStatusLabel1.Text = "Regel: " + tbPCap.Value;
                 toolStripProgressBar1.Value = tbPCap.Value;
-
             }
         }
 
@@ -105,6 +101,16 @@ namespace StubSIM2UNET
         {
             cbxUsePCAPTime.Checked =(cbxInterval.Checked == false);
             cmbxInterval.Enabled = cbxInterval.Checked;
+        }
+
+        /// <summary>
+        /// when user doubleclicks a record in the listbox, he/she wants to send the record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbxPCAP_DoubleClick(object sender, EventArgs e)
+        {
+            pcapPlayer.
         }
     }
 }

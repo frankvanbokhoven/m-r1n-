@@ -59,7 +59,7 @@ namespace StubSIM2UNET
                 using (FileStream reader = new FileStream(FileName, FileMode.Open))
                 {
                     string line = ReadLine(reader);
-                    string[] components = line.Split(' ');
+                    string[] components = line.Split('\\'); //   (' ');
 
                     url += components[1];
 
