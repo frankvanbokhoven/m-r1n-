@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EasyPCap\PcapFile.cs" />
+    <Compile Include="EasyPCap\PcapPacket.cs" />
     <Compile Include="FrmMainStub.cs">
       <SubType>Form</SubType>
     </Compile>

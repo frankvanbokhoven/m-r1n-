@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StubSIM2UNET.EasyPCap;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,8 @@ namespace StubSIM2UNET
 {
     public partial class FrmMainStub : Form
     {
-        private PcapPlayer pcapPlayer;
+       // private PcapPlayer pcapPlayer;
+        private int Count = 0;
         public FrmMainStub()
         {
             InitializeComponent();
@@ -36,17 +38,39 @@ namespace StubSIM2UNET
             }
             else
             {
-                pcapPlayer = new PcapPlayer(tbxDestination.Text.Trim(), theDialog.FileName);
-                tbPCap.Maximum = pcapPlayer.Count;
-                tbPCap.Minimum = 0;
-                tbPCap.Value = 10;
+                Count = 0;
+                try
+                {
+                    lbxPCAP.Items.Clear();
+                    this.Cursor = Cursors.WaitCursor;
+                    PcapFile dump = new PcapFile(theDialog.FileName);
+                    PcapPacket packet = null;
+                    while ((packet = dump.ReadPacket()) != null)
+                    {
+                        //   Console.WriteLine("{0}.{1}: Packet is {2} bytes", packet.Seconds, packet.Microseconds, packet.Data.Length);
+                        Count++;
+                        lbxPCAP.Items.Add(string.Format("Sec: {0} Micr: {1} Data: {2} : {3} {4}", packet.Seconds, packet.Microseconds, packet.Data.Length, packet.Data.ToString(), packet.Data.ToString()));
 
-                toolStripProgressBar1.Maximum = pcapPlayer.Count;
-                
-                lbxPCAP.Items.Clear();
-                lbxPCAP.Items.AddRange(pcapPlayer.Lines.ToArray());
-                tbPCap.Enabled = pcapPlayer.Count > 0;
-              //  foreach(String line in pcapPlayer.Lines )
+                    }
+
+                    //   pcapPlayer = new PcapPlayer(tbxDestination.Text.Trim(), theDialog.FileName);
+                    tbPCap.Enabled = Count > 0;
+                    tbPCap.Maximum = Count;
+                    tbPCap.Minimum = 0;
+                    tbPCap.Value = 10;
+
+                    toolStripProgressBar1.Maximum = Count;
+
+                    //  foreach(String line in pcapPlayer.Lines )
+                }
+                catch(Exception ex)
+                {
+                    throw;
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                }
             }
 
 
@@ -62,7 +86,7 @@ namespace StubSIM2UNET
             if (btnPlay.ImageIndex == 0)
             {
                 btnPlay.ImageIndex = 1;
-                pcapPlayer.Play();
+              //  pcapPlayer.Play();
             }
             else
             {
@@ -110,7 +134,7 @@ namespace StubSIM2UNET
         /// <param name="e"></param>
         private void lbxPCAP_DoubleClick(object sender, EventArgs e)
         {
-            pcapPlayer.
+         //   pcapPlayer.
         }
     }
 }
