@@ -46,6 +46,17 @@ namespace StubSIM2UNET.EasyPCap
             }
         }
 
+        /// <summary>
+        /// Number of bytes in the data array
+        /// </summary>
+        public int DataLength
+            {
+            get
+            {
+                return data.Length;
+            }
+            }
+
         public override string ToString()
         {
             return String.Format("{0}.{1}: {2} bytes of data", secs, usecs, data.Length);

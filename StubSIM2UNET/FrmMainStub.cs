@@ -49,7 +49,7 @@ namespace StubSIM2UNET
                     {
                         //   Console.WriteLine("{0}.{1}: Packet is {2} bytes", packet.Seconds, packet.Microseconds, packet.Data.Length);
                         Count++;
-                        lbxPCAP.Items.Add(string.Format("Sec: {0} Micr: {1} Data: {2} : {3} {4}", packet.Seconds, packet.Microseconds, packet.Data.Length, packet.Data.ToString(), packet.Data.ToString()));
+                        lbxPCAP.Items.Add(string.Format("Sec: {0} Micr: {1} Data: {2} : {3} Length: {4}", packet.Seconds, packet.Microseconds, packet.Data.Length, packet.Data.ToString(), packet.DataLength));
 
                     }
 
