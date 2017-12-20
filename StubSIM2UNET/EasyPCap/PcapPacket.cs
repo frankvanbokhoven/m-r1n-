@@ -14,6 +14,7 @@ namespace StubSIM2UNET.EasyPCap
         private int secs;
         private int usecs;
         private byte[] data;
+        private string readableData;
 
         public PcapPacket(int secs, int usecs, byte[] data)
         {
@@ -38,10 +39,16 @@ namespace StubSIM2UNET.EasyPCap
             }
         }
 
+        public string ReadableData
+        {
+            get { return readableData; }
+        }
+
         public byte[] Data
         {
             get
             {
+                readableData = System.Text.Encoding.Default.GetString(data);
                 return data;
             }
         }

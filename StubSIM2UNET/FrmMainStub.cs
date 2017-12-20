@@ -30,49 +30,50 @@ namespace StubSIM2UNET
             if (theDialog.ShowDialog() == DialogResult.OK)
             {
                 tbxLog4NetDirectory.Text = theDialog.FileName;
-            }
 
-            if (theDialog.FileName.Length == 0)
-            {
-                MessageBox.Show("Select a PCAP file first");
-            }
-            else
-            {
-                Count = 0;
-                try
+
+
+                if (theDialog.FileName.Length == 0)
                 {
-                    lbxPCAP.Items.Clear();
-                    this.Cursor = Cursors.WaitCursor;
-                    PcapFile dump = new PcapFile(theDialog.FileName);
-                    PcapPacket packet = null;
-                    while ((packet = dump.ReadPacket()) != null)
+                    MessageBox.Show("Select a PCAP file first");
+                }
+                else
+                {
+                    Count = 0;
+                    try
                     {
-                        //   Console.WriteLine("{0}.{1}: Packet is {2} bytes", packet.Seconds, packet.Microseconds, packet.Data.Length);
-                        Count++;
-                        lbxPCAP.Items.Add(string.Format("Sec: {0} Micr: {1} Data: {2} : {3} Length: {4}", packet.Seconds, packet.Microseconds, packet.Data.Length, packet.Data.ToString(), packet.DataLength));
+                        lbxPCAP.Items.Clear();
+                        this.Cursor = Cursors.WaitCursor;
+                        PcapFile dump = new PcapFile(theDialog.FileName);
+                        PcapPacket packet = null;
+                        while ((packet = dump.ReadPacket()) != null)
+                        {
+                            //   Console.WriteLine("{0}.{1}: Packet is {2} bytes", packet.Seconds, packet.Microseconds, packet.Data.Length);
+                            Count++;
+                         string tempstring = (string.Format("Sec: {0} Micr: {1} Length: {2} Data: {3}", packet.Seconds, packet.Microseconds, packet.Data.Length, System.Text.Encoding.Default.GetString(packet.Data)));
+                            lbxPCAP.Items.Add(tempstring);
+                        }
 
+                        //   pcapPlayer = new PcapPlayer(tbxDestination.Text.Trim(), theDialog.FileName);
+                        tbPCap.Enabled = Count > 0;
+                        tbPCap.Maximum = Count;
+                        tbPCap.Minimum = 0;
+                        tbPCap.Value = 10;
+
+                        toolStripProgressBar1.Maximum = Count;
+
+                        //  foreach(String line in pcapPlayer.Lines )
                     }
-
-                    //   pcapPlayer = new PcapPlayer(tbxDestination.Text.Trim(), theDialog.FileName);
-                    tbPCap.Enabled = Count > 0;
-                    tbPCap.Maximum = Count;
-                    tbPCap.Minimum = 0;
-                    tbPCap.Value = 10;
-
-                    toolStripProgressBar1.Maximum = Count;
-
-                    //  foreach(String line in pcapPlayer.Lines )
-                }
-                catch(Exception ex)
-                {
-                    throw;
-                }
-                finally
-                {
-                    this.Cursor = Cursors.Default;
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        this.Cursor = Cursors.Default;
+                    }
                 }
             }
-
 
         }
 
