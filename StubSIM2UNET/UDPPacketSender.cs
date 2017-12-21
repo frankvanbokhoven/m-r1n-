@@ -22,6 +22,7 @@ namespace StubSIM2UNET
         /// <summary>
         /// send a packect via UDP
         /// see: https://stackoverflow.com/questions/2637697/sending-udp-packet-in-c-sharp
+        /// maar ook: https://social.msdn.microsoft.com/Forums/en-US/92846ccb-fad3-469a-baf7-bb153ce2d82b/simple-udp-example-code?forum=netfxnetcom
         /// </summary>
         /// <param name="_message"></param>
         /// <returns></returns>
@@ -29,8 +30,7 @@ namespace StubSIM2UNET
         {
             try
             {
-                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram,
-                ProtocolType.Udp);
+                Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 //   IPAddress serverAddr = IPAddress.Parse("192.168.2.255");
 
                 IPEndPoint endPoint = new IPEndPoint(serverAddress, Port);

@@ -47,10 +47,13 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sendThisPacketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPCap)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -58,9 +61,11 @@
             this.groupBox1.Controls.Add(this.btnSelectLogDir);
             this.groupBox1.Controls.Add(this.tbxLog4NetDirectory);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(16, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 102);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(760, 126);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PCAP File";
@@ -70,10 +75,10 @@
             this.btnSelectLogDir.BackColor = System.Drawing.Color.Black;
             this.btnSelectLogDir.ForeColor = System.Drawing.Color.Transparent;
             this.btnSelectLogDir.Image = global::StubSIM2UNET.Properties.Resources.open_file_icon32;
-            this.btnSelectLogDir.Location = new System.Drawing.Point(507, 31);
-            this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectLogDir.Location = new System.Drawing.Point(676, 38);
+            this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
-            this.btnSelectLogDir.Size = new System.Drawing.Size(38, 41);
+            this.btnSelectLogDir.Size = new System.Drawing.Size(51, 50);
             this.btnSelectLogDir.TabIndex = 39;
             this.btnSelectLogDir.UseVisualStyleBackColor = false;
             this.btnSelectLogDir.Click += new System.EventHandler(this.btnSelectLogDir_Click);
@@ -81,11 +86,11 @@
             // tbxLog4NetDirectory
             // 
             this.tbxLog4NetDirectory.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.tbxLog4NetDirectory.Location = new System.Drawing.Point(19, 42);
-            this.tbxLog4NetDirectory.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxLog4NetDirectory.Location = new System.Drawing.Point(25, 52);
+            this.tbxLog4NetDirectory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxLog4NetDirectory.Name = "tbxLog4NetDirectory";
             this.tbxLog4NetDirectory.ReadOnly = true;
-            this.tbxLog4NetDirectory.Size = new System.Drawing.Size(484, 20);
+            this.tbxLog4NetDirectory.Size = new System.Drawing.Size(644, 22);
             this.tbxLog4NetDirectory.TabIndex = 38;
             // 
             // groupBox2
@@ -100,9 +105,11 @@
             this.groupBox2.Controls.Add(this.tbxDestination);
             this.groupBox2.Controls.Add(this.btnPlay);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.groupBox2.Location = new System.Drawing.Point(12, 120);
+            this.groupBox2.Location = new System.Drawing.Point(16, 148);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(570, 102);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(760, 126);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -122,17 +129,19 @@
             "10",
             "30",
             "60"});
-            this.cmbxInterval.Location = new System.Drawing.Point(503, 69);
+            this.cmbxInterval.Location = new System.Drawing.Point(671, 85);
+            this.cmbxInterval.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbxInterval.Name = "cmbxInterval";
-            this.cmbxInterval.Size = new System.Drawing.Size(61, 21);
+            this.cmbxInterval.Size = new System.Drawing.Size(80, 24);
             this.cmbxInterval.TabIndex = 7;
             // 
             // cbxInterval
             // 
             this.cbxInterval.AutoSize = true;
-            this.cbxInterval.Location = new System.Drawing.Point(417, 72);
+            this.cbxInterval.Location = new System.Drawing.Point(556, 89);
+            this.cbxInterval.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxInterval.Name = "cbxInterval";
-            this.cbxInterval.Size = new System.Drawing.Size(87, 17);
+            this.cbxInterval.Size = new System.Drawing.Size(112, 21);
             this.cbxInterval.TabIndex = 6;
             this.cbxInterval.Text = "Interval (sec)";
             this.cbxInterval.UseVisualStyleBackColor = true;
@@ -143,9 +152,10 @@
             this.cbxUsePCAPTime.AutoSize = true;
             this.cbxUsePCAPTime.Checked = true;
             this.cbxUsePCAPTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxUsePCAPTime.Location = new System.Drawing.Point(286, 73);
+            this.cbxUsePCAPTime.Location = new System.Drawing.Point(381, 90);
+            this.cbxUsePCAPTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxUsePCAPTime.Name = "cbxUsePCAPTime";
-            this.cbxUsePCAPTime.Size = new System.Drawing.Size(125, 17);
+            this.cbxUsePCAPTime.Size = new System.Drawing.Size(163, 21);
             this.cbxUsePCAPTime.TabIndex = 5;
             this.cbxUsePCAPTime.Text = "Play using PCap time";
             this.cbxUsePCAPTime.UseVisualStyleBackColor = true;
@@ -154,9 +164,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(85, 73);
+            this.label1.Location = new System.Drawing.Point(113, 90);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.Size = new System.Drawing.Size(83, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Destination:";
             // 
@@ -164,18 +175,20 @@
             // 
             this.tbPCap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbPCap.Location = new System.Drawing.Point(70, 16);
+            this.tbPCap.Location = new System.Drawing.Point(93, 20);
+            this.tbPCap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbPCap.Name = "tbPCap";
-            this.tbPCap.Size = new System.Drawing.Size(494, 45);
+            this.tbPCap.Size = new System.Drawing.Size(659, 56);
             this.tbPCap.TabIndex = 3;
             this.tbPCap.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbPCap.Scroll += new System.EventHandler(this.tbPCap_Scroll);
             // 
             // tbxDestination
             // 
-            this.tbxDestination.Location = new System.Drawing.Point(154, 70);
+            this.tbxDestination.Location = new System.Drawing.Point(205, 86);
+            this.tbxDestination.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxDestination.Name = "tbxDestination";
-            this.tbxDestination.Size = new System.Drawing.Size(100, 20);
+            this.tbxDestination.Size = new System.Drawing.Size(132, 22);
             this.tbxDestination.TabIndex = 2;
             this.tbxDestination.Text = "192.168.43.31";
             // 
@@ -183,9 +196,10 @@
             // 
             this.btnPlay.ImageIndex = 0;
             this.btnPlay.ImageList = this.imageList1;
-            this.btnPlay.Location = new System.Drawing.Point(19, 19);
+            this.btnPlay.Location = new System.Drawing.Point(25, 23);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(45, 45);
+            this.btnPlay.Size = new System.Drawing.Size(60, 55);
             this.btnPlay.TabIndex = 0;
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
@@ -204,13 +218,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxPCAP.BackColor = System.Drawing.Color.Black;
             this.lbxPCAP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbxPCAP.ContextMenuStrip = this.contextMenuStrip1;
             this.lbxPCAP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbxPCAP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lbxPCAP.FormattingEnabled = true;
-            this.lbxPCAP.Location = new System.Drawing.Point(12, 235);
+            this.lbxPCAP.ItemHeight = 17;
+            this.lbxPCAP.Location = new System.Drawing.Point(16, 289);
+            this.lbxPCAP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxPCAP.Name = "lbxPCAP";
             this.lbxPCAP.ScrollAlwaysVisible = true;
-            this.lbxPCAP.Size = new System.Drawing.Size(570, 444);
+            this.lbxPCAP.Size = new System.Drawing.Size(759, 546);
             this.lbxPCAP.TabIndex = 2;
             this.toolTip1.SetToolTip(this.lbxPCAP, "Doubleclick to send packet");
             this.lbxPCAP.Click += new System.EventHandler(this.lbxPCAP_Click);
@@ -222,9 +239,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 703);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 866);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(594, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(792, 26);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -232,23 +250,39 @@
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.Color.LightGray;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 21);
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(125, 16);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(167, 20);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendThisPacketToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(187, 56);
+            // 
+            // sendThisPacketToolStripMenuItem
+            // 
+            this.sendThisPacketToolStripMenuItem.Name = "sendThisPacketToolStripMenuItem";
+            this.sendThisPacketToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
+            this.sendThisPacketToolStripMenuItem.Text = "Send this packet";
+            this.sendThisPacketToolStripMenuItem.Click += new System.EventHandler(this.sendThisPacketToolStripMenuItem_Click);
             // 
             // FrmMainStub
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(594, 725);
+            this.ClientSize = new System.Drawing.Size(792, 892);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lbxPCAP);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmMainStub";
             this.Text = "PCap tester";
             this.Load += new System.EventHandler(this.FrmMainStub_Load);
@@ -259,6 +293,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbPCap)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,6 +318,8 @@
         private System.Windows.Forms.CheckBox cbxUsePCAPTime;
         private System.Windows.Forms.ComboBox cmbxInterval;
         private System.Windows.Forms.CheckBox cbxInterval;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem sendThisPacketToolStripMenuItem;
     }
 }
 

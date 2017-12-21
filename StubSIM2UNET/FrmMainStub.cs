@@ -137,5 +137,12 @@ namespace StubSIM2UNET
         {
          //   pcapPlayer.
         }
+
+        private void sendThisPacketToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UDPPacketSender udpsender = new UDPPacketSender();
+            udpsender.SendPacket("dit is een test van frank");
+
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace SIM2UNET
     public sealed class UDPListenerSingleton
     {
         private const int listenPort = 11000;
-
+        [ThreadStatic]
         private static UDPListenerSingleton instance = null;
         private static readonly object syncRoot = new object();
 
