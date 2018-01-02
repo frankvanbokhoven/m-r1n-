@@ -13,10 +13,10 @@ namespace StubSIM2UNET
         private IPAddress serverAddress;
         private int Port;
 
-        public UDPPacketSender()
+        public UDPPacketSender(string _ipaddress, string _port)
         {
-            serverAddress = IPAddress.Parse("192.168.2.255");
-            Port = 11000;
+            serverAddress = IPAddress.Parse(_ipaddress);// "192.168.2.255");
+            Port = Convert.ToInt16(_port); //11000;
         }
 
         /// <summary>

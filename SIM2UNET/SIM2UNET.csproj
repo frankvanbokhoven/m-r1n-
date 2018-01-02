@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SIM2UNET</RootNamespace>
     <AssemblyName>SIM2UNET</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +61,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\UNET_Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UDPListenerSingleton.cs" />
     <EmbeddedResource Include="FrmSIM2UNETMain.resx">
       <DependentUpon>FrmSIM2UNETMain.cs</DependentUpon>
@@ -66,7 +78,17 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\UNET_Classes.Assist.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.CurrentInfo.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Platform.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Radio.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Role.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.Trainee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,9 +98,52 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\UNET_Service\Service1.wsdl" />
+    <None Include="Service References\UNET_Service\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\Service14.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\UNET_Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UNET_Service\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UNET_Service\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UNET_Service\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UNET_Service\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UNET_Classes\UNET_Classes.csproj">
+      <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
+      <Name>UNET_Classes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

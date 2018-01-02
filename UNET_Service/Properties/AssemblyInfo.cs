@@ -37,3 +37,4 @@ using System.Runtime.InteropServices;
 // Let log4net know that it can look for configuration in the default application config file
 //[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+

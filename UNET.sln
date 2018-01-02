@@ -79,6 +79,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubSIM2UNET", "StubSIM2UNET\StubSIM2UNET.csproj", "{90B5A461-1666-44EB-8484-ECDFCD7FC7B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIM2UNET", "SIM2UNET\SIM2UNET.csproj", "{61A8309F-5E31-4945-AD54-B2A0DD6550D4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{228221D7-99BC-4078-AF1C-228BD69D6C71} = {228221D7-99BC-4078-AF1C-228BD69D6C71}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

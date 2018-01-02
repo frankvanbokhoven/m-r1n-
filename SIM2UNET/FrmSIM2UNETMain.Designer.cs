@@ -32,13 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSIM2UNETMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnStartListening = new System.Windows.Forms.Button();
-            this.tbxServer = new System.Windows.Forms.TextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tbxServer = new System.Windows.Forms.TextBox();
+            this.tbxPort = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbxPort);
             this.groupBox1.Controls.Add(this.btnStartListening);
             this.groupBox1.Controls.Add(this.tbxServer);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -65,6 +67,13 @@
             this.btnStartListening.UseVisualStyleBackColor = false;
             this.btnStartListening.Click += new System.EventHandler(this.btnStartListening_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "play_32.png");
+            this.imageList1.Images.SetKeyName(1, "stop32.png");
+            // 
             // tbxServer
             // 
             this.tbxServer.BackColor = System.Drawing.Color.White;
@@ -72,16 +81,20 @@
             this.tbxServer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxServer.Name = "tbxServer";
             this.tbxServer.ReadOnly = true;
-            this.tbxServer.Size = new System.Drawing.Size(304, 22);
+            this.tbxServer.Size = new System.Drawing.Size(110, 22);
             this.tbxServer.TabIndex = 38;
             this.tbxServer.Text = "192.168.0.10";
             // 
-            // imageList1
+            // tbxPort
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "play_32.png");
-            this.imageList1.Images.SetKeyName(1, "stop32.png");
+            this.tbxPort.BackColor = System.Drawing.Color.White;
+            this.tbxPort.Location = new System.Drawing.Point(25, 87);
+            this.tbxPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxPort.Name = "tbxPort";
+            this.tbxPort.ReadOnly = true;
+            this.tbxPort.Size = new System.Drawing.Size(304, 22);
+            this.tbxPort.TabIndex = 40;
+            this.tbxPort.Text = "11000";
             // 
             // FrmSIM2UNETMain
             // 
@@ -104,6 +117,7 @@
         private System.Windows.Forms.Button btnStartListening;
         private System.Windows.Forms.TextBox tbxServer;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TextBox tbxPort;
     }
 }
 

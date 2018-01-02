@@ -11,9 +11,11 @@ using System.Windows.Forms;
 
 namespace StubSIM2UNET
 {
+
+
     public partial class FrmMainStub : Form
     {
-       // private PcapPlayer pcapPlayer;
+        
         private int Count = 0;
         public FrmMainStub()
         {
@@ -42,16 +44,20 @@ namespace StubSIM2UNET
                     Count = 0;
                     try
                     {
+                        lbxPCAP.DisplayMember = "DisplayString";
+                        lbxPCAP.ValueMember = "PacketData";
                         lbxPCAP.Items.Clear();
                         this.Cursor = Cursors.WaitCursor;
                         PcapFile dump = new PcapFile(theDialog.FileName);
                         PcapPacket packet = null;
                         while ((packet = dump.ReadPacket()) != null)
                         {
-                            //   Console.WriteLine("{0}.{1}: Packet is {2} bytes", packet.Seconds, packet.Microseconds, packet.Data.Length);
+                           string tempstring = (string.Format("Sec: {0} Micr: {1} Length: {2} Data: {3}", packet.Seconds, packet.Microseconds, packet.Data.Length, System.Text.Encoding.Default.GetString(packet.Data)));
+
+                            lbxPCAP.Items.Add(new PCAPItem { DisplayString = tempstring, PacketData = packet });
+
                             Count++;
-                         string tempstring = (string.Format("Sec: {0} Micr: {1} Length: {2} Data: {3}", packet.Seconds, packet.Microseconds, packet.Data.Length, System.Text.Encoding.Default.GetString(packet.Data)));
-                            lbxPCAP.Items.Add(tempstring);
+                          // lbxPCAP.Items.Add(tempstring);
                         }
 
                         //   pcapPlayer = new PcapPlayer(tbxDestination.Text.Trim(), theDialog.FileName);
@@ -62,7 +68,6 @@ namespace StubSIM2UNET
 
                         toolStripProgressBar1.Maximum = Count;
 
-                        //  foreach(String line in pcapPlayer.Lines )
                     }
                     catch (Exception ex)
                     {
@@ -140,9 +145,21 @@ namespace StubSIM2UNET
 
         private void sendThisPacketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UDPPacketSender udpsender = new UDPPacketSender();
-            udpsender.SendPacket("dit is een test van frank");
+            UDPPacketSender udpsender = new UDPPacketSender(tbxDestination.Text, tbxPort.Text);
+            // udpsender.SendPacket( "dit is een test van frank");
+            udpsender.SendPacket(lbxPCAP.SelectedItem.ToString());
+
 
         }
+    }
+
+    /// <summary>
+    /// deze classe houdt de info van de pcap vast tbv listbox
+    /// </summary>
+    public class PCAPItem
+    {
+        public string DisplayString { get; set; }
+        public PcapPacket PacketData { get; set; }
+
     }
 }

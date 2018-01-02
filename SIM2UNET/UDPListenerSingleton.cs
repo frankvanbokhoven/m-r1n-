@@ -1,10 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using UNET_Classes;
 
 namespace SIM2UNET
 {
@@ -13,6 +15,10 @@ namespace SIM2UNET
     /// </summary>
     public sealed class UDPListenerSingleton
     {
+        //log4net
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
+
         private const int listenPort = 11000;
         [ThreadStatic]
         private static UDPListenerSingleton instance = null;
@@ -20,44 +26,49 @@ namespace SIM2UNET
 
         private UDPListenerSingleton()
         {
-            bool done = false;
-            UdpClient listener = new UdpClient(listenPort);
-            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
-            string received_data;
-            byte[] receive_byte_array;
-            try
+            //bool done = false;
+            //UdpClient listener = new UdpClient(listenPort);
+            //IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+            //string received_data;
+            //byte[] receive_byte_array;
+            //try
 
-            {
-                while (!done)
-                {
-                    Console.WriteLine("Waiting for broadcast");
-                    // this is the line of code that receives the broadcase message.
+            //{
+            //    while (!done)
+            //    {
+            //        Console.WriteLine("Waiting for broadcast");
+            //        // this is the line of code that receives the broadcase message.
 
-                    // It calls the receive function from the object listener (class UdpClient)
+            //        // It calls the receive function from the object listener (class UdpClient)
 
-                    // It passes to listener the end point groupEP.
+            //        // It passes to listener the end point groupEP.
 
-                    // It puts the data from the broadcast message into the byte array
+            //        // It puts the data from the broadcast message into the byte array
 
-                    // named received_byte_array.
+            //        // named received_byte_array.
 
-                    // I don't know why this uses the class UdpClient and IPEndPoint like this.
+            //        // I don't know why this uses the class UdpClient and IPEndPoint like this.
 
-                    // Contrast this with the talker code. It does not pass by reference.
+            //        // Contrast this with the talker code. It does not pass by reference.
 
-                    // Note that this is a synchronous or blocking call.
+            //        // Note that this is a synchronous or blocking call.
 
-                    receive_byte_array = listener.Receive(ref groupEP);
-                    Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
-                    received_data = Encoding.ASCII.GetString(receive_byte_array, 0, receive_byte_array.Length);
-                    Console.WriteLine("data follows \n{0}\n\n", received_data);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            listener.Close();
+            //        receive_byte_array = listener.Receive(ref groupEP);
+            //        Console.WriteLine("Received a broadcast from {0}", groupEP.ToString());
+            //        received_data = Encoding.ASCII.GetString(receive_byte_array, 0, receive_byte_array.Length);
+
+            //        if(received_data.Length > 0)
+            //        {
+            //            Send2UNET(received_data);
+            //        }
+            //        Console.WriteLine("data follows \n{0}\n\n", received_data);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //}
+            //listener.Close();
         }
 
         public static UDPListenerSingleton Instance
@@ -77,6 +88,45 @@ namespace SIM2UNET
                 return instance;
             }
         }
+
+        #region SendToUNET
+
+        /// <summary>
+        /// Interpreteer de binaire data en send naar UNET_Service
+        /// </summary>
+        /// <param name="_receiveddata"></param>
+        public void Send2UNET(string _receiveddata)
+        {
+             if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            if (!_receiveddata.ToLower().Contains("frank"))
+            {   //Voeg voor iedere trainee-id een trainee object toe
+             //   string[] instructorids = tbxInstructorIDs.Text.Split(',');
+
+                List<Instructor> instructorlist = new List<Instructor>();
+                Instructor inst = new Instructor(Convert.ToInt16("1020"), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
+                inst.Exercises.Add(new Exercise(1, "Exercise 1"));
+                instructorlist.Add(inst);
+                service.SetInstructors(instructorlist.ToArray());
+            
+            }
+            else
+            {
+                //add existing radios to the exercise
+                //if (cbxAssignRadiosToExercise.Checked)
+                //{
+                //    for (int i = 1; i <= Convert.ToInt16(cbxRadios.Text); i++)
+                //    {
+                //        service.SetRadioAssignedStatus(Convert.ToInt16(instructorids[0]), 1, i, true);
+                //    }
+                //}
+            }
+
+        }
+        #endregion
     }
 
 
