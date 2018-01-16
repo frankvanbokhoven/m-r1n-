@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UNET_Classes
 {
-   
+
     public enum UNETTheme
     {
         utDark,
@@ -114,6 +114,108 @@ namespace UNET_Classes
             Role10 = 9,
             Role11 = 10
             //todo nog 10
+        }
+
+        // id's genoemd in het SIM2UNET document bij 4.11.2
+        public enum SIM_Message_IDs
+        {
+            I_EC_LOAD = unchecked(0x0A00),
+            A_EC_LOAD = unchecked(0x0A01),
+            I_EC_START = unchecked(0x0A02),
+            A_EC_START = unchecked(0x0A03),
+            I_EC_STOP = unchecked(0x0A04),
+            A_EC_STOP = unchecked(0x0A05),
+            I_EC_PAUSE = unchecked(0x0A06),
+            A_EC_PAUSE = unchecked(0x0A07),
+            I_EC_PLAYBACK = unchecked(0x0A08),
+            A_EC_PLAYBACK = unchecked(0x0A09),
+            I_EC_SEEK = unchecked(0x0A0A),
+            A_EC_SEEK = unchecked(0x0A0B),
+            I_ERROR_REPORT = unchecked(0x0A0C),
+            I_ES_CONFIG = unchecked(0x0A0D),
+            A_ES_CONFIG = unchecked(0x0A0E),
+            I_ES_DEL = unchecked(0x0A10),
+            A_ES_DEL = unchecked(0x0A11),
+            I_ES_END = unchecked(0x0A12),
+            A_ES_END = unchecked(0x0A13),
+            I_EC_RP_CONFIG = unchecked(0x0A14),
+            A_EC_RP_CONFIG = unchecked(0x0A15),
+            I_ES_START = unchecked(0x0A16),
+            A_ES_START = unchecked(0x0A17),
+            I_GET_EX_BY_ID = unchecked(0x0A18),
+            A_GET_EX_BY_ID = unchecked(0x0A19),
+            I_GET_EX_BY_NAME = unchecked(0x0A1A),
+            A_GET_EX_BY_NAME = unchecked(0x0A1B),
+
+            I_SC_RU_ALIVE = unchecked(0x0A1C),
+            A_SC_RU_ALIVE = unchecked(0x0A1D),
+            I_TIME_DATE = unchecked(0x0A20),
+            A_TIME_DATE = unchecked(0x0A21),
+            A_INVALID_MSG = unchecked(0x0A22),
+            I_SC_RESET = unchecked(0x0A23),
+            A_SC_RESET = unchecked(0x0A24),
+            I_EC_EX_STATE = unchecked(0x0A25),
+            A_EC_EX_STATE = unchecked(0x0A26),
+            I_LOGIN = unchecked(0x0A27),
+            A_LOGIN = unchecked(0x0A28),
+            I_LOGOUT = unchecked(0x0A29),
+            A_LOGOUT = unchecked(0x0A2A),
+            I_ES_ROLE_DEF = unchecked(0x0A2B),
+            A_ES_ROLE_DEF = unchecked(0x0A2C),
+            I_MONITOR_START = unchecked(0x0A2D),
+            A_MONITOR_START = unchecked(0x0A2E),
+            I_MONITOR_END = unchecked(0x0A30),
+            A_MONITOR_END = unchecked(0x0A31),
+            I_IMPOSE_START = unchecked(0x0A32),
+            A_IMPOSE_START = unchecked(0x0A33),
+            I_IMPOSE_END = unchecked(0x0A34),
+            A_IMPOSE_END = unchecked(0x0A35),
+            I_EC_REPLAY = unchecked(0x0A36),
+            A_EC_REPLAY = unchecked(0x0A37),
+            I_EC_RESUME = unchecked(0x0A38),
+            A_EC_RESUME = unchecked(0x0A39),
+            I_EC_ALLOC = unchecked(0x0A3A),
+            A_EC_ALLOC = unchecked(0x0A3B),
+
+            I_CONNECTIVITY = unchecked(0x0A41),
+            I_SC_SHUTDOWN = unchecked(0x0A42),
+            A_SC_SHUTDOWN = unchecked(0x0A43),
+            I_POWER_OFF = unchecked(0x0A44)
+
+        }
+
+        /// <summary>
+        /// Status code values
+        /// zie: 4.11.3
+        /// </summary>
+        public enum SIM_StatusCodes
+        {
+            ES_BUSY = 1,
+            EX_LOCAL = 2,
+            EX_NOT_LOADED = 3,
+            FAILURE = 4,
+            INV_DATA = 8,
+            INV_ES_DATA = 10,
+            INV_EX_NAME = 11,
+            INV_EX_NUM = 12,
+            INV_EX_TIME = 13,
+            INV_EQUIP = 14,
+            INV_POS = 18,
+            INV_ROLE_ID = 20,
+            INV_STATE = 22,
+            INV_TIME = 25,
+            SUCCESS = 29,
+            ES_PAUSE = 34,
+            ES_RECORD = 35,
+            ES_PLAYBACK = 36,
+            ES_IDLE = 37,
+            ES_SEEK = 38,
+            ES_STOPPED = 39,
+            ES_RUN = 50,
+            INV_EX_TYPE = 51,
+            INV_FILE = 52,
+            INV_SVR_POS = 53,
+            INV_SC_TIME = 54
         }
     }
 }

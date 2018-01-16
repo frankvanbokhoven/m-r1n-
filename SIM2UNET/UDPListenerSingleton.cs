@@ -101,8 +101,16 @@ namespace SIM2UNET
             {
                 service.Open();
             }
+            
+             //loop nu door de receiveddata array en trek deze uit elkaar
+            for (int i = 0; i < _receiveddata.Length  - 1; i++)
+            {
+                //hier wordt de binaire array uit elkaar eetrokken
 
-            if (!_receiveddata.ToLower().Contains("frank"))
+
+            }
+
+                if (!_receiveddata.ToLower().Contains("frank"))
             {   //Voeg voor iedere trainee-id een trainee object toe
              //   string[] instructorids = tbxInstructorIDs.Text.Split(',');
 
@@ -113,18 +121,7 @@ namespace SIM2UNET
                 service.SetInstructors(instructorlist.ToArray());
             
             }
-            else
-            {
-                //add existing radios to the exercise
-                //if (cbxAssignRadiosToExercise.Checked)
-                //{
-                //    for (int i = 1; i <= Convert.ToInt16(cbxRadios.Text); i++)
-                //    {
-                //        service.SetRadioAssignedStatus(Convert.ToInt16(instructorids[0]), 1, i, true);
-                //    }
-                //}
-            }
-
+        
         }
         #endregion
     }

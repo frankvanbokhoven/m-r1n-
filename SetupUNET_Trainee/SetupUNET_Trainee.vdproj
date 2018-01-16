@@ -1125,6 +1125,14 @@
                                     "ValueTypes" = "3:1"
                                     "Value" = "8:5"
                                     }
+                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_9AA235E6143B4A579DC663F60CB1448B"
+                                    {
+                                    "Name" = "8:loglevel"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:7"
+                                    }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_9E4CBC0DD6C449868351676E2F272D6A"
                                     {
                                     "Name" = "8:LeftVolume"
