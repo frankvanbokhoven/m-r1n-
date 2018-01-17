@@ -105,7 +105,7 @@ namespace SIM2UNET
              //loop nu door de receiveddata array en trek deze uit elkaar
             for (int i = 0; i < _receiveddata.Length  - 1; i++)
             {
-                //hier wordt de binaire array uit elkaar eetrokken
+                //hier wordt de binaire array uit elkaar getrokken
 
 
             }
