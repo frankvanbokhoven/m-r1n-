@@ -28,36 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnServiceRequest = new System.Windows.Forms.Button();
-            this.btnMainPage = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnServiceRequest
-            // 
-            this.btnServiceRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnServiceRequest.BackColor = System.Drawing.Color.Aqua;
-            this.btnServiceRequest.Location = new System.Drawing.Point(182, 823);
-            this.btnServiceRequest.Name = "btnServiceRequest";
-            this.btnServiceRequest.Size = new System.Drawing.Size(152, 53);
-            this.btnServiceRequest.TabIndex = 12;
-            this.btnServiceRequest.Text = "Service Request";
-            this.btnServiceRequest.UseVisualStyleBackColor = false;
-            this.btnServiceRequest.Click += new System.EventHandler(this.btnServiceRequest_Click);
-            // 
-            // btnMainPage
-            // 
-            this.btnMainPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
-            this.btnMainPage.Location = new System.Drawing.Point(24, 823);
-            this.btnMainPage.Name = "btnMainPage";
-            this.btnMainPage.Size = new System.Drawing.Size(152, 53);
-            this.btnMainPage.TabIndex = 11;
-            this.btnMainPage.Text = "Main Page";
-            this.btnMainPage.UseVisualStyleBackColor = false;
-            this.btnMainPage.Click += new System.EventHandler(this.btnMainPage_Click);
             // 
             // panel1
             // 
@@ -84,8 +58,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1298, 907);
-            this.Controls.Add(this.btnServiceRequest);
-            this.Controls.Add(this.btnMainPage);
             this.Controls.Add(this.panel1);
             this.Name = "FrmUNETbaseSub";
             this.Text = "FrmUNETbaseSub";
@@ -102,7 +74,5 @@
 
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnServiceRequest;
-        private System.Windows.Forms.Button btnMainPage;
     }
 }

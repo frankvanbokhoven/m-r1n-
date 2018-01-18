@@ -87,7 +87,7 @@ namespace SIM2UNET
     {
   
         /* Socket Handling */
-        struct sockaddr_in      serverAddr;
+        struct sockaddr_in serverAddr;
         SOCKET clientSocket;
 
         static int Search_ExNo = 0;
@@ -97,7 +97,7 @@ namespace SIM2UNET
         // Description: Creates a client socket for connection to VCS
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F5930180
-        void CCommsComponent::ConnectToVCS(void* pOwner)
+        public void ConnectToVCS(void pOwner)
         {
             int nConnection = -1;
             u_long BLOCKING = 0;
@@ -110,7 +110,7 @@ namespace SIM2UNET
 
             //struct linger  mylinger;
 
-            CCommsComponent* pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
             ASSERT(pCommsComp);
 
             /* Exit if connection already valid */
@@ -241,7 +241,7 @@ pCommsComp->TraceVcs("VCS Connected... Waiting for Download & Record/Replay PCs\
 ////////////////////////////////////////////////////////////////////////////////
 	
 //##ModelId=4119F59301C6
-eVcsLinkStatus_t CCommsComponent::DisconnectFromVCS()
+eVcsLinkStatus_t DisconnectFromVCS()
 {
     int nStatus;
 
@@ -265,7 +265,7 @@ eVcsLinkStatus_t CCommsComponent::DisconnectFromVCS()
 //							although this is unlikely to happen.
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59301E5
-int CCommsComponent::FindMsgToVCS()
+public int FindMsgToVCS()
 {
 
     int counter = 0;
@@ -372,7 +372,7 @@ int CCommsComponent::FindMsgToVCS()
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F593020D
-void CCommsComponent::SendMsgToVCS(const int VIC_ExNo, const QueuedMsg_t* pQMsg,  const int nThreadId)
+public void SendMsgToVCS(const int VIC_ExNo, const QueuedMsg_t* pQMsg,  const int nThreadId)
 {
 
     int nTxdBytes;
@@ -523,13 +523,13 @@ void CCommsComponent::SendMsgToVCS(const int VIC_ExNo, const QueuedMsg_t* pQMsg,
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F59302AD
-void CCommsComponent::HandleVCSOutput(void* pOwner)
+public void HandleVCSOutput(void pOwner)
 {
     int nBytesRead, nRemainingbytes, nRqdSize, nRxdBytes = 0;
     int VIC_ExNo;
     char szErrorMsg[50];
 
-    CCommsComponent* pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+    pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
     ASSERT(pCommsComp);
 
     vcsHeader_t* pMessageHdr = (vcsHeader_t*)malloc(sizeof(vcsHeader_t));
@@ -627,11 +627,11 @@ void CCommsComponent::HandleVCSOutput(void* pOwner)
 // Description: Removes transmitted message from appropriate queue
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F593037F
-void CCommsComponent::RemoveQueuedMessage(void* pOwner, const int VIC_ExNo)
+public void RemoveQueuedMessage(void pOwner, const int VIC_ExNo)
 {
-    QueuedMsg_t* pNextQueuedMsg;
+    QueuedMsg_t pNextQueuedMsg;
 
-    CCommsComponent* pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+    pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
     ASSERT(pCommsComp);
 
     if (VIC_ExNo == GEN_IDX)
@@ -714,7 +714,7 @@ void CCommsComponent::RemoveQueuedMessage(void* pOwner, const int VIC_ExNo)
 // Description: Returns 'true' if received message id is unexpected 
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59302E9
-bool CCommsComponent::UnknownMessage(const short rxdMessageId)
+public bool UnknownMessage(const short rxdMessageId)
 {
     bool bUnknownMsg;
 
@@ -772,7 +772,7 @@ bool CCommsComponent::UnknownMessage(const short rxdMessageId)
 //							returns an exercise number else it returns NO_EXERCISE. 
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5930325
-int CCommsComponent::ProcessReceivedMessage(const short rxdMessageId, char* pDataSegment, const short sDataSize)
+public int ProcessReceivedMessage(const short rxdMessageId, char* pDataSegment, const short sDataSize)
 {
     //bool bUnknownMsg;
     USHORT* pusStatus;
@@ -1786,7 +1786,7 @@ int CCommsComponent::ProcessReceivedMessage(const short rxdMessageId, char* pDat
 // Function   : SendVCSStatusReply
 // Description: Sends an appropriate response message back to the VCS
 ////////////////////////////////////////////////////////////////////////////////
-void CCommsComponent::SendVCSStatusReply(const USHORT MessageID, const USHORT MessageStatus)
+public void SendVCSStatusReply(const USHORT MessageID, const USHORT MessageStatus)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;
@@ -1836,7 +1836,7 @@ void CCommsComponent::SendVCSStatusReply(const USHORT MessageID, const USHORT Me
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940037
-void CCommsComponent::SendWOLMessage(const char* szMAC_ADDRESS)
+public void SendWOLMessage(const char* szMAC_ADDRESS)
 {
     char WOL_ADDRESS[] = "255.255.255.255";
     u_short WOL_PORT_NUMBER = 1026;
@@ -1882,7 +1882,7 @@ void CCommsComponent::SendWOLMessage(const char* szMAC_ADDRESS)
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940073
-bool CCommsComponent::CreateWOLMessage(unsigned char* cbuff, const char* szMAC)
+public bool CreateWOLMessage(unsigned char* cbuff, const char* szMAC)
 {
     int i, j;
     unsigned char macAddress[6];
@@ -1945,7 +1945,7 @@ bool CCommsComponent::CreateWOLMessage(unsigned char* cbuff, const char* szMAC)
 //							string (ErrorType = eNAME)
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59303CF
-char* CCommsComponent::GetVCSError(const short Reply, const short ErrorCode, const eErrorType ErrorType)
+public char GetVCSError(const short Reply, const short ErrorCode, const eErrorType ErrorType)
 {
     char szLocal[40] = "";
 
@@ -2257,7 +2257,7 @@ char* CCommsComponent::GetVCSError(const short Reply, const short ErrorCode, con
 // Description: Returns WSA Error code minus base offset
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59400CE
-int CCommsComponent::GetWSAError(int LastError)
+public int GetWSAError(int LastError)
 {
 
     LastError -= WSABASEERR;

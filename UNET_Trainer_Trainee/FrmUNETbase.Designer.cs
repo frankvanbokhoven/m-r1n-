@@ -38,7 +38,7 @@
             this.ClientSize = new System.Drawing.Size(1007, 682);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmUNETbase";
-            this.Text = "FrmUNETbase";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.FrmUNETbase_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmUNETbase_MouseDown);
             this.ResumeLayout(false);

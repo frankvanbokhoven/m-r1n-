@@ -76,7 +76,7 @@ namespace SIM2UNET
 {
    public class ExerciseManagement
     {
-    }
+    
   
 
 
@@ -166,7 +166,7 @@ namespace SIM2UNET
     // Description: Configures the IL Session within VIC
     ////////////////////////////////////////////////////////////////////////////////
     //##ModelId=4119F591023C
-    public void SetIlExercise(const int nMasterInstructor)
+    public void SetIlExercise( int nMasterInstructor)
     {
         int n, i, nTraineeIdx;
 
@@ -714,7 +714,7 @@ public bool DefineVcsExercise(const int VIC_ExNo)
     }
 
     /* Ensure null termination of data string when concatinating fixed length character arrays */
-    memset((void*)newMsg->MsgData, 0, sizeof(newMsg->MsgData));
+    memset((void)newMsg->MsgData, 0, sizeof(newMsg->MsgData));
 
     newMsg->MsgHeader.sID = (USHORT)I_ES_CONFIG;
     newMsg->MsgHeader.sReserved = 0;
@@ -901,7 +901,7 @@ pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
         strcat(newMsg->MsgData, "LOCATION [");
 
-pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
+pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
 
         memcpy(	(void*)pcData, 
@@ -913,7 +913,7 @@ pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
         strcat(newMsg->MsgData, szCloseBracketOpenBracket);
 
 
-pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
+pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
 
         memcpy(	(void*)pcData, 
@@ -936,7 +936,7 @@ pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
                 strcat(newMsg->MsgData, "RADIO_CHANNEL [");
 
-pcData = (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
+pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
 
                 memcpy(	(void*)pcData, 
@@ -1125,13 +1125,13 @@ newMsg->nMsgSize += strlen(newMsg->MsgData);
 //							exercise (or IL Session). 
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F591032C
-public bool LoadVcsExercise(const int VIC_ExNo)
+public bool LoadVcsExercise( int VIC_ExNo)
 {
-    QueuedMsg_t* newMsg;
+    QueuedMsg_t newMsg;
 
     char szTemp1[50];
     //char szTemp2[25];
-    short* psData;
+    short psData;
 
     if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
         return M_ERROR;
@@ -1193,30 +1193,12 @@ public bool LoadVcsExercise(const int VIC_ExNo)
                 memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize],
                                 (void*)m_pVcsExManage[VIC_ExNo].szRecordFileName,
                                 sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
-                memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
+                memcpy((void)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
                                 (void*)szTemp1,
                                 strlen(szTemp1));
             }
             else
-            {   /* create record file name as one not supplied 
-
-				sprintf(szTemp1, "NAME_NOT_SPECIFIED EX_");
-				
-				sprintf(szTemp2, "");	
-				AppendIntStr(szTemp2, VIC_ExNo, Pad_2);
-
-				strcat(szTemp1, szTemp2);
-				strcat(szTemp1, " ");
-
-				AppendCurrentTimeStr(szTemp1);
-
-				memset((void*) &newMsg->MsgData[newMsg->nMsgSize], 0, sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
-				memcpy(	(void*)&newMsg->MsgData[newMsg->nMsgSize], 
-								(void*)szTemp1, 
-								strlen(szTemp1));
-
-				sprintf(m_szTrace, "VCS Exercise %d NO FILENAME SPECIFIED - USING '%s'\n", VIC_ExNo, szTemp1);
-				*/
+            {  
                 memset((void*)&newMsg->MsgData[newMsg->nMsgSize], 0, sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
                 sprintf(m_szTrace, "VCS Exercise %d recording disabled\n", VIC_ExNo);
                 TraceVcs("");
@@ -1618,7 +1600,7 @@ public bool ResumeVcsExercise(const int VIC_ExNo)
 //							is controlled via SPARK unload command
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F591039A
-bool CCommsComponent::LoginVcsExercise(const int VIC_ExNo, const int VIC_RoleNo, const bool bSetReady)
+public bool LoginVcsExercise(const int VIC_ExNo, const int VIC_RoleNo, const bool bSetReady)
 {
 
     QueuedMsg_t* newMsg;
@@ -1673,7 +1655,7 @@ bool CCommsComponent::LoginVcsExercise(const int VIC_ExNo, const int VIC_RoleNo,
 //							out of a specific (logical) communication node.  
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920002
-bool CCommsComponent::LogoutVcsExercise(const int VIC_ExNo, const int VIC_RoleNo, const bool bSetReady)
+public bool LogoutVcsExercise(const int VIC_ExNo, const int VIC_RoleNo, const bool bSetReady)
 {
 
     QueuedMsg_t* newMsg;
@@ -1726,7 +1708,7 @@ bool CCommsComponent::LogoutVcsExercise(const int VIC_ExNo, const int VIC_RoleNo
 // Description: Creates a message for VCS Seek command
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920279
-bool CCommsComponent::SeekVcsExercise(const int VIC_ExNo)
+public bool SeekVcsExercise(const int VIC_ExNo)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;
@@ -1782,9 +1764,9 @@ bool CCommsComponent::SeekVcsExercise(const int VIC_ExNo)
 // Description: Creates a message for VCS which puts exercise into pause state
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59200CB
-bool CCommsComponent::PauseVcsExercise(const int VIC_ExNo)
+public bool PauseVcsExercise(const int VIC_ExNo)
 {
-    QueuedMsg_t* newMsg;
+    QueuedMsg_t newMsg;
     USHORT* psData;
 
     if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
@@ -1831,7 +1813,7 @@ bool CCommsComponent::PauseVcsExercise(const int VIC_ExNo)
 // Description: Creates a message for VCS which stops exercise.
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59200FD
-bool CCommsComponent::StopVcsExercise(const int VIC_ExNo)
+public bool StopVcsExercise(const int VIC_ExNo)
 {
     QueuedMsg_t* newMsg = NULL;
     USHORT* psData = NULL;
@@ -1881,7 +1863,7 @@ bool CCommsComponent::StopVcsExercise(const int VIC_ExNo)
 //							exercise resources
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920139
-bool CCommsComponent::DeleteVcsExercise(const int VIC_ExNo, const bool bForceStop)
+public bool DeleteVcsExercise(const int VIC_ExNo, const bool bForceStop)
 {
     QueuedMsg_t* newMsg = NULL;
     USHORT* psData = NULL;
@@ -1956,7 +1938,7 @@ bool CCommsComponent::DeleteVcsExercise(const int VIC_ExNo, const bool bForceSto
 //							At present recording is set for all or no trainee comms nodes.
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59201ED
-bool CCommsComponent::RecordReplayControl(const int VIC_ExNo, const int nNewReplayNodeIndex, const eRecordPosition eRP)
+public bool RecordReplayControl(const int VIC_ExNo, const int nNewReplayNodeIndex, const eRecordPosition eRP)
 {
     /* Define record/replay node information */
     int nLastUsedNodeIndex = 0;
@@ -2089,7 +2071,7 @@ bool CCommsComponent::RecordReplayControl(const int VIC_ExNo, const int nNewRepl
 //							(as appropriate).
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920247
-bool CCommsComponent::LoadRpConfig(const int VIC_ExNo)
+public bool LoadRpConfig(const int VIC_ExNo)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;
@@ -2196,7 +2178,7 @@ bool CCommsComponent::LoadRpConfig(const int VIC_ExNo)
 //							session
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920189
-bool CCommsComponent::LoginIlExercise(const short sRoleIdx)
+public bool LoginIlExercise(const short sRoleIdx)
 {
     QueuedMsg_t* newMsg;
     Login_t* pLoginMsg;
@@ -2247,10 +2229,10 @@ bool CCommsComponent::LoginIlExercise(const short sRoleIdx)
 //							session
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59201BB
-bool CCommsComponent::LogoutIlExercise(const short sRoleIdx)
+public bool LogoutIlExercise(const short sRoleIdx)
 {
-    QueuedMsg_t* newMsg;
-    Login_t* pLoginMsg;
+    QueuedMsg_t newMsg;
+    Login_t pLoginMsg;
 
     if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[IL_IDX].hQueueMutex, 2000))
         return M_ERROR;
@@ -2296,7 +2278,7 @@ bool CCommsComponent::LogoutIlExercise(const short sRoleIdx)
 // Description: Creates a message for VCS which controls instructor voice imposition
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59203BA
-bool CCommsComponent::SetImpositionControl(const msgVCSImpositionControl_t* pData)
+public bool SetImpositionControl(const msgVCSImpositionControl_t* pData)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;
@@ -2371,7 +2353,7 @@ bool CCommsComponent::SetImpositionControl(const msgVCSImpositionControl_t* pDat
 // Description: Creates and sends a message to control VCS Synchronisation
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F593000E
-void CCommsComponent::SendSynchronisation(const msgSyncTime_T* pData)
+public void SendSynchronisation(const msgSyncTime_T* pData)
 {
     QueuedMsg_t newMsg;
     char* szData;
@@ -2456,7 +2438,7 @@ newMsg.MsgHeader.usLength = strlen(szData) + 1;
 // Description: Creates and sends a message to request VCS shutdown
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F593004A
-void CCommsComponent::SendShutdownRequest()
+public void SendShutdownRequest()
 {
     QueuedMsg_t newMsg;
     int nTxdBytes;
@@ -2509,7 +2491,7 @@ void CCommsComponent::SendShutdownRequest()
 // Description: Creates a message to request VCS status
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5930068
-void CCommsComponent::SendStatusRequest()
+public void SendStatusRequest()
 {
     int nTxdBytes;
 	extern SOCKET clientSocket;
@@ -2553,7 +2535,7 @@ void CCommsComponent::SendStatusRequest()
 //							structure.  Also deletes all messages queued for this exercise.
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59202C9
-void CCommsComponent::ClearVcsExercise(const int VIC_ExNo)
+public void ClearVcsExercise(const int VIC_ExNo)
 {
     int n, i;
     QueuedMsg_t* pNextQueuedMsg;
@@ -2698,7 +2680,7 @@ void CCommsComponent::ClearVcsExercise(const int VIC_ExNo)
 //							message defining what transmitters (comms nodes) are 'connected'
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F59202FB
-bool CCommsComponent::SetTraineeConnectivity(const int VIC_ExNo, const long lParentDesk, const RefConnectivity_t* pCon)
+public bool SetTraineeConnectivity(const int VIC_ExNo, const long lParentDesk, const RefConnectivity_t* pCon)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;
@@ -2925,7 +2907,7 @@ bool CCommsComponent::SetTraineeConnectivity(const int VIC_ExNo, const long lPar
 //							every time a trainee vehicle changes mast state. 
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5920356
-bool CCommsComponent::SetInstructorConnectivity(const int VIC_ExNo, const eRadioBand eBand, const long lParentDesk, const MaskState_E eMastState)
+public bool SetInstructorConnectivity(const int VIC_ExNo, const eRadioBand eBand, const long lParentDesk, const MaskState_E eMastState)
 {
     QueuedMsg_t* newMsg;
     USHORT* psData;

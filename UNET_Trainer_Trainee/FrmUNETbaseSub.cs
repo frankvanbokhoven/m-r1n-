@@ -30,14 +30,6 @@ namespace UNET_Trainer_Trainee
             InitializeComponent();
         }
 
-        private void btnMainPage_Click(object sender, EventArgs e)
-        {
-            //  FrmUNETMain frm = new FrmUNETMain();
-            //      frm.Show();
-            // based on:  http://stackoverflow.com/questions/1403600/how-to-avoid-multiple-instances-of-windows-form-in-c-sharp
-            FrmUNETMain.GetForm.Show();
-            this.Close();
-        }
 
         private void btnServiceRequest_Click(object sender, EventArgs e)
         {
@@ -47,18 +39,14 @@ namespace UNET_Trainer_Trainee
 
         private void FrmUNETbaseSub_Resize(object sender, EventArgs e)
         {
-            SetPositions();
+     
         }
 
-        private void SetPositions()
-        {
-            btnMainPage.Top = this.Height - 93;
-            btnServiceRequest.Top = btnMainPage.Top;
-        }
+
 
         private void FrmUNETbaseSub_Shown(object sender, EventArgs e)
         {
-            SetPositions();
+     
         }
 
         private void FrmUNETbaseSub_Load(object sender, EventArgs e)

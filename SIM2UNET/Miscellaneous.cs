@@ -231,7 +231,7 @@ public void UpdateNodeStatus()
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F59402C2
-QueuedMsg_t* CCommsComponent::AddMessageToQueue(const int VIC_ExNo, const short sFunctionID)
+public QueuedMsg_t AddMessageToQueue(const int VIC_ExNo, const short sFunctionID)
 {
     QueuedMsg_t* newMsg, *lastMsg;
 
@@ -307,101 +307,13 @@ public void ClearMsgQueue(const int VIC_ExNo)
     return;
 }
 
-/*
-////////////////////////////////////////////////////////////////////////////////
-// Function   : ValidateMsgQueue
-// Description: Updates messages in queue that do not have valid vcs exercise number.
-////////////////////////////////////////////////////////////////////////////////	
-{
-	QueuedMsg_t		*pNextQueuedMsg;
-
-	if (NO_EXERCISE == VIC_ExNo)
-		return;	
-	
-	if (GEN_IDX == VIC_ExNo)
-		pNextQueuedMsg = m_tVcsGenManage.pMsgQueue;
-	else	
-		pNextQueuedMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue;
-
-	while (pNextQueuedMsg)
-	{	// Update VCS Exercise Reference
-		if (pNextQueuedMsg->MsgHeader.sReserved != 0)
-		{
-			//psData = (USHORT*) &pNextQueuedMsg->MsgData;
-			//*psData = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
-			*(USHORT*) &pNextQueuedMsg->MsgData = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
-			pNextQueuedMsg->MsgHeader.sReserved = 0;
-		}
-		pNextQueuedMsg = pNextQueuedMsg->pNextMsg;
-	}	
-	return;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Function   : RearrangeMsgQueue
-// Description: Moves messages in queue that do not have valid vcs exercise number to back of queue.
-////////////////////////////////////////////////////////////////////////////////	
-void CCommsComponent::RearrangeMsgQueue(const int VIC_ExNo)
-{
-	bool doit = true;
-
-	QueuedMsg_t *pLastCheckMsg, *pCurrentMsg, *pPrevMsg, *pEndMsg, *pTempMsg;
-
-	if (NO_EXERCISE == VIC_ExNo)
-		return;	
-	
-	pPrevMsg = NULL;
-
-	if (GEN_IDX == VIC_ExNo)
-		pPrevMsg = pCurrentMsg = pLastCheckMsg = m_tVcsGenManage.pMsgQueue;
-	else	
-		pPrevMsg = pCurrentMsg = pLastCheckMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue;
-
-	while (doit)
-	{
-		if (NULL == pLastCheckMsg->pNextMsg)
-			doit = false;
-		else
-			pLastCheckMsg = pLastCheckMsg->pNextMsg;
-	}
-
-	pEndMsg = pLastCheckMsg;
-
-	doit = true;
-
-	while (doit)
-	{
-		if (pCurrentMsg == pLastCheckMsg)
-			doit = false;
-
-		if (pCurrentMsg->MsgHeader.sReserved == 1)
-		{	// Put this message at end of queue 
-			pTempMsg = 	pCurrentMsg->pNextMsg;
-			pEndMsg->pNextMsg = pCurrentMsg;
-			pEndMsg = pCurrentMsg;
-			pEndMsg->pNextMsg = NULL;
-
-			// Set previous message's next message pointer 
-			pPrevMsg->pNextMsg = pTempMsg;
-			pCurrentMsg = pPrevMsg->pNextMsg;
-		}
-		else
-		{
-			pPrevMsg = pCurrentMsg;
-			pCurrentMsg = pCurrentMsg->pNextMsg;
-		}
-	}
-	return;
-}
-*/
-
 ////////////////////////////////////////////////////////////////////////////////
 // Function   : SendNextQueuedMessage
 // Description: Finds if there is another message for VCS awaiting transmission
 //							and if so sends it
 ////////////////////////////////////////////////////////////////////////////////
 //##ModelId=4119F5940344
-void CCommsComponent::SendNextQueuedMessage()
+public void SendNextQueuedMessage()
 {
     int VIC_ExNo;
 
@@ -426,7 +338,7 @@ void CCommsComponent::SendNextQueuedMessage()
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940236
-void CCommsComponent::AppendIntStr(char* szSource, int nValue, const int nPadding)
+public void AppendIntStr(char szSource, int nValue, const int nPadding)
 {
     int nThousands, nHundreds, nTens, nUnits;
     char szTemp[4];
@@ -471,7 +383,7 @@ void CCommsComponent::AppendIntStr(char* szSource, int nValue, const int nPaddin
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F59401BE
-void CCommsComponent::GetTimeStr(char* szTime, double dScenarioTime)
+public void GetTimeStr(char szTime, double dScenarioTime)
 {
     int nHours, nMins, nSecs, nMSecs;
 
@@ -502,7 +414,7 @@ void CCommsComponent::GetTimeStr(char* szTime, double dScenarioTime)
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940204
-void CCommsComponent::AppendCurrentTimeStr(char* szIn)
+public void AppendCurrentTimeStr(char szIn)
 {
 
     struct _timeb tExtTime;
@@ -539,7 +451,7 @@ tTime = gmtime(&tExtTime.time);
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940290
-short CCommsComponent::FindVcsExercise(const USHORT usVcsExerciseNo)
+public short FindVcsExercise(const USHORT usVcsExerciseNo)
 {
     int i;
 
@@ -563,7 +475,7 @@ short CCommsComponent::FindVcsExercise(const USHORT usVcsExerciseNo)
 //																			1 x Debrief 
 ////////////////////////////////////////////////////////////////////////////////
 
-void CCommsComponent::UpdateExerciseStatus(int VIC_ExNo, int nState, const char* szErrorInfo, short sLogicalNodeID, short sPhysicalNodeID)
+public void UpdateExerciseStatus(int VIC_ExNo, int nState, const char* szErrorInfo, short sLogicalNodeID, short sPhysicalNodeID)
 {
     int bUpdateStatus;
     int bEnableTransmit;
@@ -873,12 +785,12 @@ void CCommsComponent::UpdateExerciseStatus(int VIC_ExNo, int nState, const char*
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F594036D
-void __stdcall   CCommsComponent::CheckShutdownRequest(UINT uID, UINT uMsg, DWORD pOwner, DWORD dw1, DWORD dw2)
+public void __stdcall   CheckShutdownRequest(UINT uID, UINT uMsg, DWORD pOwner, DWORD dw1, DWORD dw2)
 {
 	static const char szStartupIni[] = "s:\\startup\\startupinfo.ini";
 char szCurrentCommand[100];
 
-CCommsComponent* pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+ pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
   ASSERT(pCommsComp);
 
     /* Get ini file detail */
@@ -903,7 +815,7 @@ CCommsComponent* pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5950011
-void CCommsComponent::TraceVcs(const char* pcTraceString)
+public void TraceVcs(const char* pcTraceString)
 {
 
     if (strcmp(pcTraceString, ""))

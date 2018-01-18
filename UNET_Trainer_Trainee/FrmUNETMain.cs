@@ -19,7 +19,7 @@ using PJSUA2Implementation.SIP;
 
 namespace UNET_Trainer_Trainee
 {
-    public partial class FrmUNETMain : Form //FrmUNETbase
+    public partial class FrmUNETMain : FrmUNETbase
     {
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();

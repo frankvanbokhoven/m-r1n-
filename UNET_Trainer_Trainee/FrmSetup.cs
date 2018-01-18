@@ -16,7 +16,7 @@ using log4net.Appender;
 
 namespace UNET_Trainer_Trainee
 {
-    public partial class FrmSetup : Form
+    public partial class FrmSetup : FrmUNETbaseSub
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
