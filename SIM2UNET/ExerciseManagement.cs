@@ -745,7 +745,7 @@ public bool DefineVcsExercise(const int VIC_ExNo)
                         sizeof(m_pVcsExManage[VIC_ExNo].Roles[nRoleID].szRoleName));
 
     strcat(newMsg->MsgData, szCloseBracketSpace);
-}
+    }
 
     strcat(newMsg->MsgData, szEndSpace);
 
