@@ -27,6 +27,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using UNET_Classes;
 //# include "stdafx.h"
 //# include "process.h"    
 //# include "ctype.h"
@@ -40,8 +42,8 @@ namespace SIM2UNET
     {
 
         /* Socket Handling */
-        public sockaddr_in serverAddr;
-        SOCKET clientSocket;
+        public string serverAddr;// sockaddr_in serverAddr;
+        public System.Net.Sockets.Socket clientSocket;
 
         static int Search_ExNo = 0;
 
@@ -50,483 +52,478 @@ namespace SIM2UNET
         // Description: Creates a client socket for connection to VCS
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F5930180
-//        public void ConnectToVCS(void pOwner)
-//        {
-//            int nConnection = -1;
-//            u_long BLOCKING = 0;
-//            u_long UNBLOCKING = 1;
+        //        public void ConnectToVCS(void pOwner)
+        //        {
+        //            int nConnection = -1;
+        //            u_long BLOCKING = 0;
+        //            u_long UNBLOCKING = 1;
 
-//            bool bSendError1 = true;
-//            bool bSendError2 = true;
+        //            bool bSendError1 = true;
+        //            bool bSendError2 = true;
 
-//            int i = 0, n = 0;
+        //            int i = 0, n = 0;
 
-//            //struct linger  mylinger;
+        //            //struct linger  mylinger;
 
-//            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
-//            ASSERT(pCommsComp);
+        //            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+        //            ASSERT(pCommsComp);
 
-//            /* Exit if connection already valid */
-//            if ((READY_CONNECT == pCommsComp->m_tVcsIfManage.eVCS_LinkState) || (BUSY_CONNECT == pCommsComp->m_tVcsIfManage.eVCS_LinkState))
-//                return;
+        //            /* Exit if connection already valid */
+        //            if ((READY_CONNECT == pCommsComp->m_tVcsIfManage.eVCS_LinkState) || (BUSY_CONNECT == pCommsComp->m_tVcsIfManage.eVCS_LinkState))
+        //                return;
 
-//            /* Prevent messages other that I_SC_RU_ALIVE being sent to VCS */
-//            pCommsComp->m_bVCS_Startup = true;
-//            pCommsComp->m_bResetComplete = false;
+        //            /* Prevent messages other that I_SC_RU_ALIVE being sent to VCS */
+        //            pCommsComp->m_bVCS_Startup = true;
+        //            pCommsComp->m_bResetComplete = false;
 
-//            /* Create a socket for VCS Interface */
-//            clientSocket = socket(AF_INET, SOCK_STREAM, 0); //TCP
-//            ioctlsocket(clientSocket, FIONBIO, &BLOCKING);          //can use unblocking with WSAAsyncSelect
+        //            /* Create a socket for VCS Interface */
+        //            clientSocket = socket(AF_INET, SOCK_STREAM, 0); //TCP
+        //            ioctlsocket(clientSocket, FIONBIO, &BLOCKING);          //can use unblocking with WSAAsyncSelect
 
-//            serverAddr.sin_family = AF_INET;
+        //            serverAddr.sin_family = AF_INET;
 
-//            /* Define server address */
-//            serverAddr.sin_addr.s_addr = inet_addr(pCommsComp->m_szSERVER_ADDRESS);
-//            serverAddr.sin_port = htons(pCommsComp->m_usSERVER_PORT_NUMBER);
+        //            /* Define server address */
+        //            serverAddr.sin_addr.s_addr = inet_addr(pCommsComp->m_szSERVER_ADDRESS);
+        //            serverAddr.sin_port = htons(pCommsComp->m_usSERVER_PORT_NUMBER);
 
-//            /* Loop until connection made */
-//            while (nConnection < 0)
-//            {
-//                if (INVALID_SOCKET != clientSocket)
-//                {
-//                    /* Use this code if not wanting default SO_DONTLINGER connection termination x/	
-//                    mylinger.l_onoff = 1;		//LINGER
-//                    mylinger.l_linger = 0;	//No time
+        //            /* Loop until connection made */
+        //            while (nConnection < 0)
+        //            {
+        //                if (INVALID_SOCKET != clientSocket)
+        //                {
+        //                    /* Use this code if not wanting default SO_DONTLINGER connection termination x/	
+        //                    mylinger.l_onoff = 1;		//LINGER
+        //                    mylinger.l_linger = 0;	//No time
 
-//                    if (setsockopt(clientSocket, SOL_SOCKET, SO_LINGER, (const char FAR *) &mylinger, sizeof(mylinger)))
-//                        pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
-//                    */
+        //                    if (setsockopt(clientSocket, SOL_SOCKET, SO_LINGER, (const char FAR *) &mylinger, sizeof(mylinger)))
+        //                        pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
+        //                    */
 
-//                    /* Attempt server connection (blocking) */
-//                    nConnection = connect(clientSocket, (struct sockaddr) &serverAddr, sizeof serverAddr);
-            
-//			if (nConnection< 0) 
-//			{
-//				if (bSendError1)
-//				{
-//					pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
+        //                    /* Attempt server connection (blocking) */
+        //                    nConnection = connect(clientSocket, (struct sockaddr) &serverAddr, sizeof serverAddr);
 
-//                    sprintf(pCommsComp->m_szTrace, "VCS Failed To Connect (WSAErrorCode %d)\n", pCommsComp->m_nErrorCode);
-//        pCommsComp->TraceVcs("");
-//        pCommsComp->SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Failed to connect to VCS.  Re-attempting Connection...");
-							
-//					if (!pCommsComp->m_bShutdownRequested)
-//						pCommsComp->m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
-					
-//					for (i=0; i<pCommsComp->m_sTotalExerciseCount; ++i)
-//					{
-//						pCommsComp->ClearVcsExercise(i);
-//        pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
-//    }
+        //			if (nConnection< 0) 
+        //			{
+        //				if (bSendError1)
+        //				{
+        //					pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
 
-//					for (i=DESK_OFFSET + 1; i<=DESK_OFFSET + MAX_NUM_NODES; ++i)
-//						pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "", 0, i);
+        //                    sprintf(pCommsComp->m_szTrace, "VCS Failed To Connect (WSAErrorCode %d)\n", pCommsComp->m_nErrorCode);
+        //        Console.WriteLine("");
+        //        pCommsComp->SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Failed to connect to VCS.  Re-attempting Connection...");
 
-//    bSendError1 = false;
-//				}
+        //					if (!pCommsComp->m_bShutdownRequested)
+        //						pCommsComp->m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
 
-//                Sleep(1000);
-//			}
-//			else
-//			{
-//				/* Create thread to handle incoming messages from VCS */
-//				pCommsComp->m_tVcsIfManage.eVCS_LinkState = BUSY_CONNECT;
+        //					for (i=0; i<pCommsComp->m_sTotalExerciseCount; ++i)
+        //					{
+        //						pCommsComp->ClearVcsExercise(i);
+        //        pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
+        //    }
 
-//                _beginthread(HandleVCSOutput, 0, pOwner);					
-//			}
-//		}
-//		else
-//		{
-//			if (bSendError2)
-//			{
-//				pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
+        //					for (i=DESK_OFFSET + 1; i<=DESK_OFFSET + MAX_NUM_NODES; ++i)
+        //						pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "", 0, i);
 
-//                sprintf(pCommsComp->m_szTrace, "VCS Failed To Connect (WSAErrorCode %d)\n", pCommsComp->m_nErrorCode);
-//pCommsComp->TraceVcs("");
-//pCommsComp->SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Failed to connect to VCS");
+        //    bSendError1 = false;
+        //				}
 
-//				if (!pCommsComp->m_bShutdownRequested)
-//					pCommsComp->m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
-				
-//				for (i=0; i<pCommsComp->m_sTotalExerciseCount; ++i)
-//				{
-//					pCommsComp->ClearVcsExercise(i);
-//pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
-//				}
+        //                Sleep(1000);
+        //			}
+        //			else
+        //			{
+        //				/* Create thread to handle incoming messages from VCS */
+        //				pCommsComp->m_tVcsIfManage.eVCS_LinkState = BUSY_CONNECT;
 
-//				for (i=DESK_OFFSET + 1; i<=DESK_OFFSET + MAX_NUM_NODES; ++i)
-//					pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "", 0, i);
+        //                _beginthread(HandleVCSOutput, 0, pOwner);					
+        //			}
+        //		}
+        //		else
+        //		{
+        //			if (bSendError2)
+        //			{
+        //				pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError ());
 
-//bSendError2 = false;
-//			}
+        //                sprintf(pCommsComp->m_szTrace, "VCS Failed To Connect (WSAErrorCode %d)\n", pCommsComp->m_nErrorCode);
+        //Console.WriteLine("");
+        //pCommsComp->SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Failed to connect to VCS");
 
-//            Sleep(1000);
-//		}
-//	}
+        //				if (!pCommsComp->m_bShutdownRequested)
+        //					pCommsComp->m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
 
-//	/* First message must be a status request */
-//	pCommsComp->SendStatusRequest();
+        //				for (i=0; i<pCommsComp->m_sTotalExerciseCount; ++i)
+        //				{
+        //					pCommsComp->ClearVcsExercise(i);
+        //pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
+        //				}
 
-//pCommsComp->TraceVcs("VCS Connected... Waiting for Download & Record/Replay PCs\n");
+        //				for (i=DESK_OFFSET + 1; i<=DESK_OFFSET + MAX_NUM_NODES; ++i)
+        //					pCommsComp->UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "", 0, i);
+
+        //bSendError2 = false;
+        //			}
+
+        //            Sleep(1000);
+        //		}
+        //	}
+
+        //	/* First message must be a status request */
+        //	pCommsComp->SendStatusRequest();
+
+        //Console.WriteLine("VCS Connected... Waiting for Download & Record/Replay PCs\n");
 
 
-//	return;
-//}
+        //	return;
+        //}
 
-////////////////////////////////////////////////////////////////////////////////
-// Function   : DisconnectFromVCS
-// Description: Disconnects from VCS by closing client socket
-////////////////////////////////////////////////////////////////////////////////
-	
-//##ModelId=4119F59301C6
-public eVcsLinkStatus_t DisconnectFromVCS()
-{
-    int nStatus;
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : DisconnectFromVCS
+        // Description: Disconnects from VCS by closing client socket
+        ////////////////////////////////////////////////////////////////////////////////
 
-    /* Close socket*/
-    //if (nStatus = shutdown(clientSocket, SD_SEND))				//Never returns
-    //		pCommsComp->m_nErrorCode = GetWSAError(WSAGetLastError ());
+        //##ModelId=4119F59301C6
+        public void DisconnectFromVCS()// eVcsLinkStatus_t DisconnectFromVCS()
+        {
+            int nStatus;
 
-    if (nStatus = closesocket(clientSocket))
-        m_nErrorCode = GetWSAError(WSAGetLastError());
+            /* Close socket*/
+            //if (nStatus = shutdown(clientSocket, SD_SEND))				//Never returns
+            //		pCommsComp->m_nErrorCode = GetWSAError(WSAGetLastError ());
 
-    WSACleanup();
-    TraceVcs("VCS Disconnected\n");
+            if (nStatus = closesocket(clientSocket))
+                m_nErrorCode = GetWSAError(WSAGetLastError());
 
-    return FAILED_CONNECT;
-}
+            WSACleanup();
+            Console.Write("VCS Disconnected\n");
 
-////////////////////////////////////////////////////////////////////////////////
-// Function   : FindMsgToVCS
-// Description: Finds a queued message awaiting transmission to VCS.  Uses a round
-//							robin approach to ensure no individual exercise hogs interface
-//							although this is unlikely to happen.
-////////////////////////////////////////////////////////////////////////////////
-//##ModelId=4119F59301E5
-public int FindMsgToVCS()
-{
+            return FAILED_CONNECT;
+        }
 
-    int counter = 0;
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : FindMsgToVCS
+        // Description: Finds a queued message awaiting transmission to VCS.  Uses a round
+        //							robin approach to ensure no individual exercise hogs interface
+        //							although this is unlikely to happen.
+        ////////////////////////////////////////////////////////////////////////////////
+        //##ModelId=4119F59301E5
+        public int FindMsgToVCS()
+        {
 
-    /* Check if currently sending an exercise definition 
-		 Do not send any messages from other exercise until ED phase complete
-		 as no VCS exercise id is supplied with associated status messages */
+            int counter = 0;
 
-    /* Check for non-exercise related messages */
-    if (m_tVcsGenManage.pMsgQueue)
-    {
-        if (MESSAGE_TRANSMITTED == m_tVcsGenManage.eMsgStatus)
+            /* Check if currently sending an exercise definition 
+                 Do not send any messages from other exercise until ED phase complete
+                 as no VCS exercise id is supplied with associated status messages */
+
+            /* Check for non-exercise related messages */
+            if (m_tVcsGenManage.pMsgQueue)
+            {
+                if (MESSAGE_TRANSMITTED == m_tVcsGenManage.eMsgStatus)
+                    return NO_EXERCISE;
+                else if (!m_tVcsGenManage.bStopAllExerciseProcessing)
+                    return GEN_IDX;
+            }
+
+            while (counter < m_sTotalExerciseCount)
+            {
+                /* Check for remaining messages in current exercise */
+                if (!m_pVcsExManage[Search_ExNo].bStopAllExerciseProcessing)
+                {
+                    if (MESSAGE_TRANSMITTED == m_pVcsExManage[Search_ExNo].eMsgStatus)
+                        return NO_EXERCISE;
+
+                    /* stop exercise */
+                    if ((IL_IDX != Search_ExNo) &&
+                            (m_pVcsExManage[Search_ExNo].eED_State == ED_DELETE) &&
+                            (m_pVcsExManage[Search_ExNo].eEC_State != EC_STOP))
+
+                    {
+                        /*	This means there were messages on queue other than stop & delete
+                                therefore delete queue and ensure stop/delete messages are sent 
+
+                                However, need to send logout messages in IL mode otherwise status
+                                is not updated correctly																					*/
+
+                        ClearMsgQueue(Search_ExNo);
+
+                        if (DeleteVcsExercise(Search_ExNo, WITH_STOP))
+                            UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);  //and continue search
+                        else
+                            return Search_ExNo;
+                    }
+
+                    /* find exercise definition waiting or in transit */
+                    if (m_pVcsExManage[Search_ExNo].eED_State == ED_WAITING)
+                    {
+                        //if ((m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY) &&
+                        //	  (m_pVcsExManage[Search_ExNo].pMsgQueue->MsgHeader.sReserved != 1))
+                        if (m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY)
+                            return Search_ExNo;
+                    }
+
+                    /* find pending exercise control message */
+                    if ((m_pVcsExManage[Search_ExNo].eED_State == ED_LOADED) &&
+                            ((m_pVcsExManage[Search_ExNo].eEC_State == EC_ALLOC_PENDING_LOAD) ||
+                             (m_pVcsExManage[Search_ExNo].eEC_State == EC_START_PENDING_ALLOC)))
+                    {
+                        if (AllocVcsExercise(Search_ExNo))
+                            UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);   //and continiue search
+                        else
+                        {
+                            if (m_pVcsExManage[Search_ExNo].eED_State != ED_DELETE)
+                                m_pVcsExManage[Search_ExNo].eED_State = ED_ALLOC;
+
+                            return Search_ExNo;
+                        }
+                    }
+
+                    if ((m_pVcsExManage[Search_ExNo].eED_State == ED_READY) &&
+                            (m_pVcsExManage[Search_ExNo].eEC_State == EC_START_PENDING_ALLOC))
+                    {
+                        if (StartVcsExercise(Search_ExNo))
+                            UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);   //and continue search
+                        else
+                        {
+                            if (Search_ExNo != IL_IDX)
+                                UpdateExerciseStatus(Search_ExNo, CScenarioComponent::STARTING);
+
+                            return Search_ExNo;
+                        }
+                    }
+
+                    /* Check for any other messages */
+                    //if ((m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY) &&	 
+                    //		(m_pVcsExManage[Search_ExNo].pMsgQueue->MsgHeader.sReserved != 1))
+                    if (m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY)
+                        return Search_ExNo;
+                }
+
+                Search_ExNo = (Search_ExNo == m_sTotalExerciseCount - 1) ? 0 : Search_ExNo + 1;
+                counter++;
+            }
+
+            m_tVcsIfManage.lMessageIndex = 0;
+
             return NO_EXERCISE;
-        else if (!m_tVcsGenManage.bStopAllExerciseProcessing)
-            return GEN_IDX;
-    }
-
-    while (counter < m_sTotalExerciseCount)
-    {
-        /* Check for remaining messages in current exercise */
-        if (!m_pVcsExManage[Search_ExNo].bStopAllExerciseProcessing)
-        {
-            if (MESSAGE_TRANSMITTED == m_pVcsExManage[Search_ExNo].eMsgStatus)
-                return NO_EXERCISE;
-
-            /* stop exercise */
-            if ((IL_IDX != Search_ExNo) &&
-                    (m_pVcsExManage[Search_ExNo].eED_State == ED_DELETE) &&
-                    (m_pVcsExManage[Search_ExNo].eEC_State != EC_STOP))
-
-            {
-                /*	This means there were messages on queue other than stop & delete
-						therefore delete queue and ensure stop/delete messages are sent 
-						
-						However, need to send logout messages in IL mode otherwise status
-						is not updated correctly																					*/
-
-                ClearMsgQueue(Search_ExNo);
-
-                if (DeleteVcsExercise(Search_ExNo, WITH_STOP))
-                    UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);  //and continue search
-                else
-                    return Search_ExNo;
-            }
-
-            /* find exercise definition waiting or in transit */
-            if (m_pVcsExManage[Search_ExNo].eED_State == ED_WAITING)
-            {
-                //if ((m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY) &&
-                //	  (m_pVcsExManage[Search_ExNo].pMsgQueue->MsgHeader.sReserved != 1))
-                if (m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY)
-                    return Search_ExNo;
-            }
-
-            /* find pending exercise control message */
-            if ((m_pVcsExManage[Search_ExNo].eED_State == ED_LOADED) &&
-                    ((m_pVcsExManage[Search_ExNo].eEC_State == EC_ALLOC_PENDING_LOAD) ||
-                     (m_pVcsExManage[Search_ExNo].eEC_State == EC_START_PENDING_ALLOC)))
-            {
-                if (AllocVcsExercise(Search_ExNo))
-                    UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);   //and continiue search
-                else
-                {
-                    if (m_pVcsExManage[Search_ExNo].eED_State != ED_DELETE)
-                        m_pVcsExManage[Search_ExNo].eED_State = ED_ALLOC;
-
-                    return Search_ExNo;
-                }
-            }
-
-            if ((m_pVcsExManage[Search_ExNo].eED_State == ED_READY) &&
-                    (m_pVcsExManage[Search_ExNo].eEC_State == EC_START_PENDING_ALLOC))
-            {
-                if (StartVcsExercise(Search_ExNo))
-                    UpdateExerciseStatus(Search_ExNo, CScenarioComponent::FAULT);   //and continue search
-                else
-                {
-                    if (Search_ExNo != IL_IDX)
-                        UpdateExerciseStatus(Search_ExNo, CScenarioComponent::STARTING);
-
-                    return Search_ExNo;
-                }
-            }
-
-            /* Check for any other messages */
-            //if ((m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY) &&	 
-            //		(m_pVcsExManage[Search_ExNo].pMsgQueue->MsgHeader.sReserved != 1))
-            if (m_pVcsExManage[Search_ExNo].eMsgStatus == MESSAGE_READY)
-                return Search_ExNo;
         }
 
-        Search_ExNo = (Search_ExNo == m_sTotalExerciseCount - 1) ? 0 : Search_ExNo + 1;
-        counter++;
-    }
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : SendMsgToVCS
+        // Description: Sends a queued message to the VCS via client socket
+        ////////////////////////////////////////////////////////////////////////////////
 
-    m_tVcsIfManage.lMessageIndex = 0;
+        //##ModelId=4119F593020D
+        public void SendMsgToVCS(int VIC_ExNo, QueuedMsg_t pQMsg, int nThreadId)
+        {
 
-    return NO_EXERCISE;
-}
+            int nTxdBytes;
 
-////////////////////////////////////////////////////////////////////////////////
-// Function   : SendMsgToVCS
-// Description: Sends a queued message to the VCS via client socket
-////////////////////////////////////////////////////////////////////////////////
+            /* Ignore request to send message when given up with exercise */
+            if ((VIC_ExNo != GEN_IDX) && (m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing))
+                return;
 
-//##ModelId=4119F593020D
-public void SendMsgToVCS(const int VIC_ExNo, const QueuedMsg_t* pQMsg,  const int nThreadId)
-{
-
-    int nTxdBytes;
-
-    /* Ignore request to send message when given up with exercise */
-    if ((VIC_ExNo != GEN_IDX) && (m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing))
-        return;
-
-    /* Don't send message if it does not have a valid VCS Exercise Number 
-	if (pQMsg->MsgHeader.sReserved != 0)
-		return;
-	*/
-
-    /* Verify that not about to corrupt active message handling scheme */
-    switch (nThreadId)
-    {
-        case eTHREAD_EXM:
-            if (m_tVcsIfManage.eVCS_LinkState != READY_CONNECT)
+            /* Verify that not about to corrupt active message handling scheme */
+            switch (nThreadId)
             {
-                SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Bad attempt to send data on network #1");
+                case eTHREAD_EXM:
+                    if (m_tVcsIfManage.eVCS_LinkState != READY_CONNECT)
+                    {
+                        SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Bad attempt to send data on network #1");
+                        return;
+                    }
+                    Search_ExNo = VIC_ExNo;
+                    m_tVcsIfManage.eVCS_LinkState = BUSY_CONNECT;
+                    break;
+
+                case eTHREAD_IFM:
+                    /* Connect state should normally be BUSY_CONNECT but can be BUSY_CONNECT when replying to VCS initiated messages */
+                    if ((m_tVcsIfManage.eVCS_LinkState != BUSY_CONNECT) &&
+                            (m_tVcsIfManage.eVCS_LinkState != READY_CONNECT))
+                    {
+                        SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Bad attempt to send data on network #2");
+                        return;
+                    }
+                    break;
+            }
+
+            /* Verify that exercise has message to send */
+            if (pQMsg == NULL)
+            {
+                //SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Message transmission to VCS requested but empty message queue");
+                m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
                 return;
             }
-            Search_ExNo = VIC_ExNo;
-            m_tVcsIfManage.eVCS_LinkState = BUSY_CONNECT;
-            break;
 
-        case eTHREAD_IFM:
-            /* Connect state should normally be BUSY_CONNECT but can be BUSY_CONNECT when replying to VCS initiated messages */
-            if ((m_tVcsIfManage.eVCS_LinkState != BUSY_CONNECT) &&
-                    (m_tVcsIfManage.eVCS_LinkState != READY_CONNECT))
+            if (VIC_ExNo == GEN_IDX)
             {
-                SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Bad attempt to send data on network #2");
+                if (m_tVcsGenManage.eMsgStatus < MESSAGE_READY)
+                {
+                    //SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Message transmission to VCS requested but no message ready to send");
+                    m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
+                    return;
+                }
+
+                m_tVcsIfManage.nTransmittedVICExerciseNo = GEN_IDX;
+            }
+            else
+            {
+                if (m_pVcsExManage[VIC_ExNo].eMsgStatus < MESSAGE_READY)
+                {
+                    SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Message transmission to VCS requested but no message ready to send");
+                    m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
+                    return;
+                }
+
+                m_tVcsIfManage.nTransmittedVICExerciseNo = VIC_ExNo;
+            }
+
+            /* Send message */
+            if (WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000) == WAIT_TIMEOUT)
+            {
+                UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::FAULT, "WAIT_TIMEOUT #1");
                 return;
             }
-            break;
-    }
-
-    /* Verify that exercise has message to send */
-    if (pQMsg == NULL)
-    {
-        //SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Message transmission to VCS requested but empty message queue");
-        m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
-        return;
-    }
-
-    if (VIC_ExNo == GEN_IDX)
-    {
-        if (m_tVcsGenManage.eMsgStatus < MESSAGE_READY)
-        {
-            //SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Message transmission to VCS requested but no message ready to send");
-            m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
-            return;
-        }
-
-        m_tVcsIfManage.nTransmittedVICExerciseNo = GEN_IDX;
-    }
-    else
-    {
-        if (m_pVcsExManage[VIC_ExNo].eMsgStatus < MESSAGE_READY)
-        {
-            SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Message transmission to VCS requested but no message ready to send");
-            m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
-            return;
-        }
-
-        m_tVcsIfManage.nTransmittedVICExerciseNo = VIC_ExNo;
-    }
-
-    /* Send message */
-    if (WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000) == WAIT_TIMEOUT)
-    {
-        UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::FAULT, "WAIT_TIMEOUT #1");
-        return;
-    }
 
 #if _VCS_INTERCHANGE_TRACE
 		sprintf(m_szTrace, GetVCSError(pQMsg->MsgHeader.sID, VIC_ExNo, eTX));
-		TraceVcs("");
+		Console.WriteLine("");
 #else
-    /* Detect Reset */
-    if (pQMsg->MsgHeader.sID == I_SC_RESET)
-        TraceVcs("VIC initiated VCS reset\n");
+            /* Detect Reset */
+            if (MsgHeader.sID == UNET_Classes.Enums.SIM_StatusCodes.I_SC_RESET)
+                Console.WriteLine("VIC initiated VCS reset\n");
 #endif
 
 #if _VCS_RAW_INTERCHANGE
 		TRACE("Message Sent %d\n", pQMsg->MsgHeader.sID);
 #endif
 
-    nTxdBytes = send(clientSocket, (char*)&pQMsg->MsgHeader, pQMsg->nMsgSize, 0);
+            nTxdBytes = send(clientSocket, (char*)&pQMsg->MsgHeader, pQMsg->nMsgSize, 0);
 
-    /* Check for successful send */
-    if (nTxdBytes < 0)
-    {
-        m_nErrorCode = GetWSAError(WSAGetLastError());
-        SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Failure to send message to VCS");
-        ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
-        return;
-    }
-
-    ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
-
-    /* Record message send */
-    m_tVcsIfManage.nTotalMessagesTxThisIteration++;
-    m_tVcsIfManage.lMessageIndex++;
-
-    if (VIC_ExNo == GEN_IDX)
-    {
-        if (m_tVcsGenManage.eMsgStatus == MESSAGE_READY)
-            m_tVcsGenManage.eMsgStatus = MESSAGE_TRANSMITTED;
-        else if (m_tVcsGenManage.eMsgStatus == MESSAGE_TRANSMITTED)
-            m_tVcsGenManage.eMsgStatus = MESSAGE_RETRANSMITTED;
-        else
-            SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Unknown message control status");
-
-        /* Remove message from queue if no reply expected */
-        if (m_tVcsGenManage.pMsgQueue->sMsgExpectedReply == A_NONE)
-        {
-            RemoveQueuedMessage(this, GEN_IDX);
-            SendNextQueuedMessage();
-        }
-    }
-    else
-    {
-        if (m_pVcsExManage[VIC_ExNo].eMsgStatus == MESSAGE_READY)
-            m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_TRANSMITTED;
-        else if (m_pVcsExManage[VIC_ExNo].eMsgStatus == MESSAGE_TRANSMITTED)
-            m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_RETRANSMITTED;
-        else
-            SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Unknown message control status");
-
-        /* Remove message from queue if no reply expected */
-        if (m_pVcsExManage[VIC_ExNo].pMsgQueue->sMsgExpectedReply == A_NONE)
-        {
-            RemoveQueuedMessage(this, VIC_ExNo);
-            SendNextQueuedMessage();
-        }
-    }
-
-    return;
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Function   : HandleVCSOutput
-// Description: Thread which handles messages transmitted by the VCS.  Uses blocking
-//							recv function 
-////////////////////////////////////////////////////////////////////////////////
-
-//##ModelId=4119F59302AD
-public void HandleVCSOutput(void pOwner)
-{
-    int nBytesRead, nRemainingbytes, nRqdSize, nRxdBytes = 0;
-    int VIC_ExNo;
-    char szErrorMsg[50];
-
-    pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
-    ASSERT(pCommsComp);
-
-    vcsHeader_t pMessageHdr = (vcsHeader_t*)malloc(sizeof(vcsHeader_t));
-    char pDataSegment = (char)malloc(RX_DATA_SEGMENT_SIZE);
-
-    while ((pCommsComp->m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) || ((pCommsComp->m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT)))
-    {
-        nRqdSize = sizeof(vcsHeader_t);
-        nRxdBytes = 0;
-
-        while (nRxdBytes != nRqdSize)
-        {
-            /* Read message header */
-            nRemainingbytes = nRqdSize - nRxdBytes;
-            nBytesRead = recv(clientSocket, (char*)pMessageHdr + nRqdSize - nRemainingbytes, nRemainingbytes, 0);
-            if (nBytesRead < 0)
-            {   //connection broken
-                pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError());
-                pCommsComp->DisconnectFromVCS();
-                pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOST_CONNECT;
+            /* Check for successful send */
+            if (nTxdBytes < 0)
+            {
+                m_nErrorCode = GetWSAError(WSAGetLastError());
+                SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Failure to send message to VCS");
+                ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
                 return;
             }
-            nRxdBytes += nBytesRead;
+
+            ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
+
+            /* Record message send */
+            m_tVcsIfManage.nTotalMessagesTxThisIteration++;
+            m_tVcsIfManage.lMessageIndex++;
+
+            if (VIC_ExNo == GEN_IDX)
+            {
+                if (m_tVcsGenManage.eMsgStatus == MESSAGE_READY)
+                    m_tVcsGenManage.eMsgStatus = MESSAGE_TRANSMITTED;
+                else if (m_tVcsGenManage.eMsgStatus == MESSAGE_TRANSMITTED)
+                    m_tVcsGenManage.eMsgStatus = MESSAGE_RETRANSMITTED;
+                else
+                    SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Unknown message control status");
+
+                /* Remove message from queue if no reply expected */
+                if (m_tVcsGenManage.pMsgQueue->sMsgExpectedReply == A_NONE)
+                {
+                    RemoveQueuedMessage(this, GEN_IDX);
+                    SendNextQueuedMessage();
+                }
+            }
+            else
+            {
+                if (m_pVcsExManage[VIC_ExNo].eMsgStatus == MESSAGE_READY)
+                    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_TRANSMITTED;
+                else if (m_pVcsExManage[VIC_ExNo].eMsgStatus == MESSAGE_TRANSMITTED)
+                    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_RETRANSMITTED;
+                else
+                    SendLoggerMessage(T_AMS_IFM, VIC_ExNo, "Unknown message control status");
+
+                /* Remove message from queue if no reply expected */
+                if (m_pVcsExManage[VIC_ExNo].pMsgQueue->sMsgExpectedReply == A_NONE)
+                {
+                    RemoveQueuedMessage(this, VIC_ExNo);
+                    SendNextQueuedMessage();
+                }
+            }
+
+            return;
         }
 
-        /* Check header content (ntohs conversion not required!)*/
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : HandleVCSOutput
+        // Description: Thread which handles messages transmitted by the VCS.  Uses blocking
+        //							recv function 
+        ////////////////////////////////////////////////////////////////////////////////
+
+        //##ModelId=4119F59302AD
+        public void HandleVCSOutput(object pOwner)
+        {
+            int nBytesRead, nRemainingbytes, nRqdSize, nRxdBytes = 0;
+            int VIC_ExNo;
+            char szErrorMsg[50];
+
+            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+            ASSERT(pCommsComp);
+
+            vcsHeader_t pMessageHdr = (vcsHeader_t*)malloc(sizeof(vcsHeader_t));
+            char pDataSegment = (char)malloc(RX_DATA_SEGMENT_SIZE);
+
+            while ((pCommsComp->m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) || ((pCommsComp->m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT)))
+            {
+                nRqdSize = sizeof(vcsHeader_t);
+                nRxdBytes = 0;
+
+                while (nRxdBytes != nRqdSize)
+                {
+                    /* Read message header */
+                    nRemainingbytes = nRqdSize - nRxdBytes;
+                    nBytesRead = recv(clientSocket, (char*)pMessageHdr + nRqdSize - nRemainingbytes, nRemainingbytes, 0);
+                    if (nBytesRead < 0)
+                    {   //connection broken
+                        pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError());
+                        pCommsComp->DisconnectFromVCS();
+                        pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOST_CONNECT;
+                        return;
+                    }
+                    nRxdBytes += nBytesRead;
+                }
+
+                /* Check header content (ntohs conversion not required!)*/
 #if _VCS_RAW_INTERCHANGE
 			TRACE("Message rxd %d size %d\n",pMessageHdr->sID, pMessageHdr->usLength);
 #endif
 
-        if (pMessageHdr->usLength > (RX_DATA_SEGMENT_SIZE + sizeof(vcsHeader_t)))
-        {
-            pCommsComp->DisconnectFromVCS();
-            pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOSTSYNC_CONNECT;
-        }
+                if (pMessageHdr->usLength > (RX_DATA_SEGMENT_SIZE + sizeof(vcsHeader_t)))
+                {
+                    pCommsComp->DisconnectFromVCS();
+                    pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOSTSYNC_CONNECT;
+                }
 
-        nRqdSize = (int)pMessageHdr->usLength;
-        nRxdBytes = 0;
+                nRqdSize = (int)pMessageHdr->usLength;
+                nRxdBytes = 0;
 
-        /* Read message data */
-        while (nRxdBytes != nRqdSize)
-        {
-            nRemainingbytes = nRqdSize - nRxdBytes;
-            nBytesRead = recv(clientSocket, pDataSegment + nRqdSize - nRemainingbytes, nRemainingbytes, 0);
-            if (nBytesRead < 0)
-            {   //connection broken
-                pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError());
-                pCommsComp->DisconnectFromVCS();
-                pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOST_CONNECT;
-                return;
-            }
-            nRxdBytes += nBytesRead;
-        }
+                /* Read message data */
+                while (nRxdBytes != nRqdSize)
+                {
+                    nRemainingbytes = nRqdSize - nRxdBytes;
+                    nBytesRead = recv(clientSocket, pDataSegment + nRqdSize - nRemainingbytes, nRemainingbytes, 0);
+                    if (nBytesRead < 0)
+                    {   //connection broken
+                        pCommsComp->m_nErrorCode = pCommsComp->GetWSAError(WSAGetLastError());
+                        pCommsComp->DisconnectFromVCS();
+                        pCommsComp->m_tVcsIfManage.eVCS_LinkState = LOST_CONNECT;
+                        return;
+                    }
+                    nRxdBytes += nBytesRead;
+                }
 
 #if _VCS_INTERCHANGE_TRACE
 			if ((pMessageHdr->sID != A_SC_RU_ALIVE) && (pMessageHdr->sID != A_TIME_DATE))
 			{
 				sprintf(pCommsComp->m_szTrace, pCommsComp->GetVCSError(pMessageHdr->sID, 0, eRX));
-				pCommsComp->TraceVcs("");
+				Console.WriteLine("");
 			}
 #endif
 
@@ -534,682 +531,682 @@ public void HandleVCSOutput(void pOwner)
 			if ((pMessageHdr->sID == A_SC_RU_ALIVE) || (pMessageHdr->sID == A_TIME_DATE))
 			{
 				sprintf(m_szTrace, pCommsComp->GetVCSError(pMessageHdr->sID, 0, eRX));
-				TraceVcs("");
+				Console.WriteLine("");
 			}
 #endif
 
-        if (pCommsComp->UnknownMessage(pMessageHdr->sID))
-        {
-            sprintf(szErrorMsg, "Unknown message received from VCS %d, size %d", pMessageHdr->sID, pMessageHdr->usLength);
-            pCommsComp->SendLoggerMessage(T_AMS_IFM, VIC_ExNo, szErrorMsg);
-            pCommsComp->SendNextQueuedMessage();
-        }
+                if (pCommsComp->UnknownMessage(pMessageHdr->sID))
+                {
+                    sprintf(szErrorMsg, "Unknown message received from VCS %d, size %d", pMessageHdr->sID, pMessageHdr->usLength);
+                    pCommsComp->SendLoggerMessage(T_AMS_IFM, VIC_ExNo, szErrorMsg);
+                    pCommsComp->SendNextQueuedMessage();
+                }
 
-        /* Interpret input message */
-        else if ((VIC_ExNo = pCommsComp->ProcessReceivedMessage(pMessageHdr->sID, pDataSegment, pMessageHdr->usLength)) != NO_EXERCISE)
-        {
-            /* Correct message reply received - (i.e. no retransmit of previous message) */
-            RemoveQueuedMessage(pCommsComp, VIC_ExNo);
-            pCommsComp->SendNextQueuedMessage();
-        }
-    }
-
-    /* Connection lost - tidy up (non-network) */
-    free(pMessageHdr);
-    free(pDataSegment);
-
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Function   : RemoveQueuedMessage
-// Description: Removes transmitted message from appropriate queue
-////////////////////////////////////////////////////////////////////////////////
-//##ModelId=4119F593037F
-public void RemoveQueuedMessage(void pOwner, int VIC_ExNo)
-{
-    QueuedMsg_t pNextQueuedMsg;
-
-    pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
-    ASSERT(pCommsComp);
-
-    if (VIC_ExNo == GEN_IDX)
-    {
-        if (pCommsComp->m_tVcsGenManage.nMsgCnt == 0)
-        {
-#if _VIC_CMND_STATUS_TRACE
-				pCommsComp->TraceVcs("VCS (IL) Cannot remove queued item as queue size is zero\n");	
-#endif
-        }
-        else
-        {
-            /* Wait for unbusy exercise structure then remove associated output message */
-            if (WaitForSingleObject(pCommsComp->m_tVcsGenManage.hQueueMutex, 2000) == WAIT_TIMEOUT)
-            {
-                pCommsComp->UpdateExerciseStatus(GEN_IDX, CScenarioComponent::FAULT, "WAIT_TIMEOUT #2");
-                return;
+                /* Interpret input message */
+                else if ((VIC_ExNo = pCommsComp->ProcessReceivedMessage(pMessageHdr->sID, pDataSegment, pMessageHdr->usLength)) != NO_EXERCISE)
+                {
+                    /* Correct message reply received - (i.e. no retransmit of previous message) */
+                    RemoveQueuedMessage(pCommsComp, VIC_ExNo);
+                    pCommsComp->SendNextQueuedMessage();
+                }
             }
 
-            /* Remove queued message */
-            pNextQueuedMsg = pCommsComp->m_tVcsGenManage.pMsgQueue->pNextMsg;
-            free(pCommsComp->m_tVcsGenManage.pMsgQueue);
-            pCommsComp->m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
-            if (--pCommsComp->m_tVcsGenManage.nMsgCnt <= 0)
+            /* Connection lost - tidy up (non-network) */
+            free(pMessageHdr);
+            free(pDataSegment);
+
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Function   : RemoveQueuedMessage
+        // Description: Removes transmitted message from appropriate queue
+        ////////////////////////////////////////////////////////////////////////////////
+        //##ModelId=4119F593037F
+        public void RemoveQueuedMessage(object pOwner, int VIC_ExNo)
+        {
+            QueuedMsg_t pNextQueuedMsg;
+
+            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+            ASSERT(pCommsComp);
+
+            if (VIC_ExNo == GEN_IDX)
             {
-                pCommsComp->m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
-                if (pCommsComp->m_tVcsGenManage.nMsgCnt < 0)
+                if (pCommsComp->m_tVcsGenManage.nMsgCnt == 0)
                 {
-                    pCommsComp->m_tVcsGenManage.nMsgCnt = 0;
-                    pCommsComp->SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Bad message free");
+#if _VIC_CMND_STATUS_TRACE
+				Console.WriteLine("VCS (IL) Cannot remove queued item as queue size is zero\n");	
+#endif
+                }
+                else
+                {
+                    /* Wait for unbusy exercise structure then remove associated output message */
+                    if (WaitForSingleObject(pCommsComp->m_tVcsGenManage.hQueueMutex, 2000) == WAIT_TIMEOUT)
+                    {
+                        pCommsComp->UpdateExerciseStatus(GEN_IDX, CScenarioComponent::FAULT, "WAIT_TIMEOUT #2");
+                        return;
+                    }
+
+                    /* Remove queued message */
+                    pNextQueuedMsg = pCommsComp->m_tVcsGenManage.pMsgQueue->pNextMsg;
+                    free(pCommsComp->m_tVcsGenManage.pMsgQueue);
+                    pCommsComp->m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
+                    if (--pCommsComp->m_tVcsGenManage.nMsgCnt <= 0)
+                    {
+                        pCommsComp->m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
+                        if (pCommsComp->m_tVcsGenManage.nMsgCnt < 0)
+                        {
+                            pCommsComp->m_tVcsGenManage.nMsgCnt = 0;
+                            pCommsComp->SendLoggerMessage(T_AMS_IFM, GEN_IDX, "Bad message free");
+                        }
+                    }
+                    else
+                        pCommsComp->m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
+
+                    ReleaseMutex(pCommsComp->m_tVcsGenManage.hQueueMutex);
                 }
             }
             else
-                pCommsComp->m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
-
-            ReleaseMutex(pCommsComp->m_tVcsGenManage.hQueueMutex);
-        }
-    }
-    else
-    {
-        if (pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt == 0)
-        {
+            {
+                if (pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt == 0)
+                {
 #if _VIC_CMND_STATUS_TRACE
 				sprintf(pCommsComp->m_szTrace, "VCS (Ex %d) Cannot remove queued item as queue size is zero\n", VIC_ExNo);
-				pCommsComp->TraceVcs("");
+				Console.WriteLine("");
 #endif
-        }
-        else
-        {
-            /* Wait for unbusy exercise structure then remove associated output message */
-            if (WaitForSingleObject(pCommsComp->m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000) == WAIT_TIMEOUT)
-            {
-                pCommsComp->UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::FAULT, "WAIT_TIMEOUT #3");
-                return;
-            }
-
-            /* Remove queued message */
-            pNextQueuedMsg = pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue->pNextMsg;
-            free(pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue);
-            pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue = pNextQueuedMsg;
-            pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt--;
-            if (pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt == 0)
-                pCommsComp->m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_IDLE;
-            else
-                pCommsComp->m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
-
-            ReleaseMutex(pCommsComp->m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        }
-    }
-
-    /* Update interface control structure to show no output message */
-    pCommsComp->m_tVcsIfManage.nTransmittedVICExerciseNo = NO_EXERCISE;
-    //pCommsComp->m_tVcsIfManage.lMessageIndex = 0;
-
-    return;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Function   : UnknownMessage
-// Description: Returns 'true' if received message id is unexpected 
-////////////////////////////////////////////////////////////////////////////////
-//##ModelId=4119F59302E9
-public bool UnknownMessage(short rxdMessageId)
-{
-    bool bUnknownMsg;
-
-    switch (rxdMessageId)
-    {
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_LOAD:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_SEEK:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_ERROR_REPORT:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_CONFIG:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_END:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RU_ALIVE:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_TIME_DATE:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_INVALID_MSG:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGOUT:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_ROLE_DEF:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_MONITOR_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_MONITOR_END:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_IMPOSE_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_IMPOSE_END:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_REPLAY:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_ALLOC:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_SHUTDOWN:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_POWER_OFF:
-
-            bUnknownMsg = false;
-            break;
-
-        default:
-            /* 
-			Unused replies:-	A_GET_EX_BY_ID:		
-												A_GET_EX_BY_NAME:
-												A_EC_EX_STATE:
-			*/
-
-            bUnknownMsg = true;
-            break;
-    }
-    return bUnknownMsg;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Function   : ProcessReceivedMessage
-// Description: Performs the necessary actions in response to a message from VCS
-//							If a message is to be removed from an exercise queue this member 
-//							returns an exercise number else it returns NO_EXERCISE. 
-////////////////////////////////////////////////////////////////////////////////
-//##ModelId=4119F5930325
-public int ProcessReceivedMessage(const short rxdMessageId, char* pDataSegment, const short sDataSize)
-{
-    //bool bUnknownMsg;
-    USHORT pusStatus;
-    USHORT usStatus;
-    USHORT usVcsExerciseNo;
-
-    bool bGoodVcsControlStatus = false;
-    bool bGoodVcsNodeStatus = false;
-
-    short sAMSExerciseNo;
-
-    //int nQueueRemovalEnable = 1;
-    int n, i, offset;
-    int nRoleIdx;
-    int nExRef;
-
-    char szErrorString[128];
-    char szTemp1[100];
-    char szTemp2[100];
-
-    msgVCSMonitor_t pMonPDU;
-    Login_t pLoginReply;
-
-    bool bFoundTrainNode, bFoundInstrNode;
-    bool bKnownUnsolicitedMessage = false;
-
-    pusStatus = (USHORT*)pDataSegment;
-
-
-    /* Check for reply to synchronisation message which is never queued */
-    if (rxdMessageId == A_TIME_DATE)
-    {
-        usStatus = *pusStatus;
-
-        if (usStatus != VCS_SUCCESS)    //INV_DATE, INV_TIME
-            SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported failure to synchronise");
-
-        return NO_EXERCISE;
-    }
-
-    /* Check for reply to status request message which is never queued */
-    if (rxdMessageId == A_SC_RU_ALIVE)
-    {
-        m_tVcsIfManage.msgRU_ALIVE.MsgData[WD_RUALIVE_NOREPLY] = 0;
-        m_bInhibitStatusResponseError = false;
-
-        if (DetectStatusChange(pDataSegment, &bGoodVcsControlStatus, &bGoodVcsNodeStatus))
-        {
-            /* Send Message to Sys Admin */
-            TraceVcs("VCS Status Change\n");
-        }
-
-        /* If node has powerered up then logon appropropriate roles */
-        UpdateNodeStatus();
-
-        /* Enable transfer of reset message and other exercise data */
-        if (m_bVCS_Startup &&
-                    (m_tSystemStatus.cSystemPC == 0x03) &&
-                    (m_tSystemStatus.cDownloadPC == 0x01) &&
-                    (m_tSystemStatus.cRecordReplayPC & 0x1))
-        {
-            m_bVCS_Startup = false;
-
-            if (bGoodVcsControlStatus)
-                TraceVcs("VCS Download & Record/Replay PCs Ready (Archive PC available)\n");
-            else
-                TraceVcs("VCS Download & Record/Replay PCs Ready (Archive PC not available)\n");
-
-            SendNextQueuedMessage();
-        }
-        else if (m_bVCS_Startup &&
-                    (m_tSystemStatus.cSystemPC == 0x3) &&
-                    (m_tSystemStatus.cDownloadPC == 0x1))
-        {
-            TraceVcs("Waiting for Record/Replay PC\n");
-        }
-
-
-        /* If all VCS control PCs ok then send good status else send bad Comms PC status */
-        if (bGoodVcsControlStatus && !m_bVCS_Startup)
-            m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_NO_FAULT;
-        else
-            m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
-
-        //m_pSystem->SetSystemState(m_tVcsIfManage.bVcsControlPcStatus, 0, 0);
-
-        /* Check individual node status and send status message to Session manager if required */
-        for (n = 0; n <= m_sTotalNumRoles; n++)
-        {
-            /* get session manager status node index */
-            if (n == m_sTotalNumRoles)
-                offset = n;                                                         //Debrief
-            else if (n > m_sTotalNumTrainees - 1)
-                offset = n - m_sTotalNumTrainees;               //Instructor
-            else
-                offset = n + m_sTotalNumInstructors;        //Trainee		
-
-            if (m_tSystemStatus.cCommsNode[n] & 0x1)
-            {
-                /* Use RUNNING_BACKWARDS to run specific code setting UNINITIALISED within UpdateExerciseStatus function */
-                if ((BYTE)CScenarioComponent::NON_OPERATIONAL == m_tVcsIfManage.cVcsNodeStatus[offset])
-                    UpdateExerciseStatus(0, CScenarioComponent::RUNNING_BACKWARDS, "No_Transmit", 0, n + DESK_OFFSET + 1);
-            }
-            else
-                UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
-        }
-
-        UpdateExerciseStatus(0, 0, "No_Status_Update");
-
-        return NO_EXERCISE;
-    }
-
-    /* Check for reply to shutdown message which is never queued */
-    if (rxdMessageId == A_SC_SHUTDOWN)
-    {
-        usStatus = *pusStatus;
-
-        if (usStatus != VCS_SUCCESS)    //FAILURE
-            SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported failure to shutdown");
-        else
-            TraceVcs("VCS Shutdown Request Acknowledged\n");
-
-        return NO_EXERCISE;
-    }
-
-    if (rxdMessageId == I_POWER_OFF)
-    {
-
-        ClearVcsExercise(NO_EXERCISE);
-
-        for (i = 0; i < m_sTotalExerciseCount; ++i)
-        {
-            ClearVcsExercise(i);
-            UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, i + DESK_OFFSET + 1);
-        }
-
-        for (i = DESK_OFFSET + 1; i <= DESK_OFFSET + MAX_NUM_NODES; ++i)
-            UpdateExerciseStatus(0, CScenarioComponent::POWERED_ON, "", 0, i);
-
-        SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported shutdown complete");
-        TraceVcs("VCS Shutdown Complete\n");
-        return NO_EXERCISE;
-    }
-
-    /* Check for unsolicited incoming message */
-    if ((rxdMessageId == I_ERROR_REPORT) ||
-            (rxdMessageId == I_MONITOR_START) ||
-            (rxdMessageId == I_MONITOR_END) ||
-            (rxdMessageId == A_EC_SEEK))
-        bKnownUnsolicitedMessage = true;
-
-    /* If not unsolicited incoming message then verify this is an expected reply */
-    if (!bKnownUnsolicitedMessage &&
-            (m_tVcsIfManage.nTransmittedVICExerciseNo != NO_EXERCISE))
-
-    {   /* Should have received a reply associated with transmitted message - verify reply is as expected */
-        if (m_tVcsIfManage.nTransmittedVICExerciseNo == GEN_IDX)
-        {
-            if (m_tVcsGenManage.pMsgQueue == NULL)
-            {
-                strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
-                sprintf(m_szVCSError, "Unexpected msg rxd - no reply expected (EXERCISE: GEN_IDX, Msg: %s)",
-                    szTemp1);
-
-                SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
-                return NO_EXERCISE;
-            }
-            else if (rxdMessageId != m_tVcsGenManage.pMsgQueue->sMsgExpectedReply)
-            {
-                strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eNAME));
-                strcpy(szTemp2, GetVCSError(m_tVcsGenManage.pMsgQueue->sMsgExpectedReply, AMS_NO_ERROR, eNAME));
-                sprintf(m_szVCSError, "Unexpected msg rxd - reply %s expected (EXERCISE: GEN_IDX Msg: %s)",
-                    szTemp1,
-                    szTemp2);
-
-                SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
-                return GEN_IDX;
-            }
-
-        }
-        else
-        {
-            if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue == NULL)
-            {
-                strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
-                sprintf(m_szVCSError, "Unexpected msg rxd - no reply expected (EXERCISE: %d, Msg: %s)",
-                    m_tVcsIfManage.nTransmittedVICExerciseNo,
-                    szTemp1);
-
-                SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
-                return NO_EXERCISE;
-            }
-            else if (rxdMessageId != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply)
-            {
-                strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
-                strcpy(szTemp2, GetVCSError(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply, AMS_NO_ERROR, eERROR));
-                sprintf(m_szVCSError, "Unexpected msg rxd -  reply %s expected (EXERCISE: %d Msg: %s)",
-                    szTemp1,
-                    m_tVcsIfManage.nTransmittedVICExerciseNo,
-                    szTemp2);
-
-                SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
-                return m_tVcsIfManage.nTransmittedVICExerciseNo;
-            }
-        }
-    }
-
-    /* Prevent recognised (but unsolicited) messages from crashing system */
-    //if (m_tVcsIfManage.nTransmittedVICExerciseNo == NO_EXERCISE)
-    //	nQueueRemovalEnable= -1;
-
-    switch (rxdMessageId)
-    {
-        /************ Exercise Definition *************/
-
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_CONFIG:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_ROLE_DEF:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_END:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
-
-            usStatus = *pusStatus;                              //ntohs(*(USHORT*) pDataSegment);
-
-            switch (usStatus)
-            {
-                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.VCS_SUCCESS:
-
-                    switch (rxdMessageId)
-                    {
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
-                            m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eEC_State = EC_NULL;
-
-                            /* Check if there is an exercise waiting to be loaded */
-                            if (REPLAY_IDX == m_tVcsIfManage.nTransmittedVICExerciseNo)
-                                nExRef = m_sAmsReplayExerciseNumber;
-                            else
-                                nExRef = m_tVcsIfManage.nTransmittedVICExerciseNo;
-
-                            ClearVcsExercise(m_tVcsIfManage.nTransmittedVICExerciseNo); //also frees unsent messages and sends status message
-
-                            if ((nExRef > IL_IDX) &&
-                                    (NULL != m_SttExSpecification[nExRef]))
-                            {
-                                ProcessMessage((void*)m_SttExSpecification[nExRef], sizeof(msgVCSCommunicationSTTConfirmation_t));
-                                delete m_SttExSpecification[nExRef];
-                                m_SttExSpecification[nExRef] = NULL;
-                            }
-
-                            SendNextQueuedMessage();
-                            return NO_EXERCISE;
-
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
-                            TraceVcs("VCS Reset Completed\n");
-
-                            /* Initialise exercise & non-exercise management structures */
-                            m_bResetComplete = true;
-
-                            if (m_bExternalReset)
-                            {
-                                m_bExternalReset = false;
-
-                                ClearVcsExercise(NO_EXERCISE);
-
-                                for (i = 0; i < m_sTotalExerciseCount; ++i)
-                                {
-                                    ClearVcsExercise(i);
-                                }
-
-                                return NO_EXERCISE;
-                            }
-                            break;
-
-                        default:
-                            break;
-                    }
-                    break;
-
-                default:    //A_ES_START		-		FAILURE, INV_EX_NAME, ES_BUSY, UNDEFINED
-                            //A_ES_CONFIG		-		FAILURE, INV_STATE, INV_ES_DATA
-                            //A_ES_ROLE_DEF -		FAILURE
-                            //A_ES_END			-		FAILURE, INV_STATE
-                            //A_ES_DEL			-		FAILURE, INV_EX_NAME, ES_BUSY
-                            //A_SC_RESET		-		FAILURE
-
-                    //Note ES_BUSY means that exercise specification is in use therefore cannot be deleted or 
-                    //exercise has started and cannot be restarted.
-                    switch (rxdMessageId)
-                    {
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
-                            if (usStatus == VCS_INV_EX_NAME)    //Exercise has already been deleted
-                                ClearVcsExercise(m_tVcsIfManage.nTransmittedVICExerciseNo);
-                            else
-                                UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                            break;
-
-                        default:
-                            UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                            break;
-                    }
-                    break;
-            }
-
-            return m_tVcsIfManage.nTransmittedVICExerciseNo;
-            break;
-
-        /************ Exercise Load *************/
-
-        case A_EC_LOAD:
-        case A_EC_REPLAY:
-
-            usVcsExerciseNo = *pusStatus++;
-            usStatus = *pusStatus;
-
-            switch (usStatus)
-            {
-
-                case VCS_SUCCESS:
-
-                    /* Store VCS Exercise ID for use with future messages */
-                    m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sVcsExerciseNumber = usVcsExerciseNo;
-
-                    /* Validate messages in queue that do not have correct VCS exercise number */
-                    //ValidateMsgQueue(m_tVcsIfManage.nTransmittedVICExerciseNo);
-
-                    /* Remove exercise stop flag to enable further message processing (block command handling) */
-                    m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].bStoppingExercise = false;
-
-                    /* Check load/replay status */
-                    if (rxdMessageId == A_EC_LOAD)
-                    {
-                        /* Check short-term recording request status */
-                        if (*(USHORT*)(pDataSegment + 4) != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sShortTermRecordControl * 2)
-                            SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Incorrect short-term recording request response");
-
-                        /* Check long-term recording request status */
-                        if (*(USHORT*)(pDataSegment + 6) != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sLongTermRecordControl * 2)
-                            SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Incorrect long-term recording request response");
-
-                        if (strlen(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName))
-                        {
-                            memset(szErrorString, 0, sizeof(szErrorString));
-                            strncpy(szErrorString, (char*)(pDataSegment + 8), strlen(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName));
-                            if (strcmp(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName, szErrorString))
-                                SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Problem with recording file-name");
-                        }
-                    }
-
-                    if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eED_State != ED_DELETE)
-                        m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eED_State = ED_LOADED;
-
-                    break;
-
-                default:    //A_EC_LOAD		-		FAILURE, INV_EX_NAME, INV_EX_TIME
-                            //A_EC_REPLAY -		FAILURE, INV_EX_NAME, INV_FILE
-
-                    UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                    break;
-            }
-
-            return m_tVcsIfManage.nTransmittedVICExerciseNo;
-            break;
-
-        /***************** Exercise Control ******************/
-        /*****************   Record/Replay  ******************/
-
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_ALLOC:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
-        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
-
-            usVcsExerciseNo = *pusStatus++;
-            usStatus = *pusStatus++;
-
-            if ((sAMSExerciseNo = FindVcsExercise(usVcsExerciseNo)) != m_tVcsIfManage.nTransmittedVICExerciseNo)
-            {
-                if (rxdMessageId == A_EC_STOP)
+                }
+                else
                 {
-                    sprintf(m_szTrace, "Cannot handle A_EC_STOP, exercise not found - already stopped");
-                    TraceVcs("");
-                    /*	 What Exerrcise ID to return to get meessage clearedr from List ??	*/
-                    return NO_EXERCISE; //m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    /* Wait for unbusy exercise structure then remove associated output message */
+                    if (WaitForSingleObject(pCommsComp->m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000) == WAIT_TIMEOUT)
+                    {
+                        pCommsComp->UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::FAULT, "WAIT_TIMEOUT #3");
+                        return;
+                    }
+
+                    /* Remove queued message */
+                    pNextQueuedMsg = pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue->pNextMsg;
+                    free(pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue);
+                    pCommsComp->m_pVcsExManage[VIC_ExNo].pMsgQueue = pNextQueuedMsg;
+                    pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt--;
+                    if (pCommsComp->m_pVcsExManage[VIC_ExNo].nMsgCnt == 0)
+                        pCommsComp->m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_IDLE;
+                    else
+                        pCommsComp->m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+
+                    ReleaseMutex(pCommsComp->m_pVcsExManage[VIC_ExNo].hQueueMutex);
+                }
+            }
+
+            /* Update interface control structure to show no output message */
+            pCommsComp->m_tVcsIfManage.nTransmittedVICExerciseNo = NO_EXERCISE;
+            //pCommsComp->m_tVcsIfManage.lMessageIndex = 0;
+
+            return;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : UnknownMessage
+        // Description: Returns 'true' if received message id is unexpected 
+        ////////////////////////////////////////////////////////////////////////////////
+        //##ModelId=4119F59302E9
+        public bool UnknownMessage(short rxdMessageId)
+        {
+            bool bUnknownMsg;
+
+            switch (rxdMessageId)
+            {
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_LOAD:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_SEEK:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_ERROR_REPORT:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_CONFIG:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_END:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RU_ALIVE:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_TIME_DATE:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_INVALID_MSG:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGOUT:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_ROLE_DEF:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_MONITOR_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_MONITOR_END:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_IMPOSE_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_IMPOSE_END:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_REPLAY:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_ALLOC:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_SHUTDOWN:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_POWER_OFF:
+
+                    bUnknownMsg = false;
+                    break;
+
+                default:
+                    /* 
+                    Unused replies:-	A_GET_EX_BY_ID:		
+                                                        A_GET_EX_BY_NAME:
+                                                        A_EC_EX_STATE:
+                    */
+
+                    bUnknownMsg = true;
+                    break;
+            }
+            return bUnknownMsg;
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : ProcessReceivedMessage
+        // Description: Performs the necessary actions in response to a message from VCS
+        //							If a message is to be removed from an exercise queue this member 
+        //							returns an exercise number else it returns NO_EXERCISE. 
+        ////////////////////////////////////////////////////////////////////////////////
+        //##ModelId=4119F5930325
+        public int ProcessReceivedMessage(short rxdMessageId, char pDataSegment, short sDataSize)
+        {
+            //bool bUnknownMsg;
+            ushort pusStatus;
+            ushort usStatus;
+            ushort usVcsExerciseNo;
+
+            bool bGoodVcsControlStatus = false;
+            bool bGoodVcsNodeStatus = false;
+
+            short sAMSExerciseNo;
+
+            //int nQueueRemovalEnable = 1;
+            int n, i, offset;
+            int nRoleIdx;
+            int nExRef;
+
+            char szErrorString[128];
+            char szTemp1[100];
+            char szTemp2[100];
+
+            msgVCSMonitor_t pMonPDU;
+            Login_t pLoginReply;
+
+            bool bFoundTrainNode, bFoundInstrNode;
+            bool bKnownUnsolicitedMessage = false;
+
+            pusStatus = (ushort*)pDataSegment;
+
+
+            /* Check for reply to synchronisation message which is never queued */
+            if (rxdMessageId == (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_TIME_DATE)
+            {
+                usStatus = pusStatus;
+
+                if (usStatus != VCS_SUCCESS)    //INV_DATE, INV_TIME
+                    SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported failure to synchronise");
+
+                return NO_EXERCISE;
+            }
+
+            /* Check for reply to status request message which is never queued */
+            if (rxdMessageId == (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RU_ALIVE)
+            {
+                m_tVcsIfManage.msgRU_ALIVE.MsgData[WD_RUALIVE_NOREPLY] = 0;
+                m_bInhibitStatusResponseError = false;
+
+                if (DetectStatusChange(pDataSegment, &bGoodVcsControlStatus, &bGoodVcsNodeStatus))
+                {
+                    /* Send Message to Sys Admin */
+                    Console.WriteLine("VCS Status Change\n");
+                }
+
+                /* If node has powerered up then logon appropropriate roles */
+                UpdateNodeStatus();
+
+                /* Enable transfer of reset message and other exercise data */
+                if (m_bVCS_Startup &&
+                            (m_tSystemStatus.cSystemPC == 0x03) &&
+                            (m_tSystemStatus.cDownloadPC == 0x01) &&
+                            (m_tSystemStatus.cRecordReplayPC & 0x1))
+                {
+                    m_bVCS_Startup = false;
+
+                    if (bGoodVcsControlStatus)
+                        Console.WriteLine("VCS Download & Record/Replay PCs Ready (Archive PC available)\n");
+                    else
+                        Console.WriteLine("VCS Download & Record/Replay PCs Ready (Archive PC not available)\n");
+
+                    SendNextQueuedMessage();
+                }
+                else if (m_bVCS_Startup &&
+                            (m_tSystemStatus.cSystemPC == 0x3) &&
+                            (m_tSystemStatus.cDownloadPC == 0x1))
+                {
+                    Console.WriteLine("Waiting for Record/Replay PC\n");
+                }
+
+
+                /* If all VCS control PCs ok then send good status else send bad Comms PC status */
+                if (bGoodVcsControlStatus && !m_bVCS_Startup)
+                    m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_NO_FAULT;
+                else
+                    m_tVcsIfManage.bVcsControlPcStatus = VCS_CONTROL_FAULT;
+
+                //m_pSystem->SetSystemState(m_tVcsIfManage.bVcsControlPcStatus, 0, 0);
+
+                /* Check individual node status and send status message to Session manager if required */
+                for (n = 0; n <= m_sTotalNumRoles; n++)
+                {
+                    /* get session manager status node index */
+                    if (n == m_sTotalNumRoles)
+                        offset = n;                                                         //Debrief
+                    else if (n > m_sTotalNumTrainees - 1)
+                        offset = n - m_sTotalNumTrainees;               //Instructor
+                    else
+                        offset = n + m_sTotalNumInstructors;        //Trainee		
+
+                    if (m_tSystemStatus.cCommsNode[n] & 0x1)
+                    {
+                        /* Use RUNNING_BACKWARDS to run specific code setting UNINITIALISED within UpdateExerciseStatus function */
+                        if ((BYTE)CScenarioComponent::NON_OPERATIONAL == m_tVcsIfManage.cVcsNodeStatus[offset])
+                            UpdateExerciseStatus(0, CScenarioComponent::RUNNING_BACKWARDS, "No_Transmit", 0, n + DESK_OFFSET + 1);
+                    }
+                    else
+                        UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, n + DESK_OFFSET + 1);
+                }
+
+                UpdateExerciseStatus(0, 0, "No_Status_Update");
+
+                return NO_EXERCISE;
+            }
+
+            /* Check for reply to shutdown message which is never queued */
+            if (rxdMessageId == (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_SHUTDOWN)
+            {
+                usStatus = pusStatus;
+
+                if (usStatus != VCS_SUCCESS)    //FAILURE
+                    SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported failure to shutdown");
+                else
+                    Console.WriteLine("VCS Shutdown Request Acknowledged\n");
+
+                return NO_EXERCISE;
+            }
+
+            if (rxdMessageId == (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_POWER_OFF)
+            {
+
+                ClearVcsExercise(NO_EXERCISE);
+
+                for (i = 0; i < m_sTotalExerciseCount; ++i)
+                {
+                    ClearVcsExercise(i);
+                    UpdateExerciseStatus(0, CScenarioComponent::NON_OPERATIONAL, "No_Transmit", 0, i + DESK_OFFSET + 1);
+                }
+
+                for (i = DESK_OFFSET + 1; i <= DESK_OFFSET + MAX_NUM_NODES; ++i)
+                    UpdateExerciseStatus(0, CScenarioComponent::POWERED_ON, "", 0, i);
+
+                SendLoggerMessage(T_VCS_FAIL, NO_EXERCISE, "VCS reported shutdown complete");
+                Console.WriteLine("VCS Shutdown Complete\n");
+                return NO_EXERCISE;
+            }
+
+            /* Check for unsolicited incoming message */
+            if ((rxdMessageId == I_ERROR_REPORT) ||
+                    (rxdMessageId == I_MONITOR_START) ||
+                    (rxdMessageId == I_MONITOR_END) ||
+                    (rxdMessageId == A_EC_SEEK))
+                bKnownUnsolicitedMessage = true;
+
+            /* If not unsolicited incoming message then verify this is an expected reply */
+            if (!bKnownUnsolicitedMessage &&
+                    (m_tVcsIfManage.nTransmittedVICExerciseNo != NO_EXERCISE))
+
+            {   /* Should have received a reply associated with transmitted message - verify reply is as expected */
+                if (m_tVcsIfManage.nTransmittedVICExerciseNo == GEN_IDX)
+                {
+                    if (m_tVcsGenManage.pMsgQueue == NULL)
+                    {
+                        strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
+                        sprintf(m_szVCSError, "Unexpected msg rxd - no reply expected (EXERCISE: GEN_IDX, Msg: %s)",
+                            szTemp1);
+
+                        SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
+                        return NO_EXERCISE;
+                    }
+                    else if (rxdMessageId != m_tVcsGenManage.pMsgQueue->sMsgExpectedReply)
+                    {
+                        strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eNAME));
+                        strcpy(szTemp2, GetVCSError(m_tVcsGenManage.pMsgQueue->sMsgExpectedReply, AMS_NO_ERROR, eNAME));
+                        sprintf(m_szVCSError, "Unexpected msg rxd - reply %s expected (EXERCISE: GEN_IDX Msg: %s)",
+                            szTemp1,
+                            szTemp2);
+
+                        SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
+                        return GEN_IDX;
+                    }
 
                 }
                 else
                 {
-                    sprintf(m_szTrace, "Exercise not found Cannot handle %d/n", rxdMessageId);
-                    TraceVcs("");
-                    UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_WRONG_EXERCISE, eERROR));
-                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue == NULL)
+                    {
+                        strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
+                        sprintf(m_szVCSError, "Unexpected msg rxd - no reply expected (EXERCISE: %d, Msg: %s)",
+                            m_tVcsIfManage.nTransmittedVICExerciseNo,
+                            szTemp1);
+
+                        SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
+                        return NO_EXERCISE;
+                    }
+                    else if (rxdMessageId != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply)
+                    {
+                        strcpy(szTemp1, GetVCSError(rxdMessageId, AMS_NO_ERROR, eERROR));
+                        strcpy(szTemp2, GetVCSError(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply, AMS_NO_ERROR, eERROR));
+                        sprintf(m_szVCSError, "Unexpected msg rxd -  reply %s expected (EXERCISE: %d Msg: %s)",
+                            szTemp1,
+                            m_tVcsIfManage.nTransmittedVICExerciseNo,
+                            szTemp2);
+
+                        SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, m_szVCSError);
+                        return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    }
                 }
             }
 
-            switch (usStatus)
+            /* Prevent recognised (but unsolicited) messages from crashing system */
+            //if (m_tVcsIfManage.nTransmittedVICExerciseNo == NO_EXERCISE)
+            //	nQueueRemovalEnable= -1;
+
+            switch (rxdMessageId)
             {
-                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.VCS_SUCCESS:
+                /************ Exercise Definition *************/
 
-                    switch (rxdMessageId)
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_CONFIG:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_ROLE_DEF:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_END:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
+
+                    usStatus = pusStatus;                              //ntohs(*(USHORT*) pDataSegment);
+
+                    switch (usStatus)
                     {
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
-                            m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_START;
-                            if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
-                                m_pVcsExManage[sAMSExerciseNo].eED_State = ED_ACTIVE;
+                        case VCS_SUCCESS:
 
-                            if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
-                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING);  //Running STT							
+                            switch (rxdMessageId)
+                            {
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
+                                    m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eEC_State = EC_NULL;
+
+                                    /* Check if there is an exercise waiting to be loaded */
+                                    if (REPLAY_IDX == m_tVcsIfManage.nTransmittedVICExerciseNo)
+                                        nExRef = m_sAmsReplayExerciseNumber;
+                                    else
+                                        nExRef = m_tVcsIfManage.nTransmittedVICExerciseNo;
+
+                                    ClearVcsExercise(m_tVcsIfManage.nTransmittedVICExerciseNo); //also frees unsent messages and sends status message
+
+                                    if ((nExRef > IL_IDX) &&
+                                            (NULL != m_SttExSpecification[nExRef]))
+                                    {
+                                        ProcessMessage((void*)m_SttExSpecification[nExRef], sizeof(msgVCSCommunicationSTTConfirmation_t));
+                                        delete m_SttExSpecification[nExRef];
+                                        m_SttExSpecification[nExRef] = NULL;
+                                    }
+
+                                    SendNextQueuedMessage();
+                                    return NO_EXERCISE;
+
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET:
+                                    Console.WriteLine("VCS Reset Completed\n");
+
+                                    /* Initialise exercise & non-exercise management structures */
+                                    m_bResetComplete = true;
+
+                                    if (m_bExternalReset)
+                                    {
+                                        m_bExternalReset = false;
+
+                                        ClearVcsExercise(NO_EXERCISE);
+
+                                        for (i = 0; i < m_sTotalExerciseCount; ++i)
+                                        {
+                                            ClearVcsExercise(i);
+                                        }
+
+                                        return NO_EXERCISE;
+                                    }
+                                    break;
+
+                                default:
+                                    break;
+                            }
                             break;
 
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
-                            if (m_pVcsExManage[sAMSExerciseNo].eEC_State == EC_RESTART)
+                        default:    //A_ES_START		-		FAILURE, INV_EX_NAME, ES_BUSY, UNDEFINED
+                                    //A_ES_CONFIG		-		FAILURE, INV_STATE, INV_ES_DATA
+                                    //A_ES_ROLE_DEF -		FAILURE
+                                    //A_ES_END			-		FAILURE, INV_STATE
+                                    //A_ES_DEL			-		FAILURE, INV_EX_NAME, ES_BUSY
+                                    //A_SC_RESET		-		FAILURE
+
+                            //Note ES_BUSY means that exercise specification is in use therefore cannot be deleted or 
+                            //exercise has started and cannot be restarted.
+                            switch (rxdMessageId)
                             {
-                                /* May restart exercise - force re-allocation of desks and login again */
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL:
+                                    if (usStatus == VCS_INV_EX_NAME)    //Exercise has already been deleted
+                                        ClearVcsExercise(m_tVcsIfManage.nTransmittedVICExerciseNo);
+                                    else
+                                        UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                                    break;
 
-                                /* Prepare for restart */
-                                m_pVcsExManage[sAMSExerciseNo].sVcsExerciseNumber = NO_EXERCISE;
-                                m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_ALLOC_PENDING_LOAD;
-                                m_pVcsExManage[sAMSExerciseNo].eED_State = ED_SPECIFIED;
-                                LoadVcsExercise(sAMSExerciseNo);
-                                m_pVcsExManage[sAMSExerciseNo].bRestart = true;
+                                default:
+                                    UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                                    break;
+                            }
+                            break;
+                    }
 
-                                /* Clear connectivity matrix as full radio connectivity assumed by VCS at reload*/
-                                for (n = 0; n < m_sTotalNumDesks; ++n)
+                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    break;
+
+                /************ Exercise Load *************/
+
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_LOAD:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_REPLAY:
+
+                    usVcsExerciseNo = pusStatus++;
+                    usStatus =*pusStatus;
+
+                    switch (usStatus)
+                    {
+
+                        case VCS_SUCCESS:
+
+                            /* Store VCS Exercise ID for use with future messages */
+                            m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sVcsExerciseNumber = usVcsExerciseNo;
+
+                            /* Validate messages in queue that do not have correct VCS exercise number */
+                            //ValidateMsgQueue(m_tVcsIfManage.nTransmittedVICExerciseNo);
+
+                            /* Remove exercise stop flag to enable further message processing (block command handling) */
+                            m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].bStoppingExercise = false;
+
+                            /* Check load/replay status */
+                            if (rxdMessageId == A_EC_LOAD)
+                            {
+                                /* Check short-term recording request status */
+                                if (*(ushort*)(pDataSegment + 4) != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sShortTermRecordControl * 2)
+                                    SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Incorrect short-term recording request response");
+
+                                /* Check long-term recording request status */
+                                if (*(ushort*)(pDataSegment + 6) != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].sLongTermRecordControl * 2)
+                                    SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Incorrect long-term recording request response");
+
+                                if (strlen(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName))
                                 {
-                                    m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].ownPlatformHFMast = eMASK_NONE;
-                                    m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].ownPlatformUHFMast = eMASK_NONE;
-                                    for (i = 0; i < NO_OF_COMMS_VEHICLES; ++i)
-                                    {
-                                        m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].friendlyVehicles[i] = -1; //(NOT_RELEVANT = -1)
-                                        m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].availableUHFComms[i] = eMASK_NONE;
-                                        m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].availableHFComms[i] = eMASK_NONE;
-                                    }
+                                    memset(szErrorString, 0, sizeof(szErrorString));
+                                    strncpy(szErrorString, (char*)(pDataSegment + 8), strlen(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName));
+                                    if (strcmp(m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].szRecordFileName, szErrorString))
+                                        SendLoggerMessage(T_VCS_FAIL, m_tVcsIfManage.nTransmittedVICExerciseNo, "Problem with recording file-name");
                                 }
                             }
-                            else
+
+                            if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eED_State != ED_DELETE)
+                                m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eED_State = ED_LOADED;
+
+                            break;
+
+                        default:    //A_EC_LOAD		-		FAILURE, INV_EX_NAME, INV_EX_TIME
+                                    //A_EC_REPLAY -		FAILURE, INV_EX_NAME, INV_FILE
+
+                            UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                            break;
+                    }
+
+                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    break;
+
+                /***************** Exercise Control ******************/
+                /*****************   Record/Replay  ******************/
+
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_ALLOC:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
+
+                    usVcsExerciseNo = pusStatus++;
+                    usStatus = pusStatus++;
+
+                    if ((sAMSExerciseNo = FindVcsExercise(usVcsExerciseNo)) != m_tVcsIfManage.nTransmittedVICExerciseNo)
+                    {
+                        if (rxdMessageId == (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP)
+                        {
+                            sprintf(m_szTrace, "Cannot handle A_EC_STOP, exercise not found - already stopped");
+                            Console.WriteLine("");
+                            /*	 What Exerrcise ID to return to get meessage clearedr from List ??	*/
+                            return NO_EXERCISE; //m_tVcsIfManage.nTransmittedVICExerciseNo;
+
+                        }
+                        else
+                        {
+                            sprintf(m_szTrace, "Exercise not found Cannot handle %d/n", rxdMessageId);
+                            Console.WriteLine("");
+                            UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_WRONG_EXERCISE, eERROR));
+                            return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                        }
+                    }
+
+                    switch (usStatus)
+                    {
+                        case VCS_SUCCESS:
+
+                            switch (rxdMessageId)
                             {
-                                m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
-                                /* If stopping IL Session then do not update status */
-                                if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
-                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
-                            }
-
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
-                            if (m_pVcsExManage[sAMSExerciseNo].eEC_State != EC_RESTART) // Gerry this is the change to add to build
-                            {
-                                m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PAUSE;
-                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
-                            }
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
-                            m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PLAYBACK;
-                            if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
-                                m_pVcsExManage[sAMSExerciseNo].eED_State = ED_ACTIVE;
-                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING);
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
-                            // change load type for future starts 
-                            m_pVcsExManage[sAMSExerciseNo].eLoadType = EXERCISE_NEW;
-                            m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
-                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
-                            /* This is normally the last messages sent during VCS Exercise specification and load
-								 The message is therefore used to flag that VIC is ready to partake in exercise 
-								 Exception is if Exercise recovery is taking place in which case a subsequent seek/resume is required
-
-								 NOTE: IL Session returns an invalid exercise to this command			*/
-
-                            if ((m_pVcsExManage[sAMSExerciseNo].eED_State == ED_ALLOC) &&
-                                    (m_pVcsExManage[sAMSExerciseNo].nMsgCnt == 1))
-                            {
-                                if (EXERCISE_RECOVERY != m_pVcsExManage[sAMSExerciseNo].eLoadType)
-                                {
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_START:
+                                    m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_START;
                                     if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
-                                    {
-                                        if (m_pVcsExManage[sAMSExerciseNo].bRestart)
-                                        {
-                                            m_pVcsExManage[sAMSExerciseNo].bRestart = false;
-                                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
-                                        }
-                                        else
-                                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::LOADED);
+                                        m_pVcsExManage[sAMSExerciseNo].eED_State = ED_ACTIVE;
 
-                                        m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
+                                    if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING);  //Running STT							
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
+                                    if (m_pVcsExManage[sAMSExerciseNo].eEC_State == EC_RESTART)
+                                    {
+                                        /* May restart exercise - force re-allocation of desks and login again */
+
+                                        /* Prepare for restart */
+                                        m_pVcsExManage[sAMSExerciseNo].sVcsExerciseNumber = NO_EXERCISE;
+                                        m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_ALLOC_PENDING_LOAD;
+                                        m_pVcsExManage[sAMSExerciseNo].eED_State = ED_SPECIFIED;
+                                        LoadVcsExercise(sAMSExerciseNo);
+                                        m_pVcsExManage[sAMSExerciseNo].bRestart = true;
+
+                                        /* Clear connectivity matrix as full radio connectivity assumed by VCS at reload*/
+                                        for (n = 0; n < m_sTotalNumDesks; ++n)
+                                        {
+                                            m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].ownPlatformHFMast = eMASK_NONE;
+                                            m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].ownPlatformUHFMast = eMASK_NONE;
+                                            for (i = 0; i < NO_OF_COMMS_VEHICLES; ++i)
+                                            {
+                                                m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].friendlyVehicles[i] = -1; //(NOT_RELEVANT = -1)
+                                                m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].availableUHFComms[i] = eMASK_NONE;
+                                                m_pVcsExManage[sAMSExerciseNo].RefConnectivity[n].availableHFComms[i] = eMASK_NONE;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
+                                        /* If stopping IL Session then do not update status */
+                                        if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
+                                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
+                                    }
+
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
+                                    if (m_pVcsExManage[sAMSExerciseNo].eEC_State != EC_RESTART) // Gerry this is the change to add to build
+                                    {
+                                        m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PAUSE;
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
+                                    }
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PLAYBACK:
+                                    m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PLAYBACK;
+                                    if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
+                                        m_pVcsExManage[sAMSExerciseNo].eED_State = ED_ACTIVE;
+                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING);
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RESUME:
+                                    // change load type for future starts 
+                                    m_pVcsExManage[sAMSExerciseNo].eLoadType = EXERCISE_NEW;
+                                    m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
+                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
+                                    /* This is normally the last messages sent during VCS Exercise specification and load
+                                         The message is therefore used to flag that VIC is ready to partake in exercise 
+                                         Exception is if Exercise recovery is taking place in which case a subsequent seek/resume is required
+
+                                         NOTE: IL Session returns an invalid exercise to this command			*/
+
+                                    if ((m_pVcsExManage[sAMSExerciseNo].eED_State == ED_ALLOC) &&
+                                            (m_pVcsExManage[sAMSExerciseNo].nMsgCnt == 1))
+                                    {
+                                        if (EXERCISE_RECOVERY != m_pVcsExManage[sAMSExerciseNo].eLoadType)
+                                        {
+                                            if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
+                                            {
+                                                if (m_pVcsExManage[sAMSExerciseNo].bRestart)
+                                                {
+                                                    m_pVcsExManage[sAMSExerciseNo].bRestart = false;
+                                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
+                                                }
+                                                else
+                                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::LOADED);
+
+                                                m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
 
 #if (_VCS_AUTO_REPLAY_NODE)
 											if (m_pVcsExManage[sAMSExerciseNo].eLoadType == EXERCISE_REPLAY)
 											{
 												sprintf(m_szTrace, "GENERATING REPLAY MESSAGES FOR NODE %d\n", _VCS_AUTO_REPLAY_NODE);
-												TraceVcs("");
+												Console.WriteLine("");
 												
 												msgVCSReplay_t startReplay;
 
@@ -1229,491 +1226,491 @@ public int ProcessReceivedMessage(const short rxdMessageId, char* pDataSegment, 
 												ProcessMessage(&startReplay, sizeof(msgVCSReplay_t));
 											}
 #endif
-                                    }
-                                }
-                                /* Check if there is a load snapshot message waiting to be actioned
-								This will also result in a RESUME message being sent to convert from
-								playback to record exercise type */
-                                if ((m_tVcsIfManage.nTransmittedVICExerciseNo > IL_IDX) &&
-                                        (NULL != m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo]))
-                                {
-                                    ProcessMessage((void*)m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo], sizeof(msgVCSCommunicationSTTConfirmation_t));
-                                    delete m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo];
-                                    m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo] = NULL;
-                                }
-                            }
-                            break;
-                    }
-
-                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
-                    break;
-
-                default:    //A_EC_ALLOC		-		FAILURE, INV_EX_NAME, INV_EX_TIME
-                            //A_EC_START		-		FAILURE, INV_EX_NAME, INV_STATE
-                            //A_EC_STOP 		-		FAILURE, INV_EX_NUM
-                            //A_EC_PAUSE 		-		FAILURE, INV_EX_NUM, INV_STATE
-                            //A_EC_RESUME:
-                            //A_EC_PLAYBACK:
-                            //A_EC_RP_CONFIG-		FAILURE, INV_STATE, INV_ES_DATA
-
-                    switch (rxdMessageId)
-                    {
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
-                            /* The recording is disabled this command will result in an invalid exercise message being returned - used to flag session loaded */
-                            if ((m_pVcsExManage[sAMSExerciseNo].eED_State == ED_ALLOC) &&
-                                    (m_pVcsExManage[sAMSExerciseNo].sShortTermRecordControl == 0))
-                            {
-                                if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
-                                {
-                                    if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
-                                    {   /* STT Session */
-                                        if (m_pVcsExManage[sAMSExerciseNo].bRestart)
-                                        {
-                                            m_pVcsExManage[sAMSExerciseNo].bRestart = false;
-                                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
+                                            }
                                         }
-                                        else
-                                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::LOADED);
+                                        /* Check if there is a load snapshot message waiting to be actioned
+                                        This will also result in a RESUME message being sent to convert from
+                                        playback to record exercise type */
+                                        if ((m_tVcsIfManage.nTransmittedVICExerciseNo > IL_IDX) &&
+                                                (NULL != m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo]))
+                                        {
+                                            ProcessMessage((void*)m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo], sizeof(msgVCSCommunicationSTTConfirmation_t));
+                                            delete m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo];
+                                            m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo] = NULL;
+                                        }
                                     }
+                                    break;
+                            }
 
-                                    m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
+                            return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                            break;
 
-                                    /* Check if there is a load snapshot message waiting to be actioned */
-                                    if (NULL != m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo])
+                        default:    //A_EC_ALLOC		-		FAILURE, INV_EX_NAME, INV_EX_TIME
+                                    //A_EC_START		-		FAILURE, INV_EX_NAME, INV_STATE
+                                    //A_EC_STOP 		-		FAILURE, INV_EX_NUM
+                                    //A_EC_PAUSE 		-		FAILURE, INV_EX_NUM, INV_STATE
+                                    //A_EC_RESUME:
+                                    //A_EC_PLAYBACK:
+                                    //A_EC_RP_CONFIG-		FAILURE, INV_STATE, INV_ES_DATA
+
+                            switch (rxdMessageId)
+                            {
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_RP_CONFIG:
+                                    /* The recording is disabled this command will result in an invalid exercise message being returned - used to flag session loaded */
+                                    if ((m_pVcsExManage[sAMSExerciseNo].eED_State == ED_ALLOC) &&
+                                            (m_pVcsExManage[sAMSExerciseNo].sShortTermRecordControl == 0))
                                     {
-                                        ProcessMessage((void*)m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo], sizeof(msgVCSCommunicationSTTConfirmation_t));
-                                        delete m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo];
-                                        m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo] = NULL;
+                                        if (m_pVcsExManage[sAMSExerciseNo].eED_State != ED_DELETE)
+                                        {
+                                            if (strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
+                                            {   /* STT Session */
+                                                if (m_pVcsExManage[sAMSExerciseNo].bRestart)
+                                                {
+                                                    m_pVcsExManage[sAMSExerciseNo].bRestart = false;
+                                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
+                                                }
+                                                else
+                                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::LOADED);
+                                            }
+
+                                            m_pVcsExManage[sAMSExerciseNo].eED_State = ED_READY;
+
+                                            /* Check if there is a load snapshot message waiting to be actioned */
+                                            if (NULL != m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo])
+                                            {
+                                                ProcessMessage((void*)m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo], sizeof(msgVCSCommunicationSTTConfirmation_t));
+                                                delete m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo];
+                                                m_LoadSnapshot[m_tVcsIfManage.nTransmittedVICExerciseNo] = NULL;
+                                            }
+                                        }
+                                        return m_tVcsIfManage.nTransmittedVICExerciseNo;
                                     }
-                                }
-                                return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                                    else
+                                    {
+                                        sprintf(m_szTrace, "Reply VCS Exercise ID %d\n", usVcsExerciseNo);
+                                        Console.WriteLine("");
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                                    }
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
+                                    /* VCS will automatically go into pause state during replay when end of exercise reached
+                                        If another pause message is transmitted this will result in an invalid state reply */
+                                    if (usStatus == VCS_INV_STATE)
+                                    {
+                                        m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PAUSE;
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
+                                    }
+                                    else
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+
+                                    break;
+
+                                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
+                                    // Failure to stop successfully- report error and prevent new exercise being loaded by forcing EC_STOP
+                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                                    m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
+
+                                    /* problem whan unloading exercise - exercise emust already have been stopped  
+                                    if ((EC_RESTART != m_pVcsExManage[sAMSExerciseNo].eEC_State) || (VCS_INV_EX_NUM == usStatus))
+                                    {
+                                        m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
+                                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
+                                    }*/
+
+                                    break;
+
+                                default:
+                                    UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                                    break;
+
                             }
-                            else
-                            {
-                                sprintf(m_szTrace, "Reply VCS Exercise ID %d\n", usVcsExerciseNo);
-                                TraceVcs("");
-                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                            }
+                            return m_tVcsIfManage.nTransmittedVICExerciseNo;
                             break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE:
-                            /* VCS will automatically go into pause state during replay when end of exercise reached
-								If another pause message is transmitted this will result in an invalid state reply */
-                            if (usStatus == VCS_INV_STATE)
-                            {
-                                m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_PAUSE;
-                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FROZEN);
-                            }
-                            else
-                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-
-                            break;
-
-                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP:
-                            // Failure to stop successfully- report error and prevent new exercise being loaded by forcing EC_STOP
-                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                            m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
-
-                            /* problem whan unloading exercise - exercise emust already have been stopped  
-							if ((EC_RESTART != m_pVcsExManage[sAMSExerciseNo].eEC_State) || (VCS_INV_EX_NUM == usStatus))
-							{
-								m_pVcsExManage[sAMSExerciseNo].eEC_State = EC_STOP;
-								UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::STOPPED);
-							}*/
-
-                            break;
-
-                        default:
-                            UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-                            break;
-
                     }
-                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
                     break;
+
+                /****************** Exercise Login *******************/
+
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN:
+                case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGOUT:
+
+                    usVcsExerciseNo = *pusStatus++;
+                    usStatus = *pusStatus++;
+
+                    if ((sAMSExerciseNo = FindVcsExercise(usVcsExerciseNo)) != m_tVcsIfManage.nTransmittedVICExerciseNo)
+                    {
+                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_WRONG_EXERCISE, eERROR));
+                        return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    }
+
+                    /* Find role index */
+                    pusStatus--;
+                    pLoginReply = (Login_t*)pusStatus;      //structure is not a perfect match therefore offset pointer
+
+                    for (n = 0; n < m_pVcsExManage[sAMSExerciseNo].sRoleCount; n++)
+                    {
+                        for (i = 0; i < sizeof(m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName) ; i++)
+				{
+                        if (m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName[i] != pLoginReply->cRoleName[i])
+                            break;
+                    }
+
+                    if (i == sizeof(m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName) )
+					break;
+
             }
-            break;
 
-        /****************** Exercise Login *******************/
-
-        case A_LOGIN:
-        case A_LOGOUT:
-
-            usVcsExerciseNo = *pusStatus++;
-            usStatus = *pusStatus++;
-
-            if ((sAMSExerciseNo = FindVcsExercise(usVcsExerciseNo)) != m_tVcsIfManage.nTransmittedVICExerciseNo)
+            if (n == m_pVcsExManage[sAMSExerciseNo].sRoleCount)
             {
-                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_WRONG_EXERCISE, eERROR));
+                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_UNKNOWN_ROLE, eERROR));
                 return m_tVcsIfManage.nTransmittedVICExerciseNo;
             }
 
-            /* Find role index */
-            pusStatus--;
-            pLoginReply = (Login_t*)pusStatus;      //structure is not a perfect match therefore offset pointer
+            nRoleIdx = n;
 
-            for (n = 0; n < m_pVcsExManage[sAMSExerciseNo].sRoleCount; n++)
+            switch (usStatus)
             {
-                for (i = 0; i < sizeof(m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName) ; i++)
-				{
-                if (m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName[i] != pLoginReply->cRoleName[i])
-                    break;
-            }
+                case VCS_SUCCESS:
 
-            if (i == sizeof(m_pVcsExManage[sAMSExerciseNo].Roles[n].szRoleName) )
-					break;
-
-    }
-
-    if (n == m_pVcsExManage[sAMSExerciseNo].sRoleCount)
-    {
-        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, AMS_UNKNOWN_ROLE, eERROR));
-        return m_tVcsIfManage.nTransmittedVICExerciseNo;
-    }
-
-    nRoleIdx = n;
-
-    switch (usStatus)
-    {
-        case VCS_SUCCESS:
-
-            switch (rxdMessageId)
-            {
-                case A_LOGIN:
-                    m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_SUCCESS;
-                    sprintf(m_szTrace, "VCS LOGIN SUCCESSFUL (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
-                    TraceVcs("");
-
-                    if (!strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
-                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING_IL, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
-
-                    if ((ED_ALLOC != m_pVcsExManage[sAMSExerciseNo].eED_State) &&
-                            (REPLAY_IDX != sAMSExerciseNo) &&
-                            (IL_IDX != sAMSExerciseNo))
-                    { /* This must be a login due to node power cycling or IL participation in active IL session */
-                        UpdateExerciseStatus(sAMSExerciseNo, m_pVcsExManage[sAMSExerciseNo].cScenarioState, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
-                    }
-
-                    if ((EXERCISE_REPLAY == m_pVcsExManage[sAMSExerciseNo].eLoadType) &&
-                            (m_pVcsExManage[Search_ExNo].eED_State > ED_ALLOC))
+                    switch (rxdMessageId)
                     {
-                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::TRAINEE_CHANGED);
+                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN:
+                            m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_SUCCESS;
+                            sprintf(m_szTrace, "VCS LOGIN SUCCESSFUL (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
+                            Console.WriteLine("");
 
-                        sprintf(m_szTrace, "VCS Exercise %d RP CONFIG CHANGED\n", sAMSExerciseNo);
-                        TraceVcs("");
+                            if (!strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
+                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::RUNNING_IL, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
+
+                            if ((ED_ALLOC != m_pVcsExManage[sAMSExerciseNo].eED_State) &&
+                                    (REPLAY_IDX != sAMSExerciseNo) &&
+                                    (IL_IDX != sAMSExerciseNo))
+                            { /* This must be a login due to node power cycling or IL participation in active IL session */
+                                UpdateExerciseStatus(sAMSExerciseNo, m_pVcsExManage[sAMSExerciseNo].cScenarioState, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
+                            }
+
+                            if ((EXERCISE_REPLAY == m_pVcsExManage[sAMSExerciseNo].eLoadType) &&
+                                    (m_pVcsExManage[Search_ExNo].eED_State > ED_ALLOC))
+                            {
+                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::TRAINEE_CHANGED);
+
+                                sprintf(m_szTrace, "VCS Exercise %d RP CONFIG CHANGED\n", sAMSExerciseNo);
+                                Console.WriteLine("");
+                            }
+                            break;
+
+                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGOUT:
+                            m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_NOT;
+                            sprintf(m_szTrace, "VCS LOGOUT SUCCESSFUL (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
+                            Console.WriteLine("");
+
+                            /* If logging out of IL Session then update individual node status */
+                            if (!strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
+                                UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::UNINITIALISED, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
+
+                            break;
                     }
                     break;
 
-                case A_LOGOUT:
-                    m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_NOT;
-                    sprintf(m_szTrace, "VCS LOGOUT SUCCESSFUL (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
-                    TraceVcs("");
 
-                    /* If logging out of IL Session then update individual node status */
-                    if (!strcmp(m_pVcsExManage[sAMSExerciseNo].szExerciseMode, "IL"))
-                        UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::UNINITIALISED, "", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
+                default:    //A_LOGIN		-		FAILURE, INV_EX_NUM, INV_ROLE_ID, INV_POS
+                            //A_LOGOUT	-		FAILURE, INV_EX_NUM, INV_ROLE_ID
 
-                    break;
-            }
-            break;
+                    switch (rxdMessageId)
+                    {
+                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN:
+                            if (m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus == LOGIN_ACTIVE)
+                            { /* Node must still be initialising - attempt to resend message once (after short delay)			 */
+                              /* Troy plan to change 'Position OK' message such that only set when initialisation complete */
+                              /* Will leave this code as is but it should not be necessary																 */
+                                if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eMsgStatus == MESSAGE_TRANSMITTED)
+                                {
+                                   System.Threading.Thread.Sleep(2000);
+                                    //eMsgStatus will change to MESSAGE_RETRANSMITTED;
+                                    SendMsgToVCS(m_tVcsIfManage.nTransmittedVICExerciseNo, m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue, eTHREAD_IFM);
+                                    return NO_EXERCISE;
+                                }
+                            }
+
+                            /* Report error to login */
+                            m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_FAILED;
+                            if (m_pVcsExManage[sAMSExerciseNo].eLoadType == EXERCISE_REPLAY)
+                                sprintf(szErrorString, "VCS LOGIN (REPLAY) FAILED (Recorded Node %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode);
+                            else
+                                sprintf(szErrorString, "VCS LOGIN FAILED (Node %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode);
+
+                            //UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, szErrorString, m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
+                            SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szErrorString);
 
 
-        default:    //A_LOGIN		-		FAILURE, INV_EX_NUM, INV_ROLE_ID, INV_POS
-                    //A_LOGOUT	-		FAILURE, INV_EX_NUM, INV_ROLE_ID
+                            /* Force login if desk is reset or comes on line */
+                            m_tVcsNodeManage[m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode - DESK_OFFSET].eNodeStatus = NODE_FAILED;
 
-            switch (rxdMessageId)
-            {
-                case A_LOGIN:
-                    if (m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus == LOGIN_ACTIVE)
-                    { /* Node must still be initialising - attempt to resend message once (after short delay)			 */
-                      /* Troy plan to change 'Position OK' message such that only set when initialisation complete */
-                      /* Will leave this code as is but it should not be necessary																 */
-                        if (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].eMsgStatus == MESSAGE_TRANSMITTED)
-                        {
-                            Sleep(2000);
-                            //eMsgStatus will change to MESSAGE_RETRANSMITTED;
-                            SendMsgToVCS(m_tVcsIfManage.nTransmittedVICExerciseNo, m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue, eTHREAD_IFM);
-                            return NO_EXERCISE;
-                        }
+                            break;
+
+                        case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_LOGOUT:
+                            //m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus status unchanged;
+                            sprintf(m_szTrace, "VCS LOGOUT FAILED (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
+                            Console.WriteLine("");
+                            break;
                     }
-
-                    /* Report error to login */
-                    m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus = LOGIN_FAILED;
-                    if (m_pVcsExManage[sAMSExerciseNo].eLoadType == EXERCISE_REPLAY)
-                        sprintf(szErrorString, "VCS LOGIN (REPLAY) FAILED (Recorded Node %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode);
-                    else
-                        sprintf(szErrorString, "VCS LOGIN FAILED (Node %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode);
-
-                    //UpdateExerciseStatus(sAMSExerciseNo, CScenarioComponent::FAULT, szErrorString, m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sLogicalNode);
-                    SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szErrorString);
-
-
-                    /* Force login if desk is reset or comes on line */
-                    m_tVcsNodeManage[m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode - DESK_OFFSET].eNodeStatus = NODE_FAILED;
-
-                    break;
-
-                case A_LOGOUT:
-                    //m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].eLoginStatus status unchanged;
-                    sprintf(m_szTrace, "VCS LOGOUT FAILED (Node %d, Exercise %d) \n", m_pVcsExManage[sAMSExerciseNo].Roles[nRoleIdx].sPhysicalNode, sAMSExerciseNo);
-                    TraceVcs("");
                     break;
             }
-            break;
-    }
 
-    //return (m_tVcsIfManage.nTransmittedVICExerciseNo * nQueueRemovalEnable);
-    return m_tVcsIfManage.nTransmittedVICExerciseNo;
-    break;
+            //return (m_tVcsIfManage.nTransmittedVICExerciseNo * nQueueRemovalEnable);
+            return m_tVcsIfManage.nTransmittedVICExerciseNo;
+            break;
 		
 		/************ Error Report *************/
 
-		case I_ERROR_REPORT:
+		case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_ERROR_REPORT:
+            { 
+            SendStatusRequest();
 
-    SendStatusRequest();
+            pDataSegment[sDataSize - 1] = '\0'; //remove CR, LF
+            if (strlen(pDataSegment) > 111)
+                pDataSegment[111] = '\0';
 
-    pDataSegment[sDataSize - 1] = '\0'; //remove CR, LF
-    if (strlen(pDataSegment) > 111)
-        pDataSegment[111] = '\0';
+            strcpy(szErrorString, "VCS information: ");
+            strcat(szErrorString, pDataSegment);
 
-    strcpy(szErrorString, "VCS information: ");
-    strcat(szErrorString, pDataSegment);
-
-    SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szErrorString);
-    break;	
+            SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szErrorString);
+            break;	
 
 		case A_INVALID_MSG:
 
-    sprintf(szTemp1, "VCS reported invalid message (ID %d)", *pusStatus);
-    SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szTemp1);
-    break;
+            sprintf(szTemp1, "VCS reported invalid message (ID %d)", *pusStatus);
+            SendLoggerMessage(T_VCS_ERR, m_tVcsIfManage.nTransmittedVICExerciseNo, szTemp1);
+            break;
 			
 		/************ Trainee Monitoring *************/
 
-		case I_MONITOR_START:
+		case (Int16)UNET_Classes.Enums.SIM_Message_IDs.I_MONITOR_START:
+                
+            pMonPDU = new msgVCSMonitor_t;
 
-    pMonPDU = new msgVCSMonitor_t;
+            pMonPDU->nSupervisorPhysicalNode = (int)pusStatus++;
+            pMonPDU->nSupervisorPhysicalNode -= (pMonPDU->nSupervisorPhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
 
-    pMonPDU->nSupervisorPhysicalNode = (int)*pusStatus++;
-    pMonPDU->nSupervisorPhysicalNode -= (pMonPDU->nSupervisorPhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
+            pMonPDU->nTraineePhysicalNode = (int)pusStatus;
+            pMonPDU->nTraineePhysicalNode -= (pMonPDU->nTraineePhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
 
-    pMonPDU->nTraineePhysicalNode = (int)*pusStatus;
-    pMonPDU->nTraineePhysicalNode -= (pMonPDU->nTraineePhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
-
-    /* Find active exercise */
-    for (n = 0; n < m_sTotalExerciseCount; n++)
-    {
-        bFoundTrainNode = bFoundInstrNode = false;
-
-        if (m_pVcsExManage[n].eED_State != ED_UNDEFINED)
-        {
-            for (i = 0; i < m_pVcsExManage[n].sRoleCount; i++)
+            /* Find active exercise */
+            for (n = 0; n < m_sTotalExerciseCount; n++)
             {
-                if (((m_pVcsExManage[n].Roles[i].sPhysicalNode - DESK_OFFSET) == (short)pMonPDU->nSupervisorPhysicalNode) &&
-                        (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[n].Roles[i].sRoleType))
-                    bFoundInstrNode = true;
+                bFoundTrainNode = bFoundInstrNode = false;
+
+                if (m_pVcsExManage[n].eED_State != ED_UNDEFINED)
+                {
+                    for (i = 0; i < m_pVcsExManage[n].sRoleCount; i++)
+                    {
+                        if (((m_pVcsExManage[n].Roles[i].sPhysicalNode - DESK_OFFSET) == (short)pMonPDU->nSupervisorPhysicalNode) &&
+                                (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[n].Roles[i].sRoleType))
+                            bFoundInstrNode = true;
 
 
-                if (((m_pVcsExManage[n].Roles[i].sPhysicalNode - DESK_OFFSET) == (short)pMonPDU->nTraineePhysicalNode) &&
-                        (CSystemComponent::SPARK_TRAINEE_OPERATOR == m_pVcsExManage[n].Roles[i].sRoleType))
-                    bFoundTrainNode = true;
+                        if (((m_pVcsExManage[n].Roles[i].sPhysicalNode - DESK_OFFSET) == (short)pMonPDU->nTraineePhysicalNode) &&
+                                (CSystemComponent::SPARK_TRAINEE_OPERATOR == m_pVcsExManage[n].Roles[i].sRoleType))
+                            bFoundTrainNode = true;
+
+                        if (bFoundTrainNode && bFoundInstrNode)
+                            break;
+                    }
+                }
 
                 if (bFoundTrainNode && bFoundInstrNode)
                     break;
             }
-        }
 
-        if (bFoundTrainNode && bFoundInstrNode)
-            break;
-    }
+            /* Send PDU (if valid request) and reply to VCS */
+            if (bFoundTrainNode && bFoundInstrNode)
+            {
+                pMonPDU->lMessageID = eMsg_VCS_MONITOR;
+                pMonPDU->bMonitorState = true;
+                pMonPDU->nTraineeExerciseID = n;
 
-    /* Send PDU (if valid request) and reply to VCS */
-    if (bFoundTrainNode && bFoundInstrNode)
-    {
-        pMonPDU->lMessageID = eMsg_VCS_MONITOR;
-        pMonPDU->bMonitorState = true;
-        pMonPDU->nTraineeExerciseID = n;
+                offset = pMonPDU->nSupervisorPhysicalNode - m_sTotalNumTrainees - 1;
 
-        offset = pMonPDU->nSupervisorPhysicalNode - m_sTotalNumTrainees - 1;
+                if (m_pVcsExManage[n].bMonitorActiveSupervisor[offset])
+                    SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Invalid monitor start message received");
 
-        if (m_pVcsExManage[n].bMonitorActiveSupervisor[offset])
-            SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Invalid monitor start message received");
+                m_pVcsExManage[n].bMonitorActiveSupervisor[offset] = true;
+                m_pVcsExManage[n].sMonitorActiveTrainee[offset] = pMonPDU->nTraineePhysicalNode;
 
-        m_pVcsExManage[n].bMonitorActiveSupervisor[offset] = true;
-        m_pVcsExManage[n].sMonitorActiveTrainee[offset] = pMonPDU->nTraineePhysicalNode;
+                strcpy(pMonPDU->szTraineePlatform, m_pVcsExManage[n].Roles[i].szPlatform);
 
-        strcpy(pMonPDU->szTraineePlatform, m_pVcsExManage[n].Roles[i].szPlatform);
-
-        /* Send Message to Sys Admin */
+                /* Send Message to Sys Admin */
 #if _VIC_CMND_STATUS_TRACE
 					sprintf(m_szTrace, "VCS Monitor Enabled - Instructor %d, Trainee: %d, \n", pMonPDU->nSupervisorPhysicalNode, pMonPDU->nTraineePhysicalNode);
-					TraceVcs("");
+					Console.WriteLine("");
 #endif
 
-        m_pSEI->SendMessage(eMsg_VCS_MONITOR, pMonPDU->nTraineeExerciseID, SEI_BROADCAST, false, sizeof(eMsg_VCS_MONITOR), pMonPDU);
-        SendVCSStatusReply(A_MONITOR_START, VCS_SUCCESS);
+                m_pSEI->SendMessage(eMsg_VCS_MONITOR, pMonPDU->nTraineeExerciseID, SEI_BROADCAST, false, sizeof(eMsg_VCS_MONITOR), pMonPDU);
+                SendVCSStatusReply(A_MONITOR_START, VCS_SUCCESS);
 
-    }
-    else
-    {
-        SendVCSStatusReply(A_MONITOR_START, VCS_INV_POS);
-        SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Invalid monitor start message received (invalid position)");
-    }
+            }
+            else
+            {
+                SendVCSStatusReply(A_MONITOR_START, VCS_INV_POS);
+                SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Invalid monitor start message received (invalid position)");
+            }
 
 
-    //free (pMonPDU); crashes?
-    return NO_EXERCISE;
+            //free (pMonPDU); crashes?
+            return NO_EXERCISE;
 
-    break;
+            break;
 
 		case I_MONITOR_END:
 
-    pMonPDU = new msgVCSMonitor_t;
+            pMonPDU = new msgVCSMonitor_t;
 
-    pMonPDU->nSupervisorPhysicalNode = (int)*pusStatus;
-    pMonPDU->nSupervisorPhysicalNode -= (pMonPDU->nSupervisorPhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
+            pMonPDU->nSupervisorPhysicalNode = (int)*pusStatus;
+            pMonPDU->nSupervisorPhysicalNode -= (pMonPDU->nSupervisorPhysicalNode >= DESK_OFFSET) ? DESK_OFFSET : 0;
 
-    offset = pMonPDU->nSupervisorPhysicalNode - m_sTotalNumTrainees - 1;
+            offset = pMonPDU->nSupervisorPhysicalNode - m_sTotalNumTrainees - 1;
 
-    /* Find active exercise */
-    for (n = 0; n < m_sTotalExerciseCount; n++)
-    {
-        if ((m_pVcsExManage[n].eED_State != ED_UNDEFINED) &&
-                (m_pVcsExManage[n].bMonitorActiveSupervisor[offset]))
-        {
-            pMonPDU->lMessageID = eMsg_VCS_MONITOR;
-            pMonPDU->nTraineePhysicalNode = (int)m_pVcsExManage[n].sMonitorActiveTrainee[offset];
-            pMonPDU->bMonitorState = false;
-            pMonPDU->nTraineeExerciseID = n;
-            strcpy(pMonPDU->szTraineePlatform, "");
+            /* Find active exercise */
+            for (n = 0; n < m_sTotalExerciseCount; n++)
+            {
+                if ((m_pVcsExManage[n].eED_State != ED_UNDEFINED) &&
+                        (m_pVcsExManage[n].bMonitorActiveSupervisor[offset]))
+                {
+                    pMonPDU->lMessageID = eMsg_VCS_MONITOR;
+                    pMonPDU->nTraineePhysicalNode = (int)m_pVcsExManage[n].sMonitorActiveTrainee[offset];
+                    pMonPDU->bMonitorState = false;
+                    pMonPDU->nTraineeExerciseID = n;
+                    strcpy(pMonPDU->szTraineePlatform, "");
 
-            /* Send Message to Sys Admin */
+                    /* Send Message to Sys Admin */
 #if _VIC_CMND_STATUS_TRACE
 						sprintf(m_szTrace, "VCS Monitor Disabled - Instructor %d, Trainee: %d, \n", pMonPDU->nSupervisorPhysicalNode, pMonPDU->nTraineePhysicalNode);
-						TraceVcs("");
+						Console.WriteLine("");
 #endif
 
-            m_pVcsExManage[n].bMonitorActiveSupervisor[offset] = false;
-            m_pVcsExManage[n].sMonitorActiveTrainee[offset] = 0;
+                    m_pVcsExManage[n].bMonitorActiveSupervisor[offset] = false;
+                    m_pVcsExManage[n].sMonitorActiveTrainee[offset] = 0;
 
-            m_pSEI->SendMessage(eMsg_VCS_MONITOR, pMonPDU->nTraineeExerciseID, SEI_BROADCAST, false, sizeof(eMsg_VCS_MONITOR), pMonPDU);
-            SendVCSStatusReply(A_MONITOR_END, VCS_SUCCESS);
-            break;
-        }
-    }
-    /* If no reply sent then send error message */
-    if (n == m_sTotalExerciseCount)
-    {
-        SendVCSStatusReply(A_MONITOR_END, VCS_INV_POS);
-        SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "VCS monitor end - failed");
-    }
+                    m_pSEI->SendMessage(eMsg_VCS_MONITOR, pMonPDU->nTraineeExerciseID, SEI_BROADCAST, false, sizeof(eMsg_VCS_MONITOR), pMonPDU);
+                    SendVCSStatusReply(A_MONITOR_END, VCS_SUCCESS);
+                    break;
+                }
+            }
+            /* If no reply sent then send error message */
+            if (n == m_sTotalExerciseCount)
+            {
+                SendVCSStatusReply(A_MONITOR_END, VCS_INV_POS);
+                SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "VCS monitor end - failed");
+            }
 
-    //free (pMonPDU); 
-    return NO_EXERCISE;
+            //free (pMonPDU); 
+            return NO_EXERCISE;
 
-    break;	
+            break;	
 
 		/************ IMPOSITION *************/
 		
 			case A_IMPOSE_START:
 			case A_IMPOSE_END:
 
-    usVcsExerciseNo = *pusStatus++; //Supervisor physical position
-    usStatus = *pusStatus;
+            usVcsExerciseNo = *pusStatus++; //Supervisor physical position
+            usStatus = *pusStatus;
 
-    switch (usStatus)
-    {
-        case VCS_SUCCESS:
+            switch (usStatus)
+            {
+                case VCS_SUCCESS:
 
-            if (rxdMessageId == A_IMPOSE_START)
-                TraceVcs("VCS IMPOSITION ON\n");
-            else
-                TraceVcs("VCS IMPOSITION OFF\n");
+                    if (rxdMessageId == A_IMPOSE_START)
+                        Console.WriteLine("VCS IMPOSITION ON\n");
+                    else
+                        Console.WriteLine("VCS IMPOSITION OFF\n");
+                    break;
+
+                default:    //A_IMPOSE_START	-		FAILURE, INV_SVR_POS
+                            //A_IMPOSE_END		-		FAILURE, INV_SVR_POS, INV_POS
+
+                    SendLoggerMessage(T_AMS_IFM, m_tVcsIfManage.nTransmittedVICExerciseNo, GetVCSError(rxdMessageId, usStatus, eERROR));
+                    break;
+            }
+            //return (m_tVcsIfManage.nTransmittedVICExerciseNo * nQueueRemovalEnable);
+            return m_tVcsIfManage.nTransmittedVICExerciseNo;
+
             break;
-
-        default:    //A_IMPOSE_START	-		FAILURE, INV_SVR_POS
-                    //A_IMPOSE_END		-		FAILURE, INV_SVR_POS, INV_POS
-
-            SendLoggerMessage(T_AMS_IFM, m_tVcsIfManage.nTransmittedVICExerciseNo, GetVCSError(rxdMessageId, usStatus, eERROR));
-            break;
-    }
-    //return (m_tVcsIfManage.nTransmittedVICExerciseNo * nQueueRemovalEnable);
-    return m_tVcsIfManage.nTransmittedVICExerciseNo;
-
-    break;
 
 
 		/************ Seek *************/
 	
-		case A_EC_SEEK:
-    usVcsExerciseNo = *pusStatus++;
-    usStatus = *pusStatus++;
+		case (Int16)UNET_Classes.Enums.SIM_Message_IDs.A_EC_SEEK:
+            usVcsExerciseNo = *pusStatus++;
+            usStatus = *pusStatus++;
 
-    switch (usStatus)
-    {
-
-        case VCS_SUCCESS:
-            //default:				//TEMP FIX UNTIL NEW R/R Code Recieved
-
-            /* The seek reply can be unsolicited as a result of a ready message being received 
-            from Record/Replay PC (time adjustment)  Determine if solicited message and trace timestamps */
-
-            if ((m_tVcsIfManage.nTransmittedVICExerciseNo == NO_EXERCISE) ||
-                    (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue == NULL) ||
-                    (rxdMessageId != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply))
+            switch (usStatus)
             {
-                sprintf(m_szVCSError, "VCS Seeked [Unsolicited] Exercise Time:");
-                n = NO_EXERCISE;
+
+                case VCS_SUCCESS:
+                    //default:				//TEMP FIX UNTIL NEW R/R Code Recieved
+
+                    /* The seek reply can be unsolicited as a result of a ready message being received 
+                    from Record/Replay PC (time adjustment)  Determine if solicited message and trace timestamps */
+
+                    if ((m_tVcsIfManage.nTransmittedVICExerciseNo == NO_EXERCISE) ||
+                            (m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue == NULL) ||
+                            (rxdMessageId != m_pVcsExManage[m_tVcsIfManage.nTransmittedVICExerciseNo].pMsgQueue->sMsgExpectedReply))
+                    {
+                        sprintf(m_szVCSError, "VCS Seeked [Unsolicited] Exercise Time:");
+                        n = NO_EXERCISE;
+                    }
+                    else
+                    {
+                        UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FROZEN);
+                        sprintf(m_szVCSError, "VCS Seeked Exercise Time: ");
+                        n = m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    }
+
+                    /* Extract scenario and exercise time	*/
+                    memcpy((void)szTemp1, (void)pusStatus, 12);
+                    szTemp1[12] = '\0';
+
+                    strcat(m_szVCSError, szTemp1);
+                    strcat(m_szVCSError, ",  Scenario Time: ");
+
+                    pusStatus += 6;
+
+                    memcpy((void)szTemp1, (void)pusStatus, 12);
+                    szTemp1[12] = '\n';
+                    szTemp1[13] = '\0';
+
+                    /* Debug info */
+                    strcat(m_szVCSError, szTemp1);
+                    Console.WriteLine(m_szVCSError);
+
+
+                    //UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FROZEN);
+
+                    return n;
+
+                    break;
+
+                default:    //A_EC_SEEK		-		FAILURE, INV_EX_NUM, INV_EX_TIME, INV_SC_TIME, INV_STATE
+
+                    UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
+                    return m_tVcsIfManage.nTransmittedVICExerciseNo;
+                    break;
             }
-            else
-            {
-                UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FROZEN);
-                sprintf(m_szVCSError, "VCS Seeked Exercise Time: ");
-                n = m_tVcsIfManage.nTransmittedVICExerciseNo;
-            }
-
-            /* Extract scenario and exercise time	*/
-            memcpy((void*)szTemp1, (void*)pusStatus, 12);
-            szTemp1[12] = '\0';
-
-            strcat(m_szVCSError, szTemp1);
-            strcat(m_szVCSError, ",  Scenario Time: ");
-
-            pusStatus += 6;
-
-            memcpy((void*)szTemp1, (void*)pusStatus, 12);
-            szTemp1[12] = '\n';
-            szTemp1[13] = '\0';
-
-            /* Debug info */
-            strcat(m_szVCSError, szTemp1);
-            TraceVcs(m_szVCSError);
-
-
-            //UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FROZEN);
-
-            return n;
-
             break;
 
-        default:    //A_EC_SEEK		-		FAILURE, INV_EX_NUM, INV_EX_TIME, INV_SC_TIME, INV_STATE
-
-            UpdateExerciseStatus(m_tVcsIfManage.nTransmittedVICExerciseNo, CScenarioComponent::FAULT, GetVCSError(rxdMessageId, usStatus, eERROR));
-            return m_tVcsIfManage.nTransmittedVICExerciseNo;
-            break;
-    }
-    break;
-
-    /************ Unexpected messages *************/
-    default:
+            /************ Unexpected messages *************/
+            default:
 		/*
 			Unused replies:-	A_GET_EX_BY_ID:		
 												A_GET_EX_BY_NAME:
 												A_EC_EX_STATE:
 		*/
 			SendLoggerMessage(T_AMS_IFM, NO_EXERCISE, "Unknown reply from VCS");
-    break;
+            break;
 
-}
+        }
     /* Attempt to send another queued message here*/
     SendNextQueuedMessage();
 
@@ -1774,7 +1771,7 @@ public void SendVCSStatusReply(const USHORT MessageID, const USHORT MessageStatu
 ////////////////////////////////////////////////////////////////////////////////
 
 //##ModelId=4119F5940037
-public void SendWOLMessage(const char* szMAC_ADDRESS)
+public void SendWOLMessage(char szMAC_ADDRESS)
 {
     char WOL_ADDRESS[] = "255.255.255.255";
     u_short WOL_PORT_NUMBER = 1026;
