@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using UNET_ServiceStatus.UNET_Service;
-
+using System.Reflection;
 
 namespace UNET_ServiceStatus
 {
@@ -46,7 +46,7 @@ namespace UNET_ServiceStatus
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
 
-                Console.Write("HSO Marine 2017 - UNET Service Status Version 04 december 2017");
+                Console.Write(string.Format("HSO Marine 2018 - UNET Service Status build date: {0}", Utils.GetLinkerDateTime(Assembly.GetExecutingAssembly(), null)));
                 Console.Write(Environment.NewLine);
                 Console.Write("UNET Status weergever van de UNET_Service");
                 Console.Write(Environment.NewLine);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -13,9 +15,7 @@ namespace UNET_ServiceStatus
         {
           getData gd = new getData();
         Timer timerhart = new System.Timers.Timer(3000);
-          Console.Write("Yggdra Solutions 2017 - UNET Service Status Version 2 oktober 2017");
-            Console.Write(Environment.NewLine);
-            Console.Write("UNET Status weergever van de UNET_Service");
+            Console.Write(string.Format("Yggdra Solutions 2017 - UNET Service Status Builddate: {0}", Utils.GetLinkerDateTime(Assembly.GetExecutingAssembly(), null)));
             Console.Write(Environment.NewLine);
             timerhart.Enabled = false;
             timerhart.Elapsed += Timerhart_Elapsed;
@@ -50,6 +50,36 @@ namespace UNET_ServiceStatus
             timerhart.Enabled = false;
 
         }
+
+        ///// <summary>
+        ///// Get the assemblys build date
+        ///// see: https://stackoverflow.com/questions/1600962/displaying-the-build-date
+        ///// </summary>
+        ///// <param name="assembly"></param>
+        ///// <param name="target"></param>
+        ///// <returns></returns>
+        //public static DateTime GetLinkerTime(this Assembly assembly, TimeZoneInfo target = null)
+        //{
+        //    var filePath = assembly.Location;
+        //    const int c_PeHeaderOffset = 60;
+        //    const int c_LinkerTimestampOffset = 8;
+
+        //    var buffer = new byte[2048];
+
+        //    using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        //        stream.Read(buffer, 0, 2048);
+
+        //    var offset = BitConverter.ToInt32(buffer, c_PeHeaderOffset);
+        //    var secondsSince1970 = BitConverter.ToInt32(buffer, offset + c_LinkerTimestampOffset);
+        //    var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        //    var linkTimeUtc = epoch.AddSeconds(secondsSince1970);
+
+        //    var tz = target ?? TimeZoneInfo.Local;
+        //    var localTime = TimeZoneInfo.ConvertTimeFromUtc(linkTimeUtc, tz);
+
+        //    return localTime;
+        //}
 
         private static void Timerhart_Elapsed(object sender, ElapsedEventArgs e)
         {

@@ -74,21 +74,21 @@ namespace SIM2UNET
 {
     public class ExerciseManagement
     {
-        const string A_NONE = string.Empty;
-        const bool M_ERROR = false;
-        const string[8] szModeStr = { "UNKNOWN", "STT-SINGLE", "STT-MULTI", "IL", "RAD ONLY", "UNKNOWN", "UNKNOWN", "UNKNOWN" };
-        const char szRoleNameStr[8] = { "INSTR_", "OP_", "CON_", "STT_IL_", "RADOP_", "ESMOP_", "RAD_", "EW_" };
-        const char pszLetter[2] = { "A", "B" };
+        //const string A_NONE = string.Empty;
+        //const bool true = false;
+        //const string[8] szModeStr = { "UNKNOWN", "STT-SINGLE", "STT-MULTI", "IL", "RAD ONLY", "UNKNOWN", "UNKNOWN", "UNKNOWN" };
+        //const char szRoleNameStr[8] = { "INSTR_", "OP_", "CON_", "STT_IL_", "RADOP_", "ESMOP_", "RAD_", "EW_" };
+        //const char pszLetter[2] = { "A", "B" };
 
-        const char szSpace[] = " ";
-        const char szOpenBracket[] = "[";
-        const char szCloseBracketSpace[] = "] ";
-        const char szCloseBracketOpenBracket[] = "][";
-        const char szEndSpace[] = "END ";
-        const char szUnderscore[] = "_";
+        //const char szSpace[] = " ";
+        //const char szOpenBracket[] = "[";
+        //const char szCloseBracketSpace[] = "] ";
+        //const char szCloseBracketOpenBracket[] = "][";
+        //const char szEndSpace[] = "END ";
+        //const char szUnderscore[] = "_";
 
-        char szSingleDigit[] = "1";
-        char szTemporaryTime[] = "99:99:99:999";
+        //char szSingleDigit[] = "1";
+        //char szTemporaryTime[] = "99:99:99:999";
 
 
         // *************************************************************************************
@@ -124,37 +124,37 @@ namespace SIM2UNET
         // Description: Generates VCS Reset Message 
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F59101C4
-        public long ResetVCS()
+        public bool ResetVCS()
         {
             
-            string newMsg;
+            //string newMsg;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsGenManage.hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsGenManage.hQueueMutex, 2000))
+            //    return true;
 
-            /* I_SC_RESET */
-            if (!(newMsg = AddMessageToQueue(NO_EXERCISE, F_RESET)))
-            {
-                ReleaseMutex(m_tVcsGenManage.hQueueMutex);
-                return M_ERROR;
-            }
+            ///* I_SC_RESET */
+            //if (!(newMsg = AddMessageToQueue(-2, F_RESET)))
+            //{
+            //    ReleaseMutex(m_tVcsGenManage.hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = (ushort)I_SC_RESET;
-            newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = (ushort)I_SC_RESET;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET;
+            //newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_SC_RESET;
 
-            newMsg->MsgHeader.usLength = 0;
-            newMsg->nMsgSize = sizeof(vcsHeader_t);
-            m_tVcsGenManage.nMsgCnt++;
+            //newMsg->MsgHeader.usLength = 0;
+            //newMsg->nMsgSize = sizeof(vcsHeader_t);
+            //m_tVcsGenManage.nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_tVcsGenManage.eMsgStatus)
-                m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_tVcsGenManage.eMsgStatus)
+            //    m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_tVcsGenManage.hQueueMutex);
+            //ReleaseMutex(m_tVcsGenManage.hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
 
@@ -168,78 +168,78 @@ namespace SIM2UNET
             int n, i, nTraineeIdx;
 
             /* Extract exercise configuration data from PDU message */
-            strcpy(m_pVcsExManage[IL_IDX].szExerciseSpecificationName, "IL");
+            //strcpy(m_pVcsExManage[0].szExerciseSpecificationName, "IL");
 
-            /* Create unique exercise exercise name */
-            strcpy(m_pVcsExManage[IL_IDX].szUniqueExerciseName, "Session"); //IL
+            ///* Create unique exercise exercise name */
+            //strcpy(m_pVcsExManage[0].szUniqueExerciseName, "Session"); //IL
 
-            strcpy(m_pVcsExManage[IL_IDX].szRecordFileName, "IL_SESSION_RECORD");
+            //strcpy(m_pVcsExManage[0].szRecordFileName, "IL_SESSION_RECORD");
 
-            m_pVcsExManage[IL_IDX].eLoadType = (eLoadType_t)EXERCISE_NEW;
-            strcpy(m_pVcsExManage[IL_IDX].szExerciseMode, szModeStr[3]);
+            //m_pVcsExManage[0].eLoadType = (eLoadType_t)EXERCISE_NEW;
+            //strcpy(m_pVcsExManage[0].szExerciseMode, szModeStr[3]);
 
-            m_pVcsExManage[IL_IDX].dScenarioTime = 0.0;
+            //m_pVcsExManage[0].dScenarioTime = 0.0;
 
-            m_pVcsExManage[IL_IDX].sRoleCount = 0;
-            m_pVcsExManage[IL_IDX].sRadioCount = 0;
-            m_pVcsExManage[IL_IDX].sActorCount = 0;
+            //m_pVcsExManage[0].sRoleCount = 0;
+            //m_pVcsExManage[0].sRadioCount = 0;
+            //m_pVcsExManage[0].sActorCount = 0;
 
-            m_pVcsExManage[IL_IDX].sMasterInstPhysicalNode = nMasterInstructor + m_sTotalNumTrainees + DESK_OFFSET;
+            //m_pVcsExManage[0].sMasterInstPhysicalNode = nMasterInstructor + m_sTotalNumTrainees + 700;
 
-            /* Set recording parameters */
-            m_pVcsExManage[IL_IDX].sShortTermRecordControl = 0;
-            m_pVcsExManage[IL_IDX].sLongTermRecordControl = 0;
+            ///* Set recording parameters */
+            //m_pVcsExManage[0].sShortTermRecordControl = 0;
+            //m_pVcsExManage[0].sLongTermRecordControl = 0;
 
-            /* Assign Instructors */
-            for (n = 0; n < m_sTotalNumInstructors; n++)
-            {
-                m_pVcsExManage[IL_IDX].Roles[n].sRoleID = n + 1;
-                m_pVcsExManage[IL_IDX].Roles[n].sRoleType = CSystemComponent::SPARK_INSTRUCTOR;
-                m_pVcsExManage[IL_IDX].Roles[n].sLogicalNode = (m_pVcsExManage[IL_IDX].Roles[n].sRoleID == nMasterInstructor) ? 1 : 0;
-                m_pVcsExManage[IL_IDX].Roles[n].sPhysicalNode = DESK_OFFSET + m_sTotalNumTrainees + m_pVcsExManage[IL_IDX].Roles[n].sRoleID;
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szPlatform, "No Pltrm");
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szAbbrPlatform, "-");
-                szSingleDigit[0] = '0' + n + 1;
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szRoleName, "INSTR_0");
-                strcat(m_pVcsExManage[IL_IDX].Roles[n].szRoleName, szSingleDigit);
+            ///* Assign Instructors */
+            //for (n = 0; n < m_sTotalNumInstructors; n++)
+            //{
+            //    m_pVcsExManage[0].Roles[n].sRoleID = n + 1;
+            //    m_pVcsExManage[0].Roles[n].sRoleType = CSystemComponent::SPARK_INSTRUCTOR;
+            //    m_pVcsExManage[0].Roles[n].sLogicalNode = (m_pVcsExManage[0].Roles[n].sRoleID == nMasterInstructor) ? 1 : 0;
+            //    m_pVcsExManage[0].Roles[n].sPhysicalNode = 700 + m_sTotalNumTrainees + m_pVcsExManage[0].Roles[n].sRoleID;
+            //    strcpy(m_pVcsExManage[0].Roles[n].szPlatform, "No Pltrm");
+            //    strcpy(m_pVcsExManage[0].Roles[n].szAbbrPlatform, "-");
+            //    szSingleDigit[0] = '0' + n + 1;
+            //    strcpy(m_pVcsExManage[0].Roles[n].szRoleName, "INSTR_0");
+            //    String.Concat(m_pVcsExManage[0].Roles[n].szRoleName, szSingleDigit);
 
-                m_pVcsExManage[IL_IDX].Roles[n].nAssignedRadios = 0;
-                m_pVcsExManage[IL_IDX].Roles[n].nAssignedActors = 0;
+            //    m_pVcsExManage[0].Roles[n].nAssignedRadios = 0;
+            //    m_pVcsExManage[0].Roles[n].nAssignedActors = 0;
 
-                m_pVcsExManage[IL_IDX].sRoleCount++;
-            }
+            //    m_pVcsExManage[0].sRoleCount++;
+            //}
 
-            /* Assign Trainees */
-            for (; n < m_sTotalNumRoles; n++)
-            {
-                nTraineeIdx = n + 2 - m_sTotalNumInstructors; //offset by 1. (2,3,4 etc)
+            ///* Assign Trainees */
+            //for (; n < m_sTotalNumRoles; n++)
+            //{
+            //    nTraineeIdx = n + 2 - m_sTotalNumInstructors; //offset by 1. (2,3,4 etc)
 
-                m_pVcsExManage[IL_IDX].Roles[n].sRoleID = n + 1;
-                m_pVcsExManage[IL_IDX].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
-                m_pVcsExManage[IL_IDX].Roles[n].sLogicalNode = n + 1;
-                m_pVcsExManage[IL_IDX].Roles[n].sPhysicalNode = DESK_OFFSET + m_pVcsExManage[IL_IDX].Roles[n].sLogicalNode - m_sTotalNumInstructors;
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szPlatform, "No Pltrm");
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szAbbrPlatform, "No Pltrm");
-                strcpy(m_pVcsExManage[IL_IDX].Roles[n].szRoleName, "IL ");
-                szSingleDigit[0] = '0' + nTraineeIdx / 2;
-                strcat(m_pVcsExManage[IL_IDX].Roles[n].szRoleName, szSingleDigit);
-                strcat(m_pVcsExManage[IL_IDX].Roles[n].szRoleName, pszLetter[nTraineeIdx % 2]);
+            //    m_pVcsExManage[0].Roles[n].sRoleID = n + 1;
+            //    m_pVcsExManage[0].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
+            //    m_pVcsExManage[0].Roles[n].sLogicalNode = n + 1;
+            //    m_pVcsExManage[0].Roles[n].sPhysicalNode = 700 + m_pVcsExManage[0].Roles[n].sLogicalNode - m_sTotalNumInstructors;
+            //    strcpy(m_pVcsExManage[0].Roles[n].szPlatform, "No Pltrm");
+            //    strcpy(m_pVcsExManage[0].Roles[n].szAbbrPlatform, "No Pltrm");
+            //    strcpy(m_pVcsExManage[0].Roles[n].szRoleName, "IL ");
+            //    szSingleDigit[0] = '0' + nTraineeIdx / 2;
+            //    String.Concat(m_pVcsExManage[0].Roles[n].szRoleName, szSingleDigit);
+            //    String.Concat(m_pVcsExManage[0].Roles[n].szRoleName, pszLetter[nTraineeIdx % 2]);
 
-                m_pVcsExManage[IL_IDX].Roles[n].nAssignedRadios = 0;
-                m_pVcsExManage[IL_IDX].Roles[n].nAssignedActors = 0;
+            //    m_pVcsExManage[0].Roles[n].nAssignedRadios = 0;
+            //    m_pVcsExManage[0].Roles[n].nAssignedActors = 0;
 
-                m_pVcsExManage[IL_IDX].sRoleCount++;
-            }
+            //    m_pVcsExManage[0].sRoleCount++;
+            //}
 
-            /* Finish assigning logical nodes to instructors */
-            for (n = 0, i = 2; n < m_sTotalNumInstructors; n++)
-            {
-                if (!m_pVcsExManage[IL_IDX].Roles[n].sLogicalNode)
-                    m_pVcsExManage[IL_IDX].Roles[n].sLogicalNode = i++;
-            }
+            ///* Finish assigning logical nodes to instructors */
+            //for (n = 0, i = 2; n < m_sTotalNumInstructors; n++)
+            //{
+            //    if (!m_pVcsExManage[0].Roles[n].sLogicalNode)
+            //        m_pVcsExManage[0].Roles[n].sLogicalNode = i++;
+            //}
 
-            /* Exercise specification ok */
-            m_pVcsExManage[IL_IDX].eED_State = ED_SPECIFIED;
+            ///* Exercise specification ok */
+            //m_pVcsExManage[0].eED_State = ED_SPECIFIED;
 
             return;
         }
@@ -250,8 +250,8 @@ namespace SIM2UNET
         //        // Description: Configures an STT exercise within VIC
         //        ////////////////////////////////////////////////////////////////////////////////
         //        //##ModelId=4119F5910282
-        //        public bool SetSttExercise(msgVCSCommunicationSTTConfirmation_t pED)
-        //        {
+        public bool SetSttExercise(string pED)// msgVCSCommunicationSTTConfirmation_t pED)
+                {
         //            int VIC_ExNo, nCurrentLogicalNode;
         //            int RoleIdx;
         //            short sCounter;
@@ -454,7 +454,7 @@ namespace SIM2UNET
         //			{
 
         //                SendLoggerMessage(T_AMS_EXM, VIC_ExNo, "Unknown operating mode received for trainee");
-        //				return M_ERROR;
+        //				return true;
         //			}
 
         //			m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].nOperatingMode = pED->NodeData[RoleIdx].nOperatingMode;
@@ -465,20 +465,20 @@ namespace SIM2UNET
 
         //			if (bRadOrEwOnlyExercise)
 
-        //                strcat(m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].szRoleName, pszLetter[(pED->NodeData[RoleIdx].nPhysicalNode + 1) % 2]);
+        //                String.Concat(m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].szRoleName, pszLetter[(pED->NodeData[RoleIdx].nPhysicalNode + 1) % 2]);
 
         ///* Trainees get selected actors and all radios */
         //m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].nAssignedActors = pED->NodeData[RoleIdx].nAssignedActors;
         //			m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].nAssignedRadios = pED->NodeData[RoleIdx].nAssignedRadios;
         //		}
         //		else
-        //			return M_ERROR;
+        //			return true;
 
         //		m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].sSide = pED->NodeData[RoleIdx].sSide;
 
         //		/* Check that not more than one trainee if in individual training mode */
         //	//	if ((m_pVcsExManage[VIC_ExNo].bIndividualTraining) && (m_pVcsExManage[VIC_ExNo].sRoleCount != m_sTotalNumInstructors + 1))
-        //	//		return M_ERROR;	
+        //	//		return true;	
 
         //		/* Check physical desk assignment */
         //		sNodeID = (short) pED->NodeData[RoleIdx].nPhysicalNode;
@@ -489,12 +489,12 @@ namespace SIM2UNET
         //			if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].sRoleType)
         //			{
         //				if ((sNodeID<m_sTotalNumInstructors) || (sNodeID > m_sTotalNumNodes))
-        //					return M_ERROR;	
+        //					return true;	
         //			}
         //			else
         //			{
         //				if ((sNodeID< 1) || (sNodeID > m_sTotalNumTrainees))
-        //					return M_ERROR;
+        //					return true;
         //			}
         //		}
         //		else
@@ -502,16 +502,16 @@ namespace SIM2UNET
         //			if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].sRoleType)
         //			{
         //				if ((sNodeID<m_sTotalNumInstructors) || (sNodeID > m_sTotalNumNodes))
-        //					return M_ERROR;	
+        //					return true;	
         //			}
         //			else
         //			{
         //				if ((sNodeID< 1) || (sNodeID > m_sTotalNumTrainees))
-        //					return M_ERROR;
+        //					return true;
         //			}
         //		}
 
-        //		sNodeID += DESK_OFFSET;
+        //		sNodeID += 700;
 
         //		m_pVcsExManage[VIC_ExNo].Roles[RoleIdx].sPhysicalNode = sNodeID;
 
@@ -549,8 +549,8 @@ namespace SIM2UNET
         //	/* Exercise specification ok */
         //	m_pVcsExManage[VIC_ExNo].eED_State = ED_SPECIFIED;
 
-        //	return M_SUCCESS;
-        //}
+        	return false;
+        }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Function   : SetTestExercise
@@ -562,101 +562,101 @@ namespace SIM2UNET
         {
             int n, nTraineeIdx;
 
-            strcpy(m_pVcsExManage[TEST_ExNo].szExerciseSpecificationName, "TEST_SESSION");
-            strcpy(m_pVcsExManage[TEST_ExNo].szUniqueExerciseName, "CTEST");
+            //strcpy(m_pVcsExManage[TEST_ExNo].szExerciseSpecificationName, "TEST_SESSION");
+            //strcpy(m_pVcsExManage[TEST_ExNo].szUniqueExerciseName, "CTEST");
 
-            strcpy(m_pVcsExManage[TEST_ExNo].szRecordFileName, "TEST_RECORD");
+            //strcpy(m_pVcsExManage[TEST_ExNo].szRecordFileName, "TEST_RECORD");
 
-            m_pVcsExManage[TEST_ExNo].eLoadType = (eLoadType_t)EXERCISE_NEW;
-            strcpy(m_pVcsExManage[TEST_ExNo].szExerciseMode, szModeStr[0]);
+            //m_pVcsExManage[TEST_ExNo].eLoadType = (eLoadType_t)EXERCISE_NEW;
+            //strcpy(m_pVcsExManage[TEST_ExNo].szExerciseMode, szModeStr[0]);
 
-            m_pVcsExManage[TEST_ExNo].dScenarioTime = 0.0;
+            //m_pVcsExManage[TEST_ExNo].dScenarioTime = 0.0;
 
-            m_pVcsExManage[TEST_ExNo].sRoleCount = m_sTotalNumInstructors + m_sTotalNumTrainees;
-            m_pVcsExManage[TEST_ExNo].sRadioCount = 2;
-            m_pVcsExManage[TEST_ExNo].sActorCount = m_sTotalNumInstructors;
+            //m_pVcsExManage[TEST_ExNo].sRoleCount = m_sTotalNumInstructors + m_sTotalNumTrainees;
+            //m_pVcsExManage[TEST_ExNo].sRadioCount = 2;
+            //m_pVcsExManage[TEST_ExNo].sActorCount = m_sTotalNumInstructors;
 
-            m_pVcsExManage[TEST_ExNo].sMasterInstPhysicalNode = 1;
+            //m_pVcsExManage[TEST_ExNo].sMasterInstPhysicalNode = 1;
 
             /* Assign Instructors */
-            for (n = 0; n < m_sTotalNumInstructors; n++)
-            {
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_INSTRUCTOR;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = DESK_OFFSET + m_sTotalNumTrainees + m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID;
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "Test Platform");
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "-");
-                szSingleDigit[0] = '0' + n + 1;
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, "INSTR_0");
-                strcat(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, szSingleDigit);
+            //for (n = 0; n < m_sTotalNumInstructors; n++)
+            //{
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_INSTRUCTOR;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = 700 + m_sTotalNumTrainees + m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID;
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "Test Platform");
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "-");
+            ////    szSingleDigit[0] = '0' + n + 1;
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, "INSTR_0");
+            ////    String.Concat(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, szSingleDigit);
 
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = (int)(pow(2.0, (double)m_pVcsExManage[TEST_ExNo].sRadioCount)) - 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = (int)(pow(2.0, (double)m_pVcsExManage[TEST_ExNo].sActorCount)) - 1;
-            }
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = (int)(pow(2.0, (double)m_pVcsExManage[TEST_ExNo].sRadioCount)) - 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = (int)(pow(2.0, (double)m_pVcsExManage[TEST_ExNo].sActorCount)) - 1;
+            ////}
 
-            /* Assign Trainees */
-            for (; n < m_sTotalNumInstructors + m_sTotalNumTrainees; n++)
-            {
-                nTraineeIdx = n - m_sTotalNumInstructors + 2;
+            ///* Assign Trainees */
+            //for (; n < m_sTotalNumInstructors + m_sTotalNumTrainees; n++)
+            //{
+            ////    nTraineeIdx = n - m_sTotalNumInstructors + 2;
 
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = DESK_OFFSET + m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode - m_sTotalNumInstructors;
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "PLATFORM ");
-                AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, (nTraineeIdx / 2), Pad_1);
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "PLFRM ");
-                AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, (nTraineeIdx / 2), Pad_1);
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, szRoleNameStr[(nTraineeIdx % 2) + 1]);
-                AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, nTraineeIdx / 2, Pad_1);
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = 0x3;
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = 0xf;
-            }
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = 700 + m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode - m_sTotalNumInstructors;
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "PLATFORM ");
+            ////    AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, (nTraineeIdx / 2), Pad_1);
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "PLFRM ");
+            ////    AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, (nTraineeIdx / 2), Pad_1);
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, szRoleNameStr[(nTraineeIdx % 2) + 1]);
+            ////    AppendIntStr(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, nTraineeIdx / 2, Pad_1);
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = 0x3;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = 0xf;
+            ////}
 
-            /* Assign Debrief */
-            if (n == m_sTotalNumNodes - 1)
-            {
-                nTraineeIdx = n - m_sTotalNumInstructors + 2;
+            ///* Assign Debrief */
+            //if (n == m_sTotalNumNodes - 1)
+            //{
+            ////    nTraineeIdx = n - m_sTotalNumInstructors + 2;
 
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
-                m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = DESK_OFFSET + m_sTotalNumNodes;
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "No Pltrm");
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "No Pltrm");
-                strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, "Debrief");
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = 0x3;
-                m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = 0x0;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleID = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sRoleType = CSystemComponent::SPARK_TRAINEE_OPERATOR;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sLogicalNode = n + 1;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].sPhysicalNode = 700 + m_sTotalNumNodes;
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szPlatform, "No Pltrm");
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szAbbrPlatform, "No Pltrm");
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Roles[n].szRoleName, "Debrief");
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedRadios = 0x3;
+            ////    m_pVcsExManage[TEST_ExNo].Roles[n].nAssignedActors = 0x0;
 
-                m_pVcsExManage[TEST_ExNo].sRoleCount += 1;
-            }
+            ////    m_pVcsExManage[TEST_ExNo].sRoleCount += 1;
+            ////}
 
-            /* Radios */
-            strcpy(m_pVcsExManage[TEST_ExNo].Radio[0].szFrequency, "RADIO");
-            strcpy(m_pVcsExManage[TEST_ExNo].Radio[0].szStation, "HF");
-            m_pVcsExManage[TEST_ExNo].Radio[0].sType = 0;
-            m_pVcsExManage[TEST_ExNo].Radio[0].sKeyNumber = 3;
+            ///* Radios */
+            ////strcpy(m_pVcsExManage[TEST_ExNo].Radio[0].szFrequency, "RADIO");
+            ////strcpy(m_pVcsExManage[TEST_ExNo].Radio[0].szStation, "HF");
+            ////m_pVcsExManage[TEST_ExNo].Radio[0].sType = 0;
+            ////m_pVcsExManage[TEST_ExNo].Radio[0].sKeyNumber = 3;
 
-            strcpy(m_pVcsExManage[TEST_ExNo].Radio[1].szFrequency, "RADIO");
-            strcpy(m_pVcsExManage[TEST_ExNo].Radio[1].szStation, "UHF");
-            m_pVcsExManage[TEST_ExNo].Radio[1].sType = 1;
-            m_pVcsExManage[TEST_ExNo].Radio[1].sKeyNumber = 8;
+            ////strcpy(m_pVcsExManage[TEST_ExNo].Radio[1].szFrequency, "RADIO");
+            ////strcpy(m_pVcsExManage[TEST_ExNo].Radio[1].szStation, "UHF");
+            ////m_pVcsExManage[TEST_ExNo].Radio[1].sType = 1;
+            ////m_pVcsExManage[TEST_ExNo].Radio[1].sKeyNumber = 8;
 
 
-            /* Actor(s) */
-            for (n = 0; n < m_sTotalNumInstructors; n++)
-            {
-                strcpy(m_pVcsExManage[TEST_ExNo].Actor[n].szPlatform, "TEST");
-                strcpy(m_pVcsExManage[TEST_ExNo].Actor[n].szRoleName, "Actor_");
-                szSingleDigit[0] = '0' + n + 1;
-                strcat(m_pVcsExManage[TEST_ExNo].Actor[n].szRoleName, szSingleDigit);
+            ///* Actor(s) */
+            //for (n = 0; n < m_sTotalNumInstructors; n++)
+            //{
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Actor[n].szPlatform, "TEST");
+            ////    strcpy(m_pVcsExManage[TEST_ExNo].Actor[n].szRoleName, "Actor_");
+            ////    szSingleDigit[0] = '0' + n + 1;
+            ////    String.Concat(m_pVcsExManage[TEST_ExNo].Actor[n].szRoleName, szSingleDigit);
 
-                m_pVcsExManage[TEST_ExNo].Actor[n].sKeyNumber = 5 * n + 3;
-            }
+            ////    m_pVcsExManage[TEST_ExNo].Actor[n].sKeyNumber = 5 * n + 3;
+            ////}
 
-            /* Exercise specification ok */
-            m_pVcsExManage[TEST_ExNo].eED_State = ED_SPECIFIED;
+            ///* Exercise specification ok */
+            //m_pVcsExManage[TEST_ExNo].eED_State = ED_SPECIFIED;
 
             return;
         }
@@ -667,8 +667,8 @@ namespace SIM2UNET
         ////							the associated instructor/actor roles
         //////////////////////////////////////////////////////////////////////////////////
         ////##ModelId=4119F59102F0
-        //public bool DefineVcsExercise(int VIC_ExNo)
-        //{
+        public bool DefineVcsExercise(int VIC_ExNo)
+        {
         //    QueuedMsg_t newMsg;
 
         //    char szPointDAAddress[] = "ADDR [500000][1] ";
@@ -681,13 +681,13 @@ namespace SIM2UNET
         //    int i, nRoleID, nTens, nUnits, nDesk;
 
         //    if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-        //        return M_ERROR;
+        //        return true;
 
         //    /* I_ES_START */
         //    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
         //    {
         //        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        //        return M_ERROR;
+        //        return true;
         //    }
 
         //    newMsg->MsgHeader.sID = (ushort)I_ES_START; //htons((ushort) I_ES_START) doesn't work?
@@ -707,33 +707,33 @@ namespace SIM2UNET
         //    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
         //    {
         //        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        //        return M_ERROR;
+        //        return true;
         //    }
 
         //    /* Ensure null termination of data string when concatinating fixed length character arrays */
         //    memset((void)newMsg->MsgData, 0, sizeof(newMsg->MsgData));
 
-        //    newMsg->MsgHeader.sID = (USHORT)I_ES_CONFIG;
+        //    newMsg->MsgHeader.sID = (ushort)I_ES_CONFIG;
         //    newMsg->MsgHeader.sReserved = 0;
 
         //    newMsg->sMsgExpectedReply = A_ES_CONFIG;
 
-        //    if (IL_IDX == VIC_ExNo)
+        //    if (0 == VIC_ExNo)
         //        strcpy(newMsg->MsgData, "EXERCISE_TYPE [IL Pages] ");
         //    else
         //        strcpy(newMsg->MsgData, "EXERCISE_TYPE [STT Pages] ");
 
-        //    strcat(newMsg->MsgData, "EXERCISE_MODE [");
-        //    strcat(newMsg->MsgData, m_pVcsExManage[VIC_ExNo].szExerciseMode);
-        //    strcat(newMsg->MsgData, szCloseBracketSpace);
+        //    String.Concat(newMsg->MsgData, "EXERCISE_MODE [");
+        //    String.Concat(newMsg->MsgData, m_pVcsExManage[VIC_ExNo].szExerciseMode);
+        //    String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
-        //    strcat(newMsg->MsgData, "ROLES ");
+        //    String.Concat(newMsg->MsgData, "ROLES ");
         //    for (nRoleID = 0; nRoleID < m_pVcsExManage[VIC_ExNo].sRoleCount; ++nRoleID)
         //    {
-        //        strcat(newMsg->MsgData, szOpenBracket);
+        //        String.Concat(newMsg->MsgData, szOpenBracket);
         //        AppendIntStr(newMsg->MsgData, (nRoleID + 1), Pad_0);
-        //        strcat(newMsg->MsgData, szCloseBracketSpace);
-        //        strcat(newMsg->MsgData, szOpenBracket);
+        //        String.Concat(newMsg->MsgData, szCloseBracketSpace);
+        //        String.Concat(newMsg->MsgData, szOpenBracket);
 
         //        pcData = (char)&newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -741,35 +741,35 @@ namespace SIM2UNET
         //                        (void)m_pVcsExManage[VIC_ExNo].Roles[nRoleID].szRoleName,
         //                        sizeof(m_pVcsExManage[VIC_ExNo].Roles[nRoleID].szRoleName));
 
-        //    strcat(newMsg->MsgData, szCloseBracketSpace);
+        //    String.Concat(newMsg->MsgData, szCloseBracketSpace);
         //    }
 
-        //    strcat(newMsg->MsgData, szEndSpace);
+        //    String.Concat(newMsg->MsgData, szEndSpace);
 
 
-        //    strcat(newMsg->MsgData, "CALL_TIMEOUT [50] ");
+        //    String.Concat(newMsg->MsgData, "CALL_TIMEOUT [50] ");
 
         //    /* Network Definition */
-        //    strcat(newMsg->MsgData, "START_NET_DEFS ");
+        //    String.Concat(newMsg->MsgData, "START_NET_DEFS ");
 
-        //	if (IL_IDX != VIC_ExNo)
+        //	if (0 != VIC_ExNo)
         //	{
 
-        //        strcat(newMsg->MsgData, "NET_DEF [POINT] ");		//AMS Actors (DA Channels)
+        //        String.Concat(newMsg->MsgData, "NET_DEF [POINT] ");		//AMS Actors (DA Channels)
 
-        //        strcat(newMsg->MsgData, "ANSWER [Y] ");
+        //        String.Concat(newMsg->MsgData, "ANSWER [Y] ");
 
-        //        strcat(newMsg->MsgData, "CONNECT_DELAY [0] ");
+        //        String.Concat(newMsg->MsgData, "CONNECT_DELAY [0] ");
 
-        //        strcat(newMsg->MsgData, "A_IDENT_XFR [Y] ");
+        //        String.Concat(newMsg->MsgData, "A_IDENT_XFR [Y] ");
 
-        //        strcat(newMsg->MsgData, "BUSY_MARK_IND [N] ");
+        //        String.Concat(newMsg->MsgData, "BUSY_MARK_IND [N] ");
 
-        //        strcat(newMsg->MsgData, "BREAK_IN [N] ");
+        //        String.Concat(newMsg->MsgData, "BREAK_IN [N] ");
 
-        //        strcat(newMsg->MsgData, "MONITOR_RADIO [N] ");
+        //        String.Concat(newMsg->MsgData, "MONITOR_RADIO [N] ");
 
-        //        strcat(newMsg->MsgData, "EXTERNAL [Y] ");
+        //        String.Concat(newMsg->MsgData, "EXTERNAL [Y] ");
 
         //		for (nRoleID=1; nRoleID<=m_pVcsExManage[VIC_ExNo].sActorCount; ++nRoleID)
         //		{
@@ -782,33 +782,33 @@ namespace SIM2UNET
         //			szTemp[11] = '0' + nUnits;
 
 
-        //            strcat(newMsg->MsgData, szTemp);
+        //            String.Concat(newMsg->MsgData, szTemp);
         //		}
 
-        //        strcat(newMsg->MsgData, szEndSpace);
+        //        String.Concat(newMsg->MsgData, szEndSpace);
         //	}
 
 
-        //    strcat(newMsg->MsgData, "NET_DEF [CABIN] ");		//Intercom (DA Channels)
+        //    String.Concat(newMsg->MsgData, "NET_DEF [CABIN] ");		//Intercom (DA Channels)
 
-        //    strcat(newMsg->MsgData, "ANSWER [N] ");
+        //    String.Concat(newMsg->MsgData, "ANSWER [N] ");
 
-        //    strcat(newMsg->MsgData, "CONNECT_DELAY [0] ");
+        //    String.Concat(newMsg->MsgData, "CONNECT_DELAY [0] ");
 
-        //    strcat(newMsg->MsgData, "A_IDENT_XFR [N] ");
+        //    String.Concat(newMsg->MsgData, "A_IDENT_XFR [N] ");
 
-        //    strcat(newMsg->MsgData, "BUSY_MARK_IND [N] ");
+        //    String.Concat(newMsg->MsgData, "BUSY_MARK_IND [N] ");
 
-        //    strcat(newMsg->MsgData, "BREAK_IN [N] ");
+        //    String.Concat(newMsg->MsgData, "BREAK_IN [N] ");
 
-        //    strcat(newMsg->MsgData, "MONITOR_RADIO [N] ");
+        //    String.Concat(newMsg->MsgData, "MONITOR_RADIO [N] ");
 
-        //    strcat(newMsg->MsgData, "EXTERNAL [N] ");
+        //    String.Concat(newMsg->MsgData, "EXTERNAL [N] ");
 
 
-        //    strcat(newMsg->MsgData, szCabinDAAddress);		//Instructor Intercom
+        //    String.Concat(newMsg->MsgData, szCabinDAAddress);		//Instructor Intercom
 
-        //	if ((IL_IDX != VIC_ExNo) && (!m_pVcsExManage[VIC_ExNo].bIndividualTraining))
+        //	if ((0 != VIC_ExNo) && (!m_pVcsExManage[VIC_ExNo].bIndividualTraining))
         //	{
         //		for (i=0; i<m_sTotalNumDesks; i++)					//Trainee Intercom
         //		{
@@ -830,13 +830,13 @@ namespace SIM2UNET
         //			szTemp[9] = '0' + nUnits;
 
 
-        //            strcat(newMsg->MsgData, szTemp);	
+        //            String.Concat(newMsg->MsgData, szTemp);	
         //		}
         //	}
 
-        //    strcat(newMsg->MsgData, szEndSpace);
+        //    String.Concat(newMsg->MsgData, szEndSpace);
 
-        //    strcat(newMsg->MsgData, szEndSpace);
+        //    String.Concat(newMsg->MsgData, szEndSpace);
 
         //newMsg->MsgHeader.usLength = strlen(newMsg->MsgData) + 1;
         //	newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof (vcsHeader_t);
@@ -849,7 +849,7 @@ namespace SIM2UNET
         //		{
 
         //            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        //			return M_ERROR;
+        //			return true;
         //		}
 
         //        /* Ensure null termination of data string when concatinating fixed length character arrays */
@@ -874,29 +874,29 @@ namespace SIM2UNET
         //		pcData= (char*) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
 
-        //        strcat(newMsg->MsgData, szCloseBracketSpace);
+        //        String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
-        //        strcat(newMsg->MsgData, "ROLE_TYPE [");
+        //        String.Concat(newMsg->MsgData, "ROLE_TYPE [");
 
         //		switch (m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sRoleType)
         //		{
         //			case CSystemComponent::SPARK_INSTRUCTOR:
 
-        //                strcat(newMsg->MsgData, "INSTRUCTOR");
+        //                String.Concat(newMsg->MsgData, "INSTRUCTOR");
         //				break;
         //			case CSystemComponent::SPARK_TRAINEE_OPERATOR:
 
-        //                strcat(newMsg->MsgData, "TRAINEE");
+        //                String.Concat(newMsg->MsgData, "TRAINEE");
         //				break;
         //			default:
-        //				return M_ERROR;
+        //				return true;
         //		}
 
 
-        //        strcat(newMsg->MsgData, szCloseBracketSpace);
+        //        String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
 
-        //        strcat(newMsg->MsgData, "LOCATION [");
+        //        String.Concat(newMsg->MsgData, "LOCATION [");
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -907,7 +907,7 @@ namespace SIM2UNET
 
 
 
-        //        strcat(newMsg->MsgData, szCloseBracketOpenBracket);
+        //        String.Concat(newMsg->MsgData, szCloseBracketOpenBracket);
 
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
@@ -918,20 +918,20 @@ namespace SIM2UNET
         //						sizeof(m_pVcsExManage[VIC_ExNo].Roles[nRoleID].szAbbrPlatform));		//Abbreviated Platform Name
 
 
-        //        strcat(newMsg->MsgData, szCloseBracketSpace);
+        //        String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
 
-        //        strcat(newMsg->MsgData, "A_IDENT_XFR [N] ");
+        //        String.Concat(newMsg->MsgData, "A_IDENT_XFR [N] ");
 
 
-        //        strcat(newMsg->MsgData, "NETWORK_ACCESS [POINT][CABIN] ");
+        //        String.Concat(newMsg->MsgData, "NETWORK_ACCESS [POINT][CABIN] ");
 
         //		for (i=0; i<m_pVcsExManage[VIC_ExNo].sRadioCount; ++i)
         //		{
         //			if ((m_pVcsExManage[VIC_ExNo].Roles[nRoleID].nAssignedRadios >>i) & 1)
         //			{	/* Radio assigned */
 
-        //                strcat(newMsg->MsgData, "RADIO_CHANNEL [");
+        //                String.Concat(newMsg->MsgData, "RADIO_CHANNEL [");
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -941,10 +941,10 @@ namespace SIM2UNET
         //								sizeof(m_pVcsExManage[VIC_ExNo].Radio[i].szFrequency));
 
 
-        //                strcat(newMsg->MsgData, szCloseBracketSpace);
+        //                String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
 
-        //                strcat(newMsg->MsgData, szOpenBracket);
+        //                String.Concat(newMsg->MsgData, szOpenBracket);
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -954,37 +954,37 @@ namespace SIM2UNET
         //								sizeof(m_pVcsExManage[VIC_ExNo].Radio[i].szStation));
 
 
-        //                strcat(newMsg->MsgData, szCloseBracketSpace);
+        //                String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
 
-        //                strcat(newMsg->MsgData, szOpenBracket);
+        //                String.Concat(newMsg->MsgData, szOpenBracket);
 
         //                sprintf(szTemp, "");
 
         //                AppendIntStr(szTemp, m_pVcsExManage[VIC_ExNo].Radio[i].sKeyNumber, Pad_0);
 
-        //                strcat(newMsg->MsgData, szTemp);
+        //                String.Concat(newMsg->MsgData, szTemp);
 
-        //                strcat(newMsg->MsgData, szCloseBracketSpace);
+        //                String.Concat(newMsg->MsgData, szCloseBracketSpace);
 
 
-        //                strcat(newMsg->MsgData, "INIT_STATE [DESELECT] ");
+        //                String.Concat(newMsg->MsgData, "INIT_STATE [DESELECT] ");
 
-        //                strcat(newMsg->MsgData, "DESELECT_ENABLE [Y] ");
+        //                String.Concat(newMsg->MsgData, "DESELECT_ENABLE [Y] ");
 
-        //                strcat(newMsg->MsgData, "SPECIAL_EFFECT [");
+        //                String.Concat(newMsg->MsgData, "SPECIAL_EFFECT [");
 
-        //                strcat(newMsg->MsgData, szRadioType[m_pVcsExManage[VIC_ExNo].Radio[i].sType]);
+        //                String.Concat(newMsg->MsgData, szRadioType[m_pVcsExManage[VIC_ExNo].Radio[i].sType]);
 
         //				if (eHF == m_pVcsExManage[VIC_ExNo].Radio[i].sType)
 
-        //                    strcat(newMsg->MsgData, "][0] ");	//Level still to be defined by customer
+        //                    String.Concat(newMsg->MsgData, "][0] ");	//Level still to be defined by customer
         //				else
 
-        //                    strcat(newMsg->MsgData, "][0] ");	//Level still to be defined by customer
+        //                    String.Concat(newMsg->MsgData, "][0] ");	//Level still to be defined by customer
 
 
-        //                strcat(newMsg->MsgData, "END ");
+        //                String.Concat(newMsg->MsgData, "END ");
         //			}
         //		}
 
@@ -993,16 +993,16 @@ namespace SIM2UNET
         //			if ((m_pVcsExManage[VIC_ExNo].Roles[nRoleID].nAssignedActors >> i) & 1)
         //			{	/* Actor assigned */
 
-        //                strcat(newMsg->MsgData, "DA [");
+        //                String.Concat(newMsg->MsgData, "DA [");
 
 
         //                sprintf(szTemp, "");
 
         //                AppendIntStr(szTemp, m_pVcsExManage[VIC_ExNo].Actor[i].sKeyNumber, Pad_0);
 
-        //                strcat(newMsg->MsgData, szTemp);
+        //                String.Concat(newMsg->MsgData, szTemp);
 
-        //                strcat(newMsg->MsgData, szCloseBracketOpenBracket);
+        //                String.Concat(newMsg->MsgData, szCloseBracketOpenBracket);
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -1012,7 +1012,7 @@ namespace SIM2UNET
         //								sizeof(m_pVcsExManage[VIC_ExNo].Actor[i].szPlatform));
 
 
-        //                strcat(newMsg->MsgData, szCloseBracketOpenBracket);
+        //                String.Concat(newMsg->MsgData, szCloseBracketOpenBracket);
 
         //pcData = (char) &newMsg->MsgData[strlen(newMsg->MsgData)];
 
@@ -1022,7 +1022,7 @@ namespace SIM2UNET
         //								sizeof(m_pVcsExManage[VIC_ExNo].Actor[i].szRoleName));
 
 
-        //                strcat(newMsg->MsgData, "][POINT][");
+        //                String.Concat(newMsg->MsgData, "][POINT][");
 
 
         //                strcpy(szTemp, "5000");
@@ -1037,25 +1037,25 @@ namespace SIM2UNET
         //				szTemp[8] = '\0';
 
 
-        //                strcat(newMsg->MsgData, szTemp);			
+        //                String.Concat(newMsg->MsgData, szTemp);			
         //			}
         //		}
 
         //		/* Intercom */
         //		if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sRoleType)
 
-        //            strcat(newMsg->MsgData, "DA [INTERCOM][Instruct][Intercom][CABIN][1111]");
-        //		else if ((VIC_ExNo != IL_IDX) && 
+        //            String.Concat(newMsg->MsgData, "DA [INTERCOM][Instruct][Intercom][CABIN][1111]");
+        //		else if ((VIC_ExNo != 0) && 
         //						 !m_pVcsExManage[VIC_ExNo].bIndividualTraining &&
-        //						 (m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sPhysicalNode != DESK_OFFSET + m_sTotalNumNodes))
+        //						 (m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sPhysicalNode != 700 + m_sTotalNumNodes))
         //		{	/*Trainee Intercom [0102] etc */
 
-        //            strcat(newMsg->MsgData, "DA [INTERCOM][Platform][Intercom][CABIN][");
+        //            String.Concat(newMsg->MsgData, "DA [INTERCOM][Platform][Intercom][CABIN][");
 
 
         //            sprintf(szTemp, "0000");
 
-        //nDesk = (m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sPhysicalNode - DESK_OFFSET - 1)/2;
+        //nDesk = (m_pVcsExManage[VIC_ExNo].Roles[nRoleID].sPhysicalNode - 700 - 1)/2;
         //			nDesk *= 2;
         //			nDesk += 1;
 
@@ -1074,21 +1074,21 @@ namespace SIM2UNET
         //			szTemp[3] = '0' + nUnits;
 
 
-        //            strcat(newMsg->MsgData, szTemp);
+        //            String.Concat(newMsg->MsgData, szTemp);
 
-        //            strcat(newMsg->MsgData, szCloseBracketSpace);	
+        //            String.Concat(newMsg->MsgData, szCloseBracketSpace);	
 
         //		}
 
 
-        //        strcat(newMsg->MsgData, "END ");
+        //        String.Concat(newMsg->MsgData, "END ");
 
         //newMsg->nMsgSize += strlen(newMsg->MsgData);
 
         //		if (newMsg->nMsgSize > (TX_DATA_SEGMENT_SIZE - sizeof (vcsHeader_t)))
-        //			return M_ERROR;	
+        //			return true;	
 
-        //		newMsg->MsgHeader.usLength = (USHORT) newMsg->nMsgSize;	
+        //		newMsg->MsgHeader.usLength = (ushort) newMsg->nMsgSize;	
         //		newMsg->nMsgSize += sizeof (vcsHeader_t);
         //		m_pVcsExManage[VIC_ExNo].nMsgCnt++;
         //	}
@@ -1098,7 +1098,7 @@ namespace SIM2UNET
         //	{
 
         //        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        //		return M_ERROR;
+        //		return true;
         //	}
 
         //	newMsg->MsgHeader.sID = (ushort) I_ES_END;
@@ -1112,8 +1112,8 @@ namespace SIM2UNET
 
         //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-        //	return M_SUCCESS;
-        //}
+        	return false;
+        }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Function   : LoadVcsExercise
@@ -1124,166 +1124,166 @@ namespace SIM2UNET
         //##ModelId=4119F591032C
         public bool LoadVcsExercise(int VIC_ExNo)
         {
-            QueuedMsg_t newMsg;
+//            QueuedMsg_t newMsg;
 
-            char szTemp1[50];
-            //char szTemp2[25];
-            short psData;
+//            char szTemp1[50];
+//            //char szTemp2[25];
+//            short psData;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
-
-
-            /* I_EC_LOAD or I_EC_REPLAY */
-            switch (m_pVcsExManage[VIC_ExNo].eLoadType)
-            {
-                case EXERCISE_NEW:
-                    /* I_EC_LOAD */
-                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
-                    {
-                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                        return M_ERROR;
-                    }
-
-                    newMsg->MsgHeader.sID = (USHORT)I_EC_LOAD;
-                    newMsg->MsgHeader.sReserved = 0;
-
-                    newMsg->sMsgExpectedReply = A_EC_LOAD;
-
-                    memcpy((void)newMsg->MsgData,
-                                    (void)m_pVcsExManage[VIC_ExNo].szUniqueExerciseName,
-                                    sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName));
-
-                    newMsg->nMsgSize = sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName);
-
-                    memcpy((void)&newMsg->MsgData[newMsg->nMsgSize],
-                                    (void)m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName,
-                                    sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName));
-
-                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
-
-                    GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dScenarioTime);
-
-                    sprintf(m_szTrace, "Loading scenario time = %s\n", szTemporaryTime);
-                    Console.WriteLine("");
-
-                    strcpy((char)&newMsg->MsgData[newMsg->nMsgSize], szTemporaryTime);
-
-                    newMsg->nMsgSize += strlen((char*)&newMsg->MsgData[newMsg->nMsgSize]); //overwriting null termination
-
-                    psData = (short*)&newMsg->MsgData[newMsg->nMsgSize];
-                    *psData++ = m_pVcsExManage[VIC_ExNo].sShortTermRecordControl;   //short term record request
-                    *psData++ = m_pVcsExManage[VIC_ExNo].sLongTermRecordControl;        //long  term record request
-                    newMsg->nMsgSize += 4;
-
-                    sprintf(m_szTrace, "VCS RecordLog file '%s' \n", m_pVcsExManage[VIC_ExNo].szRecordFileName);
-                    Console.WriteLine("");
-
-                    if (strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName) > 0)
-                    {
-                        sprintf(szTemp1, "_");
-                        CTime theTime(CTime::GetCurrentTime());
-                        sprintf(m_pVcsExManage[VIC_ExNo].szRecordFileIndex, "%s", theTime.Format("%d%m%Y%H%M%S"));
-                        strcat(szTemp1, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
-
-                        /* Add record file index to record name */
-                        memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize],
-                                        (void*)m_pVcsExManage[VIC_ExNo].szRecordFileName,
-                                        sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
-                        memcpy((void)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
-                                        (void*)szTemp1,
-                                        strlen(szTemp1));
-                    }
-                    else
-                    {
-                        memset((void*)&newMsg->MsgData[newMsg->nMsgSize], 0, sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
-                        sprintf(m_szTrace, "VCS Exercise %d recording disabled\n", VIC_ExNo);
-                        Console.WriteLine("");
-                    }
-
-                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName);
-                    break;
-
-                case EXERCISE_REPLAY:
-                case EXERCISE_RECOVERY:  //no longer utilised
-                                         /* I_EC_REPLAY */
-                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
-                    {
-                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                        return M_ERROR;
-                    }
-
-                    newMsg->MsgHeader.sID = (USHORT)I_EC_REPLAY;
-                    newMsg->MsgHeader.sReserved = 0;
-
-                    newMsg->sMsgExpectedReply = A_EC_REPLAY;
-
-                    memcpy((void*)newMsg->MsgData,
-                                    (void)m_pVcsExManage[VIC_ExNo].szUniqueExerciseName,
-                                    sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName));
-
-                    newMsg->nMsgSize = sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName);
-
-                    memcpy((void)&newMsg->MsgData[newMsg->nMsgSize],
-                                    (void*)m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName,
-                                    sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName));
-
-                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
-
-                    if (strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName) > 0)
-                    {
-                        /* Add replay file index to replay name */
-                        CTime theTime(CTime::GetCurrentTime());
-                        GetPrivateProfileString("Recording",
-                                                                        "VcsIndex",
-                                                                        theTime.Format("%d%m%Y%H%M%S"),
-                                                                        m_pVcsExManage[VIC_ExNo].szRecordFileIndex,
-                                                                        sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileIndex), 
-																m_pVcsExManage[VIC_ExNo].szLogFileName );
-
-#if _VIC_CMND_STATUS_TRACE
-						sprintf(m_szTrace, "Exercise Index %s \n", m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
-						Console.WriteLine("");
-#endif
-
-                        sprintf(szTemp1, "_");
-                        strcat(szTemp1, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
-                    }
+//            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+//                return true;
 
 
-                    memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize],
-                                    (void*)m_pVcsExManage[VIC_ExNo].szRecordFileName,
-                                    sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
-                    memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
-                                    (void*)szTemp1,
-                                    strlen(szTemp1));
+//            /* I_EC_LOAD or I_EC_REPLAY */
+//            switch (m_pVcsExManage[VIC_ExNo].eLoadType)
+//            {
+//                case UNET_Classes.Enums.eLoadType_t.EXERCISE_NEW:
+//                    /* I_EC_LOAD */
+//                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, UNET_Classes.Enums.SIM_Message_IDs.F_LOAD)))
+//                    {
+//                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                        return true;
+//                    }
 
-                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName) ;
-                    break;
+//                    newMsg->MsgHeader.sID = (ushort)UNET_Classes.Enums.SIM_Message_IDs.I_EC_LOAD;
+//                    newMsg->MsgHeader.sReserved = 0;
 
-                default:
-                    SendLoggerMessage(T_AMS_EXM, VIC_ExNo, "Unknown exercise load type");
-                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                    return M_ERROR;
-                    break;
-            }
+//                    newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_EC_LOAD;
 
-            newMsg->MsgHeader.usLength = (ushort)newMsg->nMsgSize;
-            newMsg->nMsgSize += sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+//                    memcpy((void)newMsg->MsgData,
+//                                    (void)m_pVcsExManage[VIC_ExNo].szUniqueExerciseName,
+//                                    sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName));
 
-            /* Rearrange queue to delay messages queued having no VCS Exercise Number Set */
-            //RearrangeMsgQueue(VIC_ExNo);
+//                    newMsg->nMsgSize = sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName);
 
-            /* Signal message ready to send */
-            m_pVcsExManage[VIC_ExNo].eED_State = ED_WAITING;
+//                    memcpy((void)&newMsg->MsgData[newMsg->nMsgSize],
+//                                    (void)m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName,
+//                                    sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName));
 
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+//                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                    GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dScenarioTime);
 
-            return M_SUCCESS;
+//                    sprintf(m_szTrace, "Loading scenario time = %s\n", szTemporaryTime);
+//                    Console.WriteLine("");
+
+//                    strcpy((char)&newMsg->MsgData[newMsg->nMsgSize], szTemporaryTime);
+
+//                    newMsg->nMsgSize += strlen((char*)&newMsg->MsgData[newMsg->nMsgSize]); //overwriting null termination
+
+//                    psData = (short*)&newMsg->MsgData[newMsg->nMsgSize];
+//                    *psData++ = m_pVcsExManage[VIC_ExNo].sShortTermRecordControl;   //short term record request
+//                    *psData++ = m_pVcsExManage[VIC_ExNo].sLongTermRecordControl;        //long  term record request
+//                    newMsg->nMsgSize += 4;
+
+//                    sprintf(m_szTrace, "VCS RecordLog file '%s' \n", m_pVcsExManage[VIC_ExNo].szRecordFileName);
+//                    Console.WriteLine("");
+
+//                    if (strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName) > 0)
+//                    {
+//                        sprintf(szTemp1, "_");
+//                        CTime theTime(CTime::GetCurrentTime());
+//                        sprintf(m_pVcsExManage[VIC_ExNo].szRecordFileIndex, "%s", theTime.Format("%d%m%Y%H%M%S"));
+//                        String.Concat(szTemp1, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
+
+//                        /* Add record file index to record name */
+//                        memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize],
+//                                        (void*)m_pVcsExManage[VIC_ExNo].szRecordFileName,
+//                                        sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
+//                        memcpy((void)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
+//                                        (void*)szTemp1,
+//                                        strlen(szTemp1));
+//                    }
+//                    else
+//                    {
+//                        memset((void*)&newMsg->MsgData[newMsg->nMsgSize], 0, sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
+//                        sprintf(m_szTrace, "VCS Exercise %d recording disabled\n", VIC_ExNo);
+//                        Console.WriteLine("");
+//                    }
+
+//                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName);
+//                    break;
+
+//                case UNET_Classes.Enums.eLoadType_t.EXERCISE_REPLAY:
+//                case UNET_Classes.Enums.eLoadType_t.EXERCISE_RECOVERY:  //no longer utilised
+//                                         /* I_EC_REPLAY */
+//                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
+//                    {
+//                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                        return true;
+//                    }
+
+//                    newMsg->MsgHeader.sID = (ushort)I_EC_REPLAY;
+//                    newMsg->MsgHeader.sReserved = 0;
+
+//                    newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_EC_REPLAY;
+
+//                    memcpy((void*)newMsg->MsgData,
+//                                    (void)m_pVcsExManage[VIC_ExNo].szUniqueExerciseName,
+//                                    sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName));
+
+//                    newMsg->nMsgSize = sizeof(m_pVcsExManage[VIC_ExNo].szUniqueExerciseName);
+
+//                    memcpy((void)&newMsg->MsgData[newMsg->nMsgSize],
+//                                    (void*)m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName,
+//                                    sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName));
+
+//                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
+
+//                    if (strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName) > 0)
+//                    {
+//                        /* Add replay file index to replay name */
+//                        CTime theTime(CTime::GetCurrentTime());
+//                        GetPrivateProfileString("Recording",
+//                                                                        "VcsIndex",
+//                                                                        theTime.Format("%d%m%Y%H%M%S"),
+//                                                                        m_pVcsExManage[VIC_ExNo].szRecordFileIndex,
+//                                                                        sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileIndex), 
+//																m_pVcsExManage[VIC_ExNo].szLogFileName );
+
+//#if _VIC_CMND_STATUS_TRACE
+//						sprintf(m_szTrace, "Exercise Index %s \n", m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
+//						Console.WriteLine("");
+//#endif
+
+//                        sprintf(szTemp1, "_");
+//                        String.Concat(szTemp1, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
+//                    }
+
+
+//                    memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize],
+//                                    (void*)m_pVcsExManage[VIC_ExNo].szRecordFileName,
+//                                    sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName));
+//                    memcpy((void*)&newMsg->MsgData[newMsg->nMsgSize + strlen(m_pVcsExManage[VIC_ExNo].szRecordFileName)],
+//                                    (void*)szTemp1,
+//                                    strlen(szTemp1));
+
+//                    newMsg->nMsgSize += sizeof(m_pVcsExManage[VIC_ExNo].szRecordFileName) ;
+//                    break;
+
+//                default:
+//                    SendLoggerMessage(T_AMS_EXM, VIC_ExNo, "Unknown exercise load type");
+//                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                    return true;
+//                    break;
+//            }
+
+//            newMsg->MsgHeader.usLength = (ushort)newMsg->nMsgSize;
+//            newMsg->nMsgSize += sizeof(vcsHeader_t);
+//            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+
+//            /* Rearrange queue to delay messages queued having no VCS Exercise Number Set */
+//            //RearrangeMsgQueue(VIC_ExNo);
+
+//            /* Signal message ready to send */
+//            m_pVcsExManage[VIC_ExNo].eED_State = ED_WAITING;
+
+//            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+//                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+
+//            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -1296,159 +1296,159 @@ namespace SIM2UNET
         public bool AllocVcsExercise(int VIC_ExNo)
         {
 
-            QueuedMsg_t newMsg;
-            ushort psData;
+            //QueuedMsg_t newMsg;
+            //ushort psData;
 
-            short i, n;
+            //short i, n;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            switch (m_pVcsExManage[VIC_ExNo].eLoadType)
-            {
+            //switch (m_pVcsExManage[VIC_ExNo].eLoadType)
+            //{
 
-                case EXERCISE_RECOVERY:     //no longer utilised
-                case EXERCISE_NEW:
+            //    case EXERCISE_RECOVERY:     //no longer utilised
+            //    case EXERCISE_NEW:
 
-                    /* I_EC_ALLOC */
-                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
-                    {
-                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                        return M_ERROR;
-                    }
+            //        /* I_EC_ALLOC */
+            //        if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
+            //        {
+            //            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //            return true;
+            //        }
 
-                    newMsg->MsgHeader.sID = (USHORT)I_EC_ALLOC;
-                    newMsg->MsgHeader.sReserved = 0;
+            //        newMsg->MsgHeader.sID = (ushort)UNET_Classes.Enums.SIM_Message_IDs.I_EC_ALLOC;
+            //        newMsg->MsgHeader.sReserved = 0;
 
-                    newMsg->sMsgExpectedReply = A_EC_ALLOC;
+            //        newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_EC_ALLOC;
 
-                    psData = (ushort)&newMsg->MsgData;
+            //        psData = (ushort)&newMsg->MsgData;
 
-                    (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
-                    (psData++) = m_pVcsExManage[VIC_ExNo].sRoleCount;
+            //        (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //        (psData++) = m_pVcsExManage[VIC_ExNo].sRoleCount;
 
-                    for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
-                    {
-                        for (i = 0; i < m_pVcsExManage[VIC_ExNo].sRoleCount; ++i)
-                        {
-                            if (m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode == (n + 1))
-                            {
-                                (psData++) = m_pVcsExManage[VIC_ExNo].Roles[i].sPhysicalNode;
-                                break;
-                            }
-                        }
-                    }
+            //        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
+            //        {
+            //            for (i = 0; i < m_pVcsExManage[VIC_ExNo].sRoleCount; ++i)
+            //            {
+            //                if (m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode == (n + 1))
+            //                {
+            //                    (psData++) = m_pVcsExManage[VIC_ExNo].Roles[i].sPhysicalNode;
+            //                    break;
+            //                }
+            //            }
+            //        }
 
-                    newMsg->MsgHeader.usLength = 4 + (2 * m_pVcsExManage[VIC_ExNo].sRoleCount);
-                    newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-                    m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //        newMsg->MsgHeader.usLength = 4 + (2 * m_pVcsExManage[VIC_ExNo].sRoleCount);
+            //        newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //        m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-                    /* I_LOGIN  - Master instructor first */
-                    for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; ++n)
-                    {
-                        /* All instructors are initially logged into IL exercise */
-                        /* Only login trainees as required											 */
-                        if (m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sMasterInstPhysicalNode)
-                            continue;
+            //        /* I_LOGIN  - Master instructor first */
+            //        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; ++n)
+            //        {
+            //            /* All instructors are initially logged into IL exercise */
+            //            /* Only login trainees as required											 */
+            //            if (m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sMasterInstPhysicalNode)
+            //                continue;
 
-                        if (LoginVcsExercise(VIC_ExNo, n, false))
-                        {
-                            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                            return M_ERROR;
-                        }
-                        break;
-                    }
+            //            if (LoginVcsExercise(VIC_ExNo, n, false))
+            //            {
+            //                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //                return true;
+            //            }
+            //            break;
+            //        }
 
-                    /* I_LOGIN  - all other roles */
-                    for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; ++n)
-                    {
-                        /* All instructors are initially logged into IL exercise */
-                        /* Only login trainees as required											 */
-                        if (((IL_IDX == VIC_ExNo) &&
-                                            (CSystemComponent::SPARK_TRAINEE_OPERATOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType) &&
-                                            (LOGIN_REQUESTED != m_pVcsExManage[VIC_ExNo].Roles[n].eLoginStatus)) ||
-                                        (m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode == m_pVcsExManage[VIC_ExNo].sMasterInstPhysicalNode) ||
-                                        (m_bSingleInstructor && (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)))
-                            continue;
+            //        /* I_LOGIN  - all other roles */
+            //        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; ++n)
+            //        {
+            //            /* All instructors are initially logged into IL exercise */
+            //            /* Only login trainees as required											 */
+            //            if (((0 == VIC_ExNo) &&
+            //                                (CSystemComponent::SPARK_TRAINEE_OPERATOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType) &&
+            //                                (LOGIN_REQUESTED != m_pVcsExManage[VIC_ExNo].Roles[n].eLoginStatus)) ||
+            //                            (m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode == m_pVcsExManage[VIC_ExNo].sMasterInstPhysicalNode) ||
+            //                            (m_bSingleInstructor && (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)))
+            //                continue;
 
-                        if (LoginVcsExercise(VIC_ExNo, n, false))
-                        {
-                            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                            return M_ERROR;
-                        }
-                    }
+            //            if (LoginVcsExercise(VIC_ExNo, n, false))
+            //            {
+            //                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //                return true;
+            //            }
+            //        }
 
-                    break;
+            //        break;
 
-                case EXERCISE_REPLAY:
+            //    case EXERCISE_REPLAY:
 
-                    /* I_EC_ALLOC */
-                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
-                    {
-                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                        return M_ERROR;
-                    }
+            //        /* I_EC_ALLOC */
+            //        if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
+            //        {
+            //            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //            return true;
+            //        }
 
-                    newMsg->MsgHeader.sID = (USHORT)I_EC_ALLOC;
-                    newMsg->MsgHeader.sReserved = 0;
+            //        newMsg->MsgHeader.sID = (ushort)I_EC_ALLOC;
+            //        newMsg->MsgHeader.sReserved = 0;
 
-                    newMsg->sMsgExpectedReply = A_EC_ALLOC;
+            //        newMsg->sMsgExpectedReply = A_EC_ALLOC;
 
-                    psData = (USHORT*)&newMsg->MsgData;
+            //        psData = (ushort*)&newMsg->MsgData;
 
-                    *(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
-                    *(psData++) = m_pVcsExManage[VIC_ExNo].sRoleCount;                  //Qty Physical nodes	
+            //        *(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //        *(psData++) = m_pVcsExManage[VIC_ExNo].sRoleCount;                  //Qty Physical nodes	
 
-                    for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
-                    {
-                        if (n == 0)
-                            *(psData++) = m_sDebriefNode + DESK_OFFSET;     //Debrief node
-                        else
-                            *(psData++) = 0;                                                        //Position not used
-                    }
+            //        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
+            //        {
+            //            if (n == 0)
+            //                *(psData++) = m_sDebriefNode + 700;     //Debrief node
+            //            else
+            //                *(psData++) = 0;                                                        //Position not used
+            //        }
 
-                    newMsg->MsgHeader.usLength = 4 + (2 * m_pVcsExManage[VIC_ExNo].sRoleCount);
-                    newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-                    m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //        newMsg->MsgHeader.usLength = 4 + (2 * m_pVcsExManage[VIC_ExNo].sRoleCount);
+            //        newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //        m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-                    /*	No login here - login is handled within RecordReplayControl() function when called with
-                            respect to replay (parameter eRP_ON_MODIFY).This enables logout of previous trainee (if 
-                            required), login of trainee then revision to RP configuration														*/
+            //        /*	No login here - login is handled within RecordReplayControl() function when called with
+            //                respect to replay (parameter eRP_ON_MODIFY).This enables logout of previous trainee (if 
+            //                required), login of trainee then revision to RP configuration														*/
 
-                    break;
+            //        break;
 
-                default:
-                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                    return M_ERROR;
-                    break;
+            //    default:
+            //        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //        return true;
+            //        break;
 
-            }
+            //}
 
-            /* I_CONNECTIVITY */
-            //Not handled here - all radios are enabled at the VCS by default - masking is via messages from exercise.
+            ///* I_CONNECTIVITY */
+            ////Not handled here - all radios are enabled at the VCS by default - masking is via messages from exercise.
 
-            /* I_EC_SEEK */
-            //No seek required during exercise preparation - always done via load snapshot message
+            ///* I_EC_SEEK */
+            ////No seek required during exercise preparation - always done via load snapshot message
 
-            /* Record/Replay Control */
-            if (EXERCISE_RECOVERY == m_pVcsExManage[VIC_ExNo].eLoadType) // no longer utilised
-            {   // Need to specify all nodes before converting exercise from playback to record type
-                if (RecordReplayControl(VIC_ExNo, NULL, eRP_ON_ALL))
-                    return M_ERROR;
-            }
-            else
-            {
-                if (RecordReplayControl(VIC_ExNo, NULL, eRP_ON_PREVIOUS))   //ensures record config set prior to start is not lost
-                    return M_ERROR;
-            }
+            ///* Record/Replay Control */
+            //if (EXERCISE_RECOVERY == m_pVcsExManage[VIC_ExNo].eLoadType) // no longer utilised
+            //{   // Need to specify all nodes before converting exercise from playback to record type
+            //    if (RecordReplayControl(VIC_ExNo, NULL, eRP_ON_ALL))
+            //        return true;
+            //}
+            //else
+            //{
+            //    if (RecordReplayControl(VIC_ExNo, NULL, eRP_ON_PREVIOUS))   //ensures record config set prior to start is not lost
+            //        return true;
+            //}
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -1461,89 +1461,89 @@ namespace SIM2UNET
         public bool StartVcsExercise(int VIC_ExNo)
         {
 
-            QueuedMsg_t newMsg;
-            ushort psData;
+//            string newMsg;
+//            ushort psData;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+//            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+//                return true;
 
-            /* Create appropriate 'start' message */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_START)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+//            /* Create appropriate 'start' message */
+//            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_START)))
+//            {
+//                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                return true;
+//            }
 
-            newMsg->MsgHeader.sReserved = 0;
+//            newMsg->MsgHeader.sReserved = 0;
 
-            switch (m_pVcsExManage[VIC_ExNo].eLoadType)
-            {
-                /* I_EC_START */
-                case UNET_Classes. EXERCISE_NEW:
-                case EXERCISE_RECOVERY: // no longer utilised
+//            switch (m_pVcsExManage[VIC_ExNo].eLoadType)
+//            {
+//                /* I_EC_START */
+//                case UNET_Classes. EXERCISE_NEW:
+//                case EXERCISE_RECOVERY: // no longer utilised
 
-                    /* Write active filename to log file */
-                    if (m_pVcsExManage[VIC_ExNo].sShortTermRecordControl)
-                    {
-                        /*
-                                        //get the log gile name and change the extension to the temporary name
-                                        std::string strLogFile(m_pVcsExManage[VIC_ExNo].szLogFileName);
-                                        strLogFile = strLogFile.substr(0,strLogFile.length()-4) + ".log";
+//                    /* Write active filename to log file */
+//                    if (m_pVcsExManage[VIC_ExNo].sShortTermRecordControl)
+//                    {
+//                        /*
+//                                        //get the log gile name and change the extension to the temporary name
+//                                        std::string strLogFile(m_pVcsExManage[VIC_ExNo].szLogFileName);
+//                                        strLogFile = strLogFile.substr(0,strLogFile.length()-4) + ".log";
 
-                                        std::string::size_type nPos = strLogFile.find(m_pSystem->GetLogFilePath());
-                                        if ( nPos != -1 )
-                                        {
-                                            strLogFile.replace(nPos, m_pSystem->GetLogFilePath().length(), m_pSystem->GetTempLogFilePath());
-                                        }
+//                                        std::string::size_type nPos = strLogFile.find(m_pSystem->GetLogFilePath());
+//                                        if ( nPos != -1 )
+//                                        {
+//                                            strLogFile.replace(nPos, m_pSystem->GetLogFilePath().length(), m_pSystem->GetTempLogFilePath());
+//                                        }
 
-                                        WritePrivateProfileString ("Recording","VcsIndex", m_pVcsExManage[VIC_ExNo].szRecordFileIndex , strLogFile.c_str() );
-                        */
-                        // Send a message to the logger so it can update the .log file.
-                        msgVCSSetIndex_T msgSetIndex;
-                        msgSetIndex.lMessageID = eMsg_VCS_SET_INDEX;
-                        msgSetIndex.lMessageType = eSIMPLE_MESSAGE;
-                        msgSetIndex.nExerciseID = VIC_ExNo;
-                        strcpy(msgSetIndex.szIndex, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
+//                                        WritePrivateProfileString ("Recording","VcsIndex", m_pVcsExManage[VIC_ExNo].szRecordFileIndex , strLogFile.c_str() );
+//                        */
+//                        // Send a message to the logger so it can update the .log file.
+//                        msgVCSSetIndex_T msgSetIndex;
+//                        msgSetIndex.lMessageID = eMsg_VCS_SET_INDEX;
+//                        msgSetIndex.lMessageType = eSIMPLE_MESSAGE;
+//                        msgSetIndex.nExerciseID = VIC_ExNo;
+//                        strcpy(msgSetIndex.szIndex, m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
 
-                        m_pSEI->SendMessage(eMsg_VCS_SET_INDEX, CONTROL_EXERCISE, CSystemComponent::instance()->GetLoggerAppID(), 0, sizeof(msgVCSSetIndex_T), &msgSetIndex);
-                    }
+//                        m_pSEI->SendMessage(eMsg_VCS_SET_INDEX, CONTROL_EXERCISE, CSystemComponent::instance()->GetLoggerAppID(), 0, sizeof(msgVCSSetIndex_T), &msgSetIndex);
+//                    }
 
 
-#if _VIC_CMND_STATUS_TRACE
-						sprintf(m_szTrace, "Exercise Index %s \n", m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
-						Console.WriteLine("");
-#endif
+//#if _VIC_CMND_STATUS_TRACE
+//						sprintf(m_szTrace, "Exercise Index %s \n", m_pVcsExManage[VIC_ExNo].szRecordFileIndex);
+//						Console.WriteLine("");
+//#endif
 
-                    MsgHeader.sID = (ushort)I_EC_START;
-                    newMsg->sMsgExpectedReply = A_EC_START;
-                    break;
+//                    MsgHeader.sID = (ushort)I_EC_START;
+//                    newMsg->sMsgExpectedReply = A_EC_START;
+//                    break;
 
-                /* I_EC_PLAYBACK */
-                case EXERCISE_REPLAY:
-                    newMsg->MsgHeader.sID = (USHORT)I_EC_PLAYBACK;
-                    newMsg->sMsgExpectedReply = A_EC_PLAYBACK;
-                    break;
+//                /* I_EC_PLAYBACK */
+//                case EXERCISE_REPLAY:
+//                    newMsg->MsgHeader.sID = (ushort)I_EC_PLAYBACK;
+//                    newMsg->sMsgExpectedReply = A_EC_PLAYBACK;
+//                    break;
 
-                default:
-                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                    return M_ERROR;
-                    break;
-            }
+//                default:
+//                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                    return true;
+//                    break;
+//            }
 
-            psData = (ushort)&newMsg->MsgData;
-            (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+//            psData = (ushort)&newMsg->MsgData;
+//            (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            newMsg->MsgHeader.usLength = 2;
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+//            newMsg->MsgHeader.usLength = 2;
+//            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+//            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+//            /* Signal message ready to send */
+//            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+//                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -1555,37 +1555,37 @@ namespace SIM2UNET
         public bool ResumeVcsExercise(int VIC_ExNo)
         {
 
-            QueuedMsg_t newMsg;
-            ushort psData;
+            //QueuedMsg_t newMsg;
+            //ushort psData;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            /* Create appropriate 'start' message */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_START)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            ///* Create appropriate 'start' message */
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_START)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sReserved = 0;
-            newMsg->MsgHeader.sID = (USHORT)I_EC_RESUME;
-            newMsg->sMsgExpectedReply = A_EC_RESUME;
+            //newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = (ushort)I_EC_RESUME;
+            //newMsg->sMsgExpectedReply = A_EC_RESUME;
 
-            psData = (USHORT*)&newMsg->MsgData;
-            *(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //psData = (ushort*)&newMsg->MsgData;
+            //*(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            newMsg->MsgHeader.usLength = 2;
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = 2;
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -1600,49 +1600,49 @@ namespace SIM2UNET
         public bool LoginVcsExercise(int VIC_ExNo, int VIC_RoleNo, bool bSetReady)
         {
 
-            QueuedMsg_t newMsg;
-            Login_t pLoginMsg;
+            //QueuedMsg_t newMsg;
+            //Login_t pLoginMsg;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
 
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = (USHORT)I_LOGIN;
-            newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = (ushort)UNET_Classes.Enums.SIM_Message_IDs.I_LOGIN;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_LOGIN;
+            //newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_LOGIN;
 
-            pLoginMsg = (Login_t*)&newMsg->MsgData;
+            //pLoginMsg = (Login_t)&newMsg->MsgData;
 
-            pLoginMsg->sExerciseNumber = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //pLoginMsg->sExerciseNumber = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            memcpy((void*)pLoginMsg->cRoleName,
-                                (void*)m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName,
-                                sizeof(m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName));
+            //memcpy((void*)pLoginMsg->cRoleName,
+            //                    (void*)m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName,
+            //                    sizeof(m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName));
 
-            /* Phone call from Troy (MGH) 10/09/09 */
-            //if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
-            //	pLoginMsg->sLogicalNode = 1;
-            //else 		
-            pLoginMsg->sLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].sLogicalNode;
+            ///* Phone call from Troy (MGH) 10/09/09 */
+            ////if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
+            ////	pLoginMsg->sLogicalNode = 1;
+            ////else 		
+            //pLoginMsg->sLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].sLogicalNode;
 
-            newMsg->MsgHeader.usLength = sizeof(Login_t);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = sizeof(Login_t);
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            /* Signal message ready to send */
-            if ((bSetReady) && (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus))
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if ((bSetReady) && (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus))
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -1655,49 +1655,49 @@ namespace SIM2UNET
         public bool LogoutVcsExercise(int VIC_ExNo, int VIC_RoleNo, bool bSetReady)
         {
 
-            QueuedMsg_t newMsg;
-            Login_t pLoginMsg;
+            //QueuedMsg_t newMsg;
+            //Login_t pLoginMsg;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
 
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGOUT)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGOUT)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = (USHORT)I_LOGOUT;
-            newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = (ushort)I_LOGOUT;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_LOGOUT;
+            //newMsg->sMsgExpectedReply = A_LOGOUT;
 
-            pLoginMsg = (Login_t*)&newMsg->MsgData;
+            //pLoginMsg = (Login_t*)&newMsg->MsgData;
 
-            pLoginMsg->sExerciseNumber = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //pLoginMsg->sExerciseNumber = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            memcpy((void*)pLoginMsg->cRoleName,
-                                (void*)m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName,
-                                sizeof(m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName));
+            //memcpy((void*)pLoginMsg->cRoleName,
+            //                    (void*)m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName,
+            //                    sizeof(m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].szRoleName));
 
-            /* Phone call from Troy (MGH) 10/09/09 */
-            //if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
-            //	pLoginMsg->sLogicalNode = 1;
-            //else
-            pLoginMsg->sLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].sLogicalNode;
+            ///* Phone call from Troy (MGH) 10/09/09 */
+            ////if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
+            ////	pLoginMsg->sLogicalNode = 1;
+            ////else
+            //pLoginMsg->sLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[VIC_RoleNo].sLogicalNode;
 
-            newMsg->MsgHeader.usLength = sizeof(Login_t);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = sizeof(Login_t);
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            /* Signal message ready to send */
-            if ((bSetReady) && (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus))
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if ((bSetReady) && (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus))
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            return M_SUCCESS;
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -1707,53 +1707,53 @@ namespace SIM2UNET
         //##ModelId=4119F5920279
         public bool SeekVcsExercise(int VIC_ExNo)
         {
-            QueuedMsg_t newMsg;
-            ushort psData;
-            char szTemp;
+            //QueuedMsg_t newMsg;
+            //ushort psData;
+            //char szTemp;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            /* I_EC_SEEK */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            ///* I_EC_SEEK */
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOGIN)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = (USHORT)I_EC_SEEK;
-            newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = (ushort)I_EC_SEEK;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_EC_SEEK;
+            //newMsg->sMsgExpectedReply = A_EC_SEEK;
 
-            psData = (ushort*)&newMsg->MsgData;
+            //psData = (ushort)&newMsg->MsgData;
 
-            (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            szTemp = (char)psData;
+            //szTemp = (char)psData;
 
-            GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dExerciseTime);    //Active time used for replay
-            sprintf(m_szTrace, "VCS Loading exercise time %s\n", szTemporaryTime);
-            Console.WriteLine("");
-            strcpy(szTemp, szTemporaryTime);
-            strcat(szTemp, szSpace);
+            //GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dExerciseTime);    //Active time used for replay
+            //sprintf(m_szTrace, "VCS Loading exercise time %s\n", szTemporaryTime);
+            //Console.WriteLine("");
+            //strcpy(szTemp, szTemporaryTime);
+            //String.Concat(szTemp, szSpace);
 
-            GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dScenarioTime);    //Active time used during record
-            sprintf(m_szTrace, "VCS Loading scenario time %s\n", szTemporaryTime);
-            Console.WriteLine("");
-            strcat(szTemp, szTemporaryTime);
+            //GetTimeStr(szTemporaryTime, m_pVcsExManage[VIC_ExNo].dScenarioTime);    //Active time used during record
+            //sprintf(m_szTrace, "VCS Loading scenario time %s\n", szTemporaryTime);
+            //Console.WriteLine("");
+            //String.Concat(szTemp, szTemporaryTime);
 
-            newMsg->MsgHeader.usLength = 3 + strlen(szTemp);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = 3 + (szTemp).ToString().Length;
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (UNET_Classes.Enums.eVcsMsgStatus_t.MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = UNET_Classes.Enums.eVcsMsgStatus_t.MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -1763,45 +1763,45 @@ namespace SIM2UNET
         //##ModelId=4119F59200CB
         public bool PauseVcsExercise(int VIC_ExNo)
         {
-            QueuedMsg_t newMsg;
-            USHORT psData;
+            //QueuedMsg_t newMsg;
+            //ushort psData;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            /* I_EC_PAUSE */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_PAUSE)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            ///* I_EC_PAUSE */
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_PAUSE)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = (USHORT)I_EC_PAUSE;
+            //newMsg->MsgHeader.sID = (ushort)UNET_Classes.Enums.SIM_Message_IDs.I_EC_PAUSE;
 
-            /* Queue message but prevent transmission if a stop message has been queued 
-            if (m_pVcsExManage[VIC_ExNo].bStoppingExercise)
-                newMsg->MsgHeader.sReserved = 1;
-            else
-                newMsg->MsgHeader.sReserved = 0;
-            */
+            ///* Queue message but prevent transmission if a stop message has been queued 
+            //if (m_pVcsExManage[VIC_ExNo].bStoppingExercise)
+            //    newMsg->MsgHeader.sReserved = 1;
+            //else
+            //    newMsg->MsgHeader.sReserved = 0;
+            //*/
 
-            newMsg->MsgHeader.sReserved = 0;
-            newMsg->sMsgExpectedReply = A_EC_PAUSE;
+            //newMsg->MsgHeader.sReserved = 0;
+            //newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_EC_PAUSE;
 
-            psData = (USHORT*)&newMsg->MsgData;
-            *(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //psData = (ushort*)&newMsg->MsgData;
+            //*(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            newMsg->MsgHeader.usLength = 2;
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = 2;
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = UNET_Classes.Enums.eVcsMsgStatus_t.MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
 
@@ -1812,46 +1812,46 @@ namespace SIM2UNET
         //##ModelId=4119F59200FD
         public bool StopVcsExercise(int VIC_ExNo)
         {
-            QueuedMsg_t* newMsg = NULL;
-            USHORT* psData = NULL;
+            //QueuedMsg_t newMsg = NULL;
+            //ushort psData = NULL;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            // I_EC_STOP
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_STOP)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            //// I_EC_STOP
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_STOP)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = static_cast<USHORT>(I_EC_STOP);
-            newMsg->MsgHeader.sReserved = 0;
-            newMsg->sMsgExpectedReply = A_EC_STOP;
+            //newMsg->MsgHeader.sID = static_cast<ushort>(I_EC_STOP);
+            //newMsg->MsgHeader.sReserved = 0;
+            //newMsg->sMsgExpectedReply = A_EC_STOP;
 
-            psData = reinterpret_cast<USHORT*>(&newMsg->MsgData);
-            *(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //psData = reinterpret_cast<ushort*>(&newMsg->MsgData);
+            //*(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-            // If recording was not enabled, then delete the recording.
-            if (!(m_bRecordingValid[VIC_ExNo]))
-                *(psData + 1) = STOP_AND_DELETE_NO_ARCHIVE;
-            else
-                *(psData + 1) = STOP_DEFAULT;
+            //// If recording was not enabled, then delete the recording.
+            //if (!(m_bRecordingValid[VIC_ExNo]))
+            //    *(psData + 1) = STOP_AND_DELETE_NO_ARCHIVE;
+            //else
+            //    *(psData + 1) = STOP_DEFAULT;
 
-            newMsg->MsgHeader.usLength = 4;
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = 4;
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            // Prevent further messages being queued for this exercise - possible when using Session Manager block commands
-            m_pVcsExManage[VIC_ExNo].bStoppingExercise = true;
+            //// Prevent further messages being queued for this exercise - possible when using Session Manager block commands
+            //m_pVcsExManage[VIC_ExNo].bStoppingExercise = true;
 
-            // Signal message ready to send
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            //// Signal message ready to send
+            //if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -1862,69 +1862,69 @@ namespace SIM2UNET
         //##ModelId=4119F5920139
         public bool DeleteVcsExercise(int VIC_ExNo, bool bForceStop)
         {
-            QueuedMsg_t* newMsg = NULL;
-            USHORT* psData = NULL;
+            //QueuedMsg_t* newMsg = NULL;
+            //ushort psData = NULL;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+            //    return true;
 
-            if (bForceStop)
-            {
-                /* I_EC_STOP */
-                if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_STOP)))
-                {
-                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                    return M_ERROR;
-                }
+            //if (bForceStop)
+            //{
+            //    /* I_EC_STOP */
+            //    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_STOP)))
+            //    {
+            //        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //        return true;
+            //    }
 
-                newMsg->MsgHeader.sID = static_cast<USHORT>(I_EC_STOP);
-                newMsg->MsgHeader.sReserved = 0;
+            //    newMsg->MsgHeader.sID = static_cast<ushort>(UNET_Classes.Enums.SIM_Message_IDs.I_EC_STOP);
+            //    newMsg->MsgHeader.sReserved = 0;
 
-                newMsg->sMsgExpectedReply = A_EC_STOP;
+            //    newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_EC_STOP;
 
-                psData = reinterpret_cast<USHORT*>(&newMsg->MsgData);
-                *(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+            //    psData = reinterpret_cast<ushort*>(&newMsg->MsgData);
+            //    *(psData) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
-                // If recording was not enabled, then delete the recording.
-                if (!(m_bRecordingValid[VIC_ExNo]))
-                    *(psData + 1) = STOP_AND_DELETE_NO_ARCHIVE;
-                else
-                    *(psData + 1) = STOP_DEFAULT;
+            //    // If recording was not enabled, then delete the recording.
+            //    if (!(m_bRecordingValid[VIC_ExNo]))
+            //        *(psData + 1) = STOP_AND_DELETE_NO_ARCHIVE;
+            //    else
+            //        *(psData + 1) = STOP_DEFAULT;
 
-                newMsg->MsgHeader.usLength = 4;
-                newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-                m_pVcsExManage[VIC_ExNo].nMsgCnt++;
-            }
+            //    newMsg->MsgHeader.usLength = 4;
+            //    newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //    m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //}
 
 
-            /* I_ES_DEL */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+            ///* I_ES_DEL */
+            //if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_LOAD)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //    return true;
+            //}
 
-            newMsg->MsgHeader.sID = static_cast<USHORT>(I_ES_DEL);
-            newMsg->MsgHeader.usLength = 1;
-            newMsg->MsgHeader.sReserved = 0;
+            //newMsg->MsgHeader.sID = static_cast<ushort>(I_ES_DEL);
+            //newMsg->MsgHeader.usLength = 1;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_ES_DEL;
+            //newMsg->sMsgExpectedReply = UNET_Classes.Enums.SIM_Message_IDs.A_ES_DEL;
 
-            strcpy(newMsg->MsgData, m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
+            //strcpy(newMsg->MsgData, m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName);
 
-            newMsg->MsgHeader.usLength += (USHORT)strlen(newMsg->MsgData);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+            //newMsg->MsgHeader.usLength += (ushort)strlen(newMsg->MsgData);
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            m_pVcsExManage[VIC_ExNo].eED_State = ED_DELETE;
+            //m_pVcsExManage[VIC_ExNo].eED_State = ED_DELETE;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -1935,131 +1935,132 @@ namespace SIM2UNET
         //							At present recording is set for all or no trainee comms nodes.
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F59201ED
-        public bool RecordReplayControl(int VIC_ExNo, int nNewReplayNodeIndex, eRecordPosition eRP)
+        public bool RecordReplayControl(int VIC_ExNo, int nNewReplayNodeIndex, int eRP)// eRecordPosition eRP)
         {
-            /* Define record/replay node information */
-            int nLastUsedNodeIndex = 0;
-            int nLastReplayNodeIndex;
+            ///* Define record/replay node information */
+            //int nLastUsedNodeIndex = 0;
+            //int nLastReplayNodeIndex;
 
-            switch (eRP)
-            {
-                case eRP_OFF_SAVE:  //RECORD ONLY 
+            //switch (eRP)
+            //{
+            //    case UNET_Classes.Enums.eRecordPosition.eRP_OFF_SAVE:  //RECORD ONLY 
 
-                    /*	Take backup copy of previous configuration (for future reload) 
-                            This option was intended for use when switching off recording due
-                            to runspeed > x1 then reinstating recording (using eRP_ON_PREVIOUS)
-                            when runspeed returned to x1.  However recording is to be made 
-                            valid for all run speeds.  Retain code in case required again.
-                    */
+            //        /*	Take backup copy of previous configuration (for future reload) 
+            //                This option was intended for use when switching off recording due
+            //                to runspeed > x1 then reinstating recording (using eRP_ON_PREVIOUS)
+            //                when runspeed returned to x1.  However recording is to be made 
+            //                valid for all run speeds.  Retain code in case required again.
+            //        */
 
-                    m_pVcsExManage[VIC_ExNo].sRPCountPrevious = m_pVcsExManage[VIC_ExNo].sRPCount;
+            //        m_pVcsExManage[VIC_ExNo].sRPCountPrevious = m_pVcsExManage[VIC_ExNo].sRPCount;
 
-                    for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
-                        m_pVcsExManage[VIC_ExNo].sRPNodePrevious[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex];
+            //        for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
+            //            m_pVcsExManage[VIC_ExNo].sRPNodePrevious[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex];
 
-                    m_pVcsExManage[VIC_ExNo].sRPPreviousValid = true;  //flags that previous config data is valid
+            //        m_pVcsExManage[VIC_ExNo].sRPPreviousValid = true;  //flags that previous config data is valid
 
-                //fall-through
+            //        //fall-through
+            //        break;
 
-                case eRP_OFF:               //RECORD ONLY
+            //    case UNET_Classes.Enums.eRecordPosition.eRP_OFF:               //RECORD ONLY
 
-                    /* Clear record configuration */
+            //        /* Clear record configuration */
 
-                    for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
-                        m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = 0;
+            //        for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
+            //            m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = 0;
 
-                    m_pVcsExManage[VIC_ExNo].sRPCount = 0;
+            //        m_pVcsExManage[VIC_ExNo].sRPCount = 0;
 
-                    break;
+            //        break;
 
-                case eRP_ON_ALL:        //RECORD ONLY
+            //    case UNET_Classes.Enums.eRecordPosition.eRP_ON_ALL:        //RECORD ONLY
 
-                    /* Record every trainee node */
+            //        /* Record every trainee node */
 
-                    m_pVcsExManage[VIC_ExNo].sRPCount = m_pVcsExManage[VIC_ExNo].sRoleCount;
+            //        m_pVcsExManage[VIC_ExNo].sRPCount = m_pVcsExManage[VIC_ExNo].sRoleCount;
 
-                    for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRoleCount; nLastUsedNodeIndex++)
-                        m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].Roles[nLastUsedNodeIndex].sPhysicalNode;
+            //        for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRoleCount; nLastUsedNodeIndex++)
+            //            m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].Roles[nLastUsedNodeIndex].sPhysicalNode;
 
-                    break;
+            //        break;
 
-                case eRP_ON_PREVIOUS:   //RECORD OR REPLAY
+            //    case UNET_Classes.Enums.eRecordPosition.eRP_ON_PREVIOUS:   //RECORD OR REPLAY
 
-                    /* Restore previous configuration */
+            //        /* Restore previous configuration */
 
-                    if (m_pVcsExManage[VIC_ExNo].sRPPreviousValid)
-                    {
-                        m_pVcsExManage[VIC_ExNo].sRPCount = m_pVcsExManage[VIC_ExNo].sRPCountPrevious;
+            //        if (m_pVcsExManage[VIC_ExNo].sRPPreviousValid)
+            //        {
+            //            m_pVcsExManage[VIC_ExNo].sRPCount = m_pVcsExManage[VIC_ExNo].sRPCountPrevious;
 
-                        for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
-                        {
-                            m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].sRPNodePrevious[nLastUsedNodeIndex];
-                        }
-                    }
-                    else
-                        nLastUsedNodeIndex = m_pVcsExManage[VIC_ExNo].sRPCount;
+            //            for (; nLastUsedNodeIndex < m_pVcsExManage[VIC_ExNo].sRPCount; nLastUsedNodeIndex++)
+            //            {
+            //                m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = m_pVcsExManage[VIC_ExNo].sRPNodePrevious[nLastUsedNodeIndex];
+            //            }
+            //        }
+            //        else
+            //            nLastUsedNodeIndex = m_pVcsExManage[VIC_ExNo].sRPCount;
 
-                    break;
+            //        break;
 
-                case eRP_ON_MODIFY: //REPLAY ONLY
+            //    case UNET_Classes.Enums.eRecordPosition.eRP_ON_MODIFY: //REPLAY ONLY
 
-                    /* find existing replay role from debrief station for logout later */
-                    nLastReplayNodeIndex = -1;
+            //        /* find existing replay role from debrief station for logout later */
+            //        nLastReplayNodeIndex = -1;
 
-                    if (m_pVcsExManage[VIC_ExNo].sRPCount)
-                    {
-                        nLastReplayNodeIndex = 0;
-                        while ((m_pVcsExManage[VIC_ExNo].Roles[nLastReplayNodeIndex].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sRPNode[0]) &&
-                         (nLastReplayNodeIndex < m_pVcsExManage[VIC_ExNo].sRoleCount))
-                            nLastReplayNodeIndex++;
+            //        if (m_pVcsExManage[VIC_ExNo].sRPCount)
+            //        {
+            //            nLastReplayNodeIndex = 0;
+            //            while ((m_pVcsExManage[VIC_ExNo].Roles[nLastReplayNodeIndex].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sRPNode[0]) &&
+            //             (nLastReplayNodeIndex < m_pVcsExManage[VIC_ExNo].sRoleCount))
+            //                nLastReplayNodeIndex++;
 
-                        if (nLastReplayNodeIndex == m_pVcsExManage[VIC_ExNo].sRoleCount)
-                        {
-                            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                            return M_ERROR;
-                        }
-                    }
+            //            if (nLastReplayNodeIndex == m_pVcsExManage[VIC_ExNo].sRoleCount)
+            //            {
+            //                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+            //                return true;
+            //            }
+            //        }
 
-                    /* select trainee node for replay */
-                    m_pVcsExManage[VIC_ExNo].sRPCount = 1;
-                    m_pVcsExManage[VIC_ExNo].sRPNode[0] = m_pVcsExManage[VIC_ExNo].Roles[nNewReplayNodeIndex].sPhysicalNode;
-                    nLastUsedNodeIndex = 1;
+            //        /* select trainee node for replay */
+            //        m_pVcsExManage[VIC_ExNo].sRPCount = 1;
+            //        m_pVcsExManage[VIC_ExNo].sRPNode[0] = m_pVcsExManage[VIC_ExNo].Roles[nNewReplayNodeIndex].sPhysicalNode;
+            //        nLastUsedNodeIndex = 1;
 
-                    break;
+            //        break;
 
-            }
+            //}
 
-            /* Clear UNUSED RPNode elements */
-            for (; nLastUsedNodeIndex < m_sTotalNumNodes; ++nLastUsedNodeIndex)
-                m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = 0;
+            ///* Clear UNUSED RPNode elements */
+            //for (; nLastUsedNodeIndex < m_sTotalNumNodes; ++nLastUsedNodeIndex)
+            //    m_pVcsExManage[VIC_ExNo].sRPNode[nLastUsedNodeIndex] = 0;
 
-            /* Logout previous replay role then login new one */
-            /* Note that eRP_ON_MODIFY only valid if exercise loaded														*/
-            if (eRP_ON_MODIFY == eRP)
-            {
-                if ((nLastReplayNodeIndex != -1) && (nLastReplayNodeIndex != nNewReplayNodeIndex))
-                {
-                    if (LogoutVcsExercise(VIC_ExNo, nLastReplayNodeIndex, false))       //Logging out of logical node 1 as in replay mode
-                        return M_ERROR;
-                }
-            }
+            ///* Logout previous replay role then login new one */
+            ///* Note that eRP_ON_MODIFY only valid if exercise loaded														*/
+            //if (eRP_ON_MODIFY == eRP)
+            //{
+            //    if ((nLastReplayNodeIndex != -1) && (nLastReplayNodeIndex != nNewReplayNodeIndex))
+            //    {
+            //        if (LogoutVcsExercise(VIC_ExNo, nLastReplayNodeIndex, false))       //Logging out of logical node 1 as in replay mode
+            //            return true;
+            //    }
+            //}
 
-            /* Only send message when VCS exercise number known				*/
-            /* If not known message will automatically be sent later	*/
-            if (m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber > 0)
-            {
-                if (LoadRpConfig(VIC_ExNo))
-                    return M_ERROR;
-            }
+            ///* Only send message when VCS exercise number known				*/
+            ///* If not known message will automatically be sent later	*/
+            //if (m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber > 0)
+            //{
+            //    if (LoadRpConfig(VIC_ExNo))
+            //        return true;
+            //}
 
-            if (eRP_ON_MODIFY == eRP)
-            {
-                /* login new role */
-                if (LoginVcsExercise(VIC_ExNo, nNewReplayNodeIndex, false))         //Actually logging into logical node 1 as in replay mode
-                    return M_ERROR;
-            }
+            //if (eRP_ON_MODIFY == eRP)
+            //{
+            //    /* login new role */
+            //    if (LoginVcsExercise(VIC_ExNo, nNewReplayNodeIndex, false))         //Actually logging into logical node 1 as in replay mode
+            //        return true;
+            //}
 
-            return M_SUCCESS;
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -2070,103 +2071,103 @@ namespace SIM2UNET
         //##ModelId=4119F5920247
         public bool LoadRpConfig(int VIC_ExNo)
         {
-            QueuedMsg_t newMsg;
-            ushort psData;
-            RPConfiguration_t* pRPConfig;
-            int n, i;
-            char szTemp[50];
+//            QueuedMsg_t newMsg;
+//            ushort psData;
+//            RPConfiguration_t* pRPConfig;
+//            int n, i;
+//            char szTemp[50];
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-                return M_ERROR;
+//            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
+//                return true;
 
-            /* I_EC_RP_CONFIG */
-            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_RPCONF)))
-            {
-                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                return M_ERROR;
-            }
+//            /* I_EC_RP_CONFIG */
+//            if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_RPCONF)))
+//            {
+//                ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                return true;
+//            }
 
-            newMsg->MsgHeader.sID = (ushort)I_EC_RP_CONFIG;
-            newMsg->MsgHeader.sReserved = 0;
+//            newMsg->MsgHeader.sID = (ushort)I_EC_RP_CONFIG;
+//            newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_EC_RP_CONFIG;
+//            newMsg->sMsgExpectedReply = A_EC_RP_CONFIG;
 
-            psData = (USHORT*)&newMsg->MsgData;
+//            psData = (ushort)&newMsg->MsgData;
 
-            *(psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
+//            (psData++) = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
 
 
-            *(psData++) = m_pVcsExManage[VIC_ExNo].sRPCount;
-            pRPConfig = (RPConfiguration_t*)psData;
+//            (psData++) = m_pVcsExManage[VIC_ExNo].sRPCount;
+//            pRPConfig = (RPConfiguration_t)psData;
 
-#if _VCS_INTERCHANGE_TRACE
-		sprintf(m_szTrace, "New RP Config (%d nodes):-\n",m_pVcsExManage[VIC_ExNo].sRPCount );
-		Console.WriteLine("");
-#endif
+//#if _VCS_INTERCHANGE_TRACE
+//		sprintf(m_szTrace, "New RP Config (%d nodes):-\n",m_pVcsExManage[VIC_ExNo].sRPCount );
+//		Console.WriteLine("");
+//#endif
 
-            for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRPCount; ++n)
-            { /* convert physical node to logical node */
-                i = 0;
+//            for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRPCount; ++n)
+//            { /* convert physical node to logical node */
+//                i = 0;
 
-                while ((m_pVcsExManage[VIC_ExNo].Roles[i].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sRPNode[n]) &&
-                             (i < m_pVcsExManage[VIC_ExNo].sRoleCount))
-                    i++;
+//                while ((m_pVcsExManage[VIC_ExNo].Roles[i].sPhysicalNode != m_pVcsExManage[VIC_ExNo].sRPNode[n]) &&
+//                             (i < m_pVcsExManage[VIC_ExNo].sRoleCount))
+//                    i++;
 
-                if (i == m_pVcsExManage[VIC_ExNo].sRoleCount)
-                {
-                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-                    return M_ERROR;
-                }
+//                if (i == m_pVcsExManage[VIC_ExNo].sRoleCount)
+//                {
+//                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//                    return true;
+//                }
 
-#if _VCS_INTERCHANGE_TRACE
-			sprintf(m_szTrace, "	(%d) RecLN %d ", n, m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode);
-#endif
+//#if _VCS_INTERCHANGE_TRACE
+//			sprintf(m_szTrace, "	(%d) RecLN %d ", n, m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode);
+//#endif
 
-                pRPConfig->usRecordLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode;
+//                pRPConfig->usRecordLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode;
 
-                switch (m_pVcsExManage[VIC_ExNo].eLoadType)
-                {
-                    case EXERCISE_REPLAY:
+//                switch (m_pVcsExManage[VIC_ExNo].eLoadType)
+//                {
+//                    case EXERCISE_REPLAY:
 
-                        pRPConfig++->usReplayLogicalNode = 1;
-#if _VCS_INTERCHANGE_TRACE
-					sprintf(szTemp, "RepLN 1\n");
-					strcat(m_szTrace, szTemp);
-					Console.WriteLine("");
-#endif
-                        break;
+//                        pRPConfig++->usReplayLogicalNode = 1;
+//#if _VCS_INTERCHANGE_TRACE
+//					sprintf(szTemp, "RepLN 1\n");
+//					String.Concat(m_szTrace, szTemp);
+//					Console.WriteLine("");
+//#endif
+//                        break;
 
-                    case EXERCISE_RECOVERY: // no longer utilised
-                        pRPConfig++->usReplayLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode;
-#if _VCS_INTERCHANGE_TRACE
-					sprintf(szTemp, "RepLN %d\n",m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode);
-					strcat(m_szTrace, szTemp);
-					Console.WriteLine("");
-#endif
-                        break;
+//                    case EXERCISE_RECOVERY: // no longer utilised
+//                        pRPConfig++->usReplayLogicalNode = m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode;
+//#if _VCS_INTERCHANGE_TRACE
+//					sprintf(szTemp, "RepLN %d\n",m_pVcsExManage[VIC_ExNo].Roles[i].sLogicalNode);
+//					String.Concat(m_szTrace, szTemp);
+//					Console.WriteLine("");
+//#endif
+//                        break;
 
-                    default:
-                        pRPConfig++->usReplayLogicalNode = 0;
-#if _VCS_INTERCHANGE_TRACE
-					sprintf(szTemp, "RepLN 0\n");
-					strcat(m_szTrace, szTemp);
-					Console.WriteLine("");
-#endif
-                        break;
-                }
-            }
+//                    default:
+//                        pRPConfig++->usReplayLogicalNode = 0;
+//#if _VCS_INTERCHANGE_TRACE
+//					sprintf(szTemp, "RepLN 0\n");
+//					String.Concat(m_szTrace, szTemp);
+//					Console.WriteLine("");
+//#endif
+//                        break;
+//                }
+//            }
 
-            newMsg->MsgHeader.usLength = 4 + (m_pVcsExManage[VIC_ExNo].sRPCount * sizeof(RPConfiguration_t));
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
+//            newMsg->MsgHeader.usLength = 4 + (m_pVcsExManage[VIC_ExNo].sRPCount * sizeof(RPConfiguration_t));
+//            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+//            m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
+//            /* Signal message ready to send */
+//            if (MESSAGE_IDLE == m_pVcsExManage[VIC_ExNo].eMsgStatus)
+//                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
+//            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
         ////////////////////////////////////////////////////////////////////////////////
@@ -2177,46 +2178,46 @@ namespace SIM2UNET
         //##ModelId=4119F5920189
         public bool LoginIlExercise(short sRoleIdx)
         {
-            string newMsg;
-            Login_t pLoginMsg;
+            //string newMsg;
+            //Login_t pLoginMsg;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[IL_IDX].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[0].hQueueMutex, 2000))
+            //    return true;
 
-            /* Message gets added to IL_IDX queue! */
-            if (!(newMsg = AddMessageToQueue(IL_IDX, F_ILOGIN)))
-            {
-                ReleaseMutex(m_pVcsExManage[IL_IDX].hQueueMutex);
-                return M_ERROR;
-            }
+            ///* Message gets added to 0 queue! */
+            //if (!(newMsg = AddMessageToQueue(0, F_ILOGIN)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[0].hQueueMutex);
+            //    return true;
+            //}
 
-            /* I_LOGIN */
-            newMsg->MsgHeader.sID = (ushort)I_LOGIN;
-            newMsg->MsgHeader.sReserved = 0;
+            ///* I_LOGIN */
+            //newMsg->MsgHeader.sID = (ushort)I_LOGIN;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_LOGIN;
+            //newMsg->sMsgExpectedReply = A_LOGIN;
 
-            pLoginMsg = (Login_t) & newMsg->MsgData;
+            //pLoginMsg = (Login_t) & newMsg->MsgData;
 
-            pLoginMsg->sExerciseNumber = m_pVcsExManage[IL_IDX].sVcsExerciseNumber;
+            //pLoginMsg->sExerciseNumber = m_pVcsExManage[0].sVcsExerciseNumber;
 
-            memcpy((void)pLoginMsg->cRoleName,
-                                (void)m_pVcsExManage[IL_IDX].Roles[sRoleIdx].szRoleName,
-                                sizeof(m_pVcsExManage[IL_IDX].Roles[sRoleIdx].szRoleName));
+            //memcpy((void)pLoginMsg->cRoleName,
+            //                    (void)m_pVcsExManage[0].Roles[sRoleIdx].szRoleName,
+            //                    sizeof(m_pVcsExManage[0].Roles[sRoleIdx].szRoleName));
 
-            pLoginMsg->sLogicalNode = m_pVcsExManage[IL_IDX].Roles[sRoleIdx].sLogicalNode;
+            //pLoginMsg->sLogicalNode = m_pVcsExManage[0].Roles[sRoleIdx].sLogicalNode;
 
-            newMsg->MsgHeader.usLength = sizeof(Login_t);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[IL_IDX].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = sizeof(Login_t);
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[0].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[IL_IDX].eMsgStatus)
-                m_pVcsExManage[IL_IDX].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[0].eMsgStatus)
+            //    m_pVcsExManage[0].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[IL_IDX].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[0].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -2228,45 +2229,45 @@ namespace SIM2UNET
         //##ModelId=4119F59201BB
         public bool LogoutIlExercise(short sRoleIdx)
         {
-            QueuedMsg_t newMsg;
-            Login_t pLoginMsg;
+            //QueuedMsg_t newMsg;
+            //Login_t pLoginMsg;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[IL_IDX].hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[0].hQueueMutex, 2000))
+            //    return true;
 
-            if (!(newMsg = AddMessageToQueue(IL_IDX, F_LOGOUT)))
-            {
-                ReleaseMutex(m_pVcsExManage[IL_IDX].hQueueMutex);
-                return M_ERROR;
-            }
+            //if (!(newMsg = AddMessageToQueue(0, F_LOGOUT)))
+            //{
+            //    ReleaseMutex(m_pVcsExManage[0].hQueueMutex);
+            //    return true;
+            //}
 
-            /* I_LOGOUT */
-            newMsg->MsgHeader.sID = (USHORT)I_LOGOUT;
-            newMsg->MsgHeader.sReserved = 0;
+            ///* I_LOGOUT */
+            //newMsg->MsgHeader.sID = (ushort)I_LOGOUT;
+            //newMsg->MsgHeader.sReserved = 0;
 
-            newMsg->sMsgExpectedReply = A_LOGOUT;
+            //newMsg->sMsgExpectedReply = A_LOGOUT;
 
-            pLoginMsg = (Login_t*)&newMsg->MsgData;
+            //pLoginMsg = (Login_t*)&newMsg->MsgData;
 
-            pLoginMsg->sExerciseNumber = m_pVcsExManage[IL_IDX].sVcsExerciseNumber;
+            //pLoginMsg->sExerciseNumber = m_pVcsExManage[0].sVcsExerciseNumber;
 
-            memcpy((void*)pLoginMsg->cRoleName,
-                                (void*)m_pVcsExManage[IL_IDX].Roles[sRoleIdx].szRoleName,
-                                sizeof(m_pVcsExManage[IL_IDX].Roles[sRoleIdx].szRoleName));
+            //memcpy((void*)pLoginMsg->cRoleName,
+            //                    (void*)m_pVcsExManage[0].Roles[sRoleIdx].szRoleName,
+            //                    sizeof(m_pVcsExManage[0].Roles[sRoleIdx].szRoleName));
 
-            pLoginMsg->sLogicalNode = m_pVcsExManage[IL_IDX].Roles[sRoleIdx].sLogicalNode;
+            //pLoginMsg->sLogicalNode = m_pVcsExManage[0].Roles[sRoleIdx].sLogicalNode;
 
-            newMsg->MsgHeader.usLength = sizeof(Login_t);
-            newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-            m_pVcsExManage[IL_IDX].nMsgCnt++;
+            //newMsg->MsgHeader.usLength = sizeof(Login_t);
+            //newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //m_pVcsExManage[0].nMsgCnt++;
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_pVcsExManage[IL_IDX].eMsgStatus)
-                m_pVcsExManage[IL_IDX].eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_pVcsExManage[0].eMsgStatus)
+            //    m_pVcsExManage[0].eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_pVcsExManage[IL_IDX].hQueueMutex);
+            //ReleaseMutex(m_pVcsExManage[0].hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
 
         }
 
@@ -2275,160 +2276,161 @@ namespace SIM2UNET
         // Description: Creates a message for VCS which controls instructor voice imposition
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F59203BA
-        public bool SetImpositionControl(msgVCSImpositionControl_t pData)
+        public bool SetImpositionControl(int pData)//msgVCSImpositionControl_t pData)
         {
-            string newMsg;
-            ushort psData;
+            //string newMsg;
+            //ushort psData;
 
-            short nn;
+            //short nn;
 
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsGenManage.hQueueMutex, 2000))
-                return M_ERROR;
+            //if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsGenManage.hQueueMutex, 2000))
+            //    return true;
 
-            if (pData->bImpositionState)
-            {   /* Initiate Imposition */
-                if (!(newMsg = AddMessageToQueue(NO_EXERCISE, F_LOADIMPOS)))
-                {
-                    ReleaseMutex(m_tVcsGenManage.hQueueMutex);
-                    return M_ERROR;
-                }
+            //if (pData->bImpositionState)
+            //{   /* Initiate Imposition */
+            //    if (!(newMsg = AddMessageToQueue(-2, F_LOADIMPOS)))
+            //    {
+            //        ReleaseMutex(m_tVcsGenManage.hQueueMutex);
+            //        return true;
+            //    }
 
-                newMsg->MsgHeader.sID = (USHORT)I_IMPOSE_START;
-                newMsg->MsgHeader.sReserved = 0;
+            //    newMsg->MsgHeader.sID = (ushort)I_IMPOSE_START;
+            //    newMsg->MsgHeader.sReserved = 0;
 
-                newMsg->sMsgExpectedReply = A_IMPOSE_START;
+            //    newMsg->sMsgExpectedReply = A_IMPOSE_START;
 
-                psData = (USHORT*)&newMsg->MsgData;
+            //    psData = (ushort*)&newMsg->MsgData;
 
-                (psData++) = (short)pData->nSupervisorPhysicalNode + m_sTotalNumTrainees + DESK_OFFSET;
-                (psData++) = (short)pData->nNumberOfRecipients;
-                for (nn = 0; nn < pData->nNumberOfRecipients; ++nn)
-                {
-                    sprintf(m_szTrace, "index  %d Node %d \n", nn, (short)pData->nRecipientPhysicalNode[nn] + DESK_OFFSET);
-                    Console.WriteLine("");
-                    (psData++) = (short)pData->nRecipientPhysicalNode[nn] + DESK_OFFSET;
+            //    (psData++) = (short)pData->nSupervisorPhysicalNode + m_sTotalNumTrainees + 700;
+            //    (psData++) = (short)pData->nNumberOfRecipients;
+            //    for (nn = 0; nn < pData->nNumberOfRecipients; ++nn)
+            //    {
+            //        sprintf(m_szTrace, "index  %d Node %d \n", nn, (short)pData->nRecipientPhysicalNode[nn] + 700);
+            //        Console.WriteLine("");
+            //        (psData++) = (short)pData->nRecipientPhysicalNode[nn] + 700;
 
-                }
+            //    }
 
-                newMsg->MsgHeader.usLength = 4 + (2 * pData->nNumberOfRecipients);
-                newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-                m_tVcsGenManage.nMsgCnt++;
-            }
-            else
-            {   /* End Imposition */
-                if (!(newMsg = AddMessageToQueue(NO_EXERCISE, F_LOADIMPOS)))
-                {
-                    ReleaseMutex(m_tVcsGenManage.hQueueMutex);
-                    return M_ERROR;
-                }
+            //    newMsg->MsgHeader.usLength = 4 + (2 * pData->nNumberOfRecipients);
+            //    newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //    m_tVcsGenManage.nMsgCnt++;
+            //}
+            //else
+            //{   /* End Imposition */
+            //    if (!(newMsg = AddMessageToQueue(-2, F_LOADIMPOS)))
+            //    {
+            //        ReleaseMutex(m_tVcsGenManage.hQueueMutex);
+            //        return true;
+            //    }
 
-                newMsg->MsgHeader.sID = (USHORT)I_IMPOSE_END;
-                newMsg->MsgHeader.sReserved = 0;
+            //    newMsg->MsgHeader.sID = (ushort)I_IMPOSE_END;
+            //    newMsg->MsgHeader.sReserved = 0;
 
-                newMsg->sMsgExpectedReply = A_IMPOSE_END;
+            //    newMsg->sMsgExpectedReply = A_IMPOSE_END;
 
-                psData = (USHORT*)&newMsg->MsgData;
+            //    psData = (ushort*)&newMsg->MsgData;
 
-                *(psData++) = (short)pData->nSupervisorPhysicalNode + m_sTotalNumTrainees + DESK_OFFSET;
+            //    *(psData++) = (short)pData->nSupervisorPhysicalNode + m_sTotalNumTrainees + 700;
 
-                newMsg->MsgHeader.usLength = 2;
-                newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
-                m_tVcsGenManage.nMsgCnt++;
-            }
+            //    newMsg->MsgHeader.usLength = 2;
+            //    newMsg->nMsgSize = newMsg->MsgHeader.usLength + sizeof(vcsHeader_t);
+            //    m_tVcsGenManage.nMsgCnt++;
+            //}
 
-            /* Signal message ready to send */
-            if (MESSAGE_IDLE == m_tVcsGenManage.eMsgStatus)
-                m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
+            ///* Signal message ready to send */
+            //if (MESSAGE_IDLE == m_tVcsGenManage.eMsgStatus)
+            //    m_tVcsGenManage.eMsgStatus = MESSAGE_READY;
 
-            ReleaseMutex(m_tVcsGenManage.hQueueMutex);
+            //ReleaseMutex(m_tVcsGenManage.hQueueMutex);
 
-            return M_SUCCESS;
+            return false;
         }
 
-        //////////////////////////////////////////////////////////////////////////////////
-        //// Function   : SendSynchronisation
-        //// Description: Creates and sends a message to control VCS Synchronisation
-        //////////////////////////////////////////////////////////////////////////////////
-        ////##ModelId=4119F593000E
-        //public void SendSynchronisation(string pData)//msgSyncTime_T pData)
-        //{
-        //    QueuedMsg_t newMsg;
-        //    char szData;
-        //    int nTxdBytes;
-        //	extern System.Net.Sockets.Socket clientSocket;
+        ////////////////////////////////////////////////////////////////////////////////
+        // Function   : SendSynchronisation
+        // Description: Creates and sends a message to control VCS Synchronisation
+        ////////////////////////////////////////////////////////////////////////////////
+        //##ModelId=4119F593000E
+        public void SendSynchronisation(string pData)//msgSyncTime_T pData)
+        {
+//            QueuedMsg_t newMsg;
+//            char szData;
+//            int nTxdBytes;
 
-        //	/* Need to send this message immediately - no queueing */
-        //	newMsg.MsgHeader.sID = (USHORT) I_TIME_DATE;
-        //	newMsg.MsgHeader.sReserved = 0;
+//            extern System.Net.Sockets.Socket clientSocket;
 
-        //	/* Set time to format DD/MM/YYY HH:MM:SS:mmm */
-        //	szData = newMsg.MsgData;
+//        /* Need to send this message immediately - no queueing */
+//        newMsg.MsgHeader.sID = (ushort) I_TIME_DATE;
+//        	newMsg.MsgHeader.sReserved = 0;
 
-
-        //    strcpy(szData, "");
-        //    //AppendIntStr(szData, pData->wDay, Pad_2);					//1 - 31
-        //    AppendIntStr(szData, 1, Pad_2);					//Observation 1121 
-
-        //    strcat(szData, "/");
-
-        //    AppendIntStr(szData, pData->wMonth, Pad_2);				//1 - 12
-
-        //    strcat(szData, "/");
-
-        //    AppendIntStr(szData, pData->wYear, Pad_4);				//current year minus 1900
-
-        //    strcat(szData, " ");
+//        	/* Set time to format DD/MM/YYY HH:MM:SS:mmm */
+//        	szData = newMsg.MsgData;
 
 
-        //    AppendIntStr(szData, pData->wHour + 1, Pad_2);				//0 - 23 + 1 IS TEMP TEST
+//            strcpy(szData, "");
+//            //AppendIntStr(szData, pData->wDay, Pad_2);					//1 - 31
+//            AppendIntStr(szData, 1, Pad_2);					//Observation 1121 
 
-        //    strcat(szData, ":");
+//            String.Concat(szData, "/");
 
-        //    AppendIntStr(szData, pData->wMinute, Pad_2);			//0 - 59
+//            AppendIntStr(szData, pData->wMonth, Pad_2);				//1 - 12
 
-        //    strcat(szData, ":");
+//            String.Concat(szData, "/");
 
-        //    AppendIntStr(szData, pData->wSecond, Pad_2);			//0 - 59
+//            AppendIntStr(szData, pData->wYear, Pad_4);				//current year minus 1900
 
-        //    strcat(szData, ":");
-
-        //    AppendIntStr(szData, pData->wMilliseconds, Pad_3);
-
-        //newMsg.MsgHeader.usLength = strlen(szData) + 1;	
-        //	newMsg.nMsgSize = newMsg.MsgHeader.usLength + sizeof (vcsHeader_t);
-
-        //	/* Send  Message */
-        //	if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000))
-        //		return;
-
-        //	if ((m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) ||
-        //			(m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT))
-        //	{
-        //		#if _VCS_SYNC_STATUS_TRACE
-        //			sprintf(m_szTrace, GetVCSError(newMsg.MsgHeader.sID, NO_EXERCISE, eTX));
-        //			Console.WriteLine("");
-        //		#endif
-
-        //		#if _VCS_RAW_INTERCHANGE
-        //			TRACE("Message Sent %d\n", I_TIME_DATE);
-        //		#endif
-
-        //		nTxdBytes = send(clientSocket, (char) &newMsg.MsgHeader, newMsg.nMsgSize, 0);
-
-        //		/* Check for successful send */ 
-        //		if (nTxdBytes< 0)
-        //		{		
-        //			m_nErrorCode = GetWSAError(WSAGetLastError ());
-
-        //            SendLoggerMessage(T_AMS_EXM, NO_EXERCISE, "Failure to send synchronisation message");
-        //		}
-        //	}
+//            String.Concat(szData, " ");
 
 
-        //    ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
+//            AppendIntStr(szData, pData->wHour + 1, Pad_2);				//0 - 23 + 1 IS TEMP TEST
 
-        //	return;
-        //}
+//            String.Concat(szData, ":");
+
+//            AppendIntStr(szData, pData->wMinute, Pad_2);			//0 - 59
+
+//            String.Concat(szData, ":");
+
+//            AppendIntStr(szData, pData->wSecond, Pad_2);			//0 - 59
+
+//            String.Concat(szData, ":");
+
+//            AppendIntStr(szData, pData->wMilliseconds, Pad_3);
+
+//        newMsg.MsgHeader.usLength = strlen(szData) + 1;	
+//        	newMsg.nMsgSize = newMsg.MsgHeader.usLength + sizeof (vcsHeader_t);
+
+//        	/* Send  Message */
+//        	if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000))
+//        		return;
+
+//        	if ((m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) ||
+//        			(m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT))
+//        	{
+//        		#if _VCS_SYNC_STATUS_TRACE
+//        			sprintf(m_szTrace, GetVCSError(newMsg.MsgHeader.sID, -2, eTX));
+//        			Console.WriteLine("");
+//        		#endif
+
+//        		#if _VCS_RAW_INTERCHANGE
+//        			TRACE("Message Sent %d\n", I_TIME_DATE);
+//        		#endif
+
+//        		nTxdBytes = send(clientSocket, (char) &newMsg.MsgHeader, newMsg.nMsgSize, 0);
+
+//        		/* Check for successful send */ 
+//        		if (nTxdBytes< 0)
+//        		{		
+//        			m_nErrorCode = GetWSAError(WSAGetLastError ());
+
+//                    SendLoggerMessage(T_AMS_EXM, -2, "Failure to send synchronisation message");
+//    }
+//}
+
+
+//            ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
+
+        	return;
+        }
 
         ////////////////////////////////////////////////////////////////////////////////
         // Function   : SendShutdownRequest
@@ -2459,7 +2461,7 @@ namespace SIM2UNET
             //		(BUSY_CONNECT == m_tVcsIfManage.eVCS_LinkState))
             //{
             //	#if _VCS_INTERCHANGE_TRACE
-            //		sprintf(m_szTrace, GetVCSError(newMsg.MsgHeader.sID, NO_EXERCISE, eTX));
+            //		sprintf(m_szTrace, GetVCSError(newMsg.MsgHeader.sID, -2, eTX));
             //		Console.WriteLine("");
             //	#endif
 
@@ -2474,7 +2476,7 @@ namespace SIM2UNET
             //	{		
             //		m_nErrorCode = GetWSAError(WSAGetLastError ());
 
-            //           SendLoggerMessage(T_AMS_EXM, NO_EXERCISE, "Failure to shutdown VCS system");
+            //           SendLoggerMessage(T_AMS_EXM, -2, "Failure to shutdown VCS system");
             //	}	
             //}
 
@@ -2491,37 +2493,37 @@ namespace SIM2UNET
         //##ModelId=4119F5930068
         public void SendStatusRequest()
         {
-            System.Net.Sockets.Socket clientSocket;
+//            System.Net.Sockets.Socket clientSocket;
 
-            /* Need to send this message immediately - no queueing */
-            if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000))
-                return;
+//            /* Need to send this message immediately - no queueing */
+//            if (WAIT_TIMEOUT == WaitForSingleObject(m_tVcsIfManage.hTransmitMutex, 2000))
+//                return;
 
-            if ((m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) ||
-                    (m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT))
-            {
-#if _VCS_SYNC_STATUS_TRACE
-			sprintf(m_szTrace, GetVCSError(m_tVcsIfManage.msgRU_ALIVE.MsgHeader.sID, NO_EXERCISE, eTX));
-			Console.WriteLine("");
-#endif
+//            if ((m_tVcsIfManage.eVCS_LinkState == READY_CONNECT) ||
+//                    (m_tVcsIfManage.eVCS_LinkState == BUSY_CONNECT))
+//            {
+//#if _VCS_SYNC_STATUS_TRACE
+//			sprintf(m_szTrace, GetVCSError(m_tVcsIfManage.msgRU_ALIVE.MsgHeader.sID, -2, eTX));
+//			Console.WriteLine("");
+//#endif
 
-#if _VCS_RAW_INTERCHANGE
-			TRACE("Message Sent %d\n", m_tVcsIfManage.msgRU_ALIVE.MsgHeader.sID);
-#endif
-
-
-                nTxdBytes = send(clientSocket, (char*)&m_tVcsIfManage.msgRU_ALIVE.MsgHeader, m_tVcsIfManage.msgRU_ALIVE.nMsgSize, 0);
-                /* Check for successful send */
-                if (nTxdBytes < 0)
-                {
-                    m_nErrorCode = GetWSAError(WSAGetLastError());
-
-                    SendLoggerMessage(T_AMS_EXM, NO_EXERCISE, "Failure to send synchronisation message");
-                }
-            }
+//#if _VCS_RAW_INTERCHANGE
+//			TRACE("Message Sent %d\n", m_tVcsIfManage.msgRU_ALIVE.MsgHeader.sID);
+//#endif
 
 
-            ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
+//                nTxdBytes = send(clientSocket, (char*)&m_tVcsIfManage.msgRU_ALIVE.MsgHeader, m_tVcsIfManage.msgRU_ALIVE.nMsgSize, 0);
+//                /* Check for successful send */
+//                if (nTxdBytes < 0)
+//                {
+//                    m_nErrorCode = GetWSAError(WSAGetLastError());
+
+//                    SendLoggerMessage(T_AMS_EXM, -2, "Failure to send synchronisation message");
+//                }
+//            }
+
+
+//            ReleaseMutex(m_tVcsIfManage.hTransmitMutex);
 
             return;
         }
@@ -2534,137 +2536,137 @@ namespace SIM2UNET
         //##ModelId=4119F59202C9
         public void ClearVcsExercise(int VIC_ExNo)
         {
-            int n;
-            QueuedMsg_t pNextQueuedMsg;
+            //int n;
+            //QueuedMsg_t pNextQueuedMsg;
 
-            if (NO_EXERCISE == VIC_ExNo)
-            {
-                while (m_tVcsGenManage.pMsgQueue)
-                {   /* Free unsent messages */
-                    pNextQueuedMsg = m_tVcsGenManage.pMsgQueue->pNextMsg;
-                    free(m_tVcsGenManage.pMsgQueue);
-                    m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
-                }
+            //if (-2 == VIC_ExNo)
+            //{
+            //    while (m_tVcsGenManage.pMsgQueue)
+            //    {   /* Free unsent messages */
+            //        pNextQueuedMsg = m_tVcsGenManage.pMsgQueue->pNextMsg;
+            //        free(m_tVcsGenManage.pMsgQueue);
+            //        m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
+            //    }
 
-                m_tVcsGenManage.nMsgCnt = 0;
-                m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
-                m_tVcsGenManage.bStopAllExerciseProcessing = 0;
-            }
-            else
-            {
-                /* Update node status before clearing out data (except if running IL exercise) */
-                if ((m_pVcsExManage[VIC_ExNo].eED_State != ED_UNDEFINED) &&
-                        (strcmp(m_pVcsExManage[VIC_ExNo].szExerciseMode, "IL")))
-                    UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::UNINITIALISED);
+            //    m_tVcsGenManage.nMsgCnt = 0;
+            //    m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
+            //    m_tVcsGenManage.bStopAllExerciseProcessing = 0;
+            //}
+            //else
+            //{
+            //    /* Update node status before clearing out data (except if running IL exercise) */
+            //    if ((m_pVcsExManage[VIC_ExNo].eED_State != ED_UNDEFINED) &&
+            //            (strcmp(m_pVcsExManage[VIC_ExNo].szExerciseMode, "IL")))
+            //        UpdateExerciseStatus(VIC_ExNo, CScenarioComponent::UNINITIALISED);
 
-                /* Miscellaneous enumerations */
-                m_pVcsExManage[VIC_ExNo].eEC_State = EC_NULL;
-                m_pVcsExManage[VIC_ExNo].eED_State = ED_UNDEFINED;
-                m_pVcsExManage[VIC_ExNo].eLoadType = EXERCISE_NULL;
-                m_pVcsExManage[VIC_ExNo].bRestart = false;
-                m_pVcsExManage[VIC_ExNo].cScenarioState = (byte)CScenarioComponent::NON_OPERATIONAL;
+            //    /* Miscellaneous enumerations */
+            //    m_pVcsExManage[VIC_ExNo].eEC_State = EC_NULL;
+            //    m_pVcsExManage[VIC_ExNo].eED_State = ED_UNDEFINED;
+            //    m_pVcsExManage[VIC_ExNo].eLoadType = EXERCISE_NULL;
+            //    m_pVcsExManage[VIC_ExNo].bRestart = false;
+            //    m_pVcsExManage[VIC_ExNo].cScenarioState = (byte)CScenarioComponent::NON_OPERATIONAL;
 
-                /* Clear out fixed sized strings */
-                for (n = 0; n < 25; n++)
-                {
-                    m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName[n] = 0;
-                    m_pVcsExManage[VIC_ExNo].szUniqueExerciseName[n] = 0;
-                    m_pVcsExManage[VIC_ExNo].szRecordFileName[n] = 0;
-                    m_pVcsExManage[VIC_ExNo].szLogFileName[n] = 0;
-                }
+            //    /* Clear out fixed sized strings */
+            //    for (n = 0; n < 25; n++)
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].szExerciseSpecificationName[n] = 0;
+            //        m_pVcsExManage[VIC_ExNo].szUniqueExerciseName[n] = 0;
+            //        m_pVcsExManage[VIC_ExNo].szRecordFileName[n] = 0;
+            //        m_pVcsExManage[VIC_ExNo].szLogFileName[n] = 0;
+            //    }
 
-                for (; n < 128; n++)
-                {
-                    m_pVcsExManage[VIC_ExNo].szRecordFileName[n] = 0;
-                    m_pVcsExManage[VIC_ExNo].szLogFileName[n] = 0;
-                }
+            //    for (; n < 128; n++)
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].szRecordFileName[n] = 0;
+            //        m_pVcsExManage[VIC_ExNo].szLogFileName[n] = 0;
+            //    }
 
-                sprintf(m_pVcsExManage[VIC_ExNo].szRecordFileIndex, "0");
-                memset(m_pVcsExManage[VIC_ExNo].szExerciseMode, 0, sizeof(m_pVcsExManage[VIC_ExNo].szExerciseMode));
+            //    sprintf(m_pVcsExManage[VIC_ExNo].szRecordFileIndex, "0");
+            //    memset(m_pVcsExManage[VIC_ExNo].szExerciseMode, 0, sizeof(m_pVcsExManage[VIC_ExNo].szExerciseMode));
 
-                /* Miscellaneous flags */
-                m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing = false;
+            //    /* Miscellaneous flags */
+            //    m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing = false;
 
-                /* Trainee Monitoring */
-                for (n = 0; n < m_sTotalNumInstructors; n++)
-                {
-                    m_pVcsExManage[VIC_ExNo].bMonitorActiveSupervisor[n] = false;
-                    m_pVcsExManage[VIC_ExNo].sMonitorActiveTrainee[n] = 0;
-                }
+            //    /* Trainee Monitoring */
+            //    for (n = 0; n < m_sTotalNumInstructors; n++)
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].bMonitorActiveSupervisor[n] = false;
+            //        m_pVcsExManage[VIC_ExNo].sMonitorActiveTrainee[n] = 0;
+            //    }
 
-                /* Timestamps */
-                m_pVcsExManage[VIC_ExNo].dScenarioTime = 0.0;
-                m_pVcsExManage[VIC_ExNo].dExerciseTime = 0.0;
-                m_pVcsExManage[VIC_ExNo].nTickMultiplier = 1;
+            //    /* Timestamps */
+            //    m_pVcsExManage[VIC_ExNo].dScenarioTime = 0.0;
+            //    m_pVcsExManage[VIC_ExNo].dExerciseTime = 0.0;
+            //    m_pVcsExManage[VIC_ExNo].nTickMultiplier = 1;
 
-                /* Clear message queue */
-                ClearMsgQueue(VIC_ExNo);
-                m_pVcsExManage[VIC_ExNo].bStoppingExercise = false;
+            //    /* Clear message queue */
+            //    ClearMsgQueue(VIC_ExNo);
+            //    m_pVcsExManage[VIC_ExNo].bStoppingExercise = false;
 
-                /* Record/Replay Configuration */
-                m_pVcsExManage[VIC_ExNo].sRPCount = 0;
-                m_pVcsExManage[VIC_ExNo].sRPCountPrevious = 0;
-                m_pVcsExManage[VIC_ExNo].sRPPreviousValid = false;
-                m_pVcsExManage[VIC_ExNo].sShortTermRecordControl = 0;
-                m_pVcsExManage[VIC_ExNo].sLongTermRecordControl = 0;
+            //    /* Record/Replay Configuration */
+            //    m_pVcsExManage[VIC_ExNo].sRPCount = 0;
+            //    m_pVcsExManage[VIC_ExNo].sRPCountPrevious = 0;
+            //    m_pVcsExManage[VIC_ExNo].sRPPreviousValid = false;
+            //    m_pVcsExManage[VIC_ExNo].sShortTermRecordControl = 0;
+            //    m_pVcsExManage[VIC_ExNo].sLongTermRecordControl = 0;
 
-                for (n = 0; n < m_sTotalNumNodes; n++)
-                {
-                    m_pVcsExManage[VIC_ExNo].sRPNode[n] = 0;
-                    m_pVcsExManage[VIC_ExNo].sRPNodePrevious[n] = 0;
-                }
+            //    for (n = 0; n < m_sTotalNumNodes; n++)
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].sRPNode[n] = 0;
+            //        m_pVcsExManage[VIC_ExNo].sRPNodePrevious[n] = 0;
+            //    }
 
-                /* Exercise configuration */
-                m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber = NO_EXERCISE;
+            //    /* Exercise configuration */
+            //    m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber = -2;
 
-                m_pVcsExManage[VIC_ExNo].sActorCount = 0;
-                m_pVcsExManage[VIC_ExNo].sRoleCount = 0;
-                m_pVcsExManage[VIC_ExNo].sRadioCount = 0;
+            //    m_pVcsExManage[VIC_ExNo].sActorCount = 0;
+            //    m_pVcsExManage[VIC_ExNo].sRoleCount = 0;
+            //    m_pVcsExManage[VIC_ExNo].sRadioCount = 0;
 
-                for (n = 0; n < m_sTotalNumNodes; n++)
-                {
-                    m_pVcsExManage[VIC_ExNo].Roles[n].eLoginStatus = LOGIN_NOT;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].nAssignedActors = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].nAssignedRadios = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].sLogicalNode = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].sRoleID = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType = 0;
-                    m_pVcsExManage[VIC_ExNo].Roles[n].sSide = eBLUE;
-                    memset(m_pVcsExManage[VIC_ExNo].Roles[n].szPlatform, 0, sizeof(m_pVcsExManage[VIC_ExNo].Roles[n].szPlatform));
-                memset(m_pVcsExManage[VIC_ExNo].Roles[n].szRoleName, 0, sizeof(m_pVcsExManage[VIC_ExNo].Roles[n].szRoleName));
-            }
+            //    for (n = 0; n < m_sTotalNumNodes; n++)
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].eLoginStatus = LOGIN_NOT;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].nAssignedActors = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].nAssignedRadios = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].sLogicalNode = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].sRoleID = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType = 0;
+            //        m_pVcsExManage[VIC_ExNo].Roles[n].sSide = eBLUE;
+            //        memset(m_pVcsExManage[VIC_ExNo].Roles[n].szPlatform, 0, sizeof(m_pVcsExManage[VIC_ExNo].Roles[n].szPlatform));
+            //    memset(m_pVcsExManage[VIC_ExNo].Roles[n].szRoleName, 0, sizeof(m_pVcsExManage[VIC_ExNo].Roles[n].szRoleName));
+            //}
 
-            //          for (n = 0; n < m_sTotalNumRadios; n++)
-            //          {
-            //              //m_pVcsExManage[VIC_ExNo].Radio[n].sRadioID = 0;
-            //              m_pVcsExManage[VIC_ExNo].Radio[n].sType = eHF;
-            //              memset(m_pVcsExManage[VIC_ExNo].Radio[n].szFrequency, 0, sizeof(m_pVcsExManage[VIC_ExNo].Radio[n].szFrequency));
-            //              memset(m_pVcsExManage[VIC_ExNo].Radio[n].szStation, 0, sizeof(m_pVcsExManage[VIC_ExNo].Radio[n].szStation));
-            //              m_pVcsExManage[VIC_ExNo].Radio[n].sKeyNumber = 0;
+            ////          for (n = 0; n < m_sTotalNumRadios; n++)
+            ////          {
+            ////              //m_pVcsExManage[VIC_ExNo].Radio[n].sRadioID = 0;
+            ////              m_pVcsExManage[VIC_ExNo].Radio[n].sType = eHF;
+            ////              memset(m_pVcsExManage[VIC_ExNo].Radio[n].szFrequency, 0, sizeof(m_pVcsExManage[VIC_ExNo].Radio[n].szFrequency));
+            ////              memset(m_pVcsExManage[VIC_ExNo].Radio[n].szStation, 0, sizeof(m_pVcsExManage[VIC_ExNo].Radio[n].szStation));
+            ////              m_pVcsExManage[VIC_ExNo].Radio[n].sKeyNumber = 0;
 
 
-            //          for (n=0; n<m_sTotalNumActors; n++)
-            //   	{
+            ////          for (n=0; n<m_sTotalNumActors; n++)
+            ////   	{
 
-            //            memset(m_pVcsExManage[VIC_ExNo].Actor[n].szPlatform, 0, sizeof(m_pVcsExManage[VIC_ExNo].Actor[n].szPlatform));	 
+            ////            memset(m_pVcsExManage[VIC_ExNo].Actor[n].szPlatform, 0, sizeof(m_pVcsExManage[VIC_ExNo].Actor[n].szPlatform));	 
 
-            //            memset(m_pVcsExManage[VIC_ExNo].Actor[n].szRoleName, 0, sizeof(m_pVcsExManage[VIC_ExNo].Actor[n].szRoleName));
-            //	  m_pVcsExManage[VIC_ExNo].Actor[n].sKeyNumber = 0;
-            //   	}
+            ////            memset(m_pVcsExManage[VIC_ExNo].Actor[n].szRoleName, 0, sizeof(m_pVcsExManage[VIC_ExNo].Actor[n].szRoleName));
+            ////	  m_pVcsExManage[VIC_ExNo].Actor[n].sKeyNumber = 0;
+            ////   	}
 
-            //   	/* Connectivity - clear out connectivity arrays */
-            //   	for (n=0; n<m_sTotalNumDesks; n++)
-            //    { 
-            //	m_pVcsExManage[VIC_ExNo].RefConnectivity[n].ownPlatformHFMast =		eMASK_NONE;
-            //	m_pVcsExManage[VIC_ExNo].RefConnectivity[n].ownPlatformUHFMast =	eMASK_NONE;
-            //	for (i=0; i<NO_OF_COMMS_VEHICLES; ++i)
-            //	{
-            //		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].friendlyVehicles[i] = -1;
-            //		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].availableUHFComms[i] =	eMASK_NONE;
-            //		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].availableHFComms[i] =		eMASK_NONE;
-            //	}
-            //}	
+            ////   	/* Connectivity - clear out connectivity arrays */
+            ////   	for (n=0; n<m_sTotalNumDesks; n++)
+            ////    { 
+            ////	m_pVcsExManage[VIC_ExNo].RefConnectivity[n].ownPlatformHFMast =		eMASK_NONE;
+            ////	m_pVcsExManage[VIC_ExNo].RefConnectivity[n].ownPlatformUHFMast =	eMASK_NONE;
+            ////	for (i=0; i<NO_OF_COMMS_VEHICLES; ++i)
+            ////	{
+            ////		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].friendlyVehicles[i] = -1;
+            ////		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].availableUHFComms[i] =	eMASK_NONE;
+            ////		m_pVcsExManage[VIC_ExNo].RefConnectivity[n].availableHFComms[i] =		eMASK_NONE;
+            ////	}
+            ////}	
 
 
             return;
@@ -2677,8 +2679,8 @@ namespace SIM2UNET
         //							message defining what transmitters (comms nodes) are 'connected'
         ////////////////////////////////////////////////////////////////////////////////
         //##ModelId=4119F59202FB
-    //    public bool SetTraineeConnectivity(int VIC_ExNo, long lParentDesk, RefConnectivity_t pCon)
-    //    {
+        public bool SetTraineeConnectivity(int VIC_ExNo, long lParentDesk, string pCon)// RefConnectivity_t pCon)
+        {
             //    QueuedMsg_t newMsg;
             //    ushort psData;
             //    ushort pNoElements;
@@ -2695,7 +2697,7 @@ namespace SIM2UNET
             //#endif
 
             //    if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-            //        return M_ERROR;
+            //        return true;
 
             //    /* Update reference data */
             //    memcpy(&m_pVcsExManage[VIC_ExNo].RefConnectivity[lParentDesk - 1],
@@ -2706,7 +2708,7 @@ namespace SIM2UNET
             //    for (nReceiverCnt = 0; nReceiverCnt < 2; ++nReceiverCnt)
             //    {
             //        /* Convert from desk to physical node */
-            //        nReceiverPhysicalNode = (lParentDesk * 2) - nReceiverCnt + DESK_OFFSET;
+            //        nReceiverPhysicalNode = (lParentDesk * 2) - nReceiverCnt + 700;
 
             //        /* Find trainee role at this physical node */
             //        for (nReceiverNodeRoleID = 0; nReceiverNodeRoleID < m_pVcsExManage[VIC_ExNo].sRoleCount; ++nReceiverNodeRoleID)
@@ -2719,7 +2721,7 @@ namespace SIM2UNET
             //        if (nReceiverNodeRoleID == m_pVcsExManage[VIC_ExNo].sRoleCount)
             //        {
             //            ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-            //            return M_ERROR;
+            //            return true;
             //        }
 
             //        /* Need to send connectivity message for each radio channel used by this node */
@@ -2731,7 +2733,7 @@ namespace SIM2UNET
             //                if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_CONNECT)))
             //                {
             //                    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-            //                    return M_ERROR;
+            //                    return true;
             //                }
 
             //                newMsg->MsgHeader.sID = (ushort)I_CONNECTIVITY;
@@ -2769,14 +2771,14 @@ namespace SIM2UNET
             //									(void*)m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szFrequency,
             //									sizeof(m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szFrequency));
 
-            //					strcat(szLocal1, szSpace);
+            //					String.Concat(szLocal1, szSpace);
             //					pcTemp = (char*) &szLocal1[strlen(szLocal1)];
 
             //					memcpy(	(void*)pcTemp, 
             //									(void*)m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szStation,
             //									sizeof(m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szStation));
 
-            //					strcat(szLocal1, szSpace);				
+            //					String.Concat(szLocal1, szSpace);				
             //#endif
 
             //    pNoElements = (ushort)pcData;
@@ -2816,7 +2818,7 @@ namespace SIM2UNET
 
             //#if _VIC_CONNECTIVITY_TRACE
             //									sprintf(szLocal2, "[%d, %d%%] ", m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode, pRecnMap->usPercentageReception);
-            //									strcat(szLocal1, szLocal2);
+            //									String.Concat(szLocal1, szLocal2);
             //#endif
 
             //                    (pNoElements)++;
@@ -2833,7 +2835,7 @@ namespace SIM2UNET
             //                    pRecnMap->usPercentageReception = 100;
 
             //                    /* Only need to change connectivity if trainee vehicle not at same desk as parent vehicle */
-            //                    nThisRoleDeskNo = (m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode + 1 - DESK_OFFSET) / 2;
+            //                    nThisRoleDeskNo = (m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode + 1 - 700) / 2;
 
             //                    if (lParentDesk != nThisRoleDeskNo)
             //                    {
@@ -2861,7 +2863,7 @@ namespace SIM2UNET
 
             //#if _VIC_CONNECTIVITY_TRACE
             //									sprintf(szLocal2, "[%d, %d%%] ", m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode, pRecnMap->usPercentageReception);
-            //									strcat(szLocal1, szLocal2);
+            //									String.Concat(szLocal1, szLocal2);
             //#endif
 
             //                    (*pNoElements)++;
@@ -2880,7 +2882,7 @@ namespace SIM2UNET
             //    m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
             //#if _VIC_CONNECTIVITY_TRACE
-            //					strcat(szLocal1, "\n");
+            //					String.Concat(szLocal1, "\n");
             //					Console.WriteLine(szLocal1);
             //#endif
             //}
@@ -2893,8 +2895,8 @@ namespace SIM2UNET
 
             //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-       //     return M_SUCCESS;
-       // }
+           return false;
+        }
 
 
         //////////////////////////////////////////////////////////////////////////////////
@@ -2904,8 +2906,8 @@ namespace SIM2UNET
         ////							every time a trainee vehicle changes mast state. 
         //////////////////////////////////////////////////////////////////////////////////
         ////##ModelId=4119F5920356
-        //public bool SetInstructorConnectivity(int VIC_ExNo, eRadioBand eBand, long lParentDesk, MaskState_E eMastState)
-        //{
+        public bool SetInstructorConnectivity(int VIC_ExNo)//, eRadioBand eBand, long lParentDesk, MaskState_E eMastState)
+        {
         //    QueuedMsg_t newMsg;
         //    ushort psData;
         //    ushort pNoElements;
@@ -2923,7 +2925,7 @@ namespace SIM2UNET
         //#endif
 
         //    if (WAIT_TIMEOUT == WaitForSingleObject(m_pVcsExManage[VIC_ExNo].hQueueMutex, 2000))
-        //        return M_ERROR;
+        //        return true;
 
         //    /* Update reference data */
         //    switch (eBand)
@@ -2951,15 +2953,15 @@ namespace SIM2UNET
         //                    if (!(newMsg = AddMessageToQueue(VIC_ExNo, F_CONNECT)))
         //                    {
         //                        ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
-        //                        return M_ERROR;
+        //                        return true;
         //                    }
 
-        //                    newMsg->MsgHeader.sID = (USHORT)I_CONNECTIVITY;
+        //                    newMsg->MsgHeader.sID = (ushort)I_CONNECTIVITY;
         //                    newMsg->MsgHeader.sReserved = 0;
 
         //                    newMsg->sMsgExpectedReply = A_NONE;
 
-        //                    psData = (USHORT*)&newMsg->MsgData;
+        //                    psData = (ushort*)&newMsg->MsgData;
 
         //                    psData++ = m_pVcsExManage[VIC_ExNo].sVcsExerciseNumber;
         //                    psData++ = m_pVcsExManage[VIC_ExNo].Roles[nReceiverNodeRoleID].sLogicalNode;
@@ -2989,17 +2991,17 @@ namespace SIM2UNET
         //										(void*)m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szStation,
         //										sizeof(m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szStation));
 
-        //						strcat(szLocal1, szSpace);
+        //						String.Concat(szLocal1, szSpace);
         //						pcTemp = (char*) &szLocal1[strlen(szLocal1)];
 
         //						memcpy(	(void*)pcTemp, 
         //										(void*)m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szFrequency,
         //										sizeof(m_pVcsExManage[VIC_ExNo].Radio[nRadioIdx].szFrequency));
 
-        //						strcat(szLocal1, szSpace);
+        //						String.Concat(szLocal1, szSpace);
         //#endif
 
-        //    pNoElements = (USHORT*)pcData;
+        //    pNoElements = (ushort*)pcData;
         //    pRecnMap = (ReceptionMap_t*)(pNoElements + 1);
 
         //    *pNoElements = 0;
@@ -3025,7 +3027,7 @@ namespace SIM2UNET
 
         //#if _VIC_CONNECTIVITY_TRACE
         //										sprintf(szLocal2, "[%d, %d%%] ", m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode, pRecnMap->usPercentageReception);
-        //										strcat(szLocal1, szLocal2);
+        //										String.Concat(szLocal1, szLocal2);
         //#endif
 
         //                    pRecnMap++;
@@ -3040,7 +3042,7 @@ namespace SIM2UNET
         //                    pRecnMap->usPercentageReception = 100;
 
         //                    /* Find desk used by this role */
-        //                    nThisRoleDeskNo = (m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode + 1 - DESK_OFFSET) / 2;
+        //                    nThisRoleDeskNo = (m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode + 1 - 700) / 2;
 
         //                    switch (eBand)
         //                    {
@@ -3057,7 +3059,7 @@ namespace SIM2UNET
 
         //#if _VIC_CONNECTIVITY_TRACE
         //										sprintf(szLocal2, "[%d, %d%%] ", m_pVcsExManage[VIC_ExNo].Roles[nRoleIdx].sPhysicalNode, pRecnMap->usPercentageReception);
-        //										strcat(szLocal1, szLocal2);
+        //										String.Concat(szLocal1, szLocal2);
         //#endif
 
         //                    (*pNoElements)++;
@@ -3076,7 +3078,7 @@ namespace SIM2UNET
         //    m_pVcsExManage[VIC_ExNo].nMsgCnt++;
 
         //#if _VIC_CONNECTIVITY_TRACE
-        //						strcat(szLocal1, "\n");
+        //						String.Concat(szLocal1, "\n");
         //						Console.WriteLine(szLocal1);
         //#endif
         //}
@@ -3091,8 +3093,8 @@ namespace SIM2UNET
 
         //    ReleaseMutex(m_pVcsExManage[VIC_ExNo].hQueueMutex);
 
-        //	return M_SUCCESS;
-        //}
+        	return false;
+        }
 
 
     }

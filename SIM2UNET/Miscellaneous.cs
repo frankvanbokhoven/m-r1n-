@@ -56,50 +56,50 @@ namespace SIM2UNET
 
             bool reply = false;
             int max_byte_count;
-            char pOutputData = &m_tSystemStatus.cSystemPC;
+          //  char pOutputData = UNET_Classes.Enums.msgVcsStatus_t.cSystemPC;
 
             int bPoweredControlPCCount = 0;
             int bPoweredNodeCount = 0;
 
             max_byte_count = 6;
 
-            for (byte = 0; byte < max_byte_count; ++byte, pInputData++, pOutputData++)
-            {
-                if (1 == byte)          //Not dual processor system
-                {
-                    pOutputData--;
-                    continue;
-                }
-                else if (5 == byte) //Number of positions reported
-                {
-                    max_byte_count += *pInputData;
-                    pOutputData--;
-                    continue;
-                }
+            //for (byte = 0; byte < max_byte_count; ++byte, pInputData++, pOutputData++)
+            //{
+            //    if (1 == byte)          //Not dual processor system
+            //    {
+            //        pOutputData--;
+            //        continue;
+            //    }
+            //    else if (5 == byte) //Number of positions reported
+            //    {
+            //        max_byte_count += pInputData;
+            //        pOutputData--;
+            //        continue;
+            //    }
 
-                if (*pInputData & 1)
-                {
-                    if (byte < 5)
-                        bPoweredControlPCCount++;
-                    else
-                        bPoweredNodeCount++;
-                }
+            //    if (pInputData & 1)
+            //    {
+            //        if (byte < 5)
+            //            bPoweredControlPCCount++;
+            //        else
+            //            bPoweredNodeCount++;
+            //    }
 
-                if (*pOutputData != *pInputData)
-                {
+            //    if (pOutputData != pInputData)
+            //    {
 
-                    *pOutputData = *pInputData;
-                    reply = true;
-                }
-            }
+            //        pOutputData = pInputData;
+            //        reply = true;
+            //    }
+            //}
 
-            if (TOTAL_NUM_CONTROL_PC == bPoweredControlPCCount)
+            //if (TOTAL_NUM_CONTROL_PC == bPoweredControlPCCount)
 
-                *bGoodVcsControlStatus = true;
+            //    bGoodVcsControlStatus = true;
 
-            if (m_sTotalNumNodes == bPoweredNodeCount)
+            //if (m_sTotalNumNodes == bPoweredNodeCount)
 
-                *bGoodVcsNodeStatus = true;
+            //    bGoodVcsNodeStatus = true;
 
             return reply;
         }
@@ -114,85 +114,85 @@ namespace SIM2UNET
         public void UpdateNodeStatus()
         {
 
-            char pNodeStatus = m_tSystemStatus.cCommsNode;
-            int nNodeOK;
-            short sNodeID, sRoleID;
-            int nExID;
+            //char pNodeStatus = m_tSystemStatus.cCommsNode;
+            //int nNodeOK;
+            //short sNodeID, sRoleID;
+            //int nExID;
 
-            /* Have to map between allocated desk numbers and node numbers */
-            for (sNodeID = 1; sNodeID <= m_sTotalNumNodes; sNodeID++)
-            {
-                nNodeOK = (int)((*pNodeStatus++ & 3) == 3); //Position ok & active in exercise flag
+            ///* Have to map between allocated desk numbers and node numbers */
+            //for (sNodeID = 1; sNodeID <= m_sTotalNumNodes; sNodeID++)
+            //{
+            //    nNodeOK = (int)((*pNodeStatus++ & 3) == 3); //Position ok & active in exercise flag
 
-                if (nNodeOK)
-                {   /* Node is now active */
-                    switch (m_tVcsNodeManage[sNodeID].eNodeStatus)
-                    {
-                        case NODE_ACTIVE:
-                        case NODE_DEAD:
-                            m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_ACTIVE;
-                            break;
+            //    if (nNodeOK)
+            //    {   /* Node is now active */
+            //        switch (m_tVcsNodeManage[sNodeID].eNodeStatus)
+            //        {
+            //            case NODE_ACTIVE:
+            //            case NODE_DEAD:
+            //                m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_ACTIVE;
+            //                break;
 
-                        case NODE_FAILED:
-                            m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_ACTIVE;
-                            /* Login roles required by this node */
-                            for (nExID = 0; nExID < m_sTotalExerciseCount; nExID++)
-                            {
-                                for (sRoleID = 0; sRoleID < m_pVcsExManage[nExID].sRoleCount; sRoleID++)
-                                {
-                                    if (((sNodeID + DESK_OFFSET) == m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode) &&
-                                            (LOGIN_FAILED == m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus))
-                                    {
-                                        UpdateExerciseStatus(nExID, CScenarioComponent::LOADING, "", 0, m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode);
+            //            case NODE_FAILED:
+            //                m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_ACTIVE;
+            //                /* Login roles required by this node */
+            //                for (nExID = 0; nExID < m_sTotalExerciseCount; nExID++)
+            //                {
+            //                    for (sRoleID = 0; sRoleID < m_pVcsExManage[nExID].sRoleCount; sRoleID++)
+            //                    {
+            //                        if (((sNodeID + 700) == m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode) &&
+            //                                (LOGIN_FAILED == m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus))
+            //                        {
+            //                            UpdateExerciseStatus(nExID, CScenarioComponent::LOADING, "", 0, m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode);
 
-                                        if (nExID == IL_IDX)
-                                        {   /* Login to IL Session */
-                                            if (LoginIlExercise(sRoleID))
-                                            {
-                                                SendLoggerMessage(T_AMS_COMMS, IL_IDX, "Problem logging back into IL session");
-                                                return;
-                                            }
-                                        }
-                                        else
-                                        {   /* Login to Exercise */
-                                            if (LoginVcsExercise(nExID, sRoleID, true))
-                                            {
-                                                SendLoggerMessage(T_AMS_COMMS, nExID, "Problem logging back into exercise");
-                                                return;
-                                            }
-                                        }
-                                        /* Send message */
-                                        if (READY_CONNECT == m_tVcsIfManage.eVCS_LinkState)
-                                        {
-                                            m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus = LOGIN_ACTIVE;
-                                            SendMsgToVCS(nExID, m_pVcsExManage[nExID].pMsgQueue, eTHREAD_EXM);
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                }
-                else
-                {   /* Node has now failed */
-                    switch (m_tVcsNodeManage[sNodeID].eNodeStatus)
-                    {
-                        case NODE_DEAD:
-                        case NODE_FAILED:
-                            break;
-                        case NODE_ACTIVE:
-                            m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_FAILED;
-                            /* Need to register roles which are no longer logged in */
-                            for (nExID = 0; nExID < m_sTotalExerciseCount; nExID++)
-                                for (sRoleID = 0; sRoleID < m_pVcsExManage[nExID].sRoleCount; sRoleID++)
-                                    if (((sNodeID + DESK_OFFSET) == m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode) &&
-                                            (LOGIN_NOT != m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus))
-                                        m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus = LOGIN_FAILED;
+            //                            if (nExID == 0)
+            //                            {   /* Login to IL Session */
+            //                                if (LoginIlExercise(sRoleID))
+            //                                {
+            //                                    SendLoggerMessage(T_AMS_COMMS, 0, "Problem logging back into IL session");
+            //                                    return;
+            //                                }
+            //                            }
+            //                            else
+            //                            {   /* Login to Exercise */
+            //                                if (LoginVcsExercise(nExID, sRoleID, true))
+            //                                {
+            //                                    SendLoggerMessage(T_AMS_COMMS, nExID, "Problem logging back into exercise");
+            //                                    return;
+            //                                }
+            //                            }
+            //                            /* Send message */
+            //                            if (READY_CONNECT == m_tVcsIfManage.eVCS_LinkState)
+            //                            {
+            //                                m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus = LOGIN_ACTIVE;
+            //                                SendMsgToVCS(nExID, m_pVcsExManage[nExID].pMsgQueue, eTHREAD_EXM);
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //                break;
+            //        }
+            //    }
+            //    else
+            //    {   /* Node has now failed */
+            //        switch (m_tVcsNodeManage[sNodeID].eNodeStatus)
+            //        {
+            //            case NODE_DEAD:
+            //            case NODE_FAILED:
+            //                break;
+            //            case NODE_ACTIVE:
+            //                m_tVcsNodeManage[sNodeID].eNodeStatus = NODE_FAILED;
+            //                /* Need to register roles which are no longer logged in */
+            //                for (nExID = 0; nExID < m_sTotalExerciseCount; nExID++)
+            //                    for (sRoleID = 0; sRoleID < m_pVcsExManage[nExID].sRoleCount; sRoleID++)
+            //                        if (((sNodeID + 700) == m_pVcsExManage[nExID].Roles[sRoleID].sPhysicalNode) &&
+            //                                (LOGIN_NOT != m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus))
+            //                            m_pVcsExManage[nExID].Roles[sRoleID].eLoginStatus = LOGIN_FAILED;
 
-                            break;
-                    }
-                }
-            }
+            //                break;
+            //        }
+            //    }
+            //}
         }
 
         public void SendLoggerMessage()
@@ -207,39 +207,39 @@ namespace SIM2UNET
         ////////////////////////////////////////////////////////////////////////////////
 
         //##ModelId=4119F59402C2
-        public QueuedMsg_t AddMessageToQueue(int VIC_ExNo, short sFunctionID)
+        public UNET_Classes.Enums.queuedMsg_t AddMessageToQueue(int VIC_ExNo, short sFunctionID)
         {
-            string newMsg, lastMsg;
+            UNET_Classes.Enums.queuedMsg_t newMsg, lastMsg;
 
-            newMsg = new QueuedMsg_t;
-            if (!newMsg)
-            {
-                SendLoggerMessage(T_AMS_MISC, VIC_ExNo, "No memory space for adding message to queue");
-                return NULL;
-            }
-            newMsg->pNextMsg = NULL;
+            newMsg = new UNET_Classes.Enums.queuedMsg_t();
+            //if (!newMsg)
+            //{
+            //    SendLoggerMessage(T_AMS_MISC, VIC_ExNo, "No memory space for adding message to queue");
+            //    return NULL;
+            //}
+            //newMsg->pNextMsg = NULL;
 
-            if (NO_EXERCISE == VIC_ExNo)
-            {
-                if (!(lastMsg = m_tVcsGenManage.pMsgQueue))
-                {
-                    m_tVcsGenManage.pMsgQueue = newMsg;
-                    return newMsg;
-                }
-            }
-            else
-            {
-                if (!(lastMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue))
-                {
-                    m_pVcsExManage[VIC_ExNo].pMsgQueue = newMsg;
-                    return newMsg;
-                }
-            }
+            //if (-2 == VIC_ExNo)
+            //{
+            //    if (!(lastMsg = m_tVcsGenManage.pMsgQueue))
+            //    {
+            //        m_tVcsGenManage.pMsgQueue = newMsg;
+            //        return newMsg;
+            //    }
+            //}
+            //else
+            //{
+            //    if (!(lastMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue))
+            //    {
+            //        m_pVcsExManage[VIC_ExNo].pMsgQueue = newMsg;
+            //        return newMsg;
+            //    }
+            //}
 
-            while (lastMsg->pNextMsg)
-                lastMsg = lastMsg->pNextMsg;
+            //while (lastMsg->pNextMsg)
+            //    lastMsg = lastMsg->pNextMsg;
 
-            lastMsg->pNextMsg = newMsg;
+            //lastMsg->pNextMsg = newMsg;
 
             return newMsg;
         }
@@ -252,34 +252,34 @@ namespace SIM2UNET
         //##ModelId=4119F5940308
         public void ClearMsgQueue(int VIC_ExNo)
         {
-            QueuedMsg_t pNextQueuedMsg;
+            //QueuedMsg_t pNextQueuedMsg;
 
-            if (NO_EXERCISE == VIC_ExNo)
-                return;
-            else if (GEN_IDX == VIC_ExNo)
-            {
-                while (m_tVcsGenManage.pMsgQueue)
-                {   /* Free unsent messages */
-                    pNextQueuedMsg = m_tVcsGenManage.pMsgQueue.pNextMsg;
-                    free(m_tVcsGenManage.pMsgQueue);
-                    m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
-                }
+            //if (-2 == VIC_ExNo)
+            //    return;
+            //else if (-1 == VIC_ExNo)
+            //{
+            //    while (m_tVcsGenManage.pMsgQueue)
+            //    {   /* Free unsent messages */
+            //        pNextQueuedMsg = m_tVcsGenManage.pMsgQueue.pNextMsg;
+            //        free(m_tVcsGenManage.pMsgQueue);
+            //        m_tVcsGenManage.pMsgQueue = pNextQueuedMsg;
+            //    }
 
-                m_tVcsGenManage.nMsgCnt = 0;
-                m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
-            }
-            else
-            {
-                while (m_pVcsExManage[VIC_ExNo].pMsgQueue)
-                {   /* Free unsent messages */
-                    pNextQueuedMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue->pNextMsg;
-                    free(m_pVcsExManage[VIC_ExNo].pMsgQueue);
-                    m_pVcsExManage[VIC_ExNo].pMsgQueue = pNextQueuedMsg;
-                }
+            //    m_tVcsGenManage.nMsgCnt = 0;
+            //    m_tVcsGenManage.eMsgStatus = MESSAGE_IDLE;
+            //}
+            //else
+            //{
+            //    while (m_pVcsExManage[VIC_ExNo].pMsgQueue)
+            //    {   /* Free unsent messages */
+            //        pNextQueuedMsg = m_pVcsExManage[VIC_ExNo].pMsgQueue->pNextMsg;
+            //        free(m_pVcsExManage[VIC_ExNo].pMsgQueue);
+            //        m_pVcsExManage[VIC_ExNo].pMsgQueue = pNextQueuedMsg;
+            //    }
 
-                m_pVcsExManage[VIC_ExNo].nMsgCnt = 0;
-                m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_IDLE;
-            }
+            //    m_pVcsExManage[VIC_ExNo].nMsgCnt = 0;
+            //    m_pVcsExManage[VIC_ExNo].eMsgStatus = MESSAGE_IDLE;
+            //}
             return;
         }
 
@@ -291,17 +291,17 @@ namespace SIM2UNET
         //##ModelId=4119F5940344
         public void SendNextQueuedMessage()
         {
-            int VIC_ExNo;
+            //int VIC_ExNo;
 
-            if (NO_EXERCISE != (VIC_ExNo = FindMsgToVCS()))
-            {
-                if (GEN_IDX == VIC_ExNo)
-                    SendMsgToVCS(GEN_IDX, m_tVcsGenManage.pMsgQueue, eTHREAD_IFM);
-                else
-                    SendMsgToVCS(VIC_ExNo, m_pVcsExManage[VIC_ExNo].pMsgQueue, eTHREAD_IFM);
-            }
-            else
-                m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
+            //if (-2 != (VIC_ExNo = FindMsgToVCS()))
+            //{
+            //    if (-1 == VIC_ExNo)
+            //        SendMsgToVCS(-1, m_tVcsGenManage.pMsgQueue, eTHREAD_IFM);
+            //    else
+            //        SendMsgToVCS(VIC_ExNo, m_pVcsExManage[VIC_ExNo].pMsgQueue, eTHREAD_IFM);
+            //}
+            //else
+            //    m_tVcsIfManage.eVCS_LinkState = READY_CONNECT;
 
             return;
         }
@@ -317,7 +317,7 @@ namespace SIM2UNET
         public void AppendIntStr(char szSource, int nValue, int nPadding)
         {
             int nThousands, nHundreds, nTens, nUnits;
-            char szTemp[4];
+            char szTemp;//[4];
 
             int idx = 0;
 
@@ -334,22 +334,22 @@ namespace SIM2UNET
             nTens = nValue / 10;
             nUnits = nValue % 10;
 
-            if ((nThousands) || (nPadding > 3))
-                szTemp[idx++] = '0' + nThousands;
+            //if ((nThousands) || (nPadding > 3))
+            //    szTemp[idx++] = '0' + nThousands;
 
-            if (nThousands || nHundreds || (nPadding > 2))
-                szTemp[idx++] = '0' + nHundreds;
+            //if (nThousands || nHundreds || (nPadding > 2))
+            //    szTemp[idx++] = '0' + nHundreds;
 
-            if (nThousands || nHundreds || nTens || (nPadding > 1))
-                szTemp[idx++] = '0' + nTens;
+            //if (nThousands || nHundreds || nTens || (nPadding > 1))
+            //    szTemp[idx++] = '0' + nTens;
 
-            szTemp[idx++] = '0' + nUnits;
+            //szTemp[idx++] = '0' + nUnits;
 
-            szTemp[idx] = '\0';
+            //szTemp[idx] = '\0';
 
-            strcat(szSource, szTemp);
+            //String.Concat(szSource, szTemp);
 
-            return;
+            //return;
         }
 
 
@@ -370,14 +370,14 @@ namespace SIM2UNET
             nSecs = (int)dScenarioTime;
             nMSecs = (int)((dScenarioTime - (double)nSecs) * 1000.0);
 
-            strcpy(szTime, "");
-            AppendIntStr(szTime, nHours, Pad_2);
-            strcat(szTime, ":");
-            AppendIntStr(szTime, nMins, Pad_2);
-            strcat(szTime, ":");
-            AppendIntStr(szTime, nSecs, Pad_2);
-            strcat(szTime, ":");
-            AppendIntStr(szTime, nMSecs, Pad_3);
+            //strcpy(szTime, "");
+            //AppendIntStr(szTime, nHours, Pad_2);
+            //String.Concat(szTime, ":");
+            //AppendIntStr(szTime, nMins, Pad_2);
+            //String.Concat(szTime, ":");
+            //AppendIntStr(szTime, nSecs, Pad_2);
+            //String.Concat(szTime, ":");
+            //AppendIntStr(szTime, nMSecs, Pad_3);
 
             return;
 
@@ -393,30 +393,30 @@ namespace SIM2UNET
         public void AppendCurrentTimeStr(char szIn)
         {
 
-            _timeb tExtTime;
-            DateTime tTime;
-            char szTimeStr[25];
-            char szTemp[5];
+            //_timeb tExtTime;
+            //DateTime tTime;
+            //char szTimeStr[25];
+            //char szTemp[5];
 
 
-            _ftime(&tExtTime);
-            tTime = DateTime.Now;// gmtime(&tExtTime.time);
+            //_ftime(&tExtTime);
+            //tTime = DateTime.Now;// gmtime(&tExtTime.time);
 
-            string.format(szTimeStr, "%d_%d%_%d %d_%d_%d_",
-                                             tTime->tm_mday,
-                                             tTime->tm_mon + 1,
-                                             tTime->tm_year + 1900,
-                                             tTime->tm_hour,
-                                             tTime->tm_min,
-                                             tTime->tm_sec);
+            //string.format(szTimeStr, "%d_%d%_%d %d_%d_%d_",
+            //                                 tTime->tm_mday,
+            //                                 tTime->tm_mon + 1,
+            //                                 tTime->tm_year + 1900,
+            //                                 tTime->tm_hour,
+            //                                 tTime->tm_min,
+            //                                 tTime->tm_sec);
 
 
 
-            sprintf(szTemp, "%d", tExtTime.millitm);
+            //sprintf(szTemp, "%d", tExtTime.millitm);
 
-            strcat(szTimeStr, szTemp);
+            //String.Concat(szTimeStr, szTemp);
 
-            strcat(szIn, szTimeStr);
+            //String.Concat(szIn, szTimeStr);
 
             return;
         }
@@ -427,19 +427,19 @@ namespace SIM2UNET
         ////////////////////////////////////////////////////////////////////////////////
 
         //##ModelId=4119F5940290
-        public short FindVcsExercise(UInt16 usVcsExerciseNo)
+        public static short FindVcsExercise(UInt16 usVcsExerciseNo)
         {
             int i;
 
-            for (i = 0; i < m_sTotalExerciseCount; i++)
-            {
-                if (m_pVcsExManage[i].sVcsExerciseNumber == (short)usVcsExerciseNo)
-                    return i;
-            }
+            //for (i = 0; i < m_sTotalExerciseCount; i++)
+            //{
+            //    if (m_pVcsExManage[i].sVcsExerciseNumber == (short)usVcsExerciseNo)
+            //        return i;
+            //}
 
-            SendLoggerMessage(T_AMS_MISC, usVcsExerciseNo, "Fatal error - unknown VCS exercise");
+            //SendLoggerMessage(T_AMS_MISC, usVcsExerciseNo, "Fatal error - unknown VCS exercise");
 
-            return NO_EXERCISE; //will cause crash
+            return -2; //will cause crash
 
         }
 
@@ -458,300 +458,300 @@ namespace SIM2UNET
             int n;
             int nPhysicalNodeID = -1;
 
-            Byte cLocalVcsNodeStatus[MAX_NUM_NODES];
+//            Byte cLocalVcsNodeStatus[MAX_NUM_NODES];
 
-#if _VIC_CMND_STATUS_TRACE
-		char tempStr[100];
-#endif
+//#if _VIC_CMND_STATUS_TRACE
+//		char tempStr[100];
+//#endif
 
-            bUpdateStatus = strcmp(szErrorInfo, "No_Status_Update");
-            bEnableTransmit = strcmp(szErrorInfo, "No_Transmit");
+//            bUpdateStatus = strcmp(szErrorInfo, "No_Status_Update");
+//            bEnableTransmit = strcmp(szErrorInfo, "No_Transmit");
 
-            if (bUpdateStatus)
-            {
-                if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
-                {
-                    //Associate supplied status with replay node
-                    if (CScenarioComponent::RUNNING_BACKWARDS == nState)
-                        m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = CScenarioComponent::UNINITIALISED;
-                    else if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[m_sTotalNumNodes - 1])
-                        m_tVcsIfManage.cVcsNodeStatus[m_sTotalNumNodes - 1] = (BYTE)nState;
+//            if (bUpdateStatus)
+//            {
+//                if (EXERCISE_REPLAY == m_pVcsExManage[VIC_ExNo].eLoadType)
+//                {
+//                    //Associate supplied status with replay node
+//                    if (CScenarioComponent::RUNNING_BACKWARDS == nState)
+//                        m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = CScenarioComponent::UNINITIALISED;
+//                    else if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[m_sTotalNumNodes - 1])
+//                        m_tVcsIfManage.cVcsNodeStatus[m_sTotalNumNodes - 1] = (BYTE)nState;
 
-#if _VIC_CMND_STATUS_TRACE
-				sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, m_sDebriefNode + DESK_OFFSET);
-#endif
-                }
-                else
-                {
-                    // Deal with status depending on how node(s) defined 
+//#if _VIC_CMND_STATUS_TRACE
+//				sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, m_sDebriefNode + 700);
+//#endif
+//                }
+//                else
+//                {
+//                    // Deal with status depending on how node(s) defined 
 
-                    /* Update node status */
-                    if (sLogicalNodeID)
-                    {
-                        //*********************** UPDATE BY LOGICAL DESK NUMBER ***********************
+//                    /* Update node status */
+//                    if (sLogicalNodeID)
+//                    {
+//                        //*********************** UPDATE BY LOGICAL DESK NUMBER ***********************
 
-                        /* If logical node information is provided then nState relates to node instead of all nodes in exercise */
-                        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
-                        {
-                            if (sLogicalNodeID == m_pVcsExManage[VIC_ExNo].Roles[n].sLogicalNode)
-                            {
-                                nPhysicalNodeID = m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode;
+//                        /* If logical node information is provided then nState relates to node instead of all nodes in exercise */
+//                        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
+//                        {
+//                            if (sLogicalNodeID == m_pVcsExManage[VIC_ExNo].Roles[n].sLogicalNode)
+//                            {
+//                                nPhysicalNodeID = m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode;
 
-                                /* Debug print */
-#if _VIC_CMND_STATUS_TRACE
-							sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, nPhysicalNodeID);
-#endif
+//                                /* Debug print */
+//#if _VIC_CMND_STATUS_TRACE
+//							sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, nPhysicalNodeID);
+//#endif
 
-                                nPhysicalNodeID -= DESK_OFFSET;
-                                break;
-                            }
-                        }
+//                                nPhysicalNodeID -= 700;
+//                                break;
+//                            }
+//                        }
 
-                        if (-1 == nPhysicalNodeID)
-                            return;
+//                        if (-1 == nPhysicalNodeID)
+//                            return;
 
-                        /* Convert physical node to status node then update appropriate status word */
-                        if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)
-                        {   /* Instructor */
-                            nPhysicalNodeID -= m_sTotalNumTrainees + 1;
+//                        /* Convert physical node to status node then update appropriate status word */
+//                        if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)
+//                        {   /* Instructor */
+//                            nPhysicalNodeID -= m_sTotalNumTrainees + 1;
 
-                            /* Instructor nodes only use NON_OPERATIONAL and UNINITIALISED status  */
-                            if ((CScenarioComponent::UNINITIALISED == nState) || (CScenarioComponent::NON_OPERATIONAL == nState))
-                            {
-                                if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
-                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
-                            }
-                            else
-                            {
-                                if ((VIC_ExNo > 0) && (VIC_ExNo <= 8))
-                                {
-                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)CScenarioComponent::UNINITIALISED;
+//                            /* Instructor nodes only use NON_OPERATIONAL and UNINITIALISED status  */
+//                            if ((CScenarioComponent::UNINITIALISED == nState) || (CScenarioComponent::NON_OPERATIONAL == nState))
+//                            {
+//                                if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
+//                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
+//                            }
+//                            else
+//                            {
+//                                if ((VIC_ExNo > 0) && (VIC_ExNo <= 8))
+//                                {
+//                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)CScenarioComponent::UNINITIALISED;
 
-                                    if (CScenarioComponent::FAULT == nState)
-                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_FAULT << (VIC_ExNo - 1));
-                                    else
-                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
-                                }
-                            }
-                        }
-                        else
-                        {   /* Trainee */
-                            nPhysicalNodeID += m_sTotalNumInstructors - 1;
-                            if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
-                                m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
-                        }
-                    }
-                    else if (sPhysicalNodeID)
-                    {
-                        //*********************** UPDATE BY PHYSICAL DESK NUMBER ***********************
+//                                    if (CScenarioComponent::FAULT == nState)
+//                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_FAULT << (VIC_ExNo - 1));
+//                                    else
+//                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
+//                                }
+//                            }
+//                        }
+//                        else
+//                        {   /* Trainee */
+//                            nPhysicalNodeID += m_sTotalNumInstructors - 1;
+//                            if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
+//                                m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
+//                        }
+//                    }
+//                    else if (sPhysicalNodeID)
+//                    {
+//                        //*********************** UPDATE BY PHYSICAL DESK NUMBER ***********************
 
-                        /* If physical node information is provided then nState relates to node instead of all nodes in exercise */
-                        /* Debug print */
-#if _VIC_CMND_STATUS_TRACE
-					sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, sPhysicalNodeID);
-#endif
+//                        /* If physical node information is provided then nState relates to node instead of all nodes in exercise */
+//                        /* Debug print */
+//#if _VIC_CMND_STATUS_TRACE
+//					sprintf(tempStr, "VIC State [EXERCISE %d][Node %d] = ", VIC_ExNo, sPhysicalNodeID);
+//#endif
 
-                        sPhysicalNodeID -= DESK_OFFSET;
+//                        sPhysicalNodeID -= 700;
 
 
-                        /* Convert physical node to status node then update appropriate status word */
-                        if (sPhysicalNodeID > m_sTotalNumRoles)
-                            sPhysicalNodeID -= 1;                                                       //Debrief
-                        else if (sPhysicalNodeID > m_sTotalNumTrainees)
-                            sPhysicalNodeID -= (m_sTotalNumTrainees + 1);       //Instructor
-                        else
-                            sPhysicalNodeID += m_sTotalNumInstructors - 1;  //Trainee
+//                        /* Convert physical node to status node then update appropriate status word */
+//                        if (sPhysicalNodeID > m_sTotalNumRoles)
+//                            sPhysicalNodeID -= 1;                                                       //Debrief
+//                        else if (sPhysicalNodeID > m_sTotalNumTrainees)
+//                            sPhysicalNodeID -= (m_sTotalNumTrainees + 1);       //Instructor
+//                        else
+//                            sPhysicalNodeID += m_sTotalNumInstructors - 1;  //Trainee
 
-                        /* RUNNING_BACKWARDS indicates that PC has come on-line and enables non-operational state to change
-                             top uninitialised otherwise, non-operational state will not update to new status.  The RUNNING_BACKWARDS
-                             state is only used with status update by physical desk number				*/
-                        if (CScenarioComponent::RUNNING_BACKWARDS == nState)
-                            m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = CScenarioComponent::UNINITIALISED;
-                        else if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID])
-                            m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = (BYTE)nState;
-                    }
-                    else
-                    {
-                        //*********************** UPDATE ALL DESKS IN EXERCISE ***********************
+//                        /* RUNNING_BACKWARDS indicates that PC has come on-line and enables non-operational state to change
+//                             top uninitialised otherwise, non-operational state will not update to new status.  The RUNNING_BACKWARDS
+//                             state is only used with status update by physical desk number				*/
+//                        if (CScenarioComponent::RUNNING_BACKWARDS == nState)
+//                            m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = CScenarioComponent::UNINITIALISED;
+//                        else if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID])
+//                            m_tVcsIfManage.cVcsNodeStatus[sPhysicalNodeID] = (BYTE)nState;
+//                    }
+//                    else
+//                    {
+//                        //*********************** UPDATE ALL DESKS IN EXERCISE ***********************
 
-                        /* Update scenario state - used for status update on login after desk power cycle */
-                        m_pVcsExManage[VIC_ExNo].cScenarioState = (BYTE)nState;
+//                        /* Update scenario state - used for status update on login after desk power cycle */
+//                        m_pVcsExManage[VIC_ExNo].cScenarioState = (BYTE)nState;
 
-                        /* All nodes in exercise have same status */
-                        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
-                        {
-                            nPhysicalNodeID = m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode - DESK_OFFSET;
+//                        /* All nodes in exercise have same status */
+//                        for (n = 0; n < m_pVcsExManage[VIC_ExNo].sRoleCount; n++)
+//                        {
+//                            nPhysicalNodeID = m_pVcsExManage[VIC_ExNo].Roles[n].sPhysicalNode - 700;
 
-                            /* Convert physical node to status node then update appropriate status word */
-                            if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)
-                            {   /* Instructor */
-                                nPhysicalNodeID -= m_sTotalNumTrainees + 1;
+//                            /* Convert physical node to status node then update appropriate status word */
+//                            if (CSystemComponent::SPARK_INSTRUCTOR == m_pVcsExManage[VIC_ExNo].Roles[n].sRoleType)
+//                            {   /* Instructor */
+//                                nPhysicalNodeID -= m_sTotalNumTrainees + 1;
 
-                                /* Instructor nodes only use NON_OPERATIONAL and UNINITIALISED status  */
-                                if ((CScenarioComponent::UNINITIALISED == nState) || (CScenarioComponent::NON_OPERATIONAL == nState))
-                                {
-                                    if (m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] != CScenarioComponent::NON_OPERATIONAL)
-                                    {
-                                        m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
-                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] &= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
-                                    }
-                                }
-                                else
-                                {
-                                    if ((VIC_ExNo > 0) && (VIC_ExNo <= MAX_NUM_DESKS))
-                                    {
-                                        if (CScenarioComponent::FAULT == nState)
-                                            m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_FAULT << (VIC_ExNo - 1));
-                                        else
-                                            m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] &= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
-                                    }
-                                }
-                            }
-                            else
-                            {   /* Trainee */
-                                nPhysicalNodeID += m_sTotalNumInstructors - 1;
-                                if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
-                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
-                            }
-                        }
+//                                /* Instructor nodes only use NON_OPERATIONAL and UNINITIALISED status  */
+//                                if ((CScenarioComponent::UNINITIALISED == nState) || (CScenarioComponent::NON_OPERATIONAL == nState))
+//                                {
+//                                    if (m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] != CScenarioComponent::NON_OPERATIONAL)
+//                                    {
+//                                        m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
+//                                        m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] &= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
+//                                    }
+//                                }
+//                                else
+//                                {
+//                                    if ((VIC_ExNo > 0) && (VIC_ExNo <= MAX_NUM_DESKS))
+//                                    {
+//                                        if (CScenarioComponent::FAULT == nState)
+//                                            m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] |= (VCS_INSTRUCTOR_FAULT << (VIC_ExNo - 1));
+//                                        else
+//                                            m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[nPhysicalNodeID] &= (VCS_INSTRUCTOR_NO_FAULT << (VIC_ExNo - 1));
+//                                    }
+//                                }
+//                            }
+//                            else
+//                            {   /* Trainee */
+//                                nPhysicalNodeID += m_sTotalNumInstructors - 1;
+//                                if (CScenarioComponent::NON_OPERATIONAL != m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID])
+//                                    m_tVcsIfManage.cVcsNodeStatus[nPhysicalNodeID] = (BYTE)nState;
+//                            }
+//                        }
 
-                        /* Debug print */
-#if _VIC_CMND_STATUS_TRACE
-					sprintf(tempStr, "VIC State [EXERCISE %d][All nodes] = ", VIC_ExNo);
-#endif
-                    }
-                }
+//                        /* Debug print */
+//#if _VIC_CMND_STATUS_TRACE
+//					sprintf(tempStr, "VIC State [EXERCISE %d][All nodes] = ", VIC_ExNo);
+//#endif
+//                    }
+//                }
 
-                /* Debug print */
-#if _VIC_CMND_STATUS_TRACE
-			switch (nState)
-			{
-				case CScenarioComponent::UNINITIALISED :
-					strcat(tempStr, "UNINITIALISED");
-					break;
+//                /* Debug print */
+//#if _VIC_CMND_STATUS_TRACE
+//			switch (nState)
+//			{
+//				case CScenarioComponent::UNINITIALISED :
+//					String.Concat(tempStr, "UNINITIALISED");
+//					break;
 
-				case CScenarioComponent::NON_OPERATIONAL:
-					strcat(tempStr, "NON_OPERATIONAL");
-					break;
+//				case CScenarioComponent::NON_OPERATIONAL:
+//					String.Concat(tempStr, "NON_OPERATIONAL");
+//					break;
 
-				case CScenarioComponent::FAULT:
-					strcat(tempStr, "FAULT");
-					break;
+//				case CScenarioComponent::FAULT:
+//					String.Concat(tempStr, "FAULT");
+//					break;
 
-				case CScenarioComponent::LOADING:
-					strcat(tempStr, "LOADING");
-					break;
+//				case CScenarioComponent::LOADING:
+//					String.Concat(tempStr, "LOADING");
+//					break;
 
-				case CScenarioComponent::LOADED:
-					strcat(tempStr, "LOADED");
-					break;
+//				case CScenarioComponent::LOADED:
+//					String.Concat(tempStr, "LOADED");
+//					break;
 
-				case CScenarioComponent::STARTING:
-					strcat(tempStr, "STARTING");
-					break;
+//				case CScenarioComponent::STARTING:
+//					String.Concat(tempStr, "STARTING");
+//					break;
 
-				case CScenarioComponent::STOPPED:
-					strcat(tempStr, "STOPPED");
-					break;
+//				case CScenarioComponent::STOPPED:
+//					String.Concat(tempStr, "STOPPED");
+//					break;
 
-				case CScenarioComponent::RESTORING:
-					strcat(tempStr, "RESTORING");
-					break;
+//				case CScenarioComponent::RESTORING:
+//					String.Concat(tempStr, "RESTORING");
+//					break;
 
-				case CScenarioComponent::RUNNING:
-					strcat(tempStr, "RUNNING");
-					break;
+//				case CScenarioComponent::RUNNING:
+//					String.Concat(tempStr, "RUNNING");
+//					break;
 
-				case CScenarioComponent::FROZEN:
-					strcat(tempStr, "FROZEN");
-					break;
+//				case CScenarioComponent::FROZEN:
+//					String.Concat(tempStr, "FROZEN");
+//					break;
 
-				case CScenarioComponent::RUNNING_BACKWARDS:
-					strcat(tempStr, "UNINITIALISED");
-					break;
+//				case CScenarioComponent::RUNNING_BACKWARDS:
+//					String.Concat(tempStr, "UNINITIALISED");
+//					break;
 
-				case CScenarioComponent::TRAINEE_CHANGED:
-					strcat(tempStr, "TRAINEE_CHANGED");
-					break;
+//				case CScenarioComponent::TRAINEE_CHANGED:
+//					String.Concat(tempStr, "TRAINEE_CHANGED");
+//					break;
 
-				default:
-					strcat(tempStr, "UNKNOWN");
-					break;
-			}
+//				default:
+//					String.Concat(tempStr, "UNKNOWN");
+//					break;
+//			}
  
-			strcat(tempStr, "\n"); 
-			Console.WriteLine(tempStr); 
+//			String.Concat(tempStr, "\n"); 
+//			Console.WriteLine(tempStr); 
 
-#endif
+//#endif
 
-                /* Handle fault situation */
-                if (CScenarioComponent::FAULT == nState)
-                {
-                    SendLoggerMessage(T_AMS_MISC, VIC_ExNo, szErrorInfo);
+//                /* Handle fault situation */
+//                if (CScenarioComponent::FAULT == nState)
+//                {
+//                    SendLoggerMessage(T_AMS_MISC, VIC_ExNo, szErrorInfo);
 
-                    if (m_pVcsExManage[VIC_ExNo].eED_State < ED_READY)
-                    {
-                        if (IL_IDX == VIC_ExNo)
-                            m_tVcsGenManage.bStopAllExerciseProcessing = true;
-                        else
-                        {
-                            m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing = true;
-                            m_pVcsExManage[VIC_ExNo].eED_State = ED_UNKNOWN;
-                        }
-                        // Do not send pending messages for this exercise
-                        ClearMsgQueue(VIC_ExNo);
-                    }
-                }
+//                    if (m_pVcsExManage[VIC_ExNo].eED_State < ED_READY)
+//                    {
+//                        if (0 == VIC_ExNo)
+//                            m_tVcsGenManage.bStopAllExerciseProcessing = true;
+//                        else
+//                        {
+//                            m_pVcsExManage[VIC_ExNo].bStopAllExerciseProcessing = true;
+//                            m_pVcsExManage[VIC_ExNo].eED_State = ED_UNKNOWN;
+//                        }
+//                        // Do not send pending messages for this exercise
+//                        ClearMsgQueue(VIC_ExNo);
+//                    }
+//                }
 
-            }
+//            }
 
-            if (bEnableTransmit)
-            {
-                /* Update local status structure - instructors */
-                for (n = 0; n < m_sTotalNumInstructors; n++)
-                {
-                    cLocalVcsNodeStatus[n] = m_tVcsIfManage.cVcsNodeStatus[n];
-                    if (m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[n])
-                        cLocalVcsNodeStatus[n] = CScenarioComponent::FAULT;
-                }
+//            if (bEnableTransmit)
+//            {
+//                /* Update local status structure - instructors */
+//                for (n = 0; n < m_sTotalNumInstructors; n++)
+//                {
+//                    cLocalVcsNodeStatus[n] = m_tVcsIfManage.cVcsNodeStatus[n];
+//                    if (m_tVcsIfManage.cVcsInstructorNodeExerciseStatus[n])
+//                        cLocalVcsNodeStatus[n] = CScenarioComponent::FAULT;
+//                }
 
-                /* Update local status structure - trainees & debrief */
-                for (; n < m_sTotalNumNodes; n++)
-                    cLocalVcsNodeStatus[n] = m_tVcsIfManage.cVcsNodeStatus[n];
+//                /* Update local status structure - trainees & debrief */
+//                for (; n < m_sTotalNumNodes; n++)
+//                    cLocalVcsNodeStatus[n] = m_tVcsIfManage.cVcsNodeStatus[n];
 
-                /* Send IL messages as exercise MAX_EXERCISE_COUNT */
-                VIC_ExNo = (VIC_ExNo == IL_IDX) ? MAX_EXERCISE_COUNT : VIC_ExNo;
-                VIC_ExNo = (VIC_ExNo == REPLAY_IDX) ? m_sAmsReplayExerciseNumber : VIC_ExNo;
+//                /* Send IL messages as exercise MAX_EXERCISE_COUNT */
+//                VIC_ExNo = (VIC_ExNo == 0) ? MAX_EXERCISE_COUNT : VIC_ExNo;
+//                VIC_ExNo = (VIC_ExNo == REPLAY_IDX) ? m_sAmsReplayExerciseNumber : VIC_ExNo;
 
-                if (m_bShutdownRequested)
-                    m_pSystem->SetSystemState(false, CScenarioComponent::READY_TO_POWER_OFF, VIC_ExNo, cLocalVcsNodeStatus);
-                else
-                    m_pSystem->SetSystemState(m_tVcsIfManage.bVcsControlPcStatus, m_tVcsIfManage.bVcsControlPcStatus, VIC_ExNo, cLocalVcsNodeStatus);
+//                if (m_bShutdownRequested)
+//                    m_pSystem->SetSystemState(false, CScenarioComponent::READY_TO_POWER_OFF, VIC_ExNo, cLocalVcsNodeStatus);
+//                else
+//                    m_pSystem->SetSystemState(m_tVcsIfManage.bVcsControlPcStatus, m_tVcsIfManage.bVcsControlPcStatus, VIC_ExNo, cLocalVcsNodeStatus);
 
-#if _VCS_NODE_STATUS_TRACE
-			sprintf (m_szTrace, "VCS STATUS UPDATE SENT - Instructors: ");
-			for (n = 0; n<m_sTotalNumInstructors; n++)
-			{
-				AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
-				strcat (m_szTrace, " ");
-			}
+//#if _VCS_NODE_STATUS_TRACE
+//			sprintf (m_szTrace, "VCS STATUS UPDATE SENT - Instructors: ");
+//			for (n = 0; n<m_sTotalNumInstructors; n++)
+//			{
+//				AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
+//				String.Concat (m_szTrace, " ");
+//			}
 			
-			strcat (m_szTrace, "Trainees: ");
+//			String.Concat (m_szTrace, "Trainees: ");
 
-			for (; n<m_sTotalNumRoles; n++)
-			{
-				AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
-				strcat (m_szTrace, " ");
-			}
+//			for (; n<m_sTotalNumRoles; n++)
+//			{
+//				AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
+//				String.Concat (m_szTrace, " ");
+//			}
 		
-			strcat(m_szTrace, "Debrief: ");
-			AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
-			strcat(m_szTrace, "\n");
-			Console.WriteLine("");
+//			String.Concat(m_szTrace, "Debrief: ");
+//			AppendIntStr(m_szTrace, cLocalVcsNodeStatus[n], Pad_0);
+//			String.Concat(m_szTrace, "\n");
+//			Console.WriteLine("");
 
-#endif
+//#endif
 
-            }
+            //}
         }
 
 
@@ -761,25 +761,25 @@ namespace SIM2UNET
         ////////////////////////////////////////////////////////////////////////////////
 
         //##ModelId=4119F594036D
-        public void CheckShutdownRequest(uint uID, uint uMsg, dword pOwner, DWORD dw1, DWORD dw2)
+        public void CheckShutdownRequest(uint uID, uint uMsg, int  pOwner, int dw1, int dw2)
         {
-            static const char szStartupIni[] = "s:\\startup\\startupinfo.ini";
-            char szCurrentCommand[100];
+            //const char szStartupIni[] = "s:\\startup\\startupinfo.ini";
+            //char szCurrentCommand[100];
 
-            pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
-            ASSERT(pCommsComp);
+            //pCommsComp = reinterpret_cast<CCommsComponent*>(pOwner);
+            //ASSERT(pCommsComp);
 
-            /* Get ini file detail */
-            GetPrivateProfileString(pCommsComp->m_szPCName, "Command", "", szCurrentCommand, 99, szStartupIni);
+            ///* Get ini file detail */
+            //GetPrivateProfileString(pCommsComp->m_szPCName, "Command", "", szCurrentCommand, 99, szStartupIni);
 
-            if (!strcmp(szCurrentCommand, "PrepareToPowerOff"))
-            {
-                /* Initiate shutdown */
-                pCommsComp->SendShutdownRequest();
+            //if (!strcmp(szCurrentCommand, "PrepareToPowerOff"))
+            //{
+            //    /* Initiate shutdown */
+            //    pCommsComp->SendShutdownRequest();
 
-                /* Alter ini file to prevent repeat shutdown initiation */
-                WritePrivateProfileString(pCommsComp->m_szPCName, "Command", "PowerOffPreparationComplete", szStartupIni);
-            }
+            //    /* Alter ini file to prevent repeat shutdown initiation */
+            //    WritePrivateProfileString(pCommsComp->m_szPCName, "Command", "PowerOffPreparationComplete", szStartupIni);
+            //}
 
             return;
         }
@@ -794,20 +794,20 @@ namespace SIM2UNET
         public void TraceVcs(char pcTraceString)
         {
 
-            if (strcmp(pcTraceString, ""))
-                strcpy(m_szTrace, pcTraceString);
+            //if (strcmp(pcTraceString, ""))
+            //    strcpy(m_szTrace, pcTraceString);
 
-            if (m_sparkDebug)
-            {
+            //if (m_sparkDebug)
+            //{
 
-                //m_pEL->AddEvent(m_szTrace, eEventInformation);
-                //m_pEL->AddEvent(m_szTrace, eEventWarning);
-                //m_pEL->AddEvent(m_szTrace, eEventError);
-                //m_pEL->AddEvent(m_szTrace, eEventSignificant);
-                m_pEL->AddEvent(&m_szTrace[0], eEventDebug);
-            }
-            else
-                TRACE(m_szTrace);
+            //    //m_pEL->AddEvent(m_szTrace, eEventInformation);
+            //    //m_pEL->AddEvent(m_szTrace, eEventWarning);
+            //    //m_pEL->AddEvent(m_szTrace, eEventError);
+            //    //m_pEL->AddEvent(m_szTrace, eEventSignificant);
+            //    m_pEL->AddEvent(&m_szTrace[0], eEventDebug);
+            //}
+            //else
+            //    TRACE(m_szTrace);
 
 
             return;
