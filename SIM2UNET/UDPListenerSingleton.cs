@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UNET_Classes;
 
-namespace SIM2UNET
+namespace SIM2VOIP
 {
     /// <summary>
     /// singleton class that holds the UDP listener

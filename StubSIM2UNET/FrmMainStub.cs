@@ -1,4 +1,4 @@
-﻿using StubSIM2UNET.EasyPCap;
+﻿using StubSIM2VOIP.EasyPCap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StubSIM2UNET
+namespace StubSIM2VOIP
 {
 
 

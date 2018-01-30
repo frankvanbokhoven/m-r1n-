@@ -116,7 +116,7 @@ namespace UNET_Classes
             //todo nog 10
         }
 
-        // id's genoemd in het SIM2UNET document bij 4.11.2
+        // id's genoemd in het SIM2VOIP document bij 4.11.2
         public enum SIM_Message_IDs
         {
             I_EC_LOAD = unchecked(0x0A00),

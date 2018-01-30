@@ -1,6 +1,6 @@
-﻿namespace SIM2UNET
+﻿namespace SIM2VOIP
 {
-    partial class FrmSIM2UNETMain
+    partial class FrmSIM2VOIPMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSIM2UNETMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSIM2VOIPMain));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnStartListening = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -96,15 +96,15 @@
             this.tbxPort.TabIndex = 40;
             this.tbxPort.Text = "11000";
             // 
-            // FrmSIM2UNETMain
+            // FrmSIM2VOIPMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(853, 680);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FrmSIM2UNETMain";
-            this.Text = "SIM2UNET";
+            this.Name = "FrmSIM2VOIPMain";
+            this.Text = "SIM2VOIP";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

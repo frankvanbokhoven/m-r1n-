@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StubSIM2UNET
+namespace StubSIM2VOIP
 {
     static class Program
     {

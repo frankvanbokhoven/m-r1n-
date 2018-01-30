@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StubSIM2UNET.EasyPCap
+namespace StubSIM2VOIP.EasyPCap
 {
     public class PcapFile : IDisposable, IEnumerable<PcapPacket>
     {

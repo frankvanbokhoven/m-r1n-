@@ -70,7 +70,7 @@ using System.Threading.Tasks;
 //# include "CommsComponent.h"
 //# include "systemcomponent.h"
 
-namespace SIM2UNET
+namespace SIM2VOIP
 {
     public class ExerciseManagement
     {

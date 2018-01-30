@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SIM2UNET
+namespace SIM2VOIP
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace SIM2UNET
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSIM2UNETMain());
+            Application.Run(new FrmSIM2VOIPMain());
         }
     }
 }

@@ -11,9 +11,9 @@ using System.Threading;
 using System.Net.Sockets;
 using System.Net;
 
-namespace SIM2UNET
+namespace SIM2VOIP
 {
-    public partial class FrmSIM2UNETMain : Form
+    public partial class FrmSIM2VOIPMain : Form
     {
         private UdpClient listener;
         private IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, 10000);
@@ -24,7 +24,7 @@ namespace SIM2UNET
 
         bool done = false;
         private UDPListenerSingleton singleton = UDPListenerSingleton.Instance;
-        public FrmSIM2UNETMain()
+        public FrmSIM2VOIPMain()
         {
             InitializeComponent();
             log4net.Config.BasicConfigurator.Configure();

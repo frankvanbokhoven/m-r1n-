@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIM2UNET.UNET_Service {
+namespace SIM2VOIP.UNET_Service {
     using System.Runtime.Serialization;
     using System;
     
@@ -187,10 +187,10 @@ namespace SIM2UNET.UNET_Service {
         System.Threading.Tasks.Task<bool> RegisterClientAsync(int _clientID, string _displayName, bool _isTrainee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/NotifyServer", ReplyAction="http://tempuri.org/IService1/NotifyServerResponse")]
-        void NotifyServer(SIM2UNET.UNET_Service.EventDataType eventData);
+        void NotifyServer(SIM2VOIP.UNET_Service.EventDataType eventData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/NotifyServer", ReplyAction="http://tempuri.org/IService1/NotifyServerResponse")]
-        System.Threading.Tasks.Task NotifyServerAsync(SIM2UNET.UNET_Service.EventDataType eventData);
+        System.Threading.Tasks.Task NotifyServerAsync(SIM2VOIP.UNET_Service.EventDataType eventData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetExerciseCount", ReplyAction="http://tempuri.org/IService1/SetExerciseCountResponse")]
         bool SetExerciseCount(int _count);
@@ -302,12 +302,12 @@ namespace SIM2UNET.UNET_Service {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : SIM2UNET.UNET_Service.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : SIM2VOIP.UNET_Service.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<SIM2UNET.UNET_Service.IService1>, SIM2UNET.UNET_Service.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<SIM2VOIP.UNET_Service.IService1>, SIM2VOIP.UNET_Service.IService1 {
         
         public Service1Client() {
         }
@@ -472,11 +472,11 @@ namespace SIM2UNET.UNET_Service {
             return base.Channel.RegisterClientAsync(_clientID, _displayName, _isTrainee);
         }
         
-        public void NotifyServer(SIM2UNET.UNET_Service.EventDataType eventData) {
+        public void NotifyServer(SIM2VOIP.UNET_Service.EventDataType eventData) {
             base.Channel.NotifyServer(eventData);
         }
         
-        public System.Threading.Tasks.Task NotifyServerAsync(SIM2UNET.UNET_Service.EventDataType eventData) {
+        public System.Threading.Tasks.Task NotifyServerAsync(SIM2VOIP.UNET_Service.EventDataType eventData) {
             return base.Channel.NotifyServerAsync(eventData);
         }
         

@@ -7,8 +7,8 @@
     <ProjectGuid>{61A8309F-5E31-4945-AD54-B2A0DD6550D4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SIM2UNET</RootNamespace>
-    <AssemblyName>SIM2UNET</AssemblyName>
+    <RootNamespace>SIM2VOIP</RootNamespace>
+    <AssemblyName>SIM2VOIP</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommsControl.cs" />
     <Compile Include="ExerciseManagement.cs" />
     <Compile Include="FrmSIM2UNETMain.cs">
       <SubType>Form</SubType>

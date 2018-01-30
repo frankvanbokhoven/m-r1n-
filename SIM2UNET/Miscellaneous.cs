@@ -39,7 +39,7 @@ using System.Threading.Tasks;
 //        // Comms Component headers
 //# include "CommsComponent.h"
 //# include "systemcomponent.h"
-namespace SIM2UNET
+namespace SIM2VOIP
 {
     public class Miscellaneous
     {

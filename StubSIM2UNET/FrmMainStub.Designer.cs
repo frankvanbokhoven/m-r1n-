@@ -1,4 +1,4 @@
-﻿namespace StubSIM2UNET
+﻿namespace StubSIM2VOIP
 {
     partial class FrmMainStub
     {
@@ -76,7 +76,7 @@
             // 
             this.btnSelectLogDir.BackColor = System.Drawing.Color.Black;
             this.btnSelectLogDir.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSelectLogDir.Image = global::StubSIM2UNET.Properties.Resources.open_file_icon32;
+            this.btnSelectLogDir.Image = global::StubSIM2VOIP.Properties.Resources.open_file_icon32;
             this.btnSelectLogDir.Location = new System.Drawing.Point(676, 38);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
