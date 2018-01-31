@@ -17,6 +17,36 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_DisconnectVCS_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectVCS" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DisconnectVCS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectVCSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reset_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reset" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Start_InputMessage">
+    <wsdl:part name="parameters" element="tns:Start" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Start_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Stop_InputMessage">
+    <wsdl:part name="parameters" element="tns:Stop" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Stop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateAssist_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateAssist" />
   </wsdl:message>
@@ -240,6 +270,26 @@
     <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="DisconnectVCS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DisconnectVCS" message="tns:IService1_DisconnectVCS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DisconnectVCSResponse" message="tns:IService1_DisconnectVCS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reset" message="tns:IService1_Reset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ResetResponse" message="tns:IService1_Reset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Login" message="tns:IService1_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LoginResponse" message="tns:IService1_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Start">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Start" message="tns:IService1_Start_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartResponse" message="tns:IService1_Start_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Stop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Stop" message="tns:IService1_Stop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StopResponse" message="tns:IService1_Stop_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
@@ -392,6 +442,51 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisconnectVCS">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DisconnectVCS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Reset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Start">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Start" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Stop">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Stop" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
       <wsdl:input>

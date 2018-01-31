@@ -32,6 +32,33 @@ namespace UNET_Service
 
         }
 
+        #region SIM
+        public bool DisconnectVCS()
+        {
+            return true;
+        }
+
+        public bool Reset()
+        {
+            return true;
+        }
+
+
+        public bool Login()
+        {
+            return true;
+        }
+
+        public bool Start()
+        {
+            return true;
+        }
+
+        public bool Stop()
+        {
+            return true;
+        }
+        #endregion
 
         #region Getters
 
@@ -767,7 +794,7 @@ namespace UNET_Service
 
 
 
-       
+
 
 
         /// <summary>
@@ -832,7 +859,7 @@ namespace UNET_Service
                     singleton.Roles.Add(role);
                 }
 
-      singleton.PendingChanges = DateTime.Now;
+                singleton.PendingChanges = DateTime.Now;
 
                 result = true;
             }
@@ -842,7 +869,7 @@ namespace UNET_Service
                 result = false;
 
             }
-      
+
             return result;
         }
 
@@ -1418,7 +1445,7 @@ namespace UNET_Service
                 //just return all unacknowledged assists
                 foreach (Assist ass in singleton.Assists) //now we loop thrue the assist to find trainees that requested assist
                 {
-                    if (ass.Acknowledged == false) 
+                    if (ass.Acknowledged == false)
                     {
                         result.Add(ass);
                     }
@@ -1452,7 +1479,7 @@ namespace UNET_Service
 
 
                 //if there is a pending assist, this must be known on the clients as well!
-                if(singleton.Assists.Count(x => x.Acknowledged == false) > 0)
+                if (singleton.Assists.Count(x => x.Acknowledged == false) > 0)
                 {
                     result = DateTime.Now;
                 }

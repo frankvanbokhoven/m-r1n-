@@ -74,6 +74,11 @@ namespace SIM2VOIP
 {
     public class ExerciseManagement
     {
+        public ExerciseManagement()
+        {
+
+        }
+
         //const string A_NONE = string.Empty;
         //const bool true = false;
         //const string[8] szModeStr = { "UNKNOWN", "STT-SINGLE", "STT-MULTI", "IL", "RAD ONLY", "UNKNOWN", "UNKNOWN", "UNKNOWN" };

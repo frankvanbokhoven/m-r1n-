@@ -20,6 +20,7 @@ namespace UNET_Tester
     {
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //wcf service
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         private int KeepAliveCounter = 0;
 

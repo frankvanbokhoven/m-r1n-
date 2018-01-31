@@ -78,6 +78,36 @@ namespace SIM2VOIP.UNET_Service {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DisconnectVCS", ReplyAction="http://tempuri.org/IService1/DisconnectVCSResponse")]
+        bool DisconnectVCS();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DisconnectVCS", ReplyAction="http://tempuri.org/IService1/DisconnectVCSResponse")]
+        System.Threading.Tasks.Task<bool> DisconnectVCSAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Reset", ReplyAction="http://tempuri.org/IService1/ResetResponse")]
+        bool Reset();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Reset", ReplyAction="http://tempuri.org/IService1/ResetResponse")]
+        System.Threading.Tasks.Task<bool> ResetAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
+        bool Login();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Start", ReplyAction="http://tempuri.org/IService1/StartResponse")]
+        bool Start();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Start", ReplyAction="http://tempuri.org/IService1/StartResponse")]
+        System.Threading.Tasks.Task<bool> StartAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
+        bool Stop();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
+        System.Threading.Tasks.Task<bool> StopAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(int _traineeId, string _traineeInfo);
         
@@ -326,6 +356,46 @@ namespace SIM2VOIP.UNET_Service {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public bool DisconnectVCS() {
+            return base.Channel.DisconnectVCS();
+        }
+        
+        public System.Threading.Tasks.Task<bool> DisconnectVCSAsync() {
+            return base.Channel.DisconnectVCSAsync();
+        }
+        
+        public bool Reset() {
+            return base.Channel.Reset();
+        }
+        
+        public System.Threading.Tasks.Task<bool> ResetAsync() {
+            return base.Channel.ResetAsync();
+        }
+        
+        public bool Login() {
+            return base.Channel.Login();
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginAsync() {
+            return base.Channel.LoginAsync();
+        }
+        
+        public bool Start() {
+            return base.Channel.Start();
+        }
+        
+        public System.Threading.Tasks.Task<bool> StartAsync() {
+            return base.Channel.StartAsync();
+        }
+        
+        public bool Stop() {
+            return base.Channel.Stop();
+        }
+        
+        public System.Threading.Tasks.Task<bool> StopAsync() {
+            return base.Channel.StopAsync();
         }
         
         public bool CreateAssist(int _traineeId, string _traineeInfo) {

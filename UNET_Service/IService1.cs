@@ -21,9 +21,26 @@ namespace UNET_Service
     [ServiceContract]
     public interface IService1
     {
+        #region SIM methods
+        [OperationContract]
+        bool DisconnectVCS();
+
+        [OperationContract]
+        bool Reset();
+
+        [OperationContract]
+        bool Login();
+
+        [OperationContract]
+        bool Start();
+
+        [OperationContract]
+        bool Stop();
+
+        #endregion
         //start service
-      //  [OperationContract]
-      //  bool StartService();
+        //  [OperationContract]
+        //  bool StartService();
 
         #region Assist
         [OperationContract]
