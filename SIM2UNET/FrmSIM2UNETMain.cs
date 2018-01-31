@@ -16,13 +16,13 @@ namespace SIM2VOIP
     public partial class FrmSIM2VOIPMain : Form
     {
         private UdpClient listener;
-        private IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, 10000);
+        private IPEndPoint groupEP;
         private string received_data;
         private byte[] receive_byte_array;
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        bool done = false;
+         bool done = false;
         private UDPListenerSingleton singleton = UDPListenerSingleton.Instance;
         public FrmSIM2VOIPMain()
         {
@@ -30,13 +30,21 @@ namespace SIM2VOIP
             log4net.Config.BasicConfigurator.Configure();
         }
 
+
+        /// <summary>
+        /// when the user clicks on the start listening: then start listening!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStartListening_Click(object sender, EventArgs e)
         {
-
-
+            //zet de poort door
+            singleton.listenPort = Convert.ToInt16( tbxPort.Text.Trim());
+            groupEP = new IPEndPoint(IPAddress.Any, singleton.listenPort);
             if (btnStartListening.ImageIndex == 0)
             {
                 btnStartListening.ImageIndex = 1;
+                //Create the udp listener thread
                 listener = new UdpClient(Convert.ToInt16(tbxPort.Text.Trim()));
                 Thread thread = new Thread(new ThreadStart(Listen));
                 done = false;
@@ -50,6 +58,9 @@ namespace SIM2VOIP
          }
 
 
+        /// <summary>
+        /// method that listens to the udp packets and when received, processes them
+        /// </summary>
         private void Listen()
         {
             try

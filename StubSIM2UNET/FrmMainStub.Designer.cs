@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbPCap = new System.Windows.Forms.TrackBar();
             this.tbxDestination = new System.Windows.Forms.TextBox();
-            this.btnPlay = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lbxPCAP = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -51,6 +50,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbPCap)).BeginInit();
@@ -76,7 +76,7 @@
             // 
             this.btnSelectLogDir.BackColor = System.Drawing.Color.Black;
             this.btnSelectLogDir.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSelectLogDir.Image = global::StubSIM2VOIP.Properties.Resources.open_file_icon32;
+            this.btnSelectLogDir.Image = global::StubSIM2UNET.Properties.Resources.open_file_icon32;
             this.btnSelectLogDir.Location = new System.Drawing.Point(676, 38);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
@@ -217,18 +217,6 @@
             this.tbxDestination.TabIndex = 2;
             this.tbxDestination.Text = "192.168.43.31";
             // 
-            // btnPlay
-            // 
-            this.btnPlay.ImageIndex = 0;
-            this.btnPlay.ImageList = this.imageList1;
-            this.btnPlay.Location = new System.Drawing.Point(25, 23);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(60, 55);
-            this.btnPlay.TabIndex = 0;
-            this.btnPlay.UseVisualStyleBackColor = true;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -296,6 +284,18 @@
             // 
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(167, 20);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.ImageIndex = 0;
+            this.btnPlay.ImageList = this.imageList1;
+            this.btnPlay.Location = new System.Drawing.Point(25, 23);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(60, 55);
+            this.btnPlay.TabIndex = 0;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // FrmMainStub
             // 

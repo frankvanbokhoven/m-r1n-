@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StubSIM2VOIP.Properties {
+namespace StubSIM2UNET.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace StubSIM2VOIP.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StubSIM2VOIP.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("StubSIM2UNET.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,16 +57,6 @@ namespace StubSIM2VOIP.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap open_file_icon {
-            get {
-                object obj = ResourceManager.GetObject("open-file-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

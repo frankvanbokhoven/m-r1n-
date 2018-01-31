@@ -19,7 +19,10 @@ namespace SIM2VOIP
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
 
-        private const int listenPort = 11000;
+        public int listenPort = 11000;
+        private InterfaceManagement interfaceManagement = new InterfaceManagement();
+
+
         [ThreadStatic]
         private static UDPListenerSingleton instance = null;
         private static readonly object syncRoot = new object();
@@ -111,17 +114,21 @@ namespace SIM2VOIP
             }
 
                 if (!_receiveddata.ToLower().Contains("frank"))
-            {   //Voeg voor iedere trainee-id een trainee object toe
-             //   string[] instructorids = tbxInstructorIDs.Text.Split(',');
-
+            {   
+                //Als test voegen we een instructor toe in de wcf unet
+                #region test wcf call
                 List<Instructor> instructorlist = new List<Instructor>();
                 Instructor inst = new Instructor(Convert.ToInt16("1020"), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
                 inst.Exercises.Add(new Exercise(1, "Exercise 1"));
                 instructorlist.Add(inst);
                 service.SetInstructors(instructorlist.ToArray());
-            
+                #endregion
+                char eenkararter = 't';
+                #region process byte data
+                interfaceManagement.ProcessReceivedMessage(-1, eenkararter, (short)_receiveddata.Length);
+                #endregion
             }
-        
+
         }
         #endregion
     }
