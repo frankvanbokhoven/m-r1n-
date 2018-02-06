@@ -4,18 +4,26 @@ using System.Linq;
 using System.Web;
 using UNET_Classes;
 using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace UNET_Service
 {
+    public enum PTTuser { puTrainee, puInstructor}
+    //this struct holds the PTT info
+    public class PTTcaller
+    {
+        public int ID;
+        public PTTuser User;
+        public DateTime PTTDateTime;
+    }
 
     public sealed class UNET_Singleton
     {
         private static UNET_Singleton instance = null;
         // adding locking object
         private static readonly object syncRoot = new object();
-
-        //all the ObservableCollections below are changed from ObservableCollections to observablecollections. this way, we can attach an event to them and know
-        //when something has changed in them.
+        //all the ObservableCollections below are changed from lists to observablecollections. this way, 
+        //we can attach an event to them and know when something has changed in them.
         public ObservableCollection<Exercise> Exercises = new ObservableCollection<Exercise>();
         public ObservableCollection<Role> Roles = new ObservableCollection<Role>();
         public ObservableCollection<Radio> Radios = new ObservableCollection<Radio>();
@@ -26,10 +34,15 @@ namespace UNET_Service
         public ObservableCollection<SIPStatusMessage> SIPStatusMessageList = new ObservableCollection<SIPStatusMessage>();
         public ObservableCollection<Assist> Assists = new ObservableCollection<Assist>();
 
-        public DateTime PendingChanges;
 
+        public DateTime PendingChanges; //property is set whenever something anywhere in the singleton model is changed
         public Dictionary<string, IBroadcastorCallBack> clients = new Dictionary<string, IBroadcastorCallBack>();
 
+
+        /// <summary>
+        /// when a trainee or instructor does PTT, enqueue this PTT and handle it
+        /// </summary>
+        public Queue PTTQueue = new Queue();
 
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;

@@ -223,9 +223,39 @@ namespace UNET_ServiceStatus
                 }
 
 
+                //Assists
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+                Console.Write(DateTime.Now.ToString() + " PTT QUEUE");
+                Console.Write(Environment.NewLine);
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
 
 
-                //  Console.Write(Environment.NewLine);
+                var resultlistptt = service.getPTTQueue();
+                List<UNET_Service.PTTCaller> lstPtt = resultlistptt.ToList<UNET_Service.PTTuser>();
+                if (lst.Count == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("No data in UNET_Service for the PTTQueue");
+                    Console.Write(Environment.NewLine);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    foreach (UNET_Service.PTTcaller pt in lstPtt)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write("PTT QUEUE::  " + pt.ID + " Started by: " + pt.ID + " " + pt.User + "  Requested: " + assist.RequestTime.ToString());
+                        Console.Write(Environment.NewLine);
+
+
+                    }
+                }
+
+
+
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);

@@ -13,6 +13,17 @@ namespace UNET_Trainer_Trainee.UNET_Service {
     using System;
     
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PTTuser", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service")]
+    public enum PTTuser : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        puTrainee = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        puInstructor = 1,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EventDataType", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service")]
@@ -77,6 +88,48 @@ namespace UNET_Trainer_Trainee.UNET_Service {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UNET_Service.IService1")]
     public interface IService1 {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DisconnectVCS", ReplyAction="http://tempuri.org/IService1/DisconnectVCSResponse")]
+        bool DisconnectVCS();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DisconnectVCS", ReplyAction="http://tempuri.org/IService1/DisconnectVCSResponse")]
+        System.Threading.Tasks.Task<bool> DisconnectVCSAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Reset", ReplyAction="http://tempuri.org/IService1/ResetResponse")]
+        bool Reset();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Reset", ReplyAction="http://tempuri.org/IService1/ResetResponse")]
+        System.Threading.Tasks.Task<bool> ResetAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
+        bool Login();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Start", ReplyAction="http://tempuri.org/IService1/StartResponse")]
+        bool Start();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Start", ReplyAction="http://tempuri.org/IService1/StartResponse")]
+        System.Threading.Tasks.Task<bool> StartAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
+        bool Stop();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
+        System.Threading.Tasks.Task<bool> StopAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
+        bool AddPTT(int _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
+        System.Threading.Tasks.Task<bool> AddPTTAsync(int _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgePTT", ReplyAction="http://tempuri.org/IService1/AcknowledgePTTResponse")]
+        bool AcknowledgePTT(int _traineeInstructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgePTT", ReplyAction="http://tempuri.org/IService1/AcknowledgePTTResponse")]
+        System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(int _traineeInstructorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(int _traineeId, string _traineeInfo);
@@ -161,36 +214,6 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
-        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
-        System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
-        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
-        System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
-        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
-        System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
-        bool SetNoiseLevelChanged(int _radioId, bool _changed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
-        System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
-        bool SetNoiseLevel(int _radioID, int _noiselevel);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
-        System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelChangedResponse")]
         bool GetNoiseLevelChanged();
@@ -293,6 +316,42 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetPlatforms", ReplyAction="http://tempuri.org/IService1/SetPlatformsResponse")]
         System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Classes.Platform[] _platform);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/SetTraineeStatusChangedResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
+        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRoleAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRoleAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetTraineeAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetTraineeAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRadioAssignedStatusResponse")]
+        bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetRadioAssignedStatus", ReplyAction="http://tempuri.org/IService1/SetRadioAssignedStatusResponse")]
+        System.Threading.Tasks.Task<bool> SetRadioAssignedStatusAsync(int _instructorID, int _exersiseID, int _radio, bool _add);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
+        bool SetNoiseLevelChanged(int _radioId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelChangedResponse")]
+        System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        bool SetNoiseLevel(int _radioID, int _noiselevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SetNoiseLevel", ReplyAction="http://tempuri.org/IService1/SetNoiseLevelResponse")]
+        System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -320,6 +379,62 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public bool DisconnectVCS() {
+            return base.Channel.DisconnectVCS();
+        }
+        
+        public System.Threading.Tasks.Task<bool> DisconnectVCSAsync() {
+            return base.Channel.DisconnectVCSAsync();
+        }
+        
+        public bool Reset() {
+            return base.Channel.Reset();
+        }
+        
+        public System.Threading.Tasks.Task<bool> ResetAsync() {
+            return base.Channel.ResetAsync();
+        }
+        
+        public bool Login() {
+            return base.Channel.Login();
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginAsync() {
+            return base.Channel.LoginAsync();
+        }
+        
+        public bool Start() {
+            return base.Channel.Start();
+        }
+        
+        public System.Threading.Tasks.Task<bool> StartAsync() {
+            return base.Channel.StartAsync();
+        }
+        
+        public bool Stop() {
+            return base.Channel.Stop();
+        }
+        
+        public System.Threading.Tasks.Task<bool> StopAsync() {
+            return base.Channel.StopAsync();
+        }
+        
+        public bool AddPTT(int _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser) {
+            return base.Channel.AddPTT(_traineeInstructorID, _pttUser);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddPTTAsync(int _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser) {
+            return base.Channel.AddPTTAsync(_traineeInstructorID, _pttUser);
+        }
+        
+        public bool AcknowledgePTT(int _traineeInstructorID) {
+            return base.Channel.AcknowledgePTT(_traineeInstructorID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(int _traineeInstructorID) {
+            return base.Channel.AcknowledgePTTAsync(_traineeInstructorID);
         }
         
         public bool CreateAssist(int _traineeId, string _traineeInfo) {
@@ -432,46 +547,6 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync() {
             return base.Channel.GetTraineeStatusChangedAsync();
-        }
-        
-        public bool SetTraineeStatusChanged(int _traineeId, bool _changed) {
-            return base.Channel.SetTraineeStatusChanged(_traineeId, _changed);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
-            return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
-        }
-        
-        public bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add) {
-            return base.Channel.SetRoleAssignedStatus(_instructorID, _exersiseID, _role, _add);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add) {
-            return base.Channel.SetRoleAssignedStatusAsync(_instructorID, _exersiseID, _role, _add);
-        }
-        
-        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
-            return base.Channel.SetTraineeAssignedStatus(_instructorID, _exersiseID, _traineeID, _add);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
-            return base.Channel.SetTraineeAssignedStatusAsync(_instructorID, _exersiseID, _traineeID, _add);
-        }
-        
-        public bool SetNoiseLevelChanged(int _radioId, bool _changed) {
-            return base.Channel.SetNoiseLevelChanged(_radioId, _changed);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed) {
-            return base.Channel.SetNoiseLevelChangedAsync(_radioId, _changed);
-        }
-        
-        public bool SetNoiseLevel(int _radioID, int _noiselevel) {
-            return base.Channel.SetNoiseLevel(_radioID, _noiselevel);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel) {
-            return base.Channel.SetNoiseLevelAsync(_radioID, _noiselevel);
         }
         
         public bool GetNoiseLevelChanged() {
@@ -608,6 +683,54 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> SetPlatformsAsync(UNET_Classes.Platform[] _platform) {
             return base.Channel.SetPlatformsAsync(_platform);
+        }
+        
+        public bool SetTraineeStatusChanged(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChanged(_traineeId, _changed);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeStatusChangedAsync(int _traineeId, bool _changed) {
+            return base.Channel.SetTraineeStatusChangedAsync(_traineeId, _changed);
+        }
+        
+        public bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add) {
+            return base.Channel.SetRoleAssignedStatus(_instructorID, _exersiseID, _role, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRoleAssignedStatusAsync(int _instructorID, int _exersiseID, int _role, bool _add) {
+            return base.Channel.SetRoleAssignedStatusAsync(_instructorID, _exersiseID, _role, _add);
+        }
+        
+        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatus(_instructorID, _exersiseID, _traineeID, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetTraineeAssignedStatusAsync(int _instructorID, int _exersiseID, int _traineeID, bool _add) {
+            return base.Channel.SetTraineeAssignedStatusAsync(_instructorID, _exersiseID, _traineeID, _add);
+        }
+        
+        public bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add) {
+            return base.Channel.SetRadioAssignedStatus(_instructorID, _exersiseID, _radio, _add);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetRadioAssignedStatusAsync(int _instructorID, int _exersiseID, int _radio, bool _add) {
+            return base.Channel.SetRadioAssignedStatusAsync(_instructorID, _exersiseID, _radio, _add);
+        }
+        
+        public bool SetNoiseLevelChanged(int _radioId, bool _changed) {
+            return base.Channel.SetNoiseLevelChanged(_radioId, _changed);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetNoiseLevelChangedAsync(int _radioId, bool _changed) {
+            return base.Channel.SetNoiseLevelChangedAsync(_radioId, _changed);
+        }
+        
+        public bool SetNoiseLevel(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevel(_radioID, _noiselevel);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetNoiseLevelAsync(int _radioID, int _noiselevel) {
+            return base.Channel.SetNoiseLevelAsync(_radioID, _noiselevel);
         }
     }
 }

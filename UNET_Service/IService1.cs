@@ -42,6 +42,17 @@ namespace UNET_Service
         //  [OperationContract]
         //  bool StartService();
 
+        #region PTT
+        [OperationContract]
+        bool AddPTT(int _traineeInstructorID, PTTuser _pttUser);
+
+        [OperationContract]
+        bool AcknowledgePTT(int _traineeInstructorID);
+
+        [OperationContract]
+        Queue<PTTcaller> GetPTTQueue();
+        #endregion
+
         #region Assist
         [OperationContract]
         bool CreateAssist(int _traineeId, string _traineeInfo);

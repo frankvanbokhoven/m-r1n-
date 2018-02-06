@@ -704,6 +704,47 @@ namespace UNET_Trainer_Trainee
             }
             return true;
         }
+
+
+        /// <summary>
+        /// Add or remove the ptt to or from the queue
+        /// </summary>
+        /// <param name="_pressed"></param>
+        private void SetPTTPressed(bool _pressed)
+        {
+            try
+            {
+                // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+                // visible/invisible and also set the statusled
+                //  {
+                if (!AssistRequested)
+                {
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+                    if (_pressed)
+                    {
+                        service.AddPTT(TraineeID, UNET_Service.PTTuser.puTrainee);
+                    }
+                    else
+                    {
+                        service.AcknowledgePTT(TraineeID);
+                    }
+                 }
+
+
+                //  MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
+                log.Info("Set ptt event:" + TraineeID + " Value: "  + _pressed);
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error requesting assist: " + ex.Message);
+            }
+
+        }
         //////////////////////////////////////////////////////////////////////////////
         ///Event handlers
         //////////////////////////////////////////////////////////////////////////////
@@ -726,10 +767,15 @@ namespace UNET_Trainer_Trainee
                         if (splitstr[1].ToString().Trim().ToLower() == "true")
                         {
                             lblPtt.Text = "PTT ";
+                            SetPTTPressed(true);
 
                         }
                         else
+                        {
                             lblPtt.Text = "";
+                            SetPTTPressed(false);
+                        }
+
                     }
                     else
                     {

@@ -32,6 +32,97 @@ namespace UNET_Service
 
         }
 
+        #region PTT
+
+        /// <summary>
+        /// add a ptt call to the queue
+        /// </summary>
+        /// <param name="_traineeInstructorID"></param>
+        /// <returns></returns>
+ 
+        public bool AddPTT(int _traineeInstructorID, PTTuser _pttUser)
+        {
+            bool result = false;
+
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+
+                //enqueue this call to the PTTQueue
+                PTTcaller pt = new PTTcaller();
+                pt.User = _pttUser;
+                pt.ID = _traineeInstructorID;
+                pt.PTTDateTime = DateTime.Now;
+                singleton.PTTQueue.Enqueue(pt);
+                
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting the ptt:" + ex.Message);
+                result = false;
+            }
+            return result;
+
+        }
+
+        /// <summary>
+        /// Let the server know, this ptt is handled by removing it from the queue
+        /// </summary>
+        /// <param name="_traineeInstructorID"></param>
+        /// <returns></returns>
+        public  bool AcknowledgePTT(int _traineeInstructorID)
+        {
+            bool result = false;
+
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+
+                foreach(PTTcaller pttc in singleton.PTTQueue)
+                {
+                    if (((PTTcaller)pttc).ID == _traineeInstructorID)
+                    {
+
+                       //remove it from the queue
+                       PTTcaller local = (PTTcaller)singleton.PTTQueue.Dequeue();
+                       break;
+                    }
+                }
+    
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error acknowledgeing the ptt:" + ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// retrieve the PTT queue
+        /// </summary>
+        /// <returns></returns>
+        public  Queue<PTTcaller> GetPTTQueue()
+        {
+            Queue<PTTcaller> result = new Queue<PTTcaller>();
+            try
+            {
+
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+             //   result = (Queue) singleton.PTTQueue;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception retrieving the PTT Queue: " + ex.Message);
+
+                throw;
+            }
+            return result;
+        }
+        #endregion
+
         #region SIM
         public bool DisconnectVCS()
         {

@@ -86,6 +86,12 @@
     <None Include="Service References\UNET_Service\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UNET_Service\Service15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UNET_Service\UNET_ServiceStatus.UNET_Service.PTTcaller.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

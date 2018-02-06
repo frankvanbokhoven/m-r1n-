@@ -19,7 +19,7 @@ using PJSUA2Implementation.SIP;
 namespace UNET_Trainer
 {
 
-    public partial class FrmUNETMain : Form // FrmUNETbase
+    public partial class FrmUNETMain : FrmUNETbase
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -594,9 +594,7 @@ namespace UNET_Trainer
             {
                 service.Open();
             }
-       //     service.StartService();
-
-
+ 
 
             try
             {
@@ -605,9 +603,8 @@ namespace UNET_Trainer
                     service.Open();
                 }
 
-                //Register the instructor to the wcf service
+                //Register this instructor to the wcf service
                 service.RegisterClient(InstructorID, DisplayName, false); //'false' means: this is an Instructor
-          //      lblRegInfo.Text += " WCF regOK";
             }
             catch (Exception ex)
             {
@@ -697,58 +694,10 @@ namespace UNET_Trainer
         /// <summary>
         /// Hier wordt de kleur van de trainee knop weer teruggezet, alsmede de array
         /// </summary>
-        //private void SetTraineeStatus()
-        //{
-
-        //    //loop thrue the Monitortraineearray to set the proper status
-        //    for (int i = 0; i <= 15; i++)
-        //    {
-        //        MonitorTraineeArray[i] = false;
-        //    }
-
-        //    // A little amateur.. but it just is the fastest manner
-        //    btnTrainee01.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee02.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee03.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee04.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee05.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee06.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee07.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee08.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee09.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee10.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee11.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee12.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee13.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee14.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee15.BackColor = System.Drawing.Color.LightGreen;
-        //    btnTrainee16.BackColor = System.Drawing.Color.LightGreen;
-
-        //    btnTrainee01.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee02.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee03.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee04.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee05.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee06.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee07.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee08.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee09.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee10.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee11.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee12.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee13.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee14.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee15.ForeColor = System.Drawing.Color.Black;
-        //    btnTrainee16.ForeColor = System.Drawing.Color.Black;
-
-        //}
-
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
-        //    SetTraineeStatus();
             int traineeIndex = -1;
-            //    SetStatusAndColorTraineeButtons((Button)sender);
-
+ 
             traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
 
             /// <summary>
@@ -791,49 +740,6 @@ namespace UNET_Trainer
             {
                 MonitorRadioArray[i] = false;
             }
-
-            // A little amateur.. but it just is the fastest manner
-            //btnRadio01.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio02.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio03.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio04.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio05.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio06.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio07.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio08.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio09.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio10.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio11.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio12.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio13.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio14.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio15.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio16.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio17.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio18.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio19.BackColor = System.Drawing.Color.DarkSeaGreen;
-            //btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
-
-            //btnRadio01.ForeColor = System.Drawing.Color.Black;
-            //btnRadio02.ForeColor = System.Drawing.Color.Black;
-            //btnRadio03.ForeColor = System.Drawing.Color.Black;
-            //btnRadio04.ForeColor = System.Drawing.Color.Black;
-            //btnRadio05.ForeColor = System.Drawing.Color.Black;
-            //btnRadio06.ForeColor = System.Drawing.Color.Black;
-            //btnRadio07.ForeColor = System.Drawing.Color.Black;
-            //btnRadio08.ForeColor = System.Drawing.Color.Black;
-            //btnRadio09.ForeColor = System.Drawing.Color.Black;
-            //btnRadio10.ForeColor = System.Drawing.Color.Black;
-            //btnRadio11.ForeColor = System.Drawing.Color.Black;
-            //btnRadio12.ForeColor = System.Drawing.Color.Black;
-            //btnRadio13.ForeColor = System.Drawing.Color.Black;
-            //btnRadio14.ForeColor = System.Drawing.Color.Black;
-            //btnRadio15.ForeColor = System.Drawing.Color.Black;
-            //btnRadio16.ForeColor = System.Drawing.Color.Black;
-            //btnRadio17.ForeColor = System.Drawing.Color.Black;
-            //btnRadio18.ForeColor = System.Drawing.Color.Black;
-            //btnRadio19.ForeColor = System.Drawing.Color.Black;
-            //btnRadio20.ForeColor = System.Drawing.Color.Black;
         }
 
 
@@ -899,35 +805,6 @@ namespace UNET_Trainer
             SetStatusAndColorExerciseButtons((Button)sender);
         }
 
-        //private void SetExerciseStatus()
-        //{
-        //    //loop thrue the Exersise array to set the proper status
-        //    for (int i = 0; i <= 8; i++)
-        //    {
-        //        ExerciseArray[i] = false;
-        //    }
-
-        //    //reset the colors of the exersise buttons
-        //    btnExersise01.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise02.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise03.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise04.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise05.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise06.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise07.BackColor = System.Drawing.Color.Aqua;
-        //    btnExersise08.BackColor = System.Drawing.Color.Aqua;
-        //    btnIL.BackColor = System.Drawing.Color.Aqua;
-
-        //    btnExersise01.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise02.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise03.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise04.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise05.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise06.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise07.ForeColor = System.Drawing.Color.Black;
-        //    btnExersise08.ForeColor = System.Drawing.Color.Black;
-        //    btnIL.ForeColor = System.Drawing.Color.Black;
-        //}
 
         private void SetStatusAndColorExerciseButtons(Button _btn)
         {

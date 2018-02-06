@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UNET_Theming")]
-[assembly: AssemblyDescription("Handles the theming of all UNET forms (makes them present themselves in a predefined way)")]
+
+[assembly: AssemblyTitle("SIM2VOIP_Service")]
+[assembly: AssemblyDescription("Service that parses the SIM bytes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UNET_Theming")]
+[assembly: AssemblyCompany("HSO")]
+[assembly: AssemblyProduct("SIM2VOIP_Service")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -17,10 +17,12 @@ using System.Runtime.InteropServices;
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
+
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3")]
+
+[assembly: Guid("a24e0a89-e150-4fc2-af39-4f83d618bd7e")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +34,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+
+[assembly: AssemblyVersion("1.2018.02.04")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
