@@ -31,7 +31,6 @@ namespace UNET_ServiceStatus
 
             // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
             // visible/invisible and also set the statusled
-            //  {
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
@@ -42,7 +41,6 @@ namespace UNET_ServiceStatus
             try
             {
                 Console.Clear();
-                //  Console.BackgroundColor = ConsoleColor.Green;
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
 
@@ -223,7 +221,7 @@ namespace UNET_ServiceStatus
                 }
 
 
-                //Assists
+                //PTT
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
@@ -233,8 +231,8 @@ namespace UNET_ServiceStatus
                 Console.Write(Environment.NewLine);
 
 
-                var resultlistptt = service.getPTTQueue();
-                List<UNET_Service.PTTCaller> lstPtt = resultlistptt.ToList<UNET_Service.PTTuser>();
+                var resultlistptt = service.GetPTTQueue();
+                Queue<UNET_Service.PTTcaller> lstPtt = resultlistptt;
                 if (lst.Count == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -247,7 +245,7 @@ namespace UNET_ServiceStatus
                     foreach (UNET_Service.PTTcaller pt in lstPtt)
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write("PTT QUEUE::  " + pt.ID + " Started by: " + pt.ID + " " + pt.User + "  Requested: " + assist.RequestTime.ToString());
+                        Console.Write("PTT QUEUE::  " + pt.ID + " Started by: " + pt.ID + " " + pt.User + "  Requested: " + pt.PTTDateTime.ToString());
                         Console.Write(Environment.NewLine);
 
 

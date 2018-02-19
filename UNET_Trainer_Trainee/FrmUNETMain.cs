@@ -16,10 +16,11 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using PJSUA2Implementation.SIP;
+using UNET_SignalGenerator;
 
 namespace UNET_Trainer_Trainee
 {
-    public partial class FrmUNETMain : FrmUNETbase
+    public partial class FrmUNETMain : Form// FrmUNETbase
     {
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();
@@ -31,7 +32,7 @@ namespace UNET_Trainer_Trainee
         public int TraineeID = 1;
         public string DisplayName;
         public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); 
-        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); //
+        public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
@@ -45,8 +46,6 @@ namespace UNET_Trainer_Trainee
         private bool SoundPlaying = false;
         private int RoleClicked = -1;
 
-
-        //      private UsbInterface hardwareInterface;
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -70,7 +69,6 @@ namespace UNET_Trainer_Trainee
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            //  this.Close();
             Application.Exit();
         }
 
@@ -448,11 +446,36 @@ namespace UNET_Trainer_Trainee
             return false;
         }
 
+        /// <summary>
+        /// determine the destination account when a radio call is started
+        /// </summary>
+        /// <param name="_radioNumber"></param>
+        /// <returns></returns>
+        private string GetDestination(int _radioNumber)
+        {
+            string result = string.Empty;
+     
+                            try
+            {
+              return string.Format("RADIO_{0}_{1}", "1010");
+                 }
+
+            catch (Exception ex)
+            {
+                log.Error("Error GetDestination " + ex.Message + ex.StackTrace + ex.InnerException);
+            }
+
+            //process not found, return false
+            return result;
+        }
+
+
         private void btnRadio01_Click(object sender, EventArgs e)
         {
             int radioNumber = -1;
             try
             {
+                StopNoise();
                 //1 zoek uit welke radio geklikt heeft
                 string state = string.Empty;
                 radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((Button)sender).Name));
@@ -474,7 +497,7 @@ namespace UNET_Trainer_Trainee
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
                             ((Button)sender).Tag = "Tx";
-                            MakeCall("1010", true, true, false, true, true, false);
+                            MakeCall(GetDestination(radioNumber), true, true, false, true, true, false);
                             break;
                         }
                     case "Off":
@@ -498,9 +521,10 @@ namespace UNET_Trainer_Trainee
                 {
                     service.Open();
                 }
-                //set the new status
+                //set the new status to the unet_service
                 service.SetRadioStatus(Convert.ToInt16(radioNumber), ucb.Radios[radioNumber - 1].State);
-
+                //mix noise into the conversation
+                InitNoiseLevel(radioNumber);
 
 
                 MakeCall("1010" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
@@ -543,6 +567,7 @@ namespace UNET_Trainer_Trainee
                 PJSUA2Implementation.SIP.SIPCall sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels, -1);
                 CallOpParam cop = new CallOpParam();
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+            //    cop.reason = "test van frank";
                
                 sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
                 useragent.acc.Calls.Add(sc); //kennelijk worden die calls niet vanzelf in deze list geplaatst.
@@ -705,6 +730,42 @@ namespace UNET_Trainer_Trainee
             return true;
         }
 
+        #region noise
+        private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
+
+        /// <summary>
+        /// this starts the noise and at a particular level
+        /// </summary>
+        private void InitNoiseLevel(int _radiobutton)
+        {
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            // int SelectedRadioButtonIndex = 1;// Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
+            int noiselevel = service.GetNoiseLevel(_radiobutton);
+            if (noiselevel > 0)
+            {
+                signal.NoiseLevel = noiselevel;
+                signal.Start();
+            }
+            else
+            {
+                signal.Stop();
+            }
+        }
+
+        /// <summary>
+        /// this makes the noise stop
+        /// </summary>
+        private void StopNoise()
+        {
+            signal.Stop();
+        }
+
+        #endregion
+
 
         /// <summary>
         /// Add or remove the ptt to or from the queue
@@ -807,7 +868,7 @@ namespace UNET_Trainer_Trainee
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MakeCall("12345", true, true, false, true, false, false);
+            MakeCall("1001", true, true, false, true, false, false);
 
         }
 

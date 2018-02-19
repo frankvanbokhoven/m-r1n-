@@ -101,9 +101,10 @@ namespace UNET_Service
 
         /// <summary>
         /// retrieve the PTT queue
+        /// speciaal tbv UNET_ServiceStatus
         /// </summary>
         /// <returns></returns>
-        public  Queue<PTTcaller> GetPTTQueue()
+        public Queue<PTTcaller> GetPTTQueue()
         {
             Queue<PTTcaller> result = new Queue<PTTcaller>();
             try
@@ -134,9 +135,10 @@ namespace UNET_Service
             return true;
         }
 
-
+        
         public bool Login()
         {
+            //we may always log in
             return true;
         }
 
@@ -145,8 +147,14 @@ namespace UNET_Service
             return true;
         }
 
+        /// <summary>
+        /// Stop all exercises
+        /// </summary>
+        /// <returns></returns>
         public bool Stop()
         {
+
+
             return true;
         }
         #endregion

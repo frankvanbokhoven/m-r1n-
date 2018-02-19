@@ -63,9 +63,9 @@ namespace UNET_Trainer_Trainee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap open_icon {
+        internal static System.Drawing.Bitmap open {
             get {
-                object obj = ResourceManager.GetObject("open-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

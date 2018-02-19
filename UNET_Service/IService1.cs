@@ -49,8 +49,13 @@ namespace UNET_Service
         [OperationContract]
         bool AcknowledgePTT(int _traineeInstructorID);
 
+        /// <summary>
+        /// speciaal tbv UNET_ServiceStatus
+        /// </summary>
+        /// <returns></returns>
         [OperationContract]
         Queue<PTTcaller> GetPTTQueue();
+
         #endregion
 
         #region Assist

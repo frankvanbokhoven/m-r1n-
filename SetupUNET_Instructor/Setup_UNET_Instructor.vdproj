@@ -226,24 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C0DCB3CEDA8C6AE19BF3150FC7E130BA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5DF47A8932324C40904E6E142807EB24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4C8B76C6B9414FF15496C95D16FF2CBD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F5D863F755FE46ED8FC522B01E5B9D35"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -317,6 +299,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1D810DFEDD3AEEBD7550E1BDAC494F4C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C0DCB3CEDA8C6AE19BF3150FC7E130BA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5DF47A8932324C40904E6E142807EB24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4C8B76C6B9414FF15496C95D16FF2CBD"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -975,24 +975,24 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
-        "ProductCode" = "8:{8895231F-B39A-40E2-AAA8-4F6DA363A5A7}"
-        "PackageCode" = "8:{79071F42-9429-49F4-B7FD-9FC78FC1A85E}"
+        "ProductCode" = "8:{FE9551D0-CCDC-4501-AAD1-4E52D6B54A43}"
+        "PackageCode" = "8:{D138F4D0-21BB-4DAD-9273-9B41F3067D42}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.0.18"
+        "ProductVersion" = "8:19.2.2018"
         "Manufacturer" = "8:HSO"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:www.yggdra.nl"
+        "ARPHELPLINK" = "8:www.defensie.nl"
         "Title" = "8:UNET_Instructor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:HSO"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:UNET Instructor"
-        "ARPURLINFOABOUT" = "8:www.yggdra.nl"
+        "ARPURLINFOABOUT" = "8:www.defensie.nl"
         "ARPPRODUCTICON" = "8:_F80768F7455045908AC132B2F53D5395"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"

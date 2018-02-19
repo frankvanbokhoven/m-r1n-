@@ -4,9 +4,7 @@ using pjsua2;
 using System.Threading;
 using System.Configuration;
 using UNET_Classes;
-
-
-
+using System.ComponentModel;
 
 namespace PJSUA2Implementation.SIP
 {
@@ -28,7 +26,27 @@ namespace PJSUA2Implementation.SIP
                 Logging.LogAppender.AppendToLog("Error constructor Sipaccount: " + ex.Message);
             }
         }
- 
+        public override void Dispose()
+        {
+            try
+            {
+                base.Dispose();
+            }
+            catch (Win32Exception winex)
+            {
+
+                Logging.LogAppender.AppendToLog("Error dispose: " + winex.Message);
+
+            }
+
+            catch (Exception ex)
+            {
+                Logging.LogAppender.AppendToLog("Error dispose: " + ex.Message);
+
+
+            }
+        }
+
         /// <summary>
         /// Stuur een melding naar de console
         /// </summary>
@@ -44,23 +62,39 @@ namespace PJSUA2Implementation.SIP
         /// <param name="call"></param>
         public void removeCall(pjsua2.Call call)
         {
-            foreach (pjsua2.Call callitr in Calls)
+            try
+            {
+                foreach (pjsua2.Call callitr in Calls)
+                {
+
+                    //    callitr.Remove();
+
+                    Console.WriteLine("*** removed Call: " + callitr.ToString());
+                    callitr.Dispose();
+                }
+
+                foreach (Call indcall in Calls)
+                {
+                    if (indcall.getId() == call.getId()) //hang de call op met de meegegeven id
+                    {
+                        CallOpParam cop = new CallOpParam();
+                        cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
+                        indcall.hangup(cop);
+                    }
+                }
+            }
+            catch (Win32Exception winex)
             {
 
-                //    callitr.Remove();
+                Logging.LogAppender.AppendToLog("Error sipaccount>removecall: " + winex.Message);
 
-                Console.WriteLine ("*** removed Call: " + callitr.ToString());
-                callitr.Dispose();
             }
 
-            foreach (Call indcall in Calls)
+            catch (Exception ex)
             {
-                if (indcall.getId() == call.getId()) //hang de call op met de meegegeven id
-                {
-                    CallOpParam cop = new CallOpParam();
-                    cop.reason = "Frank heeft opgehangen"; //todo: iets zinnigers invullen..
-                    indcall.hangup(cop);
-                }
+                Logging.LogAppender.AppendToLog("Error sipaccount>removecall: " + ex.Message);
+
+
             }
         }
 

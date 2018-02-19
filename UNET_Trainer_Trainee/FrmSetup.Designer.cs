@@ -176,7 +176,7 @@
             // 
             this.ddlFont.FormattingEnabled = true;
             this.ddlFont.Location = new System.Drawing.Point(22, 110);
-            this.ddlFont.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlFont.Margin = new System.Windows.Forms.Padding(2);
             this.ddlFont.Name = "ddlFont";
             this.ddlFont.Size = new System.Drawing.Size(223, 21);
             this.ddlFont.TabIndex = 29;
@@ -195,7 +195,7 @@
             // pnlColorExample
             // 
             this.pnlColorExample.Location = new System.Drawing.Point(255, 50);
-            this.pnlColorExample.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlColorExample.Margin = new System.Windows.Forms.Padding(2);
             this.pnlColorExample.Name = "pnlColorExample";
             this.pnlColorExample.Size = new System.Drawing.Size(26, 20);
             this.pnlColorExample.TabIndex = 27;
@@ -204,7 +204,7 @@
             // 
             this.ddlColorButton.FormattingEnabled = true;
             this.ddlColorButton.Location = new System.Drawing.Point(22, 50);
-            this.ddlColorButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ddlColorButton.Margin = new System.Windows.Forms.Padding(2);
             this.ddlColorButton.Name = "ddlColorButton";
             this.ddlColorButton.Size = new System.Drawing.Size(223, 21);
             this.ddlColorButton.TabIndex = 26;
@@ -215,7 +215,7 @@
             this.btnMainPage.BackColor = System.Drawing.Color.Aqua;
             this.btnMainPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainPage.Location = new System.Drawing.Point(22, 429);
-            this.btnMainPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMainPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnMainPage.Name = "btnMainPage";
             this.btnMainPage.Size = new System.Drawing.Size(114, 74);
             this.btnMainPage.TabIndex = 34;
@@ -237,7 +237,7 @@
             // 
             this.tbxLog4NetDirectory.BackColor = System.Drawing.SystemColors.ControlDark;
             this.tbxLog4NetDirectory.Location = new System.Drawing.Point(22, 164);
-            this.tbxLog4NetDirectory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxLog4NetDirectory.Margin = new System.Windows.Forms.Padding(2);
             this.tbxLog4NetDirectory.Name = "tbxLog4NetDirectory";
             this.tbxLog4NetDirectory.ReadOnly = true;
             this.tbxLog4NetDirectory.Size = new System.Drawing.Size(278, 20);
@@ -258,7 +258,7 @@
             this.panel1.Controls.Add(this.tbxAccount);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(358, 32);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(260, 368);
             this.panel1.TabIndex = 40;
@@ -267,7 +267,7 @@
             // 
             this.tbxDisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxDisplayName.Location = new System.Drawing.Point(20, 80);
-            this.tbxDisplayName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxDisplayName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDisplayName.Name = "tbxDisplayName";
             this.tbxDisplayName.Size = new System.Drawing.Size(223, 21);
             this.tbxDisplayName.TabIndex = 49;
@@ -286,7 +286,7 @@
             // 
             this.txtDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDomain.Location = new System.Drawing.Point(20, 232);
-            this.txtDomain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDomain.Margin = new System.Windows.Forms.Padding(2);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(223, 21);
             this.txtDomain.TabIndex = 47;
@@ -305,7 +305,7 @@
             // 
             this.txtPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPort.Location = new System.Drawing.Point(20, 180);
-            this.txtPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPort.Margin = new System.Windows.Forms.Padding(2);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(223, 21);
             this.txtPort.TabIndex = 45;
@@ -324,7 +324,7 @@
             // 
             this.txtSipServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSipServer.Location = new System.Drawing.Point(20, 130);
-            this.txtSipServer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSipServer.Margin = new System.Windows.Forms.Padding(2);
             this.txtSipServer.Name = "txtSipServer";
             this.txtSipServer.Size = new System.Drawing.Size(223, 21);
             this.txtSipServer.TabIndex = 43;
@@ -343,7 +343,7 @@
             // 
             this.tbxAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxAccount.Location = new System.Drawing.Point(20, 34);
-            this.tbxAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxAccount.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAccount.Name = "tbxAccount";
             this.tbxAccount.Size = new System.Drawing.Size(223, 21);
             this.tbxAccount.TabIndex = 41;
@@ -362,7 +362,7 @@
             // 
             this.tbxLogDirectory.BackColor = System.Drawing.SystemColors.ControlDark;
             this.tbxLogDirectory.Location = new System.Drawing.Point(22, 220);
-            this.tbxLogDirectory.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxLogDirectory.Margin = new System.Windows.Forms.Padding(2);
             this.tbxLogDirectory.Name = "tbxLogDirectory";
             this.tbxLogDirectory.ReadOnly = true;
             this.tbxLogDirectory.Size = new System.Drawing.Size(278, 20);
@@ -381,7 +381,7 @@
             // 
             // button1
             // 
-            this.button1.Image = global::UNET_Trainer_Trainee.Properties.Resources.open_icon;
+            this.button1.Image = global::UNET_Trainer_Trainee.Properties.Resources.open;
             this.button1.Location = new System.Drawing.Point(304, 209);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
@@ -392,7 +392,7 @@
             // 
             // btnSelectLogDir
             // 
-            this.btnSelectLogDir.Image = global::UNET_Trainer_Trainee.Properties.Resources.open_icon;
+            this.btnSelectLogDir.Image = global::UNET_Trainer_Trainee.Properties.Resources.open;
             this.btnSelectLogDir.Location = new System.Drawing.Point(304, 153);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
@@ -421,13 +421,28 @@
             this.Controls.Add(this.pnlColorExample);
             this.Controls.Add(this.ddlColorButton);
             this.Controls.Add(this.btnMainPage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmSetup";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FrmSetup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSetup_FormClosing);
             this.Load += new System.EventHandler(this.FrmSetup_Load);
+            this.Controls.SetChildIndex(this.btnMainPage, 0);
+            this.Controls.SetChildIndex(this.ddlColorButton, 0);
+            this.Controls.SetChildIndex(this.pnlColorExample, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.ddlFont, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.lblTestFont, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.tbxLog4NetDirectory, 0);
+            this.Controls.SetChildIndex(this.btnSelectLogDir, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.label8, 0);
+            this.Controls.SetChildIndex(this.tbxLogDirectory, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);

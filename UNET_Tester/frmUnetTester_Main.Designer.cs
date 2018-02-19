@@ -144,7 +144,6 @@
             // 
             // btnRefreshInstructors
             // 
-            this.btnRefreshInstructors.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
             this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 213);
             this.btnRefreshInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshInstructors.Name = "btnRefreshInstructors";
@@ -166,8 +165,7 @@
             // 
             // btnRefreshTrainees
             // 
-            this.btnRefreshTrainees.Image = global::UNET_Tester.Properties.Resources.Button_Refresh_icon;
-            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 96);
+             this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 96);
             this.btnRefreshTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshTrainees.Name = "btnRefreshTrainees";
             this.btnRefreshTrainees.Size = new System.Drawing.Size(40, 39);

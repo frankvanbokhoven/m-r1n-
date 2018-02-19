@@ -61,6 +61,9 @@
       <HintPath>..\packages\MACTrackBarLib.dll.1.0.2\lib\net40\MACTrackBarLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\Libraries\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="PJSUA2_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libraries\PJSUA2_NET.dll</HintPath>
@@ -80,6 +83,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UNET_Sounds">
+      <HintPath>..\UNET_SignalGenerator\bin\Debug\UNET_Sounds.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrmAudio.cs">
@@ -199,6 +205,7 @@
     <Content Include="MarineGreen.ico" />
     <Content Include="MarineGrey.ico" />
     <None Include="Resources\open-icon.png" />
+    <None Include="Resources\open.png" />
     <Content Include="Sounds\beep-01a.wav" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>

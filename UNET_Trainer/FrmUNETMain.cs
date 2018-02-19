@@ -15,11 +15,12 @@ using System.Diagnostics;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using PJSUA2Implementation.SIP;
+using System.ComponentModel;
 
 namespace UNET_Trainer
 {
 
-    public partial class FrmUNETMain : FrmUNETbase
+    public partial class FrmUNETMain : Form// FrmUNETbase
     {
         //log4net
         protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -170,12 +171,34 @@ namespace UNET_Trainer
         private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
 
 
-        private void InitNoiseLevel()
+        /// <summary>
+        /// this starts the noise and at a particular level
+        /// </summary>
+        private void InitNoiseLevel(int _radiobutton)
         {
-            int SelectedRadioButtonIndex = 1;// Convert.ToInt16(Regex.Replace(_btn.Name, "[^0-9.]", "")); //haal het indexnummer op van de button
-            int noiselevel = service.GetNoiseLevel(SelectedRadioButtonIndex);
-            signal.NoiseLevel = noiselevel;
-            signal.Start();
+            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            {
+                service.Open();
+            }
+
+            int noiselevel = service.GetNoiseLevel(_radiobutton);
+            if (noiselevel > 0)
+            {
+                signal.NoiseLevel = noiselevel;
+                signal.Start();
+            }
+            else
+            {
+                signal.Stop();
+            }
+        }
+
+        /// <summary>
+        /// this makes the noise stop
+        /// </summary>
+        private void StopNoise()
+        {
+            signal.Stop();
         }
 
         /// <summary>
@@ -761,17 +784,93 @@ namespace UNET_Trainer
 
         }
 
+        /// <summary>
+        /// determine the destination account when a radio call is started
+        /// </summary>
+        /// <param name="_radioNumber"></param>
+        /// <returns></returns>
+        private string GetDestination(int _radioNumber)
+        {
+            return "1010";
+        }
+
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
-            SetRadioStatus();
+          //  SetRadioStatus();
 
-            SetStatusAndColorRadioButtons((Button)sender);
+         //   SetStatusAndColorRadioButtons((Button)sender);
 
-            RadioClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Radios), ((Button)sender).Name.Remove(0, 3)));
-            ((Button)sender).BackColor = Color.Black;
-            ((Button)sender).ForeColor = Color.White;
+         //   RadioClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Radios), ((Button)sender).Name.Remove(0, 3)));
+         //   ((Button)sender).BackColor = Color.Black;
+         //   ((Button)sender).ForeColor = Color.White;
 
+            int radioNumber = -1;
+            try
+            {
+                StopNoise();
+                //1 zoek uit welke radio geklikt heeft
+                string state = string.Empty;
+                radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((Button)sender).Name));
+                if (((Button)sender).Text.Trim().Length > 8)
+                {
+                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                }
+                else
+                {
+                    state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
+                }
+                //2 zoek die op in de radios lijst in de conferencebridge
+                string btnstate = ((Button)sender).Tag.ToString();
+                switch (btnstate) //todo: weer werkend maken
+                {
+                    //3 zet de status   
+                    case "Rx": //if it is 'Rx' then start a call
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
+                            ((Button)sender).Tag = "Tx";
+                            //mix noise into the conversation
+                            InitNoiseLevel(radioNumber);
+                            //Start the actual call
+                            MakeCall(GetDestination(radioNumber), true, true, false, true, true, false);
+                            break;
+                        }
+                    case "Off":
+                    default:
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
+                            ((Button)sender).Tag = "Rx";
+                            break;
+                        }
+                    case "Tx":
+                        {
+                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
+                            ((Button)sender).Tag = "Off";
+                            break;
+                        }
+                }
+                log.Info("Have set the status of the Radio: " + radioNumber + " to: " + state);
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                //set the new status to the unet_service
+                service.SetRadioStatus(Convert.ToInt16(radioNumber), ucb.Radios[radioNumber - 1].State);
+                //color the button(s) accordingly
+                SetStatusAndColorRadioButtons((Button)sender);
+
+           
+
+       //         MakeCall("1010" + (Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error setting the status:" + radioNumber, ex);
+                // throw;
+            }
         }
 
         /// <summary>
@@ -852,11 +951,20 @@ namespace UNET_Trainer
             log.Info("Terminated UNET_Instructor");
           }
             }
+            catch (Win32Exception winex)
+            {
+             
+                    MessageBox.Show(this, winex.Message, "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation);
+                
+            }
             catch (Exception ex)
             {
                 log.Error("Error Closing UNET_Trainer", ex);
                 // throw;
             }
+
       
         }
 

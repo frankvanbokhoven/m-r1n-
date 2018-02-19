@@ -4,7 +4,7 @@ using pjsua2;
 using System.Configuration;
 using System.IO;
 using System.Reflection;
-
+using System.ComponentModel;
 
 namespace PJSUA2Implementation.SIP
 {
@@ -253,7 +253,7 @@ namespace PJSUA2Implementation.SIP
                 ep.mediaRemove(play_med);
                 ep.mediaRemove(cap_med);
                 //dispose all sip objects, so they can be garbage collected
-                
+
                 ep.libStopWorkerThreads();
                 ep.libDestroy();
                 ep.Dispose();
@@ -263,12 +263,19 @@ namespace PJSUA2Implementation.SIP
                 //force garbage collection of all disposed objects
                 GC.Collect();
             }
+            catch (Win32Exception winex)
+            {
+
+                Logging.LogAppender.AppendToLog("Error UN-registering SIP connection: " + winex.Message);
+
+            }
+
             catch (Exception ex)
             {
                 Logging.LogAppender.AppendToLog("Error UN-registering SIP connection: " + ex.Message);
 
 
-             }
+            }
         }
 
         /*!
