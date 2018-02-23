@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxAssignTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignRadiosToExercise = new System.Windows.Forms.CheckBox();
             this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignRoles = new System.Windows.Forms.CheckBox();
@@ -57,6 +58,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnQuit = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -73,6 +75,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbxAssignTrainees);
             this.groupBox1.Controls.Add(this.cbxAssignRadiosToExercise);
             this.groupBox1.Controls.Add(this.cbxAssignRolesToTrainees);
             this.groupBox1.Controls.Add(this.cbxAssignRoles);
@@ -98,10 +101,23 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(707, 294);
+            this.groupBox1.Size = new System.Drawing.Size(707, 328);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // cbxAssignTrainees
+            // 
+            this.cbxAssignTrainees.AutoSize = true;
+            this.cbxAssignTrainees.Checked = true;
+            this.cbxAssignTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAssignTrainees.Location = new System.Drawing.Point(104, 149);
+            this.cbxAssignTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxAssignTrainees.Name = "cbxAssignTrainees";
+            this.cbxAssignTrainees.Size = new System.Drawing.Size(213, 21);
+            this.cbxAssignTrainees.TabIndex = 23;
+            this.cbxAssignTrainees.Text = "Assign trainee(s) to  exercise";
+            this.cbxAssignTrainees.UseVisualStyleBackColor = true;
             // 
             // cbxAssignRadiosToExercise
             // 
@@ -134,8 +150,8 @@
             this.cbxAssignRoles.AutoSize = true;
             this.cbxAssignRoles.Checked = true;
             this.cbxAssignRoles.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 249);
-            this.cbxAssignRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 279);
+            this.cbxAssignRoles.Margin = new System.Windows.Forms.Padding(4);
             this.cbxAssignRoles.Name = "cbxAssignRoles";
             this.cbxAssignRoles.Size = new System.Drawing.Size(213, 21);
             this.cbxAssignRoles.TabIndex = 20;
@@ -144,7 +160,8 @@
             // 
             // btnRefreshInstructors
             // 
-            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 213);
+            this.btnRefreshInstructors.Image = global::UNET_Tester.Properties.Resources.refresh;
+            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 243);
             this.btnRefreshInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshInstructors.Name = "btnRefreshInstructors";
             this.btnRefreshInstructors.Size = new System.Drawing.Size(40, 39);
@@ -155,17 +172,18 @@
             // 
             // tbxInstructorIDs
             // 
-            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 218);
+            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 248);
             this.tbxInstructorIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxInstructorIDs.Name = "tbxInstructorIDs";
             this.tbxInstructorIDs.Size = new System.Drawing.Size(224, 22);
             this.tbxInstructorIDs.TabIndex = 18;
-            this.tbxInstructorIDs.Text = "1017";
+            this.tbxInstructorIDs.Text = "1030";
             this.toolTip1.SetToolTip(this.tbxInstructorIDs, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
             // 
             // btnRefreshTrainees
             // 
-             this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 96);
+            this.btnRefreshTrainees.Image = global::UNET_Tester.Properties.Resources.refresh;
+            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 96);
             this.btnRefreshTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshTrainees.Name = "btnRefreshTrainees";
             this.btnRefreshTrainees.Size = new System.Drawing.Size(40, 39);
@@ -187,7 +205,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
-            this.buttonRefresh.Location = new System.Drawing.Point(325, 255);
+            this.buttonRefresh.Location = new System.Drawing.Point(325, 285);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
@@ -235,7 +253,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 218);
+            this.label5.Location = new System.Drawing.Point(11, 248);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 10;
@@ -249,17 +267,17 @@
             this.grbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbxNoiseLevel.Name = "grbxNoiseLevel";
             this.grbxNoiseLevel.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 275);
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 309);
             this.grbxNoiseLevel.TabIndex = 8;
             this.grbxNoiseLevel.TabStop = false;
             this.grbxNoiseLevel.Text = "Noise level";
             // 
             // lbxNoiseLevel
             // 
-            this.lbxNoiseLevel.BackColor = System.Drawing.Color.DimGray;
+            this.lbxNoiseLevel.BackColor = System.Drawing.Color.Black;
             this.lbxNoiseLevel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxNoiseLevel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbxNoiseLevel.ForeColor = System.Drawing.Color.White;
+            this.lbxNoiseLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lbxNoiseLevel.FormattingEnabled = true;
             this.lbxNoiseLevel.ItemHeight = 20;
             this.lbxNoiseLevel.Items.AddRange(new object[] {
@@ -269,13 +287,13 @@
             this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 17);
             this.lbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxNoiseLevel.Name = "lbxNoiseLevel";
-            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 256);
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 290);
             this.lbxNoiseLevel.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 190);
+            this.label4.Location = new System.Drawing.Point(11, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -305,7 +323,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(104, 188);
+            this.cbxRadios.Location = new System.Drawing.Point(104, 218);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(55, 24);
@@ -316,7 +334,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 162);
+            this.label3.Location = new System.Drawing.Point(11, 192);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 5;
@@ -346,7 +364,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(104, 159);
+            this.cbxRole.Location = new System.Drawing.Point(104, 189);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(55, 24);
@@ -397,15 +415,15 @@
             this.listBoxGetmethods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxGetmethods.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.listBoxGetmethods.BackColor = System.Drawing.SystemColors.Desktop;
             this.listBoxGetmethods.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxGetmethods.ForeColor = System.Drawing.SystemColors.Window;
+            this.listBoxGetmethods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.listBoxGetmethods.FormattingEnabled = true;
             this.listBoxGetmethods.ItemHeight = 18;
-            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 400);
-            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 436);
+            this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 418);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 382);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -420,15 +438,31 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnQuit);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.cbxKeepAlive);
-            this.panel1.Location = new System.Drawing.Point(15, 313);
+            this.panel1.Location = new System.Drawing.Point(18, 354);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(705, 36);
             this.panel1.TabIndex = 4;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReset.BackColor = System.Drawing.Color.Red;
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Location = new System.Drawing.Point(424, 2);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(180, 28);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.Text = "Reset (UNET_Service)";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnClear
             // 
@@ -436,7 +470,7 @@
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnClear.Location = new System.Drawing.Point(529, 2);
+            this.btnClear.Location = new System.Drawing.Point(286, 3);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 28);
@@ -494,7 +528,7 @@
             this.panel2.Controls.Add(this.cbxAssistTrainee);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.btnRequestAssist);
-            this.panel2.Location = new System.Drawing.Point(15, 357);
+            this.panel2.Location = new System.Drawing.Point(18, 394);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(705, 36);
@@ -599,6 +633,8 @@
         private System.Windows.Forms.ComboBox cbxAssistTrainee;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnRequestAssist;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.CheckBox cbxAssignTrainees;
     }
 }
 

@@ -12,11 +12,60 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_DisconnectVCS_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectVCS" />
+  </wsdl:message>
+  <wsdl:message name="IService1_DisconnectVCS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectVCSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reset_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reset" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Reset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Start_InputMessage">
+    <wsdl:part name="parameters" element="tns:Start" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Start_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Stop_InputMessage">
+    <wsdl:part name="parameters" element="tns:Stop" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Stop_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPTT_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPTT" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPTT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPTTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgePTT_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgePTT" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgePTT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgePTTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPTTQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPTTQueue" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetPTTQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPTTQueueResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateAssist_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateAssist" />
   </wsdl:message>
@@ -124,6 +173,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_RegisterClient_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UnRegisterClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnRegisterClient" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UnRegisterClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnRegisterClientResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_NotifyServer_InputMessage">
     <wsdl:part name="parameters" element="tns:NotifyServer" />
@@ -240,6 +295,38 @@
     <wsdl:part name="parameters" element="tns:SetNoiseLevelResponse" />
   </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="DisconnectVCS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/DisconnectVCS" message="tns:IService1_DisconnectVCS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/DisconnectVCSResponse" message="tns:IService1_DisconnectVCS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Reset" message="tns:IService1_Reset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ResetResponse" message="tns:IService1_Reset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Login" message="tns:IService1_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/LoginResponse" message="tns:IService1_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Start">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Start" message="tns:IService1_Start_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StartResponse" message="tns:IService1_Start_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Stop">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Stop" message="tns:IService1_Stop_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/StopResponse" message="tns:IService1_Stop_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPTT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddPTT" message="tns:IService1_AddPTT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddPTTResponse" message="tns:IService1_AddPTT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgePTT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AcknowledgePTT" message="tns:IService1_AcknowledgePTT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AcknowledgePTTResponse" message="tns:IService1_AcknowledgePTT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPTTQueue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPTTQueue" message="tns:IService1_GetPTTQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPTTQueueResponse" message="tns:IService1_GetPTTQueue_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
@@ -311,6 +398,10 @@
     <wsdl:operation name="RegisterClient">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/RegisterClient" message="tns:IService1_RegisterClient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/RegisterClientResponse" message="tns:IService1_RegisterClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnRegisterClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UnRegisterClient" message="tns:IService1_UnRegisterClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UnRegisterClientResponse" message="tns:IService1_UnRegisterClient_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="NotifyServer">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/NotifyServer" message="tns:IService1_NotifyServer_InputMessage" />
@@ -392,6 +483,78 @@
   <wsdl:binding name="SecureHttp" type="tns:IService1">
     <wsp:PolicyReference URI="#SecureHttp_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisconnectVCS">
+      <soap12:operation soapAction="http://tempuri.org/IService1/DisconnectVCS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Reset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Start">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Start" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Stop">
+      <soap12:operation soapAction="http://tempuri.org/IService1/Stop" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPTT">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddPTT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgePTT">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AcknowledgePTT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPTTQueue">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetPTTQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <soap12:operation soapAction="http://tempuri.org/IService1/CreateAssist" style="document" />
       <wsdl:input>
@@ -547,6 +710,15 @@
     </wsdl:operation>
     <wsdl:operation name="RegisterClient">
       <soap12:operation soapAction="http://tempuri.org/IService1/RegisterClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnRegisterClient">
+      <soap12:operation soapAction="http://tempuri.org/IService1/UnRegisterClient" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

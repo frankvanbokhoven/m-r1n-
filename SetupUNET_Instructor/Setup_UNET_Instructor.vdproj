@@ -226,24 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F5D863F755FE46ED8FC522B01E5B9D35"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_42833A44A6D1F34442BD2D21379876AF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_12DC176CD701817575DD54543CD02A32"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -317,6 +299,24 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_4C8B76C6B9414FF15496C95D16FF2CBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F5D863F755FE46ED8FC522B01E5B9D35"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_42833A44A6D1F34442BD2D21379876AF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_12DC176CD701817575DD54543CD02A32"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -976,7 +976,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
         "ProductCode" = "8:{FE9551D0-CCDC-4501-AAD1-4E52D6B54A43}"
-        "PackageCode" = "8:{D138F4D0-21BB-4DAD-9273-9B41F3067D42}"
+        "PackageCode" = "8:{97C5032B-88D5-4C21-9B52-41418F0C3ABA}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1071,6 +1071,14 @@
                                     "ValueTypes" = "3:1"
                                     "Value" = "8:5"
                                     }
+                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_1F22054A5B6945288FD30AB21CAAEEDF"
+                                    {
+                                    "Name" = "8:debug"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "ValueTypes" = "3:1"
+                                    "Value" = "8:1"
+                                    }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_30C76BCDB6F9410E91ADF1ED1C2E6AC1"
                                     {
                                     "Name" = "8:loglevel"
@@ -1117,7 +1125,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:TRUE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1017"
+                                    "Value" = "8:1030"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_7CAD14DEC78B4E97AA5EC5B6A5287917"
                                     {

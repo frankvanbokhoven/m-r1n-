@@ -7,6 +7,20 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="PTTuser" nillable="true" type="tns:PTTuser" />
+  <xs:complexType name="ArrayOfPTTcaller">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PTTcaller" nillable="true" type="tns:PTTcaller" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPTTcaller" nillable="true" type="tns:ArrayOfPTTcaller" />
+  <xs:complexType name="PTTcaller">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PTTDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" type="tns:PTTuser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PTTcaller" nillable="true" type="tns:PTTcaller" />
   <xs:complexType name="EventDataType">
     <xs:sequence>
       <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />

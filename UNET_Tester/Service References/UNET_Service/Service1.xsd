@@ -1,132 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/UNET_Classes" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UNET_Classes" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfAssist">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Assist" nillable="true" type="tns:Assist" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfAssist" nillable="true" type="tns:ArrayOfAssist" />
-  <xs:complexType name="Assist">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AcknowledgeTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Acknowledged" type="xs:boolean" />
-      <xs:element minOccurs="0" name="AcknowledgedBy" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="ser:guid" />
-      <xs:element minOccurs="0" name="RequestTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TraineeID" type="xs:int" />
-      <xs:element minOccurs="0" name="TraineeInfo" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Assist" nillable="true" type="tns:Assist" />
-  <xs:complexType name="Instructor">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="AssignedRoles" nillable="true" type="tns:ArrayOfRole" />
-      <xs:element minOccurs="0" name="Exercises" nillable="true" type="tns:ArrayOfExercise" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Instructor" nillable="true" type="tns:Instructor" />
-  <xs:complexType name="ArrayOfRole">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Role" nillable="true" type="tns:Role" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfRole" nillable="true" type="tns:ArrayOfRole" />
-  <xs:complexType name="Role">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Role" nillable="true" type="tns:Role" />
-  <xs:complexType name="ArrayOfExercise">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Exercise" nillable="true" type="tns:Exercise" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfExercise" nillable="true" type="tns:ArrayOfExercise" />
-  <xs:complexType name="Exercise">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Number" type="xs:int" />
-      <xs:element minOccurs="0" name="RadiosAssigned" nillable="true" type="tns:ArrayOfRadio" />
-      <xs:element minOccurs="0" name="RolesAssigned" nillable="true" type="tns:ArrayOfRole" />
-      <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
-      <xs:element minOccurs="0" name="SpecificationName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TraineesAssigned" nillable="true" type="tns:ArrayOfTrainee" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Exercise" nillable="true" type="tns:Exercise" />
-  <xs:complexType name="ArrayOfRadio">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Radio" nillable="true" type="tns:Radio" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfRadio" nillable="true" type="tns:ArrayOfRadio" />
-  <xs:complexType name="Radio">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Frequency" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="NoiseLevel" type="xs:int" />
-      <xs:element minOccurs="0" name="State" type="tns:UNETRadioState" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Radio" nillable="true" type="tns:Radio" />
-  <xs:simpleType name="UNETRadioState">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UNET_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UNET_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PTTuser">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="rsOff" />
-      <xs:enumeration value="rsRx" />
-      <xs:enumeration value="rsTx" />
+      <xs:enumeration value="puTrainee" />
+      <xs:enumeration value="puInstructor" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="UNETRadioState" nillable="true" type="tns:UNETRadioState" />
-  <xs:complexType name="ArrayOfTrainee">
+  <xs:element name="PTTuser" nillable="true" type="tns:PTTuser" />
+  <xs:complexType name="ArrayOfPTTcaller">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Trainee" nillable="true" type="tns:Trainee" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PTTcaller" nillable="true" type="tns:PTTcaller" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTrainee" nillable="true" type="tns:ArrayOfTrainee" />
-  <xs:complexType name="Trainee">
+  <xs:element name="ArrayOfPTTcaller" nillable="true" type="tns:ArrayOfPTTcaller" />
+  <xs:complexType name="PTTcaller">
     <xs:sequence>
       <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Radios" nillable="true" type="tns:ArrayOfRadio" />
-      <xs:element minOccurs="0" name="RegisteredSince" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRole" />
+      <xs:element minOccurs="0" name="PTTDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="User" type="tns:PTTuser" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Trainee" nillable="true" type="tns:Trainee" />
-  <xs:complexType name="ArrayOfInstructor">
+  <xs:element name="PTTcaller" nillable="true" type="tns:PTTcaller" />
+  <xs:complexType name="EventDataType">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Instructor" nillable="true" type="tns:Instructor" />
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventMessage" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfInstructor" nillable="true" type="tns:ArrayOfInstructor" />
-  <xs:complexType name="ArrayOfPlatform">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Platform" nillable="true" type="tns:Platform" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPlatform" nillable="true" type="tns:ArrayOfPlatform" />
-  <xs:complexType name="Platform">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Platform" nillable="true" type="tns:Platform" />
-  <xs:complexType name="CurrentInfo">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ConsoleRole" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ExerciseMode" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
-      <xs:element minOccurs="0" name="InstructorName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CurrentInfo" nillable="true" type="tns:CurrentInfo" />
+  <xs:element name="EventDataType" nillable="true" type="tns:EventDataType" />
 </xs:schema>

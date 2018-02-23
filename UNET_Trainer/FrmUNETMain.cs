@@ -121,6 +121,7 @@ namespace UNET_Trainer
             log.Info("Terminated UNET_Instructor");
 
             Application.Exit();
+           
         }
 
         private void btnRoles_Click(object sender, EventArgs e)
@@ -155,6 +156,8 @@ namespace UNET_Trainer
                 {
                     service.Open();
                 }
+                service.RegisterClient(InstructorID,DisplayName, false); //todo: kijken of het echt nodig is om dit continue te doen!!!!
+
                 if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
                 {
 
@@ -300,9 +303,6 @@ namespace UNET_Trainer
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-            //  first the trainees, we assume the name of the button component is the key for the function
-
-
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -319,27 +319,26 @@ namespace UNET_Trainer
                     service.SetExerciseSelected(InstructorID, 1, true);
                 }
 
-
-
                 //we moeten  de huidige status ophalen van de instructeur/exercises/trainee/roles/radios
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
                 SelectedExercise = currentInstructor.Exercises.SingleOrDefault(x => x.Selected == true); //neem de geselecteerde exercise
 
                 //enable the Exercise buttons
-                var resultlist = service.GetExercises();
-                List<UNET_Classes.Exercise> lst = resultlist.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
+                var avialableExercisisList = service.GetExercises(); //we have to do this, because, all the time, exercises can be added or removed
+                List<UNET_Classes.Exercise> availableExerciseslst = avialableExercisisList.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelExercises.Controls) //first DISABLE all buttons
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
                         ctrl.Enabled = false;
+                        
                         ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                     }
                 }
                 int exerciseselected = -1;
-                foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever is retrieved from the service
+                foreach (UNET_Classes.Exercise exercise in availableExerciseslst) //then ENABLE them, based on whatever is retrieved from the service
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
@@ -355,8 +354,16 @@ namespace UNET_Trainer
                                 if (exerciseAssigned.Number == exercise.Number)
                                 {
                                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true;
-                                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
                                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Tag = "enable";
+
+                                    //NOT ONLY ENABLE BUT IF IT IS SELECTED (ON THE SERVER) CHANGE THE COLOR
+                                    if (exerciseAssigned.Selected)
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+                                    else
+                                    {
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseNotSelected;
+
+                                    }
                                     exerciseselected = exercise.Number;
                                 }
                             }
@@ -364,7 +371,7 @@ namespace UNET_Trainer
                     }
                 }
                 //now resize all buttons to make optimal use of the available room
-                UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, lst.Count, "exersise");
+                UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, availableExerciseslst.Count, "exersise");
 
 
                 //enable the Trainees buttons, for the number of trainees that are in
@@ -572,52 +579,56 @@ namespace UNET_Trainer
 
 
             // check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-             try
-                {
-                    //the useragent holds everything needed for the sip communication
-                    string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
-                    //displayname
-                    string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
-                    //sipserver
-                    string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
-                    //account
-                    string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
-                    //account
-                    UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
-                    string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
+            try
+            {
+                //the useragent holds everything needed for the sip communication
+                string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                //displayname
+                string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
+                //sipserver
+                string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                //account
+                string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                //account
+                UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
+                string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
+                bool debug = (RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false;;
 
-                    //the useragent holds everything needed for the sip communication
-                    useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
-                    useragent.UserAgentStart("UNETTrainer");
+                button1.Visible = debug;
+                btnClose.Visible = debug;
+
+                //the useragent holds everything needed for the sip communication
+                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                useragent.UserAgentStart("UNETTrainer");
 
 
-                    //koppel het onIncomingCall event aan de frmmain schemupdate
-                    useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+                //koppel het onIncomingCall event aan de frmmain schemupdate
+                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
 
 
-                    //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
-                    cop = new CallOpParam();
-                    cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
+                //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
+                cop = new CallOpParam();
+                cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
 
-                    //koppel het onIncomingCall event aan de frmmain schemupdate
-                    useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                        ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
-                        "Contact your system administrator");
-                    log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
-                        ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
-                        "Contact your system administrator");
-                    this.Close();
-                }
-            
+                //koppel het onIncomingCall event aan de frmmain schemupdate
+                useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+                    "Contact your system administrator");
+                log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
+                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+                    "Contact your system administrator");
+                this.Close();
+            }
+
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
             }
- 
+
 
             try
             {
@@ -791,7 +802,7 @@ namespace UNET_Trainer
         /// <returns></returns>
         private string GetDestination(int _radioNumber)
         {
-            return "1010";
+            return "RADIO_" + ExersiseNumber + "_" + _radioNumber;// "1010";
         }
 
 
@@ -924,7 +935,7 @@ namespace UNET_Trainer
             service.SetExerciseSelected(InstructorID, ExersiseNumber, true); //now we have told the service that this instructor has selected this exercise
 
 
-            _btn.BackColor = Theming.ExerciseSelectedButton;
+        //    _btn.BackColor = Theming.ExerciseSelectedButton;
         }
 
 
@@ -939,6 +950,7 @@ namespace UNET_Trainer
                 //close the connection to the wcf service, if it is still opened
                 if (service.State == System.ServiceModel.CommunicationState.Opened)
                 {
+                    service.UnRegisterClient(InstructorID, false);
                     service.Close();
                 }
                 //close the useragent en with that the sip connection
@@ -946,10 +958,13 @@ namespace UNET_Trainer
                 {
                     HangupAllCalls();
                     useragent.UserAgentStop();
+
+                    
             //try to find and kill the TCPSocketClient process and kill it
             FindAndKillProcess("TCPSocketClient.exe");
             log.Info("Terminated UNET_Instructor");
           }
+                signal.DisposeSignalgenerator();
             }
             catch (Win32Exception winex)
             {

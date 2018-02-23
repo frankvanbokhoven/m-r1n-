@@ -171,6 +171,21 @@ namespace UNET_Tester
                     exe.SpecificationName = txtSpecification.Text + i.ToString("00");
                     exe.ExerciseName = txtName.Text + i.ToString("00");
                     //    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
+
+                    if(cbxAssignTrainees.Checked && i == 1) //only add them to the first exercise if the checkbox is checked
+                    {
+                        //Trainee
+                        var traineelist = service.GetTrainees();
+                        List<Trainee> lsttrainee = traineelist.ToList<Trainee>();
+
+                         foreach (Trainee trainee in lsttrainee) //add these trainees to the first exercise
+                        {
+                            exe.TraineesAssigned.Add(trainee);
+                            AddToListbox(string.Format("Trainee: {0}, Name: {1}, added to first exercise", trainee.ID, trainee.Name));
+                           
+                        }
+
+                    }
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service
@@ -361,7 +376,7 @@ namespace UNET_Tester
 
             List<Instructor> instructorlist = new List<Instructor>();
             Instructor inst = new Instructor(Convert.ToInt16(instructorids[0]), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
-            inst.Exercises.Add(new Exercise(1, "Exercise 1"));
+            inst.Exercises.Add(new Exercise(1, "Exercise test 1"));
             instructorlist.Add(inst);
             service.SetInstructors(instructorlist.ToArray());
             comboBox1_SelectedValueChanged(sender, e);
@@ -441,6 +456,7 @@ namespace UNET_Tester
                             trainee.Roles.Add(exe);
                         }
                     }
+                  
                     objlist.Add(trainee);
                 }
                 listTrainee = (Trainee[])objlist.ToArray();
@@ -560,6 +576,31 @@ namespace UNET_Tester
 
         private void cbxAssistTrainee_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+      
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                //  if (MessageBox.Show("Are you sure? This 'destroys' all data in the UNET_Service!!", "Really reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly,string.Empty) == DialogResult.Yes)
+                if(MessageBox.Show("Are you sure? this clears all data from unet_service!", "Really reset?",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    service.Reset();
+                }
+          
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error resetting UNET_Service {0}", ex.Message));
+                log.Error("Error resetting UNET_Service", ex);
+            }
         }
     }
 

@@ -215,5 +215,10 @@ namespace UNET_Trainer
                 tbxLogDirectory.Text = theDialog.SelectedPath;
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

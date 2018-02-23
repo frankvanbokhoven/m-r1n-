@@ -101,7 +101,7 @@ namespace PJSUA2Implementation.SIP
                 {
                     ep = new Endpoint();
                     ep.libCreate();
-              //      ep.libRegisterThread(RandomThreadString("PJSUA2" + _threadName));
+                    ep.libRegisterThread(RandomThreadString("PJSUA2" + _threadName));
                 }
             }
             catch (Exception ex)
@@ -269,7 +269,6 @@ namespace PJSUA2Implementation.SIP
                 Logging.LogAppender.AppendToLog("Error UN-registering SIP connection: " + winex.Message);
 
             }
-
             catch (Exception ex)
             {
                 Logging.LogAppender.AppendToLog("Error UN-registering SIP connection: " + ex.Message);

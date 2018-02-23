@@ -99,7 +99,7 @@ namespace UNET_Trainer_Trainee
             try
             {
                 timer1.Enabled = true;
-                 this.Text = "UNET Trainee";
+                this.Text = "UNET Trainee";
                 log.Info("Started UNET_Trainee");
 
                 //todo: terugzetten   timer1.Enabled = true;
@@ -124,8 +124,8 @@ namespace UNET_Trainer_Trainee
 
 
                 the.SetFormSizeAndPosition(this);
-             //   InitHardwareInterface();
-               ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
+                //   InitHardwareInterface();
+                ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
                 try
                 {
                     //the useragent holds everything needed for the sip communication
@@ -139,6 +139,17 @@ namespace UNET_Trainer_Trainee
                     UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
                     string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
 
+                    bool debug = (RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false;
+
+
+                    //als NIET in debug mode, verberg een aantal knoppen
+                    button1.Visible = debug;
+                    button2.Visible = debug;
+                    button3.Visible = debug;
+                    button4.Visible = debug;
+
+
+
                     //the useragent holds everything needed for the sip communication
                     useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, DisplayName);
                     useragent.UserAgentStart("UNETTrainee");
@@ -150,7 +161,7 @@ namespace UNET_Trainer_Trainee
                     //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                     cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
-                    lblRegInfo.Text = "Registered: " + TraineeID + " " +  Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                    lblRegInfo.Text = "Registered: " + TraineeID + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 }
                 catch (Exception ex)
                 {
@@ -168,7 +179,7 @@ namespace UNET_Trainer_Trainee
                     {
                         service.Open();
                     }
-                 
+
                     //Register the trainee to the wcf service
                     service.RegisterClient(TraineeID, DisplayName, true); //'true' means: this is a trainee
                     lblRegInfo.Text += " WCF regOK";
@@ -185,16 +196,16 @@ namespace UNET_Trainer_Trainee
 
                 try
                 {
-                   //this is specially for the COMservice that listens to the PTT and Headset events, generated
-                   //by the TCPSocketClient 
-                   Task.Factory.StartNew(() => { StartListinging (); });
+                    //this is specially for the COMservice that listens to the PTT and Headset events, generated
+                    //by the TCPSocketClient 
+                    Task.Factory.StartNew(() => { StartListinging(); });
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
                 }
 
-              
+
 
             }
             catch (Exception ex)
@@ -401,6 +412,8 @@ namespace UNET_Trainer_Trainee
                 //close the connection to the wcf service, if it is still opened
                 if (service.State == System.ServiceModel.CommunicationState.Opened)
                 {
+                    service.UnRegisterClient(TraineeID, false);
+
                     service.Close();
                 }
 

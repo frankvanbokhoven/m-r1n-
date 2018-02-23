@@ -322,6 +322,12 @@ namespace UNET_ServiceStatus.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RegisterClient", ReplyAction="http://tempuri.org/IService1/RegisterClientResponse")]
         System.Threading.Tasks.Task<bool> RegisterClientAsync(int _clientID, string _displayName, bool _isTrainee);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UnRegisterClient", ReplyAction="http://tempuri.org/IService1/UnRegisterClientResponse")]
+        bool UnRegisterClient(int _clientID, bool _isTrainee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UnRegisterClient", ReplyAction="http://tempuri.org/IService1/UnRegisterClientResponse")]
+        System.Threading.Tasks.Task<bool> UnRegisterClientAsync(int _clientID, bool _isTrainee);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/NotifyServer", ReplyAction="http://tempuri.org/IService1/NotifyServerResponse")]
         void NotifyServer(UNET_ServiceStatus.UNET_Service.EventDataType eventData);
         
@@ -670,6 +676,14 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> RegisterClientAsync(int _clientID, string _displayName, bool _isTrainee) {
             return base.Channel.RegisterClientAsync(_clientID, _displayName, _isTrainee);
+        }
+        
+        public bool UnRegisterClient(int _clientID, bool _isTrainee) {
+            return base.Channel.UnRegisterClient(_clientID, _isTrainee);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UnRegisterClientAsync(int _clientID, bool _isTrainee) {
+            return base.Channel.UnRegisterClientAsync(_clientID, _isTrainee);
         }
         
         public void NotifyServer(UNET_ServiceStatus.UNET_Service.EventDataType eventData) {

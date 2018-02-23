@@ -11,6 +11,7 @@ namespace UNET_Classes
         public string Name { get; set; }
         public List<Exercise> Exercises { get; set; }
         public List<Role> AssignedRoles { get; set; }
+        public bool Online { get; set; }
 
         /// <summary>
         /// constructor
@@ -23,13 +24,18 @@ namespace UNET_Classes
             AssignedRoles = new List<Role>();
             ID = _id;
             Name = _name;
+            Online = false;
 
         }
 
+        /// <summary>
+        /// Paremeterless constructor for Instructor class
+        /// </summary>
         public Instructor()
         {
             Exercises = new List<Exercise>();
             AssignedRoles = new List<Role>();
+            Online = false;
         }
 
     }

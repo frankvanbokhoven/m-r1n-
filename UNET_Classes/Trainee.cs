@@ -18,11 +18,17 @@ namespace UNET_Classes
         public List<Radio> Radios { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Role> Roles { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool Online { get; set; }
 
 
+        /// <summary>
+        /// paremeterless constructor for Trainee class
+        /// </summary>
         public Trainee()
         {
             Radios = new List<Radio>();
+            Online = false;
 
         }
         /// <summary>
@@ -37,6 +43,7 @@ namespace UNET_Classes
             RegisteredSince = DateTime.Now;
             Radios = new List<Radio>();
             Roles = new List<Role>();
+            Online = false;
         }
     }
 }

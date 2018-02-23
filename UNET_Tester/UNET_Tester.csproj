@@ -125,6 +125,9 @@
     <None Include="Service References\UNET_Service\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\UNET_Service\Service15.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -133,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MarinRed.ico" />
+    <None Include="Resources\refresh.png" />
     <None Include="Resources\Button-Refresh-icon.png" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>

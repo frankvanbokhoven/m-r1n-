@@ -27,7 +27,7 @@ namespace UNET_SignalGenerator
     public sealed class SignalGenerator : ISampleProvider
     {
         // Wave format
-        private readonly WaveFormat waveFormat;
+        private  WaveFormat waveFormat; //noot: hier stond eerst de readonly directive bij
 
         // Random Number for the White Noise & Pink Noise Generator
         private readonly Random random = new Random();
@@ -43,6 +43,8 @@ namespace UNET_SignalGenerator
         // Sweep Generator variable
         private double phi;
 
+
+       
         /// <summary>
         /// Initializes a new instance for the Generator (Default :: 44.1Khz, 2 channels, Sinus, Frequency = 440, Gain = 1)
         /// </summary>
@@ -70,6 +72,14 @@ namespace UNET_SignalGenerator
             SweepLengthSecs = 2;
         }
 
+        public void DestroyWaveFormat()
+        {
+            if(waveFormat != null)
+            {
+                waveFormat = null;
+                GC.Collect();
+            }
+        }
         /// <summary>
         /// The waveformat of this WaveProvider (same as the source)
         /// </summary>

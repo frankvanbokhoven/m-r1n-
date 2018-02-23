@@ -138,10 +138,11 @@ namespace UNET_Service
         [OperationContract]
         bool RegisterClient(int _clientID, string _displayName, bool _isTrainee);
 
+        [OperationContract]
+        bool UnRegisterClient(int _clientID, bool _isTrainee);
 
         [OperationContract]
         void NotifyServer(EventDataType eventData); 
-
 
         [OperationContract]
         bool SetExerciseCount(int _count);

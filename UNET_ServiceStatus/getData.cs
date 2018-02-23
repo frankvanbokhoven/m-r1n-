@@ -50,19 +50,22 @@ namespace UNET_ServiceStatus
                 Console.Write(Environment.NewLine);
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
-
-
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(DateTime.Now.ToString() + " Get instructor data");
-                Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
                 Console.Write(Environment.NewLine);
 
 
-
                 //Instructors
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+                Console.Write(DateTime.Now.ToString() + " Instructors ontvangen van SIM en aanmeldstatus");
+                Console.Write(Environment.NewLine);
+                Console.Write("------------------------------------------------------------------------------------");
+                Console.Write(Environment.NewLine);
+                Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
+                Console.Write(Environment.NewLine);
                 var instrlist = service.GetInstructors();
 
-                List<UNET_Classes.Instructor> instructorlist = instrlist.ToList<UNET_Classes.Instructor>(); //C# v3 manier om een array in een list te krijgen
+                List<UNET_Classes.Instructor> instructorlist = instrlist.ToList<UNET_Classes.Instructor>();
                 if (instructorlist.Count == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -72,34 +75,58 @@ namespace UNET_ServiceStatus
                 }
                 else
                 {
+                    
                     foreach (UNET_Classes.Instructor instr in instructorlist) //then ENABLE them, based on whatever comes from the service
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("Instructor::  " + instr.ID + " Name: " + instr.Name);
+                        Console.Write("Instructor::  " + instr.ID + " Name: " + instr.Name + " Online: ");
+                        if( instr.Online == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("ONLINE");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("OFFLINE");
+                        }
+                        
                         Console.Write(Environment.NewLine);
                         foreach (UNET_Classes.Exercise exe in instr.Exercises)
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write("                 Exerciseid: " + exe.Number + " ExerciseName: " + exe.ExerciseName + "  Specificationname: " + exe.SpecificationName);
+                            Console.Write("             Exerciseid: " + exe.Number + " ExerciseName: " + exe.ExerciseName + "  Specificationname: " + exe.SpecificationName + " > ");
+
+                            if (exe.Selected == true)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("SELECTED");
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("NOT SELECTED");
+                            }
+
                             Console.Write(Environment.NewLine);
                             foreach (UNET_Classes.Trainee trn in exe.TraineesAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                    Assigned Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
+                                Console.Write("                 Assigned Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
                                 Console.Write(Environment.NewLine);
                             }
 
                             foreach (UNET_Classes.Role rol in exe.RolesAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                 Assigned role: " + rol.ID + "  Role name: " + rol.Name);
+                                Console.Write("                Assigned role: " + rol.ID + "  Role name: " + rol.Name);
                                 Console.Write(Environment.NewLine);
                             }
 
                             foreach (UNET_Classes.Radio rad in exe.RadiosAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                 Assigned radio: " + rad.ID + "  Radio name: " + rad.Description + " NoiseLevel: " + rad.NoiseLevel + " Freq: " + rad.Frequency);
+                                Console.Write("                Assigned radio: " + rad.ID + "  Radio name: " + rad.Description + " NoiseLevel: " + rad.NoiseLevel + " Freq: " + rad.Frequency);
                                 Console.Write(Environment.NewLine);
                             }
 
@@ -157,7 +184,7 @@ namespace UNET_ServiceStatus
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
-                Console.Write(DateTime.Now.ToString() + " Aangemelde trainees");
+                Console.Write(DateTime.Now.ToString() + " Trainees ontvangen van SIM en aanmeldstatus");
                 Console.Write(Environment.NewLine);
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
@@ -165,7 +192,7 @@ namespace UNET_ServiceStatus
 
                 var resultlisttrainees = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = resultlisttrainees.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
-                if (lst.Count == 0)
+                if (lstTrainee.Count == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("No data in UNET_Service for trainees");
@@ -177,7 +204,20 @@ namespace UNET_ServiceStatus
                     foreach (UNET_Classes.Trainee trainee in lstTrainee) //then ENABLE them, based on whatever comes from the service
                     {
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write("Trainee::  " + trainee.ID + " Name: " + trainee.Name + "  Aangemeld sinds: " + trainee.RegisteredSince.ToString());
+                        Console.Write("Trainee::  " + trainee.ID + " Name: " + trainee.Name + "  Aangemeld sinds: " + trainee.RegisteredSince.ToString() + " Online: ");
+                        if (trainee.Online == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write("ONLINE");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("OFFLINE");
+                        }
+
+
+
                         Console.Write(Environment.NewLine);
                         foreach (Radio rn in trainee.Radios)
                         {

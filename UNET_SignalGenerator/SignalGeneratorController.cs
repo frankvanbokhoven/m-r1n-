@@ -24,6 +24,22 @@ namespace UNET_SignalGenerator
             driverOut.Init(wg);
          }
 
+        public void DisposeSignalgenerator()
+        {
+            if(driverOut != null)
+            {
+             
+                driverOut.Stop();
+
+                driverOut.Dispose();
+
+            }
+            if(wg != null)
+            {
+                GC.Collect();
+            }
+        }
+    
         /// <summary>
         /// noiselevel controlse the volume of the signal;
         /// </summary>
@@ -58,7 +74,7 @@ namespace UNET_SignalGenerator
         }
 
         // Clean DriverOut
-        private void Cleanup()
+        public void Cleanup()
         {
             if (driverOut != null)
                 driverOut.Stop();

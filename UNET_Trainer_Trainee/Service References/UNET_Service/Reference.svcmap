@@ -22,6 +22,7 @@
     <MetadataSource Address="http://localhost/UNET_Service/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="Service15.xsd" MetadataType="Schema" ID="018ed221-fb81-4097-9518-16edd5a31ece" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd5" />
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="f2621899-d4ab-44ff-be65-ad49dce2e2d8" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?disco" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="cb170e9f-6e3c-40d2-80d5-c1642e85ba02" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="f81819e6-29bc-4cb0-8415-85a335fc2a57" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" />

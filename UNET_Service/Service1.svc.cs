@@ -130,9 +130,38 @@ namespace UNET_Service
             return true;
         }
 
+
+        /// <summary>
+        /// deze methode gooit het hele singleton object leeg.
+        /// </summary>
+        /// <returns></returns>
         public bool Reset()
         {
-            return true;
+            bool result = true;
+            try
+            {
+
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                singleton.Instructors.Clear();
+                singleton.Exercises.Clear();
+                singleton.Trainees.Clear();
+                singleton.Radios.Clear();
+                singleton.Roles.Clear();
+                singleton.PTTQueue.Clear();
+                singleton.Platforms.Clear();
+                singleton.SIPStatusMessageList.Clear();
+             
+
+                singleton.PendingChanges = DateTime.Now;                                                 
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception resetting: " + ex.Message);
+
+                //throw;
+            }
+            return result;
         }
 
         
@@ -628,11 +657,27 @@ namespace UNET_Service
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                //first, find out if any exercise is selected, if so, store the exerciseid
+                int exercisenumber = -1;
+                foreach (UNET_Classes.Exercise excercise in _exercises)
+                {
+                    if(excercise.Selected)
+                    {
+                        exercisenumber = excercise.Number;
+                        break;
+                    }
+                }
                 //first clear the array
                 singleton.Exercises.Clear();
 
                 foreach (UNET_Classes.Exercise exercise in _exercises)
                 {
+                    if(exercise.Number ==exercisenumber)
+                    {
+                        exercise.Selected = true;//if the exercise was selected previously, reselect it again in the new list
+                    }
+
                     singleton.Exercises.Add(exercise);
 
                 }
@@ -1036,6 +1081,9 @@ namespace UNET_Service
 
                             singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
 
+                            //hierna verwijderen we hem bij de oude lijst
+
+
                         }
 
                     }
@@ -1046,7 +1094,7 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-                log.Error("Error setting exercise selected", ex);
+                log.Error("Error setting selecte exercise", ex);
                 result = false;
 
             }
@@ -1123,13 +1171,29 @@ namespace UNET_Service
             bool result = true;
             try
             {
-                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                //first clear the array
+                     UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                //first, find out if any exercise is online, if so, store the instructorid
+                int instructorid = -1;
+                foreach (UNET_Classes.Instructor instructor in _instructor)
+                {
+                    if (instructor.Online)
+                    {
+                        instructorid = instructor.ID;
+                        break;
+                    }
+                }
+
+                //then clear the array
                 singleton.Instructors.Clear();
 
 
                 foreach (UNET_Classes.Instructor instructor in _instructor)
                 {
+                    if (instructor.ID  == instructorid)
+                    {
+                        instructor.Online =  true;//if the instructor was online previously, make it online again in the new list
+                    }
+
                     singleton.Instructors.Add(instructor);
                 }
                 singleton.PendingChanges = DateTime.Now;
@@ -1248,8 +1312,52 @@ namespace UNET_Service
             return result;
         }
 
+
         /// <summary>
-        /// with this method, a trainee can 'register' himself
+        /// set the online status of a client to false
+        /// </summary>
+        /// <param name="_clientID"></param>
+        /// <param name="_isTrainee"></param>
+        /// <returns></returns>
+        public bool UnRegisterClient(int _clientID, bool _isTrainee)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (_isTrainee) //in case of a TRAINEE
+                {
+                    //now remove the trainees or instructor from the list
+                    if ((singleton.Trainees.SingleOrDefault(x => x.ID == _clientID) != null))
+                    {
+                        singleton.Trainees.SingleOrDefault(x => x.ID == _clientID).Online = false;
+                    }
+                }
+                else  //in case of an INSTRUCTOR
+                {
+                    if ((singleton.Instructors.SingleOrDefault(x => x.ID == _clientID) != null))
+                    {
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _clientID).Online = false;
+                    }
+                }
+
+                singleton.PendingChanges = DateTime.Now;
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error unregistering a Trainee or Instructor", ex);
+
+                result = false;
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// with this method, a trainee or instructor can 'register'
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -1280,18 +1388,33 @@ namespace UNET_Service
                     }
                 }
 
-                ////now add it to the trainees list
-                if ((singleton.Trainees.SingleOrDefault(x => x.ID == _clientID) == null))
+                if (_isTrainee)
                 {
-                    if (_isTrainee)
+                    ////now add it to the trainees list
+                    if ((singleton.Trainees.SingleOrDefault(x => x.ID == _clientID) == null))
                     {
+                        //in case of a TRAINEE
+
                         Trainee trn = new Trainee(_clientID, _displayName);
+                        trn.Online = true;
                         singleton.Trainees.Add(trn);
                     }
                     else
                     {
+                        singleton.Trainees.SingleOrDefault(x => x.ID == _clientID).Online = true;
+                    }
+                }
+                else  //in case of an INSTRUCTOR
+                {
+                    if ((singleton.Instructors.SingleOrDefault(x => x.ID == _clientID) == null))
+                    {
                         Instructor inst = new Instructor(_clientID, _displayName);
+                        inst.Online = true;
                         singleton.Instructors.Add(inst);
+                    }
+                    else
+                    {
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _clientID).Online = true;
                     }
                 }
                 singleton.PendingChanges = DateTime.Now;
@@ -1300,7 +1423,7 @@ namespace UNET_Service
             }
             catch (Exception ex)
             {
-                log.Error("Error setting Registering Trainees", ex);
+                log.Error("Error setting Registering Trainee or Instructor", ex);
 
                 result = false;
 
