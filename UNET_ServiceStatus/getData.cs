@@ -114,12 +114,19 @@ namespace UNET_ServiceStatus
                                 Console.ForegroundColor = ConsoleColor.Yellow;
                                 Console.Write("                 Assigned Trainee:  Traineeid:: " + trn.ID + "  Trainee name: " + trn.Name);
                                 Console.Write(Environment.NewLine);
+
+                                foreach (UNET_Classes.Role rol in trn.Roles)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.Write("                      Assigned trainee-role: " + rol.ID + "  Role name: " + rol.Name);
+                                    Console.Write(Environment.NewLine);
+                                }
                             }
 
                             foreach (UNET_Classes.Role rol in exe.RolesAssigned)
                             {
                                 Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("                Assigned role: " + rol.ID + "  Role name: " + rol.Name);
+                                Console.Write("                Assigned exercise role: " + rol.ID + "  Role name: " + rol.Name);
                                 Console.Write(Environment.NewLine);
                             }
 

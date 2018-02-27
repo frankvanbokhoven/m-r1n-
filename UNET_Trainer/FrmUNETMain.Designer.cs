@@ -126,6 +126,7 @@
             this.btnRadios = new System.Windows.Forms.Button();
             this.btnTrain = new System.Windows.Forms.Button();
             this.btnRol = new System.Windows.Forms.Button();
+            this.timerKeepAlive = new System.Windows.Forms.Timer(this.components);
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -1232,7 +1233,7 @@
             this.btnExersise08.Size = new System.Drawing.Size(149, 74);
             this.btnExersise08.TabIndex = 8;
             this.btnExersise08.Text = "Exercise 08";
-            this.btnExersise08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise08.UseVisualStyleBackColor = false;
             this.btnExersise08.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1249,7 +1250,7 @@
             this.btnExersise07.Size = new System.Drawing.Size(149, 74);
             this.btnExersise07.TabIndex = 7;
             this.btnExersise07.Text = "Exercise 07";
-            this.btnExersise07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise07.UseVisualStyleBackColor = false;
             this.btnExersise07.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1266,7 +1267,7 @@
             this.btnExersise06.Size = new System.Drawing.Size(149, 74);
             this.btnExersise06.TabIndex = 6;
             this.btnExersise06.Text = "Exercise 06";
-            this.btnExersise06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise06.UseVisualStyleBackColor = false;
             this.btnExersise06.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1283,7 +1284,7 @@
             this.btnExersise05.Size = new System.Drawing.Size(149, 74);
             this.btnExersise05.TabIndex = 5;
             this.btnExersise05.Text = "Exercise 05";
-            this.btnExersise05.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise05.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise05.UseVisualStyleBackColor = false;
             this.btnExersise05.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1300,7 +1301,7 @@
             this.btnExersise04.Size = new System.Drawing.Size(149, 74);
             this.btnExersise04.TabIndex = 4;
             this.btnExersise04.Text = "Exercise 04";
-            this.btnExersise04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise04.UseVisualStyleBackColor = false;
             this.btnExersise04.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1317,7 +1318,7 @@
             this.btnExersise03.Size = new System.Drawing.Size(149, 74);
             this.btnExersise03.TabIndex = 3;
             this.btnExersise03.Text = "Exersise 03";
-            this.btnExersise03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExersise03.UseVisualStyleBackColor = false;
             this.btnExersise03.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1334,7 +1335,7 @@
             this.btnExersise02.Size = new System.Drawing.Size(149, 74);
             this.btnExersise02.TabIndex = 2;
             this.btnExersise02.Text = "Exercise 02";
-            this.btnExersise02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise02.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnExersise02.UseVisualStyleBackColor = false;
             this.btnExersise02.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1351,7 +1352,7 @@
             this.btnExersise01.Size = new System.Drawing.Size(149, 74);
             this.btnExersise01.TabIndex = 1;
             this.btnExersise01.Text = "Exersise 01";
-            this.btnExersise01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnExersise01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExersise01.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnExersise01.UseVisualStyleBackColor = false;
             this.btnExersise01.Click += new System.EventHandler(this.btnExersise01_Click);
@@ -1617,6 +1618,12 @@
             this.btnRol.UseVisualStyleBackColor = false;
             this.btnRol.Click += new System.EventHandler(this.btnRoles_Click);
             // 
+            // timerKeepAlive
+            // 
+            this.timerKeepAlive.Enabled = true;
+            this.timerKeepAlive.Interval = 2000;
+            this.timerKeepAlive.Tick += new System.EventHandler(this.timerKeepAlive_Tick);
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1756,5 +1763,6 @@
         private System.Windows.Forms.Label lblPtt;
         private System.Windows.Forms.Label lblHeadset;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timerKeepAlive;
     }
 }

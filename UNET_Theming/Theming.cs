@@ -28,6 +28,7 @@ namespace UNET_Theming
         public static Color IntercomPressed;
         public static Color IntercomNotPressed;
         public static Color ButtonText;
+        public static Color ButtonSelectedText;
         public static Color AssistRequestedColor;
         public static Color AssistAcknowledgedColor;
         public static Color ILModeActive;
@@ -58,6 +59,7 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        ButtonSelectedText = Color.White;
                         AssistAcknowledgedColor = Color.Green;
                         AssistRequestedColor = Color.Gray;
                         ILModeActive = Color.Brown;
@@ -81,6 +83,7 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        ButtonSelectedText = Color.White;
                         AssistAcknowledgedColor = Color.Green;
                         AssistRequestedColor = Color.Gray;
 
@@ -103,6 +106,9 @@ namespace UNET_Theming
                         IntercomNotPressed = Color.DimGray;
                         IntercomPressed = Color.LightGreen;
                         ButtonText = Color.Black;
+                        ButtonSelectedText = Color.White;
+
+
                         AssistAcknowledgedColor = Color.Green;
                         AssistRequestedColor = Color.Gray;
 

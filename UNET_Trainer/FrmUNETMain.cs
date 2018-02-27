@@ -150,22 +150,29 @@ namespace UNET_Trainer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (GetForegroundWindow() == this.Handle)
+            try
             {
-                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                if (GetForegroundWindow() == this.Handle)
                 {
-                    service.Open();
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+             
+                    if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
+                    {
+
+                        SetButtonStatus(this);
+
+                        GetAssists(this);
+                        ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
+                    }
                 }
-                service.RegisterClient(InstructorID,DisplayName, false); //todo: kijken of het echt nodig is om dit continue te doen!!!!
-
-                if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
-                {
-
-                    SetButtonStatus(this);
-
-                    GetAssists(this);
-                    ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
-                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error during timer/tick event", ex);
+                // throw;
             }
         }
 
@@ -327,7 +334,8 @@ namespace UNET_Trainer
                 //enable the Exercise buttons
                 var avialableExercisisList = service.GetExercises(); //we have to do this, because, all the time, exercises can be added or removed
                 List<UNET_Classes.Exercise> availableExerciseslst = avialableExercisisList.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
-                foreach (Control ctrl in panelExercises.Controls) //first DISABLE all buttons
+
+                foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
@@ -342,6 +350,8 @@ namespace UNET_Trainer
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Tag = "enable";
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseNotSelected;
 
                     //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
                     //zoja, vul de informatie in en enable de knop
@@ -358,10 +368,15 @@ namespace UNET_Trainer
 
                                     //NOT ONLY ENABLE BUT IF IT IS SELECTED (ON THE SERVER) CHANGE THE COLOR
                                     if (exerciseAssigned.Selected)
+                                    {
                                         panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseSelectedButton;
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+
+                                    }
                                     else
                                     {
                                         panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseNotSelected;
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].ForeColor = Theming.ButtonText;
 
                                     }
                                     exerciseselected = exercise.Number;
@@ -373,8 +388,7 @@ namespace UNET_Trainer
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, availableExerciseslst.Count, "exersise");
 
-
-                //enable the Trainees buttons, for the number of trainees that are in
+                //enable the Trainees buttons, for the number of trainees that are in the training
                 var traineelist = service.GetTrainees();
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
                 int listindex = 1;
@@ -437,6 +451,7 @@ namespace UNET_Trainer
 
                     }
                 }
+                
 
                 if (SelectedExercise != null)
                 {
@@ -808,14 +823,6 @@ namespace UNET_Trainer
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
-          //  SetRadioStatus();
-
-         //   SetStatusAndColorRadioButtons((Button)sender);
-
-         //   RadioClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Radios), ((Button)sender).Name.Remove(0, 3)));
-         //   ((Button)sender).BackColor = Color.Black;
-         //   ((Button)sender).ForeColor = Color.White;
-
             int radioNumber = -1;
             try
             {
@@ -911,11 +918,13 @@ namespace UNET_Trainer
 
         private void btnExersise01_Click(object sender, EventArgs e)
         {
-         //   SetExerciseStatus();
             SetStatusAndColorExerciseButtons((Button)sender);
         }
 
-
+        /// <summary>
+        /// Zet de selected exercise naar de UNET_Service
+        /// </summary>
+        /// <param name="_btn"></param>
         private void SetStatusAndColorExerciseButtons(Button _btn)
         {
             if (_btn.Name.ToLower() != "btnil")
@@ -933,9 +942,6 @@ namespace UNET_Trainer
                 service.Open();
             }
             service.SetExerciseSelected(InstructorID, ExersiseNumber, true); //now we have told the service that this instructor has selected this exercise
-
-
-        //    _btn.BackColor = Theming.ExerciseSelectedButton;
         }
 
 
@@ -1298,6 +1304,26 @@ namespace UNET_Trainer
         private void btnIL_Click(object sender, EventArgs e)
         {
             ILMode = !ILMode;
+        }
+
+        private void timerKeepAlive_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                //Register this instructor to the wcf service
+                service.RegisterClient(InstructorID, DisplayName, false); //'false' means: this is an Instructor
+            }
+            catch (Exception ex)
+            {
+              
+                log.Error("Error keepalive " + ex.Message);
+             }
+
         }
     }
 }

@@ -1057,12 +1057,19 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
 
-                ////zet eerst de selected alle op false
+                ////zet eerst overal waar deze instructor geselecteerd stond, op false
                 foreach (UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
                 {
                     ex.Selected = false;
                 }
 
+                foreach (UNET_Classes.Exercise ex in singleton.Exercises)
+                {
+                    ex.Selected = false;
+                }
+
+
+                //now set the new given exercise to selected for the given instructor
                 if (singleton.Instructors.Any(x => x.ID == _instructor))
                 {
                     if (singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Any(y => y.Number == _exerciseNumber))
@@ -1073,14 +1080,13 @@ namespace UNET_Service
                     }
                     else
                     {
-                        //de exercise bestaat NIET, dan voegen we hem toe en zetten hem op selected
+                        //de exercise bestaat NIET, dan voegen we hem toe bij deze instructor en zetten hem op selected
                         Exercise exe = singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseNumber); //find the exercise
                         if (exe != null)
                         {
-                            singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseNumber).Selected = true;
-
+                            exe.Selected = true;
                             singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
-
+                     //
                             //hierna verwijderen we hem bij de oude lijst
 
 

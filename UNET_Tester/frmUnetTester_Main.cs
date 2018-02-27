@@ -371,6 +371,9 @@ namespace UNET_Tester
             {
                 service.Open();
             }
+
+            listBoxGetmethods.Items.Clear();
+
             //Voeg voor iedere trainee-id een trainee object toe
             string[] instructorids = tbxInstructorIDs.Text.Split(',');
 
@@ -435,9 +438,7 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-                //   service.SetTraineesCount(Convert.ToInt16(traineeids.Length));
-
-                //maak nu een lijstje meet trainees, op basis van de id's en  stuur dat naar de service
+                 //maak nu een lijstje met trainees, op basis van de id's en  stuur dat naar de service
                 Trainee[] listTrainee;// = new List<UNET_Classes.Trainee>();
                 List<Trainee> objlist = new List<Trainee>();
                 foreach (string tr in traineeids)
@@ -451,11 +452,13 @@ namespace UNET_Tester
                         {
                             Role exe = new Role();
                             exe.ID = i;
-                            exe.Name = "Testrole-" + i.ToString("00") + Environment.NewLine + "Trainee: " + tr;
+                            exe.Name = "Testrole-" + i.ToString("00") + "Trainee: " + tr;
                             AddToListbox("Added role to trainee: " + tr);
                             trainee.Roles.Add(exe);
                         }
                     }
+
+              
                   
                     objlist.Add(trainee);
                 }
