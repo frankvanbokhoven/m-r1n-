@@ -277,9 +277,8 @@ namespace UNET_ServiceStatus
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
 
-
                 var resultlistptt = service.GetPTTQueue();
-                Queue<UNET_Service.PTTcaller> lstPtt = resultlistptt;
+                List<PTTcaller> lstPtt = resultlistptt.ToList<PTTcaller>();
                 if (lst.Count == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -289,18 +288,25 @@ namespace UNET_ServiceStatus
                 }
                 else
                 {
-                    foreach (UNET_Service.PTTcaller pt in lstPtt)
+                    foreach (PTTcaller pt in lstPtt)
                     {
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write("PTT QUEUE::  " + pt.ID + " Started by: " + pt.ID + " " + pt.User + "  Requested: " + pt.PTTDateTime.ToString());
+                        Console.Write("PTT QUEUE::  " + pt.ID + " Started by: " + pt.PTTCallerID + " " + pt.User + "  Requested: " + pt.PTTDateTime.ToString() + " Acknowledged: ");
+                        if (pt.Acknowledged == true)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            Console.Write("Acknowledged");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("Active");
+                        }
                         Console.Write(Environment.NewLine);
 
 
                     }
                 }
-
-
-
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);

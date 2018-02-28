@@ -40,7 +40,7 @@ namespace UNET_Service
         /// <param name="_traineeInstructorID"></param>
         /// <returns></returns>
  
-        public bool AddPTT(int _traineeInstructorID, PTTuser _pttUser)
+        public bool AddPTT(string _traineeInstructorID, PTTuser _pttUser)
         {
             bool result = false;
 
@@ -51,14 +51,15 @@ namespace UNET_Service
                 //enqueue this call to the PTTQueue
                 PTTcaller pt = new PTTcaller();
                 pt.User = _pttUser;
-                pt.ID = _traineeInstructorID;
+                pt.ID = Guid.NewGuid();
+                pt.PTTCallerID = _traineeInstructorID;
                 pt.PTTDateTime = DateTime.Now;
-                singleton.PTTQueue.Enqueue(pt);
+                singleton.PTTQueue.Add(pt); //.Enqueue(pt);
                 
             }
             catch (Exception ex)
             {
-                log.Error("Error setting the ptt:" + ex.Message);
+                log.Error("Error adding the ptt:" + ex.Message);
                 result = false;
             }
             return result;
@@ -70,7 +71,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_traineeInstructorID"></param>
         /// <returns></returns>
-        public  bool AcknowledgePTT(int _traineeInstructorID)
+        public  bool AcknowledgePTT(string _traineeInstructorID)
         {
             bool result = false;
 
@@ -78,16 +79,22 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                foreach(PTTcaller pttc in singleton.PTTQueue)
-                {
-                    if (((PTTcaller)pttc).ID == _traineeInstructorID)
-                    {
+                singleton.PTTQueue.FirstOrDefault(x => x.PTTCallerID == _traineeInstructorID).Acknowledged = true; //set the appropriate ptt call to true
 
-                       //remove it from the queue
-                       PTTcaller local = (PTTcaller)singleton.PTTQueue.Dequeue();
-                       break;
-                    }
-                }
+
+
+                //do some plumbing
+                //singleton.PTTQueue.fir
+                //foreach (PTTcaller pttc in singleton.PTTQueue)
+                //{
+                //    if (((PTTcaller)pttc).ID == _traineeInstructorID)
+                //    {
+
+                //       //remove it from the queue
+                //       PTTcaller local = (PTTcaller)singleton.PTTQueue.Dequeue();
+                //       break;
+                //    }
+                //}
     
             }
             catch (Exception ex)
@@ -104,15 +111,17 @@ namespace UNET_Service
         /// speciaal tbv UNET_ServiceStatus
         /// </summary>
         /// <returns></returns>
-        public Queue<PTTcaller> GetPTTQueue()
+        public List<PTTcaller> GetPTTQueue()
         {
-            Queue<PTTcaller> result = new Queue<PTTcaller>();
+            List<PTTcaller> result = new List<PTTcaller>();
+
             try
             {
 
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-             //   result = (Queue) singleton.PTTQueue;
+                result = new List<PTTcaller>(singleton.PTTQueue);
 
+       
             }
             catch (Exception ex)
             {
@@ -150,6 +159,7 @@ namespace UNET_Service
                 singleton.PTTQueue.Clear();
                 singleton.Platforms.Clear();
                 singleton.SIPStatusMessageList.Clear();
+                singleton.Assists.Clear();
              
 
                 singleton.PendingChanges = DateTime.Now;                                                 
@@ -660,11 +670,13 @@ namespace UNET_Service
 
                 //first, find out if any exercise is selected, if so, store the exerciseid
                 int exercisenumber = -1;
+                int instructorid = -1;
                 foreach (UNET_Classes.Exercise excercise in _exercises)
                 {
                     if(excercise.Selected)
                     {
                         exercisenumber = excercise.Number;
+                        instructorid = excercise.AssignedInstructorID;
                         break;
                     }
                 }
@@ -676,6 +688,7 @@ namespace UNET_Service
                     if(exercise.Number ==exercisenumber)
                     {
                         exercise.Selected = true;//if the exercise was selected previously, reselect it again in the new list
+                        exercise.AssignedInstructorID = instructorid;
                     }
 
                     singleton.Exercises.Add(exercise);
@@ -1061,11 +1074,14 @@ namespace UNET_Service
                 foreach (UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
                 {
                     ex.Selected = false;
+                    ex.AssignedInstructorID = -1;
+
                 }
 
                 foreach (UNET_Classes.Exercise ex in singleton.Exercises)
                 {
                     ex.Selected = false;
+                    ex.AssignedInstructorID = -1;
                 }
 
 
@@ -1076,6 +1092,7 @@ namespace UNET_Service
                     {
                         //de exercise bestaat, dus we kunnen hem op selected zetten.
                         singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).Selected = _select;
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).AssignedInstructorID = _instructor;
 
                     }
                     else
@@ -1085,6 +1102,7 @@ namespace UNET_Service
                         if (exe != null)
                         {
                             exe.Selected = true;
+                            exe.AssignedInstructorID = _instructor; //Req_unet_srs_3
                             singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
                      //
                             //hierna verwijderen we hem bij de oude lijst

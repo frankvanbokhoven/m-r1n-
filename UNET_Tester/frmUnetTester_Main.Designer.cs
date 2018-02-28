@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignRadiosToExercise = new System.Windows.Forms.CheckBox();
             this.cbxAssignRolesToExercise = new System.Windows.Forms.CheckBox();
@@ -64,10 +65,11 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.cbxKeepAlive = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAddPTT = new System.Windows.Forms.Button();
             this.cbxAssistTrainee = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnRequestAssist = new System.Windows.Forms.Button();
-            this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
+            this.btnAcknowledgePTT = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,7 +108,19 @@
             this.groupBox1.Size = new System.Drawing.Size(707, 328);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // cbxAssignRolesToTrainees
+            // 
+            this.cbxAssignRolesToTrainees.AutoSize = true;
+            this.cbxAssignRolesToTrainees.Checked = true;
+            this.cbxAssignRolesToTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 170);
+            this.cbxAssignRolesToTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxAssignRolesToTrainees.Name = "cbxAssignRolesToTrainees";
+            this.cbxAssignRolesToTrainees.Size = new System.Drawing.Size(178, 21);
+            this.cbxAssignRolesToTrainees.TabIndex = 24;
+            this.cbxAssignRolesToTrainees.Text = "Assign roles to trainees";
+            this.cbxAssignRolesToTrainees.UseVisualStyleBackColor = true;
             // 
             // cbxAssignTrainees
             // 
@@ -527,6 +541,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnAcknowledgePTT);
+            this.panel2.Controls.Add(this.btnAddPTT);
             this.panel2.Controls.Add(this.cbxAssistTrainee);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.btnRequestAssist);
@@ -535,6 +551,21 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(705, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnAddPTT
+            // 
+            this.btnAddPTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPTT.BackColor = System.Drawing.Color.Lime;
+            this.btnAddPTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPTT.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddPTT.Location = new System.Drawing.Point(426, 3);
+            this.btnAddPTT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddPTT.Name = "btnAddPTT";
+            this.btnAddPTT.Size = new System.Drawing.Size(98, 28);
+            this.btnAddPTT.TabIndex = 9;
+            this.btnAddPTT.Text = "Add PTT";
+            this.btnAddPTT.UseVisualStyleBackColor = false;
+            this.btnAddPTT.Click += new System.EventHandler(this.btnAddPTT_Click);
             // 
             // cbxAssistTrainee
             // 
@@ -551,9 +582,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(15, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 17);
+            this.label8.Size = new System.Drawing.Size(49, 17);
             this.label8.TabIndex = 7;
-            this.label8.Text = "Trainee:";
+            this.label8.Text = "Users:";
             // 
             // btnRequestAssist
             // 
@@ -561,27 +592,29 @@
             this.btnRequestAssist.BackColor = System.Drawing.Color.Lime;
             this.btnRequestAssist.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequestAssist.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRequestAssist.Location = new System.Drawing.Point(529, 4);
+            this.btnRequestAssist.Location = new System.Drawing.Point(286, 4);
             this.btnRequestAssist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRequestAssist.Name = "btnRequestAssist";
-            this.btnRequestAssist.Size = new System.Drawing.Size(160, 28);
+            this.btnRequestAssist.Size = new System.Drawing.Size(134, 28);
             this.btnRequestAssist.TabIndex = 6;
             this.btnRequestAssist.Text = "Request assist";
             this.btnRequestAssist.UseVisualStyleBackColor = false;
             this.btnRequestAssist.Click += new System.EventHandler(this.button1_Click);
             // 
-            // cbxAssignRolesToTrainees
+            // btnAcknowledgePTT
             // 
-            this.cbxAssignRolesToTrainees.AutoSize = true;
-            this.cbxAssignRolesToTrainees.Checked = true;
-            this.cbxAssignRolesToTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 170);
-            this.cbxAssignRolesToTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxAssignRolesToTrainees.Name = "cbxAssignRolesToTrainees";
-            this.cbxAssignRolesToTrainees.Size = new System.Drawing.Size(178, 21);
-            this.cbxAssignRolesToTrainees.TabIndex = 24;
-            this.cbxAssignRolesToTrainees.Text = "Assign roles to trainees";
-            this.cbxAssignRolesToTrainees.UseVisualStyleBackColor = true;
+            this.btnAcknowledgePTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAcknowledgePTT.BackColor = System.Drawing.Color.Lime;
+            this.btnAcknowledgePTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcknowledgePTT.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAcknowledgePTT.Location = new System.Drawing.Point(530, 2);
+            this.btnAcknowledgePTT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAcknowledgePTT.Name = "btnAcknowledgePTT";
+            this.btnAcknowledgePTT.Size = new System.Drawing.Size(149, 28);
+            this.btnAcknowledgePTT.TabIndex = 10;
+            this.btnAcknowledgePTT.Text = "Acknowledge PTT";
+            this.btnAcknowledgePTT.UseVisualStyleBackColor = false;
+            this.btnAcknowledgePTT.Click += new System.EventHandler(this.btnAcknowledgePTT_Click);
             // 
             // frmUNETTester_Main
             // 
@@ -651,6 +684,8 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.CheckBox cbxAssignTrainees;
         private System.Windows.Forms.CheckBox cbxAssignRolesToTrainees;
+        private System.Windows.Forms.Button btnAddPTT;
+        private System.Windows.Forms.Button btnAcknowledgePTT;
     }
 }
 

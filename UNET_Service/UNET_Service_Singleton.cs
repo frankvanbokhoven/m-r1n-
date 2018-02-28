@@ -12,9 +12,11 @@ namespace UNET_Service
     //this struct holds the PTT info
     public class PTTcaller
     {
-        public int ID;
+        public Guid ID;
+        public string PTTCallerID;
         public PTTuser User;
-        public DateTime PTTDateTime;
+        public DateTime PTTDateTime = DateTime.Now;
+        public bool Acknowledged = false;
     }
 
     public sealed class UNET_Singleton
@@ -42,7 +44,7 @@ namespace UNET_Service
         /// <summary>
         /// when a trainee or instructor does PTT, enqueue this PTT and handle it
         /// </summary>
-        public Queue PTTQueue = new Queue();
+        public ObservableCollection<PTTcaller> PTTQueue = new ObservableCollection<PTTcaller>();
 
         public bool TraineeStatusChanged = false;
         public bool NoiseLevelChanged = false;

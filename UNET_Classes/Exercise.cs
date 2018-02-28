@@ -28,12 +28,17 @@ namespace UNET_Classes
         public List<Radio> RadiosAssigned { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Selected { get; set; }
+        [Description("Here we store the id of the instructor where this exercise is assigned to. (-1 for not assigned) see Req_unet_srs_3")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int AssignedInstructorID { get; set; } 
+
 
         public Exercise()
         {
             TraineesAssigned = new List<Trainee>();
             RolesAssigned = new List<Role>();
             RadiosAssigned = new List<Radio>();
+            AssignedInstructorID = -1;
         }
 
         /// <summary>
@@ -48,6 +53,7 @@ namespace UNET_Classes
             TraineesAssigned = new List<Trainee>();
             RolesAssigned = new List<Role>();
             RadiosAssigned = new List<Radio>();
+            AssignedInstructorID = -1;
 
         }
 

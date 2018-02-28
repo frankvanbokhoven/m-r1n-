@@ -34,7 +34,13 @@ namespace UNET_Tester.UNET_Service {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
+        private bool AcknowledgedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PTTCallerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime PTTDateTimeField;
@@ -53,7 +59,20 @@ namespace UNET_Tester.UNET_Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
+        public bool Acknowledged {
+            get {
+                return this.AcknowledgedField;
+            }
+            set {
+                if ((this.AcknowledgedField.Equals(value) != true)) {
+                    this.AcknowledgedField = value;
+                    this.RaisePropertyChanged("Acknowledged");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ID {
             get {
                 return this.IDField;
             }
@@ -61,6 +80,19 @@ namespace UNET_Tester.UNET_Service {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PTTCallerID {
+            get {
+                return this.PTTCallerIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PTTCallerIDField, value) != true)) {
+                    this.PTTCallerIDField = value;
+                    this.RaisePropertyChanged("PTTCallerID");
                 }
             }
         }
@@ -197,22 +229,22 @@ namespace UNET_Tester.UNET_Service {
         System.Threading.Tasks.Task<bool> StopAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
-        bool AddPTT(int _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser);
+        bool AddPTT(string _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
-        System.Threading.Tasks.Task<bool> AddPTTAsync(int _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser);
+        System.Threading.Tasks.Task<bool> AddPTTAsync(string _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgePTT", ReplyAction="http://tempuri.org/IService1/AcknowledgePTTResponse")]
-        bool AcknowledgePTT(int _traineeInstructorID);
+        bool AcknowledgePTT(string _traineeInstructorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgePTT", ReplyAction="http://tempuri.org/IService1/AcknowledgePTTResponse")]
-        System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(int _traineeInstructorID);
+        System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(string _traineeInstructorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPTTQueue", ReplyAction="http://tempuri.org/IService1/GetPTTQueueResponse")]
-        System.Collections.Generic.Queue<UNET_Tester.UNET_Service.PTTcaller> GetPTTQueue();
+        UNET_Tester.UNET_Service.PTTcaller[] GetPTTQueue();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPTTQueue", ReplyAction="http://tempuri.org/IService1/GetPTTQueueResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Queue<UNET_Tester.UNET_Service.PTTcaller>> GetPTTQueueAsync();
+        System.Threading.Tasks.Task<UNET_Tester.UNET_Service.PTTcaller[]> GetPTTQueueAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(int _traineeId, string _traineeInfo);
@@ -510,27 +542,27 @@ namespace UNET_Tester.UNET_Service {
             return base.Channel.StopAsync();
         }
         
-        public bool AddPTT(int _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser) {
+        public bool AddPTT(string _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser) {
             return base.Channel.AddPTT(_traineeInstructorID, _pttUser);
         }
         
-        public System.Threading.Tasks.Task<bool> AddPTTAsync(int _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser) {
+        public System.Threading.Tasks.Task<bool> AddPTTAsync(string _traineeInstructorID, UNET_Tester.UNET_Service.PTTuser _pttUser) {
             return base.Channel.AddPTTAsync(_traineeInstructorID, _pttUser);
         }
         
-        public bool AcknowledgePTT(int _traineeInstructorID) {
+        public bool AcknowledgePTT(string _traineeInstructorID) {
             return base.Channel.AcknowledgePTT(_traineeInstructorID);
         }
         
-        public System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(int _traineeInstructorID) {
+        public System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(string _traineeInstructorID) {
             return base.Channel.AcknowledgePTTAsync(_traineeInstructorID);
         }
         
-        public System.Collections.Generic.Queue<UNET_Tester.UNET_Service.PTTcaller> GetPTTQueue() {
+        public UNET_Tester.UNET_Service.PTTcaller[] GetPTTQueue() {
             return base.Channel.GetPTTQueue();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Queue<UNET_Tester.UNET_Service.PTTcaller>> GetPTTQueueAsync() {
+        public System.Threading.Tasks.Task<UNET_Tester.UNET_Service.PTTcaller[]> GetPTTQueueAsync() {
             return base.Channel.GetPTTQueueAsync();
         }
         

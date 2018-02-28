@@ -125,9 +125,6 @@
     <None Include="Service References\UNET_Service\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\Service15.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

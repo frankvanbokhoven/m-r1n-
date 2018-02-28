@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
-  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
-  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
-  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
+  <xs:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="DisconnectVCS">
     <xs:complexType>
       <xs:sequence />
@@ -67,7 +66,7 @@
   <xs:element name="AddPTT">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeInstructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeInstructorID" nillable="true" type="xs:string" />
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/UNET_Service" minOccurs="0" name="_pttUser" type="q1:PTTuser" />
       </xs:sequence>
     </xs:complexType>
@@ -82,7 +81,7 @@
   <xs:element name="AcknowledgePTT">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeInstructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeInstructorID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -101,7 +100,7 @@
   <xs:element name="GetPTTQueueResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="GetPTTQueueResult" nillable="true" type="q2:QueueOfPTTcallerdJ8jZ8Dr" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/UNET_Service" minOccurs="0" name="GetPTTQueueResult" nillable="true" type="q2:ArrayOfPTTcaller" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

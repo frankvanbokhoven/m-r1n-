@@ -330,7 +330,6 @@ namespace UNET_Trainer
                 //en hiermee de knoppen de juiste kleur geven
                 Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
                 SelectedExercise = currentInstructor.Exercises.SingleOrDefault(x => x.Selected == true); //neem de geselecteerde exercise
-
                 //enable the Exercise buttons
                 var avialableExercisisList = service.GetExercises(); //we have to do this, because, all the time, exercises can be added or removed
                 List<UNET_Classes.Exercise> availableExerciseslst = avialableExercisisList.ToList<UNET_Classes.Exercise>(); //C# v3 manier om een array in een list te krijgen
@@ -349,12 +348,12 @@ namespace UNET_Trainer
                 foreach (UNET_Classes.Exercise exercise in availableExerciseslst) //then ENABLE them, based on whatever is retrieved from the service
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden
-                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName);
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}{5}{6}Instructor:{6}{7}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName, Environment.NewLine,Environment.NewLine, exercise.AssignedInstructorID != -1 ? exercise.AssignedInstructorID.ToString() : "Not assigned" );
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Tag = "enable";
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseNotSelected;
 
-                    //loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
-                    //zoja, vul de informatie in en enable de knop
+                    ////loop nu door de lijst van toegewezen exercises heen en kijk of er een is die aan deze instructor is toegewezen. 
+                    ////zoja, vul de informatie in en enable de knop
                     if (currentInstructor != null)
                     {
                         if (!Object.ReferenceEquals(currentInstructor.Exercises, null))
@@ -380,6 +379,15 @@ namespace UNET_Trainer
 
                                     }
                                     exerciseselected = exercise.Number;
+                                }
+                                else
+                                {  //REQ_UNET_SRS_3
+                                    if (exerciseAssigned.AssignedInstructorID != -1)
+                                    {
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseOtherInstructorRoles;
+                                        panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].ForeColor = Theming.ButtonText;
+
+                                    }
                                 }
                             }
                         }
@@ -745,9 +753,9 @@ namespace UNET_Trainer
         /// </summary>
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
-            int traineeIndex = -1;
+            int selectedTraineeIndex = -1;
  
-            traineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+            selectedTraineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
 
             /// <summary>
             /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
@@ -757,7 +765,7 @@ namespace UNET_Trainer
             if (MonitorTrainee)
             {
                 // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
-                MonitorTraineeArray[traineeIndex] = true;
+                MonitorTraineeArray[selectedTraineeIndex] = true;
                 ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
                 ((Button)sender).ForeColor = System.Drawing.Color.White;
             }
@@ -769,7 +777,7 @@ namespace UNET_Trainer
                 service.Open();
             }
             //retrieve the pending assists for this instructor
-            service.AcknowledgeAssist(InstructorID, traineeIndex);
+            service.AcknowledgeAssist(InstructorID, selectedTraineeIndex);
 
 
         }

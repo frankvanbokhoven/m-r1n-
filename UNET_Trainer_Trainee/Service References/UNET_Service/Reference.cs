@@ -26,83 +26,6 @@ namespace UNET_Trainer_Trainee.UNET_Service {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PTTcaller", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service")]
-    [System.SerializableAttribute()]
-    public partial class PTTcaller : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime PTTDateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private UNET_Trainer_Trainee.UNET_Service.PTTuser UserField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ID {
-            get {
-                return this.IDField;
-            }
-            set {
-                if ((this.IDField.Equals(value) != true)) {
-                    this.IDField = value;
-                    this.RaisePropertyChanged("ID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime PTTDateTime {
-            get {
-                return this.PTTDateTimeField;
-            }
-            set {
-                if ((this.PTTDateTimeField.Equals(value) != true)) {
-                    this.PTTDateTimeField = value;
-                    this.RaisePropertyChanged("PTTDateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public UNET_Trainer_Trainee.UNET_Service.PTTuser User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((this.UserField.Equals(value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EventDataType", Namespace="http://schemas.datacontract.org/2004/07/UNET_Service")]
     [System.SerializableAttribute()]
     public partial class EventDataType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -209,10 +132,30 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         System.Threading.Tasks.Task<bool> AcknowledgePTTAsync(int _traineeInstructorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPTTQueue", ReplyAction="http://tempuri.org/IService1/GetPTTQueueResponse")]
-        System.Collections.Generic.Queue<UNET_Trainer_Trainee.UNET_Service.PTTcaller> GetPTTQueue();
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Trainer_Trainee.UNET_Service.PTTuser))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Trainer_Trainee.UNET_Service.EventDataType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(bool[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Assist[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Assist))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Instructor))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Role[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Role))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Exercise[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Exercise))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Radio[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Radio))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.UNETRadioState))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Trainee[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Trainee))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Instructor[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Platform[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.Platform))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UNET_Classes.CurrentInfo))]
+        System.Collections.Queue GetPTTQueue();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPTTQueue", ReplyAction="http://tempuri.org/IService1/GetPTTQueueResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.Queue<UNET_Trainer_Trainee.UNET_Service.PTTcaller>> GetPTTQueueAsync();
+        System.Threading.Tasks.Task<System.Collections.Queue> GetPTTQueueAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(int _traineeId, string _traineeInfo);
@@ -526,11 +469,11 @@ namespace UNET_Trainer_Trainee.UNET_Service {
             return base.Channel.AcknowledgePTTAsync(_traineeInstructorID);
         }
         
-        public System.Collections.Generic.Queue<UNET_Trainer_Trainee.UNET_Service.PTTcaller> GetPTTQueue() {
+        public System.Collections.Queue GetPTTQueue() {
             return base.Channel.GetPTTQueue();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.Queue<UNET_Trainer_Trainee.UNET_Service.PTTcaller>> GetPTTQueueAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Queue> GetPTTQueueAsync() {
             return base.Channel.GetPTTQueueAsync();
         }
         

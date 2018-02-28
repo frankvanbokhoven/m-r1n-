@@ -18,6 +18,8 @@ namespace UNET_Theming
         public static Color Background;
         public static Color ExerciseNotSelected;
         public static Color ExerciseSelectedButton;
+        public static Color ExerciseOtherSelectedButton; //color when the exercise is selected by another instructor (REQ__UNET_SRS_3 SRS 3.1.3.1.1)
+        public static Color ExerciseOtherInstructorRoles; // REQ_UNET_SRS_4
         public static Color TraineeSelectedButton;
         public static Color TraineeNotSelectedButton;
         public static Color RoleSelectedButton;
@@ -50,6 +52,8 @@ namespace UNET_Theming
                         Background = Color.DimGray;
                         ExerciseNotSelected = Color.DimGray;
                         ExerciseSelectedButton = Color.Brown;
+                        ExerciseOtherSelectedButton = Color.LightBlue;
+                        ExerciseOtherInstructorRoles = Color.LightGreen;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleSelectedButton = Color.SandyBrown;
@@ -74,6 +78,8 @@ namespace UNET_Theming
                         Background = Color.WhiteSmoke;
                         ExerciseNotSelected= Color.LightGray;
                         ExerciseSelectedButton = Color.Brown;
+                        ExerciseOtherSelectedButton = Color.LightBlue;
+                        ExerciseOtherInstructorRoles = Color.LightGreen;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
@@ -97,6 +103,8 @@ namespace UNET_Theming
                         Background = Color.WhiteSmoke;
                         ExerciseNotSelected = Color.LightBlue;
                         ExerciseSelectedButton = Color.Brown;
+                        ExerciseOtherSelectedButton = Color.LightBlue;
+                        ExerciseOtherInstructorRoles = Color.LightGreen;
                         TraineeSelectedButton = Color.BlanchedAlmond;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3

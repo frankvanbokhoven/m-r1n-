@@ -44,17 +44,17 @@ namespace UNET_Service
 
         #region PTT
         [OperationContract]
-        bool AddPTT(int _traineeInstructorID, PTTuser _pttUser);
+        bool AddPTT(string _traineeInstructorID, PTTuser _pttUser);
 
         [OperationContract]
-        bool AcknowledgePTT(int _traineeInstructorID);
+        bool AcknowledgePTT(string _traineeInstructorID);
 
         /// <summary>
         /// speciaal tbv UNET_ServiceStatus
         /// </summary>
         /// <returns></returns>
         [OperationContract]
-        Queue<PTTcaller> GetPTTQueue();
+        List<PTTcaller> GetPTTQueue();
 
         #endregion
 

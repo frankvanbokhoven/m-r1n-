@@ -40,6 +40,9 @@ namespace UNET_Tester
             GetUNETStatus();
 
             timer1.Enabled = true;
+
+            RefillTraineeAssists();
+
         }
 
         /// <summary>
@@ -372,19 +375,51 @@ namespace UNET_Tester
                 service.Open();
             }
 
-            listBoxGetmethods.Items.Clear();
+            listBoxGetmethods.Items.Clear();//lijstje leegmaken
 
             //Voeg voor iedere trainee-id een trainee object toe
             string[] instructorids = tbxInstructorIDs.Text.Split(',');
 
             List<Instructor> instructorlist = new List<Instructor>();
-            Instructor inst = new Instructor(Convert.ToInt16(instructorids[0]), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
-            inst.Exercises.Add(new Exercise(1, "Exercise test 1"));
-            instructorlist.Add(inst);
-            service.SetInstructors(instructorlist.ToArray());
-            comboBox1_SelectedValueChanged(sender, e);
-            AddToListbox(string.Format("Added instructor: {0}", 1012));
+            int k = 0;
+            foreach (Instructor instructor in instructorlist)
+            {
+                Instructor inst = new Instructor(Convert.ToInt16(instructorids[k]), "Stub Instructor: " + k);// let op!! alleen de eerste instructor komt aan bod!!
 
+                // maak een exercise aan voor het aantal in de combobox en voeg deze toe aan de instructor
+                List<Exercise> elist = new List<Exercise>();
+                for (int i = 1; i <= Convert.ToInt16(cbxExercise.Text); i++)
+                {
+                    Exercise exe = new Exercise();
+                    exe.Number = i;
+                    exe.SpecificationName = txtSpecification.Text + i.ToString("00");
+                    exe.ExerciseName = txtName.Text + i.ToString("00");
+
+                    if (cbxAssignTrainees.Checked && i == 1) //only add them to the first exercise if the checkbox is checked
+                    {
+                        //Trainee
+                        var traineelist = service.GetTrainees();
+                        List<Trainee> lsttrainee = traineelist.ToList<Trainee>();
+
+                        foreach (Trainee trainee in lsttrainee) //add these trainees to the first exercise
+                        {
+                            exe.TraineesAssigned.Add(trainee);
+                            AddToListbox(string.Format("Trainee: {0}, Name: {1}, added to first exercise", trainee.ID, trainee.Name));
+                        }
+
+                    }
+                    //  elist.Add(exe);
+                    inst.Exercises.Add(new Exercise(1, "Exercise test 1"));
+                 AddToListbox(string.Format("Added instructor: {0}", 1012));
+    }
+
+
+                instructorlist.Add(inst);
+                service.SetInstructors(instructorlist.ToArray());
+                k++;
+            }
+            comboBox1_SelectedValueChanged(sender, e);
+       
 
             cbxInstructor_SelectedValueChanged(sender, e);
             cbxRadios_SelectedValueChanged(sender, e);
@@ -405,9 +440,13 @@ namespace UNET_Tester
 
         }
 
+        /// <summary>
+        /// fill this dropdown with all users: trainees and instructors
+        /// </summary>
         private void RefillTraineeAssists()
         {
             cbxAssistTrainee.Items.Clear();
+            //trainees
             var resultlisttrainees = service.GetTrainees();
             List<UNET_Classes.Trainee> lstTrainee = resultlisttrainees.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
             foreach (UNET_Classes.Trainee trainee in lstTrainee) //then ENABLE them, based on whatever comes from the service
@@ -419,8 +458,20 @@ namespace UNET_Tester
 
                 comboBox1.Items.Add(item);
                 cbxAssistTrainee.Items.Add(item);
+            }
+
+            //instructors
+            var resultlistinstructors = service.GetInstructors();
+            List<UNET_Classes.Instructor> lstInstructor = resultlistinstructors.ToList<UNET_Classes.Instructor>();
+            foreach(UNET_Classes.Instructor instr in lstInstructor)
+            {
+                ComboboxItem itm = new ComboboxItem();
+                itm.Text = instr.ID + "|" + instr.Name;
+                itm.Value = instr.ID;
+                cbxAssistTrainee.Items.Add(itm);
 
             }
+            
 
 
         }
@@ -476,10 +527,7 @@ namespace UNET_Tester
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnRefreshInstructors_Click(object sender, EventArgs e)
         {
@@ -597,6 +645,56 @@ namespace UNET_Tester
                     service.Reset();
                 }
           
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error resetting UNET_Service {0}", ex.Message));
+                log.Error("Error resetting UNET_Service", ex);
+            }
+        }
+
+        private void btnAddPTT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                string[] splitstr = cbxAssistTrainee.Text.Split('|');
+
+                service.AddPTT(splitstr[0], splitstr[1].ToLower().Contains("instr") ? UNET_Service.PTTuser.puInstructor : UNET_Service.PTTuser.puTrainee);
+      
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error resetting UNET_Service {0}", ex.Message));
+                log.Error("Error resetting UNET_Service", ex);
+            }
+
+        }
+
+        private void btnAcknowledgePTT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                string[] splitstr = cbxAssistTrainee.Text.Split('|');
+
+                service.AcknowledgePTT(splitstr[0]);
+      
+      
+
+                service.AddPTT(splitstr[0], splitstr[1].ToLower().Contains("instr") ? UNET_Service.PTTuser.puInstructor : UNET_Service.PTTuser.puTrainee);
+
 
             }
             catch (Exception ex)
