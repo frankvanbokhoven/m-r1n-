@@ -414,12 +414,12 @@ namespace PJSUA2Implementation.SIP
          * \brief UserAgent::receiveInputMute
          * \param mute
          */
-        public void receiveInputMute(bool mute)
+        public void receiveInputMute(bool _mute)
         {
             // Set input volume to 0 when muted
             // NOTE: mute is inversed
             // TODO: real mute function to keep volume value
-            float volume = mute ? 1.0f : 0.0f;
+            float volume = _mute ? 1.0f : 0.0f;
 
             ep.audDevManager().getCaptureDevMedia().adjustTxLevel(volume);
         }

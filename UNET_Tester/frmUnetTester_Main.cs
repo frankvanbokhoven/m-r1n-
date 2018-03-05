@@ -693,7 +693,7 @@ namespace UNET_Tester
       
       
 
-                service.AddPTT(splitstr[0], splitstr[1].ToLower().Contains("instr") ? UNET_Service.PTTuser.puInstructor : UNET_Service.PTTuser.puTrainee);
+                service.AcknowledgePTT(splitstr[0]);
 
 
             }

@@ -79,22 +79,8 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;
 
-                singleton.PTTQueue.FirstOrDefault(x => x.PTTCallerID == _traineeInstructorID).Acknowledged = true; //set the appropriate ptt call to true
-
-
-
-                //do some plumbing
-                //singleton.PTTQueue.fir
-                //foreach (PTTcaller pttc in singleton.PTTQueue)
-                //{
-                //    if (((PTTcaller)pttc).ID == _traineeInstructorID)
-                //    {
-
-                //       //remove it from the queue
-                //       PTTcaller local = (PTTcaller)singleton.PTTQueue.Dequeue();
-                //       break;
-                //    }
-                //}
+                //set the ptt call to acknowledged, where it is NOT acknowledged
+                singleton.PTTQueue.Where(y => y.Acknowledged == false).FirstOrDefault(x => x.PTTCallerID == _traineeInstructorID).Acknowledged = true; //set the appropriate ptt call to true
     
             }
             catch (Exception ex)

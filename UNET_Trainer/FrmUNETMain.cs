@@ -713,14 +713,14 @@ namespace UNET_Trainer
                 MonitorRadio = false;
                 MonitorTrainee = false;
 
-                //todo: really stop monitoring!!
-                useragent.receiveInputMute(true);
+                useragent.receiveInputMute(true); //mute
             }
             else
             {
                 Muted = false;
                 btnMute.BackColor = System.Drawing.Color.LightGreen;
                 btnMute.Text = "Mute radio";
+                useragent.receiveInputMute(false); ///un-mute
             }
         }
 
