@@ -57,7 +57,8 @@ namespace UNET_Trainer
         private int RoleClicked = -1;
         private int RadioClicked = -1;
         private bool ILMode = false;
-  
+   
+
         public static FrmUNETMain GetForm
         {
             get
@@ -79,7 +80,10 @@ namespace UNET_Trainer
             panelSetup.Paint += UC_Paint;
             panelFunctions.Paint += UC_Paint;
             panelAssist.Paint += UC_Paint;
+
+           
         }
+
 
         /// <summary>
         /// Zorg dat de panels een witte border krijgen als ze een dargray opvulkleur hebben
@@ -285,6 +289,7 @@ namespace UNET_Trainer
                                 }
 
                                 //and play a sound
+                                //todo
                                 break;
                             }                         
 
@@ -336,7 +341,7 @@ namespace UNET_Trainer
 
                 foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
                 {
-                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    if( (ctrl.GetType() == typeof(System.Windows.Forms.Button) ))
                     {
                         ctrl.Enabled = false;
                         
@@ -344,6 +349,7 @@ namespace UNET_Trainer
                         ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                     }
                 }
+        
                 int exerciseselected = -1;
                 foreach (UNET_Classes.Exercise exercise in availableExerciseslst) //then ENABLE them, based on whatever is retrieved from the service
                 {
@@ -431,6 +437,7 @@ namespace UNET_Trainer
                                     {
                                         panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
                                         panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeSelectedButton;
+                                        panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].ForeColor = Theming.ButtonSelectedText;
                                         panelTrainees.Controls["btnTrainee" + listindex.ToString("00")].Tag = "enable";
 
                                     }
@@ -482,6 +489,7 @@ namespace UNET_Trainer
                                         {
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
 
                                         }
@@ -507,12 +515,22 @@ namespace UNET_Trainer
                 //enable the Radio buttons
                 foreach (Control ctrl in panelRadios.Controls)
                 {
-                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.RadioNotSelectedButton;
+                        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.RadioNotSelectedButton;
 
+                    }
+                }
+                foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
+                {
+                    if ((ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
+                    {
+                        ctrl.Enabled = false;
+
+                        ctrl.Tag = "disable";
+                        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                     }
                 }
                 if (SelectedExercise != null)
@@ -520,7 +538,7 @@ namespace UNET_Trainer
                     foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
                     {
                         panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
-                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
+                        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
 
                         //loop nu door de lijst van toegewezen radios heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
                         //zoja, vul de informatie in en enable de knop
@@ -536,6 +554,7 @@ namespace UNET_Trainer
                                         {
                                             panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
                                             panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].BackColor = Theming.RadioSelectedButton;
+                                            panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
                                             panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Tag = "enable";
 
                                         }
@@ -553,7 +572,48 @@ namespace UNET_Trainer
             {
                 log.Error("Error using WCF SetButtonStatus in Trainer", ex);
                 // throw;
+            }   
+        }
+
+        #endregion
+
+        #region PTT
+        /// <summary>
+        /// Add or remove the ptt to or from the queue
+        /// </summary>
+        /// <param name="_pressed"></param>
+        private void SetPTTPressed(bool _pressed)
+        {
+            try
+            {
+                // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
+                // visible/invisible and also set the statusled
+                //  {
+                     if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
+                    }
+
+                    if (_pressed)
+                    {
+                        service.AddPTT(InstructorID.ToString().Trim(), UNET_Service.PTTuser.puTrainee);
+                    }
+                    else
+                    {
+                        service.AcknowledgePTT(InstructorID.ToString().Trim());
+                    }
+               
+
+
+                //  MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
+                log.Info("Set ptt event:" + InstructorID.ToString().ToLower() + " Value: " + _pressed);
+
             }
+            catch (Exception ex)
+            {
+                log.Error("Error requesting assist: " + ex.Message);
+            }
+
         }
 
         #endregion
@@ -566,6 +626,26 @@ namespace UNET_Trainer
         private void trigger_CallAlert(object sender, AlertEventArgs e)
         {
             this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
+
+            // handle the buttons, depending on the call info
+            string incomingAccount = e.Caller_AccountName;
+            //     if(incomingAccount.)
+
+            //als een call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
+            if (e.Caller_AccountName.Contains("12345")) //intercom
+            {
+                btnIntercom.BackColor = Color.Red;
+            }
+
+            if (e.Caller_AccountName.Contains("RADIO")) //TYPE 1 VERBINDING
+            {
+                string[] exeinfo = e.Caller_AccountName.Split('_');
+                string exercisenumber = Helpers.ExtractNumber(exeinfo[1]);
+                string radnr = Helpers.ExtractNumber(exeinfo[2]);
+                panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+
+
+            }
 
             Application.DoEvents();
         }
@@ -825,7 +905,7 @@ namespace UNET_Trainer
         /// <returns></returns>
         private string GetDestination(int _radioNumber)
         {
-            return "RADIO_" + ExersiseNumber + "_" + _radioNumber;// "1010";
+            return "RADIO_" + _radioNumber + "_EXERCISE" +  ExersiseNumber;// "1010";
         }
 
 
@@ -868,6 +948,7 @@ namespace UNET_Trainer
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
                             ((Button)sender).Tag = "Rx";
+                            //no call here
                             break;
                         }
                     case "Tx":
@@ -890,7 +971,7 @@ namespace UNET_Trainer
 
            
 
-       //         MakeCall("1010" + (Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
+         //       MakeCall("1010" + (Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
             }
             catch (Exception ex)
             {
@@ -1285,10 +1366,14 @@ namespace UNET_Trainer
                         if (splitstr[1].ToString().Trim().ToLower() == "true")
                         {
                             lblPtt.Text = "PTT ";
+                            SetPTTPressed(true);
 
                         }
                         else
+                        {
                             lblPtt.Text = "";
+                            SetPTTPressed(false);
+                        }
                     }
                     else
                     {
@@ -1301,7 +1386,7 @@ namespace UNET_Trainer
                             lblHeadset.Text = "";
                     }
                 }
-             }
+            }
         }
 
 
@@ -1331,6 +1416,12 @@ namespace UNET_Trainer
               
                 log.Error("Error keepalive " + ex.Message);
              }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MakeCall("1001", true, true, false, true, false, false);
 
         }
     }

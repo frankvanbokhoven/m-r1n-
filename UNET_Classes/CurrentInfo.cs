@@ -13,7 +13,7 @@ namespace UNET_Classes
    public class CurrentInfo
    {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ID;
+        public int ExerciseNumber;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ExerciseName;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -24,6 +24,9 @@ namespace UNET_Classes
         public string Platform;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string InstructorName;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Radio> Radios;
+
 
 
         /// <summary>
@@ -31,12 +34,10 @@ namespace UNET_Classes
         /// </summary>
         public CurrentInfo()
         {
-
+            Radios = new List<Radio>();
         }
 
-        //  public Exercise ExerciseCurrent;
-
-
+ 
         /// <summary>
         /// constructor
         /// </summary>
@@ -47,14 +48,16 @@ namespace UNET_Classes
         /// <param name="_platform">the platform, whatever this is</param>
         /// <param name="_exercisecurrent">the exercise currently in play</param>
         /// <param name="_instructorNmae">name of the instructor so the trainee knows who's the instructor</param>
-        public CurrentInfo(int _id, string _exerciseName, string _exerciseMode, string _role, string _platform, string _instructorName)
+        public CurrentInfo(int _exerciseNumber, string _exerciseName, string _exerciseMode, string _role, string _platform, string _instructorName, List<Radio> _radios)
         {
-            ID = _id;
+            ExerciseNumber = _exerciseNumber;
             ExerciseName = _exerciseName;
             ExerciseMode = _exerciseMode;
             ConsoleRole = _role;
             Platform = _platform;
             InstructorName = _instructorName;
+            Radios = new List<Radio>();
+            Radios = _radios;
         }
     }
 }

@@ -12,10 +12,14 @@ namespace UNET_Classes
         public int ID { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Name { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Platform> PlatformsAssigned{ get; set; }
+
 
 
         public Role()
         {
+            PlatformsAssigned = new List<Platform>();
 
         }
         /// <summary>
@@ -27,6 +31,7 @@ namespace UNET_Classes
         {
             ID = _id;
             Name = _name;
+            PlatformsAssigned = new List<Platform>();
         }
     }
 }

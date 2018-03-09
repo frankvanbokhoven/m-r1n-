@@ -126,6 +126,10 @@
       <Project>{2960b03b-9b75-49eb-adfc-4f03269762ea}</Project>
       <Name>UNET_Classes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UNET_Theming\UNET_Theming.csproj">
+      <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
+      <Name>UNET_Theming</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

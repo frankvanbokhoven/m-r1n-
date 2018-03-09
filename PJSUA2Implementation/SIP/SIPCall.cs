@@ -46,6 +46,11 @@ namespace PJSUA2Implementation.SIP
         private List<OutputChannels> ChannelOutputCollection;
 
         public string Caller_AccountName = "Unknown!";
+
+        public override void onCallMediaEvent(OnCallMediaEventParam prm)
+        {
+            base.onCallMediaEvent(prm);
+        }
         /// <summary>
         /// constructor
         /// We explicitly reroute to the constructor of the Call baseclass
@@ -59,32 +64,31 @@ namespace PJSUA2Implementation.SIP
 
             //deze collections geven aan welke input poort aan welke outputpoort geknoopt wordt
             //mocht er ooit een nieuwe poort bijkomen, dan moet die in de enum worden toegevoegd.
-            if(channelinputcollection == null)
+            if (channelinputcollection == null)
             {
-              throw  new NotImplementedException("The channelinputcolletion is not initialized!!. Please create a list, fill it and add it to the constructor");
+                throw new NotImplementedException("The channelinputcolletion is not initialized!!. Please create a list, fill it and add it to the constructor");
             }
 
-            if(channeloutputcollectin == null)
+            if (channeloutputcollectin == null)
             {
                 throw new NotImplementedException("The channeloutputcolletion is not initialized!!. Please create a list, fill it and add it to the constructor");
             }
 
-            if(channelinputcollection.Count == 0)
+            if (channelinputcollection.Count == 0)
             {
                 throw new NotImplementedException("The channelinputcollection cannot be empty!");
             }
 
-            if(channeloutputcollectin.Count == 0)
+            if (channeloutputcollectin.Count == 0)
             {
                 throw new NotImplementedException("The channeloutputcollection cannot be empty!");
             }
 
             ChannelInputCollection = channelinputcollection;
             ChannelOutputCollection = channeloutputcollectin;
-
         }
 
-        #region proto code
+        #region henk's proto code
         //henk's voorbeeld
         //public SIPCall(pjsua2.Account acc, ref System.Collections.Generic.List<int> channelincollection, ref System.Collections.Generic.List<int> channeloutputcollectin, int callID = PJSUA_INVALID_ID) : base(acc, callID)
         //{
@@ -141,8 +145,6 @@ namespace PJSUA2Implementation.SIP
             {
                 base.onCallState(_prm);
 
-                
-
                 // Print the new call state
                 pjsua2.CallInfo ci = new CallInfo();
 
@@ -157,10 +159,10 @@ namespace PJSUA2Implementation.SIP
 
                         // Remove the call from the account
                         //todo: moet verwijderen!!!!! UAacc.removeCall();
-                        
+
                         // Show we are now disconnected
                         UAacc.newCallState(0);
-                       Console.Write("*** Call: " + ci.remoteUri + " disconnected");
+                        Console.Write("*** Call: " + ci.remoteUri + " disconnected");
                         Logging.LogAppender.AppendToLog("*** Call: " + ci.remoteUri + " disconnected");
                         // Delete the call object
                         GC.Collect();//  delete this;
@@ -203,17 +205,17 @@ namespace PJSUA2Implementation.SIP
 
 
                                 ////// IN channels
-                            
-                                if ((ChannelInputCollection != null) )
+
+                                if ((ChannelInputCollection != null))
                                 {
                                     //Nu gaan we alle mogelijke combinaties langs en koppelen de poorten zoals opgegeven
-                                    if ((ChannelInputCollection.Contains(InputChannels.ichMic)) )
+                                    if ((ChannelInputCollection.Contains(InputChannels.ichMic)))
                                     {
                                         //    left = aud_med_call;
-                                      foreach(AudioMedia audiomediadevice in audioMediaVectorDevices)
+                                        foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                         {
                                             int id = audiomediadevice.getPortId();
-                                            if(audiomediadevice.getPortId() == 0)
+                                            if (audiomediadevice.getPortId() == 0)
                                             {
                                                 mic = audiomediadevice;
                                                 mic.startTransmit(aud_med_call);
@@ -238,7 +240,7 @@ namespace PJSUA2Implementation.SIP
                                         Logging.LogAppender.AppendToLog("In channel: SecondIn");
                                     }
 
-                                    if ((ChannelInputCollection.Contains(InputChannels.ichThirdMic)) )
+                                    if ((ChannelInputCollection.Contains(InputChannels.ichThirdMic)))
                                     {
                                         foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                         {
@@ -250,13 +252,13 @@ namespace PJSUA2Implementation.SIP
                                             }
                                         }
                                         Logging.LogAppender.AppendToLog("In channel: ThirdIn");
-                                    }     
+                                    }
 
                                 }
 
 
                                 /////// out channels
-                                if ( (ChannelOutputCollection != null))
+                                if ((ChannelOutputCollection != null))
                                 {
                                     //Nu gaan we alle mogelijke combinaties langs en koppelen de poorten zoals opgegeven
                                     if ((ChannelOutputCollection.Contains(OutputChannels.ochLeft)))
@@ -272,7 +274,7 @@ namespace PJSUA2Implementation.SIP
                                         }
                                         Logging.LogAppender.AppendToLog("Out Channel: Left");
                                     }
-                                    if ( (ChannelOutputCollection.Contains(OutputChannels.ochRight)))
+                                    if ((ChannelOutputCollection.Contains(OutputChannels.ochRight)))
                                     {
                                         foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                         {
@@ -286,7 +288,7 @@ namespace PJSUA2Implementation.SIP
                                         Logging.LogAppender.AppendToLog("Out channel: Right");
                                     }
 
-                                    if ( (ChannelOutputCollection.Contains(OutputChannels.ochSpeaker)))
+                                    if ((ChannelOutputCollection.Contains(OutputChannels.ochSpeaker)))
                                     {
                                         foreach (AudioMedia audiomediadevice in audioMediaVectorDevices)
                                         {
@@ -300,7 +302,7 @@ namespace PJSUA2Implementation.SIP
                                         Logging.LogAppender.AppendToLog("Outchannel: Speaker");
                                     }
 
-                              
+
 
                                 }
                             }
@@ -342,7 +344,6 @@ namespace PJSUA2Implementation.SIP
                 Logging.LogAppender.AppendToLog("Exception in OnCallState: + " + ex.Message);
 
             }
-
         }
     }
 }

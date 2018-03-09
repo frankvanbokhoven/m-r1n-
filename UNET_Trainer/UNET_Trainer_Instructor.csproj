@@ -230,9 +230,6 @@
     <None Include="Service References\UNET_Service\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\Service15.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.CurrentInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -298,6 +295,10 @@
     <ProjectReference Include="..\PJSUA2Implementation\PJSUA2Implementation.csproj">
       <Project>{05bd2036-6f02-4e59-849e-ab226ce50ec5}</Project>
       <Name>PJSUA2Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UNET_button\UNET_button.csproj">
+      <Project>{09E898D8-BE34-4305-9EBC-4F8DB457EFCA}</Project>
+      <Name>UNET_button</Name>
     </ProjectReference>
     <ProjectReference Include="..\UNET_SignalGenerator\UNET_Sounds.csproj">
       <Project>{360517a6-76cb-4fb5-a347-fe18dadd9f2e}</Project>

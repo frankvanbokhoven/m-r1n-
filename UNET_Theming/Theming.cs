@@ -54,7 +54,7 @@ namespace UNET_Theming
                         ExerciseSelectedButton = Color.Brown;
                         ExerciseOtherSelectedButton = Color.LightBlue;
                         ExerciseOtherInstructorRoles = Color.LightGreen;
-                        TraineeSelectedButton = Color.BlanchedAlmond;
+                        TraineeSelectedButton = Color.PowderBlue;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleSelectedButton = Color.SandyBrown;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
@@ -80,7 +80,7 @@ namespace UNET_Theming
                         ExerciseSelectedButton = Color.Brown;
                         ExerciseOtherSelectedButton = Color.LightBlue;
                         ExerciseOtherInstructorRoles = Color.LightGreen;
-                        TraineeSelectedButton = Color.BlanchedAlmond;
+                        TraineeSelectedButton = Color.PowderBlue;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
@@ -105,7 +105,7 @@ namespace UNET_Theming
                         ExerciseSelectedButton = Color.Brown;
                         ExerciseOtherSelectedButton = Color.LightBlue;
                         ExerciseOtherInstructorRoles = Color.LightGreen;
-                        TraineeSelectedButton = Color.BlanchedAlmond;
+                        TraineeSelectedButton = Color.PowderBlue;
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3

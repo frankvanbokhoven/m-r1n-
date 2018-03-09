@@ -69,6 +69,45 @@ namespace UNET_Service
         List<UNET_Classes.Assist> GetAssists(int _instructorID);
         #endregion
 
+        #region add
+        [OperationContract]
+        bool AddRole(Role _Role);
+
+        [OperationContract]
+        bool AddTrainee(Trainee _trainee);
+
+        [OperationContract]
+        bool AddInstructor(Instructor _instructor);
+
+        [OperationContract]
+        bool AddPlatform(Platform _platform);
+
+        [OperationContract]
+        bool AddRadioObject(Radio _radio);
+
+        [OperationContract]
+        bool AddExercise(Exercise _exercise);
+
+        [OperationContract]
+        bool AddRadio(string _radioname);
+
+        [OperationContract]
+        bool AddRadioToExercise(int _exerciseID, Radio _radio);
+
+        [OperationContract]
+        bool AddPlatformToExercise(int _exerciseID, string _platformName);
+
+        [OperationContract]
+        bool AddRoleToExercise(int _exerciseID, Platform _platform, string _traineeName);
+
+        [OperationContract]
+        bool AddTraineeToExercise(int _exerciseID, Platform _platform, string _traineeName);
+
+        [OperationContract]
+        bool AddInstructorRadio(int _exerciseID, Instructor _instructor, Radio _radio);
+
+
+        #endregion
 
 
         #region Getters

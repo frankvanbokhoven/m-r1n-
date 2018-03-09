@@ -17,7 +17,6 @@ namespace UNET_ServiceStatus
     public class getData
     {
 
-        private int InstructorID = Convert.ToInt16(ConfigurationManager.AppSettings["InstructorID"].ToString());
         /// WCF service
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
 
@@ -61,7 +60,7 @@ namespace UNET_ServiceStatus
                 Console.Write(Environment.NewLine);
                 Console.Write("------------------------------------------------------------------------------------");
                 Console.Write(Environment.NewLine);
-                Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
+              //  Instructor currentInstructor = service.GetAllInstructorData(InstructorID);
                 Console.Write(Environment.NewLine);
                 var instrlist = service.GetInstructors();
 
@@ -132,9 +131,17 @@ namespace UNET_ServiceStatus
 
                             foreach (UNET_Classes.Radio rad in exe.RadiosAssigned)
                             {
-                                Console.ForegroundColor = ConsoleColor.Yellow;
+                                Console.ForegroundColor = ConsoleColor.Cyan;
                                 Console.Write("                Assigned radio: " + rad.ID + "  Radio name: " + rad.Description + " NoiseLevel: " + rad.NoiseLevel + " Freq: " + rad.Frequency);
                                 Console.Write(Environment.NewLine);
+                            }
+
+                            foreach (UNET_Classes.Platform plat in exe.PlatformsAssigned)
+                            {
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.Write("                Assigned platform: " + plat.ID + "  Platform name: " + plat.Description + " Short: " +  plat.ShortDescription);
+                                Console.Write(Environment.NewLine);
+
                             }
 
                         }
@@ -150,7 +157,7 @@ namespace UNET_ServiceStatus
 
                 }
 
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("************************************************************************************");
                 Console.Write(Environment.NewLine);
                 Console.Write(DateTime.Now.ToString() + " Hieronder de toestand van de stam gegevens");
@@ -170,6 +177,9 @@ namespace UNET_ServiceStatus
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(DateTime.Now.ToString() + " Exercises");
+
                     foreach (UNET_Classes.Exercise exercise in lst) //then ENABLE them, based on whatever comes from the service
                     {
                         Console.ForegroundColor = ConsoleColor.White;
@@ -186,6 +196,49 @@ namespace UNET_ServiceStatus
                         }
 
                     }
+                    //trainee
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(DateTime.Now.ToString() + " Trainees");
+
+                    var trlst = service.GetTrainees();
+                    List<UNET_Classes.Trainee> lsttr = trlst.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (UNET_Classes.Trainee trn in lsttr)
+                    {
+                        Console.Write(string.Format("Trainee: {0}  Name: {1}", trn.ID, trn.Name));
+                        Console.Write(Environment.NewLine);
+
+                    }
+
+
+                    //radio
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(DateTime.Now.ToString() + " Radio");
+
+                    var radlst = service.GetRadios();
+                    List<UNET_Classes.Radio> lstrad = radlst.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (UNET_Classes.Radio rad in lstrad)
+                    {
+                        Console.Write(string.Format("Radio: {0}  Name: {1}  Freq: {2} SE: {3}", rad.ID, rad.Description, rad.Frequency, rad.SpecialEffect));
+                        Console.Write(Environment.NewLine);
+
+                    }
+
+                    //role
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(DateTime.Now.ToString() + " Roles");
+
+                    var rllst = service.GetRoles();
+                    List<UNET_Classes.Role> extrole = rllst.ToList<UNET_Classes.Role>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (UNET_Classes.Role ex in extrole)
+                    {
+                        Console.Write(string.Format("Role: {0}  Name: {1}", ex.ID, ex.Name));
+                        Console.Write(Environment.NewLine);
+
+                    }
+
                 }
                 //trainees
                 Console.ForegroundColor = ConsoleColor.White;
@@ -319,11 +372,8 @@ namespace UNET_ServiceStatus
             catch (Exception ex)
             {
                 string message = ex.Message;
-
+                throw ex;
             }
-
-
-
 
         }
     }

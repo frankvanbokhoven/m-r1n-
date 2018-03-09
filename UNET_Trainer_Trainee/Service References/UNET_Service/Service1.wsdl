@@ -13,9 +13,8 @@
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/UNET_Service" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
+      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
       <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/UNET_Classes" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService1_DisconnectVCS_InputMessage">
@@ -83,6 +82,78 @@
   </wsdl:message>
   <wsdl:message name="IService1_GetAssists_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAssistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRole" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTrainee_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTrainee" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTrainee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddInstructor_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddInstructor" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddInstructor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddInstructorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlatform_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlatform" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlatform_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlatformResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadioObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadioObject" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadioObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadioObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExercise_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddExercise" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExercise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddExerciseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadio_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadioToExercise_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadioToExercise" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRadioToExercise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRadioToExerciseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlatformToExercise_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlatformToExercise" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddPlatformToExercise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlatformToExerciseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRoleToExercise_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoleToExercise" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddRoleToExercise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoleToExerciseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToExercise_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToExercise" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToExercise_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToExerciseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddInstructorRadio_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddInstructorRadio" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddInstructorRadio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddInstructorRadioResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_GetAllInstructorData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllInstructorData" />
@@ -339,6 +410,54 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAssists" message="tns:IService1_GetAssists_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAssistsResponse" message="tns:IService1_GetAssists_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddRole" message="tns:IService1_AddRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddRoleResponse" message="tns:IService1_AddRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTrainee" message="tns:IService1_AddTrainee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeResponse" message="tns:IService1_AddTrainee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddInstructor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddInstructor" message="tns:IService1_AddInstructor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddInstructorResponse" message="tns:IService1_AddInstructor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPlatform">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddPlatform" message="tns:IService1_AddPlatform_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddPlatformResponse" message="tns:IService1_AddPlatform_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRadioObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddRadioObject" message="tns:IService1_AddRadioObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddRadioObjectResponse" message="tns:IService1_AddRadioObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddExercise">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddExercise" message="tns:IService1_AddExercise_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddExerciseResponse" message="tns:IService1_AddExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRadio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddRadio" message="tns:IService1_AddRadio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddRadioResponse" message="tns:IService1_AddRadio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRadioToExercise">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddRadioToExercise" message="tns:IService1_AddRadioToExercise_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddRadioToExerciseResponse" message="tns:IService1_AddRadioToExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPlatformToExercise">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddPlatformToExercise" message="tns:IService1_AddPlatformToExercise_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddPlatformToExerciseResponse" message="tns:IService1_AddPlatformToExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoleToExercise">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddRoleToExercise" message="tns:IService1_AddRoleToExercise_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddRoleToExerciseResponse" message="tns:IService1_AddRoleToExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTraineeToExercise">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraineeToExercise" message="tns:IService1_AddTraineeToExercise_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeToExerciseResponse" message="tns:IService1_AddTraineeToExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddInstructorRadio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddInstructorRadio" message="tns:IService1_AddInstructorRadio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddInstructorRadioResponse" message="tns:IService1_AddInstructorRadio_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllInstructorData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllInstructorData" message="tns:IService1_GetAllInstructorData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAllInstructorDataResponse" message="tns:IService1_GetAllInstructorData_OutputMessage" />
@@ -575,6 +694,114 @@
     </wsdl:operation>
     <wsdl:operation name="GetAssists">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetAssists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainee">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddTrainee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInstructor">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddInstructor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPlatform">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddPlatform" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRadioObject">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddRadioObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddExercise">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRadio">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddRadio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRadioToExercise">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddRadioToExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPlatformToExercise">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddPlatformToExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoleToExercise">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddRoleToExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTraineeToExercise">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddTraineeToExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInstructorRadio">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddInstructorRadio" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

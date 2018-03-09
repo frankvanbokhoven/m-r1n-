@@ -5,6 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.ComponentModel;
+using UNET_Theming;
 
 namespace PJSUA2Implementation.SIP
 {
@@ -44,12 +45,15 @@ namespace PJSUA2Implementation.SIP
         ////
         public UserAgent()
         {
-            Account = ConfigurationManager.AppSettings["SIPAccount"].ToString();
-            DisplayName = ConfigurationManager.AppSettings["displayname"].ToString();
-            Domain = ConfigurationManager.AppSettings["SIPDomain"].ToString();
-            SipServer = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
-            Password = ConfigurationManager.AppSettings["sipPassword"];
-            Port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
+            Exception ex = new Exception("You shall not pass!! The useragent may not be called without parameters.");
+            throw ex;
+           
+            //Account = ConfigurationManager.AppSettings["SIPAccount"].ToString();
+            //DisplayName = ConfigurationManager.AppSettings["displayname"].ToString();
+            //Domain = ConfigurationManager.AppSettings["SIPDomain"].ToString();
+            //SipServer = string.Format("sip:{0}", ConfigurationManager.AppSettings["SIPServer"]);
+            //Password = ConfigurationManager.AppSettings["sipPassword"];
+            //Port = Convert.ToUInt16(ConfigurationManager.AppSettings["Port"]);
         }
 
         /// <summary>
@@ -66,9 +70,15 @@ namespace PJSUA2Implementation.SIP
             SipServer = _sipserver;
             Port = _port;
             Domain = _domain;
-            Password = _password;
-
+            Password = _password;   
             
+           
+                     
+        }
+
+        public  void onIncomingCall(OnIncomingCallParam _prm)
+        {
+
         }
 
 
@@ -76,9 +86,9 @@ namespace PJSUA2Implementation.SIP
         /// <summary>
         /// Determine an always unique string
         /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
-            //  app start, this name must still be unique
-            /// <param name="_namepart"></param>
-            /// <returns></returns>
+        //  app start, this name must still be unique
+        /// <param name="_namepart"></param>
+        /// <returns></returns>
         private string RandomThreadString(string _namepart)
         {
             string result = _namepart + "_" + Guid.NewGuid()
@@ -112,9 +122,9 @@ namespace PJSUA2Implementation.SIP
              }
             // Init library
             EpConfig ep_cfg = new EpConfig();//hier is de new erbijgezet
-            ep_cfg.logConfig.level = Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
-            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
-            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
+            ep_cfg.logConfig.level = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"loglevel", "7"));// Convert.ToUInt16(ConfigurationManager.AppSettings["LogLevel"]); // Default = 4
+            ep_cfg.uaConfig.maxCalls = Convert.ToUInt16(  RegistryAccess.GetStringRegistryValue(@"UNET", @"maxcalls", "100")); //  Convert.ToUInt16(ConfigurationManager.AppSettings["maxcalls"]);
+            ep_cfg.medConfig.sndClockRate = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sndclockrate", "16000"));// Convert.ToUInt16(ConfigurationManager.AppSettings["sndClockRate"]);
             ep_cfg.logConfig.filename = "pjsip_" + DateTime.Today.Date.ToString("yyMMdd") + ".log";
             ep.libInit(ep_cfg);
             // Configure Audio Interface
@@ -173,8 +183,8 @@ namespace PJSUA2Implementation.SIP
                 acfg.regConfig.registrarUri = sipserver;
                 acfg.regConfig.registerOnAdd = true;
 
-                acfg.regConfig.timeoutSec = Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
+                acfg.regConfig.timeoutSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"timeout", "48000"));// Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
+                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sipretry", "30"));// Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
                 AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
                 cred.realm = Domain;
                 acfg.regConfig.registerOnAdd = true;
@@ -189,6 +199,7 @@ namespace PJSUA2Implementation.SIP
                 acc = new SipAccount();
                 acc.create(acfg, true);
                 setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+            //    acc.onIncomingCall += onIncomingCall;
                 Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
 
             }

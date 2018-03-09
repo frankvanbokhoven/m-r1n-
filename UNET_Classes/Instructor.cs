@@ -9,6 +9,7 @@ namespace UNET_Classes
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public string FreeswitchID { get; set; }
         public List<Exercise> Exercises { get; set; }
         public List<Role> AssignedRoles { get; set; }
         public bool Online { get; set; }
@@ -23,6 +24,7 @@ namespace UNET_Classes
             Exercises = new List<Exercise>();
             AssignedRoles = new List<Role>();
             ID = _id;
+            FreeswitchID = _id.ToString(); //todo: vervangen door 'echte'  freeswitch id die uit de SIM komt
             Name = _name;
             Online = false;
 

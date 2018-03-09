@@ -23,6 +23,9 @@ namespace UNET_Classes
         public string Frequency { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int NoiseLevel { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public UNETSpecialEffect SpecialEffect { get; set; }
+
         public UNETRadioState State
         {
             get
@@ -50,6 +53,7 @@ namespace UNET_Classes
             ID = _id;
             Description = _description;
             Frequency = _frequency;
+            SpecialEffect = UNETSpecialEffect.seUHF;
         }
 
     }

@@ -593,6 +593,200 @@ namespace UNET_Service
         }
 
 
+        /// <summary>
+        /// add one exercise
+        /// </summary>
+        /// <param name="_exercise"></param>
+        /// <returns></returns>
+        public bool AddExercise(Exercise _exercise)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+       
+                if(singleton.Exercises.Any(x => x.Number == _exercise.Number))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Exercises.Add(_exercise);
+                }
+              
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding exersise", ex);
+                result = false;
+            }
+            return result;
+        }
+
+ /// <summary>
+ /// Add one instructor
+ /// </summary>
+ /// <param name="_instructor"></param>
+ /// <returns></returns>
+        public bool AddInstructor(Instructor _instructor)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Instructors.Any(x => x.ID == _instructor.ID))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Instructors.Add(_instructor);
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding instructor", ex);
+                result = false;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Add one Platform
+        /// </summary>
+        /// <param name="_Platform"></param>
+        /// <returns></returns>
+        public bool AddPlatform(Platform _Platform)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Platforms.Any(x => x.ID == _Platform.ID))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Platforms.Add(_Platform);
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Platform", ex);
+                result = false;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Add one Trainee
+        /// </summary>
+        /// <param name="_Trainee"></param>
+        /// <returns></returns>
+        public bool AddTrainee(Trainee _Trainee)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Trainees.Any(x => x.ID == _Trainee.ID))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Trainees.Add(_Trainee);
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Trainee", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Add one Radio
+        /// </summary>
+        /// <param name="_Radio"></param>
+        /// <returns></returns>
+        public bool AddRadioObject(Radio _Radio)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Radios.Any(x => x.ID == _Radio.ID))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Radios.Add(_Radio);
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Radio", ex);
+                result = false;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Add one instructor
+        /// </summary>
+        /// <param name="_Role"></param>
+        /// <returns></returns>
+        public bool AddRole(Role _Role)
+        {
+
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Roles.Any(x => x.ID == _Role.ID))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Roles.Add(_Role);
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Role", ex);
+                result = false;
+            }
+            return result;
+        }
 
 
         /// <summary>
@@ -628,6 +822,196 @@ namespace UNET_Service
             }
             return result;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_radioname"></param>
+        /// <returns></returns>
+        public bool AddRadio(string _radioname)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                if (singleton.Radios.Any(x => x.Description == _radioname))
+                {
+                    result = false; // this is not expected and desired
+                }
+                else
+                {
+                    singleton.Radios.Add(new Radio(-1, _radioname, string.Empty));
+                }
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Radio", ex);
+                result = false;
+            }
+            return result;
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_radio"></param>
+        /// <returns></returns>
+        public bool AddRadioToExercise(int _exerciseID, Radio _radio)
+        {
+
+            bool result = true;
+            //try
+            //{
+            //    UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+            //    if (singleton.Radios.Any(x => x.Description == _radioname))
+            //    {
+            //        result = false; // this is not expected and desired
+            //    }
+            //    else
+            //    {
+            //        singleton.Radios.Add(new Radio(-1, _radioname, string.Empty));
+            //    }
+
+            //    result = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Error adding Radio", ex);
+            //    result = false;
+            //}
+            return result;
+        }
+
+        /// <summary>
+        /// add an Instructor and a radio for a given exercise
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_platformName"></param>
+        /// <returns></returns>
+        public bool AddInstructorRadio(int _exerciseID, Instructor _instructor, Radio _radio)
+        {
+            bool result = true;
+            //try
+            //{
+            //    UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+            //                                                       //todo: checken of het platform al bestaat in de stam lijst, zoniet, voeg hem daar ook toe
+            //    singleton.Exercises.SingleOrDefault(x => x.umber == _exerciseID).PlatformsAssigned.Add(new Platform(_platformName));
+
+            //    result = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Error adding Radio", ex);
+            //    result = false;
+            //}
+            return result;
+        }
+
+        /// <summary>
+        /// Add a trainee and a radio for a given exercise
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_trainee"></param>
+        /// <param name="_radio"></param>
+        /// <returns></returns>
+        public bool AddTraineeRadio(int _exerciseID, Trainee _trainee, Radio _radio)
+        {
+            bool result = true;
+            //try
+            //{
+            //    UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+            //                                                       //todo: checken of het platform al bestaat in de stam lijst, zoniet, voeg hem daar ook toe
+            //    singleton.Exercises.SingleOrDefault(x => x.umber == _exerciseID).PlatformsAssigned.Add(new Platform(_platformName));
+
+            //    result = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    log.Error("Error adding Radio", ex);
+            //    result = false;
+            //}
+            return result;
+        }
+
+
+        /// <summary>
+        /// add a platform to a given exercise
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_platformName"></param>
+        /// <returns></returns>
+        public bool AddPlatformToExercise(int _exerciseID, string _platformName)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+//todo: checken of het platform al bestaat in de stam lijst, zoniet, voeg hem daar ook toe
+                singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).PlatformsAssigned.Add(new Platform(_platformName));
+             
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Radio", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        public bool AddTraineeToExercise(int _exerciseID, Platform _platform, string _traineeName)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                //todo: checken of de trainee al bestaat in de stam lijst, zoniet, voeg hem daar ook toe
+                singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).TraineesAssigned.Add(new Trainee(_traineeName));
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Radio", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// add a role, to a given exercise
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_platform"></param>
+        /// <param name="_roleName"></param>
+        /// <returns></returns>
+        public bool AddRoleToExercise(int _exerciseID, Platform _platform, string _roleName)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).RolesAssigned.Add(new Role(-1, _roleName));
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Radio", ex);
+                result = false;
+            }
+            return result;
+        }
+
 
         /// <summary>
         /// Retrieve an list of
@@ -1412,6 +1796,7 @@ namespace UNET_Service
                     else
                     {
                         singleton.Trainees.SingleOrDefault(x => x.ID == _clientID).Online = true;
+                        singleton.Trainees.SingleOrDefault(x => x.ID == _clientID).FreeswitchID = _clientID.ToString();//todo: die moet vervangen worden door wat uit de SIM komt
                     }
                 }
                 else  //in case of an INSTRUCTOR
@@ -1505,7 +1890,7 @@ namespace UNET_Service
                             if (tr.ID == _traineeID)
                             {
                                 result = new CurrentInfo();
-                                result.ID = ex.Number;
+                                result.ExerciseNumber = ex.Number;
                                 result.ExerciseName = ex.ExerciseName;
                                 //   result.ConsoleRole = ex.RolesAssigned[0].Name;
                                 result.ExerciseMode = "todo: mode";

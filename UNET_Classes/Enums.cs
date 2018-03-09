@@ -21,6 +21,17 @@ namespace UNET_Classes
         rsTx    // Receive and transmit sound
     };
 
+
+    /// <summary>
+    /// enum tbv Radio
+    /// </summary>
+    public enum UNETSpecialEffect
+    {
+        seUHF,
+        seVHF,
+        seHF
+    }
+
     public class Enums
     {
         /// <summary>
@@ -28,22 +39,6 @@ namespace UNET_Classes
         /// </summary>
         public enum Trainees
         {
-            //TraineeAA = 1,
-            //TraineeBB = 2,
-            //TraineeCC = 3,
-            //TraineeDD = 4,
-            //TraineeEE = 5,
-            //TraineeFF = 6,
-            //TraineeGG = 7,
-            //TraineeHH = 8,
-            //TraineeJJ = 9,
-            //TraineeKK = 10,
-            //TraineeLL = 11,
-            //TraineeMM = 12,
-            //TraineeNN = 13,
-            //TraineePP = 14,
-            //TraineeRR = 15,
-            //TraineeSS = 16
             Trainee01 = 1,
             Trainee02 = 2,
             Trainee03 = 3,

@@ -33,7 +33,6 @@
             this.panelRadios = new System.Windows.Forms.Panel();
             this.lblHeadset = new System.Windows.Forms.Label();
             this.lblPtt = new System.Windows.Forms.Label();
-            this.btnRadio20 = new System.Windows.Forms.Button();
             this.btnRadio15 = new System.Windows.Forms.Button();
             this.btnRadio10 = new System.Windows.Forms.Button();
             this.btnRadio05 = new System.Windows.Forms.Button();
@@ -127,6 +126,7 @@
             this.btnTrain = new System.Windows.Forms.Button();
             this.btnRol = new System.Windows.Forms.Button();
             this.timerKeepAlive = new System.Windows.Forms.Timer(this.components);
+            this.btnRadio20 = new UNET_Button.UNET_Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -142,9 +142,9 @@
             // 
             this.panelRadios.BackColor = System.Drawing.Color.DimGray;
             this.panelRadios.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRadios.Controls.Add(this.btnRadio20);
             this.panelRadios.Controls.Add(this.lblHeadset);
             this.panelRadios.Controls.Add(this.lblPtt);
-            this.panelRadios.Controls.Add(this.btnRadio20);
             this.panelRadios.Controls.Add(this.btnRadio15);
             this.panelRadios.Controls.Add(this.btnRadio10);
             this.panelRadios.Controls.Add(this.btnRadio05);
@@ -189,19 +189,6 @@
             this.lblPtt.Size = new System.Drawing.Size(20, 17);
             this.lblPtt.TabIndex = 31;
             this.lblPtt.Text = "...";
-            // 
-            // btnRadio20
-            // 
-            this.btnRadio20.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnRadio20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio20.Location = new System.Drawing.Point(420, 276);
-            this.btnRadio20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRadio20.Name = "btnRadio20";
-            this.btnRadio20.Size = new System.Drawing.Size(91, 74);
-            this.btnRadio20.TabIndex = 22;
-            this.btnRadio20.Text = "Radio 20";
-            this.btnRadio20.UseVisualStyleBackColor = false;
-            this.btnRadio20.Click += new System.EventHandler(this.btnRadio01_Click);
             // 
             // btnRadio15
             // 
@@ -918,7 +905,7 @@
             this.btnTrainee16.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee16.TabIndex = 18;
             this.btnTrainee16.Text = "Trainee SS";
-            this.btnTrainee16.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee16.UseVisualStyleBackColor = false;
             this.btnTrainee16.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -936,7 +923,7 @@
             this.btnTrainee14.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee14.TabIndex = 17;
             this.btnTrainee14.Text = "Trainee PP";
-            this.btnTrainee14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee14.UseVisualStyleBackColor = false;
             this.btnTrainee14.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -953,7 +940,7 @@
             this.btnTrainee12.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee12.TabIndex = 16;
             this.btnTrainee12.Text = "Trainee MM";
-            this.btnTrainee12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee12.UseVisualStyleBackColor = false;
             this.btnTrainee12.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -970,7 +957,7 @@
             this.btnTrainee10.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee10.TabIndex = 15;
             this.btnTrainee10.Text = "Trainee KK";
-            this.btnTrainee10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee10.UseVisualStyleBackColor = false;
             this.btnTrainee10.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -988,7 +975,7 @@
             this.btnTrainee08.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee08.TabIndex = 14;
             this.btnTrainee08.Text = "Trainee HH";
-            this.btnTrainee08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee08.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee08.UseVisualStyleBackColor = false;
             this.btnTrainee08.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1005,7 +992,7 @@
             this.btnTrainee06.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee06.TabIndex = 13;
             this.btnTrainee06.Text = "Trainee FF";
-            this.btnTrainee06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee06.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee06.UseVisualStyleBackColor = false;
             this.btnTrainee06.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1022,7 +1009,7 @@
             this.btnTrainee04.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee04.TabIndex = 12;
             this.btnTrainee04.Text = "Trainee DD";
-            this.btnTrainee04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee04.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee04.UseVisualStyleBackColor = false;
             this.btnTrainee04.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1039,7 +1026,7 @@
             this.btnTrainee02.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee02.TabIndex = 11;
             this.btnTrainee02.Text = "Trainee BB";
-            this.btnTrainee02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee02.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee02.UseVisualStyleBackColor = false;
             this.btnTrainee02.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1066,7 +1053,7 @@
             this.btnTrainee15.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee15.TabIndex = 8;
             this.btnTrainee15.Text = "Trainee RR";
-            this.btnTrainee15.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee15.UseVisualStyleBackColor = false;
             this.btnTrainee15.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1083,7 +1070,7 @@
             this.btnTrainee13.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee13.TabIndex = 7;
             this.btnTrainee13.Text = "Trainee NN";
-            this.btnTrainee13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee13.UseVisualStyleBackColor = false;
             this.btnTrainee13.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1100,7 +1087,7 @@
             this.btnTrainee11.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee11.TabIndex = 6;
             this.btnTrainee11.Text = "Trainee LL";
-            this.btnTrainee11.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee11.UseVisualStyleBackColor = false;
             this.btnTrainee11.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1118,7 +1105,7 @@
             this.btnTrainee09.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee09.TabIndex = 5;
             this.btnTrainee09.Text = "Trainee JJ";
-            this.btnTrainee09.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee09.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee09.UseVisualStyleBackColor = false;
             this.btnTrainee09.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1136,7 +1123,7 @@
             this.btnTrainee07.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee07.TabIndex = 4;
             this.btnTrainee07.Text = "Trainee GG";
-            this.btnTrainee07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee07.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee07.UseVisualStyleBackColor = false;
             this.btnTrainee07.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1153,7 +1140,7 @@
             this.btnTrainee05.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee05.TabIndex = 3;
             this.btnTrainee05.Text = "Trainee EE";
-            this.btnTrainee05.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee05.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee05.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee05.UseVisualStyleBackColor = false;
             this.btnTrainee05.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1170,7 +1157,7 @@
             this.btnTrainee03.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee03.TabIndex = 2;
             this.btnTrainee03.Text = "Trainee CC";
-            this.btnTrainee03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee03.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee03.UseVisualStyleBackColor = false;
             this.btnTrainee03.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1187,7 +1174,7 @@
             this.btnTrainee01.Size = new System.Drawing.Size(91, 74);
             this.btnTrainee01.TabIndex = 1;
             this.btnTrainee01.Text = "Trainee AA";
-            this.btnTrainee01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTrainee01.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTrainee01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTrainee01.UseVisualStyleBackColor = false;
             this.btnTrainee01.Click += new System.EventHandler(this.btnTraineeAA_Click);
@@ -1382,6 +1369,7 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnIL
             // 
@@ -1624,6 +1612,18 @@
             this.timerKeepAlive.Interval = 2000;
             this.timerKeepAlive.Tick += new System.EventHandler(this.timerKeepAlive_Tick);
             // 
+            // btnRadio20
+            // 
+            this.btnRadio20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio20.ID = 0;
+            this.btnRadio20.Location = new System.Drawing.Point(413, 276);
+            this.btnRadio20.Name = "btnRadio20";
+            this.btnRadio20.Size = new System.Drawing.Size(98, 74);
+            this.btnRadio20.State = null;
+            this.btnRadio20.TabIndex = 33;
+            this.btnRadio20.Text = "Radio 20";
+            this.btnRadio20.UseVisualStyleBackColor = false;
+            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1696,7 +1696,6 @@
         private System.Windows.Forms.Button btnTrainee03;
         private System.Windows.Forms.Button btnTrainee01;
         private System.Windows.Forms.Panel panelRadios;
-        private System.Windows.Forms.Button btnRadio20;
         private System.Windows.Forms.Button btnRadio15;
         private System.Windows.Forms.Button btnRadio10;
         private System.Windows.Forms.Button btnRadio05;
@@ -1764,5 +1763,6 @@
         private System.Windows.Forms.Label lblHeadset;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timerKeepAlive;
+        private UNET_Button.UNET_Button btnRadio20;
     }
 }

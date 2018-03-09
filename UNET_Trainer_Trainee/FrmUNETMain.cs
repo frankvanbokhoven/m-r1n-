@@ -37,7 +37,10 @@ namespace UNET_Trainer_Trainee
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
         private SoundPlayer simpleSound;
+        private String[] RadioStateArray = new String[20]; //used for keeping track of the radio status
         private bool AssistRequested = false;
+        private UNET_Classes.CurrentInfo currentInfo;
+        private List<UNET_Classes.Radio> lstRadio = new List<Radio>();
 
         private PJSUA2Implementation.SIP.SIPCall sc;
         private CallOpParam cop;
@@ -92,6 +95,16 @@ namespace UNET_Trainer_Trainee
                 btnIntercom.BackColor = Color.Red;
             }
 
+            if(e.Caller_AccountName.Contains("RADIO")) //TYPE 1 VERBINDING
+            {
+                string[] exeinfo = e.Caller_AccountName.Split('_');
+                string exercisenumber = Helpers.ExtractNumber(exeinfo[1]);
+                string radnr = Helpers.ExtractNumber(exeinfo[2]);
+                panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+
+
+            }
+
         }
 
         private void FrmUNETMain_Load(object sender, EventArgs e)
@@ -103,7 +116,7 @@ namespace UNET_Trainer_Trainee
                 log.Info("Started UNET_Trainee");
 
                 //todo: terugzetten   timer1.Enabled = true;
-
+             
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
                 TraineeID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"));//Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
                 // Set the text displayed in the caption.
@@ -162,6 +175,13 @@ namespace UNET_Trainer_Trainee
                     cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     lblRegInfo.Text = "Registered: " + TraineeID + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+             
+                    
+                    //initial fill for the radio state array
+                    for (int i = 0; i <= 19; i++)
+                    {
+                        RadioStateArray[i] = "Off";
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -219,9 +239,6 @@ namespace UNET_Trainer_Trainee
         {
             if (GetForegroundWindow() == this.Handle)
             {
-
-                SetButtonStatus(this);
-
                 try
                 {
                     //close the connection to the wcf service, if it is still opened
@@ -230,27 +247,39 @@ namespace UNET_Trainer_Trainee
                         service.Open();
                     }
 
-                    //enable the Exercise buttons
-                    UNET_Classes.CurrentInfo currentInfo = service.GetExerciseInfo(TraineeID);
-                    if (currentInfo != null)
-                    {
-                        lblPlatform.Text = currentInfo.Platform;
-                        lblConsole.Text = currentInfo.ConsoleRole;
-                        lblExerciseMode.Text = currentInfo.ExerciseMode;
-                        lblExerciseName.Text = currentInfo.ExerciseName;
-                        lblInstructor.Text = currentInfo.InstructorName;
 
-                        lblPlatform.ForeColor = Color.Yellow;
-                        lblConsole.ForeColor = Color.Yellow;
-                        lblExerciseMode.ForeColor = Color.Yellow;
-                        lblExerciseName.ForeColor = Color.Yellow;
-                        lblInstructor.ForeColor = Color.Yellow;
-
-                    }
-                    else
+                    if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
                     {
-                        //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
+
+               
+                                                        //enable the Exercise buttons
+                         currentInfo = service.GetExerciseInfo(TraineeID);
+
+                        
+                        if (currentInfo != null)
+                        {
+                            lblPlatform.Text = currentInfo.Platform;
+                            lblConsole.Text = currentInfo.ConsoleRole;
+                            lblExerciseMode.Text = currentInfo.ExerciseMode;
+                            lblExerciseName.Text = currentInfo.ExerciseName;
+                            lblInstructor.Text = currentInfo.InstructorName;
+
+                            lblPlatform.ForeColor = Color.Yellow;
+                            lblConsole.ForeColor = Color.Yellow;
+                            lblExerciseMode.ForeColor = Color.Yellow;
+                            lblExerciseName.ForeColor = Color.Yellow;
+                            lblInstructor.ForeColor = Color.Yellow;
+               SetButtonStatus(this);
+               ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
+        
+                        }
+                        else
+                        {
+                            //TODO: HIER IETS ZINVOLS VERZINNEN  Console.Write("The service.getexerciseinfo object is empty!!!");
+                        }
                     }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -270,41 +299,40 @@ namespace UNET_Trainer_Trainee
         private void SetButtonStatus(Control parent)
         {
             // first the trainees, we assume the name of the button component is the key for the function
-            foreach (Control c in parent.Controls)
-            {
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
+            //foreach (Control c in parent.Controls)
+            //{
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
 
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
 
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
-                {
-                    if (((Button)c).ImageIndex == 1)
-                    {
-                        ((Button)c).ImageIndex = 2;
-                    }
-                    else
-                    { ((Button)c).ImageIndex = 1; }
-                }
-                Application.DoEvents();
-            }
-
-            try
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+            //    Application.DoEvents();
+            //}
+             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
@@ -330,14 +358,16 @@ namespace UNET_Trainer_Trainee
                 {
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                    panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+
                 }
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelRoles, lstrole.Count, "role");
 
 
                 //enable the Radio buttons
                 var radiolist = service.GetRadios();
-
-                List<UNET_Classes.Radio> lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
+ lstRadio = radiolist.ToList<UNET_Classes.Radio>(); //C# v3 manier om een array in een list te krijgen
                 foreach (Control ctrl in panelRadios.Controls)
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
@@ -348,8 +378,11 @@ namespace UNET_Trainer_Trainee
                 foreach (UNET_Classes.Radio radio in lstRadio)
                 {
                     panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Enabled = true;
-                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}", radio.ID, Environment.NewLine, radio.Description, Environment.NewLine, radio.NoiseLevel);
-
+            //        panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2,radio.State.ToString().Length-2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].BackColor = Theming.RadioSelectedButton;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+                    panelRadios.Controls["btnRadio" + radio.ID.ToString("00")].Tag = radio.ID;
                 }
 
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelRadios, lstRadio.Count, "radio");
@@ -467,11 +500,13 @@ namespace UNET_Trainer_Trainee
         private string GetDestination(int _radioNumber)
         {
             string result = string.Empty;
-     
-                            try
+
+            try
             {
-              return string.Format("RADIO_{0}_{1}", "1010");
-                 }
+                //   return string.Format("RADIO_EXERCISE{0}_{1}", currentInfo.ExerciseName, _radioNumber);
+                return "RADIO_" + _radioNumber + "_EXERCISE" + currentInfo.ExerciseName;// "1010";
+
+            }
 
             catch (Exception ex)
             {
@@ -485,6 +520,8 @@ namespace UNET_Trainer_Trainee
 
         private void btnRadio01_Click(object sender, EventArgs e)
         {
+
+
             int radioNumber = -1;
             try
             {
@@ -492,40 +529,64 @@ namespace UNET_Trainer_Trainee
                 //1 zoek uit welke radio geklikt heeft
                 string state = string.Empty;
                 radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((Button)sender).Name));
+                Radio radioinfocus = new Radio(-1, "unreal radio", "xx");
+                //try to find the radioobject
+                foreach(Radio rad in lstRadio)
+                {
+                    if(rad.ID == Convert.ToInt16( ((Button)sender).Tag))
+                    {
+                        radioinfocus = rad;
+                    }
+                }
+
+               
                 if (((Button)sender).Text.Trim().Length > 8)
                 {
-                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                    if (((Button)sender).Text.Trim().ToLower().Contains("off"))
+                        state = "Off";
+                    else if (((Button)sender).Text.Trim().ToLower().Contains("rx"))
+                        state = "Rx";
+                   else if (((Button)sender).Text.Trim().ToLower().Contains("tx"))
+                        state = "Tx";
+
+                 //   state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
                 }
                 else
                 {
                     state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
                 }
                 //2 zoek die op in de radios lijst in de conferencebridge
-                string btnstate = ((Button)sender).Tag.ToString();
-                switch (btnstate) //todo: weer werkend maken
+              //  string btnstate = ((Button)sender).Tag.ToString();
+                switch (state) //todo: weer werkend maken
                 {
                     //3 zet de status   
                     case "Rx":
                         {
-                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
+                       //     ((Button)sender).Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radioNumber, Environment.NewLine,  radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radioNumber, Environment.NewLine, RadioStateArray[radioNumber], Environment.NewLine, radioinfocus.NoiseLevel, Environment.NewLine, radioinfocus.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+
                             ((Button)sender).Tag = "Tx";
+                            RadioStateArray[radioNumber] = "Tx";
                             MakeCall(GetDestination(radioNumber), true, true, false, true, true, false);
-                            break;
+                            //  ucb.Radios[radioNumber].State = UNETRadioState.rsTx;
+                          break;
                         }
                     case "Off":
                     default:
                         {
-                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
                             ((Button)sender).Tag = "Rx";
+                            RadioStateArray[radioNumber] = "Rx";
+                            //  ucb.Radios[radioNumber].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
                             break;
                         }
                     case "Tx":
                         {
-                            ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
                             ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
-                            ((Button)sender).Tag = "Off";
+                                                        ((Button)sender).Tag = "Off";
+                            RadioStateArray[radioNumber] = "Off";
+                            // ucb.Radios[radioNumber].State = UNETRadioState.rsOff;
                             break;
                         }
                 }
@@ -800,11 +861,11 @@ namespace UNET_Trainer_Trainee
 
                     if (_pressed)
                     {
-                        service.AddPTT(TraineeID, UNET_Service.PTTuser.puTrainee);
+                        service.AddPTT(TraineeID.ToString().Trim(), UNET_Service.PTTuser.puTrainee);
                     }
                     else
                     {
-                        service.AcknowledgePTT(TraineeID);
+                        service.AcknowledgePTT(TraineeID.ToString().Trim());
                     }
                  }
 

@@ -13,6 +13,8 @@ namespace UNET_Classes
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Name { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string FreeswitchID { get; set; }
+         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DateTime RegisteredSince { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Radio> Radios { get; set; }
@@ -23,11 +25,22 @@ namespace UNET_Classes
 
 
         /// <summary>
+         /// </summary>
+        public Trainee(string _traineeName)
+        {
+            Radios = new List<Radio>();
+            Roles = new List<Role>();
+            Name = _traineeName;
+
+        }
+
+        /// <summary>
         /// paremeterless constructor for Trainee class
         /// </summary>
         public Trainee()
         {
             Radios = new List<Radio>();
+            Roles = new List<Role>();
             Online = false;
 
         }
@@ -44,6 +57,7 @@ namespace UNET_Classes
             Radios = new List<Radio>();
             Roles = new List<Role>();
             Online = false;
+            FreeswitchID = _id.ToString(); //todo: moet nog expliciet worden gezet vanuit SIM
         }
     }
 }

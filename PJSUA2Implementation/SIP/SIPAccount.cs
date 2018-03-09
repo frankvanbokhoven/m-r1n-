@@ -5,15 +5,16 @@ using System.Threading;
 using System.Configuration;
 using UNET_Classes;
 using System.ComponentModel;
+using UNET_Theming;
 
 namespace PJSUA2Implementation.SIP
 {
     public class SipAccount : pjsua2.Account
     {
-         public UNET_Classes.SyncList<pjsua2.Call> Calls;
-        //     public List<pjsua2.Call> Calls;
+        public UNET_Classes.SyncList<pjsua2.Call> Calls;
         public delegate void AlertEventHandler(Object sender, AlertEventArgs e);
         public event AlertEventHandler  CallAlert;
+
         public SipAccount()
         {
             
@@ -66,10 +67,10 @@ namespace PJSUA2Implementation.SIP
             {
                 foreach (pjsua2.Call callitr in Calls)
                 {
-
-                    //    callitr.Remove();
-
-                    Console.WriteLine("*** removed Call: " + callitr.ToString());
+                    if ((RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false) //toon alleen in debug
+                    {
+                        Console.WriteLine("*** removed Call: " + callitr.ToString());
+                    }
                     callitr.Dispose();
                 }
 
@@ -168,7 +169,10 @@ namespace PJSUA2Implementation.SIP
                 SIPCall call = new SIPCall(this, ref lstinputchannels, ref lstoutputchannels, _prm.callId);
                 CallInfo ci = call.getInfo();
                 CallOpParam prm = new CallOpParam();
-                Console.WriteLine("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                if ((RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false) //toon alleen in debug
+                {
+                    Console.WriteLine("*** Incoming Call: " + ci.remoteUri + " [" + ci.stateText + "]");
+                }
                 call.Caller_AccountName = ci.remoteUri;
 
                 Calls.Add(call);

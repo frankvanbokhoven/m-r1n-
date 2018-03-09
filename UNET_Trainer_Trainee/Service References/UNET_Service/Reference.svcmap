@@ -22,14 +22,13 @@
     <MetadataSource Address="http://localhost/UNET_Service/Service1.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="5f07af17-99e4-4fcb-8c67-7781b2cc1b49" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" />
     <MetadataFile FileName="Service1.disco" MetadataType="Disco" ID="f2621899-d4ab-44ff-be65-ad49dce2e2d8" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?disco" />
     <MetadataFile FileName="Service1.xsd" MetadataType="Schema" ID="cb170e9f-6e3c-40d2-80d5-c1642e85ba02" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd2" />
     <MetadataFile FileName="Service14.xsd" MetadataType="Schema" ID="f81819e6-29bc-4cb0-8415-85a335fc2a57" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd4" />
-    <MetadataFile FileName="Service15.xsd" MetadataType="Schema" ID="018ed221-fb81-4097-9518-16edd5a31ece" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd5" />
     <MetadataFile FileName="Service12.xsd" MetadataType="Schema" ID="a3bb6eb2-6989-40ec-bd53-bfb606d55fbd" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd0" />
-    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="d3b3a70e-479e-4d65-af21-19c0fcff7546" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?wsdl" />
     <MetadataFile FileName="Service13.xsd" MetadataType="Schema" ID="acb700ff-6a98-4e9c-91b0-684473020385" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd3" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="d3b3a70e-479e-4d65-af21-19c0fcff7546" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?wsdl" />
+    <MetadataFile FileName="Service11.xsd" MetadataType="Schema" ID="5f07af17-99e4-4fcb-8c67-7781b2cc1b49" SourceId="1" SourceUrl="http://spectreyggdra/UNET_Service/Service1.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

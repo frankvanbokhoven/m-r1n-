@@ -189,6 +189,16 @@ namespace UNET_Tester
                         }
 
                     }
+                    var radioslist = service.GetRadios();
+                    List<Radio> lstRadio = radioslist.ToList<Radio>();
+                    foreach(Radio radio in lstRadio)
+                    {
+                        exe.RadiosAssigned.Add(radio);
+                        AddToListbox(string.Format("Radio: {0}, Name: {1}, SE: {2} added to first exercise", radio.ID, radio.Description, radio.SpecialEffect));
+
+                    }
+
+
                     elist.Add(exe);
                 }
                 //add the list of exercises to the service
@@ -243,14 +253,18 @@ namespace UNET_Tester
                     service.Open();
                 }
 
+                ///pick a random role description
+                string[] Roles = { "BrugOff", "Keuken", "Kapitein", "Matroos", "Kannonnier", "De Rus" };
+
 
                 // service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
                 List<Role> elist = new List<Role>();
                 for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
                 {
+                    string role = Roles[new Random().Next(0, Roles.Length)];
                     Role exe = new Role();
                     exe.ID = i;
-                    exe.Name = "Testrole-" + i.ToString("00");
+                    exe.Name = role;// "Testrole-" + i.ToString("00");
                     elist.Add(exe);
                 }
 
@@ -567,6 +581,7 @@ namespace UNET_Tester
                             foreach (UNET_Classes.Role role in lstrole)
                             {
                                 instructor.AssignedRoles.Add(role);
+                               
                             }
 
                             first = false;
@@ -634,17 +649,21 @@ namespace UNET_Tester
             try
             {
       
-                if (service.State != System.ServiceModel.CommunicationState.Opened)
-                {
-                    service.Open();
-                }
+           
 
                 //  if (MessageBox.Show("Are you sure? This 'destroys' all data in the UNET_Service!!", "Really reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly,string.Empty) == DialogResult.Yes)
                 if(MessageBox.Show("Are you sure? this clears all data from unet_service!", "Really reset?",MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    service.Reset();
+                  if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+
+                }       service.Reset();
+                    listBoxGetmethods.Items.Clear();
+                    AddToListbox("Everything is reset");
+
                 }
-          
+
 
             }
             catch (Exception ex)

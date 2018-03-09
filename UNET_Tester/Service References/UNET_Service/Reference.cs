@@ -264,6 +264,78 @@ namespace UNET_Tester.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAssists", ReplyAction="http://tempuri.org/IService1/GetAssistsResponse")]
         System.Threading.Tasks.Task<UNET_Classes.Assist[]> GetAssistsAsync(int _instructorID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRole", ReplyAction="http://tempuri.org/IService1/AddRoleResponse")]
+        bool AddRole(UNET_Classes.Role _Role);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRole", ReplyAction="http://tempuri.org/IService1/AddRoleResponse")]
+        System.Threading.Tasks.Task<bool> AddRoleAsync(UNET_Classes.Role _Role);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTrainee", ReplyAction="http://tempuri.org/IService1/AddTraineeResponse")]
+        bool AddTrainee(UNET_Classes.Trainee _trainee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTrainee", ReplyAction="http://tempuri.org/IService1/AddTraineeResponse")]
+        System.Threading.Tasks.Task<bool> AddTraineeAsync(UNET_Classes.Trainee _trainee);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddInstructor", ReplyAction="http://tempuri.org/IService1/AddInstructorResponse")]
+        bool AddInstructor(UNET_Classes.Instructor _instructor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddInstructor", ReplyAction="http://tempuri.org/IService1/AddInstructorResponse")]
+        System.Threading.Tasks.Task<bool> AddInstructorAsync(UNET_Classes.Instructor _instructor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPlatform", ReplyAction="http://tempuri.org/IService1/AddPlatformResponse")]
+        bool AddPlatform(UNET_Classes.Platform _platform);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPlatform", ReplyAction="http://tempuri.org/IService1/AddPlatformResponse")]
+        System.Threading.Tasks.Task<bool> AddPlatformAsync(UNET_Classes.Platform _platform);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadioObject", ReplyAction="http://tempuri.org/IService1/AddRadioObjectResponse")]
+        bool AddRadioObject(UNET_Classes.Radio _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadioObject", ReplyAction="http://tempuri.org/IService1/AddRadioObjectResponse")]
+        System.Threading.Tasks.Task<bool> AddRadioObjectAsync(UNET_Classes.Radio _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddExercise", ReplyAction="http://tempuri.org/IService1/AddExerciseResponse")]
+        bool AddExercise(UNET_Classes.Exercise _exercise);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddExercise", ReplyAction="http://tempuri.org/IService1/AddExerciseResponse")]
+        System.Threading.Tasks.Task<bool> AddExerciseAsync(UNET_Classes.Exercise _exercise);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadio", ReplyAction="http://tempuri.org/IService1/AddRadioResponse")]
+        bool AddRadio(string _radioname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadio", ReplyAction="http://tempuri.org/IService1/AddRadioResponse")]
+        System.Threading.Tasks.Task<bool> AddRadioAsync(string _radioname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadioToExercise", ReplyAction="http://tempuri.org/IService1/AddRadioToExerciseResponse")]
+        bool AddRadioToExercise(int _exerciseID, UNET_Classes.Radio _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRadioToExercise", ReplyAction="http://tempuri.org/IService1/AddRadioToExerciseResponse")]
+        System.Threading.Tasks.Task<bool> AddRadioToExerciseAsync(int _exerciseID, UNET_Classes.Radio _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPlatformToExercise", ReplyAction="http://tempuri.org/IService1/AddPlatformToExerciseResponse")]
+        bool AddPlatformToExercise(int _exerciseID, string _platformName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPlatformToExercise", ReplyAction="http://tempuri.org/IService1/AddPlatformToExerciseResponse")]
+        System.Threading.Tasks.Task<bool> AddPlatformToExerciseAsync(int _exerciseID, string _platformName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRoleToExercise", ReplyAction="http://tempuri.org/IService1/AddRoleToExerciseResponse")]
+        bool AddRoleToExercise(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddRoleToExercise", ReplyAction="http://tempuri.org/IService1/AddRoleToExerciseResponse")]
+        System.Threading.Tasks.Task<bool> AddRoleToExerciseAsync(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTraineeToExercise", ReplyAction="http://tempuri.org/IService1/AddTraineeToExerciseResponse")]
+        bool AddTraineeToExercise(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTraineeToExercise", ReplyAction="http://tempuri.org/IService1/AddTraineeToExerciseResponse")]
+        System.Threading.Tasks.Task<bool> AddTraineeToExerciseAsync(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddInstructorRadio", ReplyAction="http://tempuri.org/IService1/AddInstructorRadioResponse")]
+        bool AddInstructorRadio(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddInstructorRadio", ReplyAction="http://tempuri.org/IService1/AddInstructorRadioResponse")]
+        System.Threading.Tasks.Task<bool> AddInstructorRadioAsync(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllInstructorData", ReplyAction="http://tempuri.org/IService1/GetAllInstructorDataResponse")]
         UNET_Classes.Instructor GetAllInstructorData(int _instructorID);
         
@@ -588,6 +660,102 @@ namespace UNET_Tester.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Classes.Assist[]> GetAssistsAsync(int _instructorID) {
             return base.Channel.GetAssistsAsync(_instructorID);
+        }
+        
+        public bool AddRole(UNET_Classes.Role _Role) {
+            return base.Channel.AddRole(_Role);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRoleAsync(UNET_Classes.Role _Role) {
+            return base.Channel.AddRoleAsync(_Role);
+        }
+        
+        public bool AddTrainee(UNET_Classes.Trainee _trainee) {
+            return base.Channel.AddTrainee(_trainee);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTraineeAsync(UNET_Classes.Trainee _trainee) {
+            return base.Channel.AddTraineeAsync(_trainee);
+        }
+        
+        public bool AddInstructor(UNET_Classes.Instructor _instructor) {
+            return base.Channel.AddInstructor(_instructor);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddInstructorAsync(UNET_Classes.Instructor _instructor) {
+            return base.Channel.AddInstructorAsync(_instructor);
+        }
+        
+        public bool AddPlatform(UNET_Classes.Platform _platform) {
+            return base.Channel.AddPlatform(_platform);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddPlatformAsync(UNET_Classes.Platform _platform) {
+            return base.Channel.AddPlatformAsync(_platform);
+        }
+        
+        public bool AddRadioObject(UNET_Classes.Radio _radio) {
+            return base.Channel.AddRadioObject(_radio);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRadioObjectAsync(UNET_Classes.Radio _radio) {
+            return base.Channel.AddRadioObjectAsync(_radio);
+        }
+        
+        public bool AddExercise(UNET_Classes.Exercise _exercise) {
+            return base.Channel.AddExercise(_exercise);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddExerciseAsync(UNET_Classes.Exercise _exercise) {
+            return base.Channel.AddExerciseAsync(_exercise);
+        }
+        
+        public bool AddRadio(string _radioname) {
+            return base.Channel.AddRadio(_radioname);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRadioAsync(string _radioname) {
+            return base.Channel.AddRadioAsync(_radioname);
+        }
+        
+        public bool AddRadioToExercise(int _exerciseID, UNET_Classes.Radio _radio) {
+            return base.Channel.AddRadioToExercise(_exerciseID, _radio);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRadioToExerciseAsync(int _exerciseID, UNET_Classes.Radio _radio) {
+            return base.Channel.AddRadioToExerciseAsync(_exerciseID, _radio);
+        }
+        
+        public bool AddPlatformToExercise(int _exerciseID, string _platformName) {
+            return base.Channel.AddPlatformToExercise(_exerciseID, _platformName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddPlatformToExerciseAsync(int _exerciseID, string _platformName) {
+            return base.Channel.AddPlatformToExerciseAsync(_exerciseID, _platformName);
+        }
+        
+        public bool AddRoleToExercise(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName) {
+            return base.Channel.AddRoleToExercise(_exerciseID, _platform, _traineeName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRoleToExerciseAsync(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName) {
+            return base.Channel.AddRoleToExerciseAsync(_exerciseID, _platform, _traineeName);
+        }
+        
+        public bool AddTraineeToExercise(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName) {
+            return base.Channel.AddTraineeToExercise(_exerciseID, _platform, _traineeName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTraineeToExerciseAsync(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName) {
+            return base.Channel.AddTraineeToExerciseAsync(_exerciseID, _platform, _traineeName);
+        }
+        
+        public bool AddInstructorRadio(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio) {
+            return base.Channel.AddInstructorRadio(_exerciseID, _instructor, _radio);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddInstructorRadioAsync(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio) {
+            return base.Channel.AddInstructorRadioAsync(_exerciseID, _instructor, _radio);
         }
         
         public UNET_Classes.Instructor GetAllInstructorData(int _instructorID) {
