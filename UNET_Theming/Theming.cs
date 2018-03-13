@@ -13,6 +13,15 @@ namespace UNET_Theming
     {
 
         public UNETTheme Theme;
+        //constants for colors
+        public static Color cInActive = Color.Gray;
+        public static Color cExtinguised = Color.DarkSeaGreen;
+        public static Color cControlSelected = Color.DarkRed;
+        public static Color cFontSelected = Color.White;
+        public static Color cFontNotSelected = Color.Black;
+        public static Color cBroadcasting = Color.Red;
+        public static Color cFontBroadcasting = Color.White;
+
         //colors
         public static Color Whiteforecolor;
         public static Color Background;

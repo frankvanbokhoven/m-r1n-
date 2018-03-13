@@ -317,6 +317,35 @@ namespace UNET_Service
             return singleton.TraineeStatusChanged;
         }
 
+
+        /// <summary>
+        /// returns the roles that are assigned to a trainee
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <returns></returns>
+        public List<UNET_Classes.Role> GetTraineeRoles(string _traineeID)
+        {
+
+            List<UNET_Classes.Role> result = new List<UNET_Classes.Role>();
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Classes.Role>(singleton.Roles); //todo: klopt niet! moet de lijst zijn: instructor>exercise>trainee>role
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception retrieving the roles: ", ex);
+
+                throw;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Checks if anything changed in the noise level
+        /// </summary>
+        /// <returns></returns>
         public bool GetNoiseLevelChanged()
         {
             UNET_Singleton singleton = UNET_Singleton.Instance;
@@ -329,7 +358,7 @@ namespace UNET_Service
         /// <param name="_traineeId"></param>
         /// <param name="_changed"></param>
         /// <returns></returns>
-        public bool SetTraineeStatusChanged(int _traineeId, bool _changed)
+        public bool SetTraineeStatusChanged(string _traineeId, bool _changed)
         {
             UNET_Singleton singleton = UNET_Singleton.Instance;
             singleton.TraineeStatusChanged = _changed;
@@ -406,7 +435,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_instructorID"></param>
         /// <returns></returns>
-        public Instructor GetAllInstructorData(int _instructorID)
+        public Instructor GetAllInstructorData(string _instructorID)
         {
             UNET_Classes.Instructor result;// = new List<UNET_Classes.Instructor>();
             try
@@ -429,7 +458,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_traineeID"></param>
         /// <returns></returns>
-        public TraineeStatus GetAllTraineeData(int _traineeID)
+        public TraineeStatus GetAllTraineeData(string _traineeID)
         {
             try
             {
@@ -483,7 +512,7 @@ namespace UNET_Service
             return result;
         }
 
-        public List<UNET_Classes.Trainee> GetTraineesAssigned(int _instructor, int _exercise)
+        public List<UNET_Classes.Trainee> GetTraineesAssigned(string _instructor, int _exercise)
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
             try
@@ -1040,7 +1069,7 @@ namespace UNET_Service
 
                 //first, find out if any exercise is selected, if so, store the exerciseid
                 int exercisenumber = -1;
-                int instructorid = -1;
+                string instructorid = string.Empty;
                 foreach (UNET_Classes.Exercise excercise in _exercises)
                 {
                     if(excercise.Selected)
@@ -1086,7 +1115,7 @@ namespace UNET_Service
         /// <param name="_traineeID"></param>
         /// <param name="_add"></param>
         /// <returns></returns>
-        public bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add)
+        public bool SetTraineeAssignedStatus(string _instructorID, int _exersiseID, string _traineeID, bool _add)
         {
             bool result = true;
             try
@@ -1153,7 +1182,7 @@ namespace UNET_Service
         /// <param name="_traineeID"></param>
         /// <param name="_add"></param>
         /// <returns></returns>
-        public bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add)
+        public bool SetRoleAssignedStatus(string _instructorID, int _exersiseID, int _role, bool _add)
         {
             bool result = true;
             try
@@ -1221,7 +1250,7 @@ namespace UNET_Service
         /// <param name="_traineeID"></param>
         /// <param name="_add"></param>
         /// <returns></returns>
-        public bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add)
+        public bool SetRadioAssignedStatus(string _instructorID, int _exersiseID, int _radio, bool _add)
         {
             bool result = true;
             try
@@ -1281,43 +1310,43 @@ namespace UNET_Service
         }
 
 
-        /// <summary>
-        /// add mock trainees to the singleton
-        /// </summary>
-        /// <param name="_count"></param>
-        /// <returns></returns>
-        public bool SetTraineesCount(int _count)
-        {
-            bool result = true;
-            try
-            {
-                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                //first clear the array
-                singleton.Trainees.Clear();
+        ///// <summary>
+        ///// add mock trainees to the singleton
+        ///// </summary>
+        ///// <param name="_count"></param>
+        ///// <returns></returns>
+        //public bool SetTraineesCount(int _count)
+        //{
+        //    bool result = true;
+        //    try
+        //    {
+        //        UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+        //        //first clear the array
+        //        singleton.Trainees.Clear();
 
 
-                //and create a number of Trainees
-                for (int i = 1; i <= Convert.ToInt16(_count); i++)
-                {
-                    Trainee trainee = new Trainee();
-                    trainee.ID = i;
-                    trainee.Name = string.Format("Trainee{0}", i);
-                    singleton.Trainees.Add(trainee);
-                }
+        //        //and create a number of Trainees
+        //        for (int i = 1; i <= Convert.ToInt16(_count); i++)
+        //        {
+        //            Trainee trainee = new Trainee();
+        //            trainee.ID = i;
+        //            trainee.Name = string.Format("Trainee{0}", i);
+        //            singleton.Trainees.Add(trainee);
+        //        }
 
-                singleton.PendingChanges = DateTime.Now;
+        //        singleton.PendingChanges = DateTime.Now;
 
 
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error setting trainee", ex);
-                result = false;
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error setting trainee", ex);
+        //        result = false;
 
-            }
-            return result;
-        }
+        //    }
+        //    return result;
+        //}
 
 
 
@@ -1433,7 +1462,7 @@ namespace UNET_Service
         /// <param name="_exerciseIndex"></param>
         /// <param name="_select"></param>
         /// <returns></returns>
-        public bool SetExerciseSelected(int _instructor, int _exerciseNumber, bool _select)
+        public bool SetExerciseSelected(string _instructor, int _exerciseNumber, bool _select)
         {
             bool result = true;
             try
@@ -1444,14 +1473,14 @@ namespace UNET_Service
                 foreach (UNET_Classes.Exercise ex in singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises)
                 {
                     ex.Selected = false;
-                    ex.AssignedInstructorID = -1;
+                    ex.AssignedInstructorID = string.Empty;
 
                 }
 
                 foreach (UNET_Classes.Exercise ex in singleton.Exercises)
                 {
                     ex.Selected = false;
-                    ex.AssignedInstructorID = -1;
+                    ex.AssignedInstructorID = string.Empty;
                 }
 
 
@@ -1567,7 +1596,7 @@ namespace UNET_Service
             {
                      UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
                 //first, find out if any exercise is online, if so, store the instructorid
-                int instructorid = -1;
+                string instructorid = string.Empty;
                 foreach (UNET_Classes.Instructor instructor in _instructor)
                 {
                     if (instructor.Online)
@@ -1603,42 +1632,42 @@ namespace UNET_Service
             return result;
         }
 
-        /// <summary>
-        /// this function adds mock instructors to the singleton list
-        /// </summary>
-        /// <param name="_count"></param>
-        /// <returns></returns>
-        public bool SetInstructorsCount(int _count)
-        {
-            bool result = true;
-            try
-            {
-                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                //first clear the array
-                singleton.Instructors.Clear();
+        ///// <summary>
+        ///// this function adds mock instructors to the singleton list
+        ///// </summary>
+        ///// <param name="_count"></param>
+        ///// <returns></returns>
+        //public bool SetInstructorsCount(int _count)
+        //{
+        //    bool result = true;
+        //    try
+        //    {
+        //        UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+        //        //first clear the array
+        //        singleton.Instructors.Clear();
 
 
-                //and create a number of Trainees
-                for (int i = 1; i <= Convert.ToInt16(_count); i++)
-                {
-                    Instructor instructor = new Instructor();
-                    instructor.ID = i;
-                    instructor.Name = string.Format("Instructor{0}", i);
-                    singleton.Instructors.Add(instructor);
-                }
+        //        //and create a number of Trainees
+        //        for (int i = 1; i <= Convert.ToInt16(_count); i++)
+        //        {
+        //            Instructor instructor = new Instructor();
+        //            instructor.ID = i;
+        //            instructor.Name = string.Format("Instructor{0}", i);
+        //            singleton.Instructors.Add(instructor);
+        //        }
 
-                singleton.PendingChanges = DateTime.Now;
+        //        singleton.PendingChanges = DateTime.Now;
 
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                log.Error("Error setting trainee", ex);
-                result = false;
+        //        result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log.Error("Error setting trainee", ex);
+        //        result = false;
 
-            }
-            return result;
-        }
+        //    }
+        //    return result;
+        //}
 
 
         public bool SetTrainees(List<Trainee> _trainee)
@@ -1713,7 +1742,7 @@ namespace UNET_Service
         /// <param name="_clientID"></param>
         /// <param name="_isTrainee"></param>
         /// <returns></returns>
-        public bool UnRegisterClient(int _clientID, bool _isTrainee)
+        public bool UnRegisterClient(string _clientID, bool _isTrainee)
         {
             bool result = true;
             try
@@ -1755,7 +1784,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public bool RegisterClient(int _clientID, string _displayName, bool _isTrainee)
+        public bool RegisterClient(string _clientID, string _displayName, bool _isTrainee)
         {
             bool result = true;
             try
@@ -1870,7 +1899,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_traineeID"></param>
         /// <returns></returns>
-        public CurrentInfo GetExerciseInfo(int _traineeID)
+        public CurrentInfo GetExerciseInfo(string _traineeID)
         {
             CurrentInfo result = null;
             try
@@ -1923,7 +1952,7 @@ namespace UNET_Service
         /// <param name="_traineeID"></param>
         /// <param name="_traineeInfo"></param>
         /// <returns></returns>
-        public bool CreateAssist(int _traineeID, string _traineeInfo)
+        public bool CreateAssist(string _traineeID, string _traineeInfo)
         {
             bool result = true;
             try
@@ -1969,7 +1998,7 @@ namespace UNET_Service
         /// <param name="_instructorID"></param>
         /// <param name="_traineeID"></param>
         /// <returns></returns>
-        public bool AcknowledgeAssist(int _instructorID, int _traineeID)
+        public bool AcknowledgeAssist(string _instructorID, string _traineeID)
         {
             bool result = true;
             try
@@ -1985,7 +2014,7 @@ namespace UNET_Service
                     if (assist.TraineeID == _traineeID && assist.Acknowledged == false)
                     {
                         assist.Acknowledged = true;
-                        assist.AcknowledgedBy = _instructorID.ToString();
+                        assist.AcknowledgedBy = _instructorID;
                         assist.AcknowledgeTime = DateTime.Now;
                     }
                 }
@@ -2008,7 +2037,7 @@ namespace UNET_Service
         /// </summary>
         /// <param name="_instructorID"></param>
         /// <returns></returns>
-        public List<UNET_Classes.Assist> GetAssists(int _instructorID)
+        public List<UNET_Classes.Assist> GetAssists(string _instructorID)
         {
             List<Assist> result = new List<Assist>();
             try

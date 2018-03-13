@@ -60,13 +60,13 @@ namespace UNET_Service
 
         #region Assist
         [OperationContract]
-        bool CreateAssist(int _traineeId, string _traineeInfo);
+        bool CreateAssist(string _traineeId, string _traineeInfo);
 
         [OperationContract]
-        bool AcknowledgeAssist(int _instructorID, int _traineeID);
+        bool AcknowledgeAssist(string _instructorID, string _traineeID);
 
         [OperationContract]
-        List<UNET_Classes.Assist> GetAssists(int _instructorID);
+        List<UNET_Classes.Assist> GetAssists(string _instructorID);
         #endregion
 
         #region add
@@ -112,7 +112,7 @@ namespace UNET_Service
 
         #region Getters
         [OperationContract]
-        Instructor GetAllInstructorData(int _instructorID);
+        Instructor GetAllInstructorData(string _instructorID);
 
 
         [OperationContract]
@@ -127,8 +127,8 @@ namespace UNET_Service
         [OperationContract]
         List<UNET_Classes.Instructor > GetInstructors();
 
-        [OperationContract]
-        bool SetInstructorsCount(int _count);
+        //[OperationContract]
+        //bool SetInstructorsCount(int _count);
 
 
         [OperationContract]
@@ -138,13 +138,16 @@ namespace UNET_Service
         List<UNET_Classes.Platform> GetPlatforms();
 
         [OperationContract]
-        UNET_Classes.CurrentInfo GetExerciseInfo(int _traineeID);
+        UNET_Classes.CurrentInfo GetExerciseInfo(string _traineeID);
 
         [OperationContract]
         bool[] GetTraineeStatus();
 
         [OperationContract]
         bool GetTraineeStatusChanged();
+
+        [OperationContract]
+        List<UNET_Classes.Role> GetTraineeRoles(string _traineeID);
 
 
         [OperationContract]
@@ -175,19 +178,19 @@ namespace UNET_Service
 
         #region Setters
         [OperationContract]
-        bool RegisterClient(int _clientID, string _displayName, bool _isTrainee);
+        bool RegisterClient(string _clientID, string _displayName, bool _isTrainee);
 
         [OperationContract]
-        bool UnRegisterClient(int _clientID, bool _isTrainee);
+        bool UnRegisterClient(string _clientID, bool _isTrainee);
 
         [OperationContract]
         void NotifyServer(EventDataType eventData); 
 
-        [OperationContract]
-        bool SetExerciseCount(int _count);
+        //[OperationContract]
+        //bool SetExerciseCount(int _count);
 
         [OperationContract]
-        bool SetExerciseSelected(int _instructor, int _exerciseIndex, bool _select);
+        bool SetExerciseSelected(string _instructor, int _exerciseIndex, bool _select);
 
         [OperationContract]
         bool SetExercises(List<UNET_Classes.Exercise> _exercises);
@@ -195,8 +198,8 @@ namespace UNET_Service
         [OperationContract]
         bool SetRoles(List<UNET_Classes.Role> _role);
 
-        [OperationContract]
-        bool SetRolesCount(int _count);
+        //[OperationContract]
+        //bool SetRolesCount(int _count);
 
         [OperationContract]
         bool SetRadios(List<UNET_Classes.Radio> _radio);
@@ -207,8 +210,8 @@ namespace UNET_Service
         [OperationContract]
         bool SetRadiosCount(int _count);
 
-        [OperationContract]
-        bool SetTraineesCount(int _count);
+        //[OperationContract]
+        //bool SetTraineesCount(int _count);
 
         [OperationContract]
         bool SetInstructors(List<UNET_Classes.Instructor> _instructor);
@@ -220,16 +223,16 @@ namespace UNET_Service
         bool SetPlatforms(List<UNET_Classes.Platform> _platform);
 
         [OperationContract]
-        bool SetTraineeStatusChanged(int _traineeId, bool _changed);
+        bool SetTraineeStatusChanged(string _traineeId, bool _changed);
 
         [OperationContract]
-        bool SetRoleAssignedStatus(int _instructorID, int _exersiseID, int _role, bool _add);
+        bool SetRoleAssignedStatus(string _instructorID, int _exersiseID, int _role, bool _add);
 
         [OperationContract]
-        bool SetTraineeAssignedStatus(int _instructorID, int _exersiseID, int _traineeID, bool _add);
+        bool SetTraineeAssignedStatus(string _instructorID, int _exersiseID, string _traineeID, bool _add);
 
         [OperationContract]
-        bool SetRadioAssignedStatus(int _instructorID, int _exersiseID, int _radio, bool _add);
+        bool SetRadioAssignedStatus(string _instructorID, int _exersiseID, int _radio, bool _add);
 
 
         [OperationContract]

@@ -27,6 +27,7 @@ namespace UNET_Trainer
         private DateTime LastUpdate = DateTime.MinValue;
 
         public FrmUNETMain frmmain = null;
+       
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         public FrmClassBroadcast()
         {
@@ -69,38 +70,38 @@ namespace UNET_Trainer
         private void InitState()
         {
             // A little amateur.. but it just is the fastest manner
-            btnTrainee01.BackColor = Constants.cExtinguised;
-            btnTrainee02.BackColor = Constants.cExtinguised;
-            btnTrainee03.BackColor = Constants.cExtinguised;
-            btnTrainee04.BackColor = Constants.cExtinguised;
-            btnTrainee05.BackColor = Constants.cExtinguised;
-            btnTrainee06.BackColor = Constants.cExtinguised;
-            btnTrainee07.BackColor = Constants.cExtinguised;
-            btnTrainee08.BackColor = Constants.cExtinguised;
-            btnTrainee09.BackColor = Constants.cExtinguised;
-            btnTrainee10.BackColor = Constants.cExtinguised;
-            btnTrainee11.BackColor = Constants.cExtinguised;
-            btnTrainee12.BackColor = Constants.cExtinguised;
-            btnTrainee13.BackColor = Constants.cExtinguised;
-            btnTrainee14.BackColor = Constants.cExtinguised;
-            btnTrainee15.BackColor = Constants.cExtinguised;
-            btnTrainee16.BackColor = Constants.cExtinguised;
+            btnTrainee01.BackColor = Theming.cExtinguised;
+            btnTrainee02.BackColor = Theming.cExtinguised;
+            btnTrainee03.BackColor = Theming.cExtinguised;
+            btnTrainee04.BackColor = Theming.cExtinguised;
+            btnTrainee05.BackColor = Theming.cExtinguised;
+            btnTrainee06.BackColor = Theming.cExtinguised;
+            btnTrainee07.BackColor = Theming.cExtinguised;
+            btnTrainee08.BackColor = Theming.cExtinguised;
+            btnTrainee09.BackColor = Theming.cExtinguised;
+            btnTrainee10.BackColor = Theming.cExtinguised;
+            btnTrainee11.BackColor = Theming.cExtinguised;
+            btnTrainee12.BackColor = Theming.cExtinguised;
+            btnTrainee13.BackColor = Theming.cExtinguised;
+            btnTrainee14.BackColor = Theming.cExtinguised;
+            btnTrainee15.BackColor = Theming.cExtinguised;
+            btnTrainee16.BackColor = Theming.cExtinguised;
 
-            btnInstructor01.BackColor = Constants.cExtinguised;
-            btnInstructor02.BackColor = Constants.cExtinguised;
-            btnInstructor03.BackColor = Constants.cExtinguised;
-            btnInstructor04.BackColor = Constants.cExtinguised;
+            btnInstructor01.BackColor = Theming.cExtinguised;
+            btnInstructor02.BackColor = Theming.cExtinguised;
+            btnInstructor03.BackColor = Theming.cExtinguised;
+            btnInstructor04.BackColor = Theming.cExtinguised;
 
-            btnDeSelect.BackColor = Constants.cExtinguised;
-            btnDeSelect.ForeColor = Constants.cFontNotSelected;
-            btnBroadcast.BackColor = Constants.cExtinguised;
-            btnBroadcast.ForeColor = Constants.cFontNotSelected;
-            btnSelectAllInstructors.BackColor = Constants.cExtinguised;
-            btnSelectAllInstructors.ForeColor = Constants.cFontNotSelected;
-            btnSelectAllPositions.BackColor = Constants.cExtinguised;
-            btnSelectAllPositions.ForeColor = Constants.cFontNotSelected;
-            btnSelectAllTrainees.BackColor = Constants.cExtinguised;
-            btnSelectAllTrainees.ForeColor = Constants.cFontNotSelected;
+            btnDeSelect.BackColor = Theming.cExtinguised;
+            btnDeSelect.ForeColor = Theming.cFontNotSelected;
+            btnBroadcast.BackColor = Theming.cExtinguised;
+            btnBroadcast.ForeColor = Theming.cFontNotSelected;
+            btnSelectAllInstructors.BackColor = Theming.cExtinguised;
+            btnSelectAllInstructors.ForeColor = Theming.cFontNotSelected;
+            btnSelectAllPositions.BackColor = Theming.cExtinguised;
+            btnSelectAllPositions.ForeColor = Theming.cFontNotSelected;
+            btnSelectAllTrainees.BackColor = Theming.cExtinguised;
+            btnSelectAllTrainees.ForeColor = Theming.cFontNotSelected;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -197,12 +198,12 @@ namespace UNET_Trainer
                 if (!AllInstructorsSelected && !AllTraineesSelected)
                 {
                     btnBroadcast.Enabled = false;
-                    btnBroadcast.BackColor = Constants.cInActive;
+                    btnBroadcast.BackColor = Theming.cInActive;
                 }
                 else
                 {
                     btnBroadcast.Enabled = true;
-                    btnBroadcast.BackColor = Constants.cExtinguised;
+                    btnBroadcast.BackColor = Theming.cExtinguised;
                 }
 
 
@@ -230,8 +231,8 @@ namespace UNET_Trainer
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
-                        ((Button)ctrl).ForeColor = Constants.cFontSelected;
-                        ((Button)ctrl).BackColor = Constants.cControlSelected;
+                        ((Button)ctrl).ForeColor = Theming.cFontSelected;
+                        ((Button)ctrl).BackColor = Theming.cControlSelected;
                     }
 
                 }
@@ -243,8 +244,8 @@ namespace UNET_Trainer
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
-                        ((Button)ctrl).ForeColor = Constants.cFontNotSelected;
-                        ((Button)ctrl).BackColor = Constants.cExtinguised;
+                        ((Button)ctrl).ForeColor = Theming.cFontNotSelected;
+                        ((Button)ctrl).BackColor = Theming.cExtinguised;
                     }
                 }
                 AllTraineesSelected = false;
@@ -260,8 +261,8 @@ namespace UNET_Trainer
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
-                        ((Button)ctrl).ForeColor = Constants.cFontSelected;
-                        ((Button)ctrl).BackColor = Constants.cControlSelected;
+                        ((Button)ctrl).ForeColor = Theming.cFontSelected;
+                        ((Button)ctrl).BackColor = Theming.cControlSelected;
                     }
                 }
                 AllInstructorsSelected = true;
@@ -272,8 +273,8 @@ namespace UNET_Trainer
                 {
                     if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
                     {
-                        ((Button)ctrl).ForeColor = Constants.cFontNotSelected;
-                        ((Button)ctrl).BackColor = Constants.cExtinguised;
+                        ((Button)ctrl).ForeColor = Theming.cFontNotSelected;
+                        ((Button)ctrl).BackColor = Theming.cExtinguised;
                     }
                 }
                 AllInstructorsSelected = false;
@@ -294,8 +295,8 @@ namespace UNET_Trainer
         private void btnDeSelect_Click(object sender, EventArgs e)
         {
             //zet alles weer terug naar de beginwaarden
-            btnBroadcast.BackColor = Constants.cExtinguised;
-            btnBroadcast.ForeColor = Constants.cFontNotSelected;
+            btnBroadcast.BackColor = Theming.cExtinguised;
+            btnBroadcast.ForeColor = Theming.cFontNotSelected;
             btnBroadcast.Text = "Broadcast";
 
             AllInstructors(false);
@@ -315,10 +316,10 @@ namespace UNET_Trainer
             try
             {
 
-                if (btnBroadcast.BackColor == Constants.cExtinguised) //if the buttons is NOT in a broadcasting state
+                if (btnBroadcast.BackColor == Theming.cExtinguised) //if the buttons is NOT in a broadcasting state
                 {
-                    btnBroadcast.BackColor = Constants.cBroadcasting;
-                    btnBroadcast.ForeColor = Constants.cFontBroadcasting;
+                    btnBroadcast.BackColor = Theming.cBroadcasting;
+                    btnBroadcast.ForeColor = Theming.cFontBroadcasting;
                     btnBroadcast.Text = "Broadcast" + Environment.NewLine + "BROADCASTING";
                     log.Info("Start ClassBroadcast");
 
@@ -326,18 +327,18 @@ namespace UNET_Trainer
                     //only when there is no class broadcast in progress, we can start a class broadcast
                     if (AllTraineesSelected && !AllInstructorsSelected)
                     {
-                        frmmain.MakeCall(Constants.cClassBroadcastAllTrainees, true, false, false, true, false, false);
+                        frmmain.MakeCall(UNET_Classes.Constants.cClassBroadcastAllTrainees, true, false, false, true, false, false);
                         log.Info(" Started class broadcast to all trainees (10000");
                     }
                     if (!AllTraineesSelected && AllInstructorsSelected)
                     {
-                        frmmain.MakeCall(Constants.cClassBroadcastAllInstructors, true, false, false, true, false, false);
+                        frmmain.MakeCall(UNET_Classes.Constants.cClassBroadcastAllInstructors, true, false, false, true, false, false);
                         log.Info(" Started class broadcast to all Instructors (11000");
 
                     }
                     if (AllTraineesSelected && AllInstructorsSelected)
                     {
-                        frmmain.MakeCall(Constants.cClassBroadcastAll, true, false, false, true, false, false);
+                        frmmain.MakeCall(UNET_Classes.Constants.cClassBroadcastAll, true, false, false, true, false, false);
                         log.Info(" Started class broadcast to all trainees and all Instructors (12000");
                     }
 
@@ -345,8 +346,8 @@ namespace UNET_Trainer
                 else
                 {
                     //zet alles weer terug naar de beginwaarden
-                    btnBroadcast.BackColor = Constants.cExtinguised;
-                    btnBroadcast.ForeColor = Constants.cFontNotSelected;
+                    btnBroadcast.BackColor = Theming.cExtinguised;
+                    btnBroadcast.ForeColor = Theming.cFontNotSelected;
                     btnBroadcast.Text = "Broadcast";
 
                     AllInstructors(false);
@@ -354,7 +355,7 @@ namespace UNET_Trainer
 
                     log.Info("Mouseup ClassBroadcast");
                     if (frmmain != null)
-                        frmmain.HangupCall(Constants.cClassBroadcastAll); //20000 is de code voor de class broadcast conferentie
+                        frmmain.HangupCall(UNET_Classes.Constants.cClassBroadcastAll); //20000 is de code voor de class broadcast conferentie
                 }
 
             }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUNETMain));
             this.panelRadios = new System.Windows.Forms.Panel();
+            this.btnRadio20 = new UNET_Button.UNET_Button();
             this.lblHeadset = new System.Windows.Forms.Label();
             this.lblPtt = new System.Windows.Forms.Label();
             this.btnRadio15 = new System.Windows.Forms.Button();
@@ -126,7 +127,7 @@
             this.btnTrain = new System.Windows.Forms.Button();
             this.btnRol = new System.Windows.Forms.Button();
             this.timerKeepAlive = new System.Windows.Forms.Timer(this.components);
-            this.btnRadio20 = new UNET_Button.UNET_Button();
+            this.uneT_Button1 = new UNET_Button.UNET_Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -170,6 +171,20 @@
             this.panelRadios.Name = "panelRadios";
             this.panelRadios.Size = new System.Drawing.Size(522, 358);
             this.panelRadios.TabIndex = 6;
+            // 
+            // btnRadio20
+            // 
+            this.btnRadio20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio20.ID = 0;
+            this.btnRadio20.Location = new System.Drawing.Point(413, 276);
+            this.btnRadio20.Name = "btnRadio20";
+            this.btnRadio20.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRadio20.Role = null;
+            this.btnRadio20.Size = new System.Drawing.Size(98, 74);
+            this.btnRadio20.State = null;
+            this.btnRadio20.TabIndex = 33;
+            this.btnRadio20.Text = "Radio 20";
+            this.btnRadio20.UseVisualStyleBackColor = false;
             // 
             // lblHeadset
             // 
@@ -465,6 +480,7 @@
             // 
             this.panelRoles.BackColor = System.Drawing.Color.DimGray;
             this.panelRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRoles.Controls.Add(this.uneT_Button1);
             this.panelRoles.Controls.Add(this.btnClose);
             this.panelRoles.Controls.Add(this.btnRole20);
             this.panelRoles.Controls.Add(this.btnRole15);
@@ -507,7 +523,7 @@
             this.btnRole20.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole20.UseVisualStyleBackColor = false;
-            this.btnRole20.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole20.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // imageListStatus
             // 
@@ -533,7 +549,7 @@
             this.btnRole15.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole15.UseVisualStyleBackColor = false;
-            this.btnRole15.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole15.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole10
             // 
@@ -551,7 +567,7 @@
             this.btnRole10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
-            this.btnRole10.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole10.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole14
             // 
@@ -569,7 +585,7 @@
             this.btnRole14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
-            this.btnRole14.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole14.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole09
             // 
@@ -587,7 +603,7 @@
             this.btnRole09.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole09.UseVisualStyleBackColor = false;
-            this.btnRole09.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole09.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole04
             // 
@@ -605,7 +621,7 @@
             this.btnRole04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole04.UseVisualStyleBackColor = false;
-            this.btnRole04.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole04.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole17
             // 
@@ -623,7 +639,7 @@
             this.btnRole17.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole17.UseVisualStyleBackColor = false;
-            this.btnRole17.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole17.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole12
             // 
@@ -641,7 +657,7 @@
             this.btnRole12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
-            this.btnRole12.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole12.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole07
             // 
@@ -676,7 +692,7 @@
             this.btnRole02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole02.UseVisualStyleBackColor = false;
-            this.btnRole02.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole02.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // label4
             // 
@@ -704,7 +720,7 @@
             this.btnRole18.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole18.UseVisualStyleBackColor = false;
-            this.btnRole18.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole18.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole13
             // 
@@ -722,7 +738,7 @@
             this.btnRole13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
-            this.btnRole13.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole13.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole08
             // 
@@ -740,7 +756,7 @@
             this.btnRole08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole08.UseVisualStyleBackColor = false;
-            this.btnRole08.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole08.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole03
             // 
@@ -758,7 +774,7 @@
             this.btnRole03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole03.UseVisualStyleBackColor = false;
-            this.btnRole03.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole03.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole16
             // 
@@ -776,7 +792,7 @@
             this.btnRole16.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole16.UseVisualStyleBackColor = false;
-            this.btnRole16.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole16.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole11
             // 
@@ -794,7 +810,7 @@
             this.btnRole11.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
-            this.btnRole11.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole11.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole06
             // 
@@ -812,7 +828,7 @@
             this.btnRole06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole06.UseVisualStyleBackColor = false;
-            this.btnRole06.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole06.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole01
             // 
@@ -830,7 +846,7 @@
             this.btnRole01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole01.UseVisualStyleBackColor = false;
-            this.btnRole01.Click += new System.EventHandler(this.btnRole09_Click);
+            this.btnRole01.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole05
             // 
@@ -1612,17 +1628,18 @@
             this.timerKeepAlive.Interval = 2000;
             this.timerKeepAlive.Tick += new System.EventHandler(this.timerKeepAlive_Tick);
             // 
-            // btnRadio20
+            // uneT_Button1
             // 
-            this.btnRadio20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio20.ID = 0;
-            this.btnRadio20.Location = new System.Drawing.Point(413, 276);
-            this.btnRadio20.Name = "btnRadio20";
-            this.btnRadio20.Size = new System.Drawing.Size(98, 74);
-            this.btnRadio20.State = null;
-            this.btnRadio20.TabIndex = 33;
-            this.btnRadio20.Text = "Radio 20";
-            this.btnRadio20.UseVisualStyleBackColor = false;
+            this.uneT_Button1.ID = 0;
+            this.uneT_Button1.Location = new System.Drawing.Point(442, 41);
+            this.uneT_Button1.Name = "uneT_Button1";
+            this.uneT_Button1.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.uneT_Button1.Role = null;
+            this.uneT_Button1.Size = new System.Drawing.Size(75, 63);
+            this.uneT_Button1.State = null;
+            this.uneT_Button1.TabIndex = 26;
+            this.uneT_Button1.Text = "uneT_Button1";
+            this.uneT_Button1.UseVisualStyleBackColor = true;
             // 
             // FrmUNETMain
             // 
@@ -1764,5 +1781,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timerKeepAlive;
         private UNET_Button.UNET_Button btnRadio20;
+        private UNET_Button.UNET_Button uneT_Button1;
     }
 }

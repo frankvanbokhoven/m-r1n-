@@ -9,7 +9,7 @@ namespace UNET_Classes
 
     public class TraineeStatus
     {
-        public int TraineeID { get; set; }
+        public string TraineeID { get; set; }
         public List<Role> RoleList { get; set; }
         public List<Radio> RadioList { get; set; }
         public Exercise CurrentExercise { get; set; }
@@ -20,7 +20,7 @@ namespace UNET_Classes
             //empty constructor
         }
 
-        public TraineeStatus(int _traineeID, List<Role> _roleList, List<Radio> _radioList, Exercise _currentExercise)
+        public TraineeStatus(string _traineeID, List<Role> _roleList, List<Radio> _radioList, Exercise _currentExercise)
         {
             TraineeID = _traineeID;
             RoleList = _roleList;

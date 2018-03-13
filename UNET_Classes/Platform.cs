@@ -21,11 +21,15 @@ namespace UNET_Classes
         }
 
 
+        /// <summary>
+        /// constructor Platform
+        /// </summary>
+        /// <param name="_description"></param>
         public Platform(string _description)
         {
             ID = -1;
             Description = _description;
-            ShortDescription = _description;
+            ShortDescription = _description.Substring(0, _description.Length > 8 ? 8 : _description.Length);
         }
     }
 }

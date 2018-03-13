@@ -32,11 +32,11 @@ namespace UNET_Trainer
         private Boolean Muted = false;
         private Boolean MonitorTrainee = false;
         private Boolean MonitorRadio = false;
-        public int InstructorID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1017"));
-        public string  DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1017 instructor");
-             
+        public string InstructorID = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1017");
+        public string DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1017 instructor");
+
         protected UNETTheme Theme = UNETTheme.utDark;//dit zet de kleuren van de trainer
- 
+
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
@@ -57,7 +57,9 @@ namespace UNET_Trainer
         private int RoleClicked = -1;
         private int RadioClicked = -1;
         private bool ILMode = false;
-   
+        private string SelectedTrainee = string.Empty;
+
+
 
         public static FrmUNETMain GetForm
         {
@@ -81,7 +83,7 @@ namespace UNET_Trainer
             panelFunctions.Paint += UC_Paint;
             panelAssist.Paint += UC_Paint;
 
-           
+
         }
 
 
@@ -125,7 +127,7 @@ namespace UNET_Trainer
             log.Info("Terminated UNET_Instructor");
 
             Application.Exit();
-           
+
         }
 
         private void btnRoles_Click(object sender, EventArgs e)
@@ -162,13 +164,14 @@ namespace UNET_Trainer
                     {
                         service.Open();
                     }
-             
+
                     if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
                     {
 
                         SetButtonStatus(this);
 
                         GetAssists(this);
+                        GetP2P(this);
                         ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
                     }
                 }
@@ -223,7 +226,7 @@ namespace UNET_Trainer
         public void SetNoiseLevel(int _SelectedRadioButtonIndex, int _SelectedNoiseButtonIndex)
         {
 
-         //todo   MakeCall( @"NOISE_RADIO_X\" + GetTraineeAtRadio(_SelectedRadioButtonIndex), _SelectedNoiseButtonIndex, "Noise for radio: " + _SelectedRadioButtonIndex, true, true, false, true, true, false);
+            //todo   MakeCall( @"NOISE_RADIO_X\" + GetTraineeAtRadio(_SelectedRadioButtonIndex), _SelectedNoiseButtonIndex, "Noise for radio: " + _SelectedRadioButtonIndex, true, true, false, true, true, false);
         }
 
         /// <summary>
@@ -241,30 +244,30 @@ namespace UNET_Trainer
         #region  Button Status setters
 
         /// <summary>
-        /// gets the assistlist for this instructor and sets the status indicators accordingly
+        /// gets the list of pending assists for this instructor and sets the status indicators accordingly
         /// </summary>
         /// <param name="parent"></param>
         private void GetAssists(Control parent)
         {
             try
-            { 
-            foreach (Control c in parent.Controls)
             {
-                //reset everything
-                if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                foreach (Control c in parent.Controls)
                 {
-                    ((Button)c).ImageIndex = 0;
-                 
+                    //reset everything
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                    {
+                        ((Button)c).ImageIndex = 0;
+
+                    }
                 }
-            }
 
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
-            {
-               service.Open();
-            }
-            //retrieve the pending assists for this instructor
-            var resultassists  = service.GetAssists(InstructorID);
-            List<Assist> pendingAssists = resultassists.ToList<Assist>();
+                {
+                    service.Open();
+                }
+                //retrieve the pending assists for this instructor
+                var resultassists = service.GetAssists(InstructorID);
+                List<Assist> pendingAssists = resultassists.ToList<Assist>();
 
                 //loop thrue the list of pending assists
                 foreach (Assist ass in pendingAssists)
@@ -276,7 +279,7 @@ namespace UNET_Trainer
                         {
                             string[] traineelabel = ((Button)ctrl).Text.Split(' ');
                             string traineeid = traineelabel[1];
-                            if(traineeid.Trim() == ass.TraineeID.ToString())
+                            if (traineeid.Trim() == ass.TraineeID.ToString())
                             {
                                 if (((Button)ctrl).ImageIndex == 1)
                                 {
@@ -291,7 +294,7 @@ namespace UNET_Trainer
                                 //and play a sound
                                 //todo
                                 break;
-                            }                         
+                            }
 
                         }
                     }
@@ -309,6 +312,70 @@ namespace UNET_Trainer
             }
 
         }
+
+        /// <summary>
+        /// gets the pending P2P (type3(1) calls for this instructor and sets the status indicators accordingly
+        /// </summary>
+        /// <param name="parent"></param>
+        private void GetP2P(Control parent)
+        {
+            try
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    //reset everything
+                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
+                    {
+                        ((Button)c).ImageIndex = 0;
+
+                    }
+                }
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                //retrieve the pending PointToPoints for this instructor
+                var resultP2P = service.GetP2P(InstructorID);
+                List<PointToPoint> pendingP2P = resultP2P.ToList<PointToPoint>();
+
+                //loop thrue the list of pending assists
+                foreach (PointToPoint ass in pendingP2P)
+                {
+                    //then loop thrue the list of btnTrainees
+                    foreach (Control ctrl in panelRoles.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                        {
+                            string[] rolelabel = ((Button)ctrl).Text.Split(' ');
+                            string traineeid = p2plabel[1];
+                            if (traineeid.Trim() == ass.TraineeID.ToString())
+                            {
+                                if (((Button)ctrl).ImageIndex == 1)
+                                {
+                                    ((Button)ctrl).ImageIndex = 2;
+                                }
+                                else
+                                {
+                                    ((Button)ctrl).ImageIndex = 1;
+                                }
+
+                                //and play a sound
+                                //todo
+                                break;
+                            }
+                        }
+                    }
+                    Application.DoEvents();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error getting P2P", ex);
+                // throw;
+            }
+        }
+
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
         /// It also enables/disables buttons based on the number of exercises given bij the service
@@ -341,20 +408,20 @@ namespace UNET_Trainer
 
                 foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
                 {
-                    if( (ctrl.GetType() == typeof(System.Windows.Forms.Button) ))
+                    if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)))
                     {
                         ctrl.Enabled = false;
-                        
+
                         ctrl.Tag = "disable";
                         ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                     }
                 }
-        
+
                 int exerciseselected = -1;
                 foreach (UNET_Classes.Exercise exercise in availableExerciseslst) //then ENABLE them, based on whatever is retrieved from the service
                 {
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Enabled = true; //exercises worden altijd visible, want moeten altijd gekozen kunnen worden
-                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}{5}{6}Instructor:{6}{7}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName, Environment.NewLine,Environment.NewLine, exercise.AssignedInstructorID != -1 ? exercise.AssignedInstructorID.ToString() : "Not assigned" );
+                    panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Text = string.Format("Exercise {0}{1}{2}{3}{4}{5}{6}Instructor:{6}{7}", exercise.Number, Environment.NewLine, exercise.SpecificationName, Environment.NewLine, exercise.ExerciseName, Environment.NewLine, Environment.NewLine, exercise.AssignedInstructorID.Length > 0 ? exercise.AssignedInstructorID.ToString() : "Not assigned");
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].Tag = "enable";
                     panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseNotSelected;
 
@@ -388,7 +455,7 @@ namespace UNET_Trainer
                                 }
                                 else
                                 {  //REQ_UNET_SRS_3
-                                    if (exerciseAssigned.AssignedInstructorID != -1)
+                                    if (exerciseAssigned.AssignedInstructorID.Length > 0)
                                     {
                                         panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].BackColor = Theming.ExerciseOtherInstructorRoles;
                                         panelExercises.Controls["btnExersise" + exercise.Number.ToString("00")].ForeColor = Theming.ButtonText;
@@ -466,11 +533,12 @@ namespace UNET_Trainer
 
                     }
                 }
-                
+
 
                 if (SelectedExercise != null)
-                {
-                    foreach (UNET_Classes.Role role in SelectedExercise.RolesAssigned)
+                {//in onderstaande for loop nemen we de selectedtrainee (die gezet is in het onclick van de traineebutton, daarmee
+                    //selecteren we in de trainees die aan de exercise hangen van deze instructor, en daarvan de rollen die daaraan hangen.
+                    foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).TraineesAssigned.SingleOrDefault(p => p.ID == SelectedTrainee).Roles)
                     {
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
@@ -501,7 +569,7 @@ namespace UNET_Trainer
                     UNET_Classes.Helpers.ResizeButtons(panelRoles, SelectedExercise.RolesAssigned.Count, "role");
 
 
-                    if(ILMode)
+                    if (ILMode)
                     {
                         btnIL.BackColor = Theming.ILModeActive;
                     }
@@ -572,7 +640,7 @@ namespace UNET_Trainer
             {
                 log.Error("Error using WCF SetButtonStatus in Trainer", ex);
                 // throw;
-            }   
+            }
         }
 
         #endregion
@@ -589,20 +657,20 @@ namespace UNET_Trainer
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
                 // visible/invisible and also set the statusled
                 //  {
-                     if (service.State != System.ServiceModel.CommunicationState.Opened)
-                    {
-                        service.Open();
-                    }
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
 
-                    if (_pressed)
-                    {
-                        service.AddPTT(InstructorID.ToString().Trim(), UNET_Service.PTTuser.puTrainee);
-                    }
-                    else
-                    {
-                        service.AcknowledgePTT(InstructorID.ToString().Trim());
-                    }
-               
+                if (_pressed)
+                {
+                    service.AddPTT(InstructorID.ToString().Trim(), UNET_Service.PTTuser.puTrainee);
+                }
+                else
+                {
+                    service.AcknowledgePTT(InstructorID.ToString().Trim());
+                }
+
 
 
                 //  MakeCall(@"MIC_Conference_Pos01\" + TraineeID, true, true, false, true, false, false);
@@ -645,6 +713,12 @@ namespace UNET_Trainer
                 panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
 
 
+            }
+
+            //Class broadcast
+            if (e.Caller_AccountName.Contains(UNET_Classes.Constants.cClassBroadcastAll) || e.Caller_AccountName.Contains(UNET_Classes.Constants.cClassBroadcastAllInstructors) || e.Caller_AccountName.Contains(UNET_Classes.Constants.cClassBroadcastAllTrainees)) //TYPE 3 VERBINDING BROADCAST
+            {
+                btnClassBroadcast.BackColor = Color.Red;
             }
 
             Application.DoEvents();
@@ -695,7 +769,7 @@ namespace UNET_Trainer
                 //account
                 UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
                 string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
-                bool debug = (RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false;;
+                bool debug = (RegistryAccess.GetStringRegistryValue(@"UNET", @"debug", "1").Trim() == "1") ? true : false; ;
 
                 button1.Visible = debug;
                 btnClose.Visible = debug;
@@ -776,7 +850,7 @@ namespace UNET_Trainer
             FrmRadioSetup frm = new FrmRadioSetup(ExersiseNumber + 1);
             frm.Show();
         }
- 
+
 
         /// <summary>
         /// 2.1.6 when mute is clicked, the monitoring of all sessions is canceled
@@ -812,7 +886,7 @@ namespace UNET_Trainer
         /// <param name="e"></param>
         private void btnMonitorTrainee_Click(object sender, EventArgs e)
         {
-         //   SetTraineeStatus();
+            //   SetTraineeStatus();
             if (!MonitorTrainee)
             {
                 MonitorTrainee = true;
@@ -833,33 +907,45 @@ namespace UNET_Trainer
         /// </summary>
         private void btnTraineeAA_Click(object sender, EventArgs e)
         {
-            int selectedTraineeIndex = -1;
- 
-            selectedTraineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
-
-            /// <summary>
-            /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
-            /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
-            /// this generic code covers this for all all buttons at once
-            /// </summary>
-            if (MonitorTrainee)
+            try
             {
-                // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
-                MonitorTraineeArray[selectedTraineeIndex] = true;
-                ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
-                ((Button)sender).ForeColor = System.Drawing.Color.White;
+                int selectedTraineeIndex = -1;
+
+                selectedTraineeIndex = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Trainees), ((Button)sender).Name.Remove(0, 3)));
+
+                //now determine the trainee account id of the clicked trainee
+                string brkln = Environment.NewLine;
+                int positionOfNewLine = ((Button)(sender)).Text.IndexOf("\r\n");
+                SelectedTrainee = ((Button)(sender)).Text.Substring(0, positionOfNewLine);
+                SelectedTrainee = SelectedTrainee.Substring(7).Trim(); //is ook nodig voor het laden van de roles
+
+                /// <summary>
+                /// When the button  'monitor trainee' clicked and after that one of the trainee buttons,
+                /// this trainee button must be set to brown, and a possible other trainee button must be set to the default color
+                /// this generic code covers this for all all buttons at once
+                /// </summary>
+                if (MonitorTrainee)
+                {
+                    // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
+                    MonitorTraineeArray[selectedTraineeIndex] = true;
+                    ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
+                    ((Button)sender).ForeColor = System.Drawing.Color.White;
+                }
+
+                //if assist is pending, acknowledge it
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                //retrieve the pending assists for this instructor
+                service.AcknowledgeAssist(InstructorID, SelectedTrainee);
+                ((Button)sender).ImageIndex = -1;
             }
-
-
-            //if assist is pending, acknowledge it
-            if (service.State != System.ServiceModel.CommunicationState.Opened)
+            catch (Exception ex)
             {
-                service.Open();
+                log.Error("Trainee click event:", ex);
+                // throw;
             }
-            //retrieve the pending assists for this instructor
-            service.AcknowledgeAssist(InstructorID, selectedTraineeIndex);
-
-
         }
         #endregion
 
@@ -905,7 +991,7 @@ namespace UNET_Trainer
         /// <returns></returns>
         private string GetDestination(int _radioNumber)
         {
-            return "RADIO_" + _radioNumber + "_EXERCISE" +  ExersiseNumber;// "1010";
+            return "RADIO_" + _radioNumber + "_EXERCISE" + ExersiseNumber;// "1010";
         }
 
 
@@ -969,9 +1055,8 @@ namespace UNET_Trainer
                 //color the button(s) accordingly
                 SetStatusAndColorRadioButtons((Button)sender);
 
-           
 
-         //       MakeCall("1010" + (Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
+
             }
             catch (Exception ex)
             {
@@ -1037,9 +1122,9 @@ namespace UNET_Trainer
 
         private void FrmUNETMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-//#if (!DEBUG)
-      Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-//#endif
+            //#if (!DEBUG)
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            //#endif
             try
             {
                 //close the connection to the wcf service, if it is still opened
@@ -1054,20 +1139,20 @@ namespace UNET_Trainer
                     HangupAllCalls();
                     useragent.UserAgentStop();
 
-                    
-            //try to find and kill the TCPSocketClient process and kill it
-            FindAndKillProcess("TCPSocketClient.exe");
-            log.Info("Terminated UNET_Instructor");
-          }
+
+                    //try to find and kill the TCPSocketClient process and kill it
+                    FindAndKillProcess("TCPSocketClient.exe");
+                    log.Info("Terminated UNET_Instructor");
+                }
                 signal.DisposeSignalgenerator();
             }
             catch (Win32Exception winex)
             {
-             
-                    MessageBox.Show(this, winex.Message, "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation);
-                
+
+                MessageBox.Show(this, winex.Message, "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+
             }
             catch (Exception ex)
             {
@@ -1075,7 +1160,7 @@ namespace UNET_Trainer
                 // throw;
             }
 
-      
+
         }
 
         /// <summary>
@@ -1113,7 +1198,7 @@ namespace UNET_Trainer
             //        SetButtonStatus(this);
         }
         #region CALL
- 
+
         /// <summary>
         /// Make a call to PJSUA2 / Freeswitch
         /// <param name="_destination"></param>
@@ -1172,7 +1257,7 @@ namespace UNET_Trainer
 
                 useragent.acc.removeCall(sc);
 
-             }
+            }
             catch (Exception ex)
             {
                 log.Error("Error making call to: " + _destination, ex);
@@ -1197,7 +1282,7 @@ namespace UNET_Trainer
                 //1 zoek uit welke radio geklikt heeft
                 string state = ((Button)sender).Text.Trim();
 
-                 if (((Button)sender).Text.Trim().Length > 8)
+                if (((Button)sender).Text.Trim().Length > 8)
                 {
                     state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
                 }
@@ -1211,7 +1296,7 @@ namespace UNET_Trainer
                     ((Button)sender).Tag = "Tx";
                 }
                 string btnstate = ((Button)sender).Tag.ToString();
-                switch (btnstate) 
+                switch (btnstate)
                 {
                     //3 zet de status   
                     case "Rx":
@@ -1239,28 +1324,21 @@ namespace UNET_Trainer
 
 
 
-    //            MakeCall("10000", true, false, false, true, false, false);//intercom must go left
+                //            MakeCall("10000", true, false, false, true, false, false);//intercom must go left
             }
             catch (Exception ex)
             {
                 log.Error("Error setting the intercom status", ex);
                 // throw;
-            } 
+            }
         }
 
         private void btnAssist_Click(object sender, EventArgs e)
         {
-            MakeCall( @"INTERCOM_CUB_" + InstructorID,  true, true, false, false, true, false);// interom must go left
+            MakeCall(@"INTERCOM_CUB_" + InstructorID, true, true, false, false, true, false);// interom must go left
 
         }
 
-        private void btnRole09_Click(object sender, EventArgs e)
-        {
-            RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
-            ((Button)sender).BackColor = Color.Black;
-            ((Button)sender).ForeColor = Color.White;
-
-        }
 
         /// <summary>
         /// Hangup all active calls
@@ -1413,9 +1491,9 @@ namespace UNET_Trainer
             }
             catch (Exception ex)
             {
-              
+
                 log.Error("Error keepalive " + ex.Message);
-             }
+            }
 
         }
 
@@ -1423,6 +1501,75 @@ namespace UNET_Trainer
         {
             MakeCall("1001", true, true, false, true, false, false);
 
+        }
+
+        /// <summary>
+        /// find the description of the role, based on a given role id
+        /// </summary>
+        /// <param name="_role"></param>
+        /// <returns></returns>
+        private string GetRole(int _role)
+        {
+            return "Kapitein";
+        }
+        /// <summary>
+        /// click event voor alle role buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRole_Click(object sender, EventArgs e)
+        {
+            RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
+            ((Button)sender).BackColor = Color.Black;
+            ((Button)sender).ForeColor = Color.White;
+            try
+            {
+                switch (((UNET_Button.UNET_Button)sender).P2PCallState)
+                {
+                    case UNET_Button.P2PState.psNoP2PCall:
+                        {
+                            //start a p2p call (by instructor)
+                            service.RequestP2P(InstructorID, SelectedTrainee, SelectedExercise, GetRole(RoleClicked));
+
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+                            break;
+                        }
+                    case UNET_Button.P2PState.psCalledByTrainee: //when you get called by an trainee
+                        {
+
+                            service.AcknowledgeP2P(InstructorID); //let know the call is answered 
+                            MakeCall(SelectedTrainee, true, true, true, true, true, true); //and then call
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
+                            break;
+                        }
+                    default:
+                    case UNET_Button.P2PState.psP2PCallPending:
+                        {
+                            //just wait..
+                            break;
+                        }
+                    case UNET_Button.P2PState.psP2PInProgress:
+                        {
+                            HangupCall(SelectedTrainee); //hang up the call
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall; ;
+
+                            break;
+                        }
+
+                }
+
+                //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                log.Error("Error keepalive " + ex.Message);
+            }
         }
     }
 }

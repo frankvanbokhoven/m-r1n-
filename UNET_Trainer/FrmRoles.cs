@@ -23,7 +23,7 @@ namespace UNET_Trainer
 
 
         private int SelectedExercise;
-        private int InstructorID = -1;
+        private string InstructorID = string.Empty;
         private Instructor CurrentInstructor;
         private DateTime LastUpdate = DateTime.MinValue;
   
@@ -36,7 +36,7 @@ namespace UNET_Trainer
         }
 
 
-        public FrmRoles(int _exersise, int _instructorID)
+        public FrmRoles(int _exersise, string _instructorID)
         {
             SelectedExercise = _exersise;
             InstructorID = _instructorID;
@@ -140,7 +140,7 @@ namespace UNET_Trainer
                 }
                 //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
                 //zoja, vul de informatie in en enable de knop met de role-toegewezen-kleur
-                if (InstructorID != -1)
+                if (InstructorID.Length > 0)
                 {
                     if (!Object.ReferenceEquals(CurrentInstructor, null))
                     {
@@ -150,15 +150,9 @@ namespace UNET_Trainer
                             {
                                 foreach (Role assignedRole in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).RolesAssigned) //pak van de bij exercises geselecteerde exercise, de lijst van toegewezen trainees en gebruik die om de buttons te kleuren
                                 {
-                                    //    if (assignedRole.ID == role.ID)
-                                    //    {
-                                    //   pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                                     pnlRoles.Controls["btnRole" + assignedRole.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
                                     pnlRoles.Controls["btnRole" + assignedRole.ID.ToString("00")].Text += string.Format("{0}Instructor: {1}", Environment.NewLine, CurrentInstructor.ID + " " + CurrentInstructor.Name);
-
-
-                                    //    }
-                                }
+                                 }
                             }
                         }
                     }

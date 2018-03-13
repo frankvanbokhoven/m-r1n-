@@ -25,7 +25,7 @@ namespace UNET_Trainer
 
         private UNET_Service.Service1Client service = new UNET_Service.Service1Client();
         private int SelectedExercise;
-        private int InstructorID;
+        private string InstructorID;
         private DateTime LastUpdate = DateTime.MinValue;
 
         #region constructors
@@ -35,7 +35,7 @@ namespace UNET_Trainer
             pnlTrainees.Paint += UC_Paint;
         }
 
-        public FrmTrainees(int _exersise, int _instructorID)
+        public FrmTrainees(int _exersise, string _instructorID)
         {
             SelectedExercise = _exersise;
             InstructorID = _instructorID;
@@ -143,7 +143,7 @@ namespace UNET_Trainer
 
                 //loop nu door de lijst van toegewezen trainees heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
                 //zoja, vul de informatie in en enable de knop met de trainee-toegewezen-kleur
-                if (InstructorID != -1)
+                if (InstructorID.Length > 0)
                 {
                     if (!Object.ReferenceEquals(CurrentInstructor, null))
                     {
@@ -188,7 +188,7 @@ namespace UNET_Trainer
                 string name = ((Button)sender).Text.Substring(0, ((Button)sender).Text.IndexOf("\r\n"));
 
                 string[] splitstring = name.Split(' ');
-                int traineeIndex = Convert.ToInt16(splitstring[1].ToString());
+                string traineeIndex = splitstring[1].ToString();
 
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {

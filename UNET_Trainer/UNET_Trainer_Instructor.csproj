@@ -230,27 +230,6 @@
     <None Include="Service References\UNET_Service\Service14.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.CurrentInfo.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Exercise.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Instructor.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Platform.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Radio.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Role.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\UNET_Service\UNET_Trainer.UNET_Service.Trainee.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="UNET_Trainer_Instructor_ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
@@ -259,8 +238,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\open.png" />
-    <None Include="Resources\open-icon.png" />
     <None Include="Service References\UNET_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -268,6 +245,8 @@
     <None Include="Service References\UNET_Service\configuration.svcinfo" />
     <None Include="Service References\UNET_Service\configuration91.svcinfo" />
     <None Include="Service References\UNET_Service\Service1.disco" />
+    <None Include="Resources\open.png" />
+    <None Include="Resources\open-icon.png" />
     <None Include="Images\Red.png" />
     <None Include="Images\Green.png" />
     <None Include="Images\Grey.png" />
@@ -275,9 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UNET_Service\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7">
@@ -297,7 +273,7 @@
       <Name>PJSUA2Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\UNET_button\UNET_button.csproj">
-      <Project>{09E898D8-BE34-4305-9EBC-4F8DB457EFCA}</Project>
+      <Project>{09e898d8-be34-4305-9ebc-4f8db457efca}</Project>
       <Name>UNET_button</Name>
     </ProjectReference>
     <ProjectReference Include="..\UNET_SignalGenerator\UNET_Sounds.csproj">
@@ -308,6 +284,9 @@
       <Project>{a5b4e6ea-e04c-4b32-ba1f-fb3fea67edb3}</Project>
       <Name>UNET_Theming</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\UNET_Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

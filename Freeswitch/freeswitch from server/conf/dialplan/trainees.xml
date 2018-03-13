@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<include>
+   <action application="conference_set_auto_outcall" data="user/trainee01@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee02@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee03@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee04@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee05@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee06@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee07@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee08@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee09@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee10@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee11@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee12@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee13@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee14@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee15@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/trainee16@$${domain}"/>          
+</include>

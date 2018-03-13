@@ -65,11 +65,15 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.cbxKeepAlive = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAcknowledgePTT = new System.Windows.Forms.Button();
             this.btnAddPTT = new System.Windows.Forms.Button();
             this.cbxAssistTrainee = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnRequestAssist = new System.Windows.Forms.Button();
-            this.btnAcknowledgePTT = new System.Windows.Forms.Button();
+            this.btnRefreshPlatform = new System.Windows.Forms.Button();
+            this.tbxPlatform = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbxAddPlatformToRole = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,6 +82,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbxAddPlatformToRole);
+            this.groupBox1.Controls.Add(this.btnRefreshPlatform);
+            this.groupBox1.Controls.Add(this.tbxPlatform);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.cbxAssignRolesToTrainees);
             this.groupBox1.Controls.Add(this.cbxAssignTrainees);
             this.groupBox1.Controls.Add(this.cbxAssignRadiosToExercise);
@@ -105,7 +113,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(707, 328);
+            this.groupBox1.Size = new System.Drawing.Size(707, 408);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -166,7 +174,7 @@
             this.cbxAssignRoles.AutoSize = true;
             this.cbxAssignRoles.Checked = true;
             this.cbxAssignRoles.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 279);
+            this.cbxAssignRoles.Location = new System.Drawing.Point(104, 341);
             this.cbxAssignRoles.Margin = new System.Windows.Forms.Padding(4);
             this.cbxAssignRoles.Name = "cbxAssignRoles";
             this.cbxAssignRoles.Size = new System.Drawing.Size(213, 21);
@@ -177,7 +185,7 @@
             // btnRefreshInstructors
             // 
             this.btnRefreshInstructors.Image = global::UNET_Tester.Properties.Resources.refresh;
-            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 243);
+            this.btnRefreshInstructors.Location = new System.Drawing.Point(347, 305);
             this.btnRefreshInstructors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshInstructors.Name = "btnRefreshInstructors";
             this.btnRefreshInstructors.Size = new System.Drawing.Size(40, 39);
@@ -188,7 +196,7 @@
             // 
             // tbxInstructorIDs
             // 
-            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 248);
+            this.tbxInstructorIDs.Location = new System.Drawing.Point(104, 310);
             this.tbxInstructorIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxInstructorIDs.Name = "tbxInstructorIDs";
             this.tbxInstructorIDs.Size = new System.Drawing.Size(224, 22);
@@ -221,7 +229,7 @@
             // buttonRefresh
             // 
             this.buttonRefresh.BackColor = System.Drawing.Color.LawnGreen;
-            this.buttonRefresh.Location = new System.Drawing.Point(325, 285);
+            this.buttonRefresh.Location = new System.Drawing.Point(325, 347);
             this.buttonRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(75, 33);
@@ -269,7 +277,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 248);
+            this.label5.Location = new System.Drawing.Point(11, 310);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 17);
             this.label5.TabIndex = 10;
@@ -283,7 +291,7 @@
             this.grbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbxNoiseLevel.Name = "grbxNoiseLevel";
             this.grbxNoiseLevel.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 309);
+            this.grbxNoiseLevel.Size = new System.Drawing.Size(283, 389);
             this.grbxNoiseLevel.TabIndex = 8;
             this.grbxNoiseLevel.TabStop = false;
             this.grbxNoiseLevel.Text = "Noise level";
@@ -303,13 +311,13 @@
             this.lbxNoiseLevel.Location = new System.Drawing.Point(3, 17);
             this.lbxNoiseLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxNoiseLevel.Name = "lbxNoiseLevel";
-            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 290);
+            this.lbxNoiseLevel.Size = new System.Drawing.Size(277, 370);
             this.lbxNoiseLevel.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 220);
+            this.label4.Location = new System.Drawing.Point(11, 282);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -339,7 +347,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(104, 218);
+            this.cbxRadios.Location = new System.Drawing.Point(104, 280);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(55, 24);
@@ -350,7 +358,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 192);
+            this.label3.Location = new System.Drawing.Point(11, 224);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 5;
@@ -380,7 +388,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(104, 189);
+            this.cbxRole.Location = new System.Drawing.Point(104, 221);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(55, 24);
@@ -436,10 +444,10 @@
             this.listBoxGetmethods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.listBoxGetmethods.FormattingEnabled = true;
             this.listBoxGetmethods.ItemHeight = 18;
-            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 436);
+            this.listBoxGetmethods.Location = new System.Drawing.Point(16, 508);
             this.listBoxGetmethods.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxGetmethods.Name = "listBoxGetmethods";
-            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 382);
+            this.listBoxGetmethods.Size = new System.Drawing.Size(707, 418);
             this.listBoxGetmethods.TabIndex = 1;
             // 
             // timer1
@@ -459,7 +467,7 @@
             this.panel1.Controls.Add(this.btnQuit);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.cbxKeepAlive);
-            this.panel1.Location = new System.Drawing.Point(18, 354);
+            this.panel1.Location = new System.Drawing.Point(18, 426);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(705, 36);
@@ -546,11 +554,26 @@
             this.panel2.Controls.Add(this.cbxAssistTrainee);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.btnRequestAssist);
-            this.panel2.Location = new System.Drawing.Point(18, 394);
+            this.panel2.Location = new System.Drawing.Point(18, 466);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(705, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnAcknowledgePTT
+            // 
+            this.btnAcknowledgePTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAcknowledgePTT.BackColor = System.Drawing.Color.Lime;
+            this.btnAcknowledgePTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcknowledgePTT.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAcknowledgePTT.Location = new System.Drawing.Point(530, 2);
+            this.btnAcknowledgePTT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAcknowledgePTT.Name = "btnAcknowledgePTT";
+            this.btnAcknowledgePTT.Size = new System.Drawing.Size(149, 28);
+            this.btnAcknowledgePTT.TabIndex = 10;
+            this.btnAcknowledgePTT.Text = "Acknowledge PTT";
+            this.btnAcknowledgePTT.UseVisualStyleBackColor = false;
+            this.btnAcknowledgePTT.Click += new System.EventHandler(this.btnAcknowledgePTT_Click);
             // 
             // btnAddPTT
             // 
@@ -601,27 +624,56 @@
             this.btnRequestAssist.UseVisualStyleBackColor = false;
             this.btnRequestAssist.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnAcknowledgePTT
+            // btnRefreshPlatform
             // 
-            this.btnAcknowledgePTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAcknowledgePTT.BackColor = System.Drawing.Color.Lime;
-            this.btnAcknowledgePTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAcknowledgePTT.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAcknowledgePTT.Location = new System.Drawing.Point(530, 2);
-            this.btnAcknowledgePTT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAcknowledgePTT.Name = "btnAcknowledgePTT";
-            this.btnAcknowledgePTT.Size = new System.Drawing.Size(149, 28);
-            this.btnAcknowledgePTT.TabIndex = 10;
-            this.btnAcknowledgePTT.Text = "Acknowledge PTT";
-            this.btnAcknowledgePTT.UseVisualStyleBackColor = false;
-            this.btnAcknowledgePTT.Click += new System.EventHandler(this.btnAcknowledgePTT_Click);
+            this.btnRefreshPlatform.Image = global::UNET_Tester.Properties.Resources.refresh;
+            this.btnRefreshPlatform.Location = new System.Drawing.Point(347, 190);
+            this.btnRefreshPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefreshPlatform.Name = "btnRefreshPlatform";
+            this.btnRefreshPlatform.Size = new System.Drawing.Size(40, 39);
+            this.btnRefreshPlatform.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.btnRefreshPlatform, "Refresh trainees");
+            this.btnRefreshPlatform.UseVisualStyleBackColor = true;
+            this.btnRefreshPlatform.Click += new System.EventHandler(this.btnRefreshPlatform_Click);
+            // 
+            // tbxPlatform
+            // 
+            this.tbxPlatform.Location = new System.Drawing.Point(104, 195);
+            this.tbxPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxPlatform.Name = "tbxPlatform";
+            this.tbxPlatform.Size = new System.Drawing.Size(224, 22);
+            this.tbxPlatform.TabIndex = 26;
+            this.tbxPlatform.Text = "Tromp, Sub1, Sub2, Rotterdam";
+            this.toolTip1.SetToolTip(this.tbxPlatform, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 200);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 17);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Platform";
+            // 
+            // cbxAddPlatformToRole
+            // 
+            this.cbxAddPlatformToRole.AutoSize = true;
+            this.cbxAddPlatformToRole.Checked = true;
+            this.cbxAddPlatformToRole.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAddPlatformToRole.Location = new System.Drawing.Point(104, 249);
+            this.cbxAddPlatformToRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxAddPlatformToRole.Name = "cbxAddPlatformToRole";
+            this.cbxAddPlatformToRole.Size = new System.Drawing.Size(178, 21);
+            this.cbxAddPlatformToRole.TabIndex = 28;
+            this.cbxAddPlatformToRole.Text = "Assign platforms to role";
+            this.cbxAddPlatformToRole.UseVisualStyleBackColor = true;
             // 
             // frmUNETTester_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(740, 842);
+            this.ClientSize = new System.Drawing.Size(740, 951);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listBoxGetmethods);
@@ -686,6 +738,10 @@
         private System.Windows.Forms.CheckBox cbxAssignRolesToTrainees;
         private System.Windows.Forms.Button btnAddPTT;
         private System.Windows.Forms.Button btnAcknowledgePTT;
+        private System.Windows.Forms.CheckBox cbxAddPlatformToRole;
+        private System.Windows.Forms.Button btnRefreshPlatform;
+        private System.Windows.Forms.TextBox tbxPlatform;
+        private System.Windows.Forms.Label label9;
     }
 }
 

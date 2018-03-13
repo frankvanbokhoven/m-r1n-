@@ -9,7 +9,7 @@ namespace UNET_Classes
     public class Trainee
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int ID { get; set; }
+        public string ID { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Name { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -49,7 +49,7 @@ namespace UNET_Classes
         /// </summary>
         /// <param name="_id"></param>
         /// <param name="_name"></param>
-        public Trainee(int _id, string _name)
+        public Trainee(string _id, string _name)
         {
             ID = _id;
             Name = _name;

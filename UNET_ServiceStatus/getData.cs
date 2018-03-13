@@ -225,6 +225,19 @@ namespace UNET_ServiceStatus
 
                     }
 
+                    //platform
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(DateTime.Now.ToString() + " Platforms");
+
+                    var platlst = service.GetPlatforms();
+                    List<UNET_Classes.Platform> lstPlat = platlst.ToList<UNET_Classes.Platform>(); //C# v3 manier om een array in een list te krijgen
+
+                    foreach (UNET_Classes.Platform platform in lstPlat)
+                    {
+                        Console.Write(string.Format("Platform: {0}  ShortDescription: {1}", platform.ID, platform.ShortDescription));
+                        Console.Write(Environment.NewLine);
+                    }
+
                     //role
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(DateTime.Now.ToString() + " Roles");
@@ -236,6 +249,12 @@ namespace UNET_ServiceStatus
                     {
                         Console.Write(string.Format("Role: {0}  Name: {1}", ex.ID, ex.Name));
                         Console.Write(Environment.NewLine);
+                        foreach(UNET_Classes.Platform plat in ex.PlatformsAssigned)
+                        {
+                            Console.Write(string.Format("         Met Platform:  {0}  Shortdescription: {1}", plat.ID, plat.ShortDescription));
+                            Console.Write(Environment.NewLine);
+
+                        }
 
                     }
 
@@ -299,7 +318,7 @@ namespace UNET_ServiceStatus
                 Console.Write(Environment.NewLine);
 
 
-                var resultlistassists = service.GetAssists(-1);
+                var resultlistassists = service.GetAssists(string.Empty);
                 List<UNET_Classes.Assist> lstAssist = resultlistassists.ToList<UNET_Classes.Assist>();
                 if (lst.Count == 0)
                 {

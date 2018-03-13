@@ -107,7 +107,7 @@
   <xs:element name="CreateAssist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_traineeInfo" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -122,8 +122,8 @@
   <xs:element name="AcknowledgeAssist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
-        <xs:element minOccurs="0" name="_traineeID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_traineeID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -137,7 +137,7 @@
   <xs:element name="GetAssists">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -327,7 +327,7 @@
   <xs:element name="GetAllInstructorData">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -386,20 +386,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetInstructorsCount">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_count" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetInstructorsCountResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetInstructorsCountResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetTrainees">
     <xs:complexType>
       <xs:sequence />
@@ -427,7 +413,7 @@
   <xs:element name="GetExerciseInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeID" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeID" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -503,7 +489,7 @@
   <xs:element name="RegisterClient">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_clientID" type="xs:int" />
+        <xs:element minOccurs="0" name="_clientID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_displayName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_isTrainee" type="xs:boolean" />
       </xs:sequence>
@@ -519,7 +505,7 @@
   <xs:element name="UnRegisterClient">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_clientID" type="xs:int" />
+        <xs:element minOccurs="0" name="_clientID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_isTrainee" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -543,24 +529,10 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SetExerciseCount">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_count" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetExerciseCountResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetExerciseCountResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="SetExerciseSelected">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructor" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructor" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_exerciseIndex" type="xs:int" />
         <xs:element minOccurs="0" name="_select" type="xs:boolean" />
       </xs:sequence>
@@ -598,20 +570,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SetRolesResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetRolesCount">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_count" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetRolesCountResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetRolesCountResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -655,20 +613,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SetRadiosCountResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetTraineesCount">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="_count" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SetTraineesCountResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="SetTraineesCountResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -717,7 +661,7 @@
   <xs:element name="SetTraineeStatusChanged">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_traineeId" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_changed" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -732,7 +676,7 @@
   <xs:element name="SetRoleAssignedStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
         <xs:element minOccurs="0" name="_role" type="xs:int" />
         <xs:element minOccurs="0" name="_add" type="xs:boolean" />
@@ -749,9 +693,9 @@
   <xs:element name="SetTraineeAssignedStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
-        <xs:element minOccurs="0" name="_traineeID" type="xs:int" />
+        <xs:element minOccurs="0" name="_traineeID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_add" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -766,7 +710,7 @@
   <xs:element name="SetRadioAssignedStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="_instructorID" type="xs:int" />
+        <xs:element minOccurs="0" name="_instructorID" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="_exersiseID" type="xs:int" />
         <xs:element minOccurs="0" name="_radio" type="xs:int" />
         <xs:element minOccurs="0" name="_add" type="xs:boolean" />

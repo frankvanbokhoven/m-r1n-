@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<include>
+  <context name="unet">
+    <extension name="unloop">
+      <condition field="${unroll_loops}" expression="^true$"/>
+      <condition field="${sip_looped_call}" expression="^true$">
+         <action application="deflect" data="${destination_number}" />
+      </condition>
+    </extension>
+
+    <!--Opzetten radio conferentie-->
+    <extension name="unet_conferences">
+      <condition field="destination_number" expression="^(RADIO_.*)$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>   
+    
+    <!--Intercom Trainee-Trainee conferentie-->
+    <extension name="INTERCOM_CUB_X">
+        <condition field="destination_number" expression="^(INTERCOM_CUB_\d{3})$">
+          <action application="answer"/>
+          <action application="conference" data="$1@default"/>
+        </condition>
+    </extension>
+
+    <!--Noise-->
+    <extension name="I_ESL_SET_NOISE_LEVEL">
+      <condition field="destination_number" expression="^(I_ESL_SET_NOISE_LEVEL\d{3})$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>
+
+    <!-- zie: freeswitch.org/confluence/display/freeswitch/outbound+conference+calls 
+    Hiermee wordt een conferentie opgezet, die automatisch de leden van de conferentie belt
+    hiermee is het opzetten van de conferentie dus een stuk eenvoudiger-->    
+    <extension name ="Intercom">
+      <condition field="destination_number" expression="^(INTERCOM)$">
+          <action application="answer" />
+ 
+          <action application="set" data="conference_auto_outcall_timeout=5"/>
+          <action application="set" data="conference_auto_outcall_flags=none" />
+
+          <action application="set" data="conference_auto_outcall_caller_id_name=$${effective_caller_id_name}"/>
+          <action application="set" data="conference_auto_outcall_caller_id_number=$${effective_caller_id_number}"/>
+          <action application="set" data="conference_auto_outcall_profile=default"/>
+          <X-PRE-PROCESS cmd="include" data="trainees.xml"/>
+          <X-PRE-PROCESS cmd="include" data="instructors.xml"/> 
+          <action application="conference" data="$1@default" />
+      </condition>
+    </extension> 
+
+   <!-- zie: freeswitch.org/confluence/display/freeswitch/outbound+conference+calls 
+    Hiermee wordt een conferentie opgezet, die automatisch de leden van de conferentie belt
+    hiermee is het opzetten van de conferentie dus een stuk eenvoudiger-->    
+    <extension name ="Class Broadcast Conferentie">
+      <!-- 10000 is de ID die we aan de class_broadcast geven DIE ALLEEN TRAINEES BELT-->
+      <condition field="destination_number" expression="^(BC_TRAINEES)$">
+          <action application="answer" />
+ 
+          <action application="set" data="conference_auto_outcall_timeout=50"/>
+          <action application="set" data="conference_auto_outcall_flags=none" />
+
+          <action application="set" data="conference_auto_outcall_caller_id_name=$${effective_caller_id_name}"/>
+          <action application="set" data="conference_auto_outcall_caller_id_number=$${effective_caller_id_number}"/>
+          <action application="set" data="conference_auto_outcall_profile=default"/> 
+          <X-PRE-PROCESS cmd="include" data="trainees.xml"/>
+          <action application="conference" data="$1@default" />
+      </condition>
+    </extension>
+
+   <!-- zie: freeswitch.org/confluence/display/freeswitch/outbound+conference+calls 
+    Hiermee wordt een conferentie opgezet, die automatisch de leden van de conferentie belt
+    hiermee is het opzetten van de conferentie dus een stuk eenvoudiger-->    
+    <extension name ="Class Broadcast Conferentie">
+      <!-- 11000 is de ID die we aan de class_broadcast geven DIE ALLEEN INSTRUCTORS BELT-->
+      <condition field="destination_number" expression="^(BC_INSTRUCTORS)$">
+          <action application="answer" />
+ 
+          <action application="set" data="conference_auto_outcall_timeout=50"/>
+          <action application="set" data="conference_auto_outcall_flags=none" />
+
+          <action application="set" data="conference_auto_outcall_caller_id_name=$${effective_caller_id_name}"/>
+          <action application="set" data="conference_auto_outcall_caller_id_number=$${effective_caller_id_number}"/>
+          <action application="set" data="conference_auto_outcall_profile=default"/> 
+          <X-PRE-PROCESS cmd="include" data="instructors.xml"/>
+          <action application="conference" data="$1@default" />
+      </condition>
+    </extension>
+
+   <!-- zie: freeswitch.org/confluence/display/freeswitch/outbound+conference+calls 
+    Hiermee wordt een conferentie opgezet, die automatisch de leden van de conferentie belt
+    hiermee is het opzetten van de conferentie dus een stuk eenvoudiger-->    
+    <extension name ="Class Broadcast Conferentie">
+      <!-- 12000 is de ID die we aan de class_broadcast geven DIE ALLES BELT -->
+      <condition field="destination_number" expression="^(BC_ALL)$">
+          <action application="answer" />
+ 
+          <action application="set" data="conference_auto_outcall_timeout=50"/>
+          <action application="set" data="conference_auto_outcall_flags=none" />
+
+          <action application="set" data="conference_auto_outcall_caller_id_name=$${effective_caller_id_name}"/>
+          <action application="set" data="conference_auto_outcall_caller_id_number=$${effective_caller_id_number}"/>
+          <action application="set" data="conference_auto_outcall_profile=default"/> 
+          <X-PRE-PROCESS cmd="include" data="trainees.xml"/>
+          <X-PRE-PROCESS cmd="include" data="instructors.xml"/> 
+          <action application="conference" data="$1@default" />
+      </condition>
+    </extension>
+
+    <!--Monitor trainee-->
+    <extension name="MIC_Conference_Pos01">
+      <condition field="destination_number" expression="^(MIC_Conference_Pos01\d{3})$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>
+
+    <!--Trainee 01 Left conference -->
+    <extension name="LEFTConference_Pos01">
+      <condition field="destination_number" expression="^(LEFTConference_Pos01\d{3})$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>
+
+    <!--Trainee 01 Right conference -->
+    <extension name="RIGHTConference_Pos01">
+      <condition field="destination_number" expression="^(RIGHTConference_Pos01)$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>
+ 
+    <!--Trainee 03 Right conference -->
+    <extension name="RIGHTConference_Pos03">
+      <condition field="destination_number" expression="^(RIGHTConference_Pos03\d{3})$">
+        <action application="answer"/>
+        <action application="conference" data="$1@default"/>
+      </condition>
+    </extension>
+    
+     <!-- 
+	 dial the extension (1000-1019) for 30 seconds and go to voicemail if the 
+	 call fails (continue_on_fail=true), otherwise hang up after a successful
+	 bridge (hangup_after_bridge=true) 
+    -->
+    <extension name="Local_Extension">
+      <condition field="destination_number" expression="^(.*)$">
+  	<action application="export" data="dialed_extension=$1"/>
+  	<!-- bind_meta_app can have these args <key> [a|b|ab] [a|b|o|s] <app> -->
+  	<action application="bind_meta_app" data="1 b s execute_extension::dx XML features"/>
+  	<action application="bind_meta_app" data="2 b s record_session::$${recordings_dir}/${caller_id_number}.${strftime(%Y-%m-%d-%H-%M-%S)}.wav"/>
+  	<action application="bind_meta_app" data="3 b s execute_extension::cf XML features"/>
+  	<action application="bind_meta_app" data="4 b s execute_extension::att_xfer XML features"/>
+  	<action application="set" data="ringback=${us-ring}"/>
+  	<action application="set" data="transfer_ringback=$${hold_music}"/>
+  	<action application="set" data="call_timeout=30"/>
+  	<!-- <action application="set" data="sip_exclude_contact=${network_addr}"/> -->
+  	<action application="set" data="hangup_after_bridge=true"/>
+  	<!--<action application="set" data="continue_on_fail=NORMAL_TEMPORARY_FAILURE,USER_BUSY,NO_ANSWER,TIMEOUT,NO_ROUTE_DESTINATION"/> -->
+  	<action application="set" data="continue_on_fail=true"/>
+  	<action application="hash" data="insert/${domain_name}-call_return/${dialed_extension}/${caller_id_number}"/>
+  	<action application="hash" data="insert/${domain_name}-last_dial_ext/${dialed_extension}/${uuid}"/>
+  	<action application="set" data="called_party_callgroup=${user_data(${dialed_extension}@${domain_name} var callgroup)}"/>
+  	<action application="hash" data="insert/${domain_name}-last_dial_ext/${called_party_callgroup}/${uuid}"/>
+  	<action application="hash" data="insert/${domain_name}-last_dial_ext/global/${uuid}"/>
+  	<!--<action application="export" data="nolocal:rtp_secure_media=${user_data(${dialed_extension}@${domain_name} var rtp_secure_media)}"/>-->
+  	<action application="hash" data="insert/${domain_name}-last_dial/${called_party_callgroup}/${uuid}"/>
+  	<action application="bridge" data="user/${dialed_extension}@${domain_name}"/>
+  	<action application="answer"/>
+  	<action application="sleep" data="1000"/>
+  	<action application="bridge" data="loopback/app=voicemail:default ${domain_name} ${dialed_extension}"/>
+      </condition>
+    </extension>  
+  </context>
+</include>

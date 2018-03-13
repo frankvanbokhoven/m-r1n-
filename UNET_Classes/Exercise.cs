@@ -30,7 +30,7 @@ namespace UNET_Classes
         public bool Selected { get; set; }
         [Description("Here we store the id of the instructor where this exercise is assigned to. (-1 for not assigned) see Req_unet_srs_3")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int AssignedInstructorID { get; set; }
+        public string AssignedInstructorID { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Platform> PlatformsAssigned { get; set; }
 
@@ -43,7 +43,7 @@ namespace UNET_Classes
             RolesAssigned = new List<Role>();
             RadiosAssigned = new List<Radio>();
             PlatformsAssigned = new List<Platform>();
-            AssignedInstructorID = -1;
+            AssignedInstructorID = string.Empty;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace UNET_Classes
             RolesAssigned = new List<Role>();
             RadiosAssigned = new List<Radio>();
             PlatformsAssigned = new List<Platform>();
-            AssignedInstructorID = -1;
+            AssignedInstructorID = string.Empty;
 
         }
 

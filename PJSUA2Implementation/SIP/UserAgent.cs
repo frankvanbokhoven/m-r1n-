@@ -199,7 +199,6 @@ namespace PJSUA2Implementation.SIP
                 acc = new SipAccount();
                 acc.create(acfg, true);
                 setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-            //    acc.onIncomingCall += onIncomingCall;
                 Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
 
             }

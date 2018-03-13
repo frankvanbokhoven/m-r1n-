@@ -118,7 +118,7 @@ namespace SIM2VOIP
                 //Als test voegen we een instructor toe in de wcf unet
                 #region test wcf call
                 List<Instructor> instructorlist = new List<Instructor>();
-                Instructor inst = new Instructor(Convert.ToInt16("1020"), "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
+                Instructor inst = new Instructor("1020", "Instructor on spectre 1012");// let op!! alleen de eerste instructor komt aan bod!!
                 inst.Exercises.Add(new Exercise(1, "Exercise 1"));
                 instructorlist.Add(inst);
                 service.SetInstructors(instructorlist.ToArray());

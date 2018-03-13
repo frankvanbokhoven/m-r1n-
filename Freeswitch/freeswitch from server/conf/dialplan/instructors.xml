@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<include>
+   <action application="conference_set_auto_outcall" data="user/instructor01@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/instructor02@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/instructor03@$${domain}"/>
+   <action application="conference_set_auto_outcall" data="user/instructor04@$${domain}"/>
+</include>

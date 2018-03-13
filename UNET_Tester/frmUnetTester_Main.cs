@@ -164,7 +164,7 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-                service.SetExerciseCount(Convert.ToInt16(cbxExercise.Text));
+              //todo  service.SetExerciseCount(cbxExercise.Text);
 
                 List<Exercise> elist = new List<Exercise>();
                 for (int i = 1; i <= Convert.ToInt16(cbxExercise.Text); i++)
@@ -227,11 +227,6 @@ namespace UNET_Tester
                 }
 
                 service.SetRadiosCount(Convert.ToInt16(cbxRadios.Text));
-
-
-
-                //     GetUNETStatus();
-
             }
             catch (Exception ex)
             {
@@ -241,6 +236,12 @@ namespace UNET_Tester
             }
         }
 
+
+        /// <summary>
+        /// voeg de rollen en mogelijk platforms toe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbxRole_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -253,24 +254,34 @@ namespace UNET_Tester
                     service.Open();
                 }
 
+                List<Platform> lstPlatforms = new List<Platform>();
+                if (cbxAddPlatformToRole.Checked)
+                {
+                    var platformlist = service.GetPlatforms();
+                     lstPlatforms = platformlist.ToList<Platform>();
+
+                }
                 ///pick a random role description
                 string[] Roles = { "BrugOff", "Keuken", "Kapitein", "Matroos", "Kannonnier", "De Rus" };
 
 
-                // service.SetRolesCount(Convert.ToInt16(cbxRole.Text));
                 List<Role> elist = new List<Role>();
                 for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
                 {
                     string role = Roles[new Random().Next(0, Roles.Length)];
                     Role exe = new Role();
                     exe.ID = i;
-                    exe.Name = role;// "Testrole-" + i.ToString("00");
+                    exe.Name = role;
+
+                    if(cbxAddPlatformToRole.Checked)
+                    {
+                       exe.PlatformsAssigned.AddRange(lstPlatforms);
+
+                    }
                     elist.Add(exe);
                 }
 
                 service.SetRoles(elist.ToArray());
-
-
             }
             catch (Exception ex)
             {
@@ -298,8 +309,7 @@ namespace UNET_Tester
             try
             {
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                //    using (UNET_Service.Service1Client service = new UNET_Service.Service1Client())
-                //    {
+                 //    {
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -320,9 +330,7 @@ namespace UNET_Tester
                             AddToListbox(string.Format("Trainee status: Trainee{0}: {1}", i, Convert.ToString(traineestatus[i])));
                         }
                     }
-                    //          }
-
-                }
+                 }
 
 
                 //if something is changed with the noiselevels, update the listbox
@@ -398,7 +406,7 @@ namespace UNET_Tester
             int k = 0;
             foreach (Instructor instructor in instructorlist)
             {
-                Instructor inst = new Instructor(Convert.ToInt16(instructorids[k]), "Stub Instructor: " + k);// let op!! alleen de eerste instructor komt aan bod!!
+                Instructor inst = new Instructor((instructorids[k]), "Stub Instructor: " + k);// let op!! alleen de eerste instructor komt aan bod!!
 
                 // maak een exercise aan voor het aantal in de combobox en voeg deze toe aan de instructor
                 List<Exercise> elist = new List<Exercise>();
@@ -433,7 +441,7 @@ namespace UNET_Tester
                 k++;
             }
             comboBox1_SelectedValueChanged(sender, e);
-       
+            btnRefreshPlatform_Click(sender, e);
 
             cbxInstructor_SelectedValueChanged(sender, e);
             cbxRadios_SelectedValueChanged(sender, e);
@@ -447,7 +455,7 @@ namespace UNET_Tester
             {
                 for (int i = 1; i <= Convert.ToInt16(cbxRadios.Text); i++)
                 {
-                    service.SetRadioAssignedStatus(Convert.ToInt16(instructorids[0]), 1, i, true);
+                    service.SetRadioAssignedStatus(instructorids[0], 1, i, true);
                 }
             }
 
@@ -508,7 +516,7 @@ namespace UNET_Tester
                 List<Trainee> objlist = new List<Trainee>();
                 foreach (string tr in traineeids)
                 {
-                    UNET_Classes.Trainee trainee = new UNET_Classes.Trainee(Convert.ToInt16(tr), tr + "_trainee");
+                    UNET_Classes.Trainee trainee = new UNET_Classes.Trainee(tr, tr + "_trainee");
 
                     if (cbxAssignRolesToTrainees.Checked)
                     {
@@ -564,7 +572,7 @@ namespace UNET_Tester
                 foreach (string inst in instructorids)
                 {
 
-                    UNET_Classes.Instructor instructor = new UNET_Classes.Instructor(Convert.ToInt16(inst), inst + "_instructor");
+                    UNET_Classes.Instructor instructor = new UNET_Classes.Instructor((inst), inst + "_instructor");
                     objlist.Add(instructor);
 
                     if (cbxAssignRoles.Checked)
@@ -627,7 +635,7 @@ namespace UNET_Tester
 
                     string[] splitstr = cbxAssistTrainee.Text.Split('|');
 
-                    service.CreateAssist(Convert.ToInt16(splitstr[0].Trim()), splitstr[1].Trim());
+                    service.CreateAssist(splitstr[0].Trim(), splitstr[1].Trim());
 
                 }
 
@@ -720,6 +728,43 @@ namespace UNET_Tester
             {
                 MessageBox.Show(ex.Message, String.Format("Error resetting UNET_Service {0}", ex.Message));
                 log.Error("Error resetting UNET_Service", ex);
+            }
+        }
+
+        private void btnRefreshPlatform_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Voeg voor iedere plaforms to
+                string[] platforms = tbxPlatform.Text.Split(',');
+                // we mocken hier een aantal radios. Als er bijv. 5 in de combobox staat, worden hier 5 radios gemaakt
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                //maak nu een lijstje met trainees, op basis van de id's en  stuur dat naar de service
+                Platform[] listPlatform;
+                List<Platform> objlist = new List<Platform>();
+                foreach (string plat in platforms)
+                {
+                    UNET_Classes.Platform platform = new UNET_Classes.Platform(plat);
+                    AddToListbox("Set Platform: " + plat, Color.LimeGreen);
+
+                 
+                    objlist.Add(platform);
+                }
+                listPlatform = (Platform[])objlist.ToArray();
+
+                service.SetPlatforms((Platform[])listPlatform);
+      
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method adding platforms", ex);
+                // throw;
             }
         }
     }

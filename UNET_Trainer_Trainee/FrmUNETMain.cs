@@ -29,7 +29,7 @@ namespace UNET_Trainer_Trainee
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //the accounts
         private PJSUA2Implementation.SIP.UserAgent useragent;
-        public int TraineeID = 1;
+        public string TraineeID = string.Empty;
         public string DisplayName;
         public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); 
         public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
@@ -89,7 +89,7 @@ namespace UNET_Trainer_Trainee
 
             Application.DoEvents();
 
-            //als een call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
+            //als een Radio call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
             if(e.Caller_AccountName.Contains("12345")) //intercom
             {
                 btnIntercom.BackColor = Color.Red;
@@ -101,8 +101,22 @@ namespace UNET_Trainer_Trainee
                 string exercisenumber = Helpers.ExtractNumber(exeinfo[1]);
                 string radnr = Helpers.ExtractNumber(exeinfo[2]);
                 panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+            }
 
+            //Class broadcast
+            if (e.Caller_AccountName.Contains(Constants.cClassBroadcastAll) || e.Caller_AccountName.Contains(Constants.cClassBroadcastAllInstructors) || e.Caller_AccountName.Contains(Constants.cClassBroadcastAllTrainees)) //TYPE 3 VERBINDING BROADCAST
+            {
+                this.BackColor = Color.Red;
+            }
 
+            //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
+
+            if (e.Caller_AccountName.Contains("ROLE")) //TYPE 1 VERBINDING
+            {
+                string[] roleinfo = e.Caller_AccountName.Split('_');
+                string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
+                string radnr = Helpers.ExtractNumber(roleinfo[2]);
+                panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
             }
 
         }
@@ -118,7 +132,7 @@ namespace UNET_Trainer_Trainee
                 //todo: terugzetten   timer1.Enabled = true;
              
                 ///check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
-                TraineeID = Convert.ToInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"));//Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
+                TraineeID = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");//Convert.ToInt16(ConfigurationManager.AppSettings["TraineeID"]);
                 // Set the text displayed in the caption.
                 this.BackColor = Color.White;
                 // Set the opacity to 75%.
@@ -161,8 +175,6 @@ namespace UNET_Trainer_Trainee
                     button3.Visible = debug;
                     button4.Visible = debug;
 
-
-
                     //the useragent holds everything needed for the sip communication
                     useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, DisplayName);
                     useragent.UserAgentStart("UNETTrainee");
@@ -170,7 +182,7 @@ namespace UNET_Trainer_Trainee
 
                     //koppel het onIncomingCall event aan de frmmain schemupdate
                     useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
-
+              
                     //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                     cop = new CallOpParam();
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
@@ -182,7 +194,8 @@ namespace UNET_Trainer_Trainee
                     {
                         RadioStateArray[i] = "Off";
                     }
-                }
+ 
+       }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
@@ -568,6 +581,9 @@ namespace UNET_Trainer_Trainee
 
                             ((Button)sender).Tag = "Tx";
                             RadioStateArray[radioNumber] = "Tx";
+                            //mix noise into the conversation
+                            InitNoiseLevel(radioNumber);
+
                             MakeCall(GetDestination(radioNumber), true, true, false, true, true, false);
                             //  ucb.Radios[radioNumber].State = UNETRadioState.rsTx;
                           break;
@@ -597,9 +613,7 @@ namespace UNET_Trainer_Trainee
                 }
                 //set the new status to the unet_service
                 service.SetRadioStatus(Convert.ToInt16(radioNumber), ucb.Radios[radioNumber - 1].State);
-                //mix noise into the conversation
-                InitNoiseLevel(radioNumber);
-
+          
 
                 MakeCall("1010" +(Convert.ToInt16(radioNumber)), true, true, false, true, true, false);
             }
@@ -643,7 +657,7 @@ namespace UNET_Trainer_Trainee
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
             //    cop.reason = "test van frank";
                
-                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
+                sc.makeCall(string.Format("sip:{0}@{1} Rol", _destination, SIPServer), cop);
                 useragent.acc.Calls.Add(sc); //kennelijk worden die calls niet vanzelf in deze list geplaatst.
             }
             catch (Exception ex)
@@ -734,7 +748,7 @@ namespace UNET_Trainer_Trainee
                         service.Open();
                     }
 
-                    service.CreateAssist(TraineeID, DisplayName);
+                    service.CreateAssist(TraineeID.ToString(), DisplayName);
                     AssistRequested = true;
                 }
           

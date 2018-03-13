@@ -44,12 +44,14 @@
   <ItemGroup>
     <Compile Include="Assist.cs" />
     <Compile Include="CheckFormVisible.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="CurrentInfo.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Exercise.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Instructor.cs" />
     <Compile Include="Platform.cs" />
+    <Compile Include="PointToPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radio.cs" />
     <Compile Include="Role.cs" />

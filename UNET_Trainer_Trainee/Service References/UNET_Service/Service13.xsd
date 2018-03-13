@@ -14,7 +14,7 @@
       <xs:element minOccurs="0" name="AcknowledgedBy" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ID" type="ser:guid" />
       <xs:element minOccurs="0" name="RequestTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="TraineeID" type="xs:int" />
+      <xs:element minOccurs="0" name="TraineeID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TraineeInfo" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -43,7 +43,8 @@
   <xs:element name="Platform" nillable="true" type="tns:Platform" />
   <xs:complexType name="Trainee">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="FreeswitchID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Online" type="xs:boolean" />
       <xs:element minOccurs="0" name="Radios" nillable="true" type="tns:ArrayOfRadio" />
@@ -95,7 +96,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="AssignedRoles" nillable="true" type="tns:ArrayOfRole" />
       <xs:element minOccurs="0" name="Exercises" nillable="true" type="tns:ArrayOfExercise" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="FreeswitchID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Online" type="xs:boolean" />
     </xs:sequence>
@@ -109,7 +111,7 @@
   <xs:element name="ArrayOfExercise" nillable="true" type="tns:ArrayOfExercise" />
   <xs:complexType name="Exercise">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AssignedInstructorID" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignedInstructorID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" type="xs:int" />
       <xs:element minOccurs="0" name="PlatformsAssigned" nillable="true" type="tns:ArrayOfPlatform" />
@@ -138,9 +140,10 @@
       <xs:element minOccurs="0" name="ConsoleRole" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ExerciseMode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ExerciseNumber" type="xs:int" />
       <xs:element minOccurs="0" name="InstructorName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Platform" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Radios" nillable="true" type="tns:ArrayOfRadio" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CurrentInfo" nillable="true" type="tns:CurrentInfo" />

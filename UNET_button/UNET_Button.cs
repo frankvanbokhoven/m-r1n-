@@ -1,16 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UNET_Button
 {
-   
+
+    /// <summary>
+    /// Er zijn 5 mogelijkheden wat betreft p2p (type3(1)),
+    /// 1: geen p2p call, 
+    /// 2: de instructeur maakt p2p
+    /// 3: de trainee maakt p2p
+    /// 4: er is een p2p verbinding actief
+    /// </summary>
+    public enum P2PState
+    {
+        psNoP2PCall = -1,
+        psCalledByInstructor = 0,
+        psCalledByTrainee = 1,
+        psP2PInProgress = 2,
+        psP2PCallPending = 3
+        
+    };
+
     /// <summary>
 	/// Summary description for cuteButton.
 	/// </summary>
@@ -22,37 +33,18 @@ namespace UNET_Button
         private int m_color2Transparent = 64;   //transparency degree (applies to the 2nd color)
         private int _id;
         private string _state;
+        private string _role;
+        private P2PState _p2pCallState;
 
-        //public Color cuteColor1
-        //{
-        //    get { return m_color1; }
-        //    set { m_color1 = value; Invalidate(); }
-        //}
 
-        ////public Color cuteColor2
-        //{
-        //    get { return m_color2; }
-        //    set { m_color2 = value; Invalidate(); }
-        //}
-
-        //public int cuteTransparent1
-        //{
-        //    get { return m_color1Transparent; }
-        //    set { m_color1Transparent = value; Invalidate(); }
-        //}
-
-        //public int cuteTransparent2
-        //{
-        //    get { return m_color2Transparent; }
-        //    set { m_color2Transparent = value; Invalidate(); }
-        //}
-
+        [Description("Account ID voor bijv Radio of Rol. Dus NIET de id van de component!!")]
         public int ID
         {
             get { return _id; }
             set { _id = value;  Invalidate();}
         }
 
+        [Description("Radio state")]
         public string State
         {
             get { return _state; }
@@ -60,8 +52,23 @@ namespace UNET_Button
         }
 
 
+        [Description("Placeholder voor de rol die een button kan hebben")]
+        public string Role
+        {
+            get { return _role; }
+            set { _role = value; Invalidate(); }
+        }
+
+        [Description("Status van een p2p call button")]
+        public P2PState P2PCallState
+        {
+            get { return _p2pCallState; }
+            set { _p2pCallState = value; Invalidate(); }
+        }
+
         public UNET_Button()
         {
+            P2PCallState = P2PState.psNoP2PCall;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
