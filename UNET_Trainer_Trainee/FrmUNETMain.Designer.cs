@@ -33,7 +33,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
             this.panelRoles = new System.Windows.Forms.Panel();
-            this.btnRole20 = new System.Windows.Forms.Button();
+            this.btnRole20 = new UNET_Button.UNET_Button(); //System.Windows.Forms.Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
             this.btnRole05 = new System.Windows.Forms.Button();
@@ -913,7 +913,8 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ImageList imageListStatus;
         private System.Windows.Forms.Panel panelRoles;
-        private System.Windows.Forms.Button btnRole20;
+      //  private System.Windows.Forms.Button btnRole20;
+        private UNET_Button.UNET_Button btnRole20;
         private System.Windows.Forms.Button btnRole15;
         private System.Windows.Forms.Button btnRole10;
         private System.Windows.Forms.Button btnRole05;

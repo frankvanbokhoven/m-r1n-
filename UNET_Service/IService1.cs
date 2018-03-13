@@ -55,7 +55,17 @@ namespace UNET_Service
         /// <returns></returns>
         [OperationContract]
         List<PTTcaller> GetPTTQueue();
+        #endregion
 
+        #region Pointtopoint
+        [OperationContract]
+        List<UNET_Classes.PointToPoint> GetP2P(string _instructorID);
+
+        [OperationContract]
+        bool AcknowledgeP2P(string _traineeInstructorID);
+
+        [OperationContract]
+        bool RequestPointToPoint(string _traineeInstructorID);
         #endregion
 
         #region Assist

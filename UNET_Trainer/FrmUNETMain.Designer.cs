@@ -56,28 +56,28 @@
             this.btnRadio01 = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelRoles = new System.Windows.Forms.Panel();
-            this.btnRole20 = new System.Windows.Forms.Button();
+            this.btnRole20 = new UNET_Button.UNET_Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
-            this.btnRole15 = new System.Windows.Forms.Button();
-            this.btnRole10 = new System.Windows.Forms.Button();
-            this.btnRole14 = new System.Windows.Forms.Button();
-            this.btnRole09 = new System.Windows.Forms.Button();
-            this.btnRole04 = new System.Windows.Forms.Button();
-            this.btnRole17 = new System.Windows.Forms.Button();
-            this.btnRole12 = new System.Windows.Forms.Button();
-            this.btnRole07 = new System.Windows.Forms.Button();
-            this.btnRole02 = new System.Windows.Forms.Button();
+            this.btnRole15 = new UNET_Button.UNET_Button();
+            this.btnRole10 = new UNET_Button.UNET_Button();
+            this.btnRole14 = new UNET_Button.UNET_Button();
+            this.btnRole09 = new UNET_Button.UNET_Button();
+            this.btnRole04 = new UNET_Button.UNET_Button();
+            this.btnRole17 = new UNET_Button.UNET_Button();
+            this.btnRole12 = new UNET_Button.UNET_Button();
+            this.btnRole07 = new UNET_Button.UNET_Button();
+            this.btnRole02 = new UNET_Button.UNET_Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnRole18 = new System.Windows.Forms.Button();
-            this.btnRole13 = new System.Windows.Forms.Button();
-            this.btnRole08 = new System.Windows.Forms.Button();
-            this.btnRole03 = new System.Windows.Forms.Button();
-            this.btnRole16 = new System.Windows.Forms.Button();
-            this.btnRole11 = new System.Windows.Forms.Button();
-            this.btnRole06 = new System.Windows.Forms.Button();
-            this.btnRole01 = new System.Windows.Forms.Button();
-            this.btnRole05 = new System.Windows.Forms.Button();
-            this.btnRole19 = new System.Windows.Forms.Button();
+            this.btnRole18 = new UNET_Button.UNET_Button();
+            this.btnRole13 = new UNET_Button.UNET_Button();
+            this.btnRole08 = new UNET_Button.UNET_Button();
+            this.btnRole03 = new UNET_Button.UNET_Button();
+            this.btnRole16 = new UNET_Button.UNET_Button();
+            this.btnRole11 = new UNET_Button.UNET_Button();
+            this.btnRole06 = new UNET_Button.UNET_Button();
+            this.btnRole01 = new UNET_Button.UNET_Button();
+            this.btnRole05 = new UNET_Button.UNET_Button();
+            this.btnRole19 = new UNET_Button.UNET_Button();
             this.panelTrainees = new System.Windows.Forms.Panel();
             this.btnTrainee16 = new System.Windows.Forms.Button();
             this.btnTrainee14 = new System.Windows.Forms.Button();
@@ -127,7 +127,6 @@
             this.btnTrain = new System.Windows.Forms.Button();
             this.btnRol = new System.Windows.Forms.Button();
             this.timerKeepAlive = new System.Windows.Forms.Timer(this.components);
-            this.uneT_Button1 = new UNET_Button.UNET_Button();
             this.panelRadios.SuspendLayout();
             this.panelRoles.SuspendLayout();
             this.panelTrainees.SuspendLayout();
@@ -480,7 +479,6 @@
             // 
             this.panelRoles.BackColor = System.Drawing.Color.DimGray;
             this.panelRoles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRoles.Controls.Add(this.uneT_Button1);
             this.panelRoles.Controls.Add(this.btnClose);
             this.panelRoles.Controls.Add(this.btnRole20);
             this.panelRoles.Controls.Add(this.btnRole15);
@@ -511,13 +509,17 @@
             // 
             this.btnRole20.BackColor = System.Drawing.Color.Gold;
             this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole20.ID = 0;
             this.btnRole20.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole20.ImageIndex = 1;
             this.btnRole20.ImageList = this.imageListStatus;
             this.btnRole20.Location = new System.Drawing.Point(420, 277);
             this.btnRole20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole20.Name = "btnRole20";
+            this.btnRole20.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole20.Role = null;
             this.btnRole20.Size = new System.Drawing.Size(91, 74);
+            this.btnRole20.State = null;
             this.btnRole20.TabIndex = 22;
             this.btnRole20.Text = "Platform Role 20";
             this.btnRole20.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -532,18 +534,23 @@
             this.imageListStatus.Images.SetKeyName(0, "Grey24.png");
             this.imageListStatus.Images.SetKeyName(1, "Red24.png");
             this.imageListStatus.Images.SetKeyName(2, "Green24.png");
+            this.imageListStatus.Images.SetKeyName(3, "Connected24.png");
             // 
             // btnRole15
             // 
             this.btnRole15.BackColor = System.Drawing.Color.Gold;
             this.btnRole15.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole15.ID = 0;
             this.btnRole15.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole15.ImageIndex = 1;
             this.btnRole15.ImageList = this.imageListStatus;
             this.btnRole15.Location = new System.Drawing.Point(420, 194);
             this.btnRole15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole15.Name = "btnRole15";
+            this.btnRole15.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole15.Role = null;
             this.btnRole15.Size = new System.Drawing.Size(91, 74);
+            this.btnRole15.State = null;
             this.btnRole15.TabIndex = 21;
             this.btnRole15.Text = "Platform Role 15";
             this.btnRole15.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -555,13 +562,17 @@
             // 
             this.btnRole10.BackColor = System.Drawing.Color.Gold;
             this.btnRole10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole10.ID = 0;
             this.btnRole10.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole10.ImageIndex = 1;
             this.btnRole10.ImageList = this.imageListStatus;
             this.btnRole10.Location = new System.Drawing.Point(420, 112);
             this.btnRole10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole10.Name = "btnRole10";
+            this.btnRole10.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole10.Role = null;
             this.btnRole10.Size = new System.Drawing.Size(91, 74);
+            this.btnRole10.State = null;
             this.btnRole10.TabIndex = 20;
             this.btnRole10.Text = "Platform Role 10";
             this.btnRole10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -573,13 +584,17 @@
             // 
             this.btnRole14.BackColor = System.Drawing.Color.Gold;
             this.btnRole14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole14.ID = 0;
             this.btnRole14.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole14.ImageIndex = 2;
             this.btnRole14.ImageList = this.imageListStatus;
             this.btnRole14.Location = new System.Drawing.Point(316, 194);
             this.btnRole14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole14.Name = "btnRole14";
+            this.btnRole14.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole14.Role = null;
             this.btnRole14.Size = new System.Drawing.Size(91, 74);
+            this.btnRole14.State = null;
             this.btnRole14.TabIndex = 17;
             this.btnRole14.Text = "Platform Role 14";
             this.btnRole14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -591,13 +606,17 @@
             // 
             this.btnRole09.BackColor = System.Drawing.Color.Gold;
             this.btnRole09.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole09.ID = 0;
             this.btnRole09.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole09.ImageIndex = 0;
             this.btnRole09.ImageList = this.imageListStatus;
             this.btnRole09.Location = new System.Drawing.Point(316, 112);
             this.btnRole09.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole09.Name = "btnRole09";
+            this.btnRole09.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole09.Role = null;
             this.btnRole09.Size = new System.Drawing.Size(91, 74);
+            this.btnRole09.State = null;
             this.btnRole09.TabIndex = 16;
             this.btnRole09.Text = "Platform Role 9";
             this.btnRole09.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -609,13 +628,17 @@
             // 
             this.btnRole04.BackColor = System.Drawing.Color.Gold;
             this.btnRole04.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole04.ID = 0;
             this.btnRole04.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole04.ImageIndex = 2;
             this.btnRole04.ImageList = this.imageListStatus;
             this.btnRole04.Location = new System.Drawing.Point(316, 30);
             this.btnRole04.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole04.Name = "btnRole04";
+            this.btnRole04.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole04.Role = null;
             this.btnRole04.Size = new System.Drawing.Size(91, 74);
+            this.btnRole04.State = null;
             this.btnRole04.TabIndex = 15;
             this.btnRole04.Text = "Platform Role 4";
             this.btnRole04.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -627,13 +650,17 @@
             // 
             this.btnRole17.BackColor = System.Drawing.Color.Gold;
             this.btnRole17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole17.ID = 0;
             this.btnRole17.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole17.ImageIndex = 1;
             this.btnRole17.ImageList = this.imageListStatus;
             this.btnRole17.Location = new System.Drawing.Point(108, 277);
             this.btnRole17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole17.Name = "btnRole17";
+            this.btnRole17.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole17.Role = null;
             this.btnRole17.Size = new System.Drawing.Size(91, 74);
+            this.btnRole17.State = null;
             this.btnRole17.TabIndex = 14;
             this.btnRole17.Text = "Platform Role 17";
             this.btnRole17.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -645,13 +672,17 @@
             // 
             this.btnRole12.BackColor = System.Drawing.Color.Gold;
             this.btnRole12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole12.ID = 0;
             this.btnRole12.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole12.ImageIndex = 1;
             this.btnRole12.ImageList = this.imageListStatus;
             this.btnRole12.Location = new System.Drawing.Point(108, 194);
             this.btnRole12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole12.Name = "btnRole12";
+            this.btnRole12.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole12.Role = null;
             this.btnRole12.Size = new System.Drawing.Size(91, 74);
+            this.btnRole12.State = null;
             this.btnRole12.TabIndex = 13;
             this.btnRole12.Text = "Platform Role 12";
             this.btnRole12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -663,13 +694,17 @@
             // 
             this.btnRole07.BackColor = System.Drawing.Color.Gold;
             this.btnRole07.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole07.ID = 0;
             this.btnRole07.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole07.ImageIndex = 1;
             this.btnRole07.ImageList = this.imageListStatus;
             this.btnRole07.Location = new System.Drawing.Point(108, 112);
             this.btnRole07.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole07.Name = "btnRole07";
+            this.btnRole07.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole07.Role = null;
             this.btnRole07.Size = new System.Drawing.Size(91, 74);
+            this.btnRole07.State = null;
             this.btnRole07.TabIndex = 12;
             this.btnRole07.Text = "Platform Role 7";
             this.btnRole07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -680,13 +715,17 @@
             // 
             this.btnRole02.BackColor = System.Drawing.Color.Gold;
             this.btnRole02.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole02.ID = 0;
             this.btnRole02.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole02.ImageIndex = 2;
             this.btnRole02.ImageList = this.imageListStatus;
             this.btnRole02.Location = new System.Drawing.Point(108, 30);
             this.btnRole02.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole02.Name = "btnRole02";
+            this.btnRole02.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole02.Role = null;
             this.btnRole02.Size = new System.Drawing.Size(91, 74);
+            this.btnRole02.State = null;
             this.btnRole02.TabIndex = 11;
             this.btnRole02.Text = "Platform Role 2";
             this.btnRole02.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -708,13 +747,17 @@
             // 
             this.btnRole18.BackColor = System.Drawing.Color.Gold;
             this.btnRole18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole18.ID = 0;
             this.btnRole18.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole18.ImageIndex = 1;
             this.btnRole18.ImageList = this.imageListStatus;
             this.btnRole18.Location = new System.Drawing.Point(212, 277);
             this.btnRole18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole18.Name = "btnRole18";
+            this.btnRole18.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole18.Role = null;
             this.btnRole18.Size = new System.Drawing.Size(91, 74);
+            this.btnRole18.State = null;
             this.btnRole18.TabIndex = 8;
             this.btnRole18.Text = "Platform Role 18";
             this.btnRole18.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -726,13 +769,17 @@
             // 
             this.btnRole13.BackColor = System.Drawing.Color.Gold;
             this.btnRole13.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole13.ID = 0;
             this.btnRole13.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole13.ImageIndex = 1;
             this.btnRole13.ImageList = this.imageListStatus;
             this.btnRole13.Location = new System.Drawing.Point(212, 194);
             this.btnRole13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole13.Name = "btnRole13";
+            this.btnRole13.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole13.Role = null;
             this.btnRole13.Size = new System.Drawing.Size(91, 74);
+            this.btnRole13.State = null;
             this.btnRole13.TabIndex = 7;
             this.btnRole13.Text = "Platform Role 13";
             this.btnRole13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -744,13 +791,17 @@
             // 
             this.btnRole08.BackColor = System.Drawing.Color.Gold;
             this.btnRole08.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole08.ID = 0;
             this.btnRole08.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole08.ImageIndex = 1;
             this.btnRole08.ImageList = this.imageListStatus;
             this.btnRole08.Location = new System.Drawing.Point(212, 112);
             this.btnRole08.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole08.Name = "btnRole08";
+            this.btnRole08.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole08.Role = null;
             this.btnRole08.Size = new System.Drawing.Size(91, 74);
+            this.btnRole08.State = null;
             this.btnRole08.TabIndex = 6;
             this.btnRole08.Text = "Platform Role 8";
             this.btnRole08.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -762,13 +813,17 @@
             // 
             this.btnRole03.BackColor = System.Drawing.Color.Gold;
             this.btnRole03.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole03.ID = 0;
             this.btnRole03.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole03.ImageIndex = 2;
             this.btnRole03.ImageList = this.imageListStatus;
             this.btnRole03.Location = new System.Drawing.Point(212, 30);
             this.btnRole03.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole03.Name = "btnRole03";
+            this.btnRole03.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole03.Role = null;
             this.btnRole03.Size = new System.Drawing.Size(91, 74);
+            this.btnRole03.State = null;
             this.btnRole03.TabIndex = 5;
             this.btnRole03.Text = "Platform Role 3";
             this.btnRole03.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -780,13 +835,17 @@
             // 
             this.btnRole16.BackColor = System.Drawing.Color.Gold;
             this.btnRole16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole16.ID = 0;
             this.btnRole16.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole16.ImageIndex = 1;
             this.btnRole16.ImageList = this.imageListStatus;
             this.btnRole16.Location = new System.Drawing.Point(3, 277);
             this.btnRole16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole16.Name = "btnRole16";
+            this.btnRole16.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole16.Role = null;
             this.btnRole16.Size = new System.Drawing.Size(91, 74);
+            this.btnRole16.State = null;
             this.btnRole16.TabIndex = 4;
             this.btnRole16.Text = "Platform Role 16";
             this.btnRole16.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -798,13 +857,17 @@
             // 
             this.btnRole11.BackColor = System.Drawing.Color.Gold;
             this.btnRole11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole11.ID = 0;
             this.btnRole11.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole11.ImageIndex = 1;
             this.btnRole11.ImageList = this.imageListStatus;
             this.btnRole11.Location = new System.Drawing.Point(3, 194);
             this.btnRole11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole11.Name = "btnRole11";
+            this.btnRole11.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole11.Role = null;
             this.btnRole11.Size = new System.Drawing.Size(91, 74);
+            this.btnRole11.State = null;
             this.btnRole11.TabIndex = 3;
             this.btnRole11.Text = "Platform Role 11";
             this.btnRole11.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -816,13 +879,17 @@
             // 
             this.btnRole06.BackColor = System.Drawing.Color.Gold;
             this.btnRole06.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole06.ID = 0;
             this.btnRole06.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole06.ImageIndex = 1;
             this.btnRole06.ImageList = this.imageListStatus;
             this.btnRole06.Location = new System.Drawing.Point(3, 112);
             this.btnRole06.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole06.Name = "btnRole06";
+            this.btnRole06.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole06.Role = null;
             this.btnRole06.Size = new System.Drawing.Size(91, 74);
+            this.btnRole06.State = null;
             this.btnRole06.TabIndex = 2;
             this.btnRole06.Text = "Platform Role 6";
             this.btnRole06.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -834,13 +901,17 @@
             // 
             this.btnRole01.BackColor = System.Drawing.Color.Gold;
             this.btnRole01.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole01.ID = 0;
             this.btnRole01.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole01.ImageIndex = 1;
             this.btnRole01.ImageList = this.imageListStatus;
             this.btnRole01.Location = new System.Drawing.Point(3, 30);
             this.btnRole01.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole01.Name = "btnRole01";
+            this.btnRole01.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole01.Role = null;
             this.btnRole01.Size = new System.Drawing.Size(91, 74);
+            this.btnRole01.State = null;
             this.btnRole01.TabIndex = 1;
             this.btnRole01.Text = "Platform Role 1";
             this.btnRole01.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -852,13 +923,17 @@
             // 
             this.btnRole05.BackColor = System.Drawing.Color.Gold;
             this.btnRole05.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole05.ID = 0;
             this.btnRole05.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole05.ImageIndex = 1;
             this.btnRole05.ImageList = this.imageListStatus;
-            this.btnRole05.Location = new System.Drawing.Point(420, 30);
+            this.btnRole05.Location = new System.Drawing.Point(40, 30);
             this.btnRole05.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole05.Name = "btnRole05";
+            this.btnRole05.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole05.Role = null;
             this.btnRole05.Size = new System.Drawing.Size(91, 74);
+            this.btnRole05.State = null;
             this.btnRole05.TabIndex = 19;
             this.btnRole05.Text = "Platform Role 5";
             this.btnRole05.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -869,13 +944,17 @@
             // 
             this.btnRole19.BackColor = System.Drawing.Color.Gold;
             this.btnRole19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole19.ID = 0;
             this.btnRole19.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole19.ImageIndex = 1;
             this.btnRole19.ImageList = this.imageListStatus;
             this.btnRole19.Location = new System.Drawing.Point(316, 277);
             this.btnRole19.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole19.Name = "btnRole19";
+            this.btnRole19.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole19.Role = null;
             this.btnRole19.Size = new System.Drawing.Size(91, 74);
+            this.btnRole19.State = null;
             this.btnRole19.TabIndex = 18;
             this.btnRole19.Text = "Platform Role 19";
             this.btnRole19.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1628,19 +1707,6 @@
             this.timerKeepAlive.Interval = 2000;
             this.timerKeepAlive.Tick += new System.EventHandler(this.timerKeepAlive_Tick);
             // 
-            // uneT_Button1
-            // 
-            this.uneT_Button1.ID = 0;
-            this.uneT_Button1.Location = new System.Drawing.Point(442, 41);
-            this.uneT_Button1.Name = "uneT_Button1";
-            this.uneT_Button1.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
-            this.uneT_Button1.Role = null;
-            this.uneT_Button1.Size = new System.Drawing.Size(75, 63);
-            this.uneT_Button1.State = null;
-            this.uneT_Button1.TabIndex = 26;
-            this.uneT_Button1.Text = "uneT_Button1";
-            this.uneT_Button1.UseVisualStyleBackColor = true;
-            // 
             // FrmUNETMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1734,27 +1800,27 @@
         private System.Windows.Forms.Button btnRadio06;
         private System.Windows.Forms.Button btnRadio01;
         private System.Windows.Forms.Panel panelRoles;
-        private System.Windows.Forms.Button btnRole20;
-        private System.Windows.Forms.Button btnRole15;
-        private System.Windows.Forms.Button btnRole10;
-        private System.Windows.Forms.Button btnRole05;
-        private System.Windows.Forms.Button btnRole19;
-        private System.Windows.Forms.Button btnRole14;
-        private System.Windows.Forms.Button btnRole09;
-        private System.Windows.Forms.Button btnRole04;
-        private System.Windows.Forms.Button btnRole17;
-        private System.Windows.Forms.Button btnRole12;
-        private System.Windows.Forms.Button btnRole07;
-        private System.Windows.Forms.Button btnRole02;
+        private UNET_Button.UNET_Button btnRole20;
+        private UNET_Button.UNET_Button btnRole15;
+        private UNET_Button.UNET_Button btnRole10;
+        private UNET_Button.UNET_Button btnRole05;
+        private UNET_Button.UNET_Button btnRole19;
+        private UNET_Button.UNET_Button btnRole14;
+        private UNET_Button.UNET_Button btnRole09;
+        private UNET_Button.UNET_Button btnRole04;
+        private UNET_Button.UNET_Button btnRole17;
+        private UNET_Button.UNET_Button btnRole12;
+        private UNET_Button.UNET_Button btnRole07;
+        private UNET_Button.UNET_Button btnRole02;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnRole18;
-        private System.Windows.Forms.Button btnRole13;
-        private System.Windows.Forms.Button btnRole08;
-        private System.Windows.Forms.Button btnRole03;
-        private System.Windows.Forms.Button btnRole16;
-        private System.Windows.Forms.Button btnRole11;
-        private System.Windows.Forms.Button btnRole06;
-        private System.Windows.Forms.Button btnRole01;
+        private UNET_Button.UNET_Button btnRole18;
+        private UNET_Button.UNET_Button btnRole13;
+        private UNET_Button.UNET_Button btnRole08;
+        private UNET_Button.UNET_Button btnRole03;
+        private UNET_Button.UNET_Button btnRole16;
+        private UNET_Button.UNET_Button btnRole11;
+        private UNET_Button.UNET_Button btnRole06;
+        private UNET_Button.UNET_Button btnRole01;
         private System.Windows.Forms.ImageList imageListStatus;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnClose;
@@ -1781,6 +1847,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timerKeepAlive;
         private UNET_Button.UNET_Button btnRadio20;
-        private UNET_Button.UNET_Button uneT_Button1;
     }
 }

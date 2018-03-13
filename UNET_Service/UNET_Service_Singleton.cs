@@ -35,6 +35,7 @@ namespace UNET_Service
         public ObservableCollection<CurrentInfo> CurrentInfoList = new ObservableCollection<CurrentInfo>();
         public ObservableCollection<SIPStatusMessage> SIPStatusMessageList = new ObservableCollection<SIPStatusMessage>();
         public ObservableCollection<Assist> Assists = new ObservableCollection<Assist>();
+        public ObservableCollection<PointToPoint> PointToPoints = new ObservableCollection<PointToPoint>();
 
 
         public DateTime PendingChanges; //property is set whenever something anywhere in the singleton model is changed
@@ -62,7 +63,7 @@ namespace UNET_Service
             CurrentInfoList.CollectionChanged += Exercises_CollectionChanged;
             SIPStatusMessageList.CollectionChanged += Exercises_CollectionChanged;
             Assists.CollectionChanged += Exercises_CollectionChanged;
-
+            PointToPoints.CollectionChanged += Exercises_CollectionChanged;
         }
 
         #region Singleton Change Events

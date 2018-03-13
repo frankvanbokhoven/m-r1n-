@@ -32,6 +32,7 @@ namespace UNET_Theming
         public static Color TraineeSelectedButton;
         public static Color TraineeNotSelectedButton;
         public static Color RoleSelectedButton;
+        public static Color RolePendingCallButton;
         public static Color RoleNotSelectedButton;
         public static Color RadioSelectedButton;
         public static Color RadioNotSelectedButton;
@@ -67,6 +68,7 @@ namespace UNET_Theming
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleSelectedButton = Color.SandyBrown;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
+                        RolePendingCallButton = Color.Red;
                         RadioSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
                         RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;
@@ -93,6 +95,7 @@ namespace UNET_Theming
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
+                        RolePendingCallButton = Color.Red;
                         RadioSelectedButton = Color.BlanchedAlmond;
                         RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;
@@ -118,6 +121,7 @@ namespace UNET_Theming
                         TraineeNotSelectedButton = Color.LightGray;
                         RoleNotSelectedButton = Color.LightGray; //zie parg 2.4.3
                         RoleSelectedButton = Color.SaddleBrown; // zie parg 2.4.3
+                        RolePendingCallButton = Color.Red;
                         RadioSelectedButton = Color.BlanchedAlmond;
                         RadioNotSelectedButton = Color.DimGray;
                         IntercomNotPressed = Color.DimGray;

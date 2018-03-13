@@ -65,6 +65,24 @@
   <wsdl:message name="IService1_GetPTTQueue_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPTTQueueResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_GetP2P_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetP2P" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetP2P_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetP2PResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeP2P_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeP2P" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AcknowledgeP2P_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcknowledgeP2PResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RequestPointToPoint_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestPointToPoint" />
+  </wsdl:message>
+  <wsdl:message name="IService1_RequestPointToPoint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestPointToPointResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_CreateAssist_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateAssist" />
   </wsdl:message>
@@ -214,6 +232,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_GetTraineeStatusChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTraineeStatusChangedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeRoles" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineeRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineeRolesResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_GetNoiseLevelChanged_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNoiseLevelChanged" />
@@ -374,6 +398,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPTTQueue" message="tns:IService1_GetPTTQueue_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetPTTQueueResponse" message="tns:IService1_GetPTTQueue_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetP2P">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetP2P" message="tns:IService1_GetP2P_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetP2PResponse" message="tns:IService1_GetP2P_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeP2P">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AcknowledgeP2P" message="tns:IService1_AcknowledgeP2P_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AcknowledgeP2PResponse" message="tns:IService1_AcknowledgeP2P_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestPointToPoint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/RequestPointToPoint" message="tns:IService1_RequestPointToPoint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/RequestPointToPointResponse" message="tns:IService1_RequestPointToPoint_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateAssist">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAssist" message="tns:IService1_CreateAssist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAssistResponse" message="tns:IService1_CreateAssist_OutputMessage" />
@@ -473,6 +509,10 @@
     <wsdl:operation name="GetTraineeStatusChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChanged" message="tns:IService1_GetTraineeStatusChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeStatusChangedResponse" message="tns:IService1_GetTraineeStatusChanged_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineeRoles" message="tns:IService1_GetTraineeRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineeRolesResponse" message="tns:IService1_GetTraineeRoles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNoiseLevelChanged">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetNoiseLevelChanged" message="tns:IService1_GetNoiseLevelChanged_InputMessage" />
@@ -627,6 +667,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetPTTQueue">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetPTTQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetP2P">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetP2P" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcknowledgeP2P">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AcknowledgeP2P" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestPointToPoint">
+      <soap12:operation soapAction="http://tempuri.org/IService1/RequestPointToPoint" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -852,6 +919,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTraineeStatusChanged">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineeStatusChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineeRoles">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineeRoles" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

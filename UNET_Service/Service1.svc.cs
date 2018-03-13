@@ -2032,6 +2032,7 @@ namespace UNET_Service
         }
 
 
+
         /// <summary>
         /// retrieve all unacknowledged assist requests for the given instructor.
         /// </summary>
@@ -2109,6 +2110,92 @@ namespace UNET_Service
         }
         #endregion
 
+        #region pointtopoint
+   
+        public List<UNET_Classes.PointToPoint> GetP2P(string _instructorID)
+        {
+            List<UNET_Classes.PointToPoint> result = new List<UNET_Classes.PointToPoint>();
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                result = singleton.PointToPoints.ToList<UNET_Classes.PointToPoint>();
+            }
+            catch (Exception ex)
+            {
+                log.Error("Exception retrieving the point2pointcalls: ", ex);
+                // throw;
+            }
+            return result;
+        }
+
+        //Voeg een pointtopoint toe 
+        public bool RequestPointToPoint(string _traineeInstructorID)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                //set all unacknowledge assist to true
+                //todo: ooit iets moois Lync van maken
+                foreach (PointToPoint p2p in singleton.PointToPoints)
+                {
+                    if (p2p.TraineeID == _traineeInstructorID && p2p.Acknowledged == false)
+                    {
+                        p2p.Acknowledged = true;
+                        p2p.AcknowledgedBy = "The system";
+                        p2p.AcknowledgeTime = DateTime.Now;
+                    }
+
+                }
+                //    singleton.Assists.Select(x => x.TraineeID == _traineeID).ToList().ForEach(c => c = true);
+
+
+                //create PointToPoint
+                PointToPoint pointtopoint = new PointToPoint(_traineeInstructorID);
+                singleton.PointToPoints.Add(pointtopoint);
+
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error creating pointtopoint request for:" + _traineeInstructorID, ex);
+                result = false;
+
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// event that is set when a request for a pointtopoint call is acknowledged
+        /// </summary>
+        /// <param name="_traineeInstructorID"></param>
+        /// <returns></returns>
+        public bool AcknowledgeP2P(string _traineeInstructorID)
+        {
+            bool result = false;
+
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+
+                //set the pointtopoint call to acknowledged, where it is NOT acknowledged
+                singleton.PointToPoints.Where(y => y.Acknowledged == false).FirstOrDefault(x => x.TraineeID == _traineeInstructorID).Acknowledged = true; 
+
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error acknowledgeing the pointtopoint call:" + ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
+        #endregion
+
+
         #region PendingChanges
         /// <summary>
         /// this function returns the datetime of the last time something has changed in the singleton lists
@@ -2140,7 +2227,7 @@ namespace UNET_Service
             return result;
 
         }
-
+   
         #endregion
 
     }

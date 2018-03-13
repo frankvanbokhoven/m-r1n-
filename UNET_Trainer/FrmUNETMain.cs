@@ -324,9 +324,9 @@ namespace UNET_Trainer
                 foreach (Control c in parent.Controls)
                 {
                     //reset everything
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
+                    if (c.GetType() == typeof(UNET_Button.UNET_Button) && (c.Name.ToLower().Contains("role")))
                     {
-                        ((Button)c).ImageIndex = 0;
+                        ((UNET_Button.UNET_Button)c).ImageIndex = 0;
 
                     }
                 }
@@ -340,24 +340,24 @@ namespace UNET_Trainer
                 List<PointToPoint> pendingP2P = resultP2P.ToList<PointToPoint>();
 
                 //loop thrue the list of pending assists
-                foreach (PointToPoint ass in pendingP2P)
+                foreach (PointToPoint pending in pendingP2P)
                 {
                     //then loop thrue the list of btnTrainees
                     foreach (Control ctrl in panelRoles.Controls)
                     {
-                        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                        if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                         {
-                            string[] rolelabel = ((Button)ctrl).Text.Split(' ');
+                            string[] p2plabel = ((UNET_Button.UNET_Button)ctrl).Text.Split(' ');
                             string traineeid = p2plabel[1];
-                            if (traineeid.Trim() == ass.TraineeID.ToString())
+                            if (traineeid.Trim() == pending.TraineeID.ToString())
                             {
-                                if (((Button)ctrl).ImageIndex == 1)
+                                if (((UNET_Button.UNET_Button)ctrl).ImageIndex == 1)
                                 {
-                                    ((Button)ctrl).ImageIndex = 2;
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 2;
                                 }
                                 else
                                 {
-                                    ((Button)ctrl).ImageIndex = 1;
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
                                 }
 
                                 //and play a sound
@@ -408,12 +408,19 @@ namespace UNET_Trainer
 
                 foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
                 {
-                    if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)))
+                    if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)) | (ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
                     {
                         ctrl.Enabled = false;
 
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
+                        if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)))
+                        {
+                            ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
+                        }
+                        if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
+                        {
+                            ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
+                        }
                     }
                 }
 
@@ -525,20 +532,20 @@ namespace UNET_Trainer
                 //enable the Roles buttons
                 foreach (Control ctrl in panelRoles.Controls)
                 {
-                    if (((ctrl.GetType() == typeof(System.Windows.Forms.Button)) && ((Button)ctrl).Name != "btnClose"))
+                    if (((ctrl.GetType() == typeof(UNET_Button.UNET_Button)) && ((UNET_Button.UNET_Button)ctrl).Name != "btnClose"))
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.Background;
+                        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.Background;
 
                     }
                 }
 
 
-                if (SelectedExercise != null)
+                if ((SelectedExercise != null) && (SelectedTrainee.Length > 0))
                 {//in onderstaande for loop nemen we de selectedtrainee (die gezet is in het onclick van de traineebutton, daarmee
                     //selecteren we in de trainees die aan de exercise hangen van deze instructor, en daarvan de rollen die daaraan hangen.
-                    foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).TraineesAssigned.SingleOrDefault(p => p.ID == SelectedTrainee).Roles)
+                    foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).TraineesAssigned.SingleOrDefault(p => p.FreeswitchID == SelectedTrainee).Roles)
                     {
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
@@ -556,10 +563,44 @@ namespace UNET_Trainer
                                         if (assignedRole.ID == role.ID)
                                         {
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
-                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
 
+                                            try
+                                            {
+                                                Control cr = panelRoles.Controls["btnRole" + role.ID.ToString("00")];
+                                                UNET_Button.P2PState state = ((UNET_Button.UNET_Button)cr).P2PCallState;
+
+                                                switch (state)
+                                                {
+                                                    case UNET_Button.P2PState.psNoP2PCall:
+                                                        {
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+
+                                                            break;
+                                                        }
+                                                    default:
+                                                    case UNET_Button.P2PState.psP2PInProgress:
+                                                    case UNET_Button.P2PState.psCalledByTrainee:
+                                                        {
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+
+                                                            break;
+                                                        }
+                                                    case UNET_Button.P2PState.psP2PCallPending:
+                                                        {
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RolePendingCallButton;
+                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+
+                                                            break;
+                                                        }
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                log.Error("Error keepalive " + ex.Message);
+                                            }
                                         }
                                     }
                                 }
@@ -1529,7 +1570,7 @@ namespace UNET_Trainer
                     case UNET_Button.P2PState.psNoP2PCall:
                         {
                             //start a p2p call (by instructor)
-                            service.RequestP2P(InstructorID, SelectedTrainee, SelectedExercise, GetRole(RoleClicked));
+                            service.RequestPointToPoint(InstructorID);//todo, SelectedTrainee, SelectedExercise, GetRole(RoleClicked));
 
                             ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
                             break;
