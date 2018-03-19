@@ -81,8 +81,6 @@ namespace PJSUA2Implementation.SIP
 
         }
 
-
-
         /// <summary>
         /// Determine an always unique string
         /// find out a nice threadname, this HAS to be unique for the system. so even if two instances of the same
@@ -171,45 +169,7 @@ namespace PJSUA2Implementation.SIP
                 Console.Write("Useragent libstart Exception: " + ex.Message, ex);
             }
 
-            try
-            {
-                // Create & set presence
-                // Create account configuration
-                AccountConfig acfg = new AccountConfig();
-                acfg.idUri = DisplayName + " <sip:" + Account + "@" + Domain + ">";
-                  Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri  +  "  SipServer:  " + SipServer);
-
-                string sipserver = string.Format("sip:{0}", SipServer);
-                acfg.regConfig.registrarUri = sipserver;
-                acfg.regConfig.registerOnAdd = true;
-
-                acfg.regConfig.timeoutSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"timeout", "48000"));// Convert.ToUInt16(ConfigurationManager.AppSettings["Timeout"]);
-                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sipretry", "30"));// Convert.ToUInt16(ConfigurationManager.AppSettings["SIPRetry"]);
-                AuthCredInfo cred = new AuthCredInfo("digest", sipserver, Account, 0, Password);
-                cred.realm = Domain;
-                acfg.regConfig.registerOnAdd = true;
-                acfg.regConfig.timeoutSec = 180;
-               
-
-                acfg.sipConfig.authCreds.Add(cred);
-                acfg.regConfig.dropCallsOnFail = true;
-                Logging.LogAppender.AppendToLog("Account ready to be added: " +acfg.idUri);
-
-                // Create SIP account
-                acc = new SipAccount();
-                acc.create(acfg, true);
-                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-                Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
-
-            }
-            catch (Exception ex)
-            {
-                Logging.LogAppender.AppendToLog("Useragent start Exception: " + ex.Message + ex.InnerException + Environment.NewLine + ex.StackTrace.ToString());
-
-                Console.Write("Useragent start Exception: " + ex.Message, ex);
-
-            }
-    
+            AddAccount(Account, Domain);
         }
         #region SIPBuddy
         /// <summary>
@@ -250,6 +210,50 @@ namespace PJSUA2Implementation.SIP
         // }
         #endregion
 
+
+        public bool AddAccount(string _accountName, string _domain)
+        {
+            bool result = false;
+            try
+            {
+                // Create & set presence
+                // Create account configuration
+                AccountConfig acfg = new AccountConfig();
+                acfg.idUri = DisplayName + " <sip:" + _accountName + "@" + _domain + ">";
+                Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri + "  SipServer:  " + SipServer);
+
+                string sipserver = string.Format("sip:{0}", SipServer);
+                acfg.regConfig.registrarUri = sipserver;
+                acfg.regConfig.registerOnAdd = true;
+
+                acfg.regConfig.timeoutSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"timeout", "48000"));
+                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sipretry", "30"));
+                AuthCredInfo cred = new AuthCredInfo("digest", sipserver, _accountName, 0, Password);
+                cred.realm = _domain;
+                acfg.regConfig.registerOnAdd = true;
+                acfg.regConfig.timeoutSec = 180;
+
+
+                acfg.sipConfig.authCreds.Add(cred);
+                acfg.regConfig.dropCallsOnFail = true;
+                Logging.LogAppender.AppendToLog("Account ready to be added: " + acfg.idUri);
+
+                // Create SIP account
+                acc = new SipAccount();
+                acc.create(acfg, true);
+                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+                Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Logging.LogAppender.AppendToLog("Useragent start Exception: " + ex.Message + ex.InnerException + Environment.NewLine + ex.StackTrace.ToString());
+
+                Console.Write("Useragent start Exception: " + ex.Message, ex);
+                result = false;
+            }
+            return result;
+        }
         /// <summary>
         /// brief UserAgent::UserAgentStop
         /// </summary>

@@ -164,6 +164,7 @@
     <None Include="Properties\DataSources\UNET_Classes.Exercise.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Instructor.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Platform.datasource" />
+    <None Include="Properties\DataSources\UNET_Classes.PointToPoint.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Radio.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Role.datasource" />
     <None Include="Properties\DataSources\UNET_Classes.Trainee.datasource" />

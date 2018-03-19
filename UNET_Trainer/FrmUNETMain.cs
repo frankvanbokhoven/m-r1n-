@@ -254,9 +254,9 @@ namespace UNET_Trainer
                 foreach (Control c in parent.Controls)
                 {
                     //reset everything
-                    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+                    if (c.GetType() == typeof(UNET_Button.UNET_Button) && (c.Name.ToLower().Contains("trainee")))
                     {
-                        ((Button)c).ImageIndex = 0;
+                        ((UNET_Button.UNET_Button)c).ImageIndex = 0;
 
                     }
                 }
@@ -275,19 +275,19 @@ namespace UNET_Trainer
                     //then loop thrue the list of btnTrainees
                     foreach (Control ctrl in panelTrainees.Controls)
                     {
-                        if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                        if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                         {
-                            string[] traineelabel = ((Button)ctrl).Text.Split(' ');
+                            string[] traineelabel = ((UNET_Button.UNET_Button)ctrl).Text.Split(' ');
                             string traineeid = traineelabel[1];
                             if (traineeid.Trim() == ass.TraineeID.ToString())
                             {
-                                if (((Button)ctrl).ImageIndex == 1)
+                                if (((UNET_Button.UNET_Button)ctrl).ImageIndex == 1)
                                 {
-                                    ((Button)ctrl).ImageIndex = 2;
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 2;
                                 }
                                 else
                                 {
-                                    ((Button)ctrl).ImageIndex = 1;
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
 
                                 }
 
@@ -385,8 +385,6 @@ namespace UNET_Trainer
             try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
-                // visible/invisible and also set the statusled
-                //  {
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -408,16 +406,12 @@ namespace UNET_Trainer
 
                 foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
                 {
-                    if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)) | (ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
+                    if ((ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
                     {
                         ctrl.Enabled = false;
 
                         ctrl.Tag = "disable";
-                        if ((ctrl.GetType() == typeof(System.Windows.Forms.Button)))
-                        {
-                            ((Button)ctrl).BackColor = Theming.ExerciseNotSelected;
-                        }
-                        if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
+                          if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                         {
                             ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
                         }
@@ -472,6 +466,7 @@ namespace UNET_Trainer
                             }
                         }
                     }
+                    Application.DoEvents();
                 }
                 //now resize all buttons to make optimal use of the available room
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, availableExerciseslst.Count, "exersise");
@@ -482,11 +477,11 @@ namespace UNET_Trainer
                 int listindex = 1;
                 foreach (Control ctrl in panelTrainees.Controls)
                 {
-                    if (ctrl.GetType() == typeof(System.Windows.Forms.Button))
+                    if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                     {
                         ctrl.Enabled = false;
                         ctrl.Tag = "disable";
-                        ((Button)ctrl).BackColor = Theming.TraineeNotSelectedButton;
+                        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.TraineeNotSelectedButton;
 
                     }
                 }
@@ -545,7 +540,7 @@ namespace UNET_Trainer
                 if ((SelectedExercise != null) && (SelectedTrainee.Length > 0))
                 {//in onderstaande for loop nemen we de selectedtrainee (die gezet is in het onclick van de traineebutton, daarmee
                     //selecteren we in de trainees die aan de exercise hangen van deze instructor, en daarvan de rollen die daaraan hangen.
-                    foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).TraineesAssigned.SingleOrDefault(p => p.FreeswitchID == SelectedTrainee).Roles)
+                    foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).RolesAssigned )// .TraineesAssigned.SingleOrDefault(p => p.FreeswitchID == SelectedTrainee).Roles)
                     {
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                         panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
@@ -565,6 +560,7 @@ namespace UNET_Trainer
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
                                             panelRoles.Controls["btnRole" + role.ID.ToString("00")].Tag = "enable";
 
+                                          //  ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")])
                                             try
                                             {
                                                 Control cr = panelRoles.Controls["btnRole" + role.ID.ToString("00")];
@@ -632,16 +628,16 @@ namespace UNET_Trainer
 
                     }
                 }
-                foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
-                {
-                    if ((ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
-                    {
-                        ctrl.Enabled = false;
+                //foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
+                //{
+                //    if ((ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
+                //    {
+                //        ctrl.Enabled = false;
 
-                        ctrl.Tag = "disable";
-                        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
-                    }
-                }
+                //        ctrl.Tag = "disable";
+                //        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
+                //    }
+                //}
                 if (SelectedExercise != null)
                 {
                     foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
@@ -969,8 +965,8 @@ namespace UNET_Trainer
                 {
                     // the trainee buttons are named e.g.: btnTraineeAA , we use this name, to find in the enum the index that is connected to this enum
                     MonitorTraineeArray[selectedTraineeIndex] = true;
-                    ((Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
-                    ((Button)sender).ForeColor = System.Drawing.Color.White;
+                    ((UNET_Button.UNET_Button)sender).BackColor = System.Drawing.Color.SaddleBrown;
+                    ((UNET_Button.UNET_Button)sender).ForeColor = System.Drawing.Color.White;
                 }
 
                 //if assist is pending, acknowledge it
@@ -980,7 +976,7 @@ namespace UNET_Trainer
                 }
                 //retrieve the pending assists for this instructor
                 service.AcknowledgeAssist(InstructorID, SelectedTrainee);
-                ((Button)sender).ImageIndex = -1;
+                ((UNET_Button.UNET_Button)sender).ImageIndex = -1;
             }
             catch (Exception ex)
             {
@@ -1044,25 +1040,25 @@ namespace UNET_Trainer
                 StopNoise();
                 //1 zoek uit welke radio geklikt heeft
                 string state = string.Empty;
-                radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((Button)sender).Name));
-                if (((Button)sender).Text.Trim().Length > 8)
+                radioNumber = Convert.ToInt16(UNET_Classes.Helpers.ExtractNumber(((UNET_Button.UNET_Button)sender).Name));
+                if (((UNET_Button.UNET_Button)sender).Text.Trim().Length > 8)
                 {
-                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                    state = ((UNET_Button.UNET_Button)sender).Text.Trim().Substring(((UNET_Button.UNET_Button)sender).Text.Trim().Length - 2);
                 }
                 else
                 {
                     state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
                 }
                 //2 zoek die op in de radios lijst in de conferencebridge
-                string btnstate = ((Button)sender).Tag.ToString();
+                string btnstate = ((UNET_Button.UNET_Button)sender).Tag.ToString();
                 switch (btnstate) //todo: weer werkend maken
                 {
                     //3 zet de status   
                     case "Rx": //if it is 'Rx' then start a call
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsTx;
-                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
-                            ((Button)sender).Tag = "Tx";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Tx");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Tx";
                             //mix noise into the conversation
                             InitNoiseLevel(radioNumber);
                             //Start the actual call
@@ -1073,16 +1069,16 @@ namespace UNET_Trainer
                     default:
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsRx;//we zetten hem 1 status HOGER dan de huidige status, en zitten dit in de singleton en op de hmi
-                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
-                            ((Button)sender).Tag = "Rx";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "Rx");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Rx";
                             //no call here
                             break;
                         }
                     case "Tx":
                         {
                             ucb.Radios[radioNumber - 1].State = UNETRadioState.rsOff;
-                            ((Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
-                            ((Button)sender).Tag = "Off";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Radio {0}{1}{2}", radioNumber, Environment.NewLine, "OFF");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Off";
                             break;
                         }
                 }
@@ -1094,7 +1090,7 @@ namespace UNET_Trainer
                 //set the new status to the unet_service
                 service.SetRadioStatus(Convert.ToInt16(radioNumber), ucb.Radios[radioNumber - 1].State);
                 //color the button(s) accordingly
-                SetStatusAndColorRadioButtons((Button)sender);
+                SetStatusAndColorRadioButtons((UNET_Button.UNET_Button)sender);
 
 
 
@@ -1112,7 +1108,7 @@ namespace UNET_Trainer
         /// this generic code covers this for all all buttons at once
         /// </summary>
         /// <param name="_btn"></param>
-        private void SetStatusAndColorRadioButtons(Button _btn)
+        private void SetStatusAndColorRadioButtons(UNET_Button.UNET_Button _btn)
         {
             if (MonitorRadio)
             {
@@ -1133,14 +1129,14 @@ namespace UNET_Trainer
 
         private void btnExersise01_Click(object sender, EventArgs e)
         {
-            SetStatusAndColorExerciseButtons((Button)sender);
+            SetStatusAndColorExerciseButtons((UNET_Button.UNET_Button)sender);
         }
 
         /// <summary>
         /// Zet de selected exercise naar de UNET_Service
         /// </summary>
         /// <param name="_btn"></param>
-        private void SetStatusAndColorExerciseButtons(Button _btn)
+        private void SetStatusAndColorExerciseButtons(UNET_Button.UNET_Button _btn)
         {
             if (_btn.Name.ToLower() != "btnil")
             {
@@ -1321,43 +1317,43 @@ namespace UNET_Trainer
             try
             {
                 //1 zoek uit welke radio geklikt heeft
-                string state = ((Button)sender).Text.Trim();
+                string state = ((UNET_Button.UNET_Button)sender).Text.Trim();
 
-                if (((Button)sender).Text.Trim().Length > 8)
+                if (((UNET_Button.UNET_Button)sender).Text.Trim().Length > 8)
                 {
-                    state = ((Button)sender).Text.Trim().Substring(((Button)sender).Text.Trim().Length - 2);
+                    state = ((UNET_Button.UNET_Button)sender).Text.Trim().Substring(((UNET_Button.UNET_Button)sender).Text.Trim().Length - 2);
                 }
                 else
                 {
                     state = "Rx"; //if the state is now 'TX', the next one will be 'OFF' and that is what we initially want
                 }
                 //2 zoek die op in de radios lijst in de conferencebridge
-                if (((Button)sender).Tag == null)
+                if (((UNET_Button.UNET_Button)sender).Tag == null)
                 {
-                    ((Button)sender).Tag = "Tx";
+                    ((UNET_Button.UNET_Button)sender).Tag = "Tx";
                 }
-                string btnstate = ((Button)sender).Tag.ToString();
+                string btnstate = ((UNET_Button.UNET_Button)sender).Tag.ToString();
                 switch (btnstate)
                 {
                     //3 zet de status   
                     case "Rx":
                         {
-                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Tx");
-                            ((Button)sender).Tag = "Tx";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Tx");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Tx";
                             MakeCall("10000", true, false, false, true, false, false);
                             break;
                         }
                     case "Off":
                     default:
                         {
-                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Rx");
-                            ((Button)sender).Tag = "Rx";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "Rx");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Rx";
                             break;
                         }
                     case "Tx":
                         {
-                            ((Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "OFF");
-                            ((Button)sender).Tag = "Off";
+                            ((UNET_Button.UNET_Button)sender).Text = string.Format("Intercom {0}{1}", Environment.NewLine, "OFF");
+                            ((UNET_Button.UNET_Button)sender).Tag = "Off";
                             break;
                         }
                 }
@@ -1560,11 +1556,17 @@ namespace UNET_Trainer
         /// <param name="e"></param>
         private void btnRole_Click(object sender, EventArgs e)
         {
-            RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
-            ((Button)sender).BackColor = Color.Black;
-            ((Button)sender).ForeColor = Color.White;
+            RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((UNET_Button.UNET_Button)sender).Name.Remove(0, 3)));
+            ((UNET_Button.UNET_Button)sender).BackColor = Color.Black;
+            ((UNET_Button.UNET_Button)sender).ForeColor = Color.White;
             try
             {
+ 
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
                 switch (((UNET_Button.UNET_Button)sender).P2PCallState)
                 {
                     case UNET_Button.P2PState.psNoP2PCall:
@@ -1576,8 +1578,10 @@ namespace UNET_Trainer
                             break;
                         }
                     case UNET_Button.P2PState.psCalledByTrainee: //when you get called by an trainee
+                    case UNET_Button.P2PState.psCalledByInstructor: //on the instructor, this should never happen
                         {
 
+                            //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
                             service.AcknowledgeP2P(InstructorID); //let know the call is answered 
                             MakeCall(SelectedTrainee, true, true, true, true, true, true); //and then call
                             ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
@@ -1599,17 +1603,12 @@ namespace UNET_Trainer
 
                 }
 
-                //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
 
-                if (service.State != System.ServiceModel.CommunicationState.Opened)
-                {
-                    service.Open();
-                }
             }
             catch (Exception ex)
             {
 
-                log.Error("Error keepalive " + ex.Message);
+                log.Error("Error clicking Role button " + ex.Message);
             }
         }
     }

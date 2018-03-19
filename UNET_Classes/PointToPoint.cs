@@ -13,6 +13,9 @@ namespace UNET_Classes
 
         [Description("TraineeID of the trainee, requesting the P2P")]
         public string TraineeID { get; set; }
+
+        [Description("ID of the exercise this role is under")]
+        public int ExerciseNumber { get; set; }
         public DateTime RequestTime { get; set; }
         public DateTime AcknowledgeTime { get; set; }
         public string AcknowledgedBy { get; set; }

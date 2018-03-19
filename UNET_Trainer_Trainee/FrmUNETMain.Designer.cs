@@ -33,7 +33,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.imageListStatus = new System.Windows.Forms.ImageList(this.components);
             this.panelRoles = new System.Windows.Forms.Panel();
-            this.btnRole20 = new UNET_Button.UNET_Button(); //System.Windows.Forms.Button();
+            this.btnRole20 = new UNET_Button.UNET_Button();
             this.btnRole15 = new System.Windows.Forms.Button();
             this.btnRole10 = new System.Windows.Forms.Button();
             this.btnRole05 = new System.Windows.Forms.Button();
@@ -151,17 +151,22 @@
             // 
             this.btnRole20.BackColor = System.Drawing.Color.Gold;
             this.btnRole20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRole20.ID = 0;
             this.btnRole20.ImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnRole20.ImageIndex = 1;
             this.btnRole20.ImageList = this.imageListStatus;
             this.btnRole20.Location = new System.Drawing.Point(112, 603);
             this.btnRole20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRole20.Name = "btnRole20";
+            this.btnRole20.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.btnRole20.Role = null;
             this.btnRole20.Size = new System.Drawing.Size(91, 74);
+            this.btnRole20.State = null;
             this.btnRole20.TabIndex = 22;
             this.btnRole20.Text = "Platform Role 20";
             this.btnRole20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole20.UseVisualStyleBackColor = false;
+            this.btnRole20.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole15
             // 
@@ -178,6 +183,7 @@
             this.btnRole15.Text = "Platform Role 15";
             this.btnRole15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole15.UseVisualStyleBackColor = false;
+            this.btnRole15.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole10
             // 
@@ -194,6 +200,7 @@
             this.btnRole10.Text = "Platform Role 10";
             this.btnRole10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole10.UseVisualStyleBackColor = false;
+            this.btnRole10.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole05
             // 
@@ -210,6 +217,7 @@
             this.btnRole05.Text = "Platform Role 5";
             this.btnRole05.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole05.UseVisualStyleBackColor = false;
+            this.btnRole05.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole19
             // 
@@ -226,6 +234,7 @@
             this.btnRole19.Text = "Platform Role 19";
             this.btnRole19.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole19.UseVisualStyleBackColor = false;
+            this.btnRole19.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole14
             // 
@@ -242,6 +251,7 @@
             this.btnRole14.Text = "Platform Role 14";
             this.btnRole14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole14.UseVisualStyleBackColor = false;
+            this.btnRole14.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole09
             // 
@@ -258,6 +268,7 @@
             this.btnRole09.Text = "Platform Role 9";
             this.btnRole09.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole09.UseVisualStyleBackColor = false;
+            this.btnRole09.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole04
             // 
@@ -274,6 +285,7 @@
             this.btnRole04.Text = "Platform Role 4";
             this.btnRole04.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole04.UseVisualStyleBackColor = false;
+            this.btnRole04.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole17
             // 
@@ -290,6 +302,7 @@
             this.btnRole17.Text = "Platform Role 17";
             this.btnRole17.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole17.UseVisualStyleBackColor = false;
+            this.btnRole17.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole12
             // 
@@ -306,6 +319,7 @@
             this.btnRole12.Text = "Platform Role 12";
             this.btnRole12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole12.UseVisualStyleBackColor = false;
+            this.btnRole12.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole07
             // 
@@ -323,6 +337,7 @@
             this.btnRole07.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnRole07.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole07.UseVisualStyleBackColor = false;
+            this.btnRole07.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole02
             // 
@@ -339,6 +354,7 @@
             this.btnRole02.Text = "Platform Role 2";
             this.btnRole02.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole02.UseVisualStyleBackColor = false;
+            this.btnRole02.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // label4
             // 
@@ -365,6 +381,7 @@
             this.btnRole18.Text = "Platform Role 18";
             this.btnRole18.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole18.UseVisualStyleBackColor = false;
+            this.btnRole18.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole13
             // 
@@ -381,6 +398,7 @@
             this.btnRole13.Text = "Platform Role 13";
             this.btnRole13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole13.UseVisualStyleBackColor = false;
+            this.btnRole13.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole08
             // 
@@ -397,6 +415,7 @@
             this.btnRole08.Text = "Platform Role 8";
             this.btnRole08.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole08.UseVisualStyleBackColor = false;
+            this.btnRole08.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole03
             // 
@@ -413,6 +432,7 @@
             this.btnRole03.Text = "Platform Role 3";
             this.btnRole03.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole03.UseVisualStyleBackColor = false;
+            this.btnRole03.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole16
             // 
@@ -429,6 +449,7 @@
             this.btnRole16.Text = "Platform Role 16";
             this.btnRole16.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole16.UseVisualStyleBackColor = false;
+            this.btnRole16.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole11
             // 
@@ -445,6 +466,7 @@
             this.btnRole11.Text = "Platform Role 11";
             this.btnRole11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole11.UseVisualStyleBackColor = false;
+            this.btnRole11.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole06
             // 
@@ -461,6 +483,7 @@
             this.btnRole06.Text = "Platform Role 6";
             this.btnRole06.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole06.UseVisualStyleBackColor = false;
+            this.btnRole06.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRole01
             // 
@@ -477,7 +500,7 @@
             this.btnRole01.Text = "Platform Role 1";
             this.btnRole01.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRole01.UseVisualStyleBackColor = false;
-            this.btnRole01.Click += new System.EventHandler(this.btnRole1_Click);
+            this.btnRole01.Click += new System.EventHandler(this.btnRole_Click);
             // 
             // btnRadio01
             // 
@@ -857,10 +880,12 @@
             // uneT_Button1
             // 
             this.uneT_Button1.BackColor = System.Drawing.Color.DarkSeaGreen;
-             this.uneT_Button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uneT_Button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uneT_Button1.ID = 0;
             this.uneT_Button1.Location = new System.Drawing.Point(902, 262);
             this.uneT_Button1.Name = "uneT_Button1";
+            this.uneT_Button1.P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+            this.uneT_Button1.Role = null;
             this.uneT_Button1.Size = new System.Drawing.Size(111, 82);
             this.uneT_Button1.State = "Tx";
             this.uneT_Button1.TabIndex = 22;

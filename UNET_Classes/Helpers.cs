@@ -21,10 +21,10 @@ namespace UNET_Classes
                 //begin met alle controls op invisible te zetten.
                 foreach (Control c in _panel.Controls)
                 {
-                    //  if ((c is Button) && (((Button)c).Enabled == false))
-                    //  {
-                    //      c.Visible = false;
-                    //  }
+                    if ((c is Button) && (((Button)c).Enabled == false))
+                    {
+                        c.Visible = false;
+                    }
 
                     if (c is Button)
                     {
@@ -42,21 +42,21 @@ namespace UNET_Classes
                         }
                     }
 
-                    if (c is UNET_Button.UNET_Button)
-                    {
-                        if (((UNET_Button.UNET_Button)c).Tag != "enable")
-                        {
-                            if (!c.Name.Contains("Close"))
-                            {
+                    //if (c is UNET_Button.UNET_Button)
+                    //{
+                    //    if (((UNET_Button.UNET_Button)c).Tag != "enable")
+                    //    {
+                    //        if (!c.Name.Contains("Close"))
+                    //        {
 
-                                c.Visible = false;
-                            }
-                        }
-                        else
-                        {
-                            c.Visible = true;
-                        }
-                    }
+                    //            c.Visible = false;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        c.Visible = true;
+                    //    }
+                    //}
 
                 }
 
@@ -68,7 +68,7 @@ namespace UNET_Classes
                 int verttotal = 0;
                 int buttonleft = 0;
 
-                //bouw dan de grid op, van links naar rechts en van boven naar onder
+                ////bouw dan de grid op, van links naar rechts en van boven naar onder
                 foreach (var but in _panel.Controls.OfType<Button>().Where(t => t.Enabled).OrderBy(x => x.Name))
                 {
                     if (!((Button)but).Name.Contains("Close"))
@@ -94,29 +94,29 @@ namespace UNET_Classes
                 }
 
                 //bouw dan de grid op, van links naar rechts en van boven naar onder
-                foreach (var but in _panel.Controls.OfType<UNET_Button.UNET_Button>().Where(t => t.Enabled).OrderBy(x => x.Name))
-                {
-                    if (!((UNET_Button.UNET_Button)but).Name.Contains("Close"))
-                    {
-                        if (controlindex == squareroot)
-                        {
-                            buttonstop = buttonstop + squaresize;
-                            buttonleft = 0;
-                        }
-                        ((UNET_Button.UNET_Button)(but)).Visible = true;
-                        ((UNET_Button.UNET_Button)(but)).Top = buttonstop;
-                        ((UNET_Button.UNET_Button)(but)).Left = buttonleft;
-                        ((UNET_Button.UNET_Button)(but)).Width = squaresize;
-                        ((UNET_Button.UNET_Button)(but)).Height = squaresize;
-                        verttotal += ((UNET_Button.UNET_Button)(but)).Height;
-                        buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
+                //foreach (var but in _panel.Controls.OfType<UNET_Button.UNET_Button>().Where(t => t.Enabled).OrderBy(x => x.Name))
+                //{
+                //    if (!((UNET_Button.UNET_Button)but).Name.Contains("Close"))
+                //    {
+                //        if (controlindex == squareroot)
+                //        {
+                //            buttonstop = buttonstop + squaresize;
+                //            buttonleft = 0;
+                //        }
+                //        ((UNET_Button.UNET_Button)(but)).Visible = true;
+                //        ((UNET_Button.UNET_Button)(but)).Top = buttonstop;
+                //        ((UNET_Button.UNET_Button)(but)).Left = buttonleft;
+                //        ((UNET_Button.UNET_Button)(but)).Width = squaresize;
+                //        ((UNET_Button.UNET_Button)(but)).Height = squaresize;
+                //        verttotal += ((UNET_Button.UNET_Button)(but)).Height;
+                //        buttonleft += squaresize; //tel de breedte van 1 button op bij de left, voor de volgende
 
 
 
-                        controlindex++;
-                    }
-                    Application.DoEvents();
-                }
+                //        controlindex++;
+                //    }
+                //    Application.DoEvents();
+                //}
             }
             catch (Exception ex)
             {

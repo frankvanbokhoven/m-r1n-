@@ -248,6 +248,70 @@ namespace UNET_Trainer_Trainee
 
         }
 
+        /// <summary>
+        /// gets the pending P2P (type3(1) calls for this instructor and sets the status indicators accordingly
+        /// </summary>
+        /// <param name="parent"></param>
+        private void GetP2P(Control parent)
+        {
+            try
+            {
+                foreach (Control c in parent.Controls)
+                {
+                    //reset everything
+                    if (c.GetType() == typeof(UNET_Button.UNET_Button) && (c.Name.ToLower().Contains("role")))
+                    {
+                        ((UNET_Button.UNET_Button)c).ImageIndex = 0;
+
+                    }
+                }
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+                //retrieve the pending PointToPoints for this instructor
+                var resultP2P = service.GetP2P(TraineeID);
+                List<PointToPoint> pendingP2P = resultP2P.ToList<PointToPoint>();
+
+                //loop thrue the list of pending assists
+                foreach (PointToPoint pending in pendingP2P)
+                {
+                    //then loop thrue the list of btnTrainees
+                    foreach (Control ctrl in panelRoles.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
+                        {
+                            string[] p2plabel = ((UNET_Button.UNET_Button)ctrl).Text.Split(' ');
+                            string traineeid = p2plabel[1];
+                            if (traineeid.Trim() == pending.TraineeID.ToString())
+                            {
+                                if (((UNET_Button.UNET_Button)ctrl).ImageIndex == 1)
+                                {
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 2;
+                                }
+                                else
+                                {
+                                    ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
+                                }
+
+                                //and play a sound
+                                //todo
+                                break;
+                            }
+                        }
+                    }
+                    Application.DoEvents();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error getting P2P", ex);
+                // throw;
+            }
+        }
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (GetForegroundWindow() == this.Handle)
@@ -264,11 +328,11 @@ namespace UNET_Trainer_Trainee
                     if (service.GetPendingChanges() > ucb.LastUpdate) //only if the last-changed-datetime on the server is more recent than on the client, we need to update
                     {
 
-               
-                                                        //enable the Exercise buttons
-                         currentInfo = service.GetExerciseInfo(TraineeID);
 
-                        
+                        //enable the Exercise buttons
+                        currentInfo = service.GetExerciseInfo(TraineeID);
+
+
                         if (currentInfo != null)
                         {
                             lblPlatform.Text = currentInfo.Platform;
@@ -282,9 +346,9 @@ namespace UNET_Trainer_Trainee
                             lblExerciseMode.ForeColor = Color.Yellow;
                             lblExerciseName.ForeColor = Color.Yellow;
                             lblInstructor.ForeColor = Color.Yellow;
-               SetButtonStatus(this);
-               ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen
-        
+                            SetButtonStatus(this);
+                            GetP2P(this);
+                            ucb.LastUpdate = DateTime.Now; //todo: eigenlijk moet hier het resultaat van GetPendingchanges in komen        
                         }
                         else
                         {
@@ -304,6 +368,8 @@ namespace UNET_Trainer_Trainee
             }
 
         }
+
+
         #region buttonstatus
         /// <summary>
         /// This routine sets the statusled of each button, depending on its status
@@ -945,13 +1011,63 @@ namespace UNET_Trainer_Trainee
         }
         #endregion
 
-        private void btnRole1_Click(object sender, EventArgs e)
+        private void btnRole_Click(object sender, EventArgs e)
         {
             RoleClicked = (int)(Enum.Parse(typeof(Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
             ((Button)sender).BackColor = Color.Black;
             ((Button)sender).ForeColor = Color.White;
 
+            try
+            {
 
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+                switch (((UNET_Button.UNET_Button)sender).P2PCallState)
+                {
+                    case UNET_Button.P2PState.psNoP2PCall:
+                        {
+                            //start a p2p call (by instructor)
+                            service.RequestPointToPoint(TraineeID);//todo, SelectedTrainee, SelectedExercise, GetRole(RoleClicked));
+
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+                            break;
+                        }
+                    case UNET_Button.P2PState.psCalledByTrainee: //on the trainee, this should never happen
+                    case UNET_Button.P2PState.psCalledByInstructor: //when you get called by an trainee
+                        {
+
+                            //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
+                            service.AcknowledgeP2P(TraineeID); //let know the call is answered 
+                            MakeCall(TraineeID, true, true, true, true, true, true); //and then call
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
+                            break;
+                        }
+                    default:
+                    case UNET_Button.P2PState.psP2PCallPending:
+                        {
+                            //just wait..
+                            break;
+                        }
+                    case UNET_Button.P2PState.psP2PInProgress:
+                        {
+                            HangupCall(TraineeID); //hang up the call
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall; ;
+
+                            break;
+                        }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                log.Error("Error clicking Role button " + ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

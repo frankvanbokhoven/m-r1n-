@@ -198,6 +198,15 @@ namespace UNET_Tester
 
                     }
 
+                    var rolesslist = service.GetRoles();
+                    List<Role> lstrole = rolesslist.ToList<Role>();
+                    foreach (Role rol in lstrole)
+                    {
+                        exe.RolesAssigned.Add(rol);
+                        AddToListbox(string.Format("Rol: {0}, Name: {1} added to first exercise", rol.ID, rol.Name));
+
+                    }
+
 
                     elist.Add(exe);
                 }
@@ -751,7 +760,7 @@ namespace UNET_Tester
                 {
                     UNET_Classes.Platform platform = new UNET_Classes.Platform(plat);
                     AddToListbox("Set Platform: " + plat, Color.LimeGreen);
-
+                    
                  
                     objlist.Add(platform);
                 }
