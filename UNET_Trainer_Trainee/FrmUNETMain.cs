@@ -1053,7 +1053,6 @@ namespace UNET_Trainer_Trainee
        
             try
             {
-
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -1100,10 +1099,7 @@ namespace UNET_Trainer_Trainee
                             ((UNET_Button.UNET_Button)sender).ImageIndex = -1;
                             break;
                         }
-
                 }
-
-
             }
             catch (Exception ex)
             {
