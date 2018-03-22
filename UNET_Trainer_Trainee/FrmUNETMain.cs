@@ -16,7 +16,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using PJSUA2Implementation.SIP;
-using UNET_SignalGenerator;
+using UNET_Sounds;
 
 namespace UNET_Trainer_Trainee
 {
@@ -44,7 +44,6 @@ namespace UNET_Trainer_Trainee
 
         private PJSUA2Implementation.SIP.SIPCall sc;
         private CallOpParam cop;
-
         private bool HeadsetPlugged = false;
         private bool SoundPlaying = false;
         private int RoleClicked = -1;
@@ -83,19 +82,19 @@ namespace UNET_Trainer_Trainee
         private void trigger_CallAlert(object sender, AlertEventArgs e)
         {
             this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
-     
+
 
             this.Invoke((MethodInvoker)(() => MessageBox.Show("Het is " + e.Caller_AccountName + " die belt!")));
 
             Application.DoEvents();
 
             //als een Radio call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
-            if(e.Caller_AccountName.Contains("12345")) //intercom
+            if (e.Caller_AccountName.Contains("12345")) //intercom
             {
                 btnIntercom.BackColor = Color.Red;
             }
 
-            if(e.Caller_AccountName.Contains("RADIO")) //TYPE 1 VERBINDING
+            if (e.Caller_AccountName.Contains("RADIO")) //TYPE 1 VERBINDING
             {
                 string[] exeinfo = e.Caller_AccountName.Split('_');
                 string exercisenumber = Helpers.ExtractNumber(exeinfo[1]);
@@ -110,14 +109,16 @@ namespace UNET_Trainer_Trainee
             }
 
             //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
-
-            if (e.Caller_AccountName.Contains("ROLE")) //TYPE 1 VERBINDING
+            if (e.Caller_AccountName.Contains("P2P")) //TYPE 1 VERBINDING
             {
                 string[] roleinfo = e.Caller_AccountName.Split('_');
                 string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
                 string radnr = Helpers.ExtractNumber(roleinfo[2]);
-                panelRadios.Controls["btnRadio" + radnr].ForeColor = Color.Red;// string.Format("Radio {0}{1}{2}{3}Noise:{4}{5}{6}", radio.ID, Environment.NewLine, radio.State.ToString().Substring(2, radio.State.ToString().Length - 2), Environment.NewLine, radio.NoiseLevel, Environment.NewLine, radio.SpecialEffect == UNETSpecialEffect.seVHF ? "VHF" : "UHF");
+                panelRadios.Controls["btnRole" + radnr].ForeColor = Color.Red;
+                ((UNET_Button.UNET_Button)this.Controls["btnRole" + radnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+
             }
+
 
         }
 
@@ -254,6 +255,40 @@ namespace UNET_Trainer_Trainee
         /// <param name="parent"></param>
         private void GetP2P(Control parent)
         {
+            // first the trainees, we assume the name of the button component is the key for the function
+            //foreach (Control c in parent.Controls)
+            //{
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+
+            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
+            //    {
+            //        if (((Button)c).ImageIndex == 1)
+            //        {
+            //            ((Button)c).ImageIndex = 2;
+            //        }
+            //        else
+            //        { ((Button)c).ImageIndex = 1; }
+            //    }
+            //    Application.DoEvents();
+            //}
             try
             {
                 foreach (Control c in parent.Controls)
@@ -283,9 +318,9 @@ namespace UNET_Trainer_Trainee
                         if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                         {
                             string[] p2plabel = ((UNET_Button.UNET_Button)ctrl).Text.Split(' ');
-                            string traineeid = p2plabel[1];
-                            if (traineeid.Trim() == pending.TraineeID.ToString())
-                            {
+                            if (((UNET_Button.UNET_Button)ctrl).P2PCallState == UNET_Button.P2PState.psP2PCallPending)
+                            {//als de button een unetbutton is EN de role is pending, dan laat het ledje knipperen
+
                                 if (((UNET_Button.UNET_Button)ctrl).ImageIndex == 1)
                                 {
                                     ((UNET_Button.UNET_Button)ctrl).ImageIndex = 2;
@@ -295,8 +330,6 @@ namespace UNET_Trainer_Trainee
                                     ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
                                 }
 
-                                //and play a sound
-                                //todo
                                 break;
                             }
                         }
@@ -377,40 +410,6 @@ namespace UNET_Trainer_Trainee
         /// </summary>
         private void SetButtonStatus(Control parent)
         {
-            // first the trainees, we assume the name of the button component is the key for the function
-            //foreach (Control c in parent.Controls)
-            //{
-            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("trainee")))
-            //    {
-            //        if (((Button)c).ImageIndex == 1)
-            //        {
-            //            ((Button)c).ImageIndex = 2;
-            //        }
-            //        else
-            //        { ((Button)c).ImageIndex = 1; }
-            //    }
-
-            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("exersise")))
-            //    {
-            //        if (((Button)c).ImageIndex == 1)
-            //        {
-            //            ((Button)c).ImageIndex = 2;
-            //        }
-            //        else
-            //        { ((Button)c).ImageIndex = 1; }
-            //    }
-
-            //    if (c.GetType() == typeof(Button) && (c.Name.ToLower().Contains("role")))
-            //    {
-            //        if (((Button)c).ImageIndex == 1)
-            //        {
-            //            ((Button)c).ImageIndex = 2;
-            //        }
-            //        else
-            //        { ((Button)c).ImageIndex = 1; }
-            //    }
-            //    Application.DoEvents();
-            //}
              try
             {
                 // we ask the WCF service (UNET_service) what exercises there are and display them on the screen by making buttons
@@ -439,7 +438,37 @@ namespace UNET_Trainer_Trainee
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
                     panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+                    ((UNET_Button.UNET_Button)panelRoles.Controls["btnRole" + role.ID.ToString("00")]).ImageIndex = -1;
 
+                    //kleur de button navenant de p2pcallstatus
+                    switch (((UNET_Button.UNET_Button)panelRoles.Controls["btnRole" + role.ID.ToString("00")]).P2PCallState)
+                    {
+                        case UNET_Button.P2PState.psCalledByInstructor: //when you get called by an trainee
+                        case UNET_Button.P2PState.psNoP2PCall:
+                        case UNET_Button.P2PState.psCalledByTrainee: //on the trainee, this should never happen
+                        default:
+                            {
+                                panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+                                break;
+                            }
+                        case UNET_Button.P2PState.psP2PCallPending:
+                            {
+                                //just wait..
+                                ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).BackColor = Color.Black;
+                                ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).ForeColor = Color.White;
+
+                                break;
+                            }
+                        case UNET_Button.P2PState.psP2PInProgress:
+                            {
+                                ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).BackColor = Color.Green;
+                                ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).ForeColor = Color.Black;
+
+                                break;
+                            }
+
+                    }
                 }
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelRoles, lstrole.Count, "role");
 
@@ -532,6 +561,13 @@ namespace UNET_Trainer_Trainee
 
                 //try to find and kill the TCPSocketClient process and kill it
                 FindAndKillProcess("TCPSocketClient.exe");
+
+                //ruim de signalgenerator netjes op
+                signal.Stop();
+                signal.Cleanup();
+                signal.DisposeSignalgenerator();
+
+
                 log.Info("Terminated UNET_Trainee");
 
             }
@@ -885,7 +921,7 @@ namespace UNET_Trainer_Trainee
         }
 
         #region noise
-        private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
+        private UNET_Sounds.SignalGeneratorController signal = new SignalGeneratorController();
 
         /// <summary>
         /// this starts the noise and at a particular level
@@ -1013,10 +1049,8 @@ namespace UNET_Trainer_Trainee
 
         private void btnRole_Click(object sender, EventArgs e)
         {
-            RoleClicked = (int)(Enum.Parse(typeof(Enums.Roles), ((Button)sender).Name.Remove(0, 3)));
-            ((Button)sender).BackColor = Color.Black;
-            ((Button)sender).ForeColor = Color.White;
-
+            RoleClicked = (int)(Enum.Parse(typeof(Enums.Roles), ((UNET_Button.UNET_Button)sender).Name.Remove(0, 3)));
+       
             try
             {
 
@@ -1036,12 +1070,16 @@ namespace UNET_Trainer_Trainee
                             break;
                         }
                     case UNET_Button.P2PState.psCalledByTrainee: //on the trainee, this should never happen
+                        {
+                            log.Error("It should not be possible that ann instructor calls you!!");
+                            break;
+                        }
                     case UNET_Button.P2PState.psCalledByInstructor: //when you get called by an trainee
                         {
 
                             //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
                             service.AcknowledgeP2P(TraineeID); //let know the call is answered 
-                            MakeCall(TraineeID, true, true, true, true, true, true); //and then call
+                            MakeCall(TraineeID + "_P2P", true, true, true, true, true, true); //and then call
                             ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
                             break;
                         }
@@ -1049,13 +1087,17 @@ namespace UNET_Trainer_Trainee
                     case UNET_Button.P2PState.psP2PCallPending:
                         {
                             //just wait..
+                            ((UNET_Button.UNET_Button)sender).BackColor = Color.Black;
+                            ((UNET_Button.UNET_Button)sender).ForeColor = Color.White;
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+
                             break;
                         }
                     case UNET_Button.P2PState.psP2PInProgress:
                         {
                             HangupCall(TraineeID); //hang up the call
-                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall; ;
-
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+                            ((UNET_Button.UNET_Button)sender).ImageIndex = -1;
                             break;
                         }
 

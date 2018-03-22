@@ -995,6 +995,13 @@ namespace UNET_Service
             return result;
         }
 
+        /// <summary>
+        /// Voge een trainee toe aan een exercise en het bijbehorende platform
+        /// </summary>
+        /// <param name="_exerciseID"></param>
+        /// <param name="_platform"></param>
+        /// <param name="_traineeName"></param>
+        /// <returns></returns>
         public bool AddTraineeToExercise(int _exerciseID, Platform _platform, string _traineeName)
         {
             bool result = true;
@@ -1002,8 +1009,18 @@ namespace UNET_Service
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
 
-                //todo: checken of de trainee al bestaat in de stam lijst, zoniet, voeg hem daar ook toe
-                singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).TraineesAssigned.Add(new Trainee(_traineeName));
+                //voor de leesbaarheid in twee regels!
+                Trainee trn = singleton.Trainees.SingleOrDefault(x => x.Name == _traineeName);
+                if(trn == null)
+                {
+                    trn = new Trainee("fout!! geneneerde trainee!!");
+                }
+                
+                singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).TraineesAssigned.Add(trn);
+                if (singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).PlatformsAssigned.Any(y => y.ID == _platform.ID) == false)//voeg alleen toe als er nog geen platform is
+                {
+                    singleton.Exercises.SingleOrDefault(x => x.Number == _exerciseID).PlatformsAssigned.Add(_platform);
+                }
 
                 result = true;
             }

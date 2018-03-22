@@ -280,10 +280,8 @@ namespace TestPJSUA2
                 AddToListbox("Answering call: " + cbxAccount.Text);
                 try
                 {
-                    string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Calling: {0}@unet", cbxAccount.Text.Trim()));
-                    //  SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
-                    List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
+                     List<SIP.InputChannels> lstinputchannels = new List<SIP.InputChannels>();
                     lstinputchannels.Add(SIP.InputChannels.ichLeft);
                     List<SIP.OutputChannels> lstoutputchannels = new List<SIP.OutputChannels>();
                     lstoutputchannels.Add(SIP.OutputChannels.ochLeft);
@@ -292,13 +290,11 @@ namespace TestPJSUA2
                     cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                     SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, ref lstinputchannels, ref lstoutputchannels);
                     sc.frmm = this;
-                    // SIP.SIPCall sc = new SIP.SIPCall(useragent.acc, TraineeID);
-                    // sc.ChannelInputCollection = lstinputchannels;
-                    // sc.ChannelOutputCollection = lstoutputchannels;
                     //if it is successfully made, we can add it to the callstack
                     CallStack.Add(sc);
                     lblCallstackCount.Text = CallStack.Count.ToString();
 
+                    string sipserver = ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
                     AddToListbox(string.Format("Call successfully made to: {0}@{1}", cbxAccount.Text.Trim(), sipserver));
                     btnAnswer.Text = cOphangen;
                 }

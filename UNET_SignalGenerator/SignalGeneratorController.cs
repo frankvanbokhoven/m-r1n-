@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NAudio.Wave;
 
-namespace UNET_SignalGenerator
+namespace UNET_Sounds
 {
     public class SignalGeneratorController
     {
@@ -15,31 +15,38 @@ namespace UNET_SignalGenerator
 
         public SignalGeneratorController()
         {
-   
+
             // Init Audio
             driverOut = new WaveOutEvent();
-             wg = new SignalGenerator();
+            wg = new SignalGenerator();
 
-                 // Init Driver Audio
+            // Init Driver Audio
             driverOut.Init(wg);
-         }
+        }
 
         public void DisposeSignalgenerator()
         {
-            if(driverOut != null)
+            try
             {
-             
-                driverOut.Stop();
+                if (driverOut != null)
+                {
 
-                driverOut.Dispose();
+                    driverOut.Stop();
 
+                    driverOut.Dispose();
+
+                }
+                if (wg != null)
+                {
+                    GC.Collect();
+                }
             }
-            if(wg != null)
+            catch (Exception ex)
             {
-                GC.Collect();
+                //niets
             }
         }
-    
+
         /// <summary>
         /// noiselevel controlse the volume of the signal;
         /// </summary>
@@ -67,23 +74,38 @@ namespace UNET_SignalGenerator
 
         public void Stop()
         {
-            if (driverOut != null)
+            try
             {
-                driverOut.Stop();             
+                if (driverOut != null)
+                {
+                    driverOut.Stop();
+                }
+            }
+            catch (Exception ex)
+            {
+                //niets
             }
         }
 
         // Clean DriverOut
         public void Cleanup()
         {
-            if (driverOut != null)
-                driverOut.Stop();
-
-            wg = null;
-
-            if (driverOut != null)
+            try
             {
-                driverOut.Dispose();
+                if (driverOut != null)
+                    driverOut.Stop();
+
+                wg = null;
+
+                if (driverOut != null)
+                {
+                    driverOut.Dispose();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //niets
             }
         }
     }

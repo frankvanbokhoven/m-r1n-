@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NAudio;
 using NAudio.Wave;
 
-namespace UNET_SignalGenerator
+namespace UNET_Sounds
 {
     /// <summary>
     /// Signal Generator
@@ -74,10 +74,18 @@ namespace UNET_SignalGenerator
 
         public void DestroyWaveFormat()
         {
-            if(waveFormat != null)
+            try
             {
-                waveFormat = null;
-                GC.Collect();
+                
+                if (waveFormat != null)
+                {
+                    waveFormat = null;
+                    GC.Collect();
+                }
+            }
+            catch(Exception ex)
+            {
+                //niets
             }
         }
         /// <summary>

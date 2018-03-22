@@ -213,6 +213,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F11E9019328C0660F49EF2635807CD44"
+        "OwnerKey" = "8:_DACF0C7A48CA44029DBDB8C338FF8F1D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F5D863F755FE46ED8FC522B01E5B9D35"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -293,6 +299,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1A37814FCD3A760F586C2B7D8E077007"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F11E9019328C0660F49EF2635807CD44"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -905,6 +917,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F11E9019328C0660F49EF2635807CD44"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:UNET_Button, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F11E9019328C0660F49EF2635807CD44"
+                    {
+                    "Name" = "8:UNET_Button.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:UNET_Button.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C0BDF0CDA3A041AD8B6AF9A5E541F726"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F80768F7455045908AC132B2F53D5395"
             {
             "SourcePath" = "8:..\\UNET_Service\\Marine.ico"
@@ -982,7 +1025,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:UNET_Instructor"
         "ProductCode" = "8:{FE9551D0-CCDC-4501-AAD1-4E52D6B54A43}"
-        "PackageCode" = "8:{97C5032B-88D5-4C21-9B52-41418F0C3ABA}"
+        "PackageCode" = "8:{DD929A98-6D44-4119-8F19-DB6DF296B750}"
         "UpgradeCode" = "8:{B911C3D1-D3C7-42FD-84C1-FD9FE768CBA9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1131,7 +1174,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:"
+                                    "Value" = "8:c:\\marine\\log"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_7ADAB4DE867A4E758ADF0E062F40FD6F"
                                     {
@@ -1195,7 +1238,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:1017 instructor"
+                                    "Value" = "8:1030 instructor"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_B8E5CC7D6AED4FFE9E4B7A9922EF1939"
                                     {
@@ -1203,7 +1246,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:"
+                                    "Value" = "8:c:\\marine\\log"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_BD4ED1D4A5B441A29B432C962EC4BA5A"
                                     {
@@ -1227,7 +1270,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:480000"
+                                    "Value" = "8:48000"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_D0F9C2C94E71400E91631342853E6B7C"
                                     {

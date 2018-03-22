@@ -271,13 +271,13 @@ namespace UNET_Tester
 
                 }
                 ///pick a random role description
-                string[] Roles = { "BrugOff", "Keuken", "Kapitein", "Matroos", "Kannonnier", "De Rus" };
+                string[] Roles = { "BrugOff", "Keuken", "Kapitein", "Matroos", "Kannonnier", "De Rus", "De chinees", "De duitser" };
 
 
                 List<Role> elist = new List<Role>();
                 for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
                 {
-                    string role = Roles[new Random().Next(0, Roles.Length)];
+                    string role = Roles[i]; // werkt op een of andere manier niet Roles[new Random().Next(0, Roles.Length)];
                     Role exe = new Role();
                     exe.ID = i;
                     exe.Name = role;

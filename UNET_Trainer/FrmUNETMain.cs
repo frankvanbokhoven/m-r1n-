@@ -8,7 +8,7 @@ using System.Drawing;
 using UNET_Classes;
 using System.Runtime.InteropServices;
 using UNET_Theming;
-using UNET_SignalGenerator;
+using UNET_Sounds;
 using System.Media;
 using System.IO;
 using System.Diagnostics;
@@ -41,7 +41,7 @@ namespace UNET_Trainer
         private PJSUA2Implementation.SIP.UserAgent useragent;
         public string SIPServer = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128"); //ConfigurationManager.AppSettings["SipServer"].ToString().Trim();
         public string SIPAccountname = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013"); // ConfigurationManager.AppSettings["sipAccount"].ToString().Trim();
-
+ 
         UNET_ConferenceBridge.ConferenceBridge_Singleton ucb = UNET_ConferenceBridge.ConferenceBridge_Singleton.Instance;
         private PJSUA2Implementation.SIP.SIPCall sc;
         private CallOpParam cop;
@@ -158,7 +158,7 @@ namespace UNET_Trainer
         {
             try
             {
-                if (GetForegroundWindow() == this.Handle)
+               if (GetForegroundWindow() == this.Handle)
                 {
                     if (service.State != System.ServiceModel.CommunicationState.Opened)
                     {
@@ -185,7 +185,7 @@ namespace UNET_Trainer
 
         #region Noise
 
-        private UNET_SignalGenerator.SignalGeneratorController signal = new SignalGeneratorController();
+        private UNET_Sounds.SignalGeneratorController signal = new SignalGeneratorController();
 
 
         /// <summary>
@@ -348,9 +348,9 @@ namespace UNET_Trainer
                         if (ctrl.GetType() == typeof(UNET_Button.UNET_Button))
                         {
                             string[] p2plabel = ((UNET_Button.UNET_Button)ctrl).Text.Split(' ');
-                            string traineeid = p2plabel[1];
-                            if (traineeid.Trim() == pending.TraineeID.ToString())
-                            {
+                            if (((UNET_Button.UNET_Button)ctrl).P2PCallState == UNET_Button.P2PState.psP2PCallPending)
+                            {//als de button een unetbutton is EN de role is pending, dan laat het ledje knipperen
+
                                 if (((UNET_Button.UNET_Button)ctrl).ImageIndex == 1)
                                 {
                                     ((UNET_Button.UNET_Button)ctrl).ImageIndex = 2;
@@ -359,11 +359,12 @@ namespace UNET_Trainer
                                 {
                                     ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
                                 }
+                                break;
 
                                 //and play a sound
                                 //todo
-                                break;
-                            }
+                            }                                
+                           
                         }
                     }
                     Application.DoEvents();
@@ -579,8 +580,10 @@ namespace UNET_Trainer
                                                     case UNET_Button.P2PState.psP2PInProgress:
                                                     case UNET_Button.P2PState.psCalledByTrainee:
                                                         {
-                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
-                                                            panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+                                                            //    panelRoles.Controls["btnRole" + role.ID.ToString("00")].BackColor = Theming.RoleSelectedButton;
+                                                            //    panelRoles.Controls["btnRole" + role.ID.ToString("00")].ForeColor = Theming.ButtonSelectedText;
+                                                            ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).BackColor = Color.Green;
+                                                            ((UNET_Button.UNET_Button)this.Controls["btnRole" + role.ID.ToString("00")]).ForeColor = Color.Black;
 
                                                             break;
                                                         }
@@ -723,6 +726,7 @@ namespace UNET_Trainer
 
         #endregion
 
+ 
         /// <summary>
         /// Dit event gaat af zodra in de Sip>sipaccount>onIncomingCall een call binnenkomt
         /// </summary>
@@ -735,7 +739,7 @@ namespace UNET_Trainer
             // handle the buttons, depending on the call info
             string incomingAccount = e.Caller_AccountName;
             //     if(incomingAccount.)
-
+            
             //als een call binnenkomt, moet op basis van de accountnaam, de gui geupdate worden
             if (e.Caller_AccountName.Contains("12345")) //intercom
             {
@@ -758,13 +762,37 @@ namespace UNET_Trainer
                 btnClassBroadcast.BackColor = Color.Red;
             }
 
+
+            //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
+            if (e.Caller_AccountName.Contains("P2P")) //TYPE 1 VERBINDING
+            {
+                string[] roleinfo = e.Caller_AccountName.Split('_');
+                string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
+                string radnr = Helpers.ExtractNumber(roleinfo[2]);
+                panelRadios.Controls["btnRole" + radnr].ForeColor = Color.Red;
+                ((UNET_Button.UNET_Button)this.Controls["btnRole" + radnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+
+            }
+
+            //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
+            if (e.Caller_AccountName.Contains("ASSIST")) //TYPE 1 VERBINDING
+            {
+                string[] assistinfo = e.Caller_AccountName.Split('_');
+                string exercisenumber = Helpers.ExtractNumber(assistinfo[1]);
+                string radnr = Helpers.ExtractNumber(assistinfo[2]);
+                panelTrainees.Controls["btnTrainee" + radnr].ForeColor = Color.Red;
+                ((UNET_Button.UNET_Button)this.Controls["btnTrainee" + radnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
+                
+
+            }
+
+
             Application.DoEvents();
         }
 
         private void FrmUNETMain_Load(object sender, EventArgs e)
         {
-            timer1.Enabled = true;
-            this.Text = "UNET Instructor";
+             this.Text = "UNET Instructor";
             log.Info("Started UNET_Instructor");
 
             // Set the text displayed in the caption.
@@ -788,9 +816,6 @@ namespace UNET_Trainer
 
             ShowIcon = false;
             ShowInTaskbar = false;
-
-
-
 
             // check if this instance of the traineeclient has a traineeid assigned, and if not: prompt for one
             try
@@ -826,12 +851,15 @@ namespace UNET_Trainer
 
                 //koppel het onIncomingCall event aan de frmmain schemupdate
                 useragent.acc.CallAlert += new SipAccount.AlertEventHandler(trigger_CallAlert);
+
+                timer1.Enabled = true;
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
-                    ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
-                    "Contact your system administrator");
+     //           MessageBox.Show(ex.Message + " cannot continue. " + Environment.NewLine +
+         //           ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
+         //           "Contact your system administrator");
                 log.Error("Error creating accounts " + Environment.NewLine + ex.Message + " cannot continue. " + Environment.NewLine +
                     ex.InnerException + Environment.NewLine + ex.StackTrace.ToString() + Environment.NewLine + "User: " + RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013") +
                     "Contact your system administrator");
@@ -872,6 +900,8 @@ namespace UNET_Trainer
             {
                 MessageBox.Show("Exception starting PTT and Headset monitoring: " + Environment.NewLine + ex.Message);
             }
+          
+
         }
 
 
@@ -1181,7 +1211,11 @@ namespace UNET_Trainer
                     FindAndKillProcess("TCPSocketClient.exe");
                     log.Info("Terminated UNET_Instructor");
                 }
+                //ruim de signalgenerator netjes op
+                signal.Stop();
+                signal.Cleanup();
                 signal.DisposeSignalgenerator();
+
             }
             catch (Win32Exception winex)
             {
@@ -1557,9 +1591,7 @@ namespace UNET_Trainer
         private void btnRole_Click(object sender, EventArgs e)
         {
             RoleClicked = (int)(Enum.Parse(typeof(UNET_Classes.Enums.Roles), ((UNET_Button.UNET_Button)sender).Name.Remove(0, 3)));
-            ((UNET_Button.UNET_Button)sender).BackColor = Color.Black;
-            ((UNET_Button.UNET_Button)sender).ForeColor = Color.White;
-            try
+               try
             {
  
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
@@ -1574,29 +1606,38 @@ namespace UNET_Trainer
                             //start a p2p call (by instructor)
                             service.RequestPointToPoint(InstructorID);//todo, SelectedTrainee, SelectedExercise, GetRole(RoleClicked));
 
+                            //zet nu de call state naar pending
                             ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PCallPending;
                             break;
                         }
+                     case UNET_Button.P2PState.psCalledByInstructor: //on the instructor, this should never happen
+                         {
+                            log.Error("It should not be possible that ann instructor calls you!!");
+                            break;
+                        }
                     case UNET_Button.P2PState.psCalledByTrainee: //when you get called by an trainee
-                    case UNET_Button.P2PState.psCalledByInstructor: //on the instructor, this should never happen
-                        {
+                      {
 
                             //usecase 3.1.3.2.1 (rec_UNET_SRS7 tm 9): Opzetten P2P door instructor
                             service.AcknowledgeP2P(InstructorID); //let know the call is answered 
-                            MakeCall(SelectedTrainee, true, true, true, true, true, true); //and then call
-                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
+                            MakeCall(SelectedTrainee + "_P2P", true, true, true, true, true, true); //and then call
+                             ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psP2PInProgress;
                             break;
                         }
                     default:
                     case UNET_Button.P2PState.psP2PCallPending:
                         {
-                            //just wait..
+                            //just wait..  
+                            ((UNET_Button.UNET_Button)sender).BackColor = Color.Black;
+                            ((UNET_Button.UNET_Button)sender).ForeColor = Color.White;
+      
                             break;
                         }
                     case UNET_Button.P2PState.psP2PInProgress:
                         {
                             HangupCall(SelectedTrainee); //hang up the call
-                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall; ;
+                            ((UNET_Button.UNET_Button)sender).P2PCallState = UNET_Button.P2PState.psNoP2PCall;
+                            ((UNET_Button.UNET_Button)sender).ImageIndex = -1;
 
                             break;
                         }

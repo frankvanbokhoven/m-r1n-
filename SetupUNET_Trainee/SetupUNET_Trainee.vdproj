@@ -93,6 +93,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_68E56D649AF2B56A5509C6CB47C7ED4A"
+        "OwnerKey" = "8:_BAED03E0812345838A15639E47C07CC1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6D5D654EB4A549E9B892063892B6B958"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -275,6 +281,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_71A1C9B11B27E4D01E0F04D8D43FC947"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_68E56D649AF2B56A5509C6CB47C7ED4A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -615,6 +627,37 @@
                     }
                 }
             "SourcePath" = "8:NAudio.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68E56D649AF2B56A5509C6CB47C7ED4A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:UNET_Button, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_68E56D649AF2B56A5509C6CB47C7ED4A"
+                    {
+                    "Name" = "8:UNET_Button.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:UNET_Button.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_CF12E7F634D94241A65A716BC767D546"
@@ -1141,7 +1184,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:480000"
+                                    "Value" = "8:48000"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_4DC6EDDC27EC45C6BD4FA33A3C903228"
                                     {
@@ -1229,7 +1272,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:c:\\log"
+                                    "Value" = "8:c:\\marine\\log"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_8EDCC36A4D4E4CFEAC314F217D8207F7"
                                     {
@@ -1245,7 +1288,7 @@
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "ValueTypes" = "3:1"
-                                    "Value" = "8:c:\\log"
+                                    "Value" = "8:c:\\marine\\log"
                                     }
                                     "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_999E6C81209745D1970D68729A5F36DA"
                                     {
