@@ -15,6 +15,9 @@ namespace PJSUA2Implementation.SIP
         public delegate void AlertEventHandler(Object sender, AlertEventArgs e);
         public event AlertEventHandler  CallAlert;
 
+        [Description("Deze property houdt de volledige accountnaam vast")]
+        public string AccountDescription;
+
         public SipAccount()
         {
             

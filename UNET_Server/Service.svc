@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="UNET_Server.UNETService" CodeBehind="Service.svc.cs" %>

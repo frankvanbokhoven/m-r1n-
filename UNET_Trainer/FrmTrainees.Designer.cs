@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pnlTrainees = new System.Windows.Forms.Panel();
+            this.panelTrainees = new System.Windows.Forms.Panel();
             this.lblTraineeTitle = new System.Windows.Forms.Label();
             this.btnTrainee14 = new System.Windows.Forms.Button();
             this.btnTrainee16 = new System.Windows.Forms.Button();
@@ -50,34 +50,34 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnMainPage = new System.Windows.Forms.Button();
             this.btnServiceRequest = new System.Windows.Forms.Button();
-            this.pnlTrainees.SuspendLayout();
+            this.panelTrainees.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlTrainees
+            // panelTrainees
             // 
-            this.pnlTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlTrainees.Controls.Add(this.lblTraineeTitle);
-            this.pnlTrainees.Controls.Add(this.btnTrainee14);
-            this.pnlTrainees.Controls.Add(this.btnTrainee16);
-            this.pnlTrainees.Controls.Add(this.btnTrainee12);
-            this.pnlTrainees.Controls.Add(this.btnTrainee10);
-            this.pnlTrainees.Controls.Add(this.btnTrainee08);
-            this.pnlTrainees.Controls.Add(this.btnTrainee06);
-            this.pnlTrainees.Controls.Add(this.btnTrainee04);
-            this.pnlTrainees.Controls.Add(this.btnTrainee02);
-            this.pnlTrainees.Controls.Add(this.btnTrainee13);
-            this.pnlTrainees.Controls.Add(this.btnTrainee15);
-            this.pnlTrainees.Controls.Add(this.btnTrainee11);
-            this.pnlTrainees.Controls.Add(this.btnTrainee09);
-            this.pnlTrainees.Controls.Add(this.btnTrainee07);
-            this.pnlTrainees.Controls.Add(this.btnTrainee05);
-            this.pnlTrainees.Controls.Add(this.btnTrainee03);
-            this.pnlTrainees.Controls.Add(this.btnTrainee01);
-            this.pnlTrainees.Location = new System.Drawing.Point(33, 40);
-            this.pnlTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlTrainees.Name = "pnlTrainees";
-            this.pnlTrainees.Size = new System.Drawing.Size(845, 567);
-            this.pnlTrainees.TabIndex = 10;
+            this.panelTrainees.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTrainees.Controls.Add(this.lblTraineeTitle);
+            this.panelTrainees.Controls.Add(this.btnTrainee14);
+            this.panelTrainees.Controls.Add(this.btnTrainee16);
+            this.panelTrainees.Controls.Add(this.btnTrainee12);
+            this.panelTrainees.Controls.Add(this.btnTrainee10);
+            this.panelTrainees.Controls.Add(this.btnTrainee08);
+            this.panelTrainees.Controls.Add(this.btnTrainee06);
+            this.panelTrainees.Controls.Add(this.btnTrainee04);
+            this.panelTrainees.Controls.Add(this.btnTrainee02);
+            this.panelTrainees.Controls.Add(this.btnTrainee13);
+            this.panelTrainees.Controls.Add(this.btnTrainee15);
+            this.panelTrainees.Controls.Add(this.btnTrainee11);
+            this.panelTrainees.Controls.Add(this.btnTrainee09);
+            this.panelTrainees.Controls.Add(this.btnTrainee07);
+            this.panelTrainees.Controls.Add(this.btnTrainee05);
+            this.panelTrainees.Controls.Add(this.btnTrainee03);
+            this.panelTrainees.Controls.Add(this.btnTrainee01);
+            this.panelTrainees.Location = new System.Drawing.Point(33, 40);
+            this.panelTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelTrainees.Name = "panelTrainees";
+            this.panelTrainees.Size = new System.Drawing.Size(845, 567);
+            this.panelTrainees.TabIndex = 10;
             // 
             // lblTraineeTitle
             // 
@@ -362,6 +362,7 @@
             this.btnServiceRequest.TabIndex = 27;
             this.btnServiceRequest.Text = "Service \r\nrequest";
             this.btnServiceRequest.UseVisualStyleBackColor = false;
+            this.btnServiceRequest.Click += new System.EventHandler(this.btnServiceRequest_Click);
             // 
             // FrmTrainees
             // 
@@ -370,7 +371,7 @@
             this.ClientSize = new System.Drawing.Size(940, 706);
             this.Controls.Add(this.btnServiceRequest);
             this.Controls.Add(this.btnMainPage);
-            this.Controls.Add(this.pnlTrainees);
+            this.Controls.Add(this.panelTrainees);
             this.Name = "FrmTrainees";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -378,15 +379,15 @@
             this.Text = "FrmTrainees";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmTrainees_FormClosing);
             this.Load += new System.EventHandler(this.FrmTrainees_Load);
-            this.pnlTrainees.ResumeLayout(false);
-            this.pnlTrainees.PerformLayout();
+            this.panelTrainees.ResumeLayout(false);
+            this.panelTrainees.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlTrainees;
+        private System.Windows.Forms.Panel panelTrainees;
         private System.Windows.Forms.Button btnTrainee14;
         private System.Windows.Forms.Button btnTrainee16;
         private System.Windows.Forms.Button btnTrainee12;

@@ -37,6 +37,9 @@ namespace UNET_Service
         [OperationContract]
         bool Stop();
 
+        [OperationContract]
+        bool KeepAlive(string _id);
+
         #endregion
         //start service
         //  [OperationContract]

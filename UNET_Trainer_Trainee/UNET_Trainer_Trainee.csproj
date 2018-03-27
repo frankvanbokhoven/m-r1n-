@@ -52,6 +52,9 @@
   <PropertyGroup>
     <ApplicationIcon>MarineGreen.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
@@ -150,6 +153,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.manifest" />
     <None Include="ClassDiagramUNETTrainee.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\PJSUA2Implementation.UNET_Service.CurrentInfo.datasource" />

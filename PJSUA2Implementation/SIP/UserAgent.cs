@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using pjsua2;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.ComponentModel;
 using UNET_Theming;
@@ -14,6 +15,7 @@ namespace PJSUA2Implementation.SIP
  
         public pjsua2.Endpoint ep;
         public SipAccount acc;
+        public List<SipAccount> Accounts = new List<SipAccount>(); // Lijst met accounts
 
 
         private AudioMedia play_med;
@@ -171,46 +173,14 @@ namespace PJSUA2Implementation.SIP
 
             AddAccount(Account, Domain);
         }
-        #region SIPBuddy
+       
+
         /// <summary>
-        /// Create buddies
+        /// Registereer een account en voeg het toe aan de Accounts lijst
         /// </summary>
-        //  public void UserBuddyStart()
-        //  {
-        //// 
-        //BuddyConfig pCfg = new BuddyConfig();
-        //BuddyConfig sCfg = new BuddyConfig();
-        //SipBuddy platformBuddy = new SipBuddy("Platform", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
-        //SipBuddy serverBuddy = new SipBuddy("Server", ConfigurationManager.AppSettings["SIPDomain"].ToString(), acc);
-        //pCfg.uri = "sip:" + platformBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-        //sCfg.uri = "sip:" + serverBuddy.getName().ToString() + "@" + ConfigurationManager.AppSettings["SIPDomain"].ToString();
-        //Console.Write("Platform buddy: " + pCfg.uri + " Serverbuddy: " + sCfg.uri);
-        //try
-        //{
-        //    //  platformBuddy = new SipBuddy("Naam van de platform buddy", pCfg.uri.ToString(), acc);
-        //    Console.Write("Subscribing platform buddy...");
-        //    platformBuddy.create(acc, pCfg);
-        //    platformBuddy.subscribePresence(true);
-
-        //    //  serverBuddy = new SipBuddy("Naam van de server buddy", sCfg.uri.ToString(), acc);
-        //    Console.Write("Subscribing server buddy....");
-        //    serverBuddy.create(acc, sCfg);
-        //    serverBuddy.subscribePresence(true);
-
-        //    buddies.Add(platformBuddy);
-        //    buddies.Add(serverBuddy);
-
-        //    acc.addBuddy(platformBuddy);
-        //    acc.addBuddy(serverBuddy);
-        //}
-        //catch (Exception ex)
-        //{
-        //    log.Error(ex.Message);
-        //}
-        // }
-        #endregion
-
-
+        /// <param name="_accountName"></param>
+        /// <param name="_domain"></param>
+        /// <returns></returns>
         public bool AddAccount(string _accountName, string _domain)
         {
             bool result = false;
@@ -220,30 +190,42 @@ namespace PJSUA2Implementation.SIP
                 // Create account configuration
                 AccountConfig acfg = new AccountConfig();
                 acfg.idUri = DisplayName + " <sip:" + _accountName + "@" + _domain + ">";
-                Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri + "  SipServer:  " + SipServer);
 
-                string sipserver = string.Format("sip:{0}", SipServer);
-                acfg.regConfig.registrarUri = sipserver;
-                acfg.regConfig.registerOnAdd = true;
+                //Alleen als het account niet voor komt in de accounts lijst, maken we het aan en voegen het nieuwe account toe
+                if (!Accounts.Any(x => x.AccountDescription == acfg.idUri))
+                {
+                    Logging.LogAppender.AppendToLog("Account info: " + acfg.idUri + "  SipServer:  " + SipServer);
 
-                acfg.regConfig.timeoutSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"timeout", "48000"));
-                acfg.regConfig.retryIntervalSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sipretry", "30"));
-                AuthCredInfo cred = new AuthCredInfo("digest", sipserver, _accountName, 0, Password);
-                cred.realm = _domain;
-                acfg.regConfig.registerOnAdd = true;
-                acfg.regConfig.timeoutSec = 180;
+                    string sipserver = string.Format("sip:{0}", SipServer);
+                    acfg.regConfig.registrarUri = sipserver;
+                    acfg.regConfig.registerOnAdd = true;
+
+                    acfg.regConfig.timeoutSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"timeout", "48000"));
+                    acfg.regConfig.retryIntervalSec = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"sipretry", "30"));
+                    AuthCredInfo cred = new AuthCredInfo("digest", sipserver, _accountName, 0, Password);
+                    cred.realm = _domain;
+                    acfg.regConfig.registerOnAdd = true;
+                    acfg.regConfig.timeoutSec = 180;
 
 
-                acfg.sipConfig.authCreds.Add(cred);
-                acfg.regConfig.dropCallsOnFail = true;
-                Logging.LogAppender.AppendToLog("Account ready to be added: " + acfg.idUri);
+                    acfg.sipConfig.authCreds.Add(cred);
+                    acfg.regConfig.dropCallsOnFail = true;
+                    Logging.LogAppender.AppendToLog("Account ready to be added: " + acfg.idUri);
 
-                // Create SIP account
-                acc = new SipAccount();
-                acc.create(acfg, true);
-                setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
-                Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
-                result = true;
+                    // Create SIP account
+                    acc = new SipAccount();
+                    acc.create(acfg, true);
+                    acc.AccountDescription = acfg.idUri;// hiermee kan eenvoudig op de uri gezocht worden
+                    setPresence(acc, pjsua_buddy_status.PJSUA_BUDDY_STATUS_ONLINE);
+                    Logging.LogAppender.AppendToLog("Account " + acfg.idUri + " successfully added!");
+                    result = true;
+
+
+                    if (!Accounts.Any(x => x.AccountDescription == acfg.idUri))
+                    {
+                        Accounts.Add(acc); //Hier wordt het account toegevoegd aan de lijst, tenminste, als die er nog niet in voor komt
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -264,6 +246,13 @@ namespace PJSUA2Implementation.SIP
             ///this code destroys the SIP connection and clears the relevant objects
             try
             {
+                //Ruim ook alle accounts op
+                foreach(SipAccount account in Accounts)
+                {
+                    
+                    account.Dispose();
+                }
+
                 ep.mediaRemove(play_med);
                 ep.mediaRemove(cap_med);
                 //dispose all sip objects, so they can be garbage collected
@@ -273,7 +262,7 @@ namespace PJSUA2Implementation.SIP
                 ep.Dispose();
                 //// Send new state
                 forwardNewRegState(-2);
-
+               
                 //force garbage collection of all disposed objects
                 GC.Collect();
             }

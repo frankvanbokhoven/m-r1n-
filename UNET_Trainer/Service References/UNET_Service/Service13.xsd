@@ -12,6 +12,7 @@
       <xs:element minOccurs="0" name="AcknowledgeTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Acknowledged" type="xs:boolean" />
       <xs:element minOccurs="0" name="AcknowledgedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExerciseNumber" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="ser:guid" />
       <xs:element minOccurs="0" name="RequestTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="TraineeID" nillable="true" type="xs:string" />

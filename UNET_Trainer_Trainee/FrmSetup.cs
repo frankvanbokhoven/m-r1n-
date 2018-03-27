@@ -148,7 +148,7 @@ namespace UNET_Trainer_Trainee
             // .Root.Appenders.OfType<FileAppender>().FirstOrDefault().File;
             tbxLog4NetDirectory.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"log4netdir", @"c:\Marine\Log");
             tbxLogDirectory.Text = RegistryAccess.GetStringRegistryValue(@"UNET", @"logdir", @"c:\Marine\Log");
-
+            this.FormTitle = "Setup";
             btnMainPage.Focus();
         }
 

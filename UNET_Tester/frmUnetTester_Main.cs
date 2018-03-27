@@ -73,6 +73,7 @@ namespace UNET_Tester
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
+                   
                 }
 
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
@@ -189,6 +190,8 @@ namespace UNET_Tester
                         }
 
                     }
+
+      
                     var radioslist = service.GetRadios();
                     List<Radio> lstRadio = radioslist.ToList<Radio>();
                     foreach(Radio radio in lstRadio)
@@ -257,7 +260,6 @@ namespace UNET_Tester
             {
                 AddToListbox(string.Format("Set Roles to: {0}", Convert.ToInt16(cbxRole.Text)), Color.LimeGreen);
                 // we mocken hier een aantal roles. Als er bijv. 5 in de combobox staat, worden hier 5 roles gemaakt
-
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -277,17 +279,16 @@ namespace UNET_Tester
                 List<Role> elist = new List<Role>();
                 for (int i = 1; i <= Convert.ToInt16(cbxRole.Text); i++)
                 {
-                    string role = Roles[i]; // werkt op een of andere manier niet Roles[new Random().Next(0, Roles.Length)];
-                    Role exe = new Role();
-                    exe.ID = i;
-                    exe.Name = role;
+                    string role = Roles[i];
+                    Role rol = new Role();
+                    rol.ID = i;
+                    rol.Name = role;
 
                     if(cbxAddPlatformToRole.Checked)
                     {
-                       exe.PlatformsAssigned.AddRange(lstPlatforms);
-
+                       rol.PlatformsAssigned.AddRange(lstPlatforms);
                     }
-                    elist.Add(exe);
+                    elist.Add(rol);
                 }
 
                 service.SetRoles(elist.ToArray());
@@ -394,10 +395,6 @@ namespace UNET_Tester
             service.Close();
         }
 
-        private void cbxInstructor_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
@@ -407,10 +404,13 @@ namespace UNET_Tester
             }
 
             listBoxGetmethods.Items.Clear();//lijstje leegmaken
+            btnRefreshPlatform_Click(sender, e);
 
             //Voeg voor iedere trainee-id een trainee object toe
             string[] instructorids = tbxInstructorIDs.Text.Split(',');
-
+            cbxRadios_SelectedValueChanged(sender, e);
+            cbxRole_SelectedValueChanged(sender, e);
+       
             List<Instructor> instructorlist = new List<Instructor>();
             int k = 0;
             foreach (Instructor instructor in instructorlist)
@@ -450,12 +450,8 @@ namespace UNET_Tester
                 k++;
             }
             comboBox1_SelectedValueChanged(sender, e);
-            btnRefreshPlatform_Click(sender, e);
-
-            cbxInstructor_SelectedValueChanged(sender, e);
-            cbxRadios_SelectedValueChanged(sender, e);
-            cbxRole_SelectedValueChanged(sender, e);
-            btnRefreshInstructors_Click(sender, e);
+ 
+             btnRefreshInstructors_Click(sender, e);
             btnRefreshTrainees_Click(sender, e);
 
             RefillTraineeAssists();
@@ -759,6 +755,7 @@ namespace UNET_Tester
                 foreach (string plat in platforms)
                 {
                     UNET_Classes.Platform platform = new UNET_Classes.Platform(plat);
+                    platform.ShortDescription = plat.Substring(0, plat.Length >= 8 ? 8 : plat.Length); //short description is 8 tekens lang
                     AddToListbox("Set Platform: " + plat, Color.LimeGreen);
                     
                  

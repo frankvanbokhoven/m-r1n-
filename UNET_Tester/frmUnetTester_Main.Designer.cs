@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUNETTester_Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxAddPlatformToRole = new System.Windows.Forms.CheckBox();
+            this.btnRefreshPlatform = new System.Windows.Forms.Button();
+            this.tbxPlatform = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbxAssignRolesToTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignTrainees = new System.Windows.Forms.CheckBox();
             this.cbxAssignRadiosToExercise = new System.Windows.Forms.CheckBox();
@@ -70,10 +74,6 @@
             this.cbxAssistTrainee = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnRequestAssist = new System.Windows.Forms.Button();
-            this.btnRefreshPlatform = new System.Windows.Forms.Button();
-            this.tbxPlatform = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbxAddPlatformToRole = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.grbxNoiseLevel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -117,12 +117,56 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // cbxAddPlatformToRole
+            // 
+            this.cbxAddPlatformToRole.AutoSize = true;
+            this.cbxAddPlatformToRole.Checked = true;
+            this.cbxAddPlatformToRole.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAddPlatformToRole.Location = new System.Drawing.Point(104, 282);
+            this.cbxAddPlatformToRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbxAddPlatformToRole.Name = "cbxAddPlatformToRole";
+            this.cbxAddPlatformToRole.Size = new System.Drawing.Size(178, 21);
+            this.cbxAddPlatformToRole.TabIndex = 28;
+            this.cbxAddPlatformToRole.Text = "Assign platforms to role";
+            this.cbxAddPlatformToRole.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshPlatform
+            // 
+            this.btnRefreshPlatform.Image = global::UNET_Tester.Properties.Resources.refresh;
+            this.btnRefreshPlatform.Location = new System.Drawing.Point(347, 223);
+            this.btnRefreshPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefreshPlatform.Name = "btnRefreshPlatform";
+            this.btnRefreshPlatform.Size = new System.Drawing.Size(40, 39);
+            this.btnRefreshPlatform.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.btnRefreshPlatform, "Refresh trainees");
+            this.btnRefreshPlatform.UseVisualStyleBackColor = true;
+            this.btnRefreshPlatform.Click += new System.EventHandler(this.btnRefreshPlatform_Click);
+            // 
+            // tbxPlatform
+            // 
+            this.tbxPlatform.Location = new System.Drawing.Point(104, 228);
+            this.tbxPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbxPlatform.Name = "tbxPlatform";
+            this.tbxPlatform.Size = new System.Drawing.Size(224, 22);
+            this.tbxPlatform.TabIndex = 26;
+            this.tbxPlatform.Text = "Tromp, Sub1, Sub2, Rotterdam";
+            this.toolTip1.SetToolTip(this.tbxPlatform, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 233);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 17);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Platform";
+            // 
             // cbxAssignRolesToTrainees
             // 
             this.cbxAssignRolesToTrainees.AutoSize = true;
             this.cbxAssignRolesToTrainees.Checked = true;
             this.cbxAssignRolesToTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 170);
+            this.cbxAssignRolesToTrainees.Location = new System.Drawing.Point(104, 203);
             this.cbxAssignRolesToTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxAssignRolesToTrainees.Name = "cbxAssignRolesToTrainees";
             this.cbxAssignRolesToTrainees.Size = new System.Drawing.Size(178, 21);
@@ -135,7 +179,7 @@
             this.cbxAssignTrainees.AutoSize = true;
             this.cbxAssignTrainees.Checked = true;
             this.cbxAssignTrainees.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignTrainees.Location = new System.Drawing.Point(104, 149);
+            this.cbxAssignTrainees.Location = new System.Drawing.Point(104, 182);
             this.cbxAssignTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxAssignTrainees.Name = "cbxAssignTrainees";
             this.cbxAssignTrainees.Size = new System.Drawing.Size(213, 21);
@@ -148,7 +192,7 @@
             this.cbxAssignRadiosToExercise.AutoSize = true;
             this.cbxAssignRadiosToExercise.Checked = true;
             this.cbxAssignRadiosToExercise.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRadiosToExercise.Location = new System.Drawing.Point(104, 78);
+            this.cbxAssignRadiosToExercise.Location = new System.Drawing.Point(104, 111);
             this.cbxAssignRadiosToExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxAssignRadiosToExercise.Name = "cbxAssignRadiosToExercise";
             this.cbxAssignRadiosToExercise.Size = new System.Drawing.Size(187, 21);
@@ -161,7 +205,7 @@
             this.cbxAssignRolesToExercise.AutoSize = true;
             this.cbxAssignRolesToExercise.Checked = true;
             this.cbxAssignRolesToExercise.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAssignRolesToExercise.Location = new System.Drawing.Point(104, 98);
+            this.cbxAssignRolesToExercise.Location = new System.Drawing.Point(104, 131);
             this.cbxAssignRolesToExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxAssignRolesToExercise.Name = "cbxAssignRolesToExercise";
             this.cbxAssignRolesToExercise.Size = new System.Drawing.Size(179, 21);
@@ -207,7 +251,7 @@
             // btnRefreshTrainees
             // 
             this.btnRefreshTrainees.Image = global::UNET_Tester.Properties.Resources.refresh;
-            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 118);
+            this.btnRefreshTrainees.Location = new System.Drawing.Point(347, 151);
             this.btnRefreshTrainees.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshTrainees.Name = "btnRefreshTrainees";
             this.btnRefreshTrainees.Size = new System.Drawing.Size(40, 39);
@@ -218,7 +262,7 @@
             // 
             // tbxTraineeIDs
             // 
-            this.tbxTraineeIDs.Location = new System.Drawing.Point(104, 123);
+            this.tbxTraineeIDs.Location = new System.Drawing.Point(104, 156);
             this.tbxTraineeIDs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxTraineeIDs.Name = "tbxTraineeIDs";
             this.tbxTraineeIDs.Size = new System.Drawing.Size(224, 22);
@@ -241,7 +285,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(283, 30);
+            this.label7.Location = new System.Drawing.Point(283, 63);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 14;
@@ -249,7 +293,7 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(285, 50);
+            this.txtName.Location = new System.Drawing.Point(285, 83);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(115, 22);
@@ -259,7 +303,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(163, 30);
+            this.label6.Location = new System.Drawing.Point(163, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 17);
             this.label6.TabIndex = 12;
@@ -267,7 +311,7 @@
             // 
             // txtSpecification
             // 
-            this.txtSpecification.Location = new System.Drawing.Point(165, 50);
+            this.txtSpecification.Location = new System.Drawing.Point(165, 83);
             this.txtSpecification.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSpecification.Name = "txtSpecification";
             this.txtSpecification.Size = new System.Drawing.Size(115, 22);
@@ -317,7 +361,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 282);
+            this.label4.Location = new System.Drawing.Point(11, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 7;
@@ -347,7 +391,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRadios.Location = new System.Drawing.Point(104, 280);
+            this.cbxRadios.Location = new System.Drawing.Point(104, 34);
             this.cbxRadios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRadios.Name = "cbxRadios";
             this.cbxRadios.Size = new System.Drawing.Size(55, 24);
@@ -358,7 +402,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 224);
+            this.label3.Location = new System.Drawing.Point(11, 257);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 5;
@@ -388,7 +432,7 @@
             "18",
             "19",
             "20"});
-            this.cbxRole.Location = new System.Drawing.Point(104, 221);
+            this.cbxRole.Location = new System.Drawing.Point(104, 254);
             this.cbxRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxRole.Name = "cbxRole";
             this.cbxRole.Size = new System.Drawing.Size(55, 24);
@@ -399,7 +443,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 128);
+            this.label2.Location = new System.Drawing.Point(11, 161);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 3;
@@ -408,7 +452,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 53);
+            this.label1.Location = new System.Drawing.Point(11, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 1;
@@ -426,7 +470,7 @@
             "6",
             "7",
             "8"});
-            this.cbxExercise.Location = new System.Drawing.Point(104, 50);
+            this.cbxExercise.Location = new System.Drawing.Point(104, 83);
             this.cbxExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxExercise.Name = "cbxExercise";
             this.cbxExercise.Size = new System.Drawing.Size(55, 24);
@@ -623,50 +667,6 @@
             this.btnRequestAssist.Text = "Request assist";
             this.btnRequestAssist.UseVisualStyleBackColor = false;
             this.btnRequestAssist.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnRefreshPlatform
-            // 
-            this.btnRefreshPlatform.Image = global::UNET_Tester.Properties.Resources.refresh;
-            this.btnRefreshPlatform.Location = new System.Drawing.Point(347, 190);
-            this.btnRefreshPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRefreshPlatform.Name = "btnRefreshPlatform";
-            this.btnRefreshPlatform.Size = new System.Drawing.Size(40, 39);
-            this.btnRefreshPlatform.TabIndex = 27;
-            this.toolTip1.SetToolTip(this.btnRefreshPlatform, "Refresh trainees");
-            this.btnRefreshPlatform.UseVisualStyleBackColor = true;
-            this.btnRefreshPlatform.Click += new System.EventHandler(this.btnRefreshPlatform_Click);
-            // 
-            // tbxPlatform
-            // 
-            this.tbxPlatform.Location = new System.Drawing.Point(104, 195);
-            this.tbxPlatform.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbxPlatform.Name = "tbxPlatform";
-            this.tbxPlatform.Size = new System.Drawing.Size(224, 22);
-            this.tbxPlatform.TabIndex = 26;
-            this.tbxPlatform.Text = "Tromp, Sub1, Sub2, Rotterdam";
-            this.toolTip1.SetToolTip(this.tbxPlatform, "Vul hier de id\'s in van de trainees en druk dan op refesh trainees");
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 200);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 17);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Platform";
-            // 
-            // cbxAddPlatformToRole
-            // 
-            this.cbxAddPlatformToRole.AutoSize = true;
-            this.cbxAddPlatformToRole.Checked = true;
-            this.cbxAddPlatformToRole.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxAddPlatformToRole.Location = new System.Drawing.Point(104, 249);
-            this.cbxAddPlatformToRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbxAddPlatformToRole.Name = "cbxAddPlatformToRole";
-            this.cbxAddPlatformToRole.Size = new System.Drawing.Size(178, 21);
-            this.cbxAddPlatformToRole.TabIndex = 28;
-            this.cbxAddPlatformToRole.Text = "Assign platforms to role";
-            this.cbxAddPlatformToRole.UseVisualStyleBackColor = true;
             // 
             // frmUNETTester_Main
             // 

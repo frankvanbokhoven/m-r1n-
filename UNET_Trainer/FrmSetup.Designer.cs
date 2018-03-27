@@ -220,12 +220,13 @@
             // 
             // btnSelectLogDir
             // 
-            this.btnSelectLogDir.Image = global::UNET_Trainer.Properties.Resources.open;
+            this.btnSelectLogDir.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectLogDir.Location = new System.Drawing.Point(394, 214);
             this.btnSelectLogDir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSelectLogDir.Name = "btnSelectLogDir";
-            this.btnSelectLogDir.Size = new System.Drawing.Size(50, 50);
+            this.btnSelectLogDir.Size = new System.Drawing.Size(61, 50);
             this.btnSelectLogDir.TabIndex = 40;
+            this.btnSelectLogDir.Text = "Select";
             this.btnSelectLogDir.UseVisualStyleBackColor = true;
             this.btnSelectLogDir.Click += new System.EventHandler(this.btnSelectLogDir_Click);
             // 
@@ -356,12 +357,13 @@
             // 
             // button1
             // 
-            this.button1.Image = global::UNET_Trainer.Properties.Resources.open;
+            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(393, 275);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 47);
+            this.button1.Size = new System.Drawing.Size(62, 47);
             this.button1.TabIndex = 46;
+            this.button1.Text = "Select";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

@@ -11,13 +11,14 @@ namespace UNET_Classes
         public int ID { get; set; }
 
         [Description("ShortDescription is the text on the button")]
-        public string ShortDescription { get; set; }
+        public string ShortDescription { get; set;  }
         public string Description { get; set; }
 
 
         public Platform()
         {
-        
+            Description = string.Empty;
+            ShortDescription = string.Empty;
         }
 
 

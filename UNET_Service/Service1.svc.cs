@@ -125,6 +125,11 @@ namespace UNET_Service
             return true;
         }
 
+        public bool KeepAlive(string _id)
+        {
+            return true;
+        }
+
 
         /// <summary>
         /// deze methode gooit het hele singleton object leeg.
@@ -135,11 +140,23 @@ namespace UNET_Service
             bool result = true;
             try
             {
-
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                singleton.Instructors.Clear();
+
+                // laat de instructors bestaan, ,maar gooi wel de objectlijsten leeg.
+                foreach(Instructor instr in singleton.Instructors)
+                {
+                    instr.AssignedRoles.Clear();
+                    instr.Exercises.Clear();
+                    
+                }
+                //laat de trainees bestaan, maar gooi wel de objectlijsten leeg
+                foreach(Trainee train in singleton.Trainees)
+                {
+                    train.Radios.Clear();
+                    train.Roles.Clear();                    
+                }
+
                 singleton.Exercises.Clear();
-                singleton.Trainees.Clear();
                 singleton.Radios.Clear();
                 singleton.Roles.Clear();
                 singleton.PTTQueue.Clear();
@@ -167,8 +184,44 @@ namespace UNET_Service
             return true;
         }
 
+        /// <summary>
+        /// vul initieel de lijsten met instructors en trainees
+        /// </summary>
+        /// <returns></returns>
         public bool Start()
         {
+            bool result = true;
+            try
+            {
+
+                UNET_Singleton singleton = UNET_Singleton.Instance;
+                singleton.Instructors.Clear();
+                singleton.Trainees.Clear();
+                //instructors
+                for (int i = 30; i <= 33; i++) //levert instructor 1030 tot 1033 op
+                {
+
+                    //maak instructor aan
+                    Instructor inst = new Instructor("10" +i.ToString("00"), "Instructor: " + i.ToString("00"));
+                    singleton.Instructors.Add(inst);
+                }
+                //trainees
+                for (int i = 0; i <= 15; i++) //levert trainee 1000 tot 1015 op
+                {
+
+                    //maak trainee aan
+                    Trainee trn = new Trainee("10" +i.ToString("00"), "Trainee: " + i.ToString("00"));
+                    singleton.Trainees.Add(trn);
+                }
+                result = true;
+              }
+            catch (Exception ex)
+            {
+                log.Error("Error creating instructors and trainees"  + ex.Message);
+                result = false;
+            }
+
+  
             return true;
         }
 
@@ -1730,16 +1783,10 @@ namespace UNET_Service
                 //first clear the array
                 singleton.Platforms.Clear();
 
-
-                //and create a number of exercises
-                for (int i = 0; i <= Convert.ToInt16(_platform.Count - 1); i++)
+                foreach(Platform platform in _platform)
                 {
-                    Platform platform = new Platform();
-                    platform.ID = i;
-                    platform.Description = string.Format("Platform{0}", i);
                     singleton.Platforms.Add(platform);
                 }
-
 
                 result = true;
             }
@@ -1938,10 +1985,9 @@ namespace UNET_Service
                                 result = new CurrentInfo();
                                 result.ExerciseNumber = ex.Number;
                                 result.ExerciseName = ex.ExerciseName;
-                                //   result.ConsoleRole = ex.RolesAssigned[0].Name;
                                 result.ExerciseMode = "todo: mode";
                                 result.ConsoleRole = "todo: console";
-                                result.Platform = "todo: platform";
+                            //todo: terugzetten maar dan zonder exception    result.Platform = ex.PlatformsAssigned[0].ShortDescription;
                                 result.InstructorName = instr.Name;
                                 break;
                             }
@@ -2011,6 +2057,9 @@ namespace UNET_Service
 
         /// <summary>
         /// Set an assist request to acknowledged
+        /// there are two situations
+        /// 1) an instructor acknowledges an assist, in that case the instructor id is given in the parameter
+        /// 2) a trainee cancels a pending assist, in that case the instructor parameter contains 'cancelassist'
         /// </summary>
         /// <param name="_instructorID"></param>
         /// <param name="_traineeID"></param>
@@ -2021,21 +2070,18 @@ namespace UNET_Service
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-
-                //create assist
-                //    Assist ass = new Assist(_traineeID, _traineeInfo);
-                //    singleton.Assists.Add(ass);
-                //todo: ooit iets moois Lync van maken
-                foreach (Assist assist in singleton.Assists)
-                {
-                    if (assist.TraineeID == _traineeID && assist.Acknowledged == false)
+    
+                    //create assist
+                    foreach (Assist assist in singleton.Assists)
                     {
-                        assist.Acknowledged = true;
-                        assist.AcknowledgedBy = _instructorID;
-                        assist.AcknowledgeTime = DateTime.Now;
+                        if (assist.TraineeID == _traineeID && assist.Acknowledged == false)
+                        {
+                            assist.Acknowledged = true;
+                            assist.AcknowledgedBy = _instructorID;
+                            assist.AcknowledgeTime = DateTime.Now;
+                        }
                     }
-                }
-
+                
                 result = true;
             }
             catch (Exception ex)
