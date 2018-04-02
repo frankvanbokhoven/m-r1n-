@@ -228,6 +228,12 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
         System.Threading.Tasks.Task<bool> StopAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KeepAlive", ReplyAction="http://tempuri.org/IService1/KeepAliveResponse")]
+        bool KeepAlive(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KeepAlive", ReplyAction="http://tempuri.org/IService1/KeepAliveResponse")]
+        System.Threading.Tasks.Task<bool> KeepAliveAsync(string _id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
         bool AddPTT(string _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser);
         
@@ -612,6 +618,14 @@ namespace UNET_Trainer_Trainee.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> StopAsync() {
             return base.Channel.StopAsync();
+        }
+        
+        public bool KeepAlive(string _id) {
+            return base.Channel.KeepAlive(_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> KeepAliveAsync(string _id) {
+            return base.Channel.KeepAliveAsync(_id);
         }
         
         public bool AddPTT(string _traineeInstructorID, UNET_Trainer_Trainee.UNET_Service.PTTuser _pttUser) {

@@ -228,6 +228,12 @@ namespace UNET_ServiceStatus.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Stop", ReplyAction="http://tempuri.org/IService1/StopResponse")]
         System.Threading.Tasks.Task<bool> StopAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KeepAlive", ReplyAction="http://tempuri.org/IService1/KeepAliveResponse")]
+        bool KeepAlive(string _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/KeepAlive", ReplyAction="http://tempuri.org/IService1/KeepAliveResponse")]
+        System.Threading.Tasks.Task<bool> KeepAliveAsync(string _id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddPTT", ReplyAction="http://tempuri.org/IService1/AddPTTResponse")]
         bool AddPTT(string _traineeInstructorID, UNET_ServiceStatus.UNET_Service.PTTuser _pttUser);
         
@@ -245,6 +251,24 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPTTQueue", ReplyAction="http://tempuri.org/IService1/GetPTTQueueResponse")]
         System.Threading.Tasks.Task<UNET_ServiceStatus.UNET_Service.PTTcaller[]> GetPTTQueueAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetP2P", ReplyAction="http://tempuri.org/IService1/GetP2PResponse")]
+        UNET_Classes.PointToPoint[] GetP2P(string _instructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetP2P", ReplyAction="http://tempuri.org/IService1/GetP2PResponse")]
+        System.Threading.Tasks.Task<UNET_Classes.PointToPoint[]> GetP2PAsync(string _instructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgeP2P", ReplyAction="http://tempuri.org/IService1/AcknowledgeP2PResponse")]
+        bool AcknowledgeP2P(string _traineeInstructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AcknowledgeP2P", ReplyAction="http://tempuri.org/IService1/AcknowledgeP2PResponse")]
+        System.Threading.Tasks.Task<bool> AcknowledgeP2PAsync(string _traineeInstructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RequestPointToPoint", ReplyAction="http://tempuri.org/IService1/RequestPointToPointResponse")]
+        bool RequestPointToPoint(string _traineeInstructorID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/RequestPointToPoint", ReplyAction="http://tempuri.org/IService1/RequestPointToPointResponse")]
+        System.Threading.Tasks.Task<bool> RequestPointToPointAsync(string _traineeInstructorID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAssist", ReplyAction="http://tempuri.org/IService1/CreateAssistResponse")]
         bool CreateAssist(string _traineeId, string _traineeInfo);
@@ -395,6 +419,12 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeStatusChanged", ReplyAction="http://tempuri.org/IService1/GetTraineeStatusChangedResponse")]
         System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeRoles", ReplyAction="http://tempuri.org/IService1/GetTraineeRolesResponse")]
+        UNET_Classes.Role[] GetTraineeRoles(string _traineeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineeRoles", ReplyAction="http://tempuri.org/IService1/GetTraineeRolesResponse")]
+        System.Threading.Tasks.Task<UNET_Classes.Role[]> GetTraineeRolesAsync(string _traineeID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNoiseLevelChanged", ReplyAction="http://tempuri.org/IService1/GetNoiseLevelChangedResponse")]
         bool GetNoiseLevelChanged();
@@ -590,6 +620,14 @@ namespace UNET_ServiceStatus.UNET_Service {
             return base.Channel.StopAsync();
         }
         
+        public bool KeepAlive(string _id) {
+            return base.Channel.KeepAlive(_id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> KeepAliveAsync(string _id) {
+            return base.Channel.KeepAliveAsync(_id);
+        }
+        
         public bool AddPTT(string _traineeInstructorID, UNET_ServiceStatus.UNET_Service.PTTuser _pttUser) {
             return base.Channel.AddPTT(_traineeInstructorID, _pttUser);
         }
@@ -612,6 +650,30 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_ServiceStatus.UNET_Service.PTTcaller[]> GetPTTQueueAsync() {
             return base.Channel.GetPTTQueueAsync();
+        }
+        
+        public UNET_Classes.PointToPoint[] GetP2P(string _instructorID) {
+            return base.Channel.GetP2P(_instructorID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Classes.PointToPoint[]> GetP2PAsync(string _instructorID) {
+            return base.Channel.GetP2PAsync(_instructorID);
+        }
+        
+        public bool AcknowledgeP2P(string _traineeInstructorID) {
+            return base.Channel.AcknowledgeP2P(_traineeInstructorID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AcknowledgeP2PAsync(string _traineeInstructorID) {
+            return base.Channel.AcknowledgeP2PAsync(_traineeInstructorID);
+        }
+        
+        public bool RequestPointToPoint(string _traineeInstructorID) {
+            return base.Channel.RequestPointToPoint(_traineeInstructorID);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RequestPointToPointAsync(string _traineeInstructorID) {
+            return base.Channel.RequestPointToPointAsync(_traineeInstructorID);
         }
         
         public bool CreateAssist(string _traineeId, string _traineeInfo) {
@@ -812,6 +874,14 @@ namespace UNET_ServiceStatus.UNET_Service {
         
         public System.Threading.Tasks.Task<bool> GetTraineeStatusChangedAsync() {
             return base.Channel.GetTraineeStatusChangedAsync();
+        }
+        
+        public UNET_Classes.Role[] GetTraineeRoles(string _traineeID) {
+            return base.Channel.GetTraineeRoles(_traineeID);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Classes.Role[]> GetTraineeRolesAsync(string _traineeID) {
+            return base.Channel.GetTraineeRolesAsync(_traineeID);
         }
         
         public bool GetNoiseLevelChanged() {

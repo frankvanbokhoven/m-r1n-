@@ -2174,14 +2174,18 @@ namespace UNET_Service
         #endregion
 
         #region pointtopoint
-   
-        public List<UNET_Classes.PointToPoint> GetP2P(string _instructorID)
+        /// <summary>
+        /// get all pending point to points for the given trainee or instructor
+        /// </summary>
+        /// <param name="_instructorID"></param>
+        /// <returns></returns>
+        public List<UNET_Classes.PointToPoint> GetP2P(string _traineeinstructorID)
         {
             List<UNET_Classes.PointToPoint> result = new List<UNET_Classes.PointToPoint>();
             try
             {
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                result = singleton.PointToPoints.ToList<UNET_Classes.PointToPoint>();
+                result = singleton.PointToPoints.Where(x => x.Acknowledged == false).Where(y => y.TraineeID == _traineeinstructorID).ToList<UNET_Classes.PointToPoint>(); // alleen unacknowledged p2p's
             }
             catch (Exception ex)
             {

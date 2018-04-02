@@ -91,7 +91,6 @@ namespace UNET_Trainer_Trainee
                 log.Info("called by: " + e.Caller_AccountName);
                 this.Invoke((MethodInvoker)(() => lblPtt.Text = "Ringing!!"));
 
-
                 this.Invoke((MethodInvoker)(() => MessageBox.Show("Het is " + e.Caller_AccountName + " die belt!")));
 
 
@@ -116,14 +115,25 @@ namespace UNET_Trainer_Trainee
                 }
 
                 //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
-                if (e.Caller_AccountName.Contains("P2P")) //TYPE 1 VERBINDING
+              //  if (e.Caller_AccountName.Contains("P2P")) //TYPE 1 VERBINDING
+              //  {
+              //i//f it is not radio, broadcast or intercom, it must be a p2p
+                 //   string[] roleinfo = Helpers.ExtractNumber(e.Caller_AccountName);
+               //     string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
+                    string radnr2 =( Helpers.ExtractNumber(e.Caller_AccountName)).Substring(0,4);
+                foreach(Control control in panelRoles.Controls)
                 {
-                    string[] roleinfo = e.Caller_AccountName.Split('_');
-                    string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
-                    string radnr = Helpers.ExtractNumber(roleinfo[2]);
-                    this.Invoke((MethodInvoker)(() => panelRadios.Controls["btnRole" + radnr].ForeColor = Color.Red));
-                    this.Invoke((MethodInvoker)(() => ((UNET_Button.UNET_Button)this.Controls["btnRole" + radnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending));
-
+                    if (control.GetType() == typeof(UNET_Button.UNET_Button))
+                    {
+                      if ( ((UNET_Button.UNET_Button)control).ID.ToString() == radnr2)
+                        {
+                            this.Invoke((MethodInvoker)(() => control.ForeColor = Color.Red));
+                            this.Invoke((MethodInvoker)(() => ((UNET_Button.UNET_Button)control).P2PCallState = UNET_Button.P2PState.psP2PCallPending));
+                            break;
+                        }
+                    }
+                    
+             
                 }
                 Application.DoEvents();
             }
@@ -823,7 +833,7 @@ namespace UNET_Trainer_Trainee
                 cop.statusCode = pjsip_status_code.PJSIP_SC_OK;
                 //    cop.reason = "test van frank";
 
-                sc.makeCall(string.Format("sip:{0}@{1} Rol", _destination, SIPServer), cop);
+                sc.makeCall(string.Format("sip:{0}@{1}", _destination, SIPServer), cop);
                 useragent.acc.Calls.Add(sc); //kennelijk worden die calls niet vanzelf in deze list geplaatst.
             }
             catch (Exception ex)
@@ -1186,7 +1196,7 @@ namespace UNET_Trainer_Trainee
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MakeCall("1001", true, true, false, true, false, false);
+            MakeCall("1011", true, true, false, true, false, false);
 
         }
 

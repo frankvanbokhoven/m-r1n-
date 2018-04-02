@@ -63,6 +63,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="KeepAlive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_id" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KeepAliveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="KeepAliveResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddPTT">
     <xs:complexType>
       <xs:sequence>

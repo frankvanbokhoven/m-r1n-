@@ -50,6 +50,8 @@ namespace PJSUA2Implementation.SIP
         public override void onCallMediaEvent(OnCallMediaEventParam prm)
         {
             base.onCallMediaEvent(prm);
+           
+           
         }
         /// <summary>
         /// constructor

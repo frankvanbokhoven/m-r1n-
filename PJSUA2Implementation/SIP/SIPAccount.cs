@@ -16,7 +16,8 @@ namespace PJSUA2Implementation.SIP
         public event AlertEventHandler  CallAlert;
 
         [Description("Deze property houdt de volledige accountnaam vast")]
-        public string AccountDescription;
+        public string AccountDescription { get; set; }
+        public bool PTTDependent { get; set; }
 
         public SipAccount()
         {
@@ -24,6 +25,7 @@ namespace PJSUA2Implementation.SIP
             try
             {
                 Calls = new SyncList<Call>();
+                PTTDependent = false;
             }
             catch(Exception ex)
             {
