@@ -89,8 +89,20 @@ namespace UNET_ServiceStatus
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("OFFLINE");
                         }
-                        
+
+
                         Console.Write(Environment.NewLine);
+
+                        foreach (UNET_Classes.Trainee insttrain in instr.TraineesAssigned)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write("   Assigned   Trainee ID: " +  insttrain.ID + " Trainee descr: " + insttrain.Name );
+                            Console.Write(Environment.NewLine);
+
+                        }
+
+                        Console.Write(Environment.NewLine);
+
                         foreach (UNET_Classes.Exercise exe in instr.Exercises)
                         {
                             Console.ForegroundColor = ConsoleColor.Yellow;

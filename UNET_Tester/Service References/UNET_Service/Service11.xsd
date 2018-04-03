@@ -364,6 +364,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddTraineeToInstructor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_traineeID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_instructor" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddTraineeToInstructorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddTraineeToInstructorResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddInstructorRadio">
     <xs:complexType>
       <xs:sequence>

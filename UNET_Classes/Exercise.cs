@@ -28,6 +28,9 @@ namespace UNET_Classes
         public List<Radio> RadiosAssigned { get; set; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Selected { get; set; }
+        [Description("If an exercise has ever been selected, this property will be set to true.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool EverSelected { get; set; }
         [Description("Here we store the id of the instructor where this exercise is assigned to. (-1 for not assigned) see Req_unet_srs_3")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string AssignedInstructorID { get; set; }
@@ -36,7 +39,9 @@ namespace UNET_Classes
 
 
 
-
+        /// <summary>
+        /// Constructor Exercise
+        /// </summary>
         public Exercise()
         {
             TraineesAssigned = new List<Trainee>();
@@ -44,6 +49,7 @@ namespace UNET_Classes
             RadiosAssigned = new List<Radio>();
             PlatformsAssigned = new List<Platform>();
             AssignedInstructorID = string.Empty;
+            EverSelected = false;
         }
 
         /// <summary>
@@ -60,6 +66,7 @@ namespace UNET_Classes
             RadiosAssigned = new List<Radio>();
             PlatformsAssigned = new List<Platform>();
             AssignedInstructorID = string.Empty;
+            EverSelected = false;
 
         }
 

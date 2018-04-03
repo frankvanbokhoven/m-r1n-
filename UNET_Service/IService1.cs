@@ -117,8 +117,10 @@ namespace UNET_Service
         bool AddTraineeToExercise(int _exerciseID, Platform _platform, string _traineeName);
 
         [OperationContract]
-        bool AddInstructorRadio(int _exerciseID, Instructor _instructor, Radio _radio);
+        bool AddTraineeToInstructor(string _traineeID, string _instructor);
 
+        [OperationContract]
+        bool AddInstructorRadio(int _exerciseID, Instructor _instructor, Radio _radio);
 
         #endregion
 
@@ -146,7 +148,11 @@ namespace UNET_Service
 
         [OperationContract]
         List<UNET_Classes.Trainee> GetTrainees();
-       
+
+        [OperationContract]
+        List<UNET_Classes.Trainee> GetTraineesAssigned(string _instructorID, int _exerciseNumber);
+
+
         [OperationContract]
         List<UNET_Classes.Platform> GetPlatforms();
 

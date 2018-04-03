@@ -173,6 +173,12 @@
   <wsdl:message name="IService1_AddTraineeToExercise_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddTraineeToExerciseResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToInstructor_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToInstructor" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToInstructor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToInstructorResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_AddInstructorRadio_InputMessage">
     <wsdl:part name="parameters" element="tns:AddInstructorRadio" />
   </wsdl:message>
@@ -475,6 +481,10 @@
     <wsdl:operation name="AddTraineeToExercise">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraineeToExercise" message="tns:IService1_AddTraineeToExercise_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeToExerciseResponse" message="tns:IService1_AddTraineeToExercise_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTraineeToInstructor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraineeToInstructor" message="tns:IService1_AddTraineeToInstructor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeToInstructorResponse" message="tns:IService1_AddTraineeToInstructor_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddInstructorRadio">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddInstructorRadio" message="tns:IService1_AddInstructorRadio_InputMessage" />
@@ -839,6 +849,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddTraineeToExercise">
       <soap12:operation soapAction="http://tempuri.org/IService1/AddTraineeToExercise" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTraineeToInstructor">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddTraineeToInstructor" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

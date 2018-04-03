@@ -118,6 +118,7 @@
       <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Online" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TraineesAssigned" nillable="true" type="tns:ArrayOfTrainee" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Instructor" nillable="true" type="tns:Instructor" />
@@ -130,6 +131,7 @@
   <xs:complexType name="Exercise">
     <xs:sequence>
       <xs:element minOccurs="0" name="AssignedInstructorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EverSelected" type="xs:boolean" />
       <xs:element minOccurs="0" name="ExerciseName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Number" type="xs:int" />
       <xs:element minOccurs="0" name="PlatformsAssigned" nillable="true" type="tns:ArrayOfPlatform" />

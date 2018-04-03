@@ -173,6 +173,12 @@
   <wsdl:message name="IService1_AddTraineeToExercise_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddTraineeToExerciseResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToInstructor_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToInstructor" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddTraineeToInstructor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTraineeToInstructorResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_AddInstructorRadio_InputMessage">
     <wsdl:part name="parameters" element="tns:AddInstructorRadio" />
   </wsdl:message>
@@ -214,6 +220,12 @@
   </wsdl:message>
   <wsdl:message name="IService1_GetTrainees_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTraineesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineesAssigned_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineesAssigned" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTraineesAssigned_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTraineesAssignedResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_GetPlatforms_InputMessage">
     <wsdl:part name="parameters" element="tns:GetPlatforms" />
@@ -476,6 +488,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraineeToExercise" message="tns:IService1_AddTraineeToExercise_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeToExerciseResponse" message="tns:IService1_AddTraineeToExercise_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddTraineeToInstructor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddTraineeToInstructor" message="tns:IService1_AddTraineeToInstructor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddTraineeToInstructorResponse" message="tns:IService1_AddTraineeToInstructor_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddInstructorRadio">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddInstructorRadio" message="tns:IService1_AddInstructorRadio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddInstructorRadioResponse" message="tns:IService1_AddInstructorRadio_OutputMessage" />
@@ -503,6 +519,10 @@
     <wsdl:operation name="GetTrainees">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTrainees" message="tns:IService1_GetTrainees_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineesResponse" message="tns:IService1_GetTrainees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineesAssigned">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTraineesAssigned" message="tns:IService1_GetTraineesAssigned_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTraineesAssignedResponse" message="tns:IService1_GetTraineesAssigned_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetPlatforms">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetPlatforms" message="tns:IService1_GetPlatforms_InputMessage" />
@@ -846,6 +866,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AddTraineeToInstructor">
+      <soap12:operation soapAction="http://tempuri.org/IService1/AddTraineeToInstructor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddInstructorRadio">
       <soap12:operation soapAction="http://tempuri.org/IService1/AddInstructorRadio" style="document" />
       <wsdl:input>
@@ -902,6 +931,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTrainees">
       <soap12:operation soapAction="http://tempuri.org/IService1/GetTrainees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraineesAssigned">
+      <soap12:operation soapAction="http://tempuri.org/IService1/GetTraineesAssigned" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -25,7 +25,6 @@ namespace UNET_Trainer_Trainee
     {
         [DllImport("user32.dll")]
         protected static extern IntPtr GetForegroundWindow();
-
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //the accounts
@@ -42,12 +41,9 @@ namespace UNET_Trainer_Trainee
         private bool AssistRequested = false;
         private UNET_Classes.CurrentInfo currentInfo;
         private List<UNET_Classes.Radio> lstRadio = new List<Radio>();
-    //    private PJSUA2Implementation.SIP.SIPCall sc;
         private CallOpParam cop;
-     //   private bool HeadsetPlugged = false;
         private bool SoundPlaying = false;
         private int RoleClicked = -1;
-
         private bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         private bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
         private bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
@@ -181,11 +177,38 @@ namespace UNET_Trainer_Trainee
                 {
                     //the useragent holds everything needed for the sip communication
                     string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                    if(account.Trim().Length == 0)
+                    {
+                        InputBoxResult accountr = UNET_Classes.InputBox.Show("Selecteer een account", "Account info ontbreekt");
+                        account = accountr.Text;
+                        RegistryAccess.SetStringRegistryValue(@"UNET", @"account", account);
+                    }
                     //sipserver
                     DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
                     string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                    if (sipserver.Trim().Length == 0)
+                    {
+                        InputBoxResult sipserverr = UNET_Classes.InputBox.Show("Geef een freeswitch server op", "Server ip ontbreekt");
+                        sipserver = sipserverr.Text;
+                        RegistryAccess.SetStringRegistryValue(@"UNET", @"sipserver", sipserver);
+                    }
                     //account
                     string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                    if (domain.Trim().Length == 0)
+                    {
+                        InputBoxResult domainr = UNET_Classes.InputBox.Show("Geef een domain op", "Domain info ontbreekt");
+                        domain = domainr.Text;
+                        RegistryAccess.SetStringRegistryValue(@"UNET", @"domainr", domain);
+                    }
+                    //log
+                    string log = RegistryAccess.GetStringRegistryValue(@"UNET", @"logdir", @"c:\maringe\log");
+                    if (log.Trim().Length == 0)
+                    {
+                        InputBoxResult logr = UNET_Classes.InputBox.Show("Geef een log directory op", "log dir info ontbreekt");
+                        log = logr.Text;
+                        RegistryAccess.SetStringRegistryValue(@"UNET", @"logr", log);
+                    }
+
                     //account
                     UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
                     string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
@@ -616,6 +639,7 @@ namespace UNET_Trainer_Trainee
                     //stop the sip connection in a nice manner before closing
                     HangupAllCalls();
                     useragent.UserAgentStop();
+                    System.Threading.Thread.Sleep(2500); ///todo: deze sleeep is ingebracht om de pjsua2 de tijd te geven om af te sluiten. Testen of dit daadwerkelijk nodig is!
                 }
 
                 //cancel the TCP listener
@@ -1085,47 +1109,55 @@ namespace UNET_Trainer_Trainee
             //start server
             if (!StartServer())
                 Console.WriteLine("Unable to start server");
-
-            //sending n receiving msgs
-            while (!token.IsCancellationRequested)
+            try
             {
-                // Application.DoEvents();
-                if (serverStreamReader != null)
+                //sending n receiving msgs
+                while (!token.IsCancellationRequested)
                 {
-                    string received = serverStreamReader.ReadLine();
-                    if (received.Length > 0)
+                    // Application.DoEvents();
+                    if (serverStreamReader != null)
                     {
-                        string[] splitstr = received.Split('|');
-                        if (splitstr[0].ToString().Trim().ToLower() == "ptt")
+                        string received = serverStreamReader.ReadLine();
+                        if (received.Length > 0)
                         {
-                            if (splitstr[1].ToString().Trim().ToLower() == "true")
+                            string[] splitstr = received.Split('|');
+                            if (splitstr[0].ToString().Trim().ToLower() == "ptt")
                             {
-                                lblPtt.Text = "PTT ";
-                                SetPTTPressed(true);
-                            }
-                            else
-                            {
-                                lblPtt.Text = "";
-                                SetPTTPressed(false);
-                            }
+                                if (splitstr[1].ToString().Trim().ToLower() == "true")
+                                {
+                                    lblPtt.Text = "PTT ";
+                                    SetPTTPressed(true);
+                                }
+                                else
+                                {
+                                    lblPtt.Text = "";
+                                    SetPTTPressed(false);
+                                }
 
-                        }
-                        else
-                        {
-                            if (splitstr[1].ToString().Trim().ToLower() == "true")
-                            {
-                                lblHeadset.Text = "HEADSET";
                             }
                             else
-                                lblHeadset.Text = "";
+                            {
+                                if (splitstr[1].ToString().Trim().ToLower() == "true")
+                                {
+                                    lblHeadset.Text = "HEADSET";
+                                }
+                                else
+                                    lblHeadset.Text = "";
+                            }
                         }
                     }
-                }
-              //  Application.DoEvents();
-            //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
-            //    serverStreamWriter.WriteLine("Hi!");
-            //    serverStreamWriter.Flush();
-            }//while
+                    //  Application.DoEvents();
+                    //    Console.WriteLine("CLIENT: " + serverStreamReader.ReadLine());
+                    //    serverStreamWriter.WriteLine("Hi!");
+                    //    serverStreamWriter.Flush();
+                }//while
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+             
+            }
         }
         #endregion
 

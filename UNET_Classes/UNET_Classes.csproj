@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Exercise.cs" />
     <Compile Include="Helpers.cs" />
+    <Compile Include="InputBox.cs" />
     <Compile Include="Instructor.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="PointToPoint.cs" />

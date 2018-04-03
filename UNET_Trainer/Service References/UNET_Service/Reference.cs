@@ -354,6 +354,12 @@ namespace UNET_Trainer.UNET_Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTraineeToExercise", ReplyAction="http://tempuri.org/IService1/AddTraineeToExerciseResponse")]
         System.Threading.Tasks.Task<bool> AddTraineeToExerciseAsync(int _exerciseID, UNET_Classes.Platform _platform, string _traineeName);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTraineeToInstructor", ReplyAction="http://tempuri.org/IService1/AddTraineeToInstructorResponse")]
+        bool AddTraineeToInstructor(string _traineeID, string _instructor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddTraineeToInstructor", ReplyAction="http://tempuri.org/IService1/AddTraineeToInstructorResponse")]
+        System.Threading.Tasks.Task<bool> AddTraineeToInstructorAsync(string _traineeID, string _instructor);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddInstructorRadio", ReplyAction="http://tempuri.org/IService1/AddInstructorRadioResponse")]
         bool AddInstructorRadio(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio);
         
@@ -395,6 +401,12 @@ namespace UNET_Trainer.UNET_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTrainees", ReplyAction="http://tempuri.org/IService1/GetTraineesResponse")]
         System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineesAssigned", ReplyAction="http://tempuri.org/IService1/GetTraineesAssignedResponse")]
+        UNET_Classes.Trainee[] GetTraineesAssigned(string _instructorID, int _exerciseNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetTraineesAssigned", ReplyAction="http://tempuri.org/IService1/GetTraineesAssignedResponse")]
+        System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAssignedAsync(string _instructorID, int _exerciseNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetPlatforms", ReplyAction="http://tempuri.org/IService1/GetPlatformsResponse")]
         UNET_Classes.Platform[] GetPlatforms();
@@ -788,6 +800,14 @@ namespace UNET_Trainer.UNET_Service {
             return base.Channel.AddTraineeToExerciseAsync(_exerciseID, _platform, _traineeName);
         }
         
+        public bool AddTraineeToInstructor(string _traineeID, string _instructor) {
+            return base.Channel.AddTraineeToInstructor(_traineeID, _instructor);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddTraineeToInstructorAsync(string _traineeID, string _instructor) {
+            return base.Channel.AddTraineeToInstructorAsync(_traineeID, _instructor);
+        }
+        
         public bool AddInstructorRadio(int _exerciseID, UNET_Classes.Instructor _instructor, UNET_Classes.Radio _radio) {
             return base.Channel.AddInstructorRadio(_exerciseID, _instructor, _radio);
         }
@@ -842,6 +862,14 @@ namespace UNET_Trainer.UNET_Service {
         
         public System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAsync() {
             return base.Channel.GetTraineesAsync();
+        }
+        
+        public UNET_Classes.Trainee[] GetTraineesAssigned(string _instructorID, int _exerciseNumber) {
+            return base.Channel.GetTraineesAssigned(_instructorID, _exerciseNumber);
+        }
+        
+        public System.Threading.Tasks.Task<UNET_Classes.Trainee[]> GetTraineesAssignedAsync(string _instructorID, int _exerciseNumber) {
+            return base.Channel.GetTraineesAssignedAsync(_instructorID, _exerciseNumber);
         }
         
         public UNET_Classes.Platform[] GetPlatforms() {

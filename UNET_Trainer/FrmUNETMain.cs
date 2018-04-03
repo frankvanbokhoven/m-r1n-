@@ -54,7 +54,7 @@ namespace UNET_Trainer
         //arrays that hold the statusses of the some
         bool[] MonitorTraineeArray = new bool[16]; //this array holds the monitor status of the trainees
         bool[] MonitorRadioArray = new bool[20]; //this array holds the monitor status of the Radios
-        bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
+       // bool[] ExerciseArray = new bool[9]; //this array holds the exercise status
         private static FrmUNETMain inst;
         public UNET_Classes.Exercise SelectedExercise;
         private int ExersiseNumber = -1;
@@ -263,7 +263,6 @@ namespace UNET_Trainer
                     if (c.GetType() == typeof(UNET_Button.UNET_Button) && (c.Name.ToLower().Contains("trainee")))
                     {
                         ((UNET_Button.UNET_Button)c).ImageIndex = 0;
-
                     }
                 }
 
@@ -287,7 +286,7 @@ namespace UNET_Trainer
                             ((UNET_Button.UNET_Button)ctrl).ImageIndex = -1;
                         }
                     }
-                    btnAssist.ImageIndex = 1;
+                    btnAssist.ImageIndex = -1;
                     ///the user has acknowledged, so stop the sound
                     if (sound != null)
                     {
@@ -343,9 +342,6 @@ namespace UNET_Trainer
 
                         }
                     }
-
-
-
                     Application.DoEvents();
 
                 }
@@ -404,10 +400,7 @@ namespace UNET_Trainer
                                 {
                                     ((UNET_Button.UNET_Button)ctrl).ImageIndex = 1;
                                 }
-                                break;
-
-                                //and play a sound
-                                //todo
+                                break;                              
                             }
 
                         }
@@ -518,7 +511,7 @@ namespace UNET_Trainer
                 UNET_Classes.Helpers.ResizeButtonsVertical(panelExercises, availableExerciseslst.Count, "exersise");
 
                 //enable the Trainees buttons, for the number of trainees that are in the training
-                var traineelist = service.GetTrainees();
+                var traineelist = service.GetTraineesAssigned(InstructorID, SelectedExercise.Number);
                 List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
                 int listindex = 1;
                 foreach (Control ctrl in panelTrainees.Controls)
@@ -586,11 +579,7 @@ namespace UNET_Trainer
                 if ((SelectedExercise != null))// && (SelectedTrainee.Length > 0))
                 {//in onderstaande for loop nemen we de selectedtrainee (die gezet is in het onclick van de traineebutton, daarmee
                  //selecteren we in de trainees die aan de exercise hangen van deze instructor, en daarvan de rollen die daaraan hangen.
-                 //  foreach (UNET_Classes.Role role in currentInstructor.Exercises.SingleOrDefault(x => x.Number == SelectedExercise.Number).RolesAssigned )// .TraineesAssigned.SingleOrDefault(p => p.FreeswitchID == SelectedTrainee).Roles)
-                 //  {
-                 //      panelRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                 //     panelRoles.Controls["btnRole" + role.ID.ToString("00")].Text = string.Format("Role {0}{1}{2}", role.ID, Environment.NewLine, role.Name);
-
+ 
                     //loop nu door de lijst van toegewezen roles heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
                     //zoja, vul de informatie in en enable de knop
                     if (currentInstructor != null)
@@ -698,16 +687,6 @@ namespace UNET_Trainer
 
                     }
                 }
-                //foreach (Control ctrl in panelExercises.Controls) //first DISABLE all exercise buttons
-                //{
-                //    if ((ctrl.GetType() == typeof(UNET_Button.UNET_Button)))
-                //    {
-                //        ctrl.Enabled = false;
-
-                //        ctrl.Tag = "disable";
-                //        ((UNET_Button.UNET_Button)ctrl).BackColor = Theming.ExerciseNotSelected;
-                //    }
-                //}
                 if (SelectedExercise != null)
                 {
                     foreach (UNET_Classes.Radio radio in SelectedExercise.RadiosAssigned)
@@ -835,9 +814,9 @@ namespace UNET_Trainer
                 {
                     string[] roleinfo = e.Caller_AccountName.Split('_');
                     string exercisenumber = Helpers.ExtractNumber(roleinfo[1]);
-                    string radnr = Helpers.ExtractNumber(roleinfo[2]);
-                    this.Invoke((MethodInvoker)(() => panelRadios.Controls["btnRole" + radnr].ForeColor = Color.Red));
-                    this.Invoke((MethodInvoker)(() => ((UNET_Button.UNET_Button)this.Controls["btnRole" + radnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending));
+                    string rolnr = Helpers.ExtractNumber(roleinfo[2]);
+                    this.Invoke((MethodInvoker)(() => panelRoles.Controls["btnRole" + rolnr].ForeColor = Color.Red));
+                    this.Invoke((MethodInvoker)(() => ((UNET_Button.UNET_Button)this.Controls["btnRole" + rolnr]).P2PCallState = UNET_Button.P2PState.psP2PCallPending));
                 }
 
                 //point to point: Als een call voor een rol binnenkomt, moet het bolletje rechtsboven gaan knipperen
@@ -891,12 +870,39 @@ namespace UNET_Trainer
             {
                 //the useragent holds everything needed for the sip communication
                 string account = RegistryAccess.GetStringRegistryValue(@"UNET", @"account", "1013");
+                if (account.Trim().Length == 0)
+                {
+                    InputBoxResult accountr = UNET_Classes.InputBox.Show("Selecteer een account", "Account info ontbreekt");
+                    account = accountr.Text;
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"account", account);
+                }
                 //displayname
-                string displayname = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
+                DisplayName = RegistryAccess.GetStringRegistryValue(@"UNET", @"displayname", "1013 trainee");
                 //sipserver
                 string sipserver = RegistryAccess.GetStringRegistryValue(@"UNET", @"sipserver", "10.0.128.128");
+                if (sipserver.Trim().Length == 0)
+                {  //als sipserver leeg is, toon een schermpje waarmee de input gevraagd wordt
+                    InputBoxResult sipserverr = UNET_Classes.InputBox.Show("Geef een freeswitch server op", "Server ip ontbreekt");
+                    sipserver = sipserverr.Text;
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"sipserver", sipserver);
+                }
+
                 //account
                 string domain = RegistryAccess.GetStringRegistryValue(@"UNET", @"domain", "unet");
+                if (domain.Trim().Length == 0)
+                {
+                    InputBoxResult domainr = UNET_Classes.InputBox.Show("Geef een domain op", "Domain info ontbreekt");
+                    domain = domainr.Text;
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"domainr", domain);
+                }
+                //log
+                string log = RegistryAccess.GetStringRegistryValue(@"UNET", @"logdir", @"c:\maringe\log");
+                if (log.Trim().Length == 0)
+                {
+                    InputBoxResult logr = UNET_Classes.InputBox.Show("Geef een log directory op", "log dir info ontbreekt");
+                    log = logr.Text;
+                    RegistryAccess.SetStringRegistryValue(@"UNET", @"logr", log);
+                }
                 //account
                 UInt16 port = Convert.ToUInt16(RegistryAccess.GetStringRegistryValue(@"UNET", @"port", "5060"));
                 string password = RegistryAccess.GetStringRegistryValue(@"UNET", @"password", "1234");
@@ -906,11 +912,9 @@ namespace UNET_Trainer
                 btnClose.Visible = debug;
 
                 //the useragent holds everything needed for the sip communication
-                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, displayname);
+                useragent = new PJSUA2Implementation.SIP.UserAgent(account, sipserver, port, domain, password, DisplayName);
                 useragent.UserAgentStart("UNETTrainer");
 
-
-            
 
                 //  sc = new PJSUA2Implementation.SIP.SIPCall(useragent.acc);
                 cop = new CallOpParam();
@@ -1241,9 +1245,21 @@ namespace UNET_Trainer
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExersise01_Click(object sender, EventArgs e)
         {
             SetStatusAndColorExerciseButtons((UNET_Button.UNET_Button)sender);
+
+            /// Als een exercise wordt geselecteerd, welke nog niet eerder door geen enkele andere instructor is geselecteerd, worden 
+            /// de trainees en rollen toegekend aan deze instructor
+            if(SelectedExercise.EverSelected == false)
+            {
+                MessageBox.Show("nu moeten de trainees en rollen worden toegekend");
+            }
         }
 
         /// <summary>
@@ -1261,12 +1277,13 @@ namespace UNET_Trainer
                 ExersiseNumber = 8; //btn 8 is the IL button
             }
             //Set the selected exercise, start with the array, then send this to the service
-            ExerciseArray[ExersiseNumber] = true;
+         //   ExerciseArray[ExersiseNumber] = true;
             if (service.State != System.ServiceModel.CommunicationState.Opened)
             {
                 service.Open();
             }
             service.SetExerciseSelected(InstructorID, ExersiseNumber, true); //now we have told the service that this instructor has selected this exercise
+            SetButtonStatus(panelExercises);
         }
 
 
@@ -1588,6 +1605,8 @@ namespace UNET_Trainer
         //////////////////////////////////////////////////////////////////////////////
         private void StartListinging()
         {
+            try
+            { 
             //start server
             if (!StartServer())
                 Console.WriteLine("Unable to start server");
@@ -1625,6 +1644,11 @@ namespace UNET_Trainer
                             lblHeadset.Text = "";
                     }
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
             }
         }
 

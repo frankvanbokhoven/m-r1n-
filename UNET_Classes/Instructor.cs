@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,9 @@ namespace UNET_Classes
         public string FreeswitchID { get; set; }
         public List<Exercise> Exercises { get; set; }
         public List<Role> AssignedRoles { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Trainee> TraineesAssigned { get; set; }
+
         public bool Online { get; set; }
 
         /// <summary>
@@ -21,6 +25,8 @@ namespace UNET_Classes
         /// <param name="_name"></param>
         public Instructor(string _id, string _name)
         {
+            TraineesAssigned = new List<Trainee>();
+
             Exercises = new List<Exercise>();
             AssignedRoles = new List<Role>();
             ID = _id;
@@ -35,6 +41,7 @@ namespace UNET_Classes
         /// </summary>
         public Instructor()
         {
+            TraineesAssigned = new List<Trainee>();
             Exercises = new List<Exercise>();
             AssignedRoles = new List<Role>();
             Online = false;

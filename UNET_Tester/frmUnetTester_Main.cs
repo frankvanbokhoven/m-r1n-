@@ -73,7 +73,7 @@ namespace UNET_Tester
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
-                   
+
                 }
 
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
@@ -165,7 +165,7 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-              //todo  service.SetExerciseCount(cbxExercise.Text);
+                //todo  service.SetExerciseCount(cbxExercise.Text);
 
                 List<Exercise> elist = new List<Exercise>();
                 for (int i = 1; i <= Convert.ToInt16(cbxExercise.Text); i++)
@@ -176,25 +176,25 @@ namespace UNET_Tester
                     exe.ExerciseName = txtName.Text + i.ToString("00");
                     //    exe.TraineesAssigned.Add(new Trainee(1010, "Trainee-1010"));
 
-                    if(cbxAssignTrainees.Checked && i == 1) //only add them to the first exercise if the checkbox is checked
+                    if (cbxAssignTrainees.Checked && i == 1) //only add them to the first exercise if the checkbox is checked
                     {
                         //Trainee
                         var traineelist = service.GetTrainees();
                         List<Trainee> lsttrainee = traineelist.ToList<Trainee>();
 
-                         foreach (Trainee trainee in lsttrainee) //add these trainees to the first exercise
+                        foreach (Trainee trainee in lsttrainee) //add these trainees to the first exercise
                         {
                             exe.TraineesAssigned.Add(trainee);
                             AddToListbox(string.Format("Trainee: {0}, Name: {1}, added to first exercise", trainee.ID, trainee.Name));
-                           
+
                         }
 
                     }
 
-      
+
                     var radioslist = service.GetRadios();
                     List<Radio> lstRadio = radioslist.ToList<Radio>();
-                    foreach(Radio radio in lstRadio)
+                    foreach (Radio radio in lstRadio)
                     {
                         exe.RadiosAssigned.Add(radio);
                         AddToListbox(string.Format("Radio: {0}, Name: {1}, SE: {2} added to first exercise", radio.ID, radio.Description, radio.SpecialEffect));
@@ -269,7 +269,7 @@ namespace UNET_Tester
                 if (cbxAddPlatformToRole.Checked)
                 {
                     var platformlist = service.GetPlatforms();
-                     lstPlatforms = platformlist.ToList<Platform>();
+                    lstPlatforms = platformlist.ToList<Platform>();
 
                 }
                 ///pick a random role description
@@ -284,9 +284,9 @@ namespace UNET_Tester
                     rol.ID = i;
                     rol.Name = role;
 
-                    if(cbxAddPlatformToRole.Checked)
+                    if (cbxAddPlatformToRole.Checked)
                     {
-                       rol.PlatformsAssigned.AddRange(lstPlatforms);
+                        rol.PlatformsAssigned.AddRange(lstPlatforms);
                     }
                     elist.Add(rol);
                 }
@@ -319,7 +319,7 @@ namespace UNET_Tester
             try
             {
                 // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
-                 //    {
+                //    {
                 if (service.State != System.ServiceModel.CommunicationState.Opened)
                 {
                     service.Open();
@@ -340,7 +340,7 @@ namespace UNET_Tester
                             AddToListbox(string.Format("Trainee status: Trainee{0}: {1}", i, Convert.ToString(traineestatus[i])));
                         }
                     }
-                 }
+                }
 
 
                 //if something is changed with the noiselevels, update the listbox
@@ -410,7 +410,7 @@ namespace UNET_Tester
             string[] instructorids = tbxInstructorIDs.Text.Split(',');
             cbxRadios_SelectedValueChanged(sender, e);
             cbxRole_SelectedValueChanged(sender, e);
-       
+
             List<Instructor> instructorlist = new List<Instructor>();
             int k = 0;
             foreach (Instructor instructor in instructorlist)
@@ -441,8 +441,8 @@ namespace UNET_Tester
                     }
                     //  elist.Add(exe);
                     inst.Exercises.Add(new Exercise(1, "Exercise test 1"));
-                 AddToListbox(string.Format("Added instructor: {0}", 1012));
-    }
+                    AddToListbox(string.Format("Added instructor: {0}", 1012));
+                }
 
 
                 instructorlist.Add(inst);
@@ -450,8 +450,8 @@ namespace UNET_Tester
                 k++;
             }
             comboBox1_SelectedValueChanged(sender, e);
- 
-             btnRefreshInstructors_Click(sender, e);
+
+            btnRefreshInstructors_Click(sender, e);
             btnRefreshTrainees_Click(sender, e);
 
             RefillTraineeAssists();
@@ -463,7 +463,7 @@ namespace UNET_Tester
                     service.SetRadioAssignedStatus(instructorids[0], 1, i, true);
                 }
             }
-
+            btnAssignTraineestoInstructor_Click(sender, e);
 
         }
 
@@ -490,7 +490,7 @@ namespace UNET_Tester
             //instructors
             var resultlistinstructors = service.GetInstructors();
             List<UNET_Classes.Instructor> lstInstructor = resultlistinstructors.ToList<UNET_Classes.Instructor>();
-            foreach(UNET_Classes.Instructor instr in lstInstructor)
+            foreach (UNET_Classes.Instructor instr in lstInstructor)
             {
                 ComboboxItem itm = new ComboboxItem();
                 itm.Text = instr.ID + "|" + instr.Name;
@@ -498,7 +498,7 @@ namespace UNET_Tester
                 cbxAssistTrainee.Items.Add(itm);
 
             }
-            
+
 
 
         }
@@ -516,7 +516,7 @@ namespace UNET_Tester
                     service.Open();
                 }
 
-                 //maak nu een lijstje met trainees, op basis van de id's en  stuur dat naar de service
+                //maak nu een lijstje met trainees, op basis van de id's en  stuur dat naar de service
                 Trainee[] listTrainee;// = new List<UNET_Classes.Trainee>();
                 List<Trainee> objlist = new List<Trainee>();
                 foreach (string tr in traineeids)
@@ -536,14 +536,16 @@ namespace UNET_Tester
                         }
                     }
 
-              
-                  
+
+
                     objlist.Add(trainee);
                 }
                 listTrainee = (Trainee[])objlist.ToArray();
 
                 service.SetTrainees((Trainee[])listTrainee);
                 AddToListbox(string.Format("Set Trainees to: {0}", traineeids.Length), Color.LimeGreen);
+
+
 
             }
             catch (Exception ex)
@@ -555,7 +557,11 @@ namespace UNET_Tester
         }
 
 
-
+        /// <summary>
+        /// voeg instructors toe
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRefreshInstructors_Click(object sender, EventArgs e)
         {
             try
@@ -594,7 +600,7 @@ namespace UNET_Tester
                             foreach (UNET_Classes.Role role in lstrole)
                             {
                                 instructor.AssignedRoles.Add(role);
-                               
+
                             }
 
                             first = false;
@@ -661,17 +667,18 @@ namespace UNET_Tester
         {
             try
             {
-      
-           
+
+
 
                 //  if (MessageBox.Show("Are you sure? This 'destroys' all data in the UNET_Service!!", "Really reset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly,string.Empty) == DialogResult.Yes)
-                if(MessageBox.Show("Are you sure? this clears all data from unet_service!", "Really reset?",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure? this clears all data from unet_service!", "Really reset?", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                  if (service.State != System.ServiceModel.CommunicationState.Opened)
-                {
-                    service.Open();
+                    if (service.State != System.ServiceModel.CommunicationState.Opened)
+                    {
+                        service.Open();
 
-                }       service.Reset();
+                    }
+                    service.Reset();
                     listBoxGetmethods.Items.Clear();
                     AddToListbox("Everything is reset");
 
@@ -699,7 +706,7 @@ namespace UNET_Tester
                 string[] splitstr = cbxAssistTrainee.Text.Split('|');
 
                 service.AddPTT(splitstr[0], splitstr[1].ToLower().Contains("instr") ? UNET_Service.PTTuser.puInstructor : UNET_Service.PTTuser.puTrainee);
-      
+
 
             }
             catch (Exception ex)
@@ -722,8 +729,8 @@ namespace UNET_Tester
                 string[] splitstr = cbxAssistTrainee.Text.Split('|');
 
                 service.AcknowledgePTT(splitstr[0]);
-      
-      
+
+
 
                 service.AcknowledgePTT(splitstr[0]);
 
@@ -757,20 +764,59 @@ namespace UNET_Tester
                     UNET_Classes.Platform platform = new UNET_Classes.Platform(plat);
                     platform.ShortDescription = plat.Substring(0, plat.Length >= 8 ? 8 : plat.Length); //short description is 8 tekens lang
                     AddToListbox("Set Platform: " + plat, Color.LimeGreen);
-                    
-                 
+
+
                     objlist.Add(platform);
                 }
                 listPlatform = (Platform[])objlist.ToArray();
 
                 service.SetPlatforms((Platform[])listPlatform);
-      
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
                 log.Error("Error using WCF method adding platforms", ex);
                 // throw;
+            }
+        }
+
+        private void btnAssignTraineestoInstructor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // we mocken hier een aantal exercises. Als er bijv. 5 in de combobox staat, worden hier 5 exercises gemaakt
+
+                if (service.State != System.ServiceModel.CommunicationState.Opened)
+                {
+                    service.Open();
+                }
+
+
+                //Trainee
+                var traineelist = service.GetTrainees();
+
+                List<Trainee> lsttrainee = traineelist.ToList<Trainee>();
+                //Voeg voor iedere trainee-id een trainee object toe
+                string[] instructorids = tbxInstructorIDs.Text.Split(',');
+
+                foreach (Trainee trainee in lsttrainee) //add these trainees to the first exercise
+                {
+
+                    service.AddTraineeToInstructor(trainee.ID, instructorids[0].Trim() );
+                    //  inst.TraineesAssigned.Add(trainee);
+                    AddToListbox(string.Format("Trainee: {0}, Name: {1}, assigned to first instructor", trainee.ID, trainee.Name));
+
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, String.Format("Error using WCF methods>{0}", ex.Message));
+                log.Error("Error using WCF method change exercise", ex);
             }
         }
     }

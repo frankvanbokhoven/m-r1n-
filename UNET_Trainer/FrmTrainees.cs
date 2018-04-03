@@ -198,46 +198,6 @@ namespace UNET_Trainer
                 }
                 int listindex = 1;
 
-                //var traineelist = service.GetTrainees(); //first get all logged on trainees
-                //List<UNET_Classes.Trainee> lstTrainee = traineelist.ToList<UNET_Classes.Trainee>(); //C# v3 manier om een array in een list te krijgen
-
-
-                ////now we make visible a button for every existing role
-                //foreach (UNET_Classes.Trainee trainee in lstTrainee)
-                //{
-                //    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text = string.Format("Trainee {0}{1}{2}", trainee.ID, Environment.NewLine, trainee.Name);
-
-                //    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Enabled = true;
-                //    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeNotSelectedButton;
-                //    listindex++;
-                //}
-
-                ////loop nu door de lijst van toegewezen trainees heen en kijk of er een is die aan deze instructor/exercise is toegewezen. 
-                ////zoja, vul de informatie in en enable de knop met de trainee-toegewezen-kleur
-                //if (InstructorID.Length > 0)
-                //{
-                //    if (!Object.ReferenceEquals(CurrentInstructor, null))
-                //    {
-                //        if (!Object.ReferenceEquals(CurrentInstructor.Exercises, null))
-                //        {
-                //            if (SelectedExercise != -1)
-                //            {
-                //                listindex = 1;
-                //                foreach (Trainee assignedTrainee in CurrentInstructor.Exercises.FirstOrDefault(x => x.Number == SelectedExercise).TraineesAssigned)
-                //                {
-                //                    //    if (assignedRole.ID == role.ID)
-                //                    //    {
-                //                    //   pnlRoles.Controls["btnRole" + role.ID.ToString("00")].Enabled = true;
-                //                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].BackColor = Theming.TraineeSelectedButton;
-                //                    pnlTrainees.Controls["btnTrainee" + listindex.ToString("00")].Text += string.Format("{0}Instructor: {1}", Environment.NewLine, CurrentInstructor.ID + " " + CurrentInstructor.Name);
-                //                    listindex++;
-
-                //                    //    }
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
 
                 //UNET_Classes.Helpers.ResizeButtons(pnlTrainees, lstTrainee.Count, "trainee");
                 //enable the Trainees buttons, for the number of trainees that are in the training

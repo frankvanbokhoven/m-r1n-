@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
 using UNET_Classes;
 
 namespace UNET_Service
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Security.Cryptography;
     using System.ServiceModel;
     using System.ServiceModel.Activation;
@@ -19,21 +16,17 @@ namespace UNET_Service
     public class Service1 : IService1
     {
 
-        //     private readonly string clogfile = ConfigurationManager.AppSettings["LogFile"];
         //log4net
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static object locker = new object(); //tbv wcf broadcasting
 
         public Service1()
         {
-
             log4net.Config.BasicConfigurator.Configure();
             log.Info("Successfully started UNET_Service");
-
         }
 
         #region PTT
-
         /// <summary>
         /// add a ptt call to the queue
         /// </summary>
@@ -239,14 +232,6 @@ namespace UNET_Service
 
         #region Getters
 
-        //public bool StartService()
-        //{
-        //    log4net.Config.BasicConfigurator.Configure();
-        //    log.Info("Successfully started UNET_Service");
-        //    //  AppendToLog(string.Format("Successfully started UNET_Service: {0}", DateTime.Now.ToString("G")));
-
-        //    return true;
-        //}
         /// <summary>
         /// Get the exercises from the inline memory
         /// </summary>
@@ -545,7 +530,10 @@ namespace UNET_Service
             }
         }
 
-
+        /// <summary>
+        /// get a list of all trainees in the base (stam) table
+        /// </summary>
+        /// <returns></returns>
         public List<UNET_Classes.Trainee> GetTrainees()
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
@@ -565,23 +553,47 @@ namespace UNET_Service
             return result;
         }
 
-        public List<UNET_Classes.Trainee> GetTraineesAssigned(string _instructor, int _exercise)
+        /// <summary>
+        /// get a list of all trainees assigned to an instructor
+        /// </summary>
+        /// <returns></returns>
+        public List<UNET_Classes.Trainee> GetTraineesAssigned(string _instructorID, int _exerciseNumber)
         {
             List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
             try
             {
-                UNET_Singleton singleton = UNET_Singleton.Instance;
-                //  result = new List<Trainee>(singleton.Instructors.Where(x => x.ID == _instructor).  .All<).Where(t => t.ID == _exercise);
+
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+                result = new List<UNET_Classes.Trainee>(singleton.Instructors.FirstOrDefault(x => x.ID == _instructorID).Exercises
+                    .FirstOrDefault(y => y.Number == _exerciseNumber).TraineesAssigned);
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception retrieving the available trainees: " + ex.Message);
+                Console.WriteLine("Exception retrieving the assigned to instructor trainees: " + ex.Message);
 
                 throw;
             }
             return result;
         }
+
+        //public List<UNET_Classes.Trainee> GetTraineesAssigned(string _instructor, int _exercise)
+        //{
+        //    List<UNET_Classes.Trainee> result = new List<UNET_Classes.Trainee>();
+        //    try
+        //    {
+        //        UNET_Singleton singleton = UNET_Singleton.Instance;
+        //        //  result = new List<Trainee>(singleton.Instructors.Where(x => x.ID == _instructor).  .All<).Where(t => t.ID == _exercise);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Exception retrieving the available trainees: " + ex.Message);
+
+        //        throw;
+        //    }
+        //    return result;
+        //}
 
 
         public List<UNET_Classes.Platform> GetPlatforms()
@@ -1086,6 +1098,50 @@ namespace UNET_Service
         }
 
         /// <summary>
+        /// voeg een trainee toe aan de instructor
+        /// </summary>
+        /// <param name="_traineeID"></param>
+        /// <param name="_instructor"></param>
+        /// <returns></returns>
+        public bool AddTraineeToInstructor(string _traineeID, string _instructor)
+        {
+            bool result = true;
+            try
+            {
+                UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
+
+                //voor de leesbaarheid in twee regels!
+                Trainee trn = singleton.Trainees.SingleOrDefault(x => x.ID == _traineeID);
+                if (trn == null)
+                {
+                    trn = new Trainee("-1", "fout!! geneneerde Trainee!!");
+                }
+
+                //voeg de trainee toe aan de assignedtrainee list
+                singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).TraineesAssigned.Add(trn);
+
+                //zoek de trainee in de andere instructors en verwijder hem daar in de assignedtrainee lijsten
+                foreach (Instructor instr in singleton.Instructors)
+                {
+                    if (instr.ID != _instructor)
+                    {
+                        instr.TraineesAssigned.RemoveAll(x => x.ID == _traineeID);
+                    }
+                }
+
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Error adding Trainee to Instructor", ex);
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// add a role, to a given exercise
         /// </summary>
         /// <param name="_exerciseID"></param>
@@ -1202,26 +1258,26 @@ namespace UNET_Service
                         {
                             if (exe.Number == _exersiseID)
                             {
-                                bool found = false;
-                                foreach (Trainee trn in exe.TraineesAssigned) //find the given role
-                                {
-                                    if (trn.ID == _traineeID)
-                                    {
-                                        found = true;
-                                        if (!_add)
-                                        {
-                                            exe.TraineesAssigned.Remove(trn);
-                                        }
-                                        break;
-                                    }
+                                if(!inst.TraineesAssigned.Any(x => x.ID == _traineeID))
+                                    inst.TraineesAssigned.Add(singleton.Trainees.FirstOrDefault(x => x.ID == _traineeID));
+                                // foreach (Trainee trn in exe.TraineesAssigned) //find the given trainee
+                                //{
+                                //    if (trn.ID == _traineeID)
+                                //    {
+                                //       //  if (!_add)
+                                //      //  {
+                                //      //      exe.TraineesAssigned.Remove(trn);
+                                //      //  }
+                                //      //  else
+                                //      //  {
+                                //         //   exe.TraineesAssigned.Add(singleton.Trainees.FirstOrDefault(x => x.ID == _traineeID));
+                                //       //  }
+                                //        break;
+                                //    }
 
 
-                                }
-                                if (!found && _add) //if the trainee is not found in the list, but should be added (true) then ADD this trainee
-                                {
-                                    exe.TraineesAssigned.Add(new Trainee(_traineeID, "trainee name"));
-                                }
-
+                                //}
+                        
                                 singleton.PendingChanges = DateTime.Now;
                                 break;
                             }
@@ -1561,6 +1617,7 @@ namespace UNET_Service
                     {
                         //de exercise bestaat, dus we kunnen hem op selected zetten.
                         singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).Selected = _select;
+                        singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).EverSelected = true;
                         singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.SingleOrDefault(y => y.Number == _exerciseNumber).AssignedInstructorID = _instructor;
 
                     }
@@ -1571,11 +1628,9 @@ namespace UNET_Service
                         if (exe != null)
                         {
                             exe.Selected = true;
+                            exe.EverSelected = true;
                             exe.AssignedInstructorID = _instructor; //Req_unet_srs_3
-                            singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);
-                     //
-                            //hierna verwijderen we hem bij de oude lijst
-
+                            singleton.Instructors.SingleOrDefault(x => x.ID == _instructor).Exercises.Add(exe);   
 
                         }
 
