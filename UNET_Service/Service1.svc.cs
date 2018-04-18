@@ -564,7 +564,7 @@ namespace UNET_Service
             {
 
                 UNET_Singleton singleton = UNET_Singleton.Instance;//get the singleton object
-                result = new List<UNET_Classes.Trainee>(singleton.Instructors.FirstOrDefault(x => x.ID == _instructorID).Exercises
+                FFresult = new List<UNET_Classes.Trainee>(singleton.Instructors.FirstOrDefault(x => x.ID == _instructorID).Exercises
                     .FirstOrDefault(y => y.Number == _exerciseNumber).TraineesAssigned);
 
             }
@@ -1258,8 +1258,12 @@ namespace UNET_Service
                         {
                             if (exe.Number == _exersiseID)
                             {
-                                if(!inst.TraineesAssigned.Any(x => x.ID == _traineeID))
+                                if (!inst.TraineesAssigned.Any(x => x.ID == _traineeID))
+                                {
                                     inst.TraineesAssigned.Add(singleton.Trainees.FirstOrDefault(x => x.ID == _traineeID));
+                                    exe.TraineesAssigned.Add(singleton.Trainees.FirstOrDefault(x => x.ID == _traineeID));
+                                }
+
                                 // foreach (Trainee trn in exe.TraineesAssigned) //find the given trainee
                                 //{
                                 //    if (trn.ID == _traineeID)
